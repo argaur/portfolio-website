@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Founder CRM | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- Back Nav -->
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Case Study</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <!-- Hero -->
+        <header class="cs-hero">
+            <span class="cs-label">Product Requirements Document</span>
+            <h1 class="cs-title">Founder's CRM</h1>
+            <p class="cs-subtitle">A conversation-first CRM for early-stage founders who personally lead sales &mdash; built to replace the manual logging loop that kills every traditional CRM.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">B2B SaaS</span>
+                <span class="cs-meta-tag">AI / NLP</span>
+                <span class="cs-meta-tag">Telegram Bot</span>
+                <span class="cs-meta-tag">WhatsApp-First Sales</span>
+            </div>
+        </header>
+
+        <!-- TOC -->
+        <nav class="cs-toc">
+            <h3 class="cs-toc-title">Contents</h3>
+            <div class="cs-toc-columns">
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Discovery</span>
+                    <a href="#problem-tension">1. Problem Tension</a>
+                    <a href="#broader-problem">2. Broader Problem Statement</a>
+                    <a href="#context">3. Context</a>
+                    <a href="#target-user">4. Target User Definition</a>
+                    <a href="#problem-space">5. Problem Space Context</a>
+                    <a href="#business-impact">6. Business Impact</a>
+                    <a href="#existing-ecosystem">7. Existing Ecosystem</a>
+                    <a href="#primary-research">8. Primary Research</a>
+                    <a href="#secondary-research">9. Secondary Research</a>
+                    <a href="#competitor-analysis">10. Competitor Analysis</a>
+                </div>
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Analysis &amp; Solution</span>
+                    <a href="#problem-clustering">11. Problem Clustering</a>
+                    <a href="#prioritisation">12. Problem Prioritisation</a>
+                    <a href="#prioritisation-rationale">13. Prioritisation Rationale</a>
+                    <a href="#narrowed-problem">14. Narrowed Problem Statement</a>
+                    <a href="#assumptions">15. Key Assumptions</a>
+                    <a href="#product-concept">16. Product Concept</a>
+                    <a href="#persona">17. User Persona</a>
+                    <a href="#product-flow">18. Product Flow</a>
+                    <a href="#workflow-mapping">19. Workflow Mapping</a>
+                    <a href="#desktop-platform">20. Desktop Platform</a>
+                    <a href="#user-stories">21. User Stories</a>
+                    <a href="#mvp-scope">22. MVP Scope</a>
+                    <a href="#moonshot">23. Moonshot &mdash; AI Sales Coach</a>
+                    <a href="#success-metrics">24. Success Metrics</a>
+                    <a href="#tradeoffs">25. Trade-offs &amp; Limitations</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 0. Document Overview -->
+        <section class="cs-section">
+            <span class="cs-section-label">Overview</span>
+            <h2 class="cs-section-title">Document Overview</h2>
+
+            <h3>Purpose &amp; Scope</h3>
+            <p>This document analyses the problem space surrounding CRM for early-stage startups where founders personally manage sales. It covers how sales workflows operate in founder-led startups, where lead tracking breaks down, why existing CRMs fail this segment, and how primary and secondary research validates a narrowed problem statement and solution direction.</p>
+
+            <h3>Research Scope</h3>
+            <p><strong>Target Segment:</strong> Early stage startups, 0&ndash;10 employees, founder-led sales, pre-PMF to early PMF, with no dedicated sales operations.</p>
+
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>Primary Research</h4>
+                    <ul>
+                        <li>Founder interviews and workflow observation</li>
+                        <li>Identification of operational friction in sales tracking</li>
+                    </ul>
+                </div>
+                <div class="cs-col">
+                    <h4>Secondary Research</h4>
+                    <ul>
+                        <li>Market reports on CRM adoption and startup sales</li>
+                        <li>Community forums, product reviews, accelerator insights</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>The target segment is defined by a structural condition, not company size: founders who are simultaneously the product owner, salesperson, and system administrator, with no bandwidth left for CRM maintenance.</p>
+
+            <h3>Confidence Tags</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Level</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>High Confidence</td><td>Multiple founder interviews, consistent cross-industry patterns, strong secondary research support.</td></tr>
+                        <tr><td>Moderate Confidence</td><td>Limited primary signals + secondary findings. Valid but requires further validation.</td></tr>
+                        <tr><td>Emerging Signals</td><td>Early observations from few interviews or edge cases. Not yet a confirmed pattern.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 1. Problem Tension -->
+        <section class="cs-section" id="problem-tension">
+            <span class="cs-section-label">Section 1</span>
+            <h2 class="cs-section-title">Problem Tension</h2>
+
+            <h3>1.1 Real Founder Sales Scenario</h3>
+            <p>In early-stage startups, founders handle the full sales cycle with no dedicated sales team or CRM admin. Typical behaviour includes managing 50&ndash;150 active conversations simultaneously across WhatsApp, LinkedIn, email, calls, and in-person meetings, with deals progressing informally and context stored in chat threads, voice notes, and memory.</p>
+            <p>A typical deal path: LinkedIn intro &rarr; WhatsApp discussion &rarr; call &rarr; email proposal &rarr; multiple follow-ups before close.</p>
+            <p>Because conversations move fluidly across channels, there is no single system of record capturing deal context. Founders rely on starred chats, personal notes, memory, and occasional spreadsheets. This informal system holds temporarily but breaks as active deal volume grows.</p>
+
+            <h3>1.2 Observable Breakdown in Sales Tracking</h3>
+            <p>When sales volume increases, founders attempt CRM adoption, but a predictable failure cycle follows:</p>
+            <ol>
+                <li>CRM setup and initial contact import</li>
+                <li>Manual logging required after every conversation</li>
+                <li>Logging fatigue within days</li>
+                <li>Partial, inconsistent data entry</li>
+                <li>CRM abandonment by week 4</li>
+            </ol>
+            <p>Manual logging competes directly with the founder's primary job: closing deals. Conversations remain outside the CRM, follow-ups go untracked, and founders revert to WhatsApp + memory + spreadsheets.</p>
+
+            <div class="cs-callout">
+                <p>CRM abandonment is not a failure of intent. Every founder in the sample intended to use the tool. The failure is structural: the tool demands effort at the exact moment the founder has none to give.</p>
+            </div>
+
+            <h3>1.3 Evidence of Revenue Leakage</h3>
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">73%</span>
+                    <span class="cs-stat-label">Leads never contacted after first message (Salesforce SoS)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">93%</span>
+                    <span class="cs-stat-label">Deals close at 6th touch or later (HubSpot research)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">44%</span>
+                    <span class="cs-stat-label">Founders give up after just 1 follow-up (primary + secondary)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">60&ndash;70%</span>
+                    <span class="cs-stat-label">Founders abandon CRM within 3&ndash;4 weeks (G2, Capterra, primary)</span>
+                </div>
+            </div>
+            <p>Additional inefficiencies: founders scroll through WhatsApp before every call to recall context; missed reminders when no system tracks interactions; pipeline reconstructed manually before investor meetings.</p>
+
+            <h3>1.4 Why This Problem Matters Now</h3>
+            <p>India's rapidly growing startup ecosystem, the shift to conversational sales channels (WhatsApp, LinkedIn DMs, voice notes), and recent advances in AI for unstructured data all converge to make this problem both urgent and technically solvable. AI can now extract insights from conversation data, auto-summarise discussions, and surface follow-up opportunities &mdash; enabling tools that work with conversational workflows rather than against them.</p>
+
+            <div class="cs-insight">
+                <h4>Product Insight</h4>
+                <p>The core issue is <strong>timing friction</strong>. CRM requires founders to perform data entry right after conversations, which is precisely when their cognitive load is highest. As a result, the logging step gets skipped. This reveals that the failure is not behavioral laziness but workflow incompatibility.</p>
+            </div>
+        </section>
+
+        <!-- 2. Broader Problem Statement -->
+        <section class="cs-section" id="broader-problem">
+            <span class="cs-section-label">Section 2</span>
+            <h2 class="cs-section-title">Broader Problem Statement</h2>
+
+            <h3>2.1 Industry-Level Problem</h3>
+            <p>Traditional CRMs (Salesforce, HubSpot, Zoho) were designed for structured sales orgs: dedicated teams, defined pipelines, consistent data entry, centralised channels. Early-stage startups operate oppositely: founder-led, relationship-driven, informal, conversational, and highly dynamic. This mismatch makes existing CRMs feel too complex, too enterprise-focused, and too maintenance-heavy.</p>
+
+            <div class="cs-callout">
+                <p>The CRM industry built a hammer optimised for enterprise nails. Early-stage founders are a different fastener entirely &mdash; and no one has built the right tool yet.</p>
+            </div>
+
+            <h3>2.2 User-Level Problem</h3>
+            <p>Founders spend their time talking to customers, running demos, negotiating, building product, and hiring. CRM updates compete directly with these activities. When forced to choose, founders consistently prioritise conversation over documentation.</p>
+
+            <h3>2.3 Systemic Gap in Existing Solutions</h3>
+            <p>All existing solutions depend on manual logging. Since conversations occur outside the CRM and logging requires additional effort, the system structurally fails: input data is missing, follow-up triggers never fire, and pipeline visibility becomes unreliable.</p>
+            <p>In India specifically, this is amplified because <strong>WhatsApp is the dominant B2B sales channel</strong>, yet no CRM can access or interpret personal WhatsApp conversations.</p>
+
+            <div class="cs-insight">
+                <h4>Product Insight</h4>
+                <p>This reveals a category-level mismatch. Existing CRM systems were designed for teams where sales is a full-time role, but the target users here are founders for whom sales is only one of many responsibilities. Therefore, the problem is not about improving CRM features. It is about rethinking the fundamental interaction model of CRM tools.</p>
+            </div>
+        </section>
+
+        <!-- 3. Context -->
+        <section class="cs-section" id="context">
+            <span class="cs-section-label">Section 3</span>
+            <h2 class="cs-section-title">Context</h2>
+
+            <h3>3.1 Startup Sales Environment</h3>
+            <p>Target companies: 0&ndash;10 employees, no dedicated sales operations, founder responsible for revenue generation, minimal sales infrastructure evolving organically.</p>
+            <div class="cs-callout"><p>At this stage, the founder IS the sales process. There is no system to improve &mdash; there is only a person to support.</p></div>
+
+            <h3>3.2 Founder-Led Sales Reality</h3>
+            <p>The founder handles the full customer lifecycle: lead generation, qualification, demos, negotiation, closing, and onboarding. These activities occur conversationally and rarely follow a predefined structure.</p>
+
+            <h3>3.3 Multi-Channel Communication Landscape</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Channel</th><th>Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Messaging apps (WhatsApp)</td><td>Relationship building</td></tr>
+                        <tr><td>LinkedIn</td><td>Initial outreach</td></tr>
+                        <tr><td>Email</td><td>Proposal and documentation</td></tr>
+                        <tr><td>Calls</td><td>Detailed discussions</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>A single deal typically moves: LinkedIn intro &rarr; WhatsApp conversation &rarr; Email proposal &rarr; Call negotiation &rarr; Close. This fragmentation prevents any single tool from capturing the full deal narrative.</p>
+
+            <div class="cs-insight">
+                <h4>Product Insight</h4>
+                <p>Because deal context is spread across multiple communication platforms, no single tool captures the full narrative of a deal. CRM pipelines represent only a partial view of reality. Founders must manually reconstruct deal history before every important conversation. This creates high cognitive overhead and increases the risk of missed follow-ups.</p>
+            </div>
+        </section>
+
+        <!-- 4. Target User -->
+        <section class="cs-section" id="target-user">
+            <span class="cs-section-label">Section 4</span>
+            <h2 class="cs-section-title">Target User Definition</h2>
+
+            <h3>4.1 Startup Stage Definition</h3>
+            <p>Pre-seed to seed stage, 0&ndash;10 employees, early revenue or pre-PMF. Founders are still discovering their sales process. A CRM that imposes structure before that process is understood will always be abandoned.</p>
+
+            <h3>4.2 Founder Sales Responsibilities</h3>
+            <p>The founder acts as the entire sales function: lead gen, qualification, demos, negotiation, closing, and onboarding. Their workflow is extremely time-constrained.</p>
+
+            <h3>4.3 Behavioural Characteristics of Target Users</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Behaviour</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>High context switching</td><td>Founders switch rapidly between product, hiring, sales, and fundraising.</td></tr>
+                        <tr><td>Mobile-first interaction</td><td>Many sales conversations happen directly from smartphones.</td></tr>
+                        <tr><td>Low tolerance for admin overhead</td><td>Tools requiring regular manual updates are quickly abandoned.</td></tr>
+                        <tr><td>Relationship-driven selling</td><td>Trust and personal connection are primary drivers of early-stage deals.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cs-insight">
+                <h4>Product Insight</h4>
+                <p>These traits translate directly into product design constraints: tools must support fast mobile interactions, data capture must require minimal effort, and the system must support unstructured conversational workflows.</p>
+            </div>
+        </section>
+
+        <!-- 5. Problem Space -->
+        <section class="cs-section" id="problem-space">
+            <span class="cs-section-label">Section 5</span>
+            <h2 class="cs-section-title">Problem Space Context</h2>
+
+            <h3>5.1 Current Founder Sales Behaviour</h3>
+            <h4>Lead Sources</h4>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Source</th><th>Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Referrals</td><td>Highest trust and conversion</td></tr>
+                        <tr><td>Communities</td><td>Early traction channels</td></tr>
+                        <tr><td>LinkedIn</td><td>Outbound prospecting</td></tr>
+                        <tr><td>Events</td><td>Episodic bursts of leads</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Communication Channels and Deal Lifecycle</h4>
+            <p>Deal communication moves: LinkedIn introduction &rarr; WhatsApp conversation &rarr; Email proposal &rarr; Call negotiation &rarr; Close. Multiple follow-ups are required before conversion, making untracked conversations a direct cause of deal loss.</p>
+            <div class="cs-callout"><p>All high-converting lead sources &mdash; referrals, communities, events &mdash; immediately move to WhatsApp. The CRM never sees the lead at the highest-trust moment of the relationship.</p></div>
+
+            <h3>5.2 Lead Management Practices</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Method</th><th>Limitation</th></tr></thead>
+                    <tbody>
+                        <tr><td>Memory</td><td>Unreliable at scale</td></tr>
+                        <tr><td>Starred WhatsApp chats</td><td>Quickly cluttered</td></tr>
+                        <tr><td>Spreadsheets</td><td>Manual updates required</td></tr>
+                        <tr><td>CRMs</td><td>Frequently abandoned</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Follow-ups are reactive, based on personal reminders or customer messages. Pipeline visibility is reconstructed manually by reviewing chat threads, emails, and notes &mdash; resulting in partial visibility and unreliable forecasting.</p>
+
+            <div class="cs-insight">
+                <h4>Product Insight</h4>
+                <p>The real competition for any CRM product in this segment is not other CRM tools. The true competitor is the simplicity of WhatsApp and memory-based tracking. Any successful product must provide equal or lower friction at the point of capture.</p>
+            </div>
+        </section>
+
+        <!-- 6. Business Impact -->
+        <section class="cs-section" id="business-impact">
+            <span class="cs-section-label">Section 6</span>
+            <h2 class="cs-section-title">Business Impact of the Problem</h2>
+
+            <h3>Founder Sales Funnel Leakage (Illustrative Scenario)</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Stage</th><th>Estimated Numbers</th><th>Explanation</th></tr></thead>
+                    <tbody>
+                        <tr><td>Active leads in conversation</td><td>~100 / month</td><td>Conversations across WhatsApp, LinkedIn, email, calls</td></tr>
+                        <tr><td>Leads not followed up</td><td>~40</td><td>~30&ndash;40% receive no structured follow-up</td></tr>
+                        <tr><td>Potential deals from these leads</td><td>2&ndash;4</td><td>Based on 5&ndash;10% B2B conversion rate</td></tr>
+                        <tr><td>Average deal size</td><td>&#8377;1.5L</td><td>Typical early-stage B2B SaaS/services deal</td></tr>
+                        <tr><td>Monthly revenue leakage</td><td>&#8377;3L &ndash; &#8377;6L</td><td>Revenue lost due to missed follow-ups</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Operational Impact of Sales Tracking Breakdown</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Problem</th><th>Operational Effect</th><th>Estimated Impact</th></tr></thead>
+                    <tbody>
+                        <tr><td>Missed follow-ups</td><td>30&ndash;40% of warm leads receive no follow-up</td><td>&#8377;3L&ndash;&#8377;6L monthly revenue loss</td></tr>
+                        <tr><td>Incomplete follow-up cycles</td><td>Founders stop after 1&ndash;2 attempts while most deals require multiple interactions</td><td>&#8377;4.5L&ndash;&#8377;7.5L lost deals</td></tr>
+                        <tr><td>Invisible pipeline</td><td>Only ~35&ndash;40% of conversations appear in tracking tools</td><td>~&#8377;3L missed opportunities</td></tr>
+                        <tr><td>Context reconstruction</td><td>Founders search chat threads before every call</td><td>~330+ hours lost annually</td></tr>
+                        <tr><td>Knowledge stored in founder memory</td><td>Difficult to hand off pipeline to first sales hire</td><td>&#8377;10L&ndash;&#8377;30L delayed revenue during transition</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Estimated Combined Revenue Impact:</strong></p>
+                <p>Estimated total revenue leakage: <strong>&#8377;10L &ndash; &#8377;16L per month</strong></p>
+                <p>Annualized impact: <strong>&#8377;1.2Cr &ndash; &#8377;2Cr</strong> in potential lost revenue</p>
+            </div>
+        </section>
+
+        <!-- 7. Existing Ecosystem -->
+        <section class="cs-section" id="existing-ecosystem">
+            <span class="cs-section-label">Section 7</span>
+            <h2 class="cs-section-title">Existing Ecosystem</h2>
+
+            <h3>7.1 The Real Existing Solutions</h3>
+            <p>Before evaluating CRMs, the baseline tools founders actually use:</p>
+            <ul>
+                <li><strong>Starred WhatsApp messages + memory:</strong> Default for 6 of 9 founders. Zero setup, zero maintenance, zero proactive value.</li>
+                <li><strong>Google Sheets / Notion kanban:</strong> Set up with intent, accurate for 2&ndash;3 weeks, abandoned as volume grows. Flexibility is the feature; absence of guidance is the failure.</li>
+                <li><strong>Pen and paper / custom-built tools:</strong> Technical founders build rather than buy. One participant: "building takes 4 hours vs. 3 hours to learn Odoo."</li>
+            </ul>
+            <div class="cs-callout"><p>The most popular CRM among early founders is WhatsApp starred messages. That is the benchmark the product must beat &mdash; not HubSpot.</p></div>
+
+            <h3>7.2 CRM Tool Landscape (16 Tools, 4 Tiers)</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Tier</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>Tier 1: Traditional CRM</td><td>Salesforce, HubSpot, Pipedrive, Close. Built for multi-rep orgs. Assume sales is the user's primary job. Data entry burden: 30&ndash;90 min/day. Founder fit: 1.5&ndash;4/10. Zero WhatsApp support.</td></tr>
+                        <tr><td>Tier 2: Indian Mid-Market</td><td>Zoho, Freshsales, LeadSquared, TeleCRM, Kylas, Interakt. Closest cultural fit: INR pricing. Still assume dedicated seller. WhatsApp support is WABA-only (business number + BSP middleware at INR 3K&ndash;15K/mo).</td></tr>
+                        <tr><td>Tier 3: Founder-Adjacent Lightweight</td><td>Folk, Streak, Bigin, Kommo. Closest to solving founder pain. Each solves one dimension well. All share the same anchor failure: manual logging breaks at week 3&ndash;4.</td></tr>
+                        <tr><td>Tier 4: Workaround Stack</td><td>Notion CRM, Google Sheets. Adopted because they impose no structure. Abandoned equally quickly because they provide no guidance.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cs-callout"><p>Every tier assumes the user has more time, money, or CRM familiarity than the target segment actually has.</p></div>
+
+            <h3>7.3 The Actual Usage Pattern</h3>
+            <ul>
+                <li><strong>Week 1:</strong> Contact import, pipeline setup. Feels productive.</li>
+                <li><strong>Weeks 2&ndash;3:</strong> WhatsApp logging drops to zero. Email auto-log continues but incomplete.</li>
+                <li><strong>Week 4+:</strong> CRM has 40&ndash;60% of conversations missing. Founder reverts to Sheets + WhatsApp.</li>
+            </ul>
+
+            <h3>7.4 Three Architectural Ceilings</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Ceiling 1: The WhatsApp Integration Wall</h4>
+                    <p>Zero of 16 tools support personal WhatsApp. 8 support WABA only &mdash; which requires a separate business number, verified registration, BSP middleware (INR 3K&ndash;15K/mo), and per-conversation charges. For a seed-stage founder at &lt;INR 20L ARR, this is economically and structurally unviable.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Ceiling 2: The Manual Logging Loop</h4>
+                    <p>The only accurate logging moment is immediately after a conversation &mdash; also when founders are least available. This is not a discipline problem. It is a timing problem.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Ceiling 3: The Pricing Cliff</h4>
+                    <p>Free tiers are stripped of useful features. Meaningful plans run $25&ndash;$75/user/mo. The upgrade ask arrives exactly when founders are ready to pay &mdash; after Week 1 habit forms &mdash; but before the tool has proven value.</p>
+                </div>
+            </div>
+            <div class="cs-callout"><p>These three ceilings are not product problems waiting to be fixed with better UX. They are structural constraints that define the design space. Any solution must work within them, not assume they can be removed.</p></div>
+        </section>
+
+        <!-- 8. Primary Research -->
+        <section class="cs-section" id="primary-research">
+            <span class="cs-section-label">Section 8</span>
+            <h2 class="cs-section-title">Primary Research</h2>
+
+            <h3>8.1 Methodology</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Parameter</th><th>Detail</th></tr></thead>
+                    <tbody>
+                        <tr><td>Sample</td><td>10 founder interviews + 1 aggregated insight document (11 total). 2 B2B SaaS founders interviewed separately.</td></tr>
+                        <tr><td>Format</td><td>Semi-structured, remote, 45&ndash;60 min. Open-ended across lead gen, tracking, follow-up, tools, pain points.</td></tr>
+                        <tr><td>Selection</td><td>Small/early-stage Indian businesses, sub-20 person teams, founder-involved in sales.</td></tr>
+                        <tr><td>Key Biases</td><td>Sample skews toward non-adopters and unhappy CRM adopters. Zero satisfied CRM users. No pricing sensitivity explored.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>8.2 The Say-Do Gap</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>What Founders Say</th><th>Reality</th></tr></thead>
+                    <tbody>
+                        <tr><td>"I track all my leads in Excel."</td><td>Business cards pile up post-event. CRM fields left blank. WhatsApp messages to self serve as the real database.</td></tr>
+                        <tr><td>"I remember all the context."</td><td>When handing off to a team member, 60&ndash;70% of context is lost.</td></tr>
+                        <tr><td>"We follow up 2&ndash;3 times."</td><td>Leads found untouched for 4 months. No reminder system in place.</td></tr>
+                        <tr><td>"We use a CRM."</td><td>Salespeople skip data entry. Teams abandon tools like HubSpot within weeks.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>8.3 A Week in the Life (Composite)</h3>
+            <ul>
+                <li><strong>Monday:</strong> Back from trade show with 60 business cards. Enters 12 leads before a product call interrupts. 48 cards sit on desk untouched.</li>
+                <li><strong>Tuesday:</strong> Warm referral arrives on WhatsApp. Great conversation. Promises proposal by Thursday. Does not write this down.</li>
+                <li><strong>Wednesday:</strong> Old lead replies to a forgotten email. Context split across WhatsApp, Gmail, and a spreadsheet. Founder wings it.</li>
+                <li><strong>Thursday:</strong> Co-founder asks about the Tuesday referral. Forgot the proposal. Rushes something at 11pm. Lead has already gone cold.</li>
+                <li><strong>Friday:</strong> Opens CRM. Half the deals are in wrong stages. Spends 45 min fixing data instead of selling. Two trade show leads never got a first email.</li>
+            </ul>
+            <div class="cs-callout"><p>Deals don't die in a dramatic moment. They die in the 48-hour gap between a good conversation and the follow-up that never happened.</p></div>
+
+            <h3>8.4 Friction Points (Ranked by Severity)</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Friction Point</th><th>Evidence</th></tr></thead>
+                    <tbody>
+                        <tr><td>Follow-ups slip through cracks (7/10 &mdash; HIGH)</td><td>"Some people had not been contacted since like 4 months." &mdash; P06</td></tr>
+                        <tr><td>Manual data entry kills adoption (8/10 &mdash; HIGH)</td><td>"These guys don't always put in all the data." &mdash; P06</td></tr>
+                        <tr><td>Context lost across channels (6/10 &mdash; HIGH)</td><td>"The real problem is remembering the context." &mdash; Unnati</td></tr>
+                        <tr><td>Exhibition lead digitisation bottleneck (4/10 &mdash; HIGH)</td><td>"Digitalization of my leads. Number one." &mdash; P03</td></tr>
+                        <tr><td>CRM too complex for small teams (6/10 &mdash; MEDIUM)</td><td>"Too complicated, too power-user centric." &mdash; P08</td></tr>
+                        <tr><td>Sales-to-CS handover breaks (1/10 &mdash; HIGH, B2B SaaS specific)</td><td>"60&ndash;70% of cases, we never got the full context." &mdash; P12</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>8.5 Recurring Behavioural Patterns</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Pattern</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>The Pocket Database (HIGH)</td><td>Deal context lives in the founder's head. Works until first hire or sick day. Implication: passive capture must replace active note-taking.</td></tr>
+                        <tr><td>Post-Event Decay (HIGH)</td><td>Events generate 50&ndash;400 leads in 2&ndash;3 days. By the time leads are entered, the warm follow-up window has closed.</td></tr>
+                        <tr><td>Automation Paradox (HIGH)</td><td>Founders want automation but resist the structured input it requires. Tools demanding the most data get the least adoption.</td></tr>
+                        <tr><td>Spreadsheet Gravity (HIGH)</td><td>Even after buying a CRM, founders revert to Excel because spreadsheets impose no structure. Product must feel like a spreadsheet but act like a CRM underneath.</td></tr>
+                        <tr><td>The Build Reflex (MEDIUM)</td><td>Technical founders build custom CRMs rather than buy. Product must be API-first or builders will build around it.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cs-insight">
+                <h4>Key Insight</h4>
+                <p>The Automation Paradox is the core design constraint &mdash; founders simultaneously want automation and refuse the data entry that powers it. The only resolution is a system that generates its own data through passive capture.</p>
+            </div>
+
+            <h3>8.6 Key Verbatim Pain Signals</h3>
+            <div class="cs-quotes">
+                <blockquote>"I was looking at a report where some people had not been contacted since like 4 months." <cite>&mdash; P06</cite></blockquote>
+                <blockquote>"We don't have reminders, and we don't follow up the way we should." <cite>&mdash; P08</cite></blockquote>
+                <blockquote>"What annoys me the most is losing momentum in deals." <cite>&mdash; Unnati</cite></blockquote>
+                <blockquote>"The sales team had to manually do a lot of things. They hated using HubSpot." <cite>&mdash; P12</cite></blockquote>
+                <blockquote>"The real problem is remembering the context behind each conversation." <cite>&mdash; Unnati</cite></blockquote>
+                <blockquote>"I yet to find any smooth tool." <cite>&mdash; P11</cite></blockquote>
+                <blockquote>"I don't think there is value in CRMs for small companies any more." <cite>&mdash; P07</cite></blockquote>
+            </div>
+            <div class="cs-callout"><p>Every quote is about missing context or lost momentum &mdash; not missing features. The product gap is not functional, it is temporal: the right information isn't available at the right moment.</p></div>
+        </section>
+
+        <!-- 9. Secondary Research -->
+        <section class="cs-section" id="secondary-research">
+            <span class="cs-section-label">Section 9</span>
+            <h2 class="cs-section-title">Secondary Research</h2>
+            <p>Synthesised from 85+ sources and 362 findings across market reports, community forums, and review platforms.</p>
+
+            <h3>9.1 Market Sizing</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Metric</th><th>Finding</th></tr></thead>
+                    <tbody>
+                        <tr><td>India CRM market (2024)</td><td>$2.48B (Fortune Business Insights)</td></tr>
+                        <tr><td>India CAGR</td><td>19.1% &mdash; 72% faster than global 11.1%</td></tr>
+                        <tr><td>Projected 2034</td><td>$14.24B</td></tr>
+                        <tr><td>Intent vs adoption</td><td>94% of SMBs (&lt;10 emp) intend to adopt; only ~50% have structured usage</td></tr>
+                        <tr><td>SMB CRM sub-segment</td><td>16.2% CAGR with no dominant India-first player</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>9.2 Founder Time Allocation</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Activity</th><th>Time Allocation</th></tr></thead>
+                    <tbody>
+                        <tr><td>Product &amp; Engineering</td><td>35%</td></tr>
+                        <tr><td>Customer Conversations</td><td>25%</td></tr>
+                        <tr><td>Fundraising &amp; Investor Comms</td><td>15%</td></tr>
+                        <tr><td>Hiring &amp; Team Management</td><td>12%</td></tr>
+                        <tr><td>Operations &amp; Admin</td><td>8%</td></tr>
+                        <tr><td>CRM Maintenance</td><td>5%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cs-callout"><p>CRM gets 5% of founder time by default &mdash; and that ceiling doesn't move with better UX. The only lever is reducing how much time the tool requires, not improving how the time is spent.</p></div>
+
+            <h3>9.3 Community Pain Signals</h3>
+            <p>Universal signals across Reddit, IndieHackers, Twitter/X, Indian startup Slack groups:</p>
+            <div class="cs-quotes">
+                <blockquote>"I don't know who to follow up with today"</blockquote>
+                <blockquote>"WhatsApp is where deals happen but no CRM reads it"</blockquote>
+                <blockquote>"I used the CRM for 2 weeks then stopped"</blockquote>
+                <blockquote>"I scroll through 50 WA messages before every call"</blockquote>
+                <blockquote>"Every CRM is built for a VP Sales with 10 reps, not me"</blockquote>
+                <blockquote>"The features I need are always behind a paywall"</blockquote>
+            </div>
+            <p>India-specific signals: Price ceiling INR 1,500&ndash;3,000/month at seed stage. Large proportion conduct deal conversations entirely on mobile. Tier 2/3 founders have lower CRM familiarity and need intuitive onboarding.</p>
+
+            <h3>9.4 Product Review Patterns (G2, Capterra, Product Hunt)</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Review Pattern</th><th>Frequency</th></tr></thead>
+                    <tbody>
+                        <tr><td>WhatsApp conversations invisible / manual logging required</td><td>Very High &mdash; across all 15 tools</td></tr>
+                        <tr><td>CRM abandoned after 2&ndash;4 weeks</td><td>Very High &mdash; across all lightweight tools</td></tr>
+                        <tr><td>Features paywalled</td><td>High &mdash; Folk, Streak, HubSpot, Freshsales</td></tr>
+                        <tr><td>Mobile app is scaled-down desktop</td><td>High &mdash; Folk, Streak, Salesforce, Pipedrive</td></tr>
+                        <tr><td>Follow-up reminders fire for wrong context</td><td>Medium &mdash; across all tools with auto-reminders</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>9.5 Three Industry Insights</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>1. The Architectural Inversion</h4>
+                    <p>Every CRM treats conversation as an input requiring data entry. The winning product treats conversation as the log itself. Kommo comes closest (WABA conversations as deal records) but requires Business API and forces pipeline structure at onboarding.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>2. Frequency Drives Retention</h4>
+                    <p>Only daily-frequency features (follow-up reminder, pre-call context recall, WhatsApp context capture) can sustain retention. Pipeline analytics (weekly/monthly) cannot. Design must prioritise daily-frequency features above all else.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>3. The P0 Chain</h4>
+                    <p>Three failures compound in sequence: (1) Input failure &mdash; WhatsApp invisibility. (2) Habit failure &mdash; manual logging breaks. (3) Output failure &mdash; no system knows when to remind. Solving WhatsApp capture and auto-follow-up together addresses all three with a single architectural decision.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Competitor Analysis -->
+        <section class="cs-section" id="competitor-analysis">
+            <span class="cs-section-label">Section 10</span>
+            <h2 class="cs-section-title">Competitor Analysis</h2>
+
+            <h3>10.1 Feature Coverage Summary (16 Tools)</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Feature</th><th>Coverage</th></tr></thead>
+                    <tbody>
+                        <tr><td>Email Integration</td><td>13/16 have it. Solved. Not a differentiator.</td></tr>
+                        <tr><td>WhatsApp Integration</td><td>0/16 support personal WA. 8 support WABA only. Architecturally unsolved.</td></tr>
+                        <tr><td>Mobile App</td><td>13/16 have one. All are scaled-down desktop. None are mobile-first.</td></tr>
+                        <tr><td>Auto Follow-up Reminder</td><td>7/16 have partial capability. All reactive, not proactive. None trigger from conversation context.</td></tr>
+                        <tr><td>Free Tier</td><td>5/16 have a genuine free tier. Majority require payment before value is demonstrated.</td></tr>
+                        <tr><td>Stalled-Deal Alerting</td><td>Partial in Pipedrive, Streak, Freshsales (paid). No tool proactively surfaces "this deal needs attention now" from conversation context.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cs-callout"><p>Email integration is table stakes. WhatsApp integration is the moat. The feature every Indian founder needs most is the one no tool has built &mdash; and the one no global competitor is incentivised to build.</p></div>
+
+            <h3>10.2 Key Product Gaps</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Gap</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>Target User Design (T1, High)</td><td>All tools assume dedicated "sales role" user. None design for founder-as-accidental-salesperson.</td></tr>
+                        <tr><td>Data Entry Burden (T2, High)</td><td>All require founder to come to the tool. None auto-capture across full conversation surface.</td></tr>
+                        <tr><td>Channel Integration (T3, High)</td><td>Zero personal WhatsApp support. Architecturally impossible via current API.</td></tr>
+                        <tr><td>Follow-up Mechanism (T2, High)</td><td>Reactive: founders must manually create tasks. None proactively surface from conversation context.</td></tr>
+                        <tr><td>Mobile Usability (T2, High)</td><td>No voice-to-CRM, one-tap update, or 30-sec mobile capture.</td></tr>
+                        <tr><td>Pricing Model (T3, Medium)</td><td>Automation/reminders paywalled at 3&ndash;5x entry price vs. founder-viable ceiling.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>10.3 Competitive Positioning Summary</h3>
+            <ul>
+                <li>No existing CRM designs for the founder-as-accidental-salesperson.</li>
+                <li>Personal WhatsApp gap is structural and unsolvable through integration.</li>
+                <li>Closest tools (Folk, Streak, Bigin, Kommo) each solve one dimension while failing at the behavioural anchor: manual logging.</li>
+                <li>No tool has achieved the architectural inversion: conversation as the log itself. This is the white space.</li>
+            </ul>
+            <div class="cs-callout"><p>The white space is not a feature gap &mdash; it is an architectural gap. The first product that makes conversation the primary record, rather than an input to a record, wins by default.</p></div>
+        </section>
+
+        <!-- 11. Problem Clustering -->
+        <section class="cs-section" id="problem-clustering">
+            <span class="cs-section-label">Section 11</span>
+            <h2 class="cs-section-title">Problem Clustering</h2>
+
+            <h3>11.1 Lead Tracking Breakdown</h3>
+            <ul>
+                <li><strong>Capture failure:</strong> Leads across WhatsApp, email, LinkedIn never centralised. 73% receive no structured follow-up after first contact. [HIGH]</li>
+                <li><strong>Channel gap:</strong> Personal WhatsApp has no integration path with any CRM. Hard architectural constraint by Meta. [HIGH]</li>
+                <li><strong>Recency collapse:</strong> Older but active leads fade as founders focus on recent conversations. Without inactivity detection, cold deals remain "pending" indefinitely. [PRIMARY RESEARCH]</li>
+            </ul>
+
+            <h3>11.2 Follow-Up Breakdown</h3>
+            <ul>
+                <li><strong>Timing failure:</strong> 44% make only one follow-up attempt. Deals requiring 6+ touches are systematically lost. [HIGH]</li>
+                <li><strong>Context failure:</strong> Even when follow-up happens, founders can't recall what was discussed. Defaults to generic "checking in" message. [6/10 participants]</li>
+            </ul>
+            <div class="cs-callout"><p>These two failures compound &mdash; the right follow-up at the right time with the right context almost never happens. Each is harmful; the combination is deal-destroying.</p></div>
+
+            <h3>11.3 Pipeline Visibility Breakdown</h3>
+            <ul>
+                <li><strong>Input gap:</strong> 60&ndash;70% of active deals on personal WhatsApp, never entered into any pipeline view.</li>
+                <li><strong>Completeness illusion:</strong> Pipeline shows only 30&ndash;40% of deals. Founder believes they are tracking when they're tracking a minority.</li>
+                <li><strong>Stage drift:</strong> Deals gone cold remain "active" because no system detects conversation inactivity. Pipeline is indistinguishable from an active one until end-of-month review.</li>
+            </ul>
+        </section>
+
+        <!-- 12. Problem Prioritisation -->
+        <section class="cs-section" id="prioritisation">
+            <span class="cs-section-label">Section 12</span>
+            <h2 class="cs-section-title">Problem Prioritisation</h2>
+
+            <h3>12.1 Identified Problems</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Problem</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>P1 &mdash; WhatsApp conversation invisibility [HIGH]</td><td>Personal WhatsApp cannot integrate with any CRM due to Meta API restrictions. 100% of target users affected.</td></tr>
+                        <tr><td>P2 &mdash; Manual data entry failure [HIGH]</td><td>Founders stop logging within 2&ndash;3 weeks. 8/10 cited as primary failure cause.</td></tr>
+                        <tr><td>P3 &mdash; No proactive follow-up nudging [HIGH]</td><td>Tools are passive. 7/10 cited follow-up failure as direct cause of lost deals.</td></tr>
+                        <tr><td>P4 &mdash; Pre-defined pipeline assumption [MODERATE]</td><td>Tools require stage configuration before use. 5/10 cited.</td></tr>
+                        <tr><td>P5 &mdash; No behavioural feedback loop [MODERATE]</td><td>Tools don't learn from founder's selling patterns.</td></tr>
+                        <tr><td>P6 &mdash; 30-second mobile failure [MODERATE]</td><td>Mobile apps require 3+ taps to log. 3/10 cited.</td></tr>
+                        <tr><td>P7 &mdash; Pricing cliff [HIGH]</td><td>Free tiers stripped; paid plans at $25&ndash;$75/user/mo exceed INR 1,500&ndash;3,000 ceiling.</td></tr>
+                        <tr><td>P8 &mdash; Fast onboarding &ne; early value [MODERATE]</td><td>"5-minute setup" still needs 2&ndash;3 weeks of data input for useful pipeline.</td></tr>
+                        <tr><td>P9 &mdash; Customisation paradox [MODERATE]</td><td>High-configurability creates setup paralysis. 5/10 cited.</td></tr>
+                        <tr><td>P10 &mdash; Team-designed UX [HIGH]</td><td>CRM features designed for sales teams, not solo founder-sellers.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>12.2 Prioritisation Logic</h3>
+            <ul>
+                <li><strong>P1, P2, P3</strong> are root-cause problems: high frequency, high severity, directly cause deal loss, architecturally unaddressed by all 16 tools.</li>
+                <li><strong>P4&ndash;P6</strong> are symptomatic &mdash; downstream consequences of P1 and P2.</li>
+                <li><strong>P7&ndash;P10</strong> are tractable adoption barriers once P1&ndash;P3 are solved.</li>
+            </ul>
+
+            <h3>12.3 Selected Priority: The P0 Chain</h3>
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>WhatsApp invisibility (P1) &rarr; manual logging failure (P2) &rarr; follow-up failure (P3) &rarr; DEAL LOSS</strong></p>
+                <p>Solving P1 + P2 + P3 together as a single architectural decision, not three separate features, is the product strategy. Treat conversation as the primary record, not the input to a separate record.</p>
+            </div>
+        </section>
+
+        <!-- 13. Prioritisation Rationale -->
+        <section class="cs-section" id="prioritisation-rationale">
+            <span class="cs-section-label">Section 13</span>
+            <h2 class="cs-section-title">Prioritisation Rationale</h2>
+
+            <h3>13.1 Why This Problem</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Reason</th><th>Evidence</th></tr></thead>
+                    <tbody>
+                        <tr><td>Frequency</td><td>8/10 primary research participants identified this exact cluster.</td></tr>
+                        <tr><td>Revenue directness</td><td>Causes deal loss, not just inefficiency. ROI case is immediate and personal.</td></tr>
+                        <tr><td>Competitive white space</td><td>None of 16 tools addresses the full chain.</td></tr>
+                        <tr><td>AI timing</td><td>Conversational AI mature enough for near-real-time summarisation on mobile.</td></tr>
+                        <tr><td>Market urgency</td><td>19.1% CAGR, 94% intent vs 50% adoption. First product to remove the adoption barrier captures the market.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>13.2 Why Not Other Problems</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Problem</th><th>Reason Excluded</th></tr></thead>
+                    <tbody>
+                        <tr><td>D2C/B2C founder sales</td><td>Structurally different (platform analytics). Would dilute core architectural solution. [Excluded]</td></tr>
+                        <tr><td>Team CRM and collaboration</td><td>Requires baseline individual data quality that doesn't exist yet. [Phase 2]</td></tr>
+                        <tr><td>Analytics and reporting</td><td>Requires data foundation. Reporting on incomplete pipeline produces misleading results. [Phase 3]</td></tr>
+                        <tr><td>Enterprise CRM capabilities</td><td>Target user has no sales team, no multi-stage approvals. [Out of scope]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>13.3 Trade-Offs</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Trade-off</th><th>Analysis</th></tr></thead>
+                    <tbody>
+                        <tr><td>Privacy vs convenience</td><td>Any conversation capture requires access to content. Founders must explicitly consent. Trust-critical design constraint.</td></tr>
+                        <tr><td>Simplicity vs pipeline completeness</td><td>Solving only P0 chain produces ~25&ndash;40% explicit coverage + AI inference. A 70&ndash;80% accurate pipeline with no manual effort is more useful than a 100% accurate pipeline the founder has abandoned.</td></tr>
+                        <tr><td>Speed vs accuracy</td><td>AI-inferred deal stages won't be 100% accurate. But a pipeline with minor inaccuracies the founder uses is categorically more valuable than an accurate pipeline they've abandoned.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cs-callout"><p>All three trade-offs resolve in the same direction: a slightly imperfect tool the founder actually uses is categorically better than a perfect tool they abandon. Adoption is the primary success metric, not accuracy.</p></div>
+        </section>
+
+        <!-- 14. Narrowed Problem Statement -->
+        <section class="cs-section" id="narrowed-problem">
+            <span class="cs-section-label">Section 14</span>
+            <h2 class="cs-section-title">Narrowed Problem Statement</h2>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Indian early-stage B2B founders who personally lead sales (0&ndash;5 person teams) lose deals not because they lack a CRM, but because every CRM requires the one behaviour they will not sustain: manually logging their conversations.</strong> The result is an invisible pipeline, missed follow-ups, and lost deals. The problem is architectural, not motivational. Founders know they are losing deals &mdash; 7 of 10 recalled a specific deal lost to follow-up failure. They lack a tool whose input model matches their actual workflow: short, asynchronous, multi-channel, WhatsApp-dominant, phone-first.</p>
+            </div>
+
+            <h3>Target User Segment</h3>
+            <p><strong>Primary:</strong> Indian B2B SaaS and B2B services founders, pre-seed to seed, 0&ndash;5 employees, pre-revenue to INR 1 Cr ARR, Bengaluru/Mumbai/Delhi NCR.</p>
+            <p><strong>Adjacent:</strong> Tier 2 city founders (Pune, Hyderabad, Chennai), 0&ndash;10 employees, even higher WhatsApp dominance, lower CRM familiarity.</p>
+            <p><strong>Explicit exclusions:</strong> D2C (platform analytics), EdTech (B2C-dominant), Real Estate (transaction-based), post-seed with dedicated sales hire.</p>
+
+            <h3>Problem Scope</h3>
+            <h4>In Scope</h4>
+            <ul>
+                <li>Failure to capture and act on sales conversations on personal WhatsApp and other async channels</li>
+                <li>Failure to trigger proactive follow-ups when deal momentum is lost</li>
+                <li>Absence of pipeline visibility for founder-managed deals across channels</li>
+            </ul>
+            <h4>Out of Scope</h4>
+            <ul>
+                <li>Team collaboration, shared pipelines, multi-user access</li>
+                <li>Post-hiring sales management tooling</li>
+                <li>Integrations with proposal tools, contract management, billing</li>
+                <li>B2C sales tracking, marketplace seller analytics</li>
+            </ul>
+        </section>
+
+        <!-- 15. Key Assumptions -->
+        <section class="cs-section" id="assumptions">
+            <span class="cs-section-label">Section 15</span>
+            <h2 class="cs-section-title">Key Assumptions</h2>
+
+            <h3>User Behaviour</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Assumption</th><th>Evidence / Basis</th></tr></thead>
+                    <tbody>
+                        <tr><td>WhatsApp will remain the primary B2B sales channel [HIGH]</td><td>8/10 primary, secondary consensus, Meta India stats</td></tr>
+                        <tr><td>Founders will not sustain manual data entry [HIGH]</td><td>8/10 primary, 18-month CRM abandonment rates, identical failure across all 16 tools. Behavioural constant.</td></tr>
+                        <tr><td>Founders will engage with &lt;30 sec capture from phone [MODERATE]</td><td>3/10 cited 30-sec window; secondary research on mobile CRM adoption</td></tr>
+                        <tr><td>Founders will trust AI summaries if they can review/edit quickly [MODERATE]</td><td>Trust earned incrementally, not assumed from Day 1</td></tr>
+                        <tr><td>A direct deal recovery will create advocates [EMERGING]</td><td>Untested. Early cohort data needed.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Market</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Assumption</th><th>Evidence / Basis</th></tr></thead>
+                    <tbody>
+                        <tr><td>India CRM market growing at 19.1% CAGR [HIGH]</td><td>Fortune Business Insights, IDC, Tracxn</td></tr>
+                        <tr><td>Price ceiling: INR 1,500&ndash;3,000/month [HIGH]</td><td>Products above require explicit ROI in deal terms</td></tr>
+                        <tr><td>Tier 2/3 city founders are a significant adjacent segment [MODERATE]</td><td>English onboarding viable; Hindi/regional language expands TAM but not required initially</td></tr>
+                        <tr><td>"Show me it works on 3 deals" onboarding &gt; "set up your full pipeline" [EMERGING]</td><td>Requires validation through cohort analysis</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SOLUTION SPACE -->
+        <div class="cs-divider">
+            <span>Solution Space</span>
+        </div>
+
+        <!-- 16. Product Concept -->
+        <section class="cs-section" id="product-concept">
+            <span class="cs-section-label">Section 16</span>
+            <h2 class="cs-section-title">Product Concept</h2>
+
+            <h3>The P0 Chain &mdash; What We Are Solving</h3>
+            <p>The Discovery PRD identified three root-cause failures that compound in sequence. Solving the first breaks the entire chain downstream:</p>
+            <ul>
+                <li><strong>Input Failure &rarr;</strong> WhatsApp conversations never enter any system. The pipeline is structurally incomplete from conversation one.</li>
+                <li><strong>Habit Failure &rarr;</strong> Manual logging breaks within days. There is no behavioural path that makes consistent entry sustainable for this persona.</li>
+                <li><strong>Output Failure &rarr;</strong> With no input, no follow-up triggers fire. The system cannot remind you about deals it does not know exist.</li>
+            </ul>
+
+            <h3>What We Built</h3>
+            <p>Founder CRM is not a simpler version of HubSpot. It is a fundamentally different product category &mdash; one that inverts the relationship between conversation and record.</p>
+            <p>In every existing CRM, a conversation is an input that requires a record. The founder must stop, open the CRM, and log what happened. In Founder CRM, <strong>the conversation IS the record</strong>. The founder forwards a WhatsApp thread, speaks a voice note, or sends a screenshot &mdash; and the system builds the deal record automatically.</p>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Every CRM Today</th><th>Founder CRM</th></tr></thead>
+                    <tbody>
+                        <tr><td>Conversation requires manual logging</td><td>Conversation IS the log</td></tr>
+                        <tr><td>Founder opens CRM after every call</td><td>Bot captures passively via forward or voice</td></tr>
+                        <tr><td>Value arrives weeks after consistent usage</td><td>Value arrives in the first 30 seconds &mdash; Day 1</td></tr>
+                        <tr><td>Built for VP Sales with 10 reps</td><td>Built for the founder who is the rep</td></tr>
+                        <tr><td>Fails when the founder goes dark for 2 weeks</td><td>Catches up automatically when they return</td></tr>
+                        <tr><td>Desktop-first, mobile as afterthought</td><td>Mobile-first bot. Desktop as visibility layer only.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Architecture in One Sentence</h3>
+            <div class="cs-callout cs-callout--highlight">
+                <p>A Telegram bot captures sales context passively from the founder's existing behaviour. A desktop platform makes that context visible. Neither requires the founder to do anything they are not already doing.</p>
+            </div>
+
+            <h3>The Four Non-Negotiables</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Zero Manual Logging</h4>
+                    <p>If the founder must type anything consistently to keep the system alive, the system dies. Full stop. <em>(8/10 founders cited data entry as primary CRM failure cause)</em></p>
+                </div>
+                <div class="cs-card">
+                    <h4>Instant First Value</h4>
+                    <p>Value must arrive before end of Day 1. Not after 2&ndash;3 weeks of data input. Not after the pipeline is populated. <em>(Abandonment peaks at week 2&ndash;6 across all 16 tools)</em></p>
+                </div>
+                <div class="cs-card">
+                    <h4>Mobile-First Capture</h4>
+                    <p>70%+ of sales activity happens on mobile in 30-second interaction windows. Any product requiring desktop for capture fails architecturally. <em>(Primary research: founders conduct full deal cycles on mobile)</em></p>
+                </div>
+                <div class="cs-card">
+                    <h4>Conversation-Driven</h4>
+                    <p>The conversation IS the log. Not an input to a separate log. Any product that inverts this hits the same ceiling as all 16 tools evaluated. <em>(The architectural inversion &mdash; Industry Insight #1)</em></p>
+                </div>
+            </div>
+
+            <h3>Design Rationale &mdash; Telegram as the Capture Layer</h3>
+            <ul>
+                <li>WhatsApp cannot be integrated directly. Meta's API prohibits personal WhatsApp access permanently. Forwarding to Telegram is not a workaround &mdash; it is the design.</li>
+                <li>Telegram bots allow voice messages natively via the mic button &mdash; no separate app required.</li>
+                <li>The forward action (WhatsApp &rarr; Telegram) takes under 5 seconds. This is lower-friction than any form-based CRM entry.</li>
+                <li>The bot delivers context back in the same interface where the founder already operates &mdash; no app switch, no context change.</li>
+                <li>The architecture is fully compliant with India's DPDPA 2023. The founder controls what is forwarded. No auto-scraping of personal messages.</li>
+            </ul>
+        </section>
+
+        <!-- 17. User Persona -->
+        <section class="cs-section" id="persona">
+            <span class="cs-section-label">Section 17</span>
+            <h2 class="cs-section-title">Primary User Persona &mdash; The Founding Seller</h2>
+
+            <div class="cs-persona-card">
+                <div class="cs-persona-header">
+                    <h3>Arjun Mehta, 29</h3>
+                    <span class="cs-meta-tag">B2B SaaS &mdash; HR tech tool for SMEs</span>
+                </div>
+                <div class="cs-table-wrap">
+                    <table class="cs-table">
+                        <tbody>
+                            <tr><td><strong>Company</strong></td><td>Pre-seed. 3-person team. Bengaluru (applicable to Mumbai, Delhi NCR, Pune, Hyderabad)</td></tr>
+                            <tr><td><strong>Sales Reality</strong></td><td>Manages 10&ndash;20 active conversations simultaneously. Deals span LinkedIn intro &rarr; WhatsApp discussion &rarr; call &rarr; email proposal &rarr; multiple follow-ups. No dedicated sales hire.</td></tr>
+                            <tr><td><strong>Current Toolkit</strong></td><td>WhatsApp (primary), Gmail, LinkedIn, Google Sheets or Notion as a makeshift CRM, personal memory for context.</td></tr>
+                            <tr><td><strong>Primary Goal</strong></td><td>Close deals without becoming a CRM administrator. Keep pipeline moving without stopping to update systems.</td></tr>
+                            <tr><td><strong>Core Frustration</strong></td><td>"I scroll through 50 WhatsApp messages before every call just to remember what we discussed last time."</td></tr>
+                            <tr><td><strong>CRM History</strong></td><td>Tried HubSpot Free, Zoho, Notion CRM. Abandoned all within 6 weeks. Reason: manual entry fatigue, not product quality.</td></tr>
+                            <tr><td><strong>Technical Comfort</strong></td><td>Comfortable with apps and smartphones. Uses Telegram already. Not a developer. Zero tolerance for setup overhead.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 18. Product Flow -->
+        <section class="cs-section" id="product-flow">
+            <span class="cs-section-label">Section 18</span>
+            <h2 class="cs-section-title">Product Flow</h2>
+            <p>The product has five distinct flows. Each is designed to require zero friction at the point of use. The founder never opens a CRM interface to log something. They interact with the Telegram bot in the same way they already interact with colleagues &mdash; via forward, voice note, or text command.</p>
+
+            <h3>18.1 Onboarding Flow</h3>
+            <p>The onboarding flow is intentionally minimal. The product does not ask the founder to set up a pipeline, define stages, or enter existing deals.</p>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Step</th><th>Action</th><th>What the Founder Sees</th><th>Time</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Visits landing page</td><td>One-line value prop. Single CTA: 'Start Free'</td><td>30 seconds</td></tr>
+                        <tr><td>2</td><td>Clicks CTA &mdash; opens Telegram</td><td>Deep link opens Telegram app. Founder taps 'Start'.</td><td>5 seconds</td></tr>
+                        <tr><td>3</td><td>Bot sends welcome message</td><td>'Hi! I'm your sales assistant. Forward me any WhatsApp conversation or send a voice note after a call. No setup needed.'</td><td>Instant</td></tr>
+                        <tr><td>4</td><td>Founder forwards first conversation</td><td>Bot extracts lead card. Founder confirms. First deal logged.</td><td>&lt; 30 seconds</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>18.2 Input Layer</h3>
+            <p>The founder has three input modes. The bot accepts all three interchangeably:</p>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Input Type</th><th>Founder Action</th><th>What AI Extracts</th></tr></thead>
+                    <tbody>
+                        <tr><td>WhatsApp Conversation Forward</td><td>Selects a WhatsApp thread &rarr; Long-presses &rarr; Forward to Founder CRM bot</td><td>Contact name, company, deal stage signals, intent phrases, budget mentions, objections, next step indicators</td></tr>
+                        <tr><td>Voice Note (Post-Call)</td><td>Opens Telegram bot &rarr; Presses mic &rarr; Speaks a 30-second summary</td><td>Structured deal note: contact, discussion points, outcome, next action &mdash; transcribed and tagged automatically</td></tr>
+                        <tr><td>Screenshot / Image</td><td>Screenshots a business card, LinkedIn message, email, or any text &mdash; sends to bot</td><td>Contact identity, company, stated intent, message summary</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>18.3 Deal Capture Flow</h3>
+            <p>Once an input arrives, the bot runs a structured extraction sequence. The founder confirms a card &mdash; they do not fill one in:</p>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Step</th><th>System Action</th><th>Founder Sees</th><th>Founder Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>AI processes input</td><td>Typing indicator. 2&ndash;3 second processing.</td><td>Waits</td></tr>
+                        <tr><td>2</td><td>Bot generates Lead Card</td><td>Contact name, Company, Deal stage, Budget signal, Key blocker, Suggested next action</td><td>Reviews card</td></tr>
+                        <tr><td>3</td><td>Bot checks for missing critical fields</td><td>If contact name or stage is missing: bot asks one clarifying question only. Never more than one.</td><td>Replies (optional)</td></tr>
+                        <tr><td>4</td><td>Founder confirms or edits</td><td>Quick-edit buttons for common changes. No form. Inline reply to edit any field.</td><td>Taps Confirm or edits</td></tr>
+                        <tr><td>5</td><td>Deal stored in database</td><td>'Saved. Ankit Sharma from TechCorp is now in Evaluating. I'll remind you in 3 days if no update.'</td><td>Done</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>18.4 Context Recall Flow</h3>
+            <p>The highest-frequency use case: the founder needs deal context in the 5 minutes before a call. Currently this requires scrolling 50+ WhatsApp messages. The product reduces this to a single command:</p>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Input</th><th>Founder Action</th><th>Bot Response</th></tr></thead>
+                    <tbody>
+                        <tr><td>Slash command</td><td>Types: /context capture CX</td><td>Full deal brief: last conversation, current stage, open questions, suggested talking points for this call</td></tr>
+                        <tr><td>Natural language (text)</td><td>Types: 'What's the status with Rahul from Juspay?'</td><td>Conversational summary of all interactions with Rahul, last touchpoint, next action pending</td></tr>
+                        <tr><td>Natural language (voice)</td><td>Speaks: 'Prep me for my call with TechCorp in 10 minutes'</td><td>Voice-friendly deal brief. Optimised for a walking/commuting founder who cannot look at a screen.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>18.5 Nudge and Follow-Up Flow</h3>
+            <p>The system fires follow-up nudges automatically. The founder does not set reminders manually. The logic is triggered by deal inactivity, not by the founder's calendar:</p>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Trigger</th><th>Bot Message</th><th>Founder Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>No update for 3 days (Evaluating stage)</td><td>'You haven't updated Ankit Sharma in 3 days. Last status: evaluating pricing. Follow up?'</td><td>Taps 'Yes, remind me' or 'Log an update' or 'Mark as cold'</td></tr>
+                        <tr><td>No update for 7 days (any active stage)</td><td>'Rahul at Juspay has been quiet for 7 days. Do you want to follow up or mark this deal as cold?'</td><td>One-tap action</td></tr>
+                        <tr><td>Daily digest (8 AM)</td><td>Morning summary: 'You have 3 deals needing follow-up today. 2 are overdue. Your hottest deal: [Company X].'</td><td>Founder reviews and acts on priority deals first</td></tr>
+                        <tr><td>Deal marked Closed (Won or Lost)</td><td>'Congratulations on closing TechCorp! Want to log what made this one work?'</td><td>Optional voice note. Feeds "deal intelligence" over time.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Follow-up rules by stage: New (nudge at 24h), Contacted (nudge at 3d), Evaluating (nudge at 3d), Proposal Sent (nudge at 2d). Closed deals exit the nudge queue.</p>
+        </section>
+
+        <!-- 19. Workflow Mapping -->
+        <section class="cs-section" id="workflow-mapping">
+            <span class="cs-section-label">Section 19</span>
+            <h2 class="cs-section-title">Workflow Mapping &mdash; Before and After</h2>
+
+            <h3>Before Founder CRM &mdash; A Day in Reactive Mode</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Time</th><th>Founder Action</th><th>System State</th><th>Cost</th></tr></thead>
+                    <tbody>
+                        <tr><td>8:00 AM</td><td>Manually scrolls WA to reconstruct yesterday's conversations</td><td>Nothing logged. Context lives in WA chat history.</td><td>12&ndash;15 min daily</td></tr>
+                        <tr><td>10:00 AM</td><td>Takes a discovery call. Good conversation. Means to log it later.</td><td>No record created.</td><td>Context lost</td></tr>
+                        <tr><td>12:00 PM</td><td>Sends a proposal. No reminder set. Moves to the next task.</td><td>No follow-up queued.</td><td>Deal at risk</td></tr>
+                        <tr><td>3:00 PM</td><td>Warm lead from 2 weeks ago goes cold. Founder didn't know they needed a touch.</td><td>Lead status unknown. No inactivity signal.</td><td>Deal lost</td></tr>
+                        <tr><td>5:00 PM</td><td>Pre-call prep: scrolls through 50 WA messages.</td><td>All context in personal WA chat threads.</td><td>12 min wasted</td></tr>
+                        <tr><td>8:00 PM</td><td>Investor asks for pipeline update. Reconstructs from memory.</td><td>No real data. Pipeline is a memory exercise.</td><td>40 min + inaccuracy</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>After Founder CRM &mdash; Same Day, Structured Mode</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Time</th><th>Founder Action</th><th>System State</th><th>Outcome</th></tr></thead>
+                    <tbody>
+                        <tr><td>8:00 AM</td><td>Reviews daily digest from bot. 3 deals needing follow-up. 2 overdue.</td><td>Full pipeline visible. Priority ranked automatically.</td><td>2 min. Day planned.</td></tr>
+                        <tr><td>10:00 AM</td><td>Takes a discovery call. Sends a 30-second voice note to bot after.</td><td>Deal created. Stage: Evaluating. Nudge queued for day 3.</td><td>30 seconds. Context captured.</td></tr>
+                        <tr><td>12:00 PM</td><td>Sends a proposal. Logs via /note. Bot auto-queues follow-up for 48h.</td><td>Stage updated: Proposal Sent. Reminder set.</td><td>10 seconds.</td></tr>
+                        <tr><td>3:00 PM</td><td>Bot nudges: 'Warm lead from 12 days ago. Last status: interested. Follow up?'</td><td>Inactivity detected. Founder prompted before deal goes cold.</td><td>Deal saved.</td></tr>
+                        <tr><td>5:00 PM</td><td>Types /context TechCorp before call.</td><td>Full brief returned in 4 seconds.</td><td>Call starts informed.</td></tr>
+                        <tr><td>8:00 PM</td><td>Investor asks for pipeline. Types /deals.</td><td>Live pipeline snapshot returned.</td><td>10 seconds. Accurate.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 20. Desktop Platform -->
+        <section class="cs-section" id="desktop-platform">
+            <span class="cs-section-label">Section 20</span>
+            <h2 class="cs-section-title">Desktop Platform</h2>
+
+            <h3>Architectural Principle</h3>
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>The desktop platform is a visibility layer, not a capture layer.</strong> The bot captures. The desktop displays. The founder never needs to open the desktop to keep the system alive.</p>
+            </div>
+            <p>This is a deliberate inversion of the standard CRM architecture. In HubSpot, Pipedrive, or Zoho, the desktop is where work happens and the mobile app is an afterthought. In Founder CRM, the Telegram bot is where work happens and the desktop is where patterns become visible.</p>
+
+            <h3>Desktop Feature Set</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Feature</th><th>What It Shows</th><th>Phase</th></tr></thead>
+                    <tbody>
+                        <tr><td>Pipeline Board</td><td>Kanban view of all deals across 5 stages. Read-only in Phase 1.</td><td>Phase 1 (P0)</td></tr>
+                        <tr><td>Deal Timeline View</td><td>Every touchpoint for a contact in a single thread &mdash; chronological order.</td><td>Phase 1 (P0)</td></tr>
+                        <tr><td>Contact Heat Scores</td><td>Hot / Warm / Cold classification. Calculated from days since last touch, sentiment, and engagement frequency.</td><td>Phase 1 (P0)</td></tr>
+                        <tr><td>Follow-Up Queue</td><td>Priority-ranked list of deals needing attention.</td><td>Phase 1 (P0)</td></tr>
+                        <tr><td>Deal Search</td><td>Full-text search across all deal records.</td><td>Phase 1 (P0)</td></tr>
+                        <tr><td>Win/Loss Patterns</td><td>Closed-won vs closed-lost ratio, average deal length, common blockers. Requires 20+ deals.</td><td>Phase 2 (P1)</td></tr>
+                        <tr><td>Investor Pipeline Export</td><td>One-click clean pipeline snapshot for investor conversations.</td><td>Phase 2 (P1)</td></tr>
+                        <tr><td>Team Pipeline (Shared)</td><td>Multi-user deal visibility when the founder makes their first sales hire.</td><td>Phase 3 (P2)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Key Differentiators vs. Existing CRMs</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Design Decision</th><th>Why (Evidence)</th><th>What This Replaces</th></tr></thead>
+                    <tbody>
+                        <tr><td>Read-only in Phase 1. Updates via bot only.</td><td>Editable pipeline boards invite manual entry. The same failure re-enters through the desktop.</td><td>The standard CRM pipeline board (HubSpot, Pipedrive)</td></tr>
+                        <tr><td>No required fields. No empty state friction.</td><td>Empty CRM dashboards are the #1 visual trigger for abandonment.</td><td>New user empty-state screens that require onboarding before value</td></tr>
+                        <tr><td>Heat score over deal stage as primary sort.</td><td>4/10 founders do not think in pipeline stages. Heat score is intuitive.</td><td>Stage-based pipeline views that assume a defined sales process</td></tr>
+                        <tr><td>Deal timeline as primary contact view.</td><td>Context loss is the #1 follow-up failure cause.</td><td>Contact record with individual activity fields</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 21. User Stories -->
+        <section class="cs-section" id="user-stories">
+            <span class="cs-section-label">Section 21</span>
+            <h2 class="cs-section-title">User Stories</h2>
+
+            <h3>Capture &mdash; Getting Conversations Into the System</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>#</th><th>Story</th><th>Acceptance Criteria</th><th>Pain Point Addressed</th></tr></thead>
+                    <tbody>
+                        <tr><td>U1</td><td>As a founder, I want to forward a WhatsApp conversation to the bot and have it automatically create a deal record.</td><td>Bot processes forward in &lt; 3 seconds. Lead card shown with contact name, company, and inferred stage. Founder confirms in one tap.</td><td>70% of deals on personal WA never enter any system.</td></tr>
+                        <tr><td>U2</td><td>As a founder, I want to send a 30-second voice note after a call and have it turned into a structured deal note automatically.</td><td>Bot transcribes note. Extracts: discussion points, outcome, next action. Presents structured record for confirmation. No typing required.</td><td>Manual logging fatigue.</td></tr>
+                        <tr><td>U3</td><td>As a founder, I want to send a screenshot of a LinkedIn message and have the contact and intent automatically extracted.</td><td>Bot runs OCR on screenshot. Extracts name, company, and message intent. Creates lead card or updates existing record.</td><td>Deals begin on LinkedIn but get lost before reaching any system.</td></tr>
+                        <tr><td>U4</td><td>As a founder, I want to correct any field in a lead card without filling out a form.</td><td>Inline reply editing works for any field. Changes confirmed with one message. No form UI.</td><td>CRM rigidity and mandatory fields.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Context Recall &mdash; Knowing the Deal Before the Call</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>#</th><th>Story</th><th>Acceptance Criteria</th><th>Pain Point Addressed</th></tr></thead>
+                    <tbody>
+                        <tr><td>U5</td><td>As a founder, I want to type /context [company] and receive a full deal brief in under 5 seconds.</td><td>Bot returns: last interaction, current stage, open questions, budget signal, decision maker, and one suggested talking point. Response time &lt; 5 seconds.</td><td>12 minutes per call day wasted on WA scroll.</td></tr>
+                        <tr><td>U6</td><td>As a founder, I want to ask the bot in natural language 'What's the status with Rahul?' and get a conversational answer.</td><td>Bot interprets NL query. Identifies contact from name alone. Returns summary in conversational language.</td><td>Cognitive load from command syntax.</td></tr>
+                        <tr><td>U7</td><td>As a founder commuting to a meeting, I want to ask the bot via voice note to prep me for my upcoming call.</td><td>Bot accepts voice input for context recall. Responds with a voice-friendly brief.</td><td>Mobile-first reality &mdash; founders are often moving, not seated.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Follow-Up &mdash; Deals Moving, Not Dying</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>#</th><th>Story</th><th>Acceptance Criteria</th><th>Pain Point Addressed</th></tr></thead>
+                    <tbody>
+                        <tr><td>U8</td><td>As a founder, I want the bot to automatically remind me when a deal has been inactive for 3 days.</td><td>Bot fires nudge on the correct timer per stage. Message includes deal name, last status, and one-tap actions.</td><td>44% of founders make only one follow-up attempt.</td></tr>
+                        <tr><td>U9</td><td>As a founder, I want to receive a morning digest of my pipeline so I start the day knowing what to act on.</td><td>Daily 8 AM message: deals needing follow-up, overdue deals, hottest deals. No more than 5 items shown.</td><td>Founders spend first hour reconstructing context instead of acting.</td></tr>
+                        <tr><td>U10</td><td>As a founder, I want to mark a deal as won or lost with one message.</td><td>Bot recognises /won and /lost commands. Updates deal stage immediately. Removes from active nudge queue.</td><td>Deals stay 'active' indefinitely.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Pipeline Visibility &mdash; Seeing the Full Picture</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>#</th><th>Story</th><th>Acceptance Criteria</th><th>Pain Point Addressed</th></tr></thead>
+                    <tbody>
+                        <tr><td>U11</td><td>As a founder, I want to type /deals and see my full pipeline in the bot.</td><td>/deals returns: count by stage, total pipeline value, and top 3 deals by heat score. Response in &lt; 3 seconds.</td><td>40 minutes spent reconstructing pipeline from memory before board meetings.</td></tr>
+                        <tr><td>U12</td><td>As a founder, I want to open the desktop dashboard and see my deals without having to log anything additionally.</td><td>Desktop pipeline populates automatically from bot captures. No separate data entry required.</td><td>Pipeline shows only 30&ndash;40% of actual deals.</td></tr>
+                        <tr><td>U13</td><td>As a founder, I want to see a heat score for every contact so I instantly know who needs attention.</td><td>Every contact shows Hot / Warm / Cold score. Auto-updates based on recency, frequency, and sentiment.</td><td>Older active leads fade as founders focus on recent conversations.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 22. MVP Scope -->
+        <section class="cs-section" id="mvp-scope">
+            <span class="cs-section-label">Section 22</span>
+            <h2 class="cs-section-title">MVP Scope</h2>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>MVP in One Sentence:</strong> A Telegram bot that captures sales conversations from WhatsApp forwards and voice notes, creates structured deal records automatically, and reminds the founder when deals need attention &mdash; with no setup, no data entry, and no learning curve.</p>
+            </div>
+
+            <h3>The Five Hypotheses Driving MVP Design</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>H#</th><th>Hypothesis</th><th>Kill Signal</th><th>Gate For</th></tr></thead>
+                    <tbody>
+                        <tr><td>H1</td><td>Founders will forward WhatsApp conversations to a Telegram bot when it requires less than 5 seconds.</td><td>&lt; 30% of active users forward at least 1 message per week in 30 days</td><td>The entire capture architecture. If this fails, the product has no viable input model.</td></tr>
+                        <tr><td>H2</td><td>Founders will use voice notes to log post-call summaries.</td><td>&lt; 25% of users send at least 1 voice note in first 14 days</td><td>Voice as primary capture fallback.</td></tr>
+                        <tr><td>H3</td><td>Founders will use /context to recall deal information before calls.</td><td>&lt; 40% of active users use /context within first 30 days</td><td>Context recall flow value.</td></tr>
+                        <tr><td>H4</td><td>Nudge-triggered follow-ups will increase second-touchpoint rate within 5 days.</td><td>No measurable improvement</td><td>Nudge system as retention mechanism.</td></tr>
+                        <tr><td>H5</td><td>Founders will prefer a bot-first interface over a traditional CRM interface.</td><td>Majority of updates happen through desktop form entry</td><td>The architectural bet: bot-first over form-first.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>In Scope for MVP</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Feature</th><th>Description</th><th>Priority</th></tr></thead>
+                    <tbody>
+                        <tr><td>WhatsApp Conversation Capture</td><td>Forward WA thread to bot &rarr; AI extracts lead card &rarr; founder confirms in one tap</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>Voice Note &rarr; Deal Log</td><td>Post-call voice note &rarr; Whisper transcription &rarr; structured deal note created automatically</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>Screenshot / Image Capture</td><td>Screenshot of WA, LinkedIn, or email &rarr; OCR + AI extracts contact and intent &rarr; lead card created</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>AI Lead Card Generation</td><td>Every input produces an auto-populated lead card: contact, company, stage, intent, budget signal, next action</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>/context Command</td><td>Returns full deal brief for any company in &lt; 5 seconds</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>/deals Command</td><td>Returns pipeline snapshot: count by stage, heat-ranked deals</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>Inactivity Nudges</td><td>Automatic reminders triggered by deal inactivity. Stage-based timers.</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>Daily Digest</td><td>8 AM daily summary: deals needing follow-up, overdue deals, hottest deal</td><td>P0 &middot; MUST HAVE</td></tr>
+                        <tr><td>Generic 5-Stage Pipeline</td><td>New &rarr; Contacted &rarr; Evaluating &rarr; Proposal Sent &rarr; Closed. Pre-configured. Not editable in MVP.</td><td>P0 &middot; MUST HAVE</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 23. Moonshot -->
+        <section class="cs-section" id="moonshot">
+            <span class="cs-section-label">Section 23</span>
+            <h2 class="cs-section-title">Moonshot &mdash; AI Sales Coach</h2>
+            <p class="cs-subtitle-text">Phase 3+ | Separate Surface</p>
+
+            <p>The AI Sales Coach moves Founder CRM from a context management tool to an active competitive intelligence layer. The system continuously enriches every deal record with scraped intelligence about the prospect, their company, and their buying context &mdash; and uses this to tailor the founder's pitch, timing, and talking points.</p>
+
+            <h3>The Problem This Solves</h3>
+            <p>Founders with deep domain knowledge win deals not because they have better products, but because they understand their prospect's specific situation better than competitors do. The constraint is that research takes 30&ndash;90 minutes per account &mdash; time most founders do not have.</p>
+            <blockquote>"I know my product can solve their problem. But I go into every call not knowing enough about their business. I wing it. Sometimes it works." <cite>&mdash; Navdeep, B2B Services Founder</cite></blockquote>
+
+            <h3>How It Works</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Track</th><th>What Happens</th><th>Output to Founder</th></tr></thead>
+                    <tbody>
+                        <tr><td>Continuous Enrichment (Background)</td><td>As soon as a company is identified, the system pulls: LinkedIn company page, recent funding news, headcount signals, job descriptions, leadership changes, product launches, competitor mentions.</td><td>Deal record enriched silently. Founder sees a richer context card when they recall the deal.</td></tr>
+                        <tr><td>Pre-Meeting Coaching (On-Demand)</td><td>Founder types or says: 'Coach me for my call with TechCorp tomorrow.' System pulls all enrichment data + deal history + known objections + competitor context.</td><td>Structured pre-call brief: (1) What matters to this company right now (2) The angle most likely to land (3) Tailored talking points (4) Known objections and responses (5) One thing to ask that unlocks the deal.</td></tr>
+                        <tr><td>Touchpoint Sequencing</td><td>System analyses closed-won deals over time. Identifies which sequence of touchpoints correlates with faster close rates.</td><td>Personalised outreach sequence recommendation.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Why This Is Not in the MVP</h3>
+            <ul>
+                <li>Requires deal corpus to be valuable (20&ndash;30 logged deals minimum)</li>
+                <li>Separate surface, not a bot command (requires dedicated web interface)</li>
+                <li>Scraping architecture is a separate build (non-trivial infrastructure dependency)</li>
+                <li>H1&ndash;H3 must be validated first</li>
+            </ul>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Strategic Implication:</strong> The AI Sales Coach is the product's long-term moat. The data asset that the bot builds through passive capture becomes the training input for the coach. The flywheel: more captures &rarr; richer intelligence &rarr; better coaching &rarr; higher win rates &rarr; stronger retention.</p>
+            </div>
+        </section>
+
+        <!-- 24. Success Metrics -->
+        <section class="cs-section" id="success-metrics">
+            <span class="cs-section-label">Section 24</span>
+            <h2 class="cs-section-title">Success Metrics</h2>
+            <p>Metrics are behaviour-first. We measure what founders do, not what they say they will do. User-reported satisfaction is not a success signal. Behaviour change is the only signal that matters.</p>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Metric</th><th>What It Measures</th><th>30-Day Target</th><th>Kill Signal</th><th>Hypothesis</th></tr></thead>
+                    <tbody>
+                        <tr><td>Weekly Forward Rate</td><td>% of active users who forward &ge; 1 WA conversation per week</td><td>&gt; 50%</td><td>&lt; 30%</td><td>H1</td></tr>
+                        <tr><td>Voice Note Adoption</td><td>% of active users who send &ge; 1 voice note in first 14 days</td><td>&gt; 40%</td><td>&lt; 25%</td><td>H2</td></tr>
+                        <tr><td>/context Usage Rate</td><td>% of active users who use /context at least once in 30 days</td><td>&gt; 60%</td><td>&lt; 40%</td><td>H3</td></tr>
+                        <tr><td>Nudge Response Rate</td><td>% of nudges that result in a deal update within 24 hours</td><td>&gt; 45%</td><td>&lt; 20%</td><td>H4</td></tr>
+                        <tr><td>Bot vs. Desktop Update Ratio</td><td>% of deal updates made via bot commands vs. desktop form entry</td><td>&gt; 80% via bot</td><td>&lt; 50% via bot</td><td>H5</td></tr>
+                        <tr><td>D7 Retention</td><td>% of users still active 7 days after signup</td><td>&gt; 65%</td><td>&lt; 40%</td><td>Core</td></tr>
+                        <tr><td>D30 Retention</td><td>% of users still active 30 days after signup</td><td>&gt; 40%</td><td>&lt; 20%</td><td>Core</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 25. Trade-offs -->
+        <section class="cs-section" id="tradeoffs">
+            <span class="cs-section-label">Section 25</span>
+            <h2 class="cs-section-title">Trade-offs and Limitations</h2>
+
+            <h3>What This Product Does Not Solve</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Area</th><th>Why It Is Out of Scope</th></tr></thead>
+                    <tbody>
+                        <tr><td>Deal quality or product-market fit</td><td>Founder CRM cannot make a weak product win deals. It surfaces context and timing.</td></tr>
+                        <tr><td>Outbound lead generation</td><td>The product manages conversations after they begin. It does not generate new leads.</td></tr>
+                        <tr><td>Sales coaching / process definition</td><td>The MVP does not tell founders how to sell. It captures what they do. Process intelligence is Phase 3.</td></tr>
+                        <tr><td>Prospect responsiveness</td><td>The product cannot make a prospect reply. It ensures the founder follows up.</td></tr>
+                        <tr><td>Stop-start founder rhythm</td><td>When founders go dark for 2+ weeks, the pipeline data becomes stale. The system will catch up when the founder returns.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Known Trade-offs in MVP Design</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Trade-off</th><th>What We Gave Up</th><th>Why We Made It</th></tr></thead>
+                    <tbody>
+                        <tr><td>Telegram over WhatsApp native</td><td>The forward action adds 2&ndash;3 seconds of friction.</td><td>No viable alternative. Personal WhatsApp integration is permanently prohibited.</td></tr>
+                        <tr><td>Generic 5-stage pipeline</td><td>Founders with non-standard processes will find the stages do not map to their reality.</td><td>Setup friction kills adoption faster than stage mismatch.</td></tr>
+                        <tr><td>No desktop at MVP</td><td>Founders who expect a dashboard will feel the product is incomplete.</td><td>A desktop with no validated data asset is a failure surface, not a value surface.</td></tr>
+                        <tr><td>Bot-only interface</td><td>Not optimal for bulk deal review or complex pipeline analysis.</td><td>The target persona's primary device is mobile.</td></tr>
+                        <tr><td>Founder-triggered capture only</td><td>True ambient capture is not possible.</td><td>DPDPA 2023 compliance requires explicit consent.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Dependency Risks</h3>
+            <ul>
+                <li>The product requires stable Telegram Bot API access. Any Telegram service disruption directly affects the capture layer.</li>
+                <li>AI extraction quality depends on the quality of the LLM prompt and the clarity of the forwarded conversation.</li>
+                <li>Whisper transcription accuracy degrades with background noise, strong regional accents, and non-English speech mixing.</li>
+                <li>The enrichment layer in Phase 2 depends on third-party data sources (LinkedIn, news APIs, funding databases).</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Product Requirements Document</p>
+    </footer>
+
+</body>
+</html>
