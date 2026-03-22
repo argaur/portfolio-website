@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: YouTube 2.0 &mdash; Long-Form Discovery | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- Back Nav -->
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Case Study</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <!-- Hero -->
+        <header class="cs-hero">
+            <span class="cs-label">Product Requirements Document</span>
+            <h1 class="cs-title">YouTube 2.0 &mdash; Fixing Long-Form Discovery</h1>
+            <p class="cs-subtitle">A set of product interventions designed to reverse long-form engagement decline on YouTube &mdash; not by creating new surfaces, but by reducing friction inside the feed that 491 million Indian users already use every day.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Consumer Platform</span>
+                <span class="cs-meta-tag">Content Discovery</span>
+                <span class="cs-meta-tag">Algorithm Design</span>
+                <span class="cs-meta-tag">Mobile-First</span>
+            </div>
+        </header>
+
+        <!-- TOC -->
+        <nav class="cs-toc">
+            <h3 class="cs-toc-title">Contents</h3>
+            <div class="cs-toc-columns">
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Discovery</span>
+                    <a href="#problem-context">1. Problem Context &amp; Background</a>
+                    <a href="#ecosystem">2. Platform Ecosystem Understanding</a>
+                    <a href="#primary-research">3. Primary Research &mdash; 171 Surveys</a>
+                    <a href="#secondary-research">4. Secondary Research &amp; Market Evidence</a>
+                    <a href="#competitors">5. Competitor Landscape</a>
+                </div>
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Analysis &amp; Solution</span>
+                    <a href="#prioritisation">6. Prioritisation &amp; Pain Points</a>
+                    <a href="#persona">7. Primary Persona</a>
+                    <a href="#solution-1">8. Solution 1 &mdash; Deep Dive Tab</a>
+                    <a href="#solution-2">9. Solution 2 &mdash; Long-Form Viewing Streak</a>
+                    <a href="#solution-3">10. Solution 3 &mdash; Shorts-to-Long Bridge</a>
+                    <a href="#solution-4">11. Solution 4 &mdash; Creator Success Suite</a>
+                    <a href="#success-metrics">12. Success Metrics</a>
+                    <a href="#tradeoffs">13. Trade-offs &amp; Limitations</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 1. Problem Context -->
+        <section class="cs-section" id="problem-context">
+            <span class="cs-section-label">Section 1</span>
+            <h2 class="cs-section-title">Problem Context &amp; Background</h2>
+
+            <h3>1.1 The Central Problem</h3>
+            <p>With the rise of short-form video content on YouTube, engagement with long-form videos (10+ minutes) has significantly declined. Shrinking viewer attention spans and the popularisation of short-form content by competing platforms have made it more palatable &mdash; leaving traditional long-form content underutilised.</p>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>The core thesis:</strong> Long-form content is not in structural decline. It still accounts for 70%+ of total YouTube watch time. The problem is feed displacement &mdash; Shorts are absorbing mobile browse real estate that used to surface long-form videos.</p>
+            </div>
+
+            <h3>1.2 Why This Matters for YouTube's Business</h3>
+            <p>YouTube is not just a platform to watch videos. It is a two-sided marketplace where creators, viewers, and advertisers are connected by a matchmaking engine. Any gap in that matchmaking is a gap in value for all three sides.</p>
+            <ul>
+                <li>Top creators (&gt;5M subscribers) historically drove maximum engagement through long-form content. Post-Shorts, these creators have seen a measurable decline in long-form views.</li>
+                <li>Declining creator motivation restricts supply of good long-form content. Less supply means the discovery problem compounds over time.</li>
+                <li>YouTube's revenue primarily comes from ads. Long-form earns $3&ndash;$6 RPM (per 1,000 views) versus $0.03&ndash;$0.07 for Shorts &mdash; a 100x gap in per-view monetisation.</li>
+            </ul>
+
+            <h3>1.3 Scope</h3>
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>In Scope</h4>
+                    <ul>
+                        <li><strong>Market:</strong> India &mdash; YouTube's largest and fastest-growing user base</li>
+                        <li><strong>Platform:</strong> YouTube main app (excluding Music and Kids)</li>
+                        <li><strong>Content Type:</strong> Long-form videos (10+ minutes)</li>
+                        <li><strong>Device:</strong> Mobile-first users</li>
+                        <li><strong>Age Group:</strong> 18&ndash;34</li>
+                    </ul>
+                </div>
+                <div class="cs-col">
+                    <h4>Deliberately Out of Scope</h4>
+                    <ul>
+                        <li>Ad monetisation structure changes (separate workstream)</li>
+                        <li>TV and desktop experience improvements</li>
+                        <li>AI summary features and creator revenue decisions</li>
+                        <li>YouTube Music, Kids, or Shorts algorithm changes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Ecosystem -->
+        <section class="cs-section" id="ecosystem">
+            <span class="cs-section-label">Section 2</span>
+            <h2 class="cs-section-title">Platform Ecosystem Understanding</h2>
+
+            <h3>2.1 YouTube as a Two-Sided Market</h3>
+            <p>YouTube operates like a farmers market. Creators bring content (supply), viewers come looking for content worth their time (demand), and the platform connects both while monetising through ads placed where the most attention gathers. If sellers stop bringing quality products, buyers leave. If buyers leave, sellers stop creating. Both sides must remain healthy simultaneously.</p>
+
+            <p>Right now the market is getting unbalanced. Long-form creators are producing fewer videos. The home feed is not surfacing what viewers came for. Ads are still running &mdash; but they are reaching fewer attentive people.</p>
+
+            <h3>2.2 How the Recommendation System Works</h3>
+            <p>YouTube's recommendation engine has evolved through three major phases:</p>
+
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card">
+                    <h4>2005&ndash;2011</h4>
+                    <p><strong>Optimised for:</strong> Clicks. More clicks meant more recommendations. Created a clickbait epidemic &mdash; users felt tricked.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>2012&ndash;2023</h4>
+                    <p><strong>Optimised for:</strong> Watch time. Clicks alone did not mean someone enjoyed the video. Views dropped 20% when they made the shift &mdash; they kept it anyway.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>2025 Onward</h4>
+                    <p><strong>Optimised for:</strong> Satisfaction-weighted discovery. Not just &ldquo;did they watch?&rdquo; but &ldquo;did they feel the time was worth it?&rdquo;</p>
+                </div>
+            </div>
+
+            <h3>2.3 The Five Discovery Surfaces</h3>
+            <p>YouTube does not have one feed &mdash; it has five distinct surfaces, each doing a different job:</p>
+
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Home Page</h4>
+                    <p>Personalised mix of subscriptions, new creators, and trending. Goal: interest expansion and discovery.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Suggested / Up Next</h4>
+                    <p>Based on current video and broader watch history. Goal: keep the session going.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Search</h4>
+                    <p>User-declared intent &mdash; the most direct signal available. Goal: give exactly what was asked for.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Shorts Feed</h4>
+                    <p>Swipe-based, passive, mobile-first. Goal: new audience discovery.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Subscriptions</h4>
+                    <p>Content from channels the user follows. Goal: loyalty reinforcement.</p>
+                </div>
+            </div>
+
+            <div class="cs-callout">
+                <p><strong>The critical design gap:</strong> Since mid-2025, the Shorts and long-form recommendation systems are fully decoupled &mdash; different engines, different signals, different goals. A user's interest expressed through Shorts is invisible to the long-form system. This is the core technical problem our solutions must address.</p>
+            </div>
+
+            <h3>2.4 Three Structural Blind Spots</h3>
+            <ul>
+                <li><strong>Mood vs. History:</strong> The system knows what you watched last week. It does not know what kind of mood you are in right now. A finance viewer on a lazy Sunday afternoon will still be served finance content.</li>
+                <li><strong>The Mid-Length Gap:</strong> Videos between 4 and 8 minutes fall into no man's land &mdash; too long to be optimised like Shorts, too short to benefit from long-form algorithm signals.</li>
+                <li><strong>Cold Start for New Creators:</strong> A new creator has almost no chance of getting their long video recommended without subscriber data. Shorts have a much easier path to early views &mdash; another reason creators prefer them.</li>
+            </ul>
+        </section>
+
+        <!-- 3. Primary Research -->
+        <section class="cs-section" id="primary-research">
+            <span class="cs-section-label">Section 3</span>
+            <h2 class="cs-section-title">Primary Research &mdash; Survey of 171 Users</h2>
+
+            <h3>3.1 Research Design</h3>
+            <p>This primary research is based on a quantitative and qualitative survey distributed to a pool of 250&ndash;300 individuals, capturing 171 responses. The survey was designed to understand user behaviour, intent, and friction points specifically related to long-form video (10+ minutes) consumption on YouTube.</p>
+
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>Demographics</h4>
+                    <ul>
+                        <li>25&ndash;34 years: ~54%</li>
+                        <li>35&ndash;44 years: ~25%</li>
+                        <li>18&ndash;24 years: ~12%</li>
+                        <li>45+ years: ~8.5%</li>
+                        <li>Gender split: ~55% male, ~45% female</li>
+                    </ul>
+                </div>
+                <div class="cs-col">
+                    <h4>Research Themes</h4>
+                    <ul>
+                        <li>General usage and platform intensity</li>
+                        <li>Long-form engagement motivation</li>
+                        <li>Drop-off triggers and abandonment causes</li>
+                        <li>Discovery entry points and search behaviour</li>
+                        <li>Feature validation for navigation improvements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>3.2 What Viewers Said</h3>
+            <p>The clearest message from viewers: they want long videos, but YouTube is not helping them find or finish them.</p>
+
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">59%</span>
+                    <span class="cs-stat-label">stop watching because the video feels slow or stretched &mdash; not because they lost interest in the topic</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">47%</span>
+                    <span class="cs-stat-label">have to manually search for long videos every time they open the app</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">32%</span>
+                    <span class="cs-stat-label">ever discover a long video just by opening the app without searching</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">58%</span>
+                    <span class="cs-stat-label">do not finish the long videos they start &mdash; even when they originally sat down to watch</span>
+                </div>
+            </div>
+
+            <div class="cs-callout">
+                <p>People are not giving up on long-form content. They are giving up on YouTube&rsquo;s ability to show it to them. The interest exists. Discovery and retention are failing.</p>
+            </div>
+
+            <h3>3.3 What the Product Signals Showed</h3>
+            <ul>
+                <li><strong>49%</strong> of users have to search manually for long videos. The most visited page on YouTube (Home) is actively working against long-form discovery.</li>
+                <li><strong>22%</strong> stop watching a long video because a suggested video on the side caught their eye. The platform is competing against itself.</li>
+                <li>After watching a Short, only <strong>15%</strong> actively look for a longer video from the same creator. But <strong>41%</strong> say they would watch one if it were easy to find. The demand is there &mdash; the pathway is not.</li>
+            </ul>
+
+            <h3>3.4 What Creators Said</h3>
+            <ul>
+                <li>Making a 10&ndash;15 minute video takes 12&ndash;20 hours of work. Making five Shorts takes 2&ndash;4 hours. The effort gap is enormous, and AI tools have mostly helped Shorts, not long-form.</li>
+                <li>11% of survey respondents &mdash; regular viewers, not creators &mdash; said they used to make videos and quit in the last year. This quiet attrition is happening below the surface.</li>
+            </ul>
+
+            <h3>3.5 What Advertisers Are Experiencing</h3>
+            <ul>
+                <li>30% of written comments mentioned ads as a frustration &mdash; without a single survey question asking about ads. That is how strongly people feel about it.</li>
+                <li>70% of people watch long videos to learn deeply. Unskippable ads break that concentration at exactly the moment people are most engaged.</li>
+            </ul>
+            <div class="cs-callout">
+                <p><strong>Note:</strong> The ad problem is real and urgent, but it sits in a different workstream from discovery. We flag it here because it directly affects completion rates, which affect creator revenue, which affects how much long-form content gets made. Everything is connected.</p>
+            </div>
+        </section>
+
+        <!-- 4. Secondary Research -->
+        <section class="cs-section" id="secondary-research">
+            <span class="cs-section-label">Section 4</span>
+            <h2 class="cs-section-title">Secondary Research &amp; Market Evidence</h2>
+
+            <h3>4.1 Market Reality: Long-Form Is Still the Majority</h3>
+
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">2.53B</span>
+                    <span class="cs-stat-label">Global Monthly Active Users (Jan 2025)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">491M</span>
+                    <span class="cs-stat-label">India MAU (~20% of global base)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">70%+</span>
+                    <span class="cs-stat-label">of total YouTube watch time is long-form</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">200B</span>
+                    <span class="cs-stat-label">Shorts daily views (Jan 2026)</span>
+                </div>
+            </div>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p>The issue is not lack of long-form consumption &mdash; it is <strong>feed displacement</strong>. Shorts are absorbing mobile browse real estate that used to surface long-form content.</p>
+            </div>
+
+            <h3>4.2 Monetisation &amp; Creator Incentives</h3>
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>Long-Form</h4>
+                    <ul>
+                        <li>Creator RPM: $3&ndash;$6 per 1,000 views</li>
+                        <li>US CPM (advertiser-side): $15&ndash;$33</li>
+                        <li>Creator revenue share: 55% of ad revenue</li>
+                    </ul>
+                </div>
+                <div class="cs-col">
+                    <h4>Shorts</h4>
+                    <ul>
+                        <li>Creator RPM: $0.03&ndash;$0.07 per 1,000 views</li>
+                        <li>US CPM (advertiser-side): ~$4</li>
+                        <li>Creator revenue share: 45% of shared pool</li>
+                    </ul>
+                </div>
+            </div>
+            <p>Creators observe per-view economics, not per-hour parity. This creates a clear tension: Shorts grow faster, long-form pays significantly better per view. Discovery must protect long-form supply incentives.</p>
+
+            <h3>4.3 Discovery Friction: Behavioural Evidence</h3>
+            <ul>
+                <li>Average search time per session has risen to <strong>12 minutes</strong> &mdash; up 60% since 2019. In a typical 40-minute session, that is ~30% of unmonetised time.</li>
+                <li><strong>19%</strong> of all users abandon a YouTube session without watching a single video. Among 18&ndash;24 year olds, that figure rises to <strong>29%</strong>.</li>
+                <li>51% of Gen Z call long-form a favourite format. 53.1% actively watch it. The barrier is discovery friction, not format preference.</li>
+            </ul>
+
+            <h3>4.4 The Long-Form vs. Short-Form Picture</h3>
+            <ul>
+                <li>Long-form remains 70%+ of total watch time and is <strong>not collapsing</strong>.</li>
+                <li>Short-form engagement is showing fatigue: Shorts interactions fell 47% YoY in 2025 despite post volume surging 71%.</li>
+                <li>Long-form performs strongest on CTV (lean-back behaviour). Shorts dominate mobile discovery surfaces. In mobile-first India, long-form competes directly with swipe behaviour.</li>
+            </ul>
+        </section>
+
+        <!-- 5. Competitors -->
+        <section class="cs-section" id="competitors">
+            <span class="cs-section-label">Section 5</span>
+            <h2 class="cs-section-title">Competitor Landscape</h2>
+
+            <h3>5.1 How Attention Is Being Fragmented</h3>
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card">
+                    <h4>TikTok</h4>
+                    <p>Captures casual, idle scrolling via an endless short-form feed. Conditions users toward low time-commitment viewing before a long session can begin.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Netflix</h4>
+                    <p>Captures intentional evening sessions through lean-back, premium long-form content. Taking dedicated, high-intent long-session time away from YouTube.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>AI Tools</h4>
+                    <p>Capture informational intent through instant responses. Reduces the need to watch a 20-minute explainer video for an answer.</p>
+                </div>
+            </div>
+
+            <div class="cs-callout">
+                <p>The risk is not user migration to a single competitor &mdash; it is the <strong>loss of specific viewing moments</strong> across multiple platforms. YouTube sits between all of these use cases and must defend each.</p>
+            </div>
+
+            <h3>5.2 What Other Platforms Tried &mdash; and What Failed</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Instagram IGTV</h4>
+                    <p>Separate long-form tab. Killed March 2022. &lt;7M downloads against 1B+ users. <strong>Lesson:</strong> Users do not adopt new in-app destinations for long-form.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Netflix &ldquo;Play Something&rdquo;</h4>
+                    <p>Random content button. Killed Jan 2023. <strong>Lesson:</strong> Randomness without context reduces trust. Users need to understand why something is recommended.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Netflix Autoplay</h4>
+                    <p>Auto-play next episode. Still active. Increased long-form consumption. <strong>Lesson:</strong> Reducing friction <em>within</em> format works. The win is inside the existing feed, not on new surfaces.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>TikTok Long-Form</h4>
+                    <p>Extended video duration to 60 minutes. Creators &gt;1 min gaining 5x more followers. <strong>Lesson:</strong> Even short-form platforms pursue long-form. YouTube&rsquo;s window to consolidate its advantage is narrowing.</p>
+                </div>
+            </div>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>The competitor graveyard is unambiguous:</strong> every bolted-on cross-format discovery feature has failed within 2 years. Any solution must be native to the existing feed &mdash; not a new surface. This shaped every solution in this PRD.</p>
+            </div>
+        </section>
+
+        <!-- Solution Space divider -->
+        <div class="cs-divider">
+            <span>Analysis &amp; Solution Space</span>
+        </div>
+
+        <!-- 6. Prioritisation -->
+        <section class="cs-section" id="prioritisation">
+            <span class="cs-section-label">Section 6</span>
+            <h2 class="cs-section-title">Prioritisation &amp; Pain Points</h2>
+
+            <h3>6.1 Three Core Problems</h3>
+            <p>After completing research, three pain points emerged as highest priority &mdash; not three separate problems, but three parts of the same compounding loop.</p>
+
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>P1 &mdash; &ldquo;I Can&rsquo;t Find What I Came For.&rdquo;</h4>
+                    <p>Users open YouTube on mobile but do not naturally see relevant long videos. Most have to manually search every session. When finding content starts to feel like work, users either settle for Shorts or leave entirely.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>P2 &mdash; &ldquo;What If This Video Wastes My Time?&rdquo;</h4>
+                    <p>A 20-minute video feels like a commitment. Users cannot easily judge if it will deliver value. Thumbnails look similar. Intros are often slow. Compared to a 30-second Short, starting a long video feels risky.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>P3 &mdash; &ldquo;Why Spend 15 Hours on Something That Might Not Get Seen?&rdquo;</h4>
+                    <p>Creators see unpredictable algorithmic visibility for long-form. Shorts provide faster reach and feedback. Over time, creators shift effort toward Shorts &mdash; reducing long-form supply, which makes discovery even harder.</p>
+                </div>
+            </div>
+
+            <h3>6.2 How These Problems Connect</h3>
+            <p>The home feed stops showing long videos &rarr; users don&rsquo;t find them &rarr; users who do find them leave early because content is padded &rarr; creators see low completion rates and poor earnings &rarr; they stop making long videos &rarr; the home feed has even less good content to show. It is a loop. The four solutions in this PRD are designed to break it at three different points simultaneously.</p>
+
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>What We Are Fixing</h4>
+                    <ul>
+                        <li><strong>P1:</strong> Deep Dive Tab + Shorts-to-Long Bridge + Viewing Streak</li>
+                        <li><strong>P2:</strong> Creator Success Suite &mdash; quality score before publishing</li>
+                        <li><strong>P3:</strong> Creator Success Suite &mdash; AI tools to reduce production effort</li>
+                    </ul>
+                </div>
+                <div class="cs-col">
+                    <h4>What We Are Deferring</h4>
+                    <ul>
+                        <li>Ad frequency / unskippable ads (monetisation decision, separate workstream)</li>
+                        <li>TV and desktop experience (must fix mobile discovery first)</li>
+                        <li>AI summary features (creator revenue implications out of scope)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Persona -->
+        <section class="cs-section" id="persona">
+            <span class="cs-section-label">Section 7</span>
+            <h2 class="cs-section-title">Primary Persona</h2>
+
+            <h3>The Intentional Learner</h3>
+            <p>We prioritised this persona because the research data directly supports it:</p>
+            <ul>
+                <li>70% of long-form viewers watch to understand something deeply.</li>
+                <li>47% must manually search for content each session &mdash; the algorithm is failing them at the most basic level.</li>
+                <li>29% of Gen Z sessions end without watching anything. They came, they searched, they left.</li>
+                <li>41% say they would move from Shorts to long-form if the path were easy. The demand is present. The friction is the barrier.</li>
+            </ul>
+
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card">
+                    <h4>Who They Are</h4>
+                    <p>Age 18&ndash;34, mobile-first, purpose-driven. Watching to learn, build a skill, or understand a topic in depth. Not passive browsing.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Their Core Frustration</h4>
+                    <p>Time wasted finding the right video. They open the app knowing what they want to learn but cannot trust the home screen to surface it. Search is the fallback, not the exception.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Their Risk</h4>
+                    <p>Switches to an AI tool or exits the app entirely. The session is lost &mdash; and so is the ad impression, the creator view, and the engagement signal that would have improved future recommendations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Solution 1 -->
+        <section class="cs-section" id="solution-1">
+            <span class="cs-section-label">Section 8</span>
+            <h2 class="cs-section-title">Solution 1 &mdash; Deep Dive Tab</h2>
+
+            <p><em>Vertical Solution: directly addresses P1 &mdash; The Home Feed Has Stopped Working for Long-Form</em></p>
+
+            <h3>What It Is</h3>
+            <p>A dedicated tab on YouTube positioned second in the navigation bar after Home, built entirely around intentional long-form consumption. Users declare their interest categories &mdash; PM, Podcasts, Finance, Football &mdash; and the tab organises all long-form content around those declared interests. No Shorts appear anywhere inside it. It is not a feed replacement &mdash; it is a purposeful destination a user enters when they want to go deep.</p>
+
+            <h3>How It Works</h3>
+            <p>On first entry, a 30-second onboarding screen pre-populates 5&ndash;6 interest categories from watch history as large visual tiles. The user confirms or adjusts, subscribed creators are automatically mapped into each category, and the tab is live immediately.</p>
+
+            <p>Inside each category, four sections stack in priority order:</p>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Continue Watching</h4>
+                    <p>Pinned strip at the top for videos started but not finished, each with a progress bar and resume timestamp.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>New from Your Creators</h4>
+                    <p>Latest videos from subscribed creators in this category, sorted chronologically or by recommendation (user picks during setup).</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Deep Picks</h4>
+                    <p>Quality-ranked recommendations from creators the user does not yet follow. Each card shows chapter previews and a trust signal like &ldquo;81% of viewers finish this.&rdquo;</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Creator Spotlight</h4>
+                    <p>Rotating weekly to introduce one unfamiliar creator&rsquo;s top three long-form videos in the category.</p>
+                </div>
+            </div>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Key Innovation:</strong> Deep Picks ranks content by <strong>completion rate and rewatch signals &mdash; not view count.</strong> High view count is a popularity signal. Completion rate is a quality signal. For long-form content, these two frequently conflict &mdash; and every existing YouTube surface optimises for the wrong one.</p>
+            </div>
+        </section>
+
+        <!-- 9. Solution 2 -->
+        <section class="cs-section" id="solution-2">
+            <span class="cs-section-label">Section 9</span>
+            <h2 class="cs-section-title">Solution 2 &mdash; Long-Form Viewing Streak</h2>
+
+            <p><em>Lateral Solution: addresses P1 through behaviour change, not product surface</em></p>
+
+            <h3>What It Is</h3>
+            <p>A weekly topic-based habit mechanic that rewards users for consistently engaging with long-form content in their declared Deep Dive categories. The core unit is a weekly streak &mdash; watch 3 qualifying long-form videos (15 min+, 75% completion) in one topic category per week and the streak advances. It lives inside the Deep Dive tab and is designed to feel like a personal viewing progress tracker, not a platform engagement counter.</p>
+
+            <h3>Qualification Rules</h3>
+            <ul>
+                <li>Video must be 15 minutes minimum.</li>
+                <li>User must reach 75% completion at any playback speed, including 2x.</li>
+                <li>Chapter-jumping counts if total content covered reaches 75%.</li>
+                <li>One grace week per calendar month protects the streak from a single missed week.</li>
+            </ul>
+
+            <h3>Milestone Progression</h3>
+            <p>The recommendation type itself evolves with the user&rsquo;s demonstrated commitment:</p>
+
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card">
+                    <h4>Week 3 &mdash; Consistent Viewer</h4>
+                    <p>Badge unlock + 1 curated long-form video recommendation in the declared category. Makes the streak tangible.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Week 6 &mdash; Personalised Summary</h4>
+                    <p>Hours watched, topics covered. Recommendation type shifts from individual videos to creator playlists. &ldquo;You&rsquo;ve watched consistently for 6 weeks &mdash; here&rsquo;s a structured playlist to go deeper.&rdquo;</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Week 12 &mdash; The Pathbreaker</h4>
+                    <p>Graduates from creator playlists to broader category playlists. YouTube is not judging expertise &mdash; it is simply matching recommendation format to demonstrated behaviour depth.</p>
+                </div>
+            </div>
+
+            <div class="cs-callout">
+                <p><strong>Key Innovation:</strong> Three opt-in notifications only, each firing with the specific recommended video or playlist attached &mdash; so the user never opens YouTube from a streak notification and has to decide what to watch next. The pathway is always pre-loaded.</p>
+            </div>
+        </section>
+
+        <!-- 10. Solution 3 -->
+        <section class="cs-section" id="solution-3">
+            <span class="cs-section-label">Section 10</span>
+            <h2 class="cs-section-title">Solution 3 &mdash; Shorts-to-Long-Form Contextual Bridge</h2>
+
+            <p><em>Vertical Solution: directly addresses P1 &mdash; passive discovery failure and the format-switching gap</em></p>
+
+            <h3>What It Is</h3>
+            <p>A behaviour-triggered bridge card that appears inside the Shorts feed at the moment a user has demonstrated genuine topic interest &mdash; after watching a Short to 95% completion and having watched 3 or more Shorts on the same topic in one session. Instead of showing another random Short, the platform surfaces a Deep Dive Preview card: a 45&ndash;90 second highlight clip from a related long-form video, displayed in the same vertical Shorts format, with a visible &ldquo;Watch Full Video&rdquo; CTA and the full video length shown clearly.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li><strong>Trigger:</strong> 95% Short completion + 3+ same-topic Shorts in one session. Both signals must be true, preventing irrelevant bridge cards after casual scrolling.</li>
+                <li><strong>Frequency:</strong> One bridge card per 5 Shorts maximum to preserve the Shorts session experience.</li>
+                <li><strong>Learning system:</strong> If the user exits the long video in under 60 seconds, similar suggestions are reduced. If they watch more than 5 minutes, similar recommendations are boosted.</li>
+                <li><strong>Risk control:</strong> If Shorts session length drops by more than 5% in A/B testing, bridge card frequency is reduced before broader rollout.</li>
+            </ul>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Key Innovation:</strong> This is not a same-creator link. Every existing YouTube mechanism that connects Shorts to long-form is creator-dependent. This bridge is <strong>system-level, cross-creator, and behaviour-triggered</strong>. It activates on what the user just demonstrated interest in, not on who made the content. The discovery surface is intent-matched, not subscription-matched.</p>
+            </div>
+        </section>
+
+        <!-- 11. Solution 4 -->
+        <section class="cs-section" id="solution-4">
+            <span class="cs-section-label">Section 11</span>
+            <h2 class="cs-section-title">Solution 4 &mdash; Creator Success Suite</h2>
+
+            <p><em>Lateral Solution: directly addresses P2 (padding loop) and P3 (creators quitting long-form)</em></p>
+
+            <h3>What It Is</h3>
+            <p>A set of AI-powered tools built directly into YouTube Studio that reduces the effort, cost, and skill barrier of making long-form content &mdash; addressing P3 at the supply level &mdash; while simultaneously introducing a pre-publish Content Quality Score that penalises padding before a video goes live, addressing P2 at the source.</p>
+
+            <h3>Two Core Pillars</h3>
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>AI Creation Lab</h4>
+                    <p>Built-in toolkit inside YouTube Studio. Includes: AI script generator, AI video editor suggesting cuts and chapter markers, auto-captions in 12 Indian languages plus English, AI thumbnail generator, and SEO-optimised title and description drafts. Tool access is tiered by subscriber count.</p>
+                </div>
+                <div class="cs-col">
+                    <h4>Content Quality Score</h4>
+                    <p>Runs before every publish &mdash; scoring hook strength, pacing, depth, and engagement potential on a 0&ndash;100 scale. Gives creators timestamped suggestions like &ldquo;trim intro from 1:10&ndash;2:00 to improve hook.&rdquo; The score is not public and not linked to monetisation. Purely advisory.</p>
+                </div>
+            </div>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Key Innovation:</strong> The Content Quality Score is a <strong>pre-publish intervention</strong> &mdash; the only point in the creator workflow where the platform can influence content quality before it damages viewer trust. Every other platform mechanism responds to underperformance after the fact. This acts before the video goes live, turning quality improvement into a gamified pre-publish ritual rather than a post-hoc analytics exercise.</p>
+            </div>
+        </section>
+
+        <!-- 12. Success Metrics -->
+        <section class="cs-section" id="success-metrics">
+            <span class="cs-section-label">Section 12</span>
+            <h2 class="cs-section-title">Success Metrics</h2>
+
+            <h3>Primary Metrics (North Star)</h3>
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">Long-Form Completion Rate</span>
+                    <span class="cs-stat-label">Currently ~42% avg. Target: increase by 10+ percentage points within 90 days of Deep Dive Tab launch.</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">Session Abandonment Rate</span>
+                    <span class="cs-stat-label">Currently 19% overall, 29% for 18&ndash;24. Target: reduce abandonment by 20% within first quarter.</span>
+                </div>
+            </div>
+
+            <h3>Solution-Level Metrics</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Deep Dive Tab</h4>
+                    <ul>
+                        <li>Tab adoption rate (% of MAU who visit at least once)</li>
+                        <li>Long-form videos started via Deep Dive vs. Home</li>
+                        <li>Search time per session (target: reduce from 12 min)</li>
+                    </ul>
+                </div>
+                <div class="cs-card">
+                    <h4>Viewing Streak</h4>
+                    <ul>
+                        <li>Week 3 retention rate of streak participants</li>
+                        <li>Week 6 completion rate (milestone unlock)</li>
+                        <li>Weekly long-form sessions per streak user vs. non-streak</li>
+                    </ul>
+                </div>
+                <div class="cs-card">
+                    <h4>Shorts-to-Long Bridge</h4>
+                    <ul>
+                        <li>Bridge card tap rate (% of shown cards that are tapped)</li>
+                        <li>Post-bridge long-form watch time (&gt;5 min threshold)</li>
+                        <li>Shorts session length impact (must stay within &minus;5%)</li>
+                    </ul>
+                </div>
+                <div class="cs-card">
+                    <h4>Creator Success Suite</h4>
+                    <ul>
+                        <li>Long-form upload frequency per creator (before/after)</li>
+                        <li>Average Content Quality Score at publish</li>
+                        <li>Creator long-form completion rate vs. control group</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Tradeoffs -->
+        <section class="cs-section" id="tradeoffs">
+            <span class="cs-section-label">Section 13</span>
+            <h2 class="cs-section-title">Trade-offs &amp; Limitations</h2>
+
+            <h3>What This PRD Does Not Solve</h3>
+            <ul>
+                <li><strong>Ad frequency and unskippable ads:</strong> The most cited frustration in open-ended survey responses. But changing ad behaviour is a monetisation decision requiring a separate workstream with different stakeholders. Attempting to fix it here would stall discovery improvements that are ready to ship.</li>
+                <li><strong>TV and desktop experience:</strong> Long-form thrives on CTV (73% of TV watch time). But improving that experience only matters if users can first discover content on mobile, where the journey begins.</li>
+                <li><strong>The Shorts&ndash;Long-Form transition rate:</strong> The single most important unverified metric in this entire PRD. YouTube has never disclosed what % of long-form views originate from a Shorts session. The Shorts-to-Long Bridge solution is built on the hypothesis that this transition is possible and desirable &mdash; but that hypothesis must be treated as the #1 assumption to test in A/B testing before broader rollout.</li>
+            </ul>
+
+            <h3>Dependency Risks</h3>
+            <ul>
+                <li>Deep Dive Tab requires the recommendation engine to support completion-rate-weighted ranking separately from the main feed &mdash; a non-trivial algorithmic change.</li>
+                <li>The Shorts-to-Long Bridge requires topic similarity signals to be shared across the decoupled Shorts and long-form algorithm stacks.</li>
+                <li>Creator Success Suite relies on LLM-based content analysis of video scripts, audio, and pacing patterns &mdash; model accuracy will vary by genre and language, particularly for non-English Indian content.</li>
+            </ul>
+
+            <div class="cs-callout">
+                <p><strong>The architectural constraint that shaped all four solutions:</strong> Users will not leave their existing feed for a new destination. This is proved by Instagram IGTV, Netflix Play Something, and every other bolted-on long-form feature in the competitor graveyard. Every solution in this PRD is native to a surface users already visit &mdash; reducing friction inside the journey they are already on.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Product Requirements Document</p>
+    </footer>
+
+</body>
+</html>
