@@ -182,8 +182,8 @@ body::after {
     padding: 3rem 2rem 4rem;
 }
 
-/* Experience panel fills the viewport */
-#experience {
+/* Experience panel fills the viewport — scoped to is-active to avoid overriding display:none */
+#experience.is-active {
     min-height: calc(100vh - var(--nav-height));
     display: flex;
     flex-direction: column;
@@ -1309,6 +1309,7 @@ footer {
 
 .htl-node {
     flex: 1;
+    min-width: 0;
     cursor: pointer;
     padding: 0 12px;
     position: relative;
@@ -1352,6 +1353,7 @@ footer {
     transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
     position: relative;
     overflow: hidden;
+    height: 108px;
 }
 
 .htl-node-card::before {
@@ -1497,7 +1499,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    #experience {
+    #experience.is-active {
         min-height: unset;
     }
 
