@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Group Travel Planning Platform | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- Back Nav -->
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Case Study 04</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <!-- Hero -->
+        <header class="cs-hero">
+            <span class="cs-label">Product Requirements Document &mdash; Rethink AI MPM Cohort 7 &middot; Week 7 &middot; March 2026</span>
+            <h1 class="cs-title">Group Travel Planning Platform</h1>
+            <p class="cs-subtitle">An AI-native group trip coordination platform that solves the silent coordination failures of group travel &mdash; budget misalignment, organiser burnout, and fragmented planning &mdash; from the first &ldquo;let&rsquo;s go!&rdquo; to final expense settlement.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Consumer App</span>
+                <span class="cs-meta-tag">AI / Group Coordination</span>
+                <span class="cs-meta-tag">India Travel Tech</span>
+                <span class="cs-meta-tag">Primary Research</span>
+            </div>
+            <div class="cs-meta-row" style="margin-top: 16px;">
+                <a href="#" class="cs-link-btn" target="_blank" rel="noopener">View Product &rarr;</a>
+            </div>
+        </header>
+
+        <!-- TOC -->
+        <nav class="cs-toc">
+            <h3 class="cs-toc-title">Contents</h3>
+            <div class="cs-toc-columns">
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Discovery</span>
+                    <a href="#market-context">1. Market Context</a>
+                    <a href="#research">2. Primary Research</a>
+                    <a href="#archetypes">3. User Archetypes</a>
+                    <a href="#themes">4. Cross-Cutting Themes</a>
+                    <a href="#pain-points">5. Pain Points Ranked</a>
+                    <a href="#competitive">6. Competitive Landscape</a>
+                </div>
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Solution</span>
+                    <a href="#problem-statement">7. Problem Statement</a>
+                    <a href="#target-user">8. Target User</a>
+                    <a href="#value-proposition">9. Value Proposition</a>
+                    <a href="#solution">10. Solution &amp; Features</a>
+                    <a href="#mvp-scope">11. MVP Scope</a>
+                    <a href="#metrics">12. Success Metrics</a>
+                    <a href="#implementation">13. Implementation Plan</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Executive Summary -->
+        <section class="cs-section">
+            <span class="cs-section-label">Overview</span>
+            <h2 class="cs-section-title">Executive Summary</h2>
+            <div class="cs-callout cs-callout--highlight">
+                <p>Group travel planning is a <strong>$168.7 billion global market</strong> growing at 7.2% CAGR &mdash; faster than solo travel &mdash; yet the coordination layer that helps groups decide, plan, and execute trips together remains almost entirely unsolved.</p>
+            </div>
+            <p>Today, groups stitch together 4&ndash;5 disconnected tools (WhatsApp, Google Sheets, Splitwise, Airbnb, Google Maps) and one person absorbs the entire coordination burden. The result: the organiser has the worst trip experience, silent misalignments around budget and diet surface mid-trip as conflict, and 2&ndash;3 weeks of planning inactivity kill group energy before departure.</p>
+            <p>The core insight from 6 user interviews and deep secondary research: <strong>group travel planning is fundamentally a social and emotional challenge, not a logistical one.</strong> The hardest part isn&rsquo;t finding hotels &mdash; it&rsquo;s getting six people to agree on anything without social awkwardness.</p>
+
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">$168.7B</span>
+                    <span class="cs-stat-label">Global group travel market (2024)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">7.2%</span>
+                    <span class="cs-stat-label">CAGR, outpacing solo travel</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">4&ndash;5</span>
+                    <span class="cs-stat-label">Disconnected tools per group trip</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">6</span>
+                    <span class="cs-stat-label">Primary interviews conducted</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="cs-divider"><span>Market Context</span></div>
+
+        <!-- Market Context -->
+        <section class="cs-section" id="market-context">
+            <span class="cs-section-label">01 &mdash; Market</span>
+            <h2 class="cs-section-title">Market Context &amp; Strategic Window</h2>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Global Travel Gross Bookings (2024)</td><td>$1.6 Trillion</td></tr>
+                        <tr><td>Global Group Travel Market (2024)</td><td>$168.7 Billion</td></tr>
+                        <tr><td>Group Travel CAGR (2025&ndash;2033)</td><td>7.2% (outpacing solo travel)</td></tr>
+                        <tr><td>Projected Group Travel Market (2033)</td><td>$314.7 Billion</td></tr>
+                        <tr><td>India Online Travel Market (2024)</td><td>$51 Billion</td></tr>
+                        <tr><td>Non-Metro Share of India Outbound Travel</td><td>63%</td></tr>
+                        <tr><td>India Travel Tech Funding Jump (2024)</td><td>$600M (+182.2% YoY)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Why Now &mdash; The Strategic Window</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>AI disruption window</h4>
+                    <p>Travel tech VC hitting AI-focused tools at 45% of all travel investment (mid-2025). AI-native products can absorb group preferences privately and synthesise shared options &mdash; directly addressing social friction.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>Incumbent gap</h4>
+                    <p>MakeMyTrip acquired Flamingo Transworld (group packages), signalling recognition of the gap &mdash; but through M&amp;A, not product innovation. A 12&ndash;24 month window exists before incumbents move decisively.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>India mobile infrastructure</h4>
+                    <p>660M+ smartphone users, mobile data at &#8377;9/GB, UPI-native payments. Non-metro cities now drive 63% of outbound travel. WhatsApp at 550M+ users means zero onboarding friction.</p>
+                </div>
+            </div>
+
+            <h3>The Typical Group Trip Failure Journey</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead>
+                        <tr><th>Stage</th><th>What Happens</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Step 1</td><td>Someone says &ldquo;let&rsquo;s go!&rdquo; on WhatsApp</td></tr>
+                        <tr><td>Step 2</td><td>12 destinations suggested across 3 different conversations</td></tr>
+                        <tr><td>Step 3</td><td>WhatsApp poll created &mdash; 3 of 7 vote, poll expires unresolved</td></tr>
+                        <tr><td>Step 4</td><td>Dates debated across days; someone can&rsquo;t make shortlisted dates, group splinters</td></tr>
+                        <tr><td>Step 5</td><td>Budget never discussed; one person assumes &#8377;5,000/day, another assumes &#8377;15,000/day</td></tr>
+                        <tr><td>Step 6</td><td>One frustrated person builds a Google Sheet alone and shares it</td></tr>
+                        <tr><td>Step 7</td><td>Booking done in a rushed final sprint &mdash; double-bookings, sold-out options, price spikes</td></tr>
+                        <tr><td>Step 8</td><td>During trip: nobody knows the day&rsquo;s plan; organiser becomes GPS + concierge + accountant</td></tr>
+                        <tr><td>Step 9</td><td>Post-trip: Splitwise is messy, some expenses undocumented, unpaid debts linger</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="cs-divider"><span>Research</span></div>
+
+        <!-- Research -->
+        <section class="cs-section" id="research">
+            <span class="cs-section-label">02 &mdash; Research</span>
+            <h2 class="cs-section-title">Primary Research</h2>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Parameter</th><th>Details</th></tr></thead>
+                    <tbody>
+                        <tr><td>Method</td><td>Semi-structured user interviews (video call, transcribed via Otter.ai)</td></tr>
+                        <tr><td>Total Interviews</td><td>6 core interviews (cross-validated across two research phases)</td></tr>
+                        <tr><td>Interview Period</td><td>March 28&ndash;30, 2026</td></tr>
+                        <tr><td>Geographic Coverage</td><td>1 US-based (Seattle), 5 India-based (Bangalore, Rajasthan, Kerala)</td></tr>
+                        <tr><td>Group Types</td><td>Multi-family (2), Office colleagues (2), Friend groups (2)</td></tr>
+                        <tr><td>Trip Types</td><td>Domestic leisure, international, mountain treks, beach, family vacation</td></tr>
+                        <tr><td>Cross-Validation</td><td>2 interviews independently describe the same Bir Billing trip</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Key Verbatim Quotes</h3>
+            <div class="cs-quotes">
+                <blockquote>
+                    &ldquo;No one was kind of upfront&hellip; through the selection of places, people were exposing their budgetary preferences in a way.&rdquo;
+                    <cite>&mdash; Sabya, Senior PM, Seattle</cite>
+                </blockquote>
+                <blockquote>
+                    &ldquo;I want all the organiser&rsquo;s responsibility to go away.&rdquo;
+                    <cite>&mdash; Aashik Villa, Kerala Group Trip</cite>
+                </blockquote>
+                <blockquote>
+                    &ldquo;People tend to avoid talking about their budget or dietary restrictions upfront. If there was some way to make those people comfortable in saying those things early on&hellip; it would have been really nice.&rdquo;
+                    <cite>&mdash; Gaurav Gupta, Researcher &amp; Product Manager</cite>
+                </blockquote>
+                <blockquote>
+                    &ldquo;Multiple sub cuts, and then it was a mess &mdash; Splitwise me or challenge, because you have to enter it manually every time.&rdquo;
+                    <cite>&mdash; Rahul Kumar, Kerala Trip</cite>
+                </blockquote>
+                <blockquote>
+                    &ldquo;Since we had paid for like three days in advance, so now you are stuck. You have paid a hefty price, and you are stuck.&rdquo;
+                    <cite>&mdash; Rahul Kumar, Kerala Trip</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- User Archetypes -->
+        <section class="cs-section" id="archetypes">
+            <span class="cs-section-label">03 &mdash; Archetypes</span>
+            <h2 class="cs-section-title">User Archetypes</h2>
+            <p>Four distinct archetypes emerged from interview analysis. Most users exhibit more than one archetype depending on group composition and trip type.</p>
+
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>The Delegator Approver</h4>
+                    <p>Takes no active lead; participates in validation. Waits for 2&ndash;3 options to be shortlisted, then picks one. Voices dissatisfaction after the fact if not consulted before final booking.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>The Reluctant Organiser</h4>
+                    <p>Becomes de-facto planner by default &mdash; due to local knowledge, seniority, or history. Books accommodation, manages expenses, drives the car. Bears disproportionate cognitive load.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>The Budget Whisperer</h4>
+                    <p>Acutely aware of group financial dynamics. Silently calibrates preferences to implied budget. Uses Airbnb price selection as an indirect budget signal. No socially safe mechanism to communicate limits.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>The Experience-First Traveller with Constraints</h4>
+                    <p>Wants a rich trip but constrained by family needs &mdash; young kids, dietary restrictions, physical limitations. Filters heavily for kitchen access, stroller-friendliness, kid-friendly itineraries.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Themes -->
+        <section class="cs-section" id="themes">
+            <span class="cs-section-label">04 &mdash; Findings</span>
+            <h2 class="cs-section-title">Cross-Cutting Themes</h2>
+            <p>Validated across 4+ of 6 interviews:</p>
+
+            <div class="cs-insight">
+                <h4>T1 &mdash; WhatsApp + Spreadsheet Cobbling</h4>
+                <p>All 6 interviewees used WhatsApp as primary coordination. Critical decisions are scattered across chat threads, Google Docs, booking confirmations, and Splitwise. No single source of truth.</p>
+            </div>
+            <div class="cs-insight">
+                <h4>T2 &mdash; Budget is the First Conversation but the Hardest to Have</h4>
+                <p>Budget discussion is universally acknowledged as the starting point &mdash; yet groups consistently avoid stating actual constraints. Mismatch surfaces during the trip as resentment, not pre-trip as planning input.</p>
+            </div>
+            <div class="cs-insight">
+                <h4>T3 &mdash; Dietary &amp; Preference Misalignment Discovered Too Late</h4>
+                <p>6/6 interviews referenced dietary restrictions as a coordination failure. Ranges from veg/non-veg to Jain food, onion/garlic-free, and kid-friendly needs. No current tool prompts or collects this information.</p>
+            </div>
+            <div class="cs-insight">
+                <h4>T4 &mdash; Planning Load is Asymmetric</h4>
+                <p>In every trip described, 1&ndash;2 people did the majority of research, booking, and coordination. Others are &ldquo;along for the ride&rdquo; during planning, then vocal during execution. Creates organiser resentment.</p>
+            </div>
+            <div class="cs-insight">
+                <h4>T5 &mdash; Sub-Group Divergence During Trips</h4>
+                <p>4/6 interviewees described instances where the group naturally split during the trip. This is viewed positively &mdash; but is entirely unplanned and managed ad hoc via WhatsApp.</p>
+            </div>
+            <div class="cs-insight">
+                <h4>T6 &mdash; Splitwise as a Standard, but Effortful</h4>
+                <p>Splitwise mentioned by 3/6 as the go-to expense tracker. Pain: manual entry is tedious; people forget or stop logging. Best workaround: split fixed costs upfront so Splitwise only handles variable expenses.</p>
+            </div>
+        </section>
+
+        <!-- Pain Points -->
+        <section class="cs-section" id="pain-points">
+            <span class="cs-section-label">05 &mdash; Pain Points</span>
+            <h2 class="cs-section-title">Pain Points Ranked by Severity</h2>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Pain Point</th><th>Severity</th></tr></thead>
+                    <tbody>
+                        <tr><td>Silent budget misalignment</td><td style="color: #ff6b6b;">Critical</td></tr>
+                        <tr><td>No upfront preference collection (dietary, mobility)</td><td style="color: #ff6b6b;">Critical</td></tr>
+                        <tr><td>Asymmetric planning burden</td><td style="color: #ff6b6b;">Critical</td></tr>
+                        <tr><td>No real-time road / ground truth data</td><td style="color: #ffa94d;">High</td></tr>
+                        <tr><td>Hotel quality mismatch vs. reviews</td><td style="color: #ffa94d;">High</td></tr>
+                        <tr><td>Expense tracking fatigue</td><td style="color: #ffa94d;">High</td></tr>
+                        <tr><td>Last-minute cancellations disrupting plans</td><td style="color: #ffa94d;">High</td></tr>
+                        <tr><td>No structured itinerary for sub-groups</td><td style="color: #ffd43b;">Medium</td></tr>
+                        <tr><td>Children-specific logistics</td><td style="color: #ffd43b;">Medium</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Competitive Landscape -->
+        <section class="cs-section" id="competitive">
+            <span class="cs-section-label">06 &mdash; Competitive</span>
+            <h2 class="cs-section-title">Competitive Landscape</h2>
+            <p>No single product handles the full group travel coordination lifecycle. Users are forced to stitch together 4&ndash;5 tools:</p>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Tool</th><th>Core Strength</th><th>Key Gap</th></tr></thead>
+                    <tbody>
+                        <tr><td>WhatsApp / Telegram</td><td>Real-time comms, link sharing</td><td>Polls expire, messages buried, no structure</td></tr>
+                        <tr><td>Wanderlog</td><td>Visual itinerary + map planning</td><td>Weak group voting, no budget split</td></tr>
+                        <tr><td>TripIt</td><td>Email-to-itinerary import</td><td>Single-user focused; no group budgeting</td></tr>
+                        <tr><td>Splitwise</td><td>Expense splitting + settlement</td><td>No planning features; manual entry fatigue</td></tr>
+                        <tr><td>Google Travel</td><td>Inspiration, saved places</td><td>Zero group coordination whatsoever</td></tr>
+                        <tr><td>MakeMyTrip</td><td>Search and book flights, hotels</td><td>Individual booking only; no group decision layer</td></tr>
+                        <tr><td>Google Sheets</td><td>Budget tracking, shared lists</td><td>Not mobile-first; no travel features</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Critical Gaps &mdash; What No Tool Solves</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card" style="border-left: 3px solid #ff6b6b;">
+                    <h4>Anonymous budget preference collection</h4>
+                    <p>No tool creates a socially safe mechanism for budget disclosure. Groups proxy preferences through accommodation price selection.</p>
+                </div>
+                <div class="cs-card" style="border-left: 3px solid #ff6b6b;">
+                    <h4>Upfront dietary / constraint onboarding</h4>
+                    <p>No tool prompts or collects dietary restrictions, mobility needs, or kids&rsquo; requirements before planning begins.</p>
+                </div>
+                <div class="cs-card" style="border-left: 3px solid #ff6b6b;">
+                    <h4>Single group dashboard / source of truth</h4>
+                    <p>No product shows: where are we going, when, what&rsquo;s the plan each day, what&rsquo;s the cost, what&rsquo;s confirmed.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cs-divider"><span>Solution</span></div>
+
+        <!-- Problem Statement -->
+        <section class="cs-section" id="problem-statement">
+            <span class="cs-section-label">07 &mdash; Problem</span>
+            <h2 class="cs-section-title">The Three Root Problems</h2>
+
+            <h3>Root Problem 1: Silent Budget Misalignment</h3>
+            <p>Budget is the #1 source of group trip friction and the least openly discussed topic. No tool creates a &ldquo;socially safe&rdquo; mechanism for budget disclosure. The mismatch surfaces mid-trip as resentment, not pre-trip as planning input. This is not a problem of dishonesty &mdash; it is a structural design gap.</p>
+
+            <h3>Root Problem 2: The Organiser Tax</h3>
+            <p>1&ndash;2 people absorb 80%+ of all coordination load &mdash; research, booking, reminders, expense tracking, and live itinerary management. This creates a single point of failure before and during the trip. The irony: the organiser consistently has the worst trip experience.</p>
+
+            <h3>Root Problem 3: No Single Source of Truth</h3>
+            <p>Information is scattered across WhatsApp threads, Google Docs, booking confirmation emails, Instagram saves, Notes apps, and Splitwise. No single page shows the full picture. Every interaction adds friction; no interaction builds shared context.</p>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Core Insight:</strong> Group travel coordination is a fundamentally social and emotional challenge &mdash; not merely a logistical one. Users avoid direct conversations about money and preferences, leading to silent misalignments that surface during the trip itself and degrade the collective experience.</p>
+            </div>
+        </section>
+
+        <!-- Target User -->
+        <section class="cs-section" id="target-user">
+            <span class="cs-section-label">08 &mdash; User</span>
+            <h2 class="cs-section-title">Primary Persona &mdash; Aarav Sharma</h2>
+            <p class="cs-subtitle-text">The Connected But Constrained Group Traveller</p>
+
+            <div class="cs-persona-card">
+                <div class="cs-persona-header">
+                    <div>
+                        <h3>Aarav Sharma, 32</h3>
+                        <p style="color: var(--text-secondary); margin: 0;">Mid-senior PM / Software Engineer &middot; Bangalore / Jaipur</p>
+                    </div>
+                </div>
+                <div class="cs-table-wrap">
+                    <table class="cs-table">
+                        <tbody>
+                            <tr><td>Life Stage</td><td>Recently married or young parent (child 0&ndash;5 years). Transitioning from spontaneous to planned, constraint-driven group travel.</td></tr>
+                            <tr><td>Travel Frequency</td><td>2&ndash;3 domestic trips/year; 1 international trip every 1&ndash;2 years. Group size: 4&ndash;8 adults + kids.</td></tr>
+                            <tr><td>Travel Style</td><td>Comfort-first. Prefers Airbnb for family flexibility. Values experiences and calm over itinerary density.</td></tr>
+                            <tr><td>Planning Role</td><td>Passive-to-moderate participant. Comfortable delegating planning but wants to be consulted before decisions are finalised.</td></tr>
+                            <tr><td>Budget Behaviour</td><td>Has a clear private budget floor but won&rsquo;t state it openly. Uses indirect signals (price of suggested options) to indicate affordability.</td></tr>
+                            <tr><td>Core Frustration</td><td>Silent misalignments (budget, food, activities) are baked in before the trip starts. No safe, early mechanism to surface and resolve them.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="cs-section" id="value-proposition">
+            <span class="cs-section-label">09 &mdash; Value</span>
+            <h2 class="cs-section-title">Value Proposition</h2>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Customer Job</th><th>Current Pain</th><th>Our Solution</th></tr></thead>
+                    <tbody>
+                        <tr><td>Get the group to agree on a budget</td><td>Social awkwardness; indirect proxy signals; mid-trip conflict</td><td>Anonymous budget range poll with AI-synthesised group consensus</td></tr>
+                        <tr><td>Coordinate dietary and trip style preferences</td><td>Discovered on-ground; leads to conflict and bad experiences</td><td>Upfront constraint onboarding at trip creation</td></tr>
+                        <tr><td>Distribute planning work fairly</td><td>1 person does everything; others critique after arrival</td><td>Task assignment with completion tracking; role-based expense ownership</td></tr>
+                        <tr><td>Track and settle expenses</td><td>Manual Splitwise entry abandoned mid-trip; post-trip disputes</td><td>Category-based pre-assignment; auto-tracking; 1-tap UPI settlement</td></tr>
+                        <tr><td>Maintain one shared plan everyone can see</td><td>Decisions buried in WhatsApp; no one knows the current plan</td><td>Single group dashboard: destination, dates, itinerary, costs, tasks</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Solution -->
+        <section class="cs-section" id="solution">
+            <span class="cs-section-label">10 &mdash; Solution</span>
+            <h2 class="cs-section-title">Core User Loop</h2>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Step</th><th>Action</th><th>System Response</th><th>Outcome</th></tr></thead>
+                    <tbody>
+                        <tr><td>1. Create</td><td>One person creates a trip and invites group via WhatsApp link</td><td>Trip workspace created; all members receive one-tap join link</td><td>Group enters a shared coordination space in under 30 seconds</td></tr>
+                        <tr><td>2. Align</td><td>Each member completes an anonymous preference survey</td><td>AI synthesises responses into group-level insights without revealing individual answers</td><td>Budget ranges and preference overlaps visible to all; no awkward conversation needed</td></tr>
+                        <tr><td>3. Decide</td><td>Group votes on destination shortlist, dates, and accommodation</td><td>AI generates contextual options matching preference synthesis; voting with deadlines and nudges</td><td>Decisions made within days, not weeks</td></tr>
+                        <tr><td>4. Plan</td><td>Organiser assigns planning tasks to group members</td><td>Task tracker shows status; automated reminders; AI suggests itinerary based on preferences</td><td>Planning load distributed; no single point of failure</td></tr>
+                        <tr><td>5. Trip</td><td>Group accesses live itinerary; expense logging; sub-group coordination</td><td>Shared day-by-day itinerary; category-based expense tracking; sub-group schedule view</td><td>Organiser can enjoy the trip</td></tr>
+                        <tr><td>6. Settle</td><td>Post-trip expense settlement</td><td>Automatic calculation based on category ownership + variable expenses; one-tap UPI settlement</td><td>No lingering debts; Splitwise-level clarity with zero manual entry</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Feature Roadmap by Priority</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card" style="border-left: 3px solid #ff6b6b;">
+                    <h4>P0 &mdash; MVP</h4>
+                    <ul>
+                        <li>Anonymous preference polling (budget, dietary, trip style)</li>
+                        <li>Upfront constraint onboarding checklist</li>
+                        <li>Planning task board with assignment + tracking</li>
+                        <li>Single group dashboard</li>
+                        <li>WhatsApp-based group invite flow</li>
+                    </ul>
+                </div>
+                <div class="cs-card" style="border-left: 3px solid #ffa94d;">
+                    <h4>P1 &mdash; Growth</h4>
+                    <ul>
+                        <li>Integrated category-based expense tracking</li>
+                        <li>Structured sub-group itinerary planning</li>
+                        <li>AI Trip Concierge for group decisions</li>
+                        <li>Passive member nudging (push + one-tap WhatsApp actions)</li>
+                    </ul>
+                </div>
+                <div class="cs-card" style="border-left: 3px solid #69db7c;">
+                    <h4>P2 &mdash; Scale</h4>
+                    <ul>
+                        <li>Mountain / off-grid travel advisories</li>
+                        <li>Ground truth hotel scoring (last 30-day reviews)</li>
+                        <li>Kids-friendly trip filter layer</li>
+                        <li>Platform-level service guarantee</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MVP Scope -->
+        <section class="cs-section" id="mvp-scope">
+            <span class="cs-section-label">11 &mdash; MVP</span>
+            <h2 class="cs-section-title">MVP Scope (V1 &mdash; P0 Features Only)</h2>
+            <p>V1 ships only P0 features. The goal is to validate the core thesis: that removing the social friction of preference collection changes group planning behaviour.</p>
+
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>V1 In Scope</h4>
+                    <ul>
+                        <li>Anonymous preference polling (budget range, dietary, trip style)</li>
+                        <li>Upfront constraint onboarding checklist</li>
+                        <li>Planning task board with assignment + tracking</li>
+                        <li>Single group dashboard (destination, dates, itinerary, task status)</li>
+                        <li>Basic expense tracking (category-based pre-assignment)</li>
+                        <li>WhatsApp-based group invite flow (zero onboarding friction)</li>
+                    </ul>
+                </div>
+                <div class="cs-col">
+                    <h4>V1 Cut</h4>
+                    <ul>
+                        <li>Mountain / off-grid advisories (requires data partnerships)</li>
+                        <li>Ground truth hotel scoring (requires review aggregation pipeline)</li>
+                        <li>Platform service guarantees (requires vendor contracts)</li>
+                        <li>AI Trip Concierge (ship preference polling first; AI layer in V2)</li>
+                        <li>Kids filter layer (not core to thesis)</li>
+                        <li>Sub-group itinerary planning (design complexity; V2)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Tech Stack</h3>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Layer</th><th>Technology</th><th>Why</th></tr></thead>
+                    <tbody>
+                        <tr><td>Frontend (Mobile)</td><td>React Native</td><td>Mobile-first; one codebase for iOS + Android</td></tr>
+                        <tr><td>Backend / API</td><td>FastAPI (Python)</td><td>Fast iteration; Python ecosystem for AI integration</td></tr>
+                        <tr><td>Database</td><td>PostgreSQL (Neon)</td><td>Relational data model for trip/task/expense; serverless scaling</td></tr>
+                        <tr><td>AI Layer</td><td>Claude API (Anthropic)</td><td>Preference aggregation; group decision framing; itinerary generation</td></tr>
+                        <tr><td>Authentication</td><td>Auth.js (OAuth)</td><td>Google + WhatsApp number login; zero friction for Indian users</td></tr>
+                        <tr><td>Payments</td><td>Razorpay (UPI)</td><td>UPI-native for India; expense settlement flow</td></tr>
+                        <tr><td>Hosting</td><td>Railway / Vercel</td><td>Simple deploy; auto-scaling; zero DevOps overhead for MVP</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Metrics -->
+        <section class="cs-section" id="metrics">
+            <span class="cs-section-label">12 &mdash; Metrics</span>
+            <h2 class="cs-section-title">Success Metrics</h2>
+
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">60%</span>
+                    <span class="cs-stat-label">Invited members respond to preference survey within 48h (Activation)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">40%</span>
+                    <span class="cs-stat-label">Trips decide destination within 7 days of creation (Decision velocity)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">NPS &gt;40</span>
+                    <span class="cs-stat-label">Organiser NPS post-trip (Core experience validation)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">60%</span>
+                    <span class="cs-stat-label">Trips complete in-app expense settlement within 7 days post-trip</span>
+                </div>
+            </div>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>North Star:</strong> Trips completed without silent misalignments surfacing mid-trip &mdash; measured via post-trip survey: &ldquo;Did any surprise conflict arise?&rdquo;</p>
+            </div>
+        </section>
+
+        <!-- Implementation Plan -->
+        <section class="cs-section" id="implementation">
+            <span class="cs-section-label">13 &mdash; Implementation</span>
+            <h2 class="cs-section-title">Phased Implementation Plan</h2>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Phase</th><th>Deliverable</th><th>Duration</th><th>Test Gate</th></tr></thead>
+                    <tbody>
+                        <tr><td>Phase 1: Foundation</td><td>Trip creation, WhatsApp invite flow, group dashboard skeleton</td><td>Week 1&ndash;2</td><td>Can a group of 5 create a trip and all join via WhatsApp in under 2 minutes?</td></tr>
+                        <tr><td>Phase 2: Preference Layer</td><td>Anonymous preference survey, AI synthesis of budget + dietary inputs</td><td>Week 2&ndash;3</td><td>Do 60%+ of invited members complete the survey?</td></tr>
+                        <tr><td>Phase 3: Planning Tools</td><td>Task board, assignment, tracking, itinerary builder</td><td>Week 3&ndash;4</td><td>Can organiser assign 5 tasks to 5 members and all receive notifications?</td></tr>
+                        <tr><td>Phase 4: Expense Layer</td><td>Category pre-assignment, variable expense logging, settlement calculation</td><td>Week 4&ndash;5</td><td>Can group settle all expenses in under 5 taps post-trip?</td></tr>
+                        <tr><td>Phase 5: Polish + Launch</td><td>UI polish, error states, onboarding flow, beta testing with cohort</td><td>Week 5&ndash;6</td><td>End-to-end test: create trip &rarr; preference poll &rarr; task assignment &rarr; expense settlement</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Release Strategy</h3>
+            <ul>
+                <li><strong>V1 (MVP &mdash; 6 weeks):</strong> P0 features only. Ship to cohort group + 2&ndash;3 real friend groups as beta users. Validate preference survey completion rates and decision velocity metrics.</li>
+                <li><strong>V2 (4 weeks post-V1):</strong> Integrated expense tracking, AI Trip Concierge, passive member nudging with one-tap WhatsApp actions.</li>
+                <li><strong>V3 (8 weeks post-V2):</strong> Sub-group itinerary planning, mountain/off-grid advisories, ground truth hotel scoring, kids-friendly filter layer.</li>
+                <li><strong>V4 (Strategic):</strong> Platform accountability layer, service guarantees, B2B corporate group travel.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="cs-footer">
+        <p>Gaurav Gupta &mdash; Rethink AI MPM Cohort 7 &middot; March 2026</p>
+        <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+    </footer>
+
+</body>
+</html>
