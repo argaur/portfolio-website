@@ -32,8 +32,8 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 
 ## Navigation structure
 - **Home** -- Hero (photo, name, tagline, intro) + Contact links
-- **Experience** -- Horizontal scrollable timeline (4 role nodes, click to expand detail panel below). Panel fills full viewport height. Nodes are equal fixed-width, cards are fixed 108px height.
-- **Work** -- Two carousels with arrows + dots: Featured Projects (6 cards, JindalX work) + Case Studies (5 cards, Rethink projects). Click any card → modal overlay with full details.
+- **Experience** -- Vertical accordion timeline (4 roles, newest-first). Left spine + pip; click a row to expand summary + achievements inline. No shared content area — each item owns its own body. `.vtl-item`, `.vtl-gutter`, `.vtl-pip`, `.vtl-right`, `.vtl-body` are the key classes. JS pre-renders all content on load; activate() just toggles `is-active`.
+- **Work** -- Two carousels with arrows + dots: Featured Projects (6 cards, JindalX work) + Case Studies (5 cards, Rethink projects). Click any card → modal overlay with full details. CS02 and CS05 have "View prototype →" button in modal.
 - **Credentials** -- Skills grid (6 icon cards) + Education block + Certifications grid (badge-style cards)
 - URL hash routing (#home, #experience, #work, #credentials) with browser back/forward support
 
@@ -48,7 +48,7 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - styles.css -- all styles (dark + light theme, 2000+ lines)
 - tabs.js -- tab switching, URL hash routing, panel transitions (DO NOT EDIT)
 - gate.js -- email gate logic (Supabase integration, localStorage bypass)
-- app.js -- theme toggle, horizontal timeline, carousels, modal (added 2026-04-23)
+- app.js -- theme toggle, vertical accordion timeline, carousels, modal
 - case-study.css -- shared styles for all case study pages
 - photo.jpg or photo.png -- profile photo
 
@@ -118,17 +118,17 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 
 ## Status
 - **State:** active
-- **Last session:** 2026-04-23 — major redesign complete
+- **Last session:** 2026-04-24
 - **What was done:**
-  - Added case-study-group-travel.html (CS04) and case-study-vitae.html (CS05)
-  - Added "View Product →" link to all case study pages
-  - Full portfolio redesign: theme toggle, horizontal experience timeline, work carousels + modals, credentials card grid
-  - Dark theme overhauled to "Obsidian Editorial" — deeper bg, ambient glow, grain texture
-  - Fixed bug: #experience panel was always visible due to ID specificity overriding display:none
-  - Fixed bug: timeline node cards now fixed 108px height (equal sizes)
+  - Redesigned Experience tab from horizontal dot timeline to vertical accordion timeline
+  - Vertical spine (1px gradient line) + pip per role; newest-first order (JindalX at top)
+  - Each item expands inline on click (CSS max-height transition); no shared content area eliminates the width-shift bug
+  - Added duration labels (3y, 1y 10m, etc.) and updated role achievements from resume PDF
+  - Added "View prototype →" button in Work modals for CS02 (Blinkit) and CS05 (Vitae)
+  - `#experience.is-active` changed from `display:flex` + `min-height:100vh` to `display:block`
 - **Next candidates:**
   - Add real product links to CS01 (Founder CRM), CS03 (YouTube), CS04 (Group Travel) once products are live
   - Vitae project: migrate to shared service account email (team decision pending)
   - RAG chatbot (separate project, not in this repo)
 - **Blocker:** none
-- **Last updated:** 2026-04-23
+- **Last updated:** 2026-04-24

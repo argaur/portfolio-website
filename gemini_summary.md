@@ -1,7 +1,7 @@
 # Portfolio Website — Current State Summary
-*Last updated: 2026-04-23*
+*Last updated: 2026-04-24*
 
-This document reflects the portfolio as it stands after the 2026-04-23 redesign session. Use this as the reference for future Claude/Gemini sessions.
+This document reflects the portfolio as it stands after the 2026-04-24 session. Use this as the reference for future Claude/Gemini sessions.
 
 ---
 
@@ -24,7 +24,7 @@ This document reflects the portfolio as it stands after the 2026-04-23 redesign 
 | `case-study.css` | Shared styles for all case study pages |
 | `tabs.js` | Tab switching, URL hash routing, transitions (DO NOT EDIT) |
 | `gate.js` | Email gate — Supabase insert + localStorage bypass |
-| `app.js` | Theme toggle, horizontal timeline, carousels, modal |
+| `app.js` | Theme toggle, vertical accordion timeline, carousels, modal |
 
 ---
 
@@ -76,11 +76,14 @@ This document reflects the portfolio as it stands after the 2026-04-23 redesign 
 - Contact card: email + LinkedIn links
 
 ### Experience
-- Horizontal scrollable timeline — 4 role nodes across full width
-- Nodes: `flex: 1`, fixed `height: 108px` cards (equal sizes regardless of text length)
-- Click node → detail panel below updates with full role info (via JS data array in app.js)
-- Detail panel: `flex: 1`, fills remaining viewport height (`#experience.is-active` is full-height flex)
-- Mobile: reverts to vertical stacked cards
+- **Vertical accordion timeline** — 4 roles, newest-first (JindalX → OneValley → Taccomacco → RSP Design)
+- Left spine: 1px gradient line via `.vtl-wrap::before`; pip per role via `.vtl-pip` inside `.vtl-gutter`
+- Layout: CSS grid `36px 1fr` per `.vtl-item`; right column holds header + collapsible `.vtl-body`
+- Click a row → `is-active` class toggled; CSS `max-height` + `opacity` transition expands body inline
+- Content (summary + achievements) pre-rendered by JS on page load from `JOBS` array; no DOM injection on click
+- `#experience.is-active { display: block }` — no min-height, no flex (changed from full-height flex layout)
+- Duration labels on each role (e.g. "· 3y", "· 1y 10m")
+- Mobile: narrower gutter (30px), period stacks below company name
 
 ### Work
 - **Featured Projects carousel** (6 cards, JindalX professional work)
@@ -90,6 +93,7 @@ This document reflects the portfolio as it stands after the 2026-04-23 redesign 
 - **Case Studies carousel** (5 cards, Rethink cohort projects)
   - Same carousel pattern
   - Modal shows: problem, approach, outcomes + "Read full case study →" CTA link
+  - CS02 (Blinkit) and CS05 (Vitae) also show "View prototype →" button (`.modal-cta--proto`)
 - Modal: `position: fixed`, backdrop blur, ESC/overlay-click/X to close
 
 ### Credentials
@@ -164,13 +168,28 @@ This document reflects the portfolio as it stands after the 2026-04-23 redesign 
 
 ---
 
-## 7. Git History (recent)
+## 7. What Was Done in the 2026-04-24 Session
+
+1. Redesigned Experience tab: horizontal dot timeline → vertical accordion timeline
+   - Spine + pip layout; `grid-template-columns: 36px 1fr` per item
+   - Newest-first order; inline expand/collapse via CSS `max-height` transition
+   - Content pre-rendered from JOBS array on load; activate() only toggles `is-active`
+   - Eliminated the layout-shift bug (was caused by `vtl-active-label` white-space: nowrap influencing flex distribution)
+2. Added duration labels to each role (3y, 1y 10m, 3y 2m, 2y 9m)
+3. Updated OneValley and Taccomacco achievements from resume PDF
+4. Added "View prototype →" button in Work modals for CS02 and CS05
+5. `#experience.is-active` simplified to `display: block` (removed min-height: 100vh and flex layout)
+
+---
+
+## 8. Git History (recent)
 ```
+81a7f10  Redesign Experience tab: horizontal dot timeline → vertical accordion timeline
+b17adbd  Fix: equalize timeline dot widths to eliminate layout shift on role click
+7d584a1  Fix: prevent layout shift caused by scrollbar appearing/disappearing between roles
+50fec4a  Fix timeline width, add durations, update experience content from resume
+7ca18ac  Fix experience width consistency, modal prototype buttons
+a1447e5  Redesign Experience tab: horizontal dot timeline (no cards)
+37cca2e  Update CLAUDE.md and gemini_summary.md to reflect 2026-04-23 redesign
 64ed34f  Fix: experience panel always-visible bug + fixed timeline node card sizes
-a351d7c  Design enhancement: obsidian dark theme + full-height experience timeline
-02ad519  Major portfolio redesign: theme toggle, horizontal timeline, carousels, modals
-1f7d8cb  Add case studies CS04 (group travel) and CS05 (vitae), product links to all pages
-e773b81  Add prototype and flow diagram links to YouTube case study
-3ae5def  Add YouTube 2.0 case study (Case Study 03)
-b580782  Add case study pages for Founder CRM and Blinkit Dark Store PRDs
 ```
