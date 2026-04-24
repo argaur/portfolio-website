@@ -78,13 +78,13 @@ var JOBS = [
 
 /* ---- Timeline ---- */
 (function () {
-  var nodes   = document.querySelectorAll('.htl-node');
-  var dRole   = document.getElementById('htl-d-role');
-  var dCo     = document.getElementById('htl-d-company');
-  var dMeta   = document.getElementById('htl-d-meta');
-  var dSum    = document.getElementById('htl-d-summary');
-  var dAch    = document.getElementById('htl-d-achievements');
-  var detail  = document.getElementById('htl-detail');
+  var nodes   = document.querySelectorAll('.vtl-dot');
+  var dRole   = document.getElementById('vtl-role');
+  var dCo     = document.getElementById('vtl-company-name');
+  var dMeta   = document.getElementById('vtl-meta');
+  var dSum    = document.getElementById('vtl-summary');
+  var dAch    = document.getElementById('vtl-achievements');
+  var content = document.getElementById('vtl-content');
 
   if (!nodes.length || !dRole) return;
 
@@ -101,15 +101,16 @@ var JOBS = [
       li.textContent = a;
       dAch.appendChild(li);
     });
-    detail.style.animation = 'none';
-    detail.offsetHeight; // force reflow
-    detail.style.animation = '';
+    content.classList.remove('vtl-animate');
+    content.offsetHeight;
+    content.classList.add('vtl-animate');
   }
 
-  function activate(idx) {
+  function activate(jobIdx) {
     nodes.forEach(function (n) { n.classList.remove('is-active'); });
-    nodes[idx].classList.add('is-active');
-    renderDetail(idx);
+    var target = document.querySelector('.vtl-dot[data-job="' + jobIdx + '"]');
+    if (target) target.classList.add('is-active');
+    renderDetail(jobIdx);
   }
 
   nodes.forEach(function (node) {
@@ -124,7 +125,7 @@ var JOBS = [
     });
   });
 
-  activate(0);
+  activate(0); // JOBS[0] = JindalX = rightmost/last dot
 })();
 
 /* ---- Featured Projects Data ---- */

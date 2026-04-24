@@ -117,56 +117,68 @@
                 <span class="eyebrow">Career</span>
                 <h2 class="section-title">Work Experience</h2>
 
-                <div class="htl-wrap">
-                    <div class="htl-track" id="htl-track" role="list">
+                <div class="vtl-wrap">
 
-                        <div class="htl-node is-active" data-job="0" role="button" tabindex="0" aria-label="JindalX">
-                            <div class="htl-node-dot"></div>
-                            <div class="htl-node-card">
-                                <span class="htl-role">Sr. PM &ndash; Digital Transformation</span>
-                                <span class="htl-company">JindalX</span>
-                                <span class="htl-period">Jun 2022 &ndash; May 2025</span>
+                    <!-- Horizontal timeline track: oldest → newest left to right -->
+                    <div class="vtl-track" id="vtl-track" role="list">
+                        <div class="vtl-line"></div>
+
+                        <div class="vtl-dot" data-job="3" role="button" tabindex="0" aria-label="RSP Design Consultants">
+                            <div class="vtl-pip-wrap">
+                                <div class="vtl-active-label" aria-hidden="true">Design Manager</div>
+                                <div class="vtl-pip"></div>
+                            </div>
+                            <div class="vtl-scale">
+                                <span class="vtl-scale-company">RSP Design</span>
+                                <span class="vtl-scale-year">2014 &ndash; 2017</span>
                             </div>
                         </div>
 
-                        <div class="htl-node" data-job="1" role="button" tabindex="0" aria-label="OneValley">
-                            <div class="htl-node-dot"></div>
-                            <div class="htl-node-card">
-                                <span class="htl-role">Product Manager</span>
-                                <span class="htl-company">OneValley</span>
-                                <span class="htl-period">Sep 2020 &ndash; Jul 2022</span>
+                        <div class="vtl-dot" data-job="2" role="button" tabindex="0" aria-label="Taccomacco">
+                            <div class="vtl-pip-wrap">
+                                <div class="vtl-active-label" aria-hidden="true">Co-Founder &amp; COO</div>
+                                <div class="vtl-pip"></div>
+                            </div>
+                            <div class="vtl-scale">
+                                <span class="vtl-scale-company">Taccomacco</span>
+                                <span class="vtl-scale-year">2017 &ndash; 2020</span>
                             </div>
                         </div>
 
-                        <div class="htl-node" data-job="2" role="button" tabindex="0" aria-label="Taccomacco">
-                            <div class="htl-node-dot"></div>
-                            <div class="htl-node-card">
-                                <span class="htl-role">Co-Founder &amp; COO</span>
-                                <span class="htl-company">Taccomacco</span>
-                                <span class="htl-period">Jul 2017 &ndash; Sep 2020</span>
+                        <div class="vtl-dot" data-job="1" role="button" tabindex="0" aria-label="OneValley">
+                            <div class="vtl-pip-wrap">
+                                <div class="vtl-active-label" aria-hidden="true">Product Manager</div>
+                                <div class="vtl-pip"></div>
+                            </div>
+                            <div class="vtl-scale">
+                                <span class="vtl-scale-company">OneValley</span>
+                                <span class="vtl-scale-year">2020 &ndash; 2022</span>
                             </div>
                         </div>
 
-                        <div class="htl-node" data-job="3" role="button" tabindex="0" aria-label="RSP Design">
-                            <div class="htl-node-dot"></div>
-                            <div class="htl-node-card">
-                                <span class="htl-role">Design Manager</span>
-                                <span class="htl-company">RSP Design</span>
-                                <span class="htl-period">Sep 2014 &ndash; Jun 2017</span>
+                        <div class="vtl-dot is-active" data-job="0" role="button" tabindex="0" aria-label="JindalX">
+                            <div class="vtl-pip-wrap">
+                                <div class="vtl-active-label" aria-hidden="true">Sr. PM &ndash; Digital Transformation</div>
+                                <div class="vtl-pip"></div>
+                            </div>
+                            <div class="vtl-scale">
+                                <span class="vtl-scale-company">JindalX</span>
+                                <span class="vtl-scale-year">2022 &ndash; 2025</span>
                             </div>
                         </div>
 
+                    </div><!-- /vtl-track -->
+
+                    <!-- Content area: no box, no border, pure typography -->
+                    <div class="vtl-content" id="vtl-content">
+                        <h3 id="vtl-role"></h3>
+                        <p id="vtl-company-name"></p>
+                        <div id="vtl-meta"></div>
+                        <p id="vtl-summary"></p>
+                        <ul id="vtl-achievements"></ul>
                     </div>
-                    <div class="htl-line"></div>
 
-                    <div class="htl-detail" id="htl-detail">
-                        <h3 class="htl-detail-role" id="htl-d-role"></h3>
-                        <p class="htl-detail-company" id="htl-d-company"></p>
-                        <div class="htl-detail-meta" id="htl-d-meta"></div>
-                        <p class="htl-detail-summary" id="htl-d-summary"></p>
-                        <ul class="htl-detail-achievements" id="htl-d-achievements"></ul>
-                    </div>
-                </div>
+                </div><!-- /vtl-wrap -->
 
             </div>
         </section>
