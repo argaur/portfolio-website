@@ -31,565 +31,552 @@
   </div>
 
   <!-- NAV -->
-  <nav id="nav" class="nav">
+  <nav id="nav" class="nav nav--scrolled">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">GG</a>
+      <a href="#home" class="nav-logo" data-panel="panel-home">GG</a>
       <div class="nav-links">
-        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
-        <a href="#work" class="nav-link" data-section="work">Work</a>
-        <a href="#case-studies" class="nav-link" data-section="case-studies">Case Studies</a>
-        <a href="#skills" class="nav-link" data-section="skills">Skills</a>
-        <a href="#credentials" class="nav-link" data-section="credentials">Credentials</a>
+        <a href="#experience"   class="nav-link" data-panel="panel-experience">Experience</a>
+        <a href="#work"         class="nav-link" data-panel="panel-work">Work</a>
+        <a href="#case-studies" class="nav-link" data-panel="panel-case-studies">Case Studies</a>
+        <a href="#skills"       class="nav-link" data-panel="panel-skills">Skills</a>
+        <a href="#credentials"  class="nav-link" data-panel="panel-credentials">Credentials</a>
       </div>
       <a href="mailto:ar.gaurav20@gmail.com" class="nav-cta">Contact</a>
     </div>
   </nav>
 
-  <main>
+  <!-- PANELS -->
+  <main class="panels-wrap">
 
-    <!-- HERO -->
-    <section id="home" class="hero blueprint-bg">
-      <span class="hero-coord hero-coord--left">26.9124&#176; N &middot; 75.7873&#176; E &middot; JAIPUR</span>
-      <span class="hero-coord hero-coord--right">PORTFOLIO &middot; 2025</span>
-      <div class="hero-content">
-        <div class="hero-overline">
-          <span class="hero-overline-line"></span>
-          <span class="hero-overline-text">SENIOR PRODUCT MANAGER &middot; AI STRATEGIST</span>
-        </div>
-        <h1 class="hero-name">
-          Gaurav<br>
-          <span class="hero-name-faded">Gupta.</span>
-        </h1>
-        <div class="hero-statement">
-          <p class="hero-statement-left">Trained as an architect &mdash; five years learning how space, systems, and people work together. Now applying the same thinking to digital products.</p>
-          <p class="hero-statement-right">B.Arch from NIT Jaipur. 10 years building &mdash; first in steel and concrete, now in data and interfaces. Currently shipping AI-powered enterprise tools that real people use every day.</p>
-        </div>
-        <div class="hero-ctas">
-          <a href="#work" class="hero-btn-primary">View Work</a>
-          <a href="mailto:ar.gaurav20@gmail.com" class="hero-btn-secondary">Get in touch &rarr;</a>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stats-left">
-          <div class="hero-stat">
-            <span class="hero-stat-number">10</span>
-            <span class="hero-stat-label">Years Experience</span>
+    <!-- HOME -->
+    <div id="panel-home" class="panel is-active">
+      <section class="hero blueprint-bg">
+        <span class="hero-coord hero-coord--left">26.9124&#176; N &middot; 75.7873&#176; E &middot; JAIPUR</span>
+        <span class="hero-coord hero-coord--right">PORTFOLIO &middot; 2025</span>
+        <div class="hero-content">
+          <div class="hero-overline">
+            <span class="hero-overline-line"></span>
+            <span class="hero-overline-text">SENIOR PRODUCT MANAGER &middot; AI STRATEGIST</span>
           </div>
-          <div class="hero-stat">
-            <span class="hero-stat-number">6</span>
-            <span class="hero-stat-label">Products Shipped</span>
+          <h1 class="hero-name">
+            Gaurav<br>
+            <span class="hero-name-faded">Gupta.</span>
+          </h1>
+          <div class="hero-statement">
+            <p class="hero-statement-left">Trained as an architect &mdash; five years learning how space, systems, and people work together. Now applying the same thinking to digital products.</p>
+            <p class="hero-statement-right">B.Arch from NIT Jaipur. 10 years building &mdash; first in steel and concrete, now in data and interfaces. Currently shipping AI-powered enterprise tools that real people use every day.</p>
           </div>
-          <div class="hero-stat">
-            <span class="hero-stat-number">5K+</span>
-            <span class="hero-stat-label">Users Served</span>
+          <div class="hero-ctas">
+            <a href="#work" class="hero-btn-primary" data-panel="panel-work">View Work</a>
+            <a href="mailto:ar.gaurav20@gmail.com" class="hero-btn-secondary">Get in touch &rarr;</a>
           </div>
         </div>
-        <div class="hero-stats-right">
-          <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="hero-social">LINKEDIN</a>
-          <a href="mailto:ar.gaurav20@gmail.com" class="hero-social">EMAIL</a>
+        <div class="hero-stats">
+          <div class="hero-stats-left">
+            <div class="hero-stat">
+              <span class="hero-stat-number">10</span>
+              <span class="hero-stat-label">Years Experience</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">6</span>
+              <span class="hero-stat-label">Products Shipped</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">5K+</span>
+              <span class="hero-stat-label">Users Served</span>
+            </div>
+          </div>
+          <div class="hero-stats-right">
+            <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="hero-social">LINKEDIN</a>
+            <a href="mailto:ar.gaurav20@gmail.com" class="hero-social">EMAIL</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- EXPERIENCE -->
-    <section id="experience" class="section section--cream">
-      <div class="section-inner section-inner--narrow">
+    <div id="panel-experience" class="panel">
+      <section class="section section--cream">
+        <div class="section-inner section-inner--narrow">
 
-        <div class="section-label">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">01 &mdash; WORK EXPERIENCE</span>
-          <span class="section-label-rule"></span>
-        </div>
-
-        <div class="career-arc">
-          <div class="career-arc-bar">
-            <div class="career-arc-seg career-arc-seg--arch" style="flex:2.75"></div>
-            <div class="career-arc-seg career-arc-seg--pivot" style="flex:3.2"></div>
-            <div class="career-arc-seg career-arc-seg--tech" style="flex:4.8"></div>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            <span class="section-label-text">01 &mdash; WORK EXPERIENCE</span>
+            <span class="section-label-rule"></span>
           </div>
-          <div class="career-arc-labels">
-            <span class="career-arc-lbl career-arc-lbl--arch">Architecture &middot; 2014</span>
-            <span class="career-arc-lbl career-arc-lbl--pivot">Founding &middot; 2017</span>
-            <span class="career-arc-lbl career-arc-lbl--tech">Product &amp; AI &middot; 2025</span>
+
+          <div class="career-arc">
+            <div class="career-arc-bar">
+              <div class="career-arc-seg career-arc-seg--arch" style="flex:2.75"></div>
+              <div class="career-arc-seg career-arc-seg--pivot" style="flex:3.2"></div>
+              <div class="career-arc-seg career-arc-seg--tech" style="flex:4.8"></div>
+            </div>
+            <div class="career-arc-labels">
+              <span class="career-arc-lbl career-arc-lbl--arch">Architecture &middot; 2014</span>
+              <span class="career-arc-lbl career-arc-lbl--pivot">Founding &middot; 2017</span>
+              <span class="career-arc-lbl career-arc-lbl--tech">Product &amp; AI &middot; 2025</span>
+            </div>
           </div>
-        </div>
 
-        <div class="exp-rows">
+          <div class="exp-rows">
 
-          <div class="exp-row">
-            <div class="exp-left">
-              <div class="exp-period">Jun 2022 &ndash; May 2025</div>
-              <span class="exp-badge exp-badge--tech">Tech</span>
-            </div>
-            <div class="exp-gutter">
-              <div class="exp-dot exp-dot--tech"></div>
-              <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(45,93,161,.4),rgba(45,93,161,.3))"></div>
-            </div>
-            <div class="exp-right">
-              <div class="exp-header">
-                <div>
-                  <div class="exp-company">JindalX</div>
-                  <div class="exp-meta">Sr. PM &ndash; Digital Transformation &middot; 3 yrs</div>
+            <div class="exp-row">
+              <div class="exp-left">
+                <div class="exp-period">Jun 2022 &ndash; May 2025</div>
+                <span class="exp-badge exp-badge--tech">Tech</span>
+              </div>
+              <div class="exp-gutter">
+                <div class="exp-dot exp-dot--tech"></div>
+                <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(45,93,161,.4),rgba(45,93,161,.3))"></div>
+              </div>
+              <div class="exp-right">
+                <div class="exp-header">
+                  <div>
+                    <div class="exp-company">JindalX</div>
+                    <div class="exp-meta">Sr. PM &ndash; Digital Transformation &middot; 3 yrs</div>
+                  </div>
+                  <span class="exp-toggle-icon">+</span>
                 </div>
-                <button class="exp-toggle" aria-label="Toggle details">+</button>
-              </div>
-              <div class="exp-body">
-                <ul>
-                  <li>Built 6 enterprise products 0&rarr;1 for 5,000+ users across HR, EdTech, and BI</li>
-                  <li>Led AI integration into ATS, performance management, and knowledge platforms</li>
-                  <li>Managed cross-functional squads across product, engineering, design, and data</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="exp-row">
-            <div class="exp-left">
-              <div class="exp-period">Sep 2020 &ndash; Jul 2022</div>
-              <span class="exp-badge exp-badge--tech">Tech</span>
-            </div>
-            <div class="exp-gutter">
-              <div class="exp-dot exp-dot--tech"></div>
-              <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(45,93,161,.4),rgba(191,92,58,.3))"></div>
-            </div>
-            <div class="exp-right">
-              <div class="exp-header">
-                <div>
-                  <div class="exp-company">OneValley</div>
-                  <div class="exp-meta">Product Manager &middot; 1y 10m</div>
+                <div class="exp-body">
+                  <ul>
+                    <li>Built 6 enterprise products 0&rarr;1 for 5,000+ users across HR, EdTech, and BI</li>
+                    <li>Led AI integration into ATS, performance management, and knowledge platforms</li>
+                    <li>Managed cross-functional squads across product, engineering, design, and data</li>
+                  </ul>
                 </div>
-                <button class="exp-toggle" aria-label="Toggle details">+</button>
-              </div>
-              <div class="exp-body">
-                <ul>
-                  <li>Product strategy and roadmap for a global startup ecosystem platform</li>
-                  <li>Drove feature development aligned with investor and founder personas</li>
-                </ul>
               </div>
             </div>
-          </div>
 
-          <div class="exp-row">
-            <div class="exp-left">
-              <div class="exp-period">Jul 2017 &ndash; Sep 2020</div>
-              <span class="exp-badge exp-badge--pivot">Pivot</span>
-            </div>
-            <div class="exp-gutter">
-              <div class="exp-dot exp-dot--pivot"></div>
-              <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(191,92,58,.4),rgba(61,92,58,.3))"></div>
-            </div>
-            <div class="exp-right">
-              <div class="exp-header">
-                <div>
-                  <div class="exp-company">Taccomacco</div>
-                  <div class="exp-meta">Co-Founder &amp; COO &middot; 3y 2m</div>
+            <div class="exp-row">
+              <div class="exp-left">
+                <div class="exp-period">Sep 2020 &ndash; Jul 2022</div>
+                <span class="exp-badge exp-badge--tech">Tech</span>
+              </div>
+              <div class="exp-gutter">
+                <div class="exp-dot exp-dot--tech"></div>
+                <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(45,93,161,.4),rgba(191,92,58,.3))"></div>
+              </div>
+              <div class="exp-right">
+                <div class="exp-header">
+                  <div>
+                    <div class="exp-company">OneValley</div>
+                    <div class="exp-meta">Product Manager &middot; 1y 10m</div>
+                  </div>
+                  <span class="exp-toggle-icon">+</span>
                 </div>
-                <button class="exp-toggle" aria-label="Toggle details">+</button>
-              </div>
-              <div class="exp-body">
-                <ul>
-                  <li>Co-founded a design-meets-technology venture &mdash; the bridge between worlds</li>
-                  <li>Managed full operations, client relationships, and product direction</li>
-                  <li>Translated physical design thinking into digital product strategy</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="exp-row exp-row--last">
-            <div class="exp-left">
-              <div class="exp-period">Sep 2014 &ndash; Jun 2017</div>
-              <span class="exp-badge exp-badge--arch">Arch</span>
-            </div>
-            <div class="exp-gutter">
-              <div class="exp-dot exp-dot--arch"></div>
-            </div>
-            <div class="exp-right">
-              <div class="exp-header">
-                <div>
-                  <div class="exp-company">RSP Design Consultants</div>
-                  <div class="exp-meta">Design Manager (Architecture) &middot; 2y 9m</div>
+                <div class="exp-body">
+                  <ul>
+                    <li>Product strategy and roadmap for a global startup ecosystem platform</li>
+                    <li>Drove feature development aligned with investor and founder personas</li>
+                  </ul>
                 </div>
-                <button class="exp-toggle" aria-label="Toggle details">+</button>
-              </div>
-              <div class="exp-body">
-                <ul>
-                  <li>Led design and delivery of large-scale architectural projects</li>
-                  <li>Managed multi-disciplinary teams and contractor coordination</li>
-                  <li>Built the foundation: systems thinking, spatial logic, UX at scale</li>
-                </ul>
               </div>
             </div>
-          </div>
 
+            <div class="exp-row">
+              <div class="exp-left">
+                <div class="exp-period">Jul 2017 &ndash; Sep 2020</div>
+                <span class="exp-badge exp-badge--pivot">Pivot</span>
+              </div>
+              <div class="exp-gutter">
+                <div class="exp-dot exp-dot--pivot"></div>
+                <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(191,92,58,.4),rgba(61,92,58,.3))"></div>
+              </div>
+              <div class="exp-right">
+                <div class="exp-header">
+                  <div>
+                    <div class="exp-company">Taccomacco</div>
+                    <div class="exp-meta">Co-Founder &amp; COO &middot; 3y 2m</div>
+                  </div>
+                  <span class="exp-toggle-icon">+</span>
+                </div>
+                <div class="exp-body">
+                  <ul>
+                    <li>Co-founded a design-meets-technology venture &mdash; the bridge between worlds</li>
+                    <li>Managed full operations, client relationships, and product direction</li>
+                    <li>Translated physical design thinking into digital product strategy</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-row exp-row--last">
+              <div class="exp-left">
+                <div class="exp-period">Sep 2014 &ndash; Jun 2017</div>
+                <span class="exp-badge exp-badge--arch">Arch</span>
+              </div>
+              <div class="exp-gutter">
+                <div class="exp-dot exp-dot--arch"></div>
+              </div>
+              <div class="exp-right">
+                <div class="exp-header">
+                  <div>
+                    <div class="exp-company">RSP Design Consultants</div>
+                    <div class="exp-meta">Design Manager (Architecture) &middot; 2y 9m</div>
+                  </div>
+                  <span class="exp-toggle-icon">+</span>
+                </div>
+                <div class="exp-body">
+                  <ul>
+                    <li>Led design and delivery of large-scale architectural projects</li>
+                    <li>Managed multi-disciplinary teams and contractor coordination</li>
+                    <li>Built the foundation: systems thinking, spatial logic, UX at scale</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- WORK / PROJECTS -->
-    <section id="work" class="section section--white">
-      <div class="section-inner section-inner--wide">
+    <!-- WORK -->
+    <div id="panel-work" class="panel">
+      <section class="section section--white">
+        <div class="section-inner section-inner--wide">
 
-        <div class="section-label">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">02 &mdash; FEATURED PROJECTS</span>
-          <span class="section-label-rule"></span>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            <span class="section-label-text">02 &mdash; FEATURED PROJECTS</span>
+            <span class="section-label-rule"></span>
+          </div>
+
+          <div class="work-header">
+            <div>
+              <h2 class="work-title">Built at JindalX</h2>
+              <p class="work-sub">Enterprise products shipped from zero to production.</p>
+            </div>
+            <span class="work-hint">Click any card for details</span>
+          </div>
+
+          <div class="proj-grid">
+
+            <div class="proj-card" data-proj="0" role="button" tabindex="0">
+              <span class="proj-tag">AI &middot; HR Tech</span>
+              <h3 class="proj-title">AI-Powered Talent Management Suite</h3>
+              <p class="proj-desc">Comprehensive ATS built from scratch with embedded AI workflows &mdash; automated screening and GenAI-driven job matching.</p>
+              <div class="proj-metrics">
+                <span class="proj-metric">50% faster hiring</span>
+                <span class="proj-metric">200+ hiring managers</span>
+                <span class="proj-metric">40% internal mobility&uarr;</span>
+              </div>
+              <span class="proj-cta">View details &rarr;</span>
+            </div>
+
+            <div class="proj-card" data-proj="1" role="button" tabindex="0">
+              <span class="proj-tag">AI &middot; Performance</span>
+              <h3 class="proj-title">Performance Management Platform</h3>
+              <p class="proj-desc">Evaluation system for 5,000+ employees across 16 clients. AI-driven recommendation engine for personalized development plans.</p>
+              <div class="proj-metrics">
+                <span class="proj-metric">60% less manual review</span>
+                <span class="proj-metric">15 FTEs saved</span>
+                <span class="proj-metric">25% engagement&uarr;</span>
+              </div>
+              <span class="proj-cta">View details &rarr;</span>
+            </div>
+
+            <div class="proj-card" data-proj="2" role="button" tabindex="0">
+              <span class="proj-tag">EdTech &middot; AI</span>
+              <h3 class="proj-title">Knowledge &amp; Learning Platform (Insight)</h3>
+              <p class="proj-desc">AI-powered EdTech system for BPO agents with integrated chatbot for instant query resolution and intelligent learning paths.</p>
+              <div class="proj-metrics">
+                <span class="proj-metric">45% performance&uarr;</span>
+                <span class="proj-metric">35% training time&darr;</span>
+                <span class="proj-metric">60% faster resolution</span>
+              </div>
+              <span class="proj-cta">View details &rarr;</span>
+            </div>
+
+            <div class="proj-card" data-proj="3" role="button" tabindex="0">
+              <span class="proj-tag">B2B &middot; CRM</span>
+              <h3 class="proj-title">B2B CRM &amp; Auction Platform (AuctionIT)</h3>
+              <p class="proj-desc">End-to-end B2B CRM with integrated auction management, automated bidding workflows, and invoice generation.</p>
+              <div class="proj-metrics">
+                <span class="proj-metric">30% transactions&uarr;</span>
+                <span class="proj-metric">Auto-invoicing</span>
+                <span class="proj-metric">CRM integration</span>
+              </div>
+              <span class="proj-cta">View details &rarr;</span>
+            </div>
+
+            <div class="proj-card" data-proj="4" role="button" tabindex="0">
+              <span class="proj-tag">HRMS &middot; Automation</span>
+              <h3 class="proj-title">HR Management System (Touchpoint HRMS)</h3>
+              <p class="proj-desc">Purpose-built HRMS for floating BPO agents &mdash; payroll, leave management, and compliance with full ERP integration.</p>
+              <div class="proj-metrics">
+                <span class="proj-metric">5,000+ agents</span>
+                <span class="proj-metric">25% satisfaction&uarr;</span>
+                <span class="proj-metric">Full ERP integration</span>
+              </div>
+              <span class="proj-cta">View details &rarr;</span>
+            </div>
+
+            <div class="proj-card" data-proj="5" role="button" tabindex="0">
+              <span class="proj-tag">Analytics &middot; BI</span>
+              <h3 class="proj-title">Business Intelligence Platform (Jx Data Cloud)</h3>
+              <p class="proj-desc">Centralized data warehouse consolidating 7 operational sources. Real-time Power BI and Looker Studio dashboards with automated ETL.</p>
+              <div class="proj-metrics">
+                <span class="proj-metric">40% accuracy&uarr;</span>
+                <span class="proj-metric">35% processing&darr;</span>
+                <span class="proj-metric">Multi-source ETL</span>
+              </div>
+              <span class="proj-cta">View details &rarr;</span>
+            </div>
+
+          </div>
         </div>
-
-        <div class="work-header">
-          <div>
-            <h2 class="work-title">Built at JindalX</h2>
-            <p class="work-sub">Enterprise products shipped from zero to production.</p>
-          </div>
-          <span class="work-hint">Click any card for details</span>
-        </div>
-
-        <div class="proj-grid">
-
-          <div class="proj-card" data-proj="0" role="button" tabindex="0">
-            <span class="proj-tag">AI &middot; HR Tech</span>
-            <h3 class="proj-title">AI-Powered Talent Management Suite</h3>
-            <p class="proj-desc">Comprehensive ATS built from scratch with embedded AI workflows &mdash; automated screening and GenAI-driven job matching.</p>
-            <div class="proj-metrics">
-              <span class="proj-metric">50% faster hiring</span>
-              <span class="proj-metric">200+ hiring managers</span>
-              <span class="proj-metric">40% internal mobility&uarr;</span>
-            </div>
-            <span class="proj-cta">View details &rarr;</span>
-          </div>
-
-          <div class="proj-card" data-proj="1" role="button" tabindex="0">
-            <span class="proj-tag">AI &middot; Performance</span>
-            <h3 class="proj-title">Performance Management Platform</h3>
-            <p class="proj-desc">Evaluation system for 5,000+ employees across 16 clients. AI-driven recommendation engine for personalized development plans.</p>
-            <div class="proj-metrics">
-              <span class="proj-metric">60% less manual review</span>
-              <span class="proj-metric">15 FTEs saved</span>
-              <span class="proj-metric">25% engagement&uarr;</span>
-            </div>
-            <span class="proj-cta">View details &rarr;</span>
-          </div>
-
-          <div class="proj-card" data-proj="2" role="button" tabindex="0">
-            <span class="proj-tag">EdTech &middot; AI</span>
-            <h3 class="proj-title">Knowledge &amp; Learning Platform (Insight)</h3>
-            <p class="proj-desc">AI-powered EdTech system for BPO agents with integrated chatbot for instant query resolution and intelligent learning paths.</p>
-            <div class="proj-metrics">
-              <span class="proj-metric">45% performance&uarr;</span>
-              <span class="proj-metric">35% training time&darr;</span>
-              <span class="proj-metric">60% faster resolution</span>
-            </div>
-            <span class="proj-cta">View details &rarr;</span>
-          </div>
-
-          <div class="proj-card" data-proj="3" role="button" tabindex="0">
-            <span class="proj-tag">B2B &middot; CRM</span>
-            <h3 class="proj-title">B2B CRM &amp; Auction Platform (AuctionIT)</h3>
-            <p class="proj-desc">End-to-end B2B CRM with integrated auction management, automated bidding workflows, and invoice generation.</p>
-            <div class="proj-metrics">
-              <span class="proj-metric">30% transactions&uarr;</span>
-              <span class="proj-metric">Auto-invoicing</span>
-              <span class="proj-metric">CRM integration</span>
-            </div>
-            <span class="proj-cta">View details &rarr;</span>
-          </div>
-
-          <div class="proj-card" data-proj="4" role="button" tabindex="0">
-            <span class="proj-tag">HRMS &middot; Automation</span>
-            <h3 class="proj-title">HR Management System (Touchpoint HRMS)</h3>
-            <p class="proj-desc">Purpose-built HRMS for floating BPO agents &mdash; payroll, leave management, and compliance with full ERP integration.</p>
-            <div class="proj-metrics">
-              <span class="proj-metric">5,000+ agents</span>
-              <span class="proj-metric">25% satisfaction&uarr;</span>
-              <span class="proj-metric">Full ERP integration</span>
-            </div>
-            <span class="proj-cta">View details &rarr;</span>
-          </div>
-
-          <div class="proj-card" data-proj="5" role="button" tabindex="0">
-            <span class="proj-tag">Analytics &middot; BI</span>
-            <h3 class="proj-title">Business Intelligence Platform (Jx Data Cloud)</h3>
-            <p class="proj-desc">Centralized data warehouse consolidating 7 operational sources. Real-time Power BI and Looker Studio dashboards with automated ETL.</p>
-            <div class="proj-metrics">
-              <span class="proj-metric">40% accuracy&uarr;</span>
-              <span class="proj-metric">35% processing&darr;</span>
-              <span class="proj-metric">Multi-source ETL</span>
-            </div>
-            <span class="proj-cta">View details &rarr;</span>
-          </div>
-
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- CASE STUDIES -->
-    <section id="case-studies" class="section section--cream">
-      <div class="section-inner section-inner--wide">
+    <div id="panel-case-studies" class="panel">
+      <section class="section section--cream">
+        <div class="section-inner section-inner--wide">
 
-        <div class="section-label">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">03 &mdash; CASE STUDIES</span>
-          <span class="section-label-rule"></span>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            <span class="section-label-text">03 &mdash; CASE STUDIES</span>
+            <span class="section-label-rule"></span>
+          </div>
+
+          <div class="cs-header">
+            <h2 class="cs-title">Deep Dives</h2>
+            <p class="cs-sub">End-to-end product thinking &mdash; problem discovery through execution.</p>
+          </div>
+
+          <div class="cs-table">
+
+            <div class="cs-row" role="button" tabindex="0" data-cs="0">
+              <span class="cs-index">01</span>
+              <div class="cs-content">
+                <div class="cs-category">B2B SaaS &middot; AI &middot; Telegram Bot</div>
+                <div class="cs-name">Founder&rsquo;s CRM &mdash; Conversation-First Sales Tool</div>
+                <div class="cs-problem">60&ndash;70% of founders abandon CRM within 4 weeks. WhatsApp forwards become structured deal data.</div>
+              </div>
+              <div class="cs-stats">
+                <span>39-page PRD</span>
+                <span>16 tools analysed</span>
+                <span>10 founder interviews</span>
+                <span class="cs-arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <div class="cs-row" role="button" tabindex="0" data-cs="1">
+              <span class="cs-index">02</span>
+              <div class="cs-content">
+                <div class="cs-category">Quick Commerce &middot; Operations</div>
+                <div class="cs-name">Peak-Hour Decision Support for Blinkit Dark Stores</div>
+                <div class="cs-problem">Managers discover picker issues 3&ndash;7 minutes too late during the 6&ndash;10 PM peak window.</div>
+              </div>
+              <div class="cs-stats">
+                <span>Working prototype</span>
+                <span>3 research methods</span>
+                <span>Unit economics modelled</span>
+                <span class="cs-arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <div class="cs-row" role="button" tabindex="0" data-cs="2">
+              <span class="cs-index">03</span>
+              <div class="cs-content">
+                <div class="cs-category">Consumer Platform &middot; Algorithm</div>
+                <div class="cs-name">YouTube 2.0 &mdash; Fixing Long-Form Discovery</div>
+                <div class="cs-problem">47% of users manually search every session. 29% of Gen Z sessions end without watching anything.</div>
+              </div>
+              <div class="cs-stats">
+                <span>171 survey responses</span>
+                <span>4 product solutions</span>
+                <span>27+ sources</span>
+                <span class="cs-arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <div class="cs-row" role="button" tabindex="0" data-cs="3">
+              <span class="cs-index">04</span>
+              <div class="cs-content">
+                <div class="cs-category">Consumer App &middot; AI</div>
+                <div class="cs-name">Group Travel Planning Platform</div>
+                <div class="cs-problem">1&ndash;2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments surface mid-trip.</div>
+              </div>
+              <div class="cs-stats">
+                <span>6 user interviews</span>
+                <span>$168.7B market</span>
+                <span>Full PRD</span>
+                <span class="cs-arrow">&rarr;</span>
+              </div>
+            </div>
+
+            <div class="cs-row" role="button" tabindex="0" data-cs="4">
+              <span class="cs-index">05</span>
+              <div class="cs-content">
+                <div class="cs-category">Health Tech &middot; AI &middot; PWA</div>
+                <div class="cs-name">Vitae &mdash; Health Records, Finally Understood</div>
+                <div class="cs-problem">Indian families manage health via blurry WhatsApp prescription photos. &#8377;6,000+ crore lost to repeat tests.</div>
+              </div>
+              <div class="cs-stats">
+                <span>Live product</span>
+                <span>6-person team</span>
+                <span>10 days shipped</span>
+                <span class="cs-arrow">&rarr;</span>
+              </div>
+            </div>
+
+          </div>
         </div>
-
-        <div class="cs-header">
-          <h2 class="cs-title">Deep Dives</h2>
-          <p class="cs-sub">End-to-end product thinking &mdash; problem discovery through execution.</p>
-        </div>
-
-        <div class="cs-table">
-
-          <a href="case-study-founder-crm.html" class="cs-row">
-            <span class="cs-index">01</span>
-            <div class="cs-content">
-              <div class="cs-category">B2B SaaS &middot; AI &middot; Telegram Bot</div>
-              <div class="cs-name">Founder&rsquo;s CRM &mdash; Conversation-First Sales Tool</div>
-              <div class="cs-problem">60&ndash;70% of founders abandon CRM within 4 weeks. WhatsApp forwards become structured deal data.</div>
-            </div>
-            <div class="cs-stats">
-              <span>39-page PRD</span>
-              <span>16 tools analysed</span>
-              <span>10 founder interviews</span>
-              <span class="cs-arrow">&rarr;</span>
-            </div>
-          </a>
-
-          <a href="case-study-blinkit.html" class="cs-row">
-            <span class="cs-index">02</span>
-            <div class="cs-content">
-              <div class="cs-category">Quick Commerce &middot; Operations</div>
-              <div class="cs-name">Peak-Hour Decision Support for Blinkit Dark Stores</div>
-              <div class="cs-problem">Managers discover picker issues 3&ndash;7 minutes too late during the 6&ndash;10 PM peak window.</div>
-            </div>
-            <div class="cs-stats">
-              <span>Working prototype</span>
-              <span>3 research methods</span>
-              <span>Unit economics modelled</span>
-              <span class="cs-arrow">&rarr;</span>
-            </div>
-          </a>
-
-          <a href="case-study-youtube.html" class="cs-row">
-            <span class="cs-index">03</span>
-            <div class="cs-content">
-              <div class="cs-category">Consumer Platform &middot; Algorithm</div>
-              <div class="cs-name">YouTube 2.0 &mdash; Fixing Long-Form Discovery</div>
-              <div class="cs-problem">47% of users manually search every session. 29% of Gen Z sessions end without watching anything.</div>
-            </div>
-            <div class="cs-stats">
-              <span>171 survey responses</span>
-              <span>4 product solutions</span>
-              <span>27+ sources</span>
-              <span class="cs-arrow">&rarr;</span>
-            </div>
-          </a>
-
-          <a href="case-study-group-travel.html" class="cs-row">
-            <span class="cs-index">04</span>
-            <div class="cs-content">
-              <div class="cs-category">Consumer App &middot; AI</div>
-              <div class="cs-name">Group Travel Planning Platform</div>
-              <div class="cs-problem">1&ndash;2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments surface mid-trip.</div>
-            </div>
-            <div class="cs-stats">
-              <span>6 user interviews</span>
-              <span>$168.7B market</span>
-              <span>Full PRD</span>
-              <span class="cs-arrow">&rarr;</span>
-            </div>
-          </a>
-
-          <a href="case-study-vitae.html" class="cs-row">
-            <span class="cs-index">05</span>
-            <div class="cs-content">
-              <div class="cs-category">Health Tech &middot; AI &middot; PWA</div>
-              <div class="cs-name">Vitae &mdash; Health Records, Finally Understood</div>
-              <div class="cs-problem">Indian families manage health via blurry WhatsApp prescription photos. &#8377;6,000+ crore lost to repeat tests.</div>
-            </div>
-            <div class="cs-stats">
-              <span>Live product</span>
-              <span>6-person team</span>
-              <span>10 days shipped</span>
-              <span class="cs-arrow">&rarr;</span>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- SKILLS -->
-    <section id="skills" class="section section--navy blueprint-bg">
-      <div class="section-inner section-inner--wide">
+    <div id="panel-skills" class="panel">
+      <section class="section section--navy blueprint-bg">
+        <div class="section-inner section-inner--wide">
 
-        <div class="section-label section-label--dark">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">04 &mdash; SKILLS</span>
-          <span class="section-label-rule section-label-rule--dark"></span>
+          <div class="section-label section-label--dark">
+            <span class="section-label-line"></span>
+            <span class="section-label-text">04 &mdash; SKILLS</span>
+            <span class="section-label-rule section-label-rule--dark"></span>
+          </div>
+
+          <div class="skills-grid">
+
+            <div class="skill-group">
+              <div class="skill-group-header">Product Management</div>
+              <ul class="skill-list">
+                <li>Product Lifecycle Mgmt</li>
+                <li>Go-to-Market Strategy</li>
+                <li>Roadmap Development</li>
+                <li>Feature Prioritization</li>
+                <li>Product-Market Fit</li>
+                <li>UX Design</li>
+                <li>Agile / Scrum / Kanban</li>
+                <li>Stakeholder Management</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-header">AI &amp; Automation</div>
+              <ul class="skill-list">
+                <li>AI Strategy &amp; Implementation</li>
+                <li>Generative AI Integration</li>
+                <li>Autonomous Automation</li>
+                <li>MLOps</li>
+                <li>AI Agent Development</li>
+                <li>Workflow Optimization</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-header">Analytics &amp; Data</div>
+              <ul class="skill-list">
+                <li>SQL</li>
+                <li>Power BI</li>
+                <li>Looker Studio</li>
+                <li>Tableau</li>
+                <li>Google Analytics</li>
+                <li>Python</li>
+                <li>Excel (Advanced)</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-header">No-Code / Low-Code</div>
+              <ul class="skill-list">
+                <li>Airtable (Advanced)</li>
+                <li>Zapier</li>
+                <li>Power Automate</li>
+                <li>Make.com</li>
+                <li>n8n</li>
+                <li>Automation Anywhere</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-header">Product Tools</div>
+              <ul class="skill-list">
+                <li>Jira</li>
+                <li>Figma</li>
+                <li>Confluence</li>
+                <li>Miro</li>
+                <li>Balsamiq</li>
+                <li>Lucidchart</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-header">Dev &amp; Integration</div>
+              <ul class="skill-list">
+                <li>API Integration</li>
+                <li>RESTful Services</li>
+                <li>Microservices</li>
+                <li>HTML / CSS / JS</li>
+                <li>JSON / XML</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
-
-        <div class="skills-grid">
-
-          <div class="skill-group">
-            <div class="skill-group-header">Product Management</div>
-            <ul class="skill-list">
-              <li>Product Lifecycle Mgmt</li>
-              <li>Go-to-Market Strategy</li>
-              <li>Roadmap Development</li>
-              <li>Feature Prioritization</li>
-              <li>Product-Market Fit</li>
-              <li>UX Design</li>
-              <li>Agile / Scrum / Kanban</li>
-              <li>Stakeholder Management</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-group-header">AI &amp; Automation</div>
-            <ul class="skill-list">
-              <li>AI Strategy &amp; Implementation</li>
-              <li>Generative AI Integration</li>
-              <li>Autonomous Automation</li>
-              <li>MLOps</li>
-              <li>AI Agent Development</li>
-              <li>Workflow Optimization</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-group-header">Analytics &amp; Data</div>
-            <ul class="skill-list">
-              <li>SQL</li>
-              <li>Power BI</li>
-              <li>Looker Studio</li>
-              <li>Tableau</li>
-              <li>Google Analytics</li>
-              <li>Python</li>
-              <li>Excel (Advanced)</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-group-header">No-Code / Low-Code</div>
-            <ul class="skill-list">
-              <li>Airtable (Advanced)</li>
-              <li>Zapier</li>
-              <li>Power Automate</li>
-              <li>Make.com</li>
-              <li>n8n</li>
-              <li>Automation Anywhere</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-group-header">Product Tools</div>
-            <ul class="skill-list">
-              <li>Jira</li>
-              <li>Figma</li>
-              <li>Confluence</li>
-              <li>Miro</li>
-              <li>Balsamiq</li>
-              <li>Lucidchart</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-group-header">Dev &amp; Integration</div>
-            <ul class="skill-list">
-              <li>API Integration</li>
-              <li>RESTful Services</li>
-              <li>Microservices</li>
-              <li>HTML / CSS / JS</li>
-              <li>JSON / XML</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- CREDENTIALS -->
-    <section id="credentials" class="section section--white">
-      <div class="section-inner section-inner--narrow">
+    <div id="panel-credentials" class="panel">
+      <section class="section section--white">
+        <div class="section-inner section-inner--narrow">
 
-        <div class="section-label">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">05 &mdash; EDUCATION &amp; CREDENTIALS</span>
-          <span class="section-label-rule"></span>
-        </div>
-
-        <div class="creds-split">
-          <div class="creds-edu">
-            <div class="creds-overline">Foundation</div>
-            <h3 class="creds-degree">Bachelor of Architecture</h3>
-            <p class="creds-institution">National Institute of Technology (NIT), Jaipur &middot; 2009&ndash;2014</p>
-            <p class="creds-quote">Five years learning how to think about space, systems, and the people who inhabit them &mdash; the same mental model, now applied to products.</p>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            <span class="section-label-text">05 &mdash; EDUCATION &amp; CREDENTIALS</span>
+            <span class="section-label-rule"></span>
           </div>
-          <div class="creds-certs">
-            <div class="creds-overline">Certifications</div>
-            <div class="cert-row">
-              <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div>
-              <span class="cert-year">2025</span>
+
+          <div class="creds-split">
+            <div class="creds-edu">
+              <div class="creds-overline">Foundation</div>
+              <h3 class="creds-degree">Bachelor of Architecture</h3>
+              <p class="creds-institution">National Institute of Technology (NIT), Jaipur &middot; 2009&ndash;2014</p>
+              <p class="creds-quote">Five years learning how to think about space, systems, and the people who inhabit them &mdash; the same mental model, now applied to products.</p>
             </div>
-            <div class="cert-row">
-              <div><div class="cert-name">Certified Scrum Product Owner (CSPO)</div><div class="cert-issuer">Scrum Alliance</div></div>
-              <span class="cert-year">2025</span>
-            </div>
-            <div class="cert-row">
-              <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">LinkedIn Learning</div></div>
-              <span class="cert-year"></span>
-            </div>
-            <div class="cert-row">
-              <div><div class="cert-name">Essentials Automation</div><div class="cert-issuer">Automation Anywhere</div></div>
-              <span class="cert-year">2024</span>
-            </div>
-            <div class="cert-row">
-              <div><div class="cert-name">SQL for Data Analytics</div><div class="cert-issuer">Udemy</div></div>
-              <span class="cert-year"></span>
-            </div>
-            <div class="cert-row">
-              <div><div class="cert-name">Applied Data Science with Python</div><div class="cert-issuer">IBM</div></div>
-              <span class="cert-year"></span>
-            </div>
-            <div class="cert-row cert-row--last">
-              <div><div class="cert-name">Google Analytics Certified</div><div class="cert-issuer">Google</div></div>
-              <span class="cert-year"></span>
+            <div class="creds-certs">
+              <div class="creds-overline">Certifications</div>
+              <div class="cert-row">
+                <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div>
+                <span class="cert-year">2025</span>
+              </div>
+              <div class="cert-row">
+                <div><div class="cert-name">Certified Scrum Product Owner (CSPO)</div><div class="cert-issuer">Scrum Alliance</div></div>
+                <span class="cert-year">2025</span>
+              </div>
+              <div class="cert-row">
+                <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">LinkedIn Learning</div></div>
+                <span class="cert-year"></span>
+              </div>
+              <div class="cert-row">
+                <div><div class="cert-name">Essentials Automation</div><div class="cert-issuer">Automation Anywhere</div></div>
+                <span class="cert-year">2024</span>
+              </div>
+              <div class="cert-row">
+                <div><div class="cert-name">SQL for Data Analytics</div><div class="cert-issuer">Udemy</div></div>
+                <span class="cert-year"></span>
+              </div>
+              <div class="cert-row">
+                <div><div class="cert-name">Applied Data Science with Python</div><div class="cert-issuer">IBM</div></div>
+                <span class="cert-year"></span>
+              </div>
+              <div class="cert-row cert-row--last">
+                <div><div class="cert-name">Google Analytics Certified</div><div class="cert-issuer">Google</div></div>
+                <span class="cert-year"></span>
+              </div>
             </div>
           </div>
+
         </div>
-
-      </div>
-    </section>
-
-    <!-- CONTACT / FOOTER -->
-    <footer id="contact" class="section section--navy-mid blueprint-bg">
-      <div class="section-inner section-inner--narrow">
-
-        <div class="section-label section-label--dark">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">06 &mdash; CONTACT</span>
-          <span class="section-label-rule section-label-rule--dark"></span>
-        </div>
-
-        <h2 class="contact-headline">Have a product<br>challenge to solve?</h2>
-        <p class="contact-sub">Whether it&rsquo;s an AI idea, a product strategy question, or you&rsquo;re looking for a senior PM &mdash; I&rsquo;m listening.</p>
-
-        <div class="contact-links">
-          <a href="mailto:ar.gaurav20@gmail.com" class="contact-email">ar.gaurav20@gmail.com</a>
-          <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="contact-linkedin">LinkedIn</a>
-        </div>
-
-        <div class="footer-bar">
-          <span class="footer-logo">GG</span>
-          <span class="footer-copy">GAURAV GUPTA &middot; JAIPUR &middot; 2025</span>
-        </div>
-
-      </div>
-    </footer>
+      </section>
+    </div>
 
   </main>
 
-  <!-- PROJECT MODAL -->
+  <!-- MODAL (projects + case studies) -->
   <div id="modal-overlay" class="modal-overlay" hidden>
     <div class="modal-panel" id="modal-panel">
       <button class="modal-close" id="modal-close">&times;</button>

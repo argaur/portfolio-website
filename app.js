@@ -1,51 +1,70 @@
 /* ============================================================
    app.js — Blueprint to Bits Portfolio
-   Scroll nav · Experience accordion · Project modal · Active nav
+   Panel nav · Experience accordion · Project modal · CS modal
    ============================================================ */
 
 (function () {
   'use strict';
 
-  /* ---- Scroll Nav ---- */
-  var nav = document.getElementById('nav');
-
-  function updateNav() {
-    if (window.scrollY > 60) {
-      nav.classList.add('nav--scrolled');
-    } else {
-      nav.classList.remove('nav--scrolled');
+  /* ---- Panel Navigation ---- */
+  function activatePanel(panelId) {
+    document.querySelectorAll('.panel').forEach(function (p) {
+      p.classList.remove('is-active');
+    });
+    var target = document.getElementById(panelId);
+    if (target) {
+      target.classList.add('is-active');
+      target.scrollTop = 0;
     }
+    document.querySelectorAll('.nav-link[data-panel]').forEach(function (link) {
+      link.classList.toggle('is-active', link.dataset.panel === panelId);
+    });
   }
-  window.addEventListener('scroll', updateNav, { passive: true });
-  updateNav();
+
+  document.querySelectorAll('[data-panel]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      activatePanel(el.dataset.panel);
+    });
+  });
+
+  /* Hash routing on load */
+  var hashToPanel = {
+    'home':         'panel-home',
+    'experience':   'panel-experience',
+    'work':         'panel-work',
+    'case-studies': 'panel-case-studies',
+    'skills':       'panel-skills',
+    'credentials':  'panel-credentials'
+  };
+  var initHash = window.location.hash.replace('#', '');
+  if (initHash && hashToPanel[initHash]) {
+    activatePanel(hashToPanel[initHash]);
+  }
 
   /* ---- Experience Accordion ---- */
-  document.querySelectorAll('.exp-toggle').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var row = btn.closest('.exp-row');
+  document.querySelectorAll('.exp-row').forEach(function (row) {
+    row.addEventListener('click', function () {
       row.classList.toggle('is-open');
     });
   });
 
-  /* ---- Active Nav Link (IntersectionObserver) ---- */
-  var navLinks = document.querySelectorAll('.nav-link[data-section]');
-  var sections = document.querySelectorAll(
-    '#experience, #work, #case-studies, #skills, #credentials, #contact'
-  );
+  /* ---- Shared Modal ---- */
+  var overlay   = document.getElementById('modal-overlay');
+  var modalBody = document.getElementById('modal-body');
+  var closeBtn  = document.getElementById('modal-close');
 
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          navLinks.forEach(function (link) {
-            link.classList.toggle('is-active', link.dataset.section === entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-
-    sections.forEach(function (s) { observer.observe(s); });
+  function closeModal() {
+    overlay.setAttribute('hidden', '');
   }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
 
   /* ---- Project Modal ---- */
   var projects = [
@@ -87,11 +106,7 @@
     }
   ];
 
-  var overlay   = document.getElementById('modal-overlay');
-  var modalBody = document.getElementById('modal-body');
-  var closeBtn  = document.getElementById('modal-close');
-
-  function openModal(idx) {
+  function openProjectModal(idx) {
     var p = projects[idx];
     modalBody.innerHTML =
       '<div class="modal-tag">' + p.tag + '</div>' +
@@ -103,32 +118,103 @@
         }).join('') +
       '</div>';
     overlay.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    overlay.setAttribute('hidden', '');
-    document.body.style.overflow = '';
   }
 
   document.querySelectorAll('.proj-card').forEach(function (card) {
     card.addEventListener('click', function () {
-      openModal(parseInt(card.dataset.proj, 10));
+      openProjectModal(parseInt(card.dataset.proj, 10));
     });
     card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openModal(parseInt(card.dataset.proj, 10));
+        openProjectModal(parseInt(card.dataset.proj, 10));
       }
     });
   });
 
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
+  /* ---- Case Study Modal ---- */
+  var caseStudies = [
+    {
+      category: 'B2B SaaS · AI · Telegram Bot',
+      title: "Founder's CRM — Conversation-First Sales Tool",
+      problem: "60–70% of founders abandon CRM within 4 weeks. The real insight: founders already manage relationships in WhatsApp. The tool had to meet them there.",
+      insight: "WhatsApp forwards become structured deal data through a Telegram bot interface — zero context-switching, no new app to learn.",
+      stats: ['39-page PRD', '16 tools analysed', '10 founder interviews'],
+      protoUrl: null,
+      pageUrl: 'case-study-founder-crm.html'
+    },
+    {
+      category: 'Quick Commerce · Operations',
+      title: 'Peak-Hour Decision Support for Blinkit Dark Stores',
+      problem: "Managers discover picker performance issues 3–7 minutes too late during the 6–10 PM peak window. By then the SLA is already broken.",
+      insight: "A real-time command hub that surfaces picker-level alerts before the breach — turning reactive firefighting into proactive management.",
+      stats: ['Working prototype', '3 research methods', 'Unit economics modelled'],
+      protoUrl: 'https://blinkit-command-hub.vercel.app/',
+      pageUrl: 'case-study-blinkit.html'
+    },
+    {
+      category: 'Consumer Platform · Algorithm',
+      title: 'YouTube 2.0 — Fixing Long-Form Discovery',
+      problem: "47% of users manually search every session. 29% of Gen Z sessions end without watching anything. The algorithm optimises for click, not for satisfaction.",
+      insight: "Four product interventions targeting the discovery gap — from contextual playlists to an intent-aware home feed redesign.",
+      stats: ['171 survey responses', '4 product solutions', '27+ sources'],
+      protoUrl: null,
+      pageUrl: 'case-study-youtube.html'
+    },
+    {
+      category: 'Consumer App · AI',
+      title: 'Group Travel Planning Platform',
+      problem: "1–2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments and preference conflicts surface mid-trip, not during planning.",
+      insight: "An AI-powered coordination layer that distributes planning tasks, surfaces conflicts early, and keeps the whole group aligned without a group chat.",
+      stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
+      protoUrl: null,
+      pageUrl: 'case-study-group-travel.html'
+    },
+    {
+      category: 'Health Tech · AI · PWA',
+      title: 'Vitae — Health Records, Finally Understood',
+      problem: "Indian families manage health via blurry WhatsApp prescription photos. ₹6,000+ crore lost annually to repeat diagnostic tests.",
+      insight: "A PWA that turns prescription photos into structured, searchable health timelines — built by a 6-person team and shipped in 10 days.",
+      stats: ['Live product', '6-person team', '10 days shipped'],
+      protoUrl: 'https://vitae-health.vercel.app/',
+      pageUrl: 'case-study-vitae.html'
+    }
+  ];
+
+  function openCsModal(idx) {
+    var cs = caseStudies[idx];
+    var actionsHtml = '<div class="modal-actions">';
+    if (cs.protoUrl) {
+      actionsHtml += '<a href="' + cs.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">View Prototype &rarr;</a>';
+    }
+    actionsHtml += '<a href="' + cs.pageUrl + '" class="modal-btn modal-btn--secondary">Read Full Case Study &rarr;</a>';
+    actionsHtml += '</div>';
+
+    modalBody.innerHTML =
+      '<div class="modal-tag">' + cs.category + '</div>' +
+      '<h2 class="modal-title">' + cs.title + '</h2>' +
+      '<p class="modal-detail">' + cs.problem + '</p>' +
+      '<div class="modal-section-label">The Insight</div>' +
+      '<p class="modal-insight">' + cs.insight + '</p>' +
+      '<div class="modal-stats">' +
+        cs.stats.map(function (s) {
+          return '<span class="modal-stat-chip">' + s + '</span>';
+        }).join('') +
+      '</div>' +
+      actionsHtml;
+    overlay.removeAttribute('hidden');
+  }
+
+  document.querySelectorAll('.cs-row').forEach(function (row) {
+    row.addEventListener('click', function () {
+      openCsModal(parseInt(row.dataset.cs, 10));
+    });
+    row.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openCsModal(parseInt(row.dataset.cs, 10));
+      }
+    });
   });
 
 })();
