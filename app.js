@@ -42,10 +42,11 @@ var JOBS = [
     role:    'Product Manager',
     company: 'OneValley',
     period:  'Sep 2020 – Jul 2022',
-    location:'Gurugram · 1.9 years',
+    location:'Gurugram · 1 year 10 months',
     summary: 'Owned comprehensive product strategy for B2C entrepreneurship platform (Passport) and B2B enterprise solution (PassportOS), aligned with global startup initiatives including Entrepreneurship World Cup.',
     achievements: [
       'Conducted in-depth user research and roadmap planning to enhance product-market fit',
+      'Implemented systematic KPI tracking and feature iteration processes using data-driven decision making',
       'Implemented B2B solutions for educational institutions, banks, accelerators, and corporate incubators across India and international markets',
       'Integrated mentorship frameworks, SaaS tool ecosystems, and comprehensive learning content management'
     ]
@@ -54,11 +55,12 @@ var JOBS = [
     role:    'Co-Founder & COO',
     company: 'Taccomacco Edutainment Pvt. Ltd.',
     period:  'Jul 2017 – Sep 2020',
-    location:'Gurugram · 3.1 years',
+    location:'Gurugram · 3 years 2 months',
     summary: 'Led product development and technical operations for a comprehensive digital content platform from concept to launch.',
     achievements: [
       'Successfully launched 500+ digital titles across multiple content categories',
       'Developed content pipeline management, version control, and digital publishing workflows',
+      'Led product roadmap development and pricing strategy formulation',
       'Mentored 6+ creators through structured incubation program to scale original content production'
     ]
   },
@@ -66,7 +68,7 @@ var JOBS = [
     role:    'Design Manager',
     company: 'RSP Design Consultants',
     period:  'Sep 2014 – Jun 2017',
-    location:'Gurugram · 2.9 years',
+    location:'Gurugram · 2 years 9 months',
     summary: 'Managed 40+ architectural and design projects across IT, healthcare, and institutional sectors with cross-disciplinary teams.',
     achievements: [
       'Maintained 95% client retention rate through optimized collaboration and project planning',

@@ -1292,11 +1292,13 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    padding-top: 36px;
+    overflow: hidden;
 }
 
 .vtl-line {
     position: absolute;
-    top: 20px;
+    top: 42px;
     left: 0;
     right: 0;
     height: 1px;
@@ -1399,6 +1401,20 @@ footer {
 .vtl-dot.is-active .vtl-scale-year {
     color: var(--accent-soft);
     opacity: 1;
+}
+
+.vtl-scale-duration {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    opacity: 0.45;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, opacity 0.2s;
+}
+
+.vtl-dot.is-active .vtl-scale-duration {
+    color: var(--accent-soft);
+    opacity: 0.75;
 }
 
 /* Content area: no box, no border, pure typography */
