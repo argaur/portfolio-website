@@ -35,7 +35,8 @@
     'work':         'panel-work',
     'case-studies': 'panel-case-studies',
     'skills':       'panel-skills',
-    'credentials':  'panel-credentials'
+    'credentials':  'panel-credentials',
+    'contact':      'panel-contact'
   };
   var initHash = window.location.hash.replace('#', '');
   if (initHash && hashToPanel[initHash]) {
