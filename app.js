@@ -190,7 +190,8 @@ var CS_DATA = [
     problem:  '60–70% of early-stage founders abandon CRM tools within 4 weeks. Every existing CRM requires the one behaviour they won\'t sustain — manually logging conversations after a call.',
     approach: '10 founder interviews, 85+ secondary sources, 16-tool competitor analysis. Designed a Telegram bot that treats conversation as the record itself — WhatsApp forwards, voice notes, and screenshots become structured deal data automatically.',
     outcome:  ['Full 39-page PRD covering 16 competitive tools and 10 primary interviews', 'Telegram-native architecture that requires zero behaviour change from founders', 'AI extraction layer turning unstructured conversation into CRM fields with no form-filling'],
-    url:      'case-study-founder-crm.html'
+    url:      'case-study-founder-crm.html',
+    protoUrl: null
   },
   {
     tag:      'Quick Commerce · Operations · Real-Time',
@@ -200,7 +201,8 @@ var CS_DATA = [
     problem:  'Dark store managers have no real-time picker visibility during the 6–10 PM peak window. They discover issues 3–7 minutes too late — after orders have already breached SLA.',
     approach: 'Field observations at dark stores, interviews with ops professionals, competitor teardown (Instamart). Built a mobile-first command hub with live order cards, colour-coded risk triage, a nudge system, and structured shift handoff.',
     outcome:  ['Working Figma prototype with full interaction design', 'Unit economics model showing breakeven at 4+ SLA saves per shift', 'Structured shift handoff template adopted as part of the PRD recommendation'],
-    url:      'case-study-blinkit.html'
+    url:      'case-study-blinkit.html',
+    protoUrl: 'https://blinkit-command-hub.vercel.app/'
   },
   {
     tag:      'Consumer Platform · Algorithm · Mobile-First',
@@ -210,7 +212,8 @@ var CS_DATA = [
     problem:  'Long-form engagement on YouTube is declining — not because users don\'t want long videos, but because the home feed stops surfacing them. 47% of users manually search every session; 29% of Gen Z sessions end without watching anything.',
     approach: '171-person primary survey, secondary research across 27+ sources, competitor graveyard analysis. Designed four native-feed solutions: Deep Dive Tab, Shorts-to-Long Bridge, Viewing Streak, and Creator Success Suite.',
     outcome:  ['Four fully-specced product features ready for A/B testing', 'Quantified problem: 47% search-every-session, 29% zero-watch Gen Z sessions', 'Roadmap prioritised by reach, confidence, and effort scoring'],
-    url:      'case-study-youtube.html'
+    url:      'case-study-youtube.html',
+    protoUrl: null
   },
   {
     tag:      'Consumer App · AI · Group Coordination',
@@ -220,7 +223,8 @@ var CS_DATA = [
     problem:  'Group travel is a $168.7B market with no unified coordination layer. 1–2 people absorb 80%+ of all planning load. Silent budget and dietary misalignments surface mid-trip as conflict, not pre-trip as planning input.',
     approach: '6 primary user interviews, 12+ secondary sources, competitive analysis of 8 tools. Designed an AI-native coordination platform with anonymous preference polling, task distribution across group members, and a single shared dashboard.',
     outcome:  ['Full PRD with 5-phase implementation plan', 'Anonymous preference polling mechanism that eliminates social pressure during planning', 'MVP scoped to P0 features with clear success metrics: 60% survey completion, NPS > 40'],
-    url:      'case-study-group-travel.html'
+    url:      'case-study-group-travel.html',
+    protoUrl: null
   },
   {
     tag:      'Health Tech · AI · PWA · Buildathon',
@@ -230,7 +234,8 @@ var CS_DATA = [
     problem:  'Indian families manage parents\' health via blurry WhatsApp prescription photos. No structured records, impenetrable medical jargon, zero continuity across 3+ specialists. ₹6,000+ crore lost annually to repeat diagnostic tests from missing records.',
     approach: 'Rethink Health Buildathon (April 2026). Built an AI-powered PWA using Gemma 4 26B OCR + Claude for plain-language medication explanations. No signup needed to try. Family hub manages multiple profiles under one account.',
     outcome:  ['Live product at vitae-health.vercel.app', 'Two-pipeline AI architecture: Gemma 4 26B for OCR extraction + Claude for explanation', 'PWA installable on mobile with offline-first record access'],
-    url:      'case-study-vitae.html'
+    url:      'case-study-vitae.html',
+    protoUrl: 'https://vitae-health.vercel.app/'
   }
 ];
 
@@ -352,6 +357,10 @@ initCarousel('cs-track',   'cs-prev',   'cs-next',   'cs-dots',   2);
     var outcome = data.outcome.map(function (o) {
       return '<li>' + o + '</li>';
     }).join('');
+    var ctas = '<a href="' + data.url + '" class="modal-cta">Read full case study &rarr;</a>';
+    if (data.protoUrl) {
+      ctas += '<a href="' + data.protoUrl + '" class="modal-cta modal-cta--proto" target="_blank" rel="noopener noreferrer">View prototype &rarr;</a>';
+    }
     return (
       '<span class="modal-tag">' + data.label + ' &middot; ' + data.tag + '</span>' +
       '<h2 class="modal-title" id="modal-title-el">' + data.title + '</h2>' +
@@ -363,7 +372,7 @@ initCarousel('cs-track',   'cs-prev',   'cs-next',   'cs-dots',   2);
       '<p class="modal-text">' + data.approach + '</p>' +
       '<p class="modal-section-label">Key Outcomes</p>' +
       '<ul class="modal-list">' + outcome + '</ul>' +
-      '<a href="' + data.url + '" class="modal-cta">Read full case study &rarr;</a>'
+      '<div class="modal-ctas">' + ctas + '</div>'
     );
   }
 

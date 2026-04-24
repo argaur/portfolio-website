@@ -194,7 +194,6 @@ body::after {
     display: flex;
     flex-direction: column;
     padding-bottom: 2rem;
-    max-width: 1100px;
 }
 
 /* =============================================
@@ -1321,27 +1320,30 @@ footer {
 }
 
 .vtl-pip-wrap {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
 }
 
 .vtl-active-label {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     color: var(--accent-soft);
     letter-spacing: 0.04em;
     white-space: nowrap;
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateX(-50%) translateY(4px);
     transition: opacity 0.25s ease, transform 0.25s ease;
     pointer-events: none;
 }
 
 .vtl-dot.is-active .vtl-active-label {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 .vtl-pip {
@@ -1880,11 +1882,17 @@ footer {
     margin: 24px 0;
 }
 
+.modal-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
 .modal-cta {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 24px;
     padding: 10px 20px;
     background: var(--accent);
     color: #fff;
@@ -1898,6 +1906,18 @@ footer {
 .modal-cta:hover {
     opacity: 0.88;
     transform: translateY(-1px);
+}
+
+.modal-cta--proto {
+    background: transparent;
+    border: 1.5px solid var(--accent-border);
+    color: var(--accent-soft);
+}
+
+.modal-cta--proto:hover {
+    background: var(--accent-faint);
+    border-color: var(--accent);
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
