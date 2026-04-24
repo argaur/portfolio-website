@@ -18,24 +18,28 @@ Public portfolio for Gaurav Gupta — demonstrates PM + AI strategy work to recr
 A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript only. No frameworks, no React, no Tailwind, no build tools.
 
 ## Design
-- "Obsidian Editorial" dark theme -- bg #06060B (near-black, indigo-tinted), surface #0F0F1C, accent #7C6CF7
-- Ambient radial purple glow on body background (fixed attachment)
-- Grain texture overlay via SVG feTurbulence (subtle depth, z-index 9999, pointer-events none)
-- Light theme toggle in nav (localStorage persistent, `[data-theme="light"]` on `<html>`)
-- Fonts: Plus Jakarta Sans (body) + JetBrains Mono (labels, tags, metadata)
-- Tab-based navigation with 4 tabs: Home, Experience, Work, Credentials
-- Fixed top nav bar with frosted glass backdrop blur + accent-tinted bottom border + active tab glow
-- Fade transitions between tab panels (panelFadeIn keyframe)
-- Mobile-first responsive -- 44px touch targets, no horizontal scroll
-- All cards: gradient surfaces (dark→deeper) + accent top-border on hover/active
-- All interactive elements: glow effects on accent color
+- "Blueprint to Bits" theme — cream/navy/white palette, terracotta accent
+- Design tokens: `--navy: #0b1628`, `--cream: #f7f3ee`, `--terra: #bf5c3a`, `--blue: #2d5da1`, `--forest: #3d5c3a`
+- Fonts: Cormorant Garamond (headings/display) + DM Sans (body/UI)
+- Blueprint grid background on hero, skills, contact panels (CSS linear-gradient trick)
+- No `border-radius` anywhere (architectural principle)
+- No photo in body — hero is text + stats only
+- No light/dark toggle — single theme
 
 ## Navigation structure
-- **Home** -- Hero (photo, name, tagline, intro) + Contact links
-- **Experience** -- Vertical accordion timeline (4 roles, newest-first). Left spine + pip; click a row to expand summary + achievements inline. No shared content area — each item owns its own body. `.vtl-item`, `.vtl-gutter`, `.vtl-pip`, `.vtl-right`, `.vtl-body` are the key classes. JS pre-renders all content on load; activate() just toggles `is-active`.
-- **Work** -- Two carousels with arrows + dots: Featured Projects (6 cards, JindalX work) + Case Studies (5 cards, Rethink projects). Click any card → modal overlay with full details. CS02 and CS05 have "View prototype →" button in modal.
-- **Credentials** -- Skills grid (6 icon cards) + Education block + Certifications grid (badge-style cards)
-- URL hash routing (#home, #experience, #work, #credentials) with browser back/forward support
+- **Panel-based SPA** — body has `overflow: hidden`; each section is a fixed-height panel switched by nav clicks
+- Nav links use `data-panel="panel-X"` attributes; `app.js` calls `activatePanel()` on click
+- Hash routing on load: `#experience` → `panel-experience`, etc.
+- Nav always shows frosted glass (`.nav--scrolled` applied in HTML, no scroll listener needed)
+- 7 panels in order:
+  - **Home** (`panel-home`) — hero, blueprint grid, name, statement, stats bar
+  - **Experience** (`panel-experience`) — career arc bar + 4 accordion rows (entire row clickable)
+  - **Work** (`panel-work`) — 3-col project grid, click → project detail modal
+  - **Case Studies** (`panel-case-studies`) — table rows, click → CS modal (problem + insight + stats + links)
+  - **Skills** (`panel-skills`) — navy + blueprint grid, 3-col skill groups
+  - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right)
+  - **Contact** (`panel-contact`) — navy-mid + blueprint grid, headline, email + LinkedIn links, footer bar
+- URL hash routing: `#home`, `#experience`, `#work`, `#case-studies`, `#skills`, `#credentials`, `#contact`
 
 ## Tech constraints
 - Plain HTML + CSS + vanilla JavaScript ONLY
@@ -44,13 +48,12 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - The site must work by simply opening index.html in a browser
 
 ## File structure
-- index.html -- the main page (all 4 tab panels + modal overlay)
-- styles.css -- all styles (dark + light theme, 2000+ lines)
-- tabs.js -- tab switching, URL hash routing, panel transitions (DO NOT EDIT)
-- gate.js -- email gate logic (Supabase integration, localStorage bypass)
-- app.js -- theme toggle, vertical accordion timeline, carousels, modal
-- case-study.css -- shared styles for all case study pages
-- photo.jpg or photo.png -- profile photo
+- `index.html` — 7 panels + modal overlay. No tabs, no scroll nav.
+- `styles.css` — Blueprint to Bits design system (~1,250 lines). Panel layout, all section styles.
+- `tabs.js` — empty stub (replaced by panel nav in app.js)
+- `gate.js` — email gate logic (Supabase insert + localStorage bypass). Do not edit.
+- `app.js` — panel switching, experience accordion, project modal, CS modal
+- `case-study.css` — Blueprint to Bits styles for all 5 case study pages
 
 ## Email gate
 - Full-screen overlay shown to first-time visitors before the portfolio
@@ -120,12 +123,15 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 - **State:** active
 - **Last session:** 2026-04-24
 - **What was done:**
-  - Redesigned Experience tab from horizontal dot timeline to vertical accordion timeline
-  - Vertical spine (1px gradient line) + pip per role; newest-first order (JindalX at top)
-  - Each item expands inline on click (CSS max-height transition); no shared content area eliminates the width-shift bug
-  - Added duration labels (3y, 1y 10m, etc.) and updated role achievements from resume PDF
-  - Added "View prototype →" button in Work modals for CS02 (Blinkit) and CS05 (Vitae)
-  - `#experience.is-active` changed from `display:flex` + `min-height:100vh` to `display:block`
+  - Full visual redesign: "Obsidian Editorial" (dark purple, tab SPA) → "Blueprint to Bits" (cream/navy/terracotta, panel SPA)
+  - index.html rewritten: 7 fixed panels, no page scroll, nav switches panels via `data-panel`
+  - styles.css rewritten: Blueprint to Bits design system, panel layout, no border-radius
+  - app.js rewritten: `activatePanel()`, whole-row experience accordion, project modal, CS modal with 5 data objects
+  - case-study.css rewritten: Blueprint to Bits theme (cream bg, navy nav, Cormorant headings, DM Sans body)
+  - All 5 case study HTML files: updated fonts (Cormorant + DM Sans), back links → `index.html#case-studies`
+  - Case study rows now open a modal (problem + insight + stat chips + prototype/read links) instead of navigating directly
+  - CS02 (Blinkit) and CS05 (Vitae) show "View Prototype" button in CS modal
+  - Contact panel added (06) — navy-mid + blueprint grid, email + LinkedIn links, footer bar
 - **Next candidates:**
   - Add real product links to CS01 (Founder CRM), CS03 (YouTube), CS04 (Group Travel) once products are live
   - Vitae project: migrate to shared service account email (team decision pending)
