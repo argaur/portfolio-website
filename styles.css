@@ -185,15 +185,10 @@ body::after {
 
 /* Experience panel fills the viewport — scoped to is-active to avoid overriding display:none */
 #experience.is-active {
-    min-height: calc(100vh - var(--nav-height));
-    display: flex;
-    flex-direction: column;
+    display: block;
 }
 
 #experience .panel-inner {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     padding-bottom: 2rem;
 }
 
@@ -1278,288 +1273,219 @@ footer {
 }
 
 /* =============================================
-   Dot Timeline (Experience)
+   Vertical Timeline (Experience)
    ============================================= */
 .vtl-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    flex: 1;
-    padding-top: 8px;
-}
-
-.vtl-track {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-top: 36px;
-    overflow: hidden;
+    padding-top: 16px;
 }
 
-.vtl-line {
+/* Spine: single 1px line running through all items */
+.vtl-wrap::before {
+    content: '';
     position: absolute;
-    top: 42px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border-strong) 8%, var(--border-strong) 92%, transparent);
+    left: 17px;
+    top: 28px;
+    bottom: 28px;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--border-strong) 8%,
+        var(--border-strong) 92%,
+        transparent
+    );
     pointer-events: none;
     z-index: 0;
 }
 
-.vtl-dot {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+/* Each role row */
+.vtl-item {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 0 20px;
     cursor: pointer;
-    position: relative;
-    z-index: 1;
     outline: none;
     -webkit-tap-highlight-color: transparent;
-    background: none;
-    border: none;
-}
-
-.vtl-pip-wrap {
     position: relative;
+}
+
+/* Gutter column — holds pip above spine */
+.vtl-gutter {
     display: flex;
-    align-items: center;
     justify-content: center;
+    padding-top: 4px;
+    position: relative;
+    z-index: 1;
 }
 
-.vtl-active-label {
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--accent-soft);
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-50%) translateY(4px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
-}
-
-.vtl-dot.is-active .vtl-active-label {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
+/* Dot */
 .vtl-pip {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    flex-shrink: 0;
     background: var(--bg-subtle);
     border: 1.5px solid var(--border-strong);
-    flex-shrink: 0;
-    transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+    transition: background 0.22s ease, border-color 0.22s ease,
+                box-shadow 0.22s ease, transform 0.22s ease;
 }
 
-.vtl-dot:hover .vtl-pip {
+.vtl-item:hover .vtl-pip {
     border-color: var(--accent);
     box-shadow: 0 0 10px var(--accent-glow);
 }
 
-.vtl-dot.is-active .vtl-pip {
+.vtl-item.is-active .vtl-pip {
     background: var(--accent);
     border-color: var(--accent);
-    transform: scale(1.4);
-    box-shadow: 0 0 18px var(--accent-glow);
+    transform: scale(1.3);
+    box-shadow: 0 0 20px var(--accent-glow);
 }
 
-.vtl-scale {
+/* Right content column */
+.vtl-right {
+    min-width: 0;
+    padding-bottom: 36px;
+}
+
+.vtl-item:last-child .vtl-right {
+    padding-bottom: 0;
+}
+
+/* Header row: company + period on same line */
+.vtl-head-row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
 }
 
-.vtl-scale-company {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    letter-spacing: 0.03em;
+.vtl-company {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-secondary);
+    line-height: 1.3;
     transition: color 0.2s;
 }
 
-.vtl-dot.is-active .vtl-scale-company,
-.vtl-dot:hover .vtl-scale-company {
-    color: var(--text-secondary);
-}
-
-.vtl-scale-year {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    color: var(--text-muted);
-    opacity: 0.6;
-    transition: color 0.2s, opacity 0.2s;
-}
-
-.vtl-dot.is-active .vtl-scale-year {
-    color: var(--accent-soft);
-    opacity: 1;
-}
-
-.vtl-scale-duration {
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    color: var(--text-muted);
-    opacity: 0.45;
-    letter-spacing: 0.03em;
-    transition: color 0.2s, opacity 0.2s;
-}
-
-.vtl-dot.is-active .vtl-scale-duration {
-    color: var(--accent-soft);
-    opacity: 0.75;
-}
-
-/* Content area: no box, no border, pure typography */
-.vtl-content {
-    flex: 1;
-    min-width: 0;
-    min-height: 260px;
-}
-
-.vtl-content.vtl-animate {
-    animation: vtlFadeIn 0.28s ease both;
-}
-
-@keyframes vtlFadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-#vtl-role {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
-    font-weight: 800;
+.vtl-item.is-active .vtl-company,
+.vtl-item:hover .vtl-company {
     color: var(--text-primary);
-    letter-spacing: -0.025em;
-    line-height: 1.15;
-    margin: 0 0 6px;
 }
 
-#vtl-company-name {
+.vtl-period {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--accent-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin: 0 0 6px;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: color 0.2s;
 }
 
-#vtl-meta {
+.vtl-dur {
+    opacity: 0.5;
+}
+
+.vtl-item.is-active .vtl-period {
+    color: var(--text-secondary);
+}
+
+/* Role title beneath company */
+.vtl-role-label {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     color: var(--text-muted);
-    margin-bottom: 22px;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
 }
 
-#vtl-summary {
-    font-size: 0.925rem;
+.vtl-item.is-active .vtl-role-label {
+    color: var(--accent-soft);
+}
+
+/* Collapsible content body */
+.vtl-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.32s ease,
+                margin-top 0.32s ease;
+}
+
+.vtl-item.is-active .vtl-body {
+    max-height: 560px;
+    opacity: 1;
+    margin-top: 18px;
+}
+
+/* Content injected by JS */
+.vtl-summary {
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.75;
-    max-width: 640px;
-    margin: 0 0 20px;
+    line-height: 1.78;
+    margin: 0 0 16px;
+    max-width: 600px;
 }
 
-#vtl-achievements {
+.vtl-achievements {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 9px;
 }
 
-#vtl-achievements li {
+.vtl-achievements li {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    padding-left: 18px;
+    padding-left: 16px;
     position: relative;
     line-height: 1.65;
 }
 
-#vtl-achievements li::before {
+.vtl-achievements li::before {
     content: '';
     position: absolute;
     left: 0;
     top: 8px;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background: var(--accent);
     opacity: 0.55;
 }
 
 @media (max-width: 768px) {
-    #experience.is-active {
-        min-height: unset;
+    .vtl-wrap::before {
+        left: 14px;
     }
 
-    #experience .panel-inner {
-        display: block;
-        min-height: unset;
+    .vtl-item {
+        grid-template-columns: 30px 1fr;
+        gap: 0 14px;
     }
 
-    .vtl-wrap {
-        flex: unset;
-        gap: 24px;
+    .vtl-gutter {
+        padding-top: 3px;
     }
 
-    .vtl-track {
+    .vtl-head-row {
         flex-direction: column;
-        gap: 0;
+        gap: 2px;
     }
 
-    .vtl-line {
-        display: none;
+    .vtl-period {
+        font-size: 0.65rem;
     }
 
-    .vtl-dot {
-        flex-direction: row;
-        align-items: center;
-        gap: 14px;
-        padding: 14px 0;
-        border-bottom: 1px solid var(--border);
-        width: 100%;
-    }
-
-    .vtl-dot:last-child {
-        border-bottom: none;
-    }
-
-    .vtl-pip-wrap {
-        flex-direction: row;
-        gap: 0;
-    }
-
-    .vtl-active-label {
-        display: none;
-    }
-
-    .vtl-scale {
-        flex-direction: row;
-        align-items: baseline;
-        gap: 8px;
-    }
-
-    .vtl-scale-company {
-        font-size: 0.82rem;
-    }
-
-    .vtl-dot.is-active .vtl-scale-company {
-        color: var(--text-primary);
-    }
-
-    #vtl-role {
-        font-size: 1.1rem;
+    .vtl-right {
+        padding-bottom: 28px;
     }
 }
 

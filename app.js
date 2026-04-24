@@ -80,46 +80,33 @@ var JOBS = [
 
 /* ---- Timeline ---- */
 (function () {
-  var nodes   = document.querySelectorAll('.vtl-dot');
-  var dRole   = document.getElementById('vtl-role');
-  var dCo     = document.getElementById('vtl-company-name');
-  var dMeta   = document.getElementById('vtl-meta');
-  var dSum    = document.getElementById('vtl-summary');
-  var dAch    = document.getElementById('vtl-achievements');
-  var content = document.getElementById('vtl-content');
+  var items = document.querySelectorAll('.vtl-item');
+  if (!items.length) return;
 
-  if (!nodes.length || !dRole) return;
-
-  function renderDetail(idx) {
-    var j = JOBS[idx];
-    if (!j) return;
-    dRole.textContent = j.role;
-    dCo.textContent   = j.company;
-    dMeta.textContent = j.period + ' · ' + j.location;
-    dSum.textContent  = j.summary;
-    dAch.innerHTML    = '';
-    j.achievements.forEach(function (a) {
-      var li = document.createElement('li');
-      li.textContent = a;
-      dAch.appendChild(li);
-    });
-    content.classList.remove('vtl-animate');
-    content.offsetHeight;
-    content.classList.add('vtl-animate');
-  }
+  /* Pre-render all job content into each item's body */
+  items.forEach(function (item) {
+    var idx  = parseInt(item.getAttribute('data-job'), 10);
+    var j    = JOBS[idx];
+    var body = item.querySelector('.vtl-body');
+    if (!j || !body) return;
+    body.innerHTML =
+      '<p class="vtl-summary">' + j.summary + '</p>' +
+      '<ul class="vtl-achievements">' +
+      j.achievements.map(function (a) { return '<li>' + a + '</li>'; }).join('') +
+      '</ul>';
+  });
 
   function activate(jobIdx) {
-    nodes.forEach(function (n) { n.classList.remove('is-active'); });
-    var target = document.querySelector('.vtl-dot[data-job="' + jobIdx + '"]');
+    items.forEach(function (item) { item.classList.remove('is-active'); });
+    var target = document.querySelector('.vtl-item[data-job="' + jobIdx + '"]');
     if (target) target.classList.add('is-active');
-    renderDetail(jobIdx);
   }
 
-  nodes.forEach(function (node) {
-    node.addEventListener('click', function () {
+  items.forEach(function (item) {
+    item.addEventListener('click', function () {
       activate(parseInt(this.getAttribute('data-job'), 10));
     });
-    node.addEventListener('keydown', function (e) {
+    item.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         activate(parseInt(this.getAttribute('data-job'), 10));
@@ -127,7 +114,7 @@ var JOBS = [
     });
   });
 
-  activate(0); // JOBS[0] = JindalX = rightmost/last dot
+  activate(0); // JindalX open by default
 })();
 
 /* ---- Featured Projects Data ---- */
