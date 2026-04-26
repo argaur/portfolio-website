@@ -590,6 +590,13 @@
         <p>Gaurav Gupta &mdash; Product Requirements Document</p>
     </footer>
 
+  <!-- Pagination -->
+  <div class="cs-pagination">
+    <button class="cs-page-btn" id="cs-prev" disabled>&#8592; Prev</button>
+    <span class="cs-page-counter" id="cs-counter">Page 1 of 5</span>
+    <button class="cs-page-btn" id="cs-next">Next &#8594;</button>
+  </div>
+
   <script>
   (function() {
     var pages = document.querySelectorAll('.cs-page');
@@ -615,12 +622,5 @@
     show(0);
   })();
   </script>
-
-  <!-- Pagination -->
-      <div class="cs-pagination">
-        <button class="cs-page-btn" id="cs-prev" disabled>&#8592; Prev</button>
-        <span class="cs-page-counter" id="cs-counter">Page 1 of 5</span>
-        <button class="cs-page-btn" id="cs-next">Next &#8594;</button>
-      </div>
 </body>
 </html>
