@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#0b1628"/>
+  <!-- Left G -->
+  <path d="M4 8 L4 24 L11 24 L11 18 L8 18 L8 20 L9 20 L9 22 L6 22 L6 10 L11 10 L11 8 Z" fill="#ffffff"/>
+  <!-- Left G crossbar -->
+  <rect x="8" y="16" width="3" height="2" fill="#bf5c3a"/>
+  <!-- Right G -->
+  <path d="M13 8 L13 24 L20 24 L20 18 L17 18 L17 20 L18 20 L18 22 L15 22 L15 10 L20 10 L20 8 Z" fill="#ffffff"/>
+  <!-- Right G crossbar accent -->
+  <rect x="17" y="16" width="3" height="2" fill="#bf5c3a"/>
+  <!-- Architectural corner bracket accent -->
+  <polyline points="22,8 28,8 28,14" fill="none" stroke="#bf5c3a" stroke-width="1.5"/>
+  <polyline points="22,24 28,24 28,18" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+</svg>

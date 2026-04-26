@@ -28,9 +28,14 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--cs-cream);
+  background-color: var(--cs-cream);
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 120px 120px;
   color: var(--cs-text);
   line-height: 1.7;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -86,7 +91,8 @@ img { display: block; max-width: 100%; }
 .cs-main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 48px 96px;
+  padding: 0 48px 120px;
+  box-sizing: border-box;
 }
 
 /* ============================================================
@@ -218,6 +224,61 @@ img { display: block; max-width: 100%; }
   transition: color 0.15s;
 }
 .cs-toc a:hover { color: var(--cs-navy); }
+
+/* ============================================================
+   Pagination
+   ============================================================ */
+.cs-page { display: none; }
+.cs-page.is-active { display: block; animation: cs-fade 0.3s ease; }
+
+@keyframes cs-fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.cs-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 14px 32px;
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(247,243,238,0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(11,22,40,0.1);
+  z-index: 100;
+  width: auto;
+}
+
+.cs-page-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cs-navy);
+  background: none;
+  border: 1px solid rgba(11,22,40,0.4);
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.cs-page-btn:hover:not(:disabled) { background: var(--cs-navy); color: #ffffff; border-color: var(--cs-navy); }
+.cs-page-btn:disabled { opacity: 0.20; cursor: default; }
+
+.cs-page-counter {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+  min-width: 80px;
+  text-align: center;
+}
 
 /* ============================================================
    Section

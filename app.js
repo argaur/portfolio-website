@@ -104,6 +104,24 @@
       title: 'Business Intelligence Platform (Jx Data Cloud)',
       detail: 'Replaced 7 siloed spreadsheet-based reports with a single real-time warehouse. Automated ETL pipelines reduced data engineering toil by 35%.',
       metrics: ['40% accuracy↑', '35% processing↓', 'Multi-source ETL']
+    },
+    {
+      tag: 'Platform · EdTech',
+      title: 'Passport & PassportOS — OneValley',
+      detail: 'Led product strategy and roadmap for B2C and B2B entrepreneurship platforms supporting global programs including Entrepreneurship World Cup. Served universities, banks, accelerators, and corporate incubators across India and international markets. Drove feature development, KPI frameworks, mentorship systems, and SaaS ecosystem integration.',
+      metrics: ['B2B + B2C product lines', 'Global multi-client SaaS', 'Startup ecosystem platform']
+    },
+    {
+      tag: 'Content · Platform',
+      title: 'Digital Content & Publishing Platform — Taccomacco',
+      detail: 'As Co-Founder & COO, built the content pipeline and publishing infrastructure from scratch. Designed version control workflows, creator onboarding, and multi-channel distribution. Ran a structured incubation program that helped 6+ creators go from idea to published digital titles.',
+      metrics: ['500+ digital titles launched', '6 creators incubated', 'Full content pipeline built']
+    },
+    {
+      tag: 'Architecture · PM',
+      title: 'Architectural Projects Portfolio — RSP Design Consultants',
+      detail: 'Managed 40+ architectural and interior design projects across IT campuses, healthcare facilities, and institutional buildings. Introduced project management best practices that reduced delivery time by 25% and maintained a 95% client retention rate across a 3-year tenure.',
+      metrics: ['40+ projects delivered', '95% client retention', '25% faster delivery']
     }
   ];
 
