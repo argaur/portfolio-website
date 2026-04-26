@@ -30,15 +30,16 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - **Panel-based SPA** — body has `overflow: hidden`; each section is a fixed-height panel switched by nav clicks
 - Nav links use `data-panel="panel-X"` attributes; `app.js` calls `activatePanel()` on click
 - Hash routing on load: `#experience` → `panel-experience`, etc.
-- Nav always shows frosted glass (`.nav--scrolled` applied in HTML, no scroll listener needed)
+- Nav is solid `#0b1628` — no backdrop-filter, no border (matches hero exactly)
+- **Mobile nav**: hamburger button (`.nav-hamburger`) → full-screen overlay (`#nav-overlay`) with numbered Cormorant links, left-aligned with `padding-left: 10vw`; ESC or panel link closes it
 - 7 panels in order:
-  - **Home** (`panel-home`) — hero, blueprint grid, name, statement, stats bar
+  - **Home** (`panel-home`) — hero, blueprint grid, name, statement, single CTA "Get in touch →" → panel-contact
   - **Experience** (`panel-experience`) — career arc bar + 4 accordion rows (entire row clickable)
-  - **Work** (`panel-work`) — 3-col project grid, click → project detail modal
+  - **Work** (`panel-work`) — 4 company groups, 9 total project cards, click → project detail modal
   - **Case Studies** (`panel-case-studies`) — table rows, click → CS modal (problem + insight + stats + links)
   - **Skills** (`panel-skills`) — navy + blueprint grid, 3-col skill groups
-  - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right)
-  - **Contact** (`panel-contact`) — navy-mid + blueprint grid, headline, email + LinkedIn links, footer bar
+  - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right), 11 cert rows
+  - **Contact** (`panel-contact`) — navy `#0b1628` + blueprint grid, headline, email + LinkedIn links, footer bar
 - URL hash routing: `#home`, `#experience`, `#work`, `#case-studies`, `#skills`, `#credentials`, `#contact`
 
 ## Tech constraints
@@ -48,12 +49,13 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - The site must work by simply opening index.html in a browser
 
 ## File structure
-- `index.html` — 7 panels + modal overlay. No tabs, no scroll nav.
-- `styles.css` — Blueprint to Bits design system (~1,250 lines). Panel layout, all section styles.
+- `index.html` — 7 panels + modal overlay + mobile nav overlay. No tabs, no scroll nav.
+- `styles.css` — Blueprint to Bits design system (~1,350 lines). Panel layout, all section styles, mobile responsive.
 - `tabs.js` — empty stub (replaced by panel nav in app.js)
 - `gate.js` — email gate logic (Supabase insert + localStorage bypass). Do not edit.
-- `app.js` — panel switching, experience accordion, project modal, CS modal
-- `case-study.css` — Blueprint to Bits styles for all 5 case study pages
+- `app.js` — panel switching, mobile overlay nav, experience accordion, project modal (9 projects), CS modal (5 case studies)
+- `case-study.css` — Blueprint to Bits styles for all 5 case study pages; floating pagination pill
+- `favicon.svg` — geometric GG monogram (navy bg, white letterforms, terracotta crossbars)
 
 ## Email gate
 - Full-screen overlay shown to first-time visitors before the portfolio
@@ -121,20 +123,24 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 
 ## Status
 - **State:** active
-- **Last session:** 2026-04-24
+- **Last session:** 2026-04-26
 - **What was done:**
-  - Full visual redesign: "Obsidian Editorial" (dark purple, tab SPA) → "Blueprint to Bits" (cream/navy/terracotta, panel SPA)
-  - index.html rewritten: 7 fixed panels, no page scroll, nav switches panels via `data-panel`
-  - styles.css rewritten: Blueprint to Bits design system, panel layout, no border-radius
-  - app.js rewritten: `activatePanel()`, whole-row experience accordion, project modal, CS modal with 5 data objects
-  - case-study.css rewritten: Blueprint to Bits theme (cream bg, navy nav, Cormorant headings, DM Sans body)
-  - All 5 case study HTML files: updated fonts (Cormorant + DM Sans), back links → `index.html#case-studies`
-  - Case study rows now open a modal (problem + insight + stat chips + prototype/read links) instead of navigating directly
-  - CS02 (Blinkit) and CS05 (Vitae) show "View Prototype" button in CS modal
-  - Contact panel added (06) — navy-mid + blueprint grid, email + LinkedIn links, footer bar
+  - **Mobile responsive nav**: hamburger → full-screen overlay, numbered Cormorant links, left-aligned
+  - **Work panel expanded**: 4 company groups (JindalX · OneValley · Taccomacco · RSP), 9 total cards, header → "Products & Projects"
+  - **Case study pagination**: page-by-page view with floating frosted-glass pill (Prev/Next + counter), keyboard arrow support; bug fixed (script was above DOM, moved pagination HTML before script)
+  - **Graph-paper grid**: cream/white panels all have 120px grid at `rgba(0,0,0,0.06)` baked into `.section--cream` / `.section--white`
+  - **SVG architectural drawings removed**: hero and contact were tried with floor plan + user flow SVGs — user found them too noisy. Reverted to CSS grid only.
+  - **GG Logo**: geometric SVG monogram created as `favicon.svg` and inline nav logo (`.nav-logo`)
+  - **Hero cleanup**: removed "View Work" button; single CTA "Get in touch →" now routes to `panel-contact`
+  - **Nav**: solid `#0b1628`, no backdrop-filter, no border — matches hero exactly
+  - **Contact panel**: changed from `navy-mid #112240` → `navy #0b1628` (bookend symmetry with hero)
+  - **Credentials**: added 4 certs from LinkedIn (Airtable Admin, Airtable Builder, Power BI Desktop, Lean); fixed years/names; now 11 rows total
+  - **app.js**: renamed modal overlay var to `modalOverlay` (was `overlay`, clashed with nav overlay); projects[] extended to 9 objects
+  - **CSS fix**: `box-sizing: border-box` on `.section` fixed phantom scroll on panels
 - **Next candidates:**
   - Add real product links to CS01 (Founder CRM), CS03 (YouTube), CS04 (Group Travel) once products are live
   - Vitae project: migrate to shared service account email (team decision pending)
+  - Minor mobile polish issues noted but deferred (user said "looks decent")
   - RAG chatbot (separate project, not in this repo)
 - **Blocker:** none
-- **Last updated:** 2026-04-24
+- **Last updated:** 2026-04-26
