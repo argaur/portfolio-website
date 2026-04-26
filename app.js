@@ -25,7 +25,33 @@
     el.addEventListener('click', function (e) {
       e.preventDefault();
       activatePanel(el.dataset.panel);
+      closeOverlay();
     });
+  });
+
+  /* ---- Mobile Overlay Nav ---- */
+  var overlay     = document.getElementById('nav-overlay');
+  var hamburger   = document.getElementById('nav-hamburger');
+  var overlayClose = document.getElementById('nav-overlay-close');
+
+  function openOverlay() {
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOverlay() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openOverlay);
+  if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeOverlay();
   });
 
   /* Hash routing on load */
@@ -51,20 +77,20 @@
   });
 
   /* ---- Shared Modal ---- */
-  var overlay   = document.getElementById('modal-overlay');
-  var modalBody = document.getElementById('modal-body');
-  var closeBtn  = document.getElementById('modal-close');
+  var modalOverlay = document.getElementById('modal-overlay');
+  var modalBody    = document.getElementById('modal-body');
+  var closeBtn     = document.getElementById('modal-close');
 
   function closeModal() {
-    overlay.setAttribute('hidden', '');
+    modalOverlay.setAttribute('hidden', '');
   }
 
   closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) closeModal();
+  modalOverlay.addEventListener('click', function (e) {
+    if (e.target === modalOverlay) closeModal();
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); closeOverlay(); }
   });
 
   /* ---- Project Modal ---- */
@@ -136,7 +162,7 @@
           return '<span class="modal-metric">' + m + '</span>';
         }).join('') +
       '</div>';
-    overlay.removeAttribute('hidden');
+    modalOverlay.removeAttribute('hidden');
   }
 
   document.querySelectorAll('.proj-card').forEach(function (card) {
@@ -221,7 +247,7 @@
         }).join('') +
       '</div>' +
       actionsHtml;
-    overlay.removeAttribute('hidden');
+    modalOverlay.removeAttribute('hidden');
   }
 
   document.querySelectorAll('.cs-row').forEach(function (row) {

@@ -637,20 +637,34 @@ img { display: block; max-width: 100%; }
    Responsive
    ============================================================ */
 @media (max-width: 768px) {
-  .cs-nav { padding: 0 24px; }
-  .cs-main { padding: 0 24px 72px; }
-  .cs-footer { padding: 28px 24px; }
+  .cs-nav { padding: 0 20px; }
+  .cs-main { padding: 0 20px 100px; }
+  .cs-footer { padding: 28px 20px; }
 
-  .cs-toc-columns { grid-template-columns: 1fr; }
   .cs-two-col { grid-template-columns: 1fr; }
   .cs-card-grid--3 { grid-template-columns: 1fr; }
   .cs-stats-row { grid-template-columns: repeat(2, 1fr); }
 
-  .cs-hero { padding: 48px 0 36px; }
+  .cs-hero { padding: 40px 0 28px; }
+  .cs-hero-title { font-size: clamp(28px, 8vw, 44px); }
   .cs-footer { flex-direction: column; gap: 12px; text-align: center; }
+
+  .cs-section { margin-bottom: 48px; }
+  .cs-section-title { font-size: clamp(22px, 6vw, 32px); }
+
+  /* Floating pagination — narrower on mobile */
+  .cs-pagination {
+    bottom: 16px;
+    padding: 12px 20px;
+    gap: 16px;
+    width: calc(100% - 48px);
+    left: 24px;
+    transform: none;
+  }
+  .cs-page-btn { padding: 8px 14px; font-size: 10px; }
 }
 
 @media (max-width: 480px) {
   .cs-stats-row { grid-template-columns: 1fr; }
-  .cs-toc { padding: 24px; }
+  .cs-main { padding: 0 16px 100px; }
 }

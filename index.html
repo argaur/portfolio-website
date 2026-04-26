@@ -31,6 +31,25 @@
     </div>
   </div>
 
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+    <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav-overlay-links">
+      <a href="#home"         class="nav-overlay-link" data-panel="panel-home"><em>00</em>Home</a>
+      <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Experience</a>
+      <a href="#work"         class="nav-overlay-link" data-panel="panel-work"><em>02</em>Work</a>
+      <a href="#case-studies" class="nav-overlay-link" data-panel="panel-case-studies"><em>03</em>Case Studies</a>
+      <a href="#skills"       class="nav-overlay-link" data-panel="panel-skills"><em>04</em>Skills</a>
+      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>05</em>Credentials</a>
+      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>06</em>Contact</a>
+    </nav>
+    <div class="nav-overlay-footer">
+      <span>Gaurav Gupta &middot; Jaipur &middot; 2026</span>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav id="nav" class="nav nav--scrolled">
     <div class="nav-inner">
@@ -53,7 +72,10 @@
         <a href="#skills"       class="nav-link" data-panel="panel-skills">Skills</a>
         <a href="#credentials"  class="nav-link" data-panel="panel-credentials">Credentials</a>
       </div>
-      <a href="#contact" class="nav-cta" data-panel="panel-contact">Contact</a>
+      <a href="#contact" class="nav-cta nav-cta--desktop" data-panel="panel-contact">Contact</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
