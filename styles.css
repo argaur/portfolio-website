@@ -339,29 +339,6 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
 }
 
-/* --- Architectural Drawing Layers --- */
-.hero-drawing {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 36%;
-  opacity: 0.15;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-}
-.hero-drawing--left  { left: 0; }
-.hero-drawing--right { right: 0; align-items: flex-end; }
-.hero-drawing svg { flex: 1; width: 100%; height: 100%; }
-.hero-drawing-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(65,120,220,0.9);
-  padding: 28px 20px 8px;
-}
-.hero-drawing-label--right { text-align: right; padding-right: 20px; }
 
 .hero-coord {
   position: absolute;
@@ -1382,49 +1359,10 @@ img { display: block; max-width: 100%; }
   .nav-cta--desktop { display: none; }
   .nav-hamburger { display: flex; }
 
-  /* Hero: vertical layout — floor plan top, content middle, user flow bottom */
   .hero {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
     padding: 72px 24px 100px;
-    overflow-y: auto;
-    min-height: 100%;
-    height: auto;
   }
-  .hero-drawing {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    opacity: 0.28;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-  .hero-drawing--left {
-    left: auto;
-    order: -1;
-    margin-bottom: 8px;
-  }
-  .hero-drawing--right {
-    right: auto;
-    order: 3;
-    align-items: center;
-    margin-top: 8px;
-  }
-  /* Zoom effect: SVG overflows the container so only a portion is visible */
-  .hero-drawing svg {
-    position: absolute;
-    width: 180%;
-    height: auto;
-    min-height: 160%;
-    flex: none;
-  }
-  .hero-drawing--left  svg { left: -10%; top: -15%; }
-  .hero-drawing--right svg { left: -30%; top: -20%; }
-  .hero-drawing-label { display: none; }
-
-  .hero-content { order: 0; max-width: 100%; }
+  .hero-content { max-width: 100%; }
   .hero-coord   { display: none; }
   .hero-name    { font-size: clamp(52px, 16vw, 72px); }
   .hero-overline { justify-content: center; }
@@ -1493,23 +1431,9 @@ img { display: block; max-width: 100%; }
   /* Credentials */
   .creds-split { grid-template-columns: 1fr; }
 
-  /* Contact — vertical layout mirrors mobile hero */
-  .contact-section {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 72px 0 100px;
-    height: auto;
-    overflow-y: auto;
-  }
-  .contact-section .hero-drawing--left  { order: -1; }
-  .contact-section .hero-drawing--right { order: 3; }
-  .contact-inner {
-    order: 0;
-    max-width: 100%;
-    padding: 0 24px;
-    width: 100%;
-    box-sizing: border-box;
-  }
+  /* Contact */
+  .contact-section { padding: 72px 24px; }
+  .contact-inner { max-width: 100%; }
   .contact-links { flex-direction: column; align-items: center; gap: 20px; }
 
   /* Footer */
@@ -1529,7 +1453,6 @@ img { display: block; max-width: 100%; }
   .nav-inner { padding: 0 20px; }
   .hero { padding: 60px 20px 80px; }
   .hero-name { font-size: clamp(44px, 17vw, 60px); }
-  .hero-drawing { height: 160px; }
   .cs-row { padding: 18px 20px; }
   .proj-card { padding: 24px 20px; }
 }
