@@ -1,5 +1,5 @@
 # Portfolio Website — Current State Summary
-*Last updated: 2026-04-26*
+*Last updated: 2026-04-29*
 
 This document reflects the portfolio as it stands after the 2026-04-26 session. Use this as the reference for future Claude/Gemini sessions.
 
@@ -16,6 +16,10 @@ This document reflects the portfolio as it stands after the 2026-04-26 session. 
 | `case-study-youtube.html` | CS03 — YouTube 2.0 (4 pages) |
 | `case-study-group-travel.html` | CS04 — Group Travel Platform (4 pages) |
 | `case-study-vitae.html` | CS05 — Vitae Health Records (3 pages) |
+| `project-telegram-bot.html` | Personal Project — Telegram Bot |
+| `project-portfolio.html` | Personal Project — This Portfolio Website |
+| `project-homelab.html` | Personal Project — Homelab |
+| `project-gws-cli.html` | Personal Project — GWS CLI |
 
 ### JS / CSS / Assets
 | File | Purpose |
@@ -24,7 +28,7 @@ This document reflects the portfolio as it stands after the 2026-04-26 session. 
 | `case-study.css` | Blueprint to Bits styles for all 5 case study pages; floating pagination pill |
 | `tabs.js` | Empty stub — replaced by panel nav in app.js |
 | `gate.js` | Email gate — Supabase insert + localStorage bypass. **Do not edit.** |
-| `app.js` | Panel switching, mobile overlay nav, experience accordion, project modal (9 projects), CS modal (5 case studies) |
+| `app.js` | Panel switching, mobile overlay nav, experience accordion, work modal (9 projects), unified item modal (5 case studies + 4 personal projects); `personalProjects[]` rendered into `#personal-projects-table` |
 | `favicon.svg` | Geometric GG monogram — navy bg, white letterforms, terracotta crossbars |
 
 ---
@@ -77,12 +81,12 @@ Key IDs: `nav-overlay`, `nav-hamburger`, `nav-overlay-close`.
 | `panel-home` | — (logo) | Navy `#0b1628` + blueprint grid | — |
 | `panel-experience` | Experience | Cream + graph-paper grid | 01 — WORK EXPERIENCE |
 | `panel-work` | Work | White + graph-paper grid | 02 — PRODUCTS & PROJECTS |
-| `panel-case-studies` | Case Studies | Cream + graph-paper grid | 03 — CASE STUDIES |
+| `panel-projects` | Projects | Cream + graph-paper grid | 03 — PROJECTS |
 | `panel-skills` | Skills | Navy + blueprint grid | 04 — SKILLS |
 | `panel-credentials` | Credentials | White + graph-paper grid | 05 — EDUCATION & CREDENTIALS |
 | `panel-contact` | Contact | Navy `#0b1628` + blueprint grid | 06 — CONTACT |
 
-Hash routing map: `#home`, `#experience`, `#work`, `#case-studies`, `#skills`, `#credentials`, `#contact`
+Hash routing map: `#home`, `#experience`, `#work`, `#projects`, `#skills`, `#credentials`, `#contact`
 
 ---
 
@@ -113,13 +117,18 @@ Hash routing map: `#home`, `#experience`, `#work`, `#case-studies`, `#skills`, `
 - Hover: navy invert with white title, faded desc, ghost metric chips (matches Case Studies hover)
 - Click any card → `#modal-overlay` opens with `openProjectModal(idx)`
 
-### Case Studies (`panel-case-studies`)
-- Header: "Deep Dives"
-- Table: 5 rows, `grid-template-columns: 48px 1fr auto`, hover inverts to navy
-- **Rows are buttons** — click opens CS modal, not navigation
-- CS modal: category tag → title → problem → "The Insight" → insight text → stat chips → action buttons
-- CS02 (Blinkit) and CS05 (Vitae) get "View Prototype →" button
-- CS data in `app.js` `caseStudies[]` array (5 objects, `protoUrl` nullable)
+### Projects (`panel-projects`)
+- Header: "Projects" / subhead: "PM case studies and personal builds"
+- **Two sections** with `.projects-section__label` terracotta headings:
+  - **Case Studies** — 5 rows (static HTML), same `grid-template-columns: 48px 1fr auto`, hover inverts to navy
+  - **Personal Projects** — 4 rows (JS-rendered into `#personal-projects-table`)
+- Rows are buttons — click opens unified item modal
+- Modal: category tag → title → problem → "The Insight" → insight → stat chips → action buttons
+  - GitHub Repo button (ghost/terracotta) — shown if `githubUrl` is set
+  - View Prototype button — shown if `protoUrl` is set (CS02, CS05)
+  - Read Full Case Study / Read Full Project Details — shown if `pageUrl` is set
+- `caseStudies[]` (5 objects) + `personalProjects[]` (4 objects) in `app.js`; all have `githubUrl` field (CS all null, personal projects use `'#'` placeholder)
+- Personal project detail pages: `project-telegram-bot.html`, `project-portfolio.html`, `project-homelab.html`, `project-gws-cli.html`
 
 ### Skills (`panel-skills`)
 - Navy + blueprint grid background
@@ -159,12 +168,14 @@ Single `#modal-overlay` shared by projects and case studies. In `app.js`, the va
 modal-tag → modal-title → modal-detail → modal-metrics (chips)
 ```
 
-### CS Modal
+### Item Modal (case studies + personal projects)
 ```
 modal-tag → modal-title → modal-detail (problem) →
 modal-section-label ("The Insight") → modal-insight →
 modal-stats (chips) → modal-actions (buttons)
 ```
+Buttons rendered by `buildModalActions(item)` — conditional on `githubUrl`, `protoUrl`, `pageUrl`.
+Button label uses `item.pageLabel` field if set (personal projects: "Read Full Project Details"; CS: "Read Full Case Study").
 
 Close: × button (`#modal-close`), overlay click, ESC key.
 
@@ -240,7 +251,7 @@ CSS: `.cs-pagination` is `position: fixed; bottom: 28px; left: 50%; transform: t
 - Panel-based navigation, 7 fixed panels
 - Case study rows open modal; Contact panel added
 
-### 2026-04-26 (Session C — today)
+### 2026-04-26 (Session C)
 - **Mobile nav**: hamburger + full-screen overlay, numbered Cormorant links, left-aligned
 - **Work panel**: expanded to 4 company groups (JindalX, OneValley, Taccomacco, RSP), 9 project cards
 - **Case study pagination**: page-by-page with floating pill; fixed script-before-DOM bug
@@ -254,15 +265,24 @@ CSS: `.cs-pagination` is `position: fixed; bottom: 28px; left: 50%; transform: t
 - **app.js**: `modalOverlay` rename (was `overlay`, clashed with nav overlay); projects[] = 9 objects
 - **CSS**: `box-sizing: border-box` on `.section` fixed phantom scroll
 
+### 2026-04-29 (Session D)
+- **"Case Studies" → "Projects"**: panel ID, nav label, hash routing all renamed (`#case-studies` → `#projects`)
+- **Two-section panel**: "Case Studies" (5 rows, static) + "Personal Projects" (4 rows, JS-rendered)
+- **Personal projects added**: Telegram Bot, Portfolio Website, Homelab, GWS CLI
+- **GitHub Repo button**: terracotta ghost style, conditional on `githubUrl`; CS all null, personal projects use `'#'` placeholder
+- **Project detail pages**: 4 new HTML pages using `case-study.css`, content from CLAUDE.md only
+- **Unified modal**: `buildModalActions()` + `openItemModal()` replace `openCsModal()`; `pageLabel` field controls button text
+- **Back links fixed**: all 5 case study pages updated from `#case-studies` → `#projects`
+
 ---
 
 ## 10. Git History (recent)
 ```
+b5ed3dd  Add project detail pages for personal projects, wire up Read Full Project Details button
+dbc0c73  Rename Case Studies panel to Projects, add Personal Projects section
+0af1956  Update CLAUDE.md and gemini_summary.md to reflect 2026-04-26 session
 672574a  Add 4 missing certs from LinkedIn, fix names and years
 726ea52  Fix pagination buttons not working on case study pages
 30e0e8b  Remove architectural SVG drawings, keep blueprint grid only
 46909a7  Mobile polish: zoomed SVGs, left-aligned nav overlay, contact vertical layout
-7f88447  Push mobile responsive + pagination + work panel + logo + various fixes
-44ffb00  Update CLAUDE.md and gemini_summary.md to reflect Blueprint to Bits redesign
-9a4fd76  Add Contact panel (06) with email, LinkedIn, and footer bar
 ```
