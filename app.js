@@ -59,7 +59,7 @@
     'home':         'panel-home',
     'experience':   'panel-experience',
     'work':         'panel-work',
-    'case-studies': 'panel-case-studies',
+    'projects':     'panel-projects',
     'skills':       'panel-skills',
     'credentials':  'panel-credentials',
     'contact':      'panel-contact'
@@ -93,8 +93,8 @@
     if (e.key === 'Escape') { closeModal(); closeOverlay(); }
   });
 
-  /* ---- Project Modal ---- */
-  var projects = [
+  /* ---- Work Project Modal ---- */
+  var workProjects = [
     {
       tag: 'AI · HR Tech',
       title: 'AI-Powered Talent Management Suite',
@@ -152,7 +152,7 @@
   ];
 
   function openProjectModal(idx) {
-    var p = projects[idx];
+    var p = workProjects[idx];
     modalBody.innerHTML =
       '<div class="modal-tag">' + p.tag + '</div>' +
       '<h2 class="modal-title">' + p.title + '</h2>' +
@@ -185,6 +185,7 @@
       problem: "60–70% of founders abandon CRM within 4 weeks. The real insight: founders already manage relationships in WhatsApp. The tool had to meet them there.",
       insight: "WhatsApp forwards become structured deal data through a Telegram bot interface — zero context-switching, no new app to learn.",
       stats: ['39-page PRD', '16 tools analysed', '10 founder interviews'],
+      githubUrl: null,
       protoUrl: null,
       pageUrl: 'case-study-founder-crm.html'
     },
@@ -194,6 +195,7 @@
       problem: "Managers discover picker performance issues 3–7 minutes too late during the 6–10 PM peak window. By then the SLA is already broken.",
       insight: "A real-time command hub that surfaces picker-level alerts before the breach — turning reactive firefighting into proactive management.",
       stats: ['Working prototype', '3 research methods', 'Unit economics modelled'],
+      githubUrl: null,
       protoUrl: 'https://blinkit-command-hub.vercel.app/',
       pageUrl: 'case-study-blinkit.html'
     },
@@ -203,6 +205,7 @@
       problem: "47% of users manually search every session. 29% of Gen Z sessions end without watching anything. The algorithm optimises for click, not for satisfaction.",
       insight: "Four product interventions targeting the discovery gap — from contextual playlists to an intent-aware home feed redesign.",
       stats: ['171 survey responses', '4 product solutions', '27+ sources'],
+      githubUrl: null,
       protoUrl: null,
       pageUrl: 'case-study-youtube.html'
     },
@@ -212,6 +215,7 @@
       problem: "1–2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments and preference conflicts surface mid-trip, not during planning.",
       insight: "An AI-powered coordination layer that distributes planning tasks, surfaces conflicts early, and keeps the whole group aligned without a group chat.",
       stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
+      githubUrl: null,
       protoUrl: null,
       pageUrl: 'case-study-group-travel.html'
     },
@@ -221,45 +225,130 @@
       problem: "Indian families manage health via blurry WhatsApp prescription photos. ₹6,000+ crore lost annually to repeat diagnostic tests.",
       insight: "A PWA that turns prescription photos into structured, searchable health timelines — built by a 6-person team and shipped in 10 days.",
       stats: ['Live product', '6-person team', '10 days shipped'],
+      githubUrl: null,
       protoUrl: 'https://vitae-health.vercel.app/',
       pageUrl: 'case-study-vitae.html'
     }
   ];
 
-  function openCsModal(idx) {
-    var cs = caseStudies[idx];
-    var actionsHtml = '<div class="modal-actions">';
-    if (cs.protoUrl) {
-      actionsHtml += '<a href="' + cs.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">View Prototype &rarr;</a>';
+  /* ---- Personal Projects ---- */
+  var personalProjects = [
+    {
+      category: 'Python · Telegram · Oracle Cloud',
+      title: 'Telegram Personal Assistant Bot',
+      problem: 'Always-on personal automation bot with keyword routing, running 24/7 on Oracle VM.',
+      insight: 'A single listener architecture routes commands to modular handlers — keeping the bot extensible without a framework.',
+      stats: ['24/7 uptime', 'Oracle Cloud VM', 'systemd managed'],
+      githubUrl: '#',
+      protoUrl: null,
+      pageUrl: null
+    },
+    {
+      category: 'HTML · CSS · JavaScript · Supabase',
+      title: 'This Portfolio Website',
+      problem: 'Plain HTML/CSS/JS SPA with an email gate, Supabase lead capture, and a Blueprint-to-Bits design system.',
+      insight: "Zero-dependency panel navigation and a CSS-only grid theme prove you don't need a framework to ship a polished product.",
+      stats: ['0 npm dependencies', 'Supabase email gate', '7 panel SPA'],
+      githubUrl: '#',
+      protoUrl: null,
+      pageUrl: null
+    },
+    {
+      category: 'Linux · Oracle Cloud · DevOps',
+      title: 'Personal Homelab',
+      problem: 'Self-hosted Ubuntu 22.04 VM on Oracle Cloud free tier for running bots, scripts, and services.',
+      insight: 'Combining systemd services, cron, and SSH key auth creates a reliable personal cloud that costs nothing.',
+      stats: ['Oracle Cloud free tier', 'Ubuntu 22.04', 'SSH key auth'],
+      githubUrl: '#',
+      protoUrl: null,
+      pageUrl: null
+    },
+    {
+      category: 'Python · Gmail API · Google Calendar',
+      title: 'GWS CLI',
+      problem: 'Command-line tool for Gmail and Google Calendar — search, draft, and schedule without opening a browser.',
+      insight: 'Thin Python wrappers over Google APIs with a clean CLI UX; Telegram trigger integration in progress.',
+      stats: ['Gmail API', 'Calendar API', 'Telegram trigger WIP'],
+      githubUrl: '#',
+      protoUrl: null,
+      pageUrl: null
     }
-    actionsHtml += '<a href="' + cs.pageUrl + '" class="modal-btn modal-btn--secondary">Read Full Case Study &rarr;</a>';
-    actionsHtml += '</div>';
+  ];
 
+  function buildModalActions(item) {
+    var html = '<div class="modal-actions">';
+    if (item.githubUrl) {
+      html += '<a href="' + item.githubUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--ghost">GitHub Repo &rarr;</a>';
+    }
+    if (item.protoUrl) {
+      html += '<a href="' + item.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">View Prototype &rarr;</a>';
+    }
+    if (item.pageUrl) {
+      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--secondary">Read Full Case Study &rarr;</a>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function openItemModal(item) {
     modalBody.innerHTML =
-      '<div class="modal-tag">' + cs.category + '</div>' +
-      '<h2 class="modal-title">' + cs.title + '</h2>' +
-      '<p class="modal-detail">' + cs.problem + '</p>' +
+      '<div class="modal-tag">' + item.category + '</div>' +
+      '<h2 class="modal-title">' + item.title + '</h2>' +
+      '<p class="modal-detail">' + item.problem + '</p>' +
       '<div class="modal-section-label">The Insight</div>' +
-      '<p class="modal-insight">' + cs.insight + '</p>' +
+      '<p class="modal-insight">' + item.insight + '</p>' +
       '<div class="modal-stats">' +
-        cs.stats.map(function (s) {
+        item.stats.map(function (s) {
           return '<span class="modal-stat-chip">' + s + '</span>';
         }).join('') +
       '</div>' +
-      actionsHtml;
+      buildModalActions(item);
     modalOverlay.removeAttribute('hidden');
   }
 
   document.querySelectorAll('.cs-row').forEach(function (row) {
     row.addEventListener('click', function () {
-      openCsModal(parseInt(row.dataset.cs, 10));
+      openItemModal(caseStudies[parseInt(row.dataset.cs, 10)]);
     });
     row.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openCsModal(parseInt(row.dataset.cs, 10));
+        openItemModal(caseStudies[parseInt(row.dataset.cs, 10)]);
       }
     });
   });
+
+  /* ---- Render Personal Project Rows ---- */
+  var personalTable = document.getElementById('personal-projects-table');
+  if (personalTable) {
+    personalProjects.forEach(function (proj, i) {
+      var row = document.createElement('div');
+      row.className = 'cs-row';
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+      row.dataset.personal = i;
+      row.innerHTML =
+        '<span class="cs-index">0' + (i + 1) + '</span>' +
+        '<div class="cs-content">' +
+          '<div class="cs-category">' + proj.category + '</div>' +
+          '<div class="cs-name">' + proj.title + '</div>' +
+          '<div class="cs-problem">' + proj.problem + '</div>' +
+        '</div>' +
+        '<div class="cs-stats">' +
+          proj.stats.map(function (s) { return '<span>' + s + '</span>'; }).join('') +
+          '<span class="cs-arrow">&rarr;</span>' +
+        '</div>';
+      row.addEventListener('click', function () {
+        openItemModal(personalProjects[parseInt(row.dataset.personal, 10)]);
+      });
+      row.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openItemModal(personalProjects[parseInt(row.dataset.personal, 10)]);
+        }
+      });
+      personalTable.appendChild(row);
+    });
+  }
 
 })();

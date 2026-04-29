@@ -807,6 +807,21 @@ img { display: block; max-width: 100%; }
   color: #6b6560;
 }
 
+.projects-section {
+  margin-bottom: 2.5rem;
+}
+.projects-section__label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bf5c3a;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(191,92,58,0.25);
+}
+
 .cs-table {
   border: 1px solid #e2dbd3;
 }
@@ -1233,6 +1248,15 @@ img { display: block; max-width: 100%; }
   border: 1px solid #e2dbd3;
 }
 .modal-btn--secondary:hover { border-color: #0b1628; }
+.modal-btn--ghost {
+  background: transparent;
+  color: #bf5c3a;
+  border: 1px solid #bf5c3a;
+}
+.modal-btn--ghost:hover {
+  background: #bf5c3a;
+  color: #ffffff;
+}
 
 /* ============================================================
    MOBILE OVERLAY NAV

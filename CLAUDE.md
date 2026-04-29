@@ -36,11 +36,11 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
   - **Home** (`panel-home`) — hero, blueprint grid, name, statement, single CTA "Get in touch →" → panel-contact
   - **Experience** (`panel-experience`) — career arc bar + 4 accordion rows (entire row clickable)
   - **Work** (`panel-work`) — 4 company groups, 9 total project cards, click → project detail modal
-  - **Case Studies** (`panel-case-studies`) — table rows, click → CS modal (problem + insight + stats + links)
+  - **Projects** (`panel-projects`) — two sections: "Case Studies" (5 rows) + "Personal Projects" (4 rows, JS-rendered); click → modal (problem + insight + stats + links + optional GitHub button)
   - **Skills** (`panel-skills`) — navy + blueprint grid, 3-col skill groups
   - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right), 11 cert rows
   - **Contact** (`panel-contact`) — navy `#0b1628` + blueprint grid, headline, email + LinkedIn links, footer bar
-- URL hash routing: `#home`, `#experience`, `#work`, `#case-studies`, `#skills`, `#credentials`, `#contact`
+- URL hash routing: `#home`, `#experience`, `#work`, `#projects`, `#skills`, `#credentials`, `#contact`
 
 ## Tech constraints
 - Plain HTML + CSS + vanilla JavaScript ONLY
@@ -53,7 +53,7 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - `styles.css` — Blueprint to Bits design system (~1,350 lines). Panel layout, all section styles, mobile responsive.
 - `tabs.js` — empty stub (replaced by panel nav in app.js)
 - `gate.js` — email gate logic (Supabase insert + localStorage bypass). Do not edit.
-- `app.js` — panel switching, mobile overlay nav, experience accordion, project modal (9 projects), CS modal (5 case studies)
+- `app.js` — panel switching, mobile overlay nav, experience accordion, work project modal (9 projects), unified item modal (5 case studies + 4 personal projects); `personalProjects` array rendered into `#personal-projects-table`
 - `case-study.css` — Blueprint to Bits styles for all 5 case study pages; floating pagination pill
 - `favicon.svg` — geometric GG monogram (navy bg, white letterforms, terracotta crossbars)
 
@@ -123,7 +123,7 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 
 ## Status
 - **State:** active
-- **Last session:** 2026-04-26
+- **Last session:** 2026-04-29
 - **What was done:**
   - **Mobile responsive nav**: hamburger → full-screen overlay, numbered Cormorant links, left-aligned
   - **Work panel expanded**: 4 company groups (JindalX · OneValley · Taccomacco · RSP), 9 total cards, header → "Products & Projects"
@@ -137,10 +137,12 @@ Each page uses case-study.css. "View Product →" link appears in header of each
   - **Credentials**: added 4 certs from LinkedIn (Airtable Admin, Airtable Builder, Power BI Desktop, Lean); fixed years/names; now 11 rows total
   - **app.js**: renamed modal overlay var to `modalOverlay` (was `overlay`, clashed with nav overlay); projects[] extended to 9 objects
   - **CSS fix**: `box-sizing: border-box` on `.section` fixed phantom scroll on panels
+  - **"Case Studies" → "Projects" panel** (2026-04-29): renamed nav + panel ID + hash to `#projects`; split into two sections ("Case Studies" × 5 + "Personal Projects" × 4 JS-rendered rows); added GitHub Repo button (terracotta ghost style, conditional on `githubUrl`); personal projects use `'#'` placeholder URLs; case study GitHub URLs all null pending repo audit
 - **Next candidates:**
+  - Fill in real GitHub repo URLs for personal projects once repos are confirmed public
+  - Add real GitHub repos to case studies once private/multi-repo situation is resolved
   - Add real product links to CS01 (Founder CRM), CS03 (YouTube), CS04 (Group Travel) once products are live
   - Vitae project: migrate to shared service account email (team decision pending)
-  - Minor mobile polish issues noted but deferred (user said "looks decent")
   - RAG chatbot (separate project, not in this repo)
 - **Blocker:** none
-- **Last updated:** 2026-04-26
+- **Last updated:** 2026-04-29
