@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Personal Homelab | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Personal Project</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <header class="cs-hero">
+            <span class="cs-label">Personal Project</span>
+            <h1 class="cs-title">Personal Homelab</h1>
+            <p class="cs-subtitle">A self-hosted Ubuntu 22.04 VM on Oracle Cloud free tier &mdash; running personal bots, automation scripts, and scheduled services 24/7 at zero cost.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Linux</span>
+                <span class="cs-meta-tag">Oracle Cloud</span>
+                <span class="cs-meta-tag">systemd</span>
+                <span class="cs-meta-tag">Ubuntu 22.04</span>
+            </div>
+        </header>
+
+        <div class="cs-page is-active">
+
+            <section class="cs-section">
+                <span class="cs-section-label">Setup</span>
+                <h2 class="cs-section-title">The Server</h2>
+                <p>The homelab runs on an Oracle Cloud always-free tier VM &mdash; Ubuntu 22.04 LTS. Oracle Cloud's free tier provides a persistent VM with a public IP at no cost, making it suitable as a personal server for automation and bots that need to run continuously.</p>
+
+                <div class="cs-stats-row">
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">Oracle Cloud</span>
+                        <span class="cs-stat-label">Always Free tier VM</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">Ubuntu 22.04</span>
+                        <span class="cs-stat-label">LTS operating system</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">SSH key auth</span>
+                        <span class="cs-stat-label">no password login</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">What Runs on It</span>
+                <h2 class="cs-section-title">Services</h2>
+                <p>The VM acts as the execution layer for personal automation projects. Each service runs as a <code>systemd</code> unit, ensuring automatic restart on failure and clean process management.</p>
+
+                <h3>Active Services</h3>
+                <ul>
+                    <li><strong>Telegram Personal Assistant Bot</strong> &mdash; single listener process, keyword routing, always-on</li>
+                    <li><strong>LinkedIn Post Automation</strong> &mdash; systemd + cron job for scheduled LinkedIn publishing pipeline</li>
+                </ul>
+
+                <div class="cs-callout">
+                    <p><strong>Why systemd over a process manager like PM2?</strong> systemd is already on the OS, handles dependencies between services, integrates with the system journal for logging, and survives VM reboots without any additional setup.</p>
+                </div>
+
+                <h3>Process Management Pattern</h3>
+                <ul>
+                    <li>Long-running listeners (Telegram bot) &rarr; <code>systemd</code> service with <code>Restart=always</code></li>
+                    <li>Scheduled jobs (LinkedIn automation) &rarr; <code>cron</code> or <code>systemd</code> timer</li>
+                    <li>One-off scripts &rarr; run manually over SSH</li>
+                </ul>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Access</span>
+                <h2 class="cs-section-title">Remote Access</h2>
+                <p>The VM is accessed exclusively via SSH with key-based authentication. Password login is disabled. The SSH key is stored locally and used directly from the terminal.</p>
+
+                <div class="cs-callout">
+                    <p>SSH key auth removes an entire class of brute-force attack surface. Combined with Oracle Cloud's default network security rules, the VM is accessible only over SSH on the standard port.</p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Stack</span>
+                <h2 class="cs-section-title">Tech Stack</h2>
+                <div class="cs-card-grid">
+                    <div class="cs-card">
+                        <h4>Infrastructure</h4>
+                        <p>Oracle Cloud always-free VM &middot; Ubuntu 22.04 LTS &middot; public IP &middot; SSH key auth</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Process Management</h4>
+                        <p>systemd services &middot; cron for scheduled tasks &middot; systemd journal for logging</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Running On It</h4>
+                        <p>Python (Telegram bot, LinkedIn automation) &middot; Bash scripts</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Personal Project</p>
+    </footer>
+
+</body>
+</html>

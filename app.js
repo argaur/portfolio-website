@@ -241,7 +241,8 @@
       stats: ['24/7 uptime', 'Oracle Cloud VM', 'systemd managed'],
       githubUrl: '#',
       protoUrl: null,
-      pageUrl: null
+      pageUrl: 'project-telegram-bot.html',
+      pageLabel: 'Read Full Project Details'
     },
     {
       category: 'HTML · CSS · JavaScript · Supabase',
@@ -251,7 +252,8 @@
       stats: ['0 npm dependencies', 'Supabase email gate', '7 panel SPA'],
       githubUrl: '#',
       protoUrl: null,
-      pageUrl: null
+      pageUrl: 'project-portfolio.html',
+      pageLabel: 'Read Full Project Details'
     },
     {
       category: 'Linux · Oracle Cloud · DevOps',
@@ -261,7 +263,8 @@
       stats: ['Oracle Cloud free tier', 'Ubuntu 22.04', 'SSH key auth'],
       githubUrl: '#',
       protoUrl: null,
-      pageUrl: null
+      pageUrl: 'project-homelab.html',
+      pageLabel: 'Read Full Project Details'
     },
     {
       category: 'Python · Gmail API · Google Calendar',
@@ -271,7 +274,8 @@
       stats: ['Gmail API', 'Calendar API', 'Telegram trigger WIP'],
       githubUrl: '#',
       protoUrl: null,
-      pageUrl: null
+      pageUrl: 'project-gws-cli.html',
+      pageLabel: 'Read Full Project Details'
     }
   ];
 
@@ -284,7 +288,8 @@
       html += '<a href="' + item.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">View Prototype &rarr;</a>';
     }
     if (item.pageUrl) {
-      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--secondary">Read Full Case Study &rarr;</a>';
+      var pageLabel = item.pageLabel || 'Read Full Case Study';
+      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--secondary">' + pageLabel + ' &rarr;</a>';
     }
     html += '</div>';
     return html;

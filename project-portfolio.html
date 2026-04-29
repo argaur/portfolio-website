@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: This Portfolio Website | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Personal Project</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <header class="cs-hero">
+            <span class="cs-label">Personal Project</span>
+            <h1 class="cs-title">This Portfolio Website</h1>
+            <p class="cs-subtitle">A plain HTML/CSS/JS single-page portfolio with an email gate, Supabase lead capture, and a Blueprint-to-Bits design system &mdash; zero npm dependencies, works by opening a file.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">HTML</span>
+                <span class="cs-meta-tag">CSS</span>
+                <span class="cs-meta-tag">Vanilla JavaScript</span>
+                <span class="cs-meta-tag">Supabase</span>
+            </div>
+        </header>
+
+        <div class="cs-page is-active">
+
+            <section class="cs-section">
+                <span class="cs-section-label">Constraint</span>
+                <h2 class="cs-section-title">Why No Framework</h2>
+                <p>The constraint was intentional: no npm, no React, no Tailwind, no build step. The site must work by opening <code>index.html</code> in a browser. This was both a technical demonstration (can you ship a polished product with nothing but platform primitives?) and a practical choice (no dependency rot, no build failures, instant iteration).</p>
+                <div class="cs-callout">
+                    <p><strong>The result:</strong> 0 npm dependencies. The only external dependency is the Supabase JS client loaded via CDN for the email gate.</p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Design System</span>
+                <h2 class="cs-section-title">Blueprint to Bits</h2>
+                <p>The design theme is called <strong>Blueprint to Bits</strong> &mdash; a reference to the career arc from architectural drawings to digital products. The visual language uses technical drawing conventions: grid paper backgrounds, no rounded corners, serif display type, and a restrained palette.</p>
+
+                <h3>Design Tokens</h3>
+                <div class="cs-card-grid cs-card-grid--3">
+                    <div class="cs-card">
+                        <h4 style="color: #0b1628; background: #f7f3ee; padding: 8px; margin: -16px -16px 12px;">#0b1628</h4>
+                        <p><code>--navy</code> &mdash; Primary dark. Used for hero, contact, nav, and dark UI surfaces.</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4 style="background: #f7f3ee; padding: 8px; margin: -16px -16px 12px;">#f7f3ee</h4>
+                        <p><code>--cream</code> &mdash; Primary light. Used for content panels and grid-paper backgrounds.</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4 style="color: #ffffff; background: #bf5c3a; padding: 8px; margin: -16px -16px 12px;">#bf5c3a</h4>
+                        <p><code>--terra</code> &mdash; Terracotta accent. Used for CTAs, category labels, and active states.</p>
+                    </div>
+                </div>
+
+                <h3>Typography</h3>
+                <ul>
+                    <li><strong>Cormorant Garamond</strong> &mdash; headings, display text, large numbers (editorial, high contrast weight range)</li>
+                    <li><strong>DM Sans</strong> &mdash; body text, UI labels, navigation (clean, geometric, legible at small sizes)</li>
+                </ul>
+
+                <h3>Grid Background</h3>
+                <p>The graph-paper grid is a pure CSS trick using two overlapping <code>linear-gradient</code> backgrounds at 120px spacing. No SVG, no image. Applied to all cream and white panels at <code>rgba(0,0,0,0.06)</code> opacity.</p>
+
+                <h3>No Border-Radius</h3>
+                <p>Every element is square-cornered. This is an explicit architectural principle &mdash; the design language of technical drawings has no rounded corners. Softness comes from spacing and type weight, not corner radius.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Architecture</span>
+                <h2 class="cs-section-title">Panel-Based SPA</h2>
+                <p>The site is a single HTML file with 7 full-viewport panels. Only one panel is visible at a time. Navigation switches panels by toggling an <code>is-active</code> class &mdash; no page loads, no scroll, no router library.</p>
+
+                <h3>7 Panels</h3>
+                <ul>
+                    <li><strong>Home</strong> &mdash; hero, blueprint grid, statement, single CTA to Contact</li>
+                    <li><strong>Experience</strong> &mdash; career arc bar, 4 accordion rows (Architecture → Founding → Product → AI)</li>
+                    <li><strong>Work</strong> &mdash; 4 company groups, 9 project cards, click-to-modal details</li>
+                    <li><strong>Projects</strong> &mdash; 5 PM case studies + 4 personal projects, unified modal</li>
+                    <li><strong>Skills</strong> &mdash; navy panel, 3-col skill groups across 6 domains</li>
+                    <li><strong>Credentials</strong> &mdash; split panel (education left / 11 certifications right)</li>
+                    <li><strong>Contact</strong> &mdash; navy + blueprint grid, email + LinkedIn links</li>
+                </ul>
+
+                <h3>Hash Routing</h3>
+                <p>On page load, <code>app.js</code> reads <code>window.location.hash</code> and activates the matching panel. This means every panel has a shareable direct URL: <code>#experience</code>, <code>#work</code>, <code>#projects</code>, etc.</p>
+
+                <h3>Mobile Nav</h3>
+                <p>The desktop nav collapses into a hamburger button on mobile. Tapping it opens a full-screen overlay with numbered Cormorant Garamond links, left-aligned with generous padding. ESC key or selecting a panel closes it.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Email Gate</span>
+                <h2 class="cs-section-title">Lead Capture via Supabase</h2>
+                <p>First-time visitors see a full-screen gate before the portfolio. They enter an email address, which is inserted into a Supabase <code>subscribers</code> table. On success, a <code>localStorage</code> flag is set so returning visitors skip the gate entirely.</p>
+
+                <div class="cs-stats-row">
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">Supabase</span>
+                        <span class="cs-stat-label">anonymous insert via CDN client</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">localStorage</span>
+                        <span class="cs-stat-label">bypass flag for returning visitors</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">Graceful</span>
+                        <span class="cs-stat-label">degradation if Supabase is unreachable</span>
+                    </div>
+                </div>
+
+                <p>The anon key is embedded in <code>gate.js</code> &mdash; safe for client-side use because RLS is configured to allow anonymous inserts only. No read or delete access from the client.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">File Structure</span>
+                <h2 class="cs-section-title">What's in the Repo</h2>
+                <div class="cs-card-grid">
+                    <div class="cs-card">
+                        <h4>index.html</h4>
+                        <p>All 7 panels, modal overlay, mobile nav overlay. Single file, no partials, no templating.</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>styles.css</h4>
+                        <p>Blueprint to Bits design system (~1,350+ lines). Panel layout, all section styles, mobile responsive breakpoints.</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>app.js</h4>
+                        <p>Panel switching, mobile overlay nav, experience accordion, work project modal (9 projects), unified item modal (case studies + personal projects).</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>gate.js</h4>
+                        <p>Email gate logic: Supabase insert, localStorage flag, graceful degradation on error.</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>case-study.css</h4>
+                        <p>Shared styles for all case study and project detail pages. Pagination pill, section layout, callout boxes.</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>favicon.svg</h4>
+                        <p>Geometric GG monogram &mdash; navy background, white letterforms, terracotta crossbars. Pure SVG, no raster.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Personal Project</p>
+    </footer>
+
+</body>
+</html>

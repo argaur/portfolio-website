@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Telegram Personal Assistant Bot | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Personal Project</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <header class="cs-hero">
+            <span class="cs-label">Personal Project</span>
+            <h1 class="cs-title">Telegram Personal Assistant Bot</h1>
+            <p class="cs-subtitle">An always-on personal automation bot running 24/7 on Oracle Cloud VM &mdash; keyword routing dispatches commands to modular handlers without a framework.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Python</span>
+                <span class="cs-meta-tag">Telegram Bot API</span>
+                <span class="cs-meta-tag">Oracle Cloud</span>
+                <span class="cs-meta-tag">systemd</span>
+            </div>
+        </header>
+
+        <div class="cs-page is-active">
+
+            <section class="cs-section">
+                <span class="cs-section-label">Overview</span>
+                <h2 class="cs-section-title">What It Is</h2>
+                <p>A personal automation bot that runs continuously on an Oracle Cloud VM. It listens to incoming Telegram messages and dispatches them to different handlers based on keywords in the message. No framework, no third-party workflow engine &mdash; just a Python listener and a routing table.</p>
+                <p>The goal was a single, low-friction interface for personal automation tasks: capture an idea, log something to a note, trigger a script &mdash; all from Telegram without opening a browser or another app.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Architecture</span>
+                <h2 class="cs-section-title">How It Works</h2>
+                <p>A single listener process runs as a <code>systemd</code> service on the VM. When a message arrives, the listener checks for registered keyword prefixes and routes to the appropriate handler module.</p>
+
+                <div class="cs-callout">
+                    <p><strong>Design choice:</strong> One listener, many handlers. This keeps the entry point stable while making it easy to add or remove capabilities without touching the core routing logic.</p>
+                </div>
+
+                <h3>Routing Rules</h3>
+                <ul>
+                    <li><code>#idea</code> &mdash; captures the message and saves it to the Notion Post Ideas database</li>
+                    <li><code>#capture</code> &mdash; saves the message to the Obsidian vault (Google Drive sync)</li>
+                    <li>Additional routes are registered as new handlers are built</li>
+                </ul>
+
+                <h3>Infrastructure</h3>
+                <div class="cs-stats-row">
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">24/7</span>
+                        <span class="cs-stat-label">uptime via systemd service</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">Oracle Cloud</span>
+                        <span class="cs-stat-label">free tier VM (Ubuntu 22.04)</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">cron</span>
+                        <span class="cs-stat-label">scheduled tasks alongside listener</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Integrations</span>
+                <h2 class="cs-section-title">Connected Systems</h2>
+                <p>The bot is part of a broader personal automation stack. It connects to the tools I already use daily, so capturing or triggering something requires only a single Telegram message.</p>
+                <ul>
+                    <li><strong>Notion:</strong> Post Ideas DB, Posts DB, Saved Links DB &mdash; structured capture for LinkedIn pipeline</li>
+                    <li><strong>Obsidian Vault:</strong> synced via Google Drive, used for unstructured notes and project pages</li>
+                </ul>
+                <p>Bot flow ideas and routing decisions are tracked in a dedicated Notion page to keep the routing table from growing uncontrolled.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Stack</span>
+                <h2 class="cs-section-title">Tech Stack</h2>
+                <div class="cs-card-grid">
+                    <div class="cs-card">
+                        <h4>Runtime</h4>
+                        <p>Python &middot; Telegram Bot API &middot; Oracle Cloud VM &middot; Ubuntu 22.04</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Process Management</h4>
+                        <p>systemd service for listener &middot; cron for scheduled tasks &middot; SSH key auth for VM access</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Integrations</h4>
+                        <p>Notion API &middot; Obsidian (Google Drive sync) &middot; Gmail &middot; Google Calendar (via GWS CLI)</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Personal Project</p>
+    </footer>
+
+</body>
+</html>
