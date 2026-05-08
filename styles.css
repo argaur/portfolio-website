@@ -39,6 +39,14 @@ img { display: block; max-width: 100%; }
   --terra:    #bf5c3a;
   --blue:     #2d5da1;
   --forest:   #3d5c3a;
+  /* ── New additions (Design Overhaul) ── */
+  --blue-electric: #4d8eff;
+  --type-display-xl: clamp(96px, 12vw, 168px);
+  --type-display-l: clamp(72px, 9vw, 120px);
+  --type-eyebrow: 11px;
+  --reveal-stagger: 80ms;
+  --reveal-duration: 480ms;
+  --reveal-ease: cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 
 /* --- Blueprint Grid Background --- */
@@ -1476,7 +1484,633 @@ img { display: block; max-width: 100%; }
   .section { padding: 56px 20px; }
   .nav-inner { padding: 0 20px; }
   .hero { padding: 60px 20px 80px; }
-  .hero-name { font-size: clamp(44px, 17vw, 60px); }
   .cs-row { padding: 18px 20px; }
   .proj-card { padding: 24px 20px; }
+}
+
+/* ============================================================
+   DESIGN OVERHAUL — Foundation Utilities
+   ============================================================ */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-child {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.is-revealing .reveal-child {
+  animation: revealIn var(--reveal-duration) var(--reveal-ease) both;
+}
+.is-revealing .reveal-child:nth-child(1)  { animation-delay: calc(0  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(2)  { animation-delay: calc(1  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(3)  { animation-delay: calc(2  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(4)  { animation-delay: calc(3  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(5)  { animation-delay: calc(4  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(6)  { animation-delay: calc(5  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(7)  { animation-delay: calc(6  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(8)  { animation-delay: calc(7  * var(--reveal-stagger)); }
+.is-revealing .reveal-child:nth-child(9)  { animation-delay: calc(8  * var(--reveal-stagger)); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-child { opacity: 1; transform: none; animation: none; }
+}
+
+/* ============================================================
+   HERO REDESIGN — Split Layout
+   ============================================================ */
+/* Override centered hero to support split layout */
+.hero {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  padding: 0 !important;
+  height: 100%;
+  min-height: unset;
+}
+
+.hero--split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 64px 40px;
+  flex: 1;
+  min-height: 0;
+}
+
+.hero-pane--text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-pane--canvas {
+  position: relative;
+  height: clamp(340px, 46vh, 540px);
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.canvas-system-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247,243,238,0.22);
+}
+
+/* New hero overline (left-aligned) */
+.hero-overline-new {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+}
+.hero-overline-num  { opacity: 0.5; }
+.hero-overline-rule { width: 32px; height: 1px; background: var(--terra); opacity: 0.6; flex-shrink: 0; }
+
+/* New headline (large systems statement) */
+.hero-headline-new {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin: 0;
+}
+.hero-headline-new em {
+  font-style: italic;
+  color: var(--terra);
+}
+
+/* Sub-statement in hero */
+.hero-sub-new {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(247,243,238,0.5);
+  max-width: 440px;
+  margin: 0;
+}
+
+/* Hero CTAs */
+.hero-actions-new {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.btn-primary-hero {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 24px;
+  background: var(--terra);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.btn-primary-hero:hover { background: #a84e30; }
+
+.btn-ghost-hero {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 24px;
+  border: 1px solid rgba(247,243,238,0.2);
+  color: rgba(247,243,238,0.7);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.btn-ghost-hero:hover {
+  border-color: rgba(247,243,238,0.5);
+  color: var(--cream);
+}
+
+/* Full-width stats strip below split */
+.hero-stats-strip {
+  display: flex;
+  align-items: center;
+  padding: 18px 64px;
+  border-top: 1px solid rgba(247,243,238,0.1);
+  flex-shrink: 0;
+  gap: 0;
+}
+
+.hero-stat-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 0 32px;
+}
+.hero-stat-item:first-child { padding-left: 0; }
+
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.hero-stat-lbl {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247,243,238,0.38);
+  line-height: 1.4;
+}
+
+.hero-stat-sep {
+  width: 1px;
+  height: 28px;
+  background: rgba(247,243,238,0.1);
+  flex-shrink: 0;
+}
+
+.hero-stat-socials {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.hero-social-link {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247,243,238,0.35);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hero-social-link:hover { color: var(--cream); }
+
+/* Hero name (smaller, above headline) */
+.hero-name-new {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: rgba(247,243,238,0.4);
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Mobile hero responsive */
+@media (max-width: 900px) {
+  .hero--split {
+    grid-template-columns: 1fr;
+    padding: 40px 24px 28px;
+    gap: 28px;
+  }
+  .hero-pane--canvas { height: 240px; }
+  .hero-stats-strip {
+    padding: 14px 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hero-stat-item { padding: 0 12px; }
+  .hero-stat-item:first-child { padding-left: 0; }
+  .hero-stat-socials { margin-left: 0; width: 100%; padding-top: 8px; border-top: 1px solid rgba(247,243,238,0.08); }
+}
+
+/* ============================================================
+   PHILOSOPHY PANEL
+   ============================================================ */
+.philosophy-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.philosophy-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.philosophy-hed {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 4.8vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin: 0;
+}
+.philosophy-hed-em {
+  font-style: italic;
+  color: var(--terra);
+}
+
+.philosophy-subhed {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(247,243,238,0.48);
+  max-width: 400px;
+  align-self: center;
+  margin: 0;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(247,243,238,0.07);
+}
+
+.principle {
+  background: #0b1628;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.2s ease;
+}
+.principle:hover { background: #0f1e37; }
+
+.principle--accent {
+  background: var(--terra);
+}
+.principle--accent:hover { background: #a84e30; }
+.principle--accent .principle-num,
+.principle--accent .principle-title,
+.principle--accent .principle-body { color: var(--cream); }
+.principle--accent .principle-body { opacity: 0.82; }
+
+.principle-num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--terra);
+  opacity: 0.32;
+  line-height: 1;
+}
+.principle--accent .principle-num {
+  color: var(--cream);
+  opacity: 0.38;
+}
+
+.principle-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.principle-body {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: rgba(247,243,238,0.48);
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .principles-grid { grid-template-columns: repeat(2, 1fr); }
+  .philosophy-header { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 600px) {
+  .principles-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   MODAL — Wide Variant + Narrative
+   ============================================================ */
+.modal-panel--wide {
+  max-width: 760px;
+  padding: 56px 64px;
+}
+
+.modal-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.modal-part {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.modal-part:last-child { border-bottom: none; }
+
+.modal-part-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.modal-part-num {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
+}
+
+.modal-part-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.modal-part-body {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text);
+  opacity: 0.82;
+  max-width: 60ch;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .modal-panel--wide { max-height: 100vh; padding: 32px 24px; }
+}
+
+/* ============================================================
+   WORK PANEL — Lead Card + Company Header
+   ============================================================ */
+.work-company-name-large {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.proj-card--lead {
+  grid-column: 1 / -1;
+  border-left: 3px solid var(--terra);
+  padding: 40px;
+}
+
+.proj-card--lead .proj-title {
+  font-size: 22px;
+}
+
+.proj-card--lead .proj-desc {
+  max-width: 680px;
+}
+
+/* ============================================================
+   SKILLS PANEL — Tier Highlighting
+   ============================================================ */
+.skill-list li.skill-top {
+  color: rgba(255,255,255,0.9);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.skill-list li.skill-top::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--terra);
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.skill-group-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--terra);
+  opacity: 0.38;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   CREDENTIALS — Degree Size + Year Separators
+   ============================================================ */
+.creds-degree-large {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.cert-year-sep {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  padding: 16px 0 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+  display: block;
+}
+
+/* ============================================================
+   CONTACT PANEL — Split with Canvas
+   ============================================================ */
+.contact-wrap-new {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contact--split {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 64px;
+  align-items: center;
+  flex: 1;
+  padding: 80px 64px;
+}
+
+.contact-pane--canvas {
+  position: relative;
+  height: 300px;
+}
+
+#contact-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .contact--split {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    gap: 40px;
+  }
+  .contact-pane--canvas { height: 180px; }
+}
+
+/* ============================================================
+   EXPERIENCE — Company Name
+   ============================================================ */
+.exp-company-lg {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   COMPATIBILITY PATCHES — class name aliases and context overrides
+   ============================================================ */
+
+/* Hero coord aliases (new layout uses --tl / --tr) */
+.hero-coord--tl { left: 48px; }
+.hero-coord--tr { right: 48px; text-align: right; }
+
+/* Override old centred .hero-overline inside the new split layout */
+.hero--split .hero-overline {
+  justify-content: flex-start;
+  margin-bottom: 0;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--terra);
+}
+
+/* Override giant hero-name inside split layout — name is subdued, headline is the star */
+.hero--split .hero-name {
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem) !important;
+  font-weight: 300 !important;
+  color: rgba(247,243,238,0.38) !important;
+  margin-bottom: 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* hero-statement-new (used in HTML) = hero-sub-new */
+.hero-statement-new {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(247,243,238,0.5);
+  max-width: 440px;
+  margin: 0;
+}
+
+/* hero-stat-label (used in HTML) = hero-stat-lbl */
+.hero-stat-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247,243,238,0.38);
+  line-height: 1.4;
+}
+
+/* Contact links left-aligned in split layout */
+.contact-pane--text .contact-links {
+  justify-content: flex-start;
+}
+
+/* Philosophy panel: section-label already gets gap from flex parent, cancel its margin */
+.philosophy-wrap .section-label { margin-bottom: 0; }
+
+/* Contact panel section-label padding (no section-inner wrapper) */
+.contact-wrap-new .section-label {
+  padding: 40px 64px 0;
+  margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  .contact-wrap-new .section-label { padding: 32px 24px 0; }
+}
+
+/* Mobile: hide contact canvas */
+@media (max-width: 600px) {
+  .contact-pane--canvas { display: none; }
 }

@@ -40,10 +40,11 @@
       <a href="#home"         class="nav-overlay-link" data-panel="panel-home"><em>00</em>Home</a>
       <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Experience</a>
       <a href="#work"         class="nav-overlay-link" data-panel="panel-work"><em>02</em>Work</a>
-      <a href="#projects" class="nav-overlay-link" data-panel="panel-projects"><em>03</em>Projects</a>
+      <a href="#projects"     class="nav-overlay-link" data-panel="panel-projects"><em>03</em>Projects</a>
       <a href="#skills"       class="nav-overlay-link" data-panel="panel-skills"><em>04</em>Skills</a>
-      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>05</em>Credentials</a>
-      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>06</em>Contact</a>
+      <a href="#philosophy"   class="nav-overlay-link" data-panel="panel-philosophy"><em>05</em>Philosophy</a>
+      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>06</em>Credentials</a>
+      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>07</em>Contact</a>
     </nav>
     <div class="nav-overlay-footer">
       <span>Gaurav Gupta &middot; Jaipur &middot; 2026</span>
@@ -68,8 +69,9 @@
       <div class="nav-links">
         <a href="#experience"   class="nav-link" data-panel="panel-experience">Experience</a>
         <a href="#work"         class="nav-link" data-panel="panel-work">Work</a>
-        <a href="#projects" class="nav-link" data-panel="panel-projects">Projects</a>
+        <a href="#projects"     class="nav-link" data-panel="panel-projects">Projects</a>
         <a href="#skills"       class="nav-link" data-panel="panel-skills">Skills</a>
+        <a href="#philosophy"   class="nav-link" data-panel="panel-philosophy">Philosophy</a>
         <a href="#credentials"  class="nav-link" data-panel="panel-credentials">Credentials</a>
       </div>
       <a href="#contact" class="nav-cta nav-cta--desktop" data-panel="panel-contact">Contact</a>
@@ -86,45 +88,68 @@
     <div id="panel-home" class="panel is-active">
       <section class="hero blueprint-bg">
 
-        <span class="hero-coord hero-coord--left">26.9124&#176; N &middot; 75.7873&#176; E &middot; JAIPUR</span>
-        <span class="hero-coord hero-coord--right">PORTFOLIO &middot; 2026</span>
-        <div class="hero-content">
-          <div class="hero-overline">
-            <span class="hero-overline-line"></span>
-            <span class="hero-overline-text">SENIOR PRODUCT MANAGER &middot; AI STRATEGIST</span>
+        <span class="hero-coord hero-coord--tl">26.9124&deg; N &middot; 75.7873&deg; E &middot; JAIPUR</span>
+        <span class="hero-coord hero-coord--tr">SYS.v2.6 &middot; ACTIVE</span>
+
+        <!-- Split: text left, canvas right -->
+        <div class="hero--split">
+
+          <div class="hero-pane--text">
+            <div class="hero-overline">
+              <span class="hero-overline-num">00</span>
+              <span class="hero-overline-rule"></span>
+              <span>Product Systems Architect</span>
+            </div>
+
+            <h1 class="hero-name">Gaurav Gupta</h1>
+
+            <p class="hero-headline-new">
+              Designing systems<br>
+              <em>across</em> architecture,<br>
+              enterprise software,<br>
+              and AI.
+            </p>
+
+            <p class="hero-statement-new">
+              Senior PM &amp; AI Strategist. Trained as an architect &mdash; five years learning how space, systems, and people work together. Now building at the intersection of product, operations, and artificial intelligence.
+            </p>
+
+            <div class="hero-actions-new">
+              <a href="#contact" data-panel="panel-contact" class="btn-primary-hero">Get in touch &rarr;</a>
+              <a href="#work" data-panel="panel-work" class="btn-ghost-hero">View Work &rarr;</a>
+            </div>
           </div>
-          <h1 class="hero-name">
-            Gaurav<br>
-            <span class="hero-name-faded">Gupta.</span>
-          </h1>
-          <div class="hero-statement">
-            <p class="hero-statement-left">Trained as an architect &mdash; five years learning how space, systems, and people work together. Now applying the same thinking to digital products.</p>
-            <p class="hero-statement-right">B.Arch from NIT Jaipur. 10 years building &mdash; first in steel and concrete, now in data and interfaces. Currently shipping AI-powered enterprise tools that real people use every day.</p>
+
+          <div class="hero-pane--canvas">
+            <canvas id="hero-canvas" aria-hidden="true"></canvas>
+            <div class="canvas-system-label">SYSTEMS MAP &middot; ACTIVE</div>
           </div>
-          <div class="hero-ctas">
-            <a href="#contact" class="hero-btn-secondary" data-panel="panel-contact">Get in touch &rarr;</a>
+
+        </div><!-- /.hero--split -->
+
+        <!-- Full-width stats strip below split -->
+        <div class="hero-stats-strip">
+          <div class="hero-stat-item">
+            <span class="hero-stat-num">10</span>
+            <span class="hero-stat-label">Years spanning<br>physical + digital</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-num">6</span>
+            <span class="hero-stat-label">Products shipped</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-num">5K+</span>
+            <span class="hero-stat-label">Users served</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat-socials">
+            <a href="https://www.linkedin.com/in/ar-gaurav-gupta/" target="_blank" rel="noopener" class="hero-social-link">LinkedIn &nearr;</a>
+            <a href="mailto:ar.gaurav20@gmail.com" class="hero-social-link">Email &nearr;</a>
           </div>
         </div>
-        <div class="hero-stats">
-          <div class="hero-stats-left">
-            <div class="hero-stat">
-              <span class="hero-stat-number">10</span>
-              <span class="hero-stat-label">Years Experience</span>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">6</span>
-              <span class="hero-stat-label">Products Shipped</span>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat-number">5K+</span>
-              <span class="hero-stat-label">Users Served</span>
-            </div>
-          </div>
-          <div class="hero-stats-right">
-            <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="hero-social">LINKEDIN</a>
-            <a href="mailto:ar.gaurav20@gmail.com" class="hero-social">EMAIL</a>
-          </div>
-        </div>
+
       </section>
     </div>
 
@@ -290,7 +315,7 @@
             <span class="work-company-period">Jun 2022 &ndash; May 2025</span>
           </div>
           <div class="proj-grid">
-            <div class="proj-card" data-proj="0" role="button" tabindex="0">
+            <div class="proj-card proj-card--lead reveal-child" data-proj="0" role="button" tabindex="0">
               <span class="proj-tag">AI &middot; HR Tech</span>
               <h3 class="proj-title">AI-Powered Talent Management Suite</h3>
               <p class="proj-desc">Comprehensive ATS built from scratch with embedded AI workflows &mdash; automated screening and GenAI-driven job matching.</p>
@@ -302,7 +327,7 @@
               <span class="proj-cta">View details &rarr;</span>
             </div>
 
-            <div class="proj-card" data-proj="1" role="button" tabindex="0">
+            <div class="proj-card reveal-child" data-proj="1" role="button" tabindex="0">
               <span class="proj-tag">AI &middot; Performance</span>
               <h3 class="proj-title">Performance Management Platform</h3>
               <p class="proj-desc">Evaluation system for 5,000+ employees across 16 clients. AI-driven recommendation engine for personalized development plans.</p>
@@ -314,7 +339,7 @@
               <span class="proj-cta">View details &rarr;</span>
             </div>
 
-            <div class="proj-card" data-proj="2" role="button" tabindex="0">
+            <div class="proj-card reveal-child" data-proj="2" role="button" tabindex="0">
               <span class="proj-tag">EdTech &middot; AI</span>
               <h3 class="proj-title">Knowledge &amp; Learning Platform (Insight)</h3>
               <p class="proj-desc">AI-powered EdTech system for BPO agents with integrated chatbot for instant query resolution and intelligent learning paths.</p>
@@ -326,7 +351,7 @@
               <span class="proj-cta">View details &rarr;</span>
             </div>
 
-            <div class="proj-card" data-proj="3" role="button" tabindex="0">
+            <div class="proj-card reveal-child" data-proj="3" role="button" tabindex="0">
               <span class="proj-tag">B2B &middot; CRM</span>
               <h3 class="proj-title">B2B CRM &amp; Auction Platform (AuctionIT)</h3>
               <p class="proj-desc">End-to-end B2B CRM with integrated auction management, automated bidding workflows, and invoice generation.</p>
@@ -338,7 +363,7 @@
               <span class="proj-cta">View details &rarr;</span>
             </div>
 
-            <div class="proj-card" data-proj="4" role="button" tabindex="0">
+            <div class="proj-card reveal-child" data-proj="4" role="button" tabindex="0">
               <span class="proj-tag">HRMS &middot; Automation</span>
               <h3 class="proj-title">HR Management System (Touchpoint HRMS)</h3>
               <p class="proj-desc">Purpose-built HRMS for floating BPO agents &mdash; payroll, leave management, and compliance with full ERP integration.</p>
@@ -350,7 +375,7 @@
               <span class="proj-cta">View details &rarr;</span>
             </div>
 
-            <div class="proj-card" data-proj="5" role="button" tabindex="0">
+            <div class="proj-card reveal-child" data-proj="5" role="button" tabindex="0">
               <span class="proj-tag">Analytics &middot; BI</span>
               <h3 class="proj-title">Business Intelligence Platform (Jx Data Cloud)</h3>
               <p class="proj-desc">Centralized data warehouse consolidating 7 operational sources. Real-time Power BI and Looker Studio dashboards with automated ETL.</p>
@@ -369,7 +394,7 @@
             <span class="work-company-period">Sep 2020 &ndash; Jul 2022</span>
           </div>
           <div class="proj-grid">
-            <div class="proj-card" data-proj="6" role="button" tabindex="0">
+            <div class="proj-card proj-card--lead reveal-child" data-proj="6" role="button" tabindex="0">
               <span class="proj-tag">Platform &middot; EdTech</span>
               <h3 class="proj-title">Passport &amp; PassportOS</h3>
               <p class="proj-desc">B2C and B2B platforms powering global entrepreneurship programs including Entrepreneurship World Cup. Served universities, banks, accelerators, and corporate incubators.</p>
@@ -388,7 +413,7 @@
             <span class="work-company-period">Jul 2017 &ndash; Sep 2020</span>
           </div>
           <div class="proj-grid">
-            <div class="proj-card" data-proj="7" role="button" tabindex="0">
+            <div class="proj-card proj-card--lead reveal-child" data-proj="7" role="button" tabindex="0">
               <span class="proj-tag">Content &middot; Platform</span>
               <h3 class="proj-title">Digital Content &amp; Publishing Platform</h3>
               <p class="proj-desc">Built content pipeline and publishing infrastructure from scratch. Structured creator incubation program with version control and distribution workflows.</p>
@@ -407,7 +432,7 @@
             <span class="work-company-period">Sep 2014 &ndash; Jun 2017</span>
           </div>
           <div class="proj-grid">
-            <div class="proj-card" data-proj="8" role="button" tabindex="0">
+            <div class="proj-card proj-card--lead reveal-child" data-proj="8" role="button" tabindex="0">
               <span class="proj-tag">Architecture &middot; PM</span>
               <h3 class="proj-title">Architectural Projects Portfolio</h3>
               <p class="proj-desc">Managed 40+ architectural and design projects across IT campuses, healthcare facilities, and institutional buildings. Introduced PM processes that cut delivery time by 25%.</p>
@@ -443,7 +468,7 @@
             <h3 class="projects-section__label">Case Studies</h3>
             <div class="cs-table">
 
-              <div class="cs-row" role="button" tabindex="0" data-cs="0">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="0">
                 <span class="cs-index">01</span>
                 <div class="cs-content">
                   <div class="cs-category">B2B SaaS &middot; AI &middot; Telegram Bot</div>
@@ -458,7 +483,7 @@
                 </div>
               </div>
 
-              <div class="cs-row" role="button" tabindex="0" data-cs="1">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="1">
                 <span class="cs-index">02</span>
                 <div class="cs-content">
                   <div class="cs-category">Quick Commerce &middot; Operations</div>
@@ -473,7 +498,7 @@
                 </div>
               </div>
 
-              <div class="cs-row" role="button" tabindex="0" data-cs="2">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="2">
                 <span class="cs-index">03</span>
                 <div class="cs-content">
                   <div class="cs-category">Consumer Platform &middot; Algorithm</div>
@@ -488,7 +513,7 @@
                 </div>
               </div>
 
-              <div class="cs-row" role="button" tabindex="0" data-cs="3">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="3">
                 <span class="cs-index">04</span>
                 <div class="cs-content">
                   <div class="cs-category">Consumer App &middot; AI</div>
@@ -503,7 +528,7 @@
                 </div>
               </div>
 
-              <div class="cs-row" role="button" tabindex="0" data-cs="4">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="4">
                 <span class="cs-index">05</span>
                 <div class="cs-content">
                   <div class="cs-category">Health Tech &middot; AI &middot; PWA</div>
@@ -545,82 +570,160 @@
 
           <div class="skills-grid">
 
-            <div class="skill-group">
+            <div class="skill-group reveal-child">
+              <span class="skill-group-num">01</span>
               <div class="skill-group-header">Product Management</div>
               <ul class="skill-list">
+                <li class="skill-top">Product Strategy</li>
+                <li class="skill-top">AI Product Management</li>
+                <li class="skill-top">Systems Thinking</li>
                 <li>Product Lifecycle Mgmt</li>
                 <li>Go-to-Market Strategy</li>
                 <li>Roadmap Development</li>
                 <li>Feature Prioritization</li>
-                <li>Product-Market Fit</li>
-                <li>UX Design</li>
                 <li>Agile / Scrum / Kanban</li>
                 <li>Stakeholder Management</li>
               </ul>
             </div>
 
-            <div class="skill-group">
+            <div class="skill-group reveal-child">
+              <span class="skill-group-num">02</span>
               <div class="skill-group-header">AI &amp; Automation</div>
               <ul class="skill-list">
-                <li>AI Strategy &amp; Implementation</li>
-                <li>Generative AI Integration</li>
+                <li class="skill-top">AI Strategy &amp; Implementation</li>
+                <li class="skill-top">Generative AI Integration</li>
+                <li class="skill-top">AI Agent Development</li>
                 <li>Autonomous Automation</li>
                 <li>MLOps</li>
-                <li>AI Agent Development</li>
                 <li>Workflow Optimization</li>
               </ul>
             </div>
 
-            <div class="skill-group">
+            <div class="skill-group reveal-child">
+              <span class="skill-group-num">03</span>
               <div class="skill-group-header">Analytics &amp; Data</div>
               <ul class="skill-list">
-                <li>SQL</li>
-                <li>Power BI</li>
+                <li class="skill-top">SQL</li>
+                <li class="skill-top">Power BI</li>
+                <li class="skill-top">Python</li>
                 <li>Looker Studio</li>
                 <li>Tableau</li>
                 <li>Google Analytics</li>
-                <li>Python</li>
                 <li>Excel (Advanced)</li>
               </ul>
             </div>
 
-            <div class="skill-group">
+            <div class="skill-group reveal-child">
+              <span class="skill-group-num">04</span>
               <div class="skill-group-header">No-Code / Low-Code</div>
               <ul class="skill-list">
-                <li>Airtable (Advanced)</li>
+                <li class="skill-top">Airtable (Advanced)</li>
+                <li class="skill-top">n8n</li>
+                <li class="skill-top">Make.com</li>
                 <li>Zapier</li>
                 <li>Power Automate</li>
-                <li>Make.com</li>
-                <li>n8n</li>
                 <li>Automation Anywhere</li>
               </ul>
             </div>
 
-            <div class="skill-group">
+            <div class="skill-group reveal-child">
+              <span class="skill-group-num">05</span>
               <div class="skill-group-header">Product Tools</div>
               <ul class="skill-list">
-                <li>Jira</li>
-                <li>Figma</li>
+                <li class="skill-top">Figma</li>
+                <li class="skill-top">Jira</li>
+                <li class="skill-top">Miro</li>
                 <li>Confluence</li>
-                <li>Miro</li>
                 <li>Balsamiq</li>
                 <li>Lucidchart</li>
               </ul>
             </div>
 
-            <div class="skill-group">
+            <div class="skill-group reveal-child">
+              <span class="skill-group-num">06</span>
               <div class="skill-group-header">Dev &amp; Integration</div>
               <ul class="skill-list">
-                <li>API Integration</li>
-                <li>RESTful Services</li>
+                <li class="skill-top">API Integration</li>
+                <li class="skill-top">RESTful Services</li>
+                <li class="skill-top">HTML / CSS / JS</li>
                 <li>Microservices</li>
-                <li>HTML / CSS / JS</li>
                 <li>JSON / XML</li>
               </ul>
             </div>
 
           </div>
         </div>
+      </section>
+    </div>
+
+    <!-- PHILOSOPHY / HOW I THINK -->
+    <div id="panel-philosophy" class="panel">
+      <section class="section section--navy blueprint-bg philosophy-wrap">
+
+        <div class="section-label section-label--dark">
+          <span class="section-label-line"></span>
+          <span class="section-label-text">05 &mdash; HOW I THINK</span>
+          <span class="section-label-rule section-label-rule--dark"></span>
+        </div>
+
+        <div class="philosophy-header">
+          <h2 class="philosophy-hed">
+            Systems over features.<br>
+            <em class="philosophy-hed-em">Always.</em>
+          </h2>
+          <p class="philosophy-subhed">
+            I approach product work the way an architect approaches a building &mdash;
+            first understand the forces acting on the system, then design the structure.
+            Features are load-bearing walls, not decoration.
+          </p>
+        </div>
+
+        <div class="principles-grid">
+
+          <div class="principle reveal-child">
+            <div class="principle-num">01</div>
+            <h3 class="principle-title">Systems Over Features</h3>
+            <p class="principle-body">Features are the visible 10%. The system underneath &mdash; data flow, decision rights, escalation paths &mdash; is the 90% that decides whether the feature ships value or noise.</p>
+          </div>
+
+          <div class="principle reveal-child">
+            <div class="principle-num">02</div>
+            <h3 class="principle-title">Compress Complexity, Don&rsquo;t Hide It</h3>
+            <p class="principle-body">Good products don&rsquo;t pretend the underlying problem is simple; they make complexity navigable. The best interfaces expose the right three of the fourteen edge cases &mdash; deliberately.</p>
+          </div>
+
+          <div class="principle reveal-child">
+            <div class="principle-num">03</div>
+            <h3 class="principle-title">AI Reduces Operational Entropy</h3>
+            <p class="principle-body">AI is most valuable where humans repeat structured judgment under fatigue: screening, triage, routing, summarisation. It earns its place when entropy goes down, not just when capability goes up.</p>
+          </div>
+
+          <div class="principle reveal-child">
+            <div class="principle-num">04</div>
+            <h3 class="principle-title">The Interface Is the Org Chart</h3>
+            <p class="principle-body">How a tool routes work tells you who has authority. Designing software is, quietly, designing organisational behaviour. Architects know this; product people often forget it.</p>
+          </div>
+
+          <div class="principle reveal-child">
+            <div class="principle-num">05</div>
+            <h3 class="principle-title">Workflows Reveal Culture</h3>
+            <p class="principle-body">You cannot understand a company&rsquo;s product priorities by reading its roadmap. You understand them by watching what its top-paid people actually do every day.</p>
+          </div>
+
+          <div class="principle reveal-child">
+            <div class="principle-num">06</div>
+            <h3 class="principle-title">Build for the 6 PM Manager</h3>
+            <p class="principle-body">Enterprise software is judged at peak load, not in demos. Every screen should answer one question someone needs at 6 PM on a Tuesday, under pressure, with no time to think.</p>
+          </div>
+
+          <div class="principle principle--accent reveal-child">
+            <div class="principle-num">07</div>
+            <h3 class="principle-title">Architecture Trains the Eye</h3>
+            <p class="principle-body">Five years of drawing buildings teaches that constraints are generative. Site, brief, code, budget &mdash; they don&rsquo;t limit the design, they <em>are</em> the design. Same rule in software.</p>
+          </div>
+
+        </div><!-- /.principles-grid -->
+
       </section>
     </div>
 
@@ -631,7 +734,7 @@
 
           <div class="section-label">
             <span class="section-label-line"></span>
-            <span class="section-label-text">05 &mdash; EDUCATION &amp; CREDENTIALS</span>
+            <span class="section-label-text">06 &mdash; EDUCATION &amp; CREDENTIALS</span>
             <span class="section-label-rule"></span>
           </div>
 
@@ -644,6 +747,8 @@
             </div>
             <div class="creds-certs">
               <div class="creds-overline">Certifications</div>
+
+              <div class="cert-year-sep">2025</div>
               <div class="cert-row">
                 <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div>
                 <span class="cert-year">2025</span>
@@ -656,6 +761,8 @@
                 <div><div class="cert-name">Essentials Automation Certification</div><div class="cert-issuer">Automation Anywhere</div></div>
                 <span class="cert-year">2025</span>
               </div>
+
+              <div class="cert-year-sep">2024</div>
               <div class="cert-row">
                 <div><div class="cert-name">Airtable Admin</div><div class="cert-issuer">Airtable</div></div>
                 <span class="cert-year">2024</span>
@@ -668,21 +775,27 @@
                 <div><div class="cert-name">Learning Power BI Desktop</div><div class="cert-issuer">LinkedIn Learning</div></div>
                 <span class="cert-year">2024</span>
               </div>
+
+              <div class="cert-year-sep">2023</div>
               <div class="cert-row">
                 <div><div class="cert-name">Lean Certification</div><div class="cert-issuer">JindalX</div></div>
                 <span class="cert-year">2023</span>
               </div>
-              <div class="cert-row">
-                <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">LinkedIn Learning</div></div>
-                <span class="cert-year"></span>
-              </div>
+
+              <div class="cert-year-sep">2020</div>
               <div class="cert-row">
                 <div><div class="cert-name">SQL for Data Analytics &amp; Business Intelligence</div><div class="cert-issuer">Udemy</div></div>
                 <span class="cert-year">2020</span>
               </div>
               <div class="cert-row">
-                <div><div class="cert-name">Applied Data Science with Python — Level 2</div><div class="cert-issuer">IBM</div></div>
+                <div><div class="cert-name">Applied Data Science with Python &mdash; Level 2</div><div class="cert-issuer">IBM</div></div>
                 <span class="cert-year">2020</span>
+              </div>
+
+              <div class="cert-year-sep">Ongoing</div>
+              <div class="cert-row">
+                <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">LinkedIn Learning</div></div>
+                <span class="cert-year"></span>
               </div>
               <div class="cert-row cert-row--last">
                 <div><div class="cert-name">Google Analytics Certified</div><div class="cert-issuer">Google</div></div>
@@ -697,30 +810,38 @@
 
     <!-- CONTACT -->
     <div id="panel-contact" class="panel">
-      <section class="section section--navy blueprint-bg contact-section">
+      <section class="section section--navy blueprint-bg contact-wrap-new">
 
-        <div class="section-inner section-inner--narrow contact-inner">
-
-          <div class="section-label section-label--dark">
-            <span class="section-label-line"></span>
-            <span class="section-label-text">06 &mdash; CONTACT</span>
-            <span class="section-label-rule section-label-rule--dark"></span>
-          </div>
-
-          <h2 class="contact-headline">Have a product<br>challenge to solve?</h2>
-          <p class="contact-sub">Whether it&rsquo;s an AI idea, a product strategy question, or you&rsquo;re looking for a senior PM &mdash; I&rsquo;m listening.</p>
-
-          <div class="contact-links">
-            <a href="mailto:ar.gaurav20@gmail.com" class="contact-email">ar.gaurav20@gmail.com</a>
-            <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="contact-linkedin">linkedin.com/in/ar-gaurav &rarr;</a>
-          </div>
-
-          <div class="footer-bar">
-            <span class="footer-logo">GG</span>
-            <span class="footer-copy">Gaurav Gupta &middot; Jaipur &middot; 2026</span>
-          </div>
-
+        <div class="section-label section-label--dark">
+          <span class="section-label-line"></span>
+          <span class="section-label-text">07 &mdash; CONTACT</span>
+          <span class="section-label-rule section-label-rule--dark"></span>
         </div>
+
+        <div class="contact--split">
+
+          <div class="contact-pane--text">
+            <h2 class="contact-headline">Have a product<br>challenge to solve?</h2>
+            <p class="contact-sub">Whether it&rsquo;s an AI idea, a product strategy question, or you&rsquo;re looking for a senior PM &mdash; I&rsquo;m listening.</p>
+
+            <div class="contact-links">
+              <a href="mailto:ar.gaurav20@gmail.com" class="contact-email">ar.gaurav20@gmail.com</a>
+              <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="contact-linkedin">linkedin.com/in/ar-gaurav &rarr;</a>
+            </div>
+
+            <div class="footer-bar">
+              <span class="footer-logo">GG</span>
+              <span class="footer-copy">Gaurav Gupta &middot; Jaipur &middot; 2026</span>
+            </div>
+          </div>
+
+          <div class="contact-pane--canvas">
+            <canvas id="contact-canvas" aria-hidden="true"></canvas>
+            <div class="canvas-system-label">SYSTEM STATE &middot; AVAILABLE</div>
+          </div>
+
+        </div><!-- /.contact--split -->
+
       </section>
     </div>
 
