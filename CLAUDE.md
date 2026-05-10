@@ -129,6 +129,8 @@ Each page uses case-study.css. "View Product →" link appears in header of each
   - **Resume download CTA** wired into Contact panel (`index.html` + `styles.css`) — terracotta rectangular button, `download` attribute, points to `assets/gaurav-gupta-resume-2026.pdf`
   - **Repo cleanup** done — `.ai-docs/` created (AGENTS.md, GEMINI.md, Design Analysis.txt, Changes_26 Apr.md, gemini_summary.md moved in); `.archive/` created (GauravG Portfolio/, Reference Files/ moved in); `Day 1.png` and `tabs.js` deleted (unreferenced)
   - **Content parity audit** complete — all 9 pages inventoried; Phase 1.6 gap-fill tasks written into PORTFOLIO_PLAN.md; top gaps: GitHub links missing on all 9 pages, dead product links on Founder CRM + Group Travel, wireframes missing on 5 pages
+  - **GenAI Mastermind credential removed** — cert row deleted from `index.html`, entry removed from `app.js` certData, 103 MB PDF deleted; pushed live
+- **Next session trigger:** Gaurav will say **"lets continue"** — resume Phase 1 content work in this order:
 - **Next session — Phase 1 content work:**
   1. **Priority 1:** Add GitHub links (or "Private — ask me" notes) to all 9 pages — highest recruiter credibility signal
   2. **Priority 2:** Fix dead product links — Founder CRM + Group Travel (create prototype or change button text); Vitae wireframes link
