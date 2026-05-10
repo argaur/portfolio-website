@@ -489,7 +489,7 @@
   var certData = {
     'rethink-mpm':      { name: 'Product Management (MPM) Cohort 7', issuer: 'Rethink AI', year: '2026', pdfUrl: 'assets/rethink-cert.pdf' },
     'rethink-buildathon': { name: 'Rethink Health Buildathon', issuer: 'Rethink AI', year: 'April 2026', pdfUrl: 'assets/rethink-cert.pdf' },
-    'genai':            { name: 'GenAI Mastermind', issuer: 'Community Program', year: '2025', pdfUrl: 'assets/certs/genai-mastermind.pdf' },
+
     'csm':              { name: 'Certified Scrum Master (CSM)', issuer: 'Scrum Alliance', year: '2025', pdfUrl: 'assets/certs/csm.pdf' },
     'cspo':             { name: 'Certified Scrum Product Owner (CSPO)', issuer: 'Scrum Alliance', year: '2025', pdfUrl: 'assets/certs/cspo.pdf' },
     'airtable-admin':   { name: 'Airtable Admin', issuer: 'Airtable', year: '2024', pdfUrl: 'assets/certs/airtable-admin.pdf' },
