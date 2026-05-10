@@ -23,85 +23,210 @@
         <header class="cs-hero">
             <span class="cs-label">Personal Project</span>
             <h1 class="cs-title">Telegram Personal Assistant Bot</h1>
-            <p class="cs-subtitle">An always-on personal automation bot running 24/7 on Oracle Cloud VM &mdash; keyword routing dispatches commands to modular handlers without a framework.</p>
+            <p class="cs-subtitle">A single Telegram message routes to any system &mdash; Gmail, Notion, Obsidian, Calendar, GitHub, Claude, and more. 28+ keyword commands and 5 daily cron automations running 24/7 on Oracle VM.</p>
             <div class="cs-meta-row">
                 <span class="cs-meta-tag">Python</span>
-                <span class="cs-meta-tag">Telegram Bot API</span>
-                <span class="cs-meta-tag">Oracle Cloud</span>
-                <span class="cs-meta-tag">systemd</span>
+                <span class="cs-meta-tag">Telegram</span>
+                <span class="cs-meta-tag">Claude Haiku</span>
+                <span class="cs-meta-tag">Notion API</span>
+                <span class="cs-meta-tag">Oracle VM</span>
+                <span class="cs-meta-tag">GitHub Actions</span>
             </div>
         </header>
 
         <div class="cs-page is-active">
 
             <section class="cs-section">
-                <span class="cs-section-label">Overview</span>
-                <h2 class="cs-section-title">What It Is</h2>
-                <p>A personal automation bot that runs continuously on an Oracle Cloud VM. It listens to incoming Telegram messages and dispatches them to different handlers based on keywords in the message. No framework, no third-party workflow engine &mdash; just a Python listener and a routing table.</p>
-                <p>The goal was a single, low-friction interface for personal automation tasks: capture an idea, log something to a note, trigger a script &mdash; all from Telegram without opening a browser or another app.</p>
+                <span class="cs-section-label">The Problem</span>
+                <h2 class="cs-section-title">Context-Switching Was the Tax</h2>
+                <p>Every personal workflow lived in a different app. Saving an idea meant opening Notion. Logging a thought meant opening Obsidian. Checking today's calendar meant opening Google Calendar. Writing a LinkedIn post meant opening a browser, a notes app, and an image tool in sequence.</p>
+                <p>The cost wasn&rsquo;t the tasks themselves &mdash; it was the friction of switching between 6+ apps to do anything meaningful. I needed one interface that could reach all of them.</p>
+
+                <div class="cs-stats-row">
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">28+</span>
+                        <span class="cs-stat-label">active commands</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">5</span>
+                        <span class="cs-stat-label">daily cron automations</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">10</span>
+                        <span class="cs-stat-label">integrated services</span>
+                    </div>
+                </div>
             </section>
 
             <section class="cs-section">
                 <span class="cs-section-label">Architecture</span>
-                <h2 class="cs-section-title">How It Works</h2>
-                <p>A single listener process runs as a <code>systemd</code> service on the VM. When a message arrives, the listener checks for registered keyword prefixes and routes to the appropriate handler module.</p>
+                <h2 class="cs-section-title">One Entry Point, Any System</h2>
+                <p>A single bot listener runs on Oracle VM (systemd, always-on). Every Telegram message goes through a keyword router in <code>bot/router.py</code>. Matched commands dispatch to typed handlers. Unmatched messages fall through to Claude Haiku &mdash; Tavily-grounded for factual queries.</p>
 
                 <div class="cs-callout">
-                    <p><strong>Design choice:</strong> One listener, many handlers. This keeps the entry point stable while making it easy to add or remove capabilities without touching the core routing logic.</p>
+                    <strong>Architecture flow:</strong>
+                    <pre style="margin:12px 0 0;font-size:12px;line-height:1.7;overflow-x:auto;">You &rarr; Telegram (mobile, anywhere)
+  &darr;
+Oracle VM &mdash; Bot Listener (systemd, always-on)
+  &darr;
+Keyword Router (bot/router.py)
+  &darr; no match
+Freetext catch-all &rarr; Claude Haiku (+ Tavily grounding)
+  &darr;
+Handler &rarr; GWS CLI / Claude API / Notion / Obsidian / GitHub / YouTube
+  &darr;
+Action executed + confirmation &rarr; Telegram</pre>
                 </div>
 
-                <h3>Routing Rules</h3>
+                <p>Google Workspace operations (Gmail, Calendar, Drive, Tasks, Contacts) run through GWS CLI as a subprocess using system Python &mdash; keeping its dependencies isolated from the bot&rsquo;s virtualenv. All async Telegram handlers wrap sync I/O with <code>asyncio.to_thread()</code>. State is tracked in <code>state.json</code> with filelock and atomic writes.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Commands</span>
+                <h2 class="cs-section-title">What It Does</h2>
+
+                <h3>Content &amp; LinkedIn Pipeline</h3>
                 <ul>
-                    <li><code>#idea</code> &mdash; captures the message and saves it to the Notion Post Ideas database</li>
-                    <li><code>#capture</code> &mdash; saves the message to the Obsidian vault (Google Drive sync)</li>
-                    <li>Additional routes are registered as new handlers are built</li>
+                    <li><code>#idea</code> &mdash; Run Idea Refiner &rarr; save to Notion Post Ideas DB</li>
+                    <li><code>#post</code> &mdash; Generate LinkedIn draft + DALL-E 3 cover image &rarr; Notion Posts DB</li>
+                    <li><code>#done</code> &mdash; Mark latest draft as published</li>
+                    <li><code>#scan</code> &mdash; Gmail newsletter digest, relevance-scored via Claude</li>
+                    <li><code>#jd [text or file]</code> &mdash; Generate interview prep guide from job description (.txt / .pdf / .docx)</li>
+                    <li>URL drop &mdash; Auto-summarise &rarr; Notion Saved Links DB (YouTube URLs get title + channel metadata)</li>
                 </ul>
 
-                <h3>Infrastructure</h3>
-                <div class="cs-stats-row">
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">24/7</span>
-                        <span class="cs-stat-label">uptime via systemd service</span>
-                    </div>
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">Oracle Cloud</span>
-                        <span class="cs-stat-label">free tier VM (Ubuntu 22.04)</span>
-                    </div>
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">cron</span>
-                        <span class="cs-stat-label">scheduled tasks alongside listener</span>
-                    </div>
+                <h3>Information Retrieval</h3>
+                <ul>
+                    <li><code>#links [N] [#tag]</code> &mdash; Retrieve saved links from Notion with optional count + tag filter</li>
+                    <li><code>#cal</code> / <code>#cal today</code> / <code>#cal week</code> &mdash; Google Calendar events (attendees enriched via Contacts)</li>
+                    <li><code>#drive [query]</code> &mdash; Search Google Drive files</li>
+                    <li><code>#drive recent</code> &mdash; Last 3 modified Drive files</li>
+                    <li><code>#gh</code> &mdash; Open PRs + recent commits (GitHub)</li>
+                    <li><code>#rss add &lt;url&gt; &lt;type&gt;</code> / <code>#rss list</code> &mdash; Manage RSS and Reddit feed sources</li>
+                </ul>
+
+                <h3>Task &amp; Personal Log</h3>
+                <ul>
+                    <li><code>#task &lt;project&gt; &lt;desc&gt;</code> &mdash; Add task to Notion Tasks DB + Obsidian</li>
+                    <li><code>#task done &lt;partial&gt;</code> / <code>#task list [project]</code> &mdash; Manage tasks</li>
+                    <li><code>#capture [text]</code> &mdash; Timestamped bullet &rarr; Obsidian Life Logs + Notion Captures DB</li>
+                    <li><code>#note [text]</code> &mdash; Daily note &rarr; Obsidian <code>Life Logs/Notes/YYYY-MM-DD.md</code></li>
+                    <li><code>#journal [text]</code> &mdash; Journal entry &rarr; Obsidian dated folder</li>
+                    <li><code>#think [text]</code> &mdash; Structured thinking with persistent memory (past decisions injected as context)</li>
+                    <li><code>#career &lt;entry&gt;</code> &mdash; Append dated entry to Obsidian career log</li>
+                </ul>
+
+                <h3>Utilities</h3>
+                <ul>
+                    <li><code>#reauth</code> &mdash; Re-authorise Google Workspace via device flow; no SSH required</li>
+                    <li><code>#status</code> &mdash; Bot service state and uptime</li>
+                    <li><code>/help</code> or <code>#help</code> &mdash; Dynamic command list</li>
+                    <li><em>Anything else</em> &mdash; Natural language &rarr; Claude Haiku (Tavily-grounded for factual queries)</li>
+                </ul>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Automations</span>
+                <h2 class="cs-section-title">5 Daily Cron Jobs</h2>
+                <p>Beyond on-demand commands, 5 scheduled jobs run automatically every day on the Oracle VM:</p>
+
+                <table class="cs-table">
+                    <thead>
+                        <tr><th>Time (IST)</th><th>Job</th><th>Output</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>06:30</td><td>GWS auth check</td><td>Telegram alert if token near expiry (2h warning before newsletter)</td></tr>
+                        <tr><td>08:00</td><td>Newsletter pipeline</td><td>Gmail &rarr; Obsidian &rarr; idea miner &rarr; Notion (silent)</td></tr>
+                        <tr><td>08:30</td><td>Morning brief</td><td>Telegram: calendar &middot; today&rsquo;s focus &middot; tasks &middot; GitHub &middot; news</td></tr>
+                        <tr><td>09:00</td><td>Content digest</td><td>Telegram: newsletters + RSS picks with relevance scores</td></tr>
+                        <tr><td>17:00</td><td>Evening LinkedIn post</td><td>Post generation from idea queue + DALL-E 3 cover image</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="cs-callout">
+                    <p>The newsletter &rarr; LinkedIn pipeline is fully automated end-to-end: Gmail newsletters land in Obsidian at 08:00, the idea miner scores and saves them to Notion, and the evening job picks from the queue to generate a post + cover image for review before publishing.</p>
                 </div>
             </section>
 
             <section class="cs-section">
                 <span class="cs-section-label">Integrations</span>
-                <h2 class="cs-section-title">Connected Systems</h2>
-                <p>The bot is part of a broader personal automation stack. It connects to the tools I already use daily, so capturing or triggering something requires only a single Telegram message.</p>
-                <ul>
-                    <li><strong>Notion:</strong> Post Ideas DB, Posts DB, Saved Links DB &mdash; structured capture for LinkedIn pipeline</li>
-                    <li><strong>Obsidian Vault:</strong> synced via Google Drive, used for unstructured notes and project pages</li>
-                </ul>
-                <p>Bot flow ideas and routing decisions are tracked in a dedicated Notion page to keep the routing table from growing uncontrolled.</p>
+                <h2 class="cs-section-title">10 Connected Services</h2>
+                <div class="cs-card-grid">
+                    <div class="cs-card">
+                        <h4>Notion</h4>
+                        <p>Post Ideas, Posts, Saved Links, Captures, Tasks, RSS DBs &mdash; REST API</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Obsidian</h4>
+                        <p>Newsletters, captures, notes, journal, career log, think log &mdash; rclone <code>gdrive:</code> remote</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Google Workspace</h4>
+                        <p>Gmail, Calendar, Drive, Tasks, Contacts &mdash; via GWS CLI subprocess</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Claude (Anthropic)</h4>
+                        <p>Post generation, <code>#think</code>, freetext responses, today&rsquo;s focus &mdash; SDK (sync)</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>OpenAI DALL-E 3</h4>
+                        <p>LinkedIn post cover image generation</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Tavily</h4>
+                        <p>Web search grounding for factual freetext queries and morning brief news</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>GitHub</h4>
+                        <p>Open PRs and recent commit history &mdash; REST API</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>YouTube Data API</h4>
+                        <p>Title and channel metadata extraction for YouTube URL drops</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Telegram</h4>
+                        <p>python-telegram-bot &mdash; async listener + message delivery</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>RSS / Reddit</h4>
+                        <p>Configurable feed sources managed via <code>#rss</code> commands, stored in Notion</p>
+                    </div>
+                </div>
             </section>
 
             <section class="cs-section">
-                <span class="cs-section-label">Stack</span>
-                <h2 class="cs-section-title">Tech Stack</h2>
-                <div class="cs-card-grid">
-                    <div class="cs-card">
-                        <h4>Runtime</h4>
-                        <p>Python &middot; Telegram Bot API &middot; Oracle Cloud VM &middot; Ubuntu 22.04</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Process Management</h4>
-                        <p>systemd service for listener &middot; cron for scheduled tasks &middot; SSH key auth for VM access</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Integrations</h4>
-                        <p>Notion API &middot; Obsidian (Google Drive sync) &middot; Gmail &middot; Google Calendar (via GWS CLI)</p>
-                    </div>
+                <span class="cs-section-label">Build Decisions</span>
+                <h2 class="cs-section-title">Key Technical Choices</h2>
+
+                <div class="cs-callout">
+                    <p><strong>GWS CLI as subprocess, not a library.</strong> Google Workspace operations run through GWS CLI using system Python 3 &mdash; not the bot&rsquo;s virtualenv. This keeps dependency graphs separate and avoids conflicts between Google API client libraries and the bot&rsquo;s async environment.</p>
                 </div>
+
+                <div class="cs-callout">
+                    <p><strong>Anthropic SDK is sync &mdash; never await it.</strong> All async Telegram handlers that call Claude wrap the sync calls with <code>asyncio.to_thread()</code>. This was a silent failure mode early on; the rule is now enforced throughout the codebase.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Atomic state writes with filelock.</strong> <code>state.json</code> tracks pipeline state (last newsletter read, last idea mine). Two cron jobs writing simultaneously caused corrupt state early in development. Every write now goes through <code>integrations/state.py</code> with a filelock and atomic rename.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>CI/CD via GitHub Actions.</strong> <code>git push origin main</code> triggers a workflow that deploys to Oracle VM in ~30 seconds. No manual SSH for deployments.</p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Status</span>
+                <h2 class="cs-section-title">Fully Operational</h2>
+                <p>All 28+ commands shipped and in daily use as of May 2026. The 5 cron automations have run without manual intervention since launch. One known limitation: GCP OAuth app in Testing mode caps token lifetime at 7 days &mdash; mitigated with the 06:30 auth-check alert and the <code>#reauth</code> device-flow instruction card.</p>
+
+                <h3>Decided Against</h3>
+                <ul>
+                    <li><strong>Spotify integration</strong> &mdash; requires Premium subscription; parked</li>
+                    <li><strong>Product launch feature</strong> &mdash; deferred; warrants a separate codebase</li>
+                    <li><strong>OpenClaw</strong> &mdash; OpenAI backing creates Claude compatibility risk; current bot covers all flows natively</li>
+                </ul>
             </section>
 
         </div>

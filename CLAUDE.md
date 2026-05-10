@@ -32,15 +32,16 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - Hash routing on load: `#experience` → `panel-experience`, etc.
 - Nav is solid `#0b1628` — no backdrop-filter, no border (matches hero exactly)
 - **Mobile nav**: hamburger button (`.nav-hamburger`) → full-screen overlay (`#nav-overlay`) with numbered Cormorant links, left-aligned with `padding-left: 10vw`; ESC or panel link closes it
-- 7 panels in order:
-  - **Home** (`panel-home`) — hero, blueprint grid, name, statement, single CTA "Get in touch →" → panel-contact
+- 8 panels in order:
+  - **Home** (`panel-home`) — hero split (text left + animated systems-map canvas right), stats strip, blueprint grid. New headline: "Designing systems across architecture, enterprise software, and AI."
   - **Experience** (`panel-experience`) — career arc bar + 4 accordion rows (entire row clickable)
-  - **Work** (`panel-work`) — 4 company groups, 9 total project cards, click → project detail modal
+  - **Work** (`panel-work`) — 4 company groups, 9 total project cards; first card per company is `.proj-card--lead` (full-width, terra left border); click → project detail modal. JindalX cards 0–5 open wide modal (760px) with 7-part narrative.
   - **Projects** (`panel-projects`) — two sections: "Case Studies" (5 rows) + "Personal Projects" (4 rows, JS-rendered); click → modal (problem + insight + stats + links + optional GitHub button)
-  - **Skills** (`panel-skills`) — navy + blueprint grid, 3-col skill groups
-  - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right), 11 cert rows
-  - **Contact** (`panel-contact`) — navy `#0b1628` + blueprint grid, headline, email + LinkedIn links, footer bar
-- URL hash routing: `#home`, `#experience`, `#work`, `#projects`, `#skills`, `#credentials`, `#contact`
+  - **Skills** (`panel-skills`) — navy + blueprint grid, 6 skill groups; top 3 per group highlighted (`.skill-top`); oversized group numbers (`.skill-group-num`)
+  - **Philosophy** (`panel-philosophy`) — navy + blueprint grid, 7 product principles in 4-col grid; principle 07 has terracotta accent background
+  - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right), 11 cert rows with `.cert-year-sep` dividers
+  - **Contact** (`panel-contact`) — navy + blueprint grid, split layout (text left / 4-node canvas right), email + LinkedIn, footer bar
+- URL hash routing: `#home`, `#experience`, `#work`, `#projects`, `#skills`, `#philosophy`, `#credentials`, `#contact`
 
 ## Tech constraints
 - Plain HTML + CSS + vanilla JavaScript ONLY
@@ -49,11 +50,11 @@ A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript
 - The site must work by simply opening index.html in a browser
 
 ## File structure
-- `index.html` — 7 panels + modal overlay + mobile nav overlay. No tabs, no scroll nav.
-- `styles.css` — Blueprint to Bits design system (~1,350 lines). Panel layout, all section styles, mobile responsive.
+- `index.html` — 8 panels + modal overlay + mobile nav overlay. No tabs, no scroll nav.
+- `styles.css` — Blueprint to Bits design system (~2,100 lines). Panel layout, hero split, philosophy grid, modal narrative, progressive reveal, canvas utilities, mobile responsive.
 - `tabs.js` — empty stub (replaced by panel nav in app.js)
 - `gate.js` — email gate logic (Supabase insert + localStorage bypass). Do not edit.
-- `app.js` — panel switching, mobile overlay nav, experience accordion, work project modal (9 projects), unified item modal (5 case studies + 4 personal projects); `personalProjects` array rendered into `#personal-projects-table`
+- `app.js` — panel switching + `panel:activate` CustomEvent, progressive reveal, mobile overlay nav, experience accordion, `initSystemsCanvas()` (12-node hero canvas), `initContactCanvas()` (4-node contact canvas), work project modal with 7-part narrative for JindalX projects, unified item modal (5 case studies + 4 personal projects); `personalProjects` array rendered into `#personal-projects-table`
 - `case-study.css` — Blueprint to Bits styles for all 5 case study pages; floating pagination pill
 - `favicon.svg` — geometric GG monogram (navy bg, white letterforms, terracotta crossbars)
 
@@ -122,27 +123,20 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** active
-- **Last session:** 2026-04-29
-- **What was done:**
-  - **Mobile responsive nav**: hamburger → full-screen overlay, numbered Cormorant links, left-aligned
-  - **Work panel expanded**: 4 company groups (JindalX · OneValley · Taccomacco · RSP), 9 total cards, header → "Products & Projects"
-  - **Case study pagination**: page-by-page view with floating frosted-glass pill (Prev/Next + counter), keyboard arrow support; bug fixed (script was above DOM, moved pagination HTML before script)
-  - **Graph-paper grid**: cream/white panels all have 120px grid at `rgba(0,0,0,0.06)` baked into `.section--cream` / `.section--white`
-  - **SVG architectural drawings removed**: hero and contact were tried with floor plan + user flow SVGs — user found them too noisy. Reverted to CSS grid only.
-  - **GG Logo**: geometric SVG monogram created as `favicon.svg` and inline nav logo (`.nav-logo`)
-  - **Hero cleanup**: removed "View Work" button; single CTA "Get in touch →" now routes to `panel-contact`
-  - **Nav**: solid `#0b1628`, no backdrop-filter, no border — matches hero exactly
-  - **Contact panel**: changed from `navy-mid #112240` → `navy #0b1628` (bookend symmetry with hero)
-  - **Credentials**: added 4 certs from LinkedIn (Airtable Admin, Airtable Builder, Power BI Desktop, Lean); fixed years/names; now 11 rows total
-  - **app.js**: renamed modal overlay var to `modalOverlay` (was `overlay`, clashed with nav overlay); projects[] extended to 9 objects
-  - **CSS fix**: `box-sizing: border-box` on `.section` fixed phantom scroll on panels
-  - **"Case Studies" → "Projects" panel** (2026-04-29): renamed nav + panel ID + hash to `#projects`; split into two sections ("Case Studies" × 5 + "Personal Projects" × 4 JS-rendered rows); added GitHub Repo button (terracotta ghost style, conditional on `githubUrl`); personal projects use `'#'` placeholder URLs; case study GitHub URLs all null pending repo audit
-- **Next candidates:**
-  - Fill in real GitHub repo URLs for personal projects once repos are confirmed public
-  - Add real GitHub repos to case studies once private/multi-repo situation is resolved
-  - Add real product links to CS01 (Founder CRM), CS03 (YouTube), CS04 (Group Travel) once products are live
-  - Vitae project: migrate to shared service account email (team decision pending)
-  - RAG chatbot (separate project, not in this repo)
-- **Blocker:** none
-- **Last updated:** 2026-04-29
+- **State:** active — Phase 0 complete; Phase 1 in progress
+- **Last session:** 2026-05-10
+- **What was done (this session):**
+  - **Resume download CTA** wired into Contact panel (`index.html` + `styles.css`) — terracotta rectangular button, `download` attribute, points to `assets/gaurav-gupta-resume-2026.pdf`
+  - **Repo cleanup** done — `.ai-docs/` created (AGENTS.md, GEMINI.md, Design Analysis.txt, Changes_26 Apr.md, gemini_summary.md moved in); `.archive/` created (GauravG Portfolio/, Reference Files/ moved in); `Day 1.png` and `tabs.js` deleted (unreferenced)
+  - **Content parity audit** complete — all 9 pages inventoried; Phase 1.6 gap-fill tasks written into PORTFOLIO_PLAN.md; top gaps: GitHub links missing on all 9 pages, dead product links on Founder CRM + Group Travel, wireframes missing on 5 pages
+- **Next session — Phase 1 content work:**
+  1. **Priority 1:** Add GitHub links (or "Private — ask me" notes) to all 9 pages — highest recruiter credibility signal
+  2. **Priority 2:** Fix dead product links — Founder CRM + Group Travel (create prototype or change button text); Vitae wireframes link
+  3. **Priority 3:** Complete 3 thin work modals (OneValley, Taccomacco, RSP) — see Phase 1.4 in PORTFOLIO_PLAN.md
+  4. **Priority 4:** Detailed PRDs for personal projects — see Phase 1.3 in PORTFOLIO_PLAN.md
+- **Remaining phases (see PORTFOLIO_PLAN.md):**
+  - Phase 1 remainder: GitHub links, dead links, work modals, detailed PRDs, Career History Obsidian doc, content parity gap fill (Phase 1.6)
+  - Phase 2: Profile photo; Contact → About/Bio panel; light/dark mode; timeline.html
+  - Phase 3: PWA; RAG Chatbot "Ask Gaurav"
+- **Still open:** photo.jpg headshot confirm; Oracle VM HTTPS status; portfolio domain; chatbot embedding model; testimonials; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending)
+- **Last updated:** 2026-05-10

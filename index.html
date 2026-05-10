@@ -145,7 +145,7 @@
           </div>
           <div class="hero-stat-sep"></div>
           <div class="hero-stat-socials">
-            <a href="https://www.linkedin.com/in/ar-gaurav-gupta/" target="_blank" rel="noopener" class="hero-social-link">LinkedIn &nearr;</a>
+            <a href="https://www.linkedin.com/in/ar-gaurav/" target="_blank" rel="noopener" class="hero-social-link">LinkedIn &nearr;</a>
             <a href="mailto:ar.gaurav20@gmail.com" class="hero-social-link">Email &nearr;</a>
           </div>
         </div>
@@ -464,16 +464,24 @@
             <p class="cs-sub">PM case studies and personal builds &mdash; from problem discovery through shipped product.</p>
           </div>
 
+          <div class="projects-filter" id="projects-filter">
+            <button class="pf-btn pf-btn--active" data-filter="all">All</button>
+            <button class="pf-btn" data-filter="prd">PRD</button>
+            <button class="pf-btn" data-filter="prototype">Prototype</button>
+            <button class="pf-btn" data-filter="shipped">Shipped</button>
+          </div>
+
           <div class="projects-section">
             <h3 class="projects-section__label">Case Studies</h3>
             <div class="cs-table">
 
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="0">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="0" data-stage="prd,prototype">
                 <span class="cs-index">01</span>
                 <div class="cs-content">
                   <div class="cs-category">B2B SaaS &middot; AI &middot; Telegram Bot</div>
                   <div class="cs-name">Founder&rsquo;s CRM &mdash; Conversation-First Sales Tool</div>
                   <div class="cs-problem">60&ndash;70% of founders abandon CRM within 4 weeks. WhatsApp forwards become structured deal data.</div>
+                  <span class="stage-badge">PRD &middot; Prototype</span>
                 </div>
                 <div class="cs-stats">
                   <span>39-page PRD</span>
@@ -483,12 +491,13 @@
                 </div>
               </div>
 
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="1">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="1" data-stage="prd,prototype,shipped">
                 <span class="cs-index">02</span>
                 <div class="cs-content">
                   <div class="cs-category">Quick Commerce &middot; Operations</div>
                   <div class="cs-name">Peak-Hour Decision Support for Blinkit Dark Stores</div>
                   <div class="cs-problem">Managers discover picker issues 3&ndash;7 minutes too late during the 6&ndash;10 PM peak window.</div>
+                  <span class="stage-badge stage-badge--shipped">PRD &middot; Prototype &middot; Shipped</span>
                 </div>
                 <div class="cs-stats">
                   <span>Working prototype</span>
@@ -498,12 +507,13 @@
                 </div>
               </div>
 
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="2">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="2" data-stage="prd,prototype">
                 <span class="cs-index">03</span>
                 <div class="cs-content">
                   <div class="cs-category">Consumer Platform &middot; Algorithm</div>
                   <div class="cs-name">YouTube 2.0 &mdash; Fixing Long-Form Discovery</div>
                   <div class="cs-problem">47% of users manually search every session. 29% of Gen Z sessions end without watching anything.</div>
+                  <span class="stage-badge">PRD &middot; Wireframes &middot; Prototype</span>
                 </div>
                 <div class="cs-stats">
                   <span>171 survey responses</span>
@@ -513,12 +523,13 @@
                 </div>
               </div>
 
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="3">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="3" data-stage="prd,prototype">
                 <span class="cs-index">04</span>
                 <div class="cs-content">
                   <div class="cs-category">Consumer App &middot; AI</div>
                   <div class="cs-name">Group Travel Planning Platform</div>
                   <div class="cs-problem">1&ndash;2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments surface mid-trip.</div>
+                  <span class="stage-badge">PRD &middot; Prototype</span>
                 </div>
                 <div class="cs-stats">
                   <span>6 user interviews</span>
@@ -528,12 +539,13 @@
                 </div>
               </div>
 
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="4">
+              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="4" data-stage="prd,shipped">
                 <span class="cs-index">05</span>
                 <div class="cs-content">
                   <div class="cs-category">Health Tech &middot; AI &middot; PWA</div>
                   <div class="cs-name">Vitae &mdash; Health Records, Finally Understood</div>
                   <div class="cs-problem">Indian families manage health via blurry WhatsApp prescription photos. &#8377;6,000+ crore lost to repeat tests.</div>
+                  <span class="stage-badge stage-badge--shipped">PRD &middot; Shipped</span>
                 </div>
                 <div class="cs-stats">
                   <span>Live product</span>
@@ -748,14 +760,28 @@
             <div class="creds-certs">
               <div class="creds-overline">Certifications</div>
 
-              <div class="cert-year-sep">2025</div>
-              <div class="cert-row">
-                <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div>
-                <span class="cert-year">2025</span>
+              <div class="cert-year-sep">2026</div>
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="rethink-mpm">
+                <div><div class="cert-name">Product Management (MPM) Cohort 7</div><div class="cert-issuer">Rethink AI</div></div>
+                <span class="cert-year">2026 &nearr;</span>
               </div>
-              <div class="cert-row">
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="rethink-buildathon">
+                <div><div class="cert-name">Rethink Health Buildathon</div><div class="cert-issuer">Rethink AI &middot; April 2026</div></div>
+                <span class="cert-year">2026 &nearr;</span>
+              </div>
+
+              <div class="cert-year-sep">2025</div>
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="genai">
+                <div><div class="cert-name">GenAI Mastermind</div><div class="cert-issuer">Community Program</div></div>
+                <span class="cert-year">2025 &nearr;</span>
+              </div>
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="csm">
+                <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div>
+                <span class="cert-year">2025 &nearr;</span>
+              </div>
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="cspo">
                 <div><div class="cert-name">Certified Scrum Product Owner (CSPO)</div><div class="cert-issuer">Scrum Alliance</div></div>
-                <span class="cert-year">2025</span>
+                <span class="cert-year">2025 &nearr;</span>
               </div>
               <div class="cert-row">
                 <div><div class="cert-name">Essentials Automation Certification</div><div class="cert-issuer">Automation Anywhere</div></div>
@@ -763,13 +789,13 @@
               </div>
 
               <div class="cert-year-sep">2024</div>
-              <div class="cert-row">
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="airtable-admin">
                 <div><div class="cert-name">Airtable Admin</div><div class="cert-issuer">Airtable</div></div>
-                <span class="cert-year">2024</span>
+                <span class="cert-year">2024 &nearr;</span>
               </div>
-              <div class="cert-row">
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="airtable-builder">
                 <div><div class="cert-name">Airtable Builder Certification</div><div class="cert-issuer">Airtable</div></div>
-                <span class="cert-year">2024</span>
+                <span class="cert-year">2024 &nearr;</span>
               </div>
               <div class="cert-row">
                 <div><div class="cert-name">Learning Power BI Desktop</div><div class="cert-issuer">LinkedIn Learning</div></div>
@@ -777,25 +803,25 @@
               </div>
 
               <div class="cert-year-sep">2023</div>
-              <div class="cert-row">
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="lean">
                 <div><div class="cert-name">Lean Certification</div><div class="cert-issuer">JindalX</div></div>
-                <span class="cert-year">2023</span>
+                <span class="cert-year">2023 &nearr;</span>
               </div>
 
               <div class="cert-year-sep">2020</div>
-              <div class="cert-row">
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="sql">
                 <div><div class="cert-name">SQL for Data Analytics &amp; Business Intelligence</div><div class="cert-issuer">Udemy</div></div>
-                <span class="cert-year">2020</span>
+                <span class="cert-year">2020 &nearr;</span>
               </div>
-              <div class="cert-row">
-                <div><div class="cert-name">Applied Data Science with Python &mdash; Level 2</div><div class="cert-issuer">IBM</div></div>
-                <span class="cert-year">2020</span>
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="data-science">
+                <div><div class="cert-name">Applied Data Science with Python &mdash; Level 2</div><div class="cert-issuer">IBM / Cognitive Class</div></div>
+                <span class="cert-year">2020 &nearr;</span>
               </div>
 
               <div class="cert-year-sep">Ongoing</div>
-              <div class="cert-row">
-                <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">LinkedIn Learning</div></div>
-                <span class="cert-year"></span>
+              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="pm-cert">
+                <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">Udemy</div></div>
+                <span class="cert-year">&nearr;</span>
               </div>
               <div class="cert-row cert-row--last">
                 <div><div class="cert-name">Google Analytics Certified</div><div class="cert-issuer">Google</div></div>
@@ -826,7 +852,8 @@
 
             <div class="contact-links">
               <a href="mailto:ar.gaurav20@gmail.com" class="contact-email">ar.gaurav20@gmail.com</a>
-              <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="contact-linkedin">linkedin.com/in/ar-gaurav &rarr;</a>
+              <a href="https://www.linkedin.com/in/ar-gaurav/" target="_blank" rel="noopener" class="contact-linkedin">linkedin.com/in/ar-gaurav &rarr;</a>
+              <a href="assets/gaurav-gupta-resume-2026.pdf" download="gaurav-gupta-resume-2026.pdf" class="contact-resume">Download Resume &darr;</a>
             </div>
 
             <div class="footer-bar">

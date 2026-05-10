@@ -22,87 +22,114 @@
 
         <header class="cs-hero">
             <span class="cs-label">Personal Project</span>
-            <h1 class="cs-title">Personal Homelab</h1>
-            <p class="cs-subtitle">A self-hosted Ubuntu 22.04 VM on Oracle Cloud free tier &mdash; running personal bots, automation scripts, and scheduled services 24/7 at zero cost.</p>
+            <h1 class="cs-title">Personal Homelab Server</h1>
+            <p class="cs-subtitle">10+ containerised services running on a dedicated Linux Mint server &mdash; monitoring, automation, secrets management, DNS filtering, and more. Zero cloud costs, full control.</p>
             <div class="cs-meta-row">
-                <span class="cs-meta-tag">Linux</span>
-                <span class="cs-meta-tag">Oracle Cloud</span>
-                <span class="cs-meta-tag">systemd</span>
-                <span class="cs-meta-tag">Ubuntu 22.04</span>
+                <span class="cs-meta-tag">Docker</span>
+                <span class="cs-meta-tag">Linux Mint</span>
+                <span class="cs-meta-tag">HashiCorp Vault</span>
+                <span class="cs-meta-tag">Ansible</span>
+                <span class="cs-meta-tag">Prometheus</span>
+                <span class="cs-meta-tag">n8n</span>
             </div>
         </header>
 
         <div class="cs-page is-active">
 
             <section class="cs-section">
-                <span class="cs-section-label">Setup</span>
-                <h2 class="cs-section-title">The Server</h2>
-                <p>The homelab runs on an Oracle Cloud always-free tier VM &mdash; Ubuntu 22.04 LTS. Oracle Cloud's free tier provides a persistent VM with a public IP at no cost, making it suitable as a personal server for automation and bots that need to run continuously.</p>
+                <span class="cs-section-label">The Problem</span>
+                <h2 class="cs-section-title">Why Self-Host?</h2>
+                <p>Cloud services charge per service, per seat, per API call. For a builder running multiple personal tools &mdash; automation pipelines, monitoring dashboards, DNS filtering, workflow engines &mdash; the costs compound fast. More importantly, cloud services mean vendor lock-in and data leaving your control.</p>
+                <p>The homelab solves this: a dedicated Linux Mint laptop running 24/7 as a local server, managed as code, with every service containerised and reproducible from scratch.</p>
 
                 <div class="cs-stats-row">
                     <div class="cs-stat">
-                        <span class="cs-stat-number">Oracle Cloud</span>
-                        <span class="cs-stat-label">Always Free tier VM</span>
+                        <span class="cs-stat-number">10+</span>
+                        <span class="cs-stat-label">Docker services running</span>
                     </div>
                     <div class="cs-stat">
-                        <span class="cs-stat-number">Ubuntu 22.04</span>
-                        <span class="cs-stat-label">LTS operating system</span>
+                        <span class="cs-stat-number">0</span>
+                        <span class="cs-stat-label">plaintext secrets anywhere</span>
                     </div>
                     <div class="cs-stat">
-                        <span class="cs-stat-number">SSH key auth</span>
-                        <span class="cs-stat-label">no password login</span>
+                        <span class="cs-stat-number">IaC</span>
+                        <span class="cs-stat-label">Git-driven, Ansible-provisioned</span>
                     </div>
                 </div>
             </section>
 
             <section class="cs-section">
-                <span class="cs-section-label">What Runs on It</span>
-                <h2 class="cs-section-title">Services</h2>
-                <p>The VM acts as the execution layer for personal automation projects. Each service runs as a <code>systemd</code> unit, ensuring automatic restart on failure and clean process management.</p>
+                <span class="cs-section-label">Architecture</span>
+                <h2 class="cs-section-title">What Runs on It</h2>
+                <p>Each service lives in its own <code>/stacks/</code> directory with a dedicated <code>docker-compose.yml</code>. Services are grouped by function &mdash; infrastructure layer, monitoring layer, automation layer. Nginx Proxy Manager handles routing; AdGuard Home handles DNS at the network level.</p>
 
-                <h3>Active Services</h3>
+                <h3>Infrastructure Layer</h3>
                 <ul>
-                    <li><strong>Telegram Personal Assistant Bot</strong> &mdash; single listener process, keyword routing, always-on</li>
-                    <li><strong>LinkedIn Post Automation</strong> &mdash; systemd + cron job for scheduled LinkedIn publishing pipeline</li>
+                    <li><strong>Portainer</strong> &mdash; Docker container management UI, visual overview of all running stacks</li>
+                    <li><strong>Nginx Proxy Manager</strong> &mdash; reverse proxy with SSL termination for local services</li>
+                    <li><strong>Homepage</strong> &mdash; unified dashboard (port 3333) showing all services at a glance</li>
+                    <li><strong>AdGuard Home</strong> &mdash; network-wide DNS filtering, local DNS resolver</li>
+                    <li><strong>HashiCorp Vault</strong> &mdash; secrets management; all credentials injected at runtime, none stored in files</li>
                 </ul>
 
-                <div class="cs-callout">
-                    <p><strong>Why systemd over a process manager like PM2?</strong> systemd is already on the OS, handles dependencies between services, integrates with the system journal for logging, and survives VM reboots without any additional setup.</p>
-                </div>
-
-                <h3>Process Management Pattern</h3>
+                <h3>Observability Layer</h3>
                 <ul>
-                    <li>Long-running listeners (Telegram bot) &rarr; <code>systemd</code> service with <code>Restart=always</code></li>
-                    <li>Scheduled jobs (LinkedIn automation) &rarr; <code>cron</code> or <code>systemd</code> timer</li>
-                    <li>One-off scripts &rarr; run manually over SSH</li>
+                    <li><strong>Prometheus</strong> &mdash; metrics scraping from all services</li>
+                    <li><strong>Grafana</strong> &mdash; dashboards for system health, service uptime, resource usage</li>
+                    <li><strong>Uptime Kuma</strong> &mdash; service status monitoring with alerting</li>
+                </ul>
+
+                <h3>Automation Layer</h3>
+                <ul>
+                    <li><strong>n8n</strong> &mdash; self-hosted workflow automation, integrations without API key exposure</li>
+                    <li><strong>Ansible Semaphore</strong> &mdash; web UI for running Ansible playbooks; used for provisioning and updates</li>
                 </ul>
             </section>
 
             <section class="cs-section">
-                <span class="cs-section-label">Access</span>
-                <h2 class="cs-section-title">Remote Access</h2>
-                <p>The VM is accessed exclusively via SSH with key-based authentication. Password login is disabled. The SSH key is stored locally and used directly from the terminal.</p>
+                <span class="cs-section-label">Build Decisions</span>
+                <h2 class="cs-section-title">Key Design Choices</h2>
 
                 <div class="cs-callout">
-                    <p>SSH key auth removes an entire class of brute-force attack surface. Combined with Oracle Cloud's default network security rules, the VM is accessible only over SSH on the standard port.</p>
+                    <p><strong>Why Docker over bare-metal installs?</strong> Each service is isolated, versioned, and replaceable. Rolling back a broken upgrade means pulling the previous image. Full server restore from scratch uses the same compose files &mdash; the state lives in git, not in the OS.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Why HashiCorp Vault for a personal homelab?</strong> Because the habit of zero plaintext secrets &mdash; everywhere, always &mdash; is worth building at home. Credentials are injected at container startup via Vault agent. No <code>.env</code> files with real secrets committed anywhere.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Why Ansible Semaphore?</strong> Ansible playbooks handle provisioning and service updates. Semaphore gives a UI to run them without needing to SSH in each time &mdash; and creates an audit trail of what ran when.</p>
                 </div>
             </section>
 
             <section class="cs-section">
                 <span class="cs-section-label">Stack</span>
-                <h2 class="cs-section-title">Tech Stack</h2>
+                <h2 class="cs-section-title">Full Tech Stack</h2>
                 <div class="cs-card-grid">
                     <div class="cs-card">
-                        <h4>Infrastructure</h4>
-                        <p>Oracle Cloud always-free VM &middot; Ubuntu 22.04 LTS &middot; public IP &middot; SSH key auth</p>
+                        <h4>Hardware</h4>
+                        <p>Dedicated Linux Mint laptop as server &middot; Windows 11 workstation (remote management via WSL2)</p>
                     </div>
                     <div class="cs-card">
-                        <h4>Process Management</h4>
-                        <p>systemd services &middot; cron for scheduled tasks &middot; systemd journal for logging</p>
+                        <h4>Containerisation</h4>
+                        <p>Docker &middot; Docker Compose stacks &middot; Portainer for management</p>
                     </div>
                     <div class="cs-card">
-                        <h4>Running On It</h4>
-                        <p>Python (Telegram bot, LinkedIn automation) &middot; Bash scripts</p>
+                        <h4>Security</h4>
+                        <p>HashiCorp Vault &middot; Nginx Proxy Manager (SSL) &middot; AdGuard Home (DNS)</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Observability</h4>
+                        <p>Prometheus &middot; Grafana &middot; Uptime Kuma</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Automation</h4>
+                        <p>n8n workflows &middot; Ansible Semaphore &middot; Git-driven IaC</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Access</h4>
+                        <p>Homepage dashboard &middot; SSH key auth &middot; Reverse proxy routing</p>
                     </div>
                 </div>
             </section>

@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitae — Buildathon Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #1d4ed8;
+    --primary-hover: #1e40af;
+    --accent: #9333ea;
+    --pink: #ec4899;
+    --teal: #006a66;
+    --surface: #f8f9ff;
+    --text-primary: #07071a;
+    --text-secondary: #16163a;
+    --text-muted: #3b3b62;
+    --border: rgba(168,85,247,0.13);
+    --white: #ffffff;
+  }
+
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #07071a; }
+
+  .deck { width: 100%; height: 100vh; position: relative; font-family: 'Manrope', sans-serif; }
+
+  /* ── Slides ── */
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 60px 80px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+    overflow: hidden;
+  }
+  .slide.active { opacity: 1; pointer-events: all; }
+
+  /* ── Backgrounds ── */
+  .bg-dark   { background: #07071a; color: #fff; }
+  .bg-light  { background: var(--surface); color: var(--text-primary); }
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, #07071a 0%, #0f0a2e 35%, #1d1054 65%, #2d0a5e 100%);
+    color: #fff;
+  }
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 50%, #9333ea 100%);
+    color: #fff;
+  }
+  .bg-gradient-teal {
+    background: linear-gradient(135deg, #004d49 0%, #006a66 50%, #0d9488 100%);
+    color: #fff;
+  }
+  .bg-gradient-pink {
+    background: linear-gradient(135deg, #831843 0%, #be185d 50%, #ec4899 100%);
+    color: #fff;
+  }
+
+  /* ── Noise overlay ── */
+  .bg-gradient-hero::before,
+  .bg-gradient-brand::before,
+  .bg-gradient-teal::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ── Orbs ── */
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.25; pointer-events: none;
+  }
+  .orb-blue  { background: #3b82f6; }
+  .orb-violet { background: #8b5cf6; }
+  .orb-pink  { background: #ec4899; }
+  .orb-teal  { background: #2dd4bf; }
+
+  /* ── Typography ── */
+  h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+  h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 700; }
+  p  { font-size: clamp(0.9rem, 1.5vw, 1.1rem); line-height: 1.7; }
+
+  .label {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 16px;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .gradient-text-warm {
+    background: linear-gradient(135deg, #34d399, #60a5fa, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Layout ── */
+  .slide-inner { position: relative; z-index: 2; width: 100%; max-width: 1100px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .four-col { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; }
+
+  /* ── Cards ── */
+  .card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px; padding: 28px; backdrop-filter: blur(10px);
+  }
+  .card-light {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; box-shadow: 0 4px 24px rgba(29,78,216,0.07);
+  }
+  .card-dark {
+    background: rgba(7,7,26,0.5); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 24px;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 100px;
+  }
+  .badge-built  { background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+  .badge-next   { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+  .badge-future { background: rgba(168,85,247,0.15); color: #a78bfa; border: 1px solid rgba(168,85,247,0.3); }
+  .badge-miss   { background: rgba(248,113,113,0.15); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+  .badge-blue   { background: rgba(96,165,250,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.3); }
+
+  /* ── Stat blocks ── */
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800; line-height: 1;
+  }
+  .stat-label { font-size: 0.85rem; opacity: 0.6; margin-top: 6px; }
+
+  /* ── Timeline / steps ── */
+  .steps { display: flex; gap: 0; width: 100%; }
+  .step {
+    flex: 1; position: relative; text-align: center;
+    padding: 0 12px;
+  }
+  .step::after {
+    content: ''; position: absolute;
+    top: 20px; left: calc(50% + 20px); right: calc(-50% + 20px);
+    height: 2px; background: rgba(255,255,255,0.15);
+  }
+  .step:last-child::after { display: none; }
+  .step-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 0.85rem;
+    margin: 0 auto 12px;
+  }
+  .step-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+  .step-desc  { font-size: 0.75rem; opacity: 0.6; line-height: 1.4; }
+
+  /* ── Feature rows ── */
+  .feature-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .feature-row:last-child { border-bottom: none; }
+  .feature-icon {
+    width: 36px; height: 36px; border-radius: 10px; shrink: 0; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(7,7,26,0.82); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 100px; padding: 10px 20px; z-index: 100;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  .nav button {
+    width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,255,255,0.12); color: #fff; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,0.25); }
+  .nav-counter {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 600;
+    color: rgba(255,255,255,0.75); min-width: 50px; text-align: center;
+  }
+
+  /* ── Progress bar ── */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+    transition: width 0.4s ease; z-index: 100;
+  }
+
+  /* ── Slide number ── */
+  .slide-num {
+    position: fixed; top: 20px; right: 28px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; font-weight: 600;
+    color: rgba(255,255,255,0.35); z-index: 100;
+  }
+
+  /* ── Pill tag ── */
+  .pill {
+    display: inline-block; font-size: 0.7rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 100px; margin: 3px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* ── Divider ── */
+  .divider { width: 48px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, #3b82f6, #8b5cf6); margin: 20px 0; }
+
+  /* ── Table ── */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5;
+    padding: 10px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .compare-table td {
+    padding: 12px 16px; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+    vertical-align: middle;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* ── Roadmap timeline ── */
+  .roadmap-lane { display: flex; flex-direction: column; gap: 12px; }
+  .roadmap-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border-radius: 12px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  }
+  .roadmap-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+  }
+
+  /* ── Persona card ── */
+  .persona {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 32px; text-align: center;
+  }
+  .persona-avatar {
+    width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center; font-size: 2rem;
+  }
+
+  /* ── Quote ── */
+  .quote {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-style: italic; font-weight: 500;
+    line-height: 1.6; opacity: 0.9;
+  }
+  .quote::before { content: '\201C'; }
+  .quote::after  { content: '\201D'; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .slide { padding: 40px 32px; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .three-col { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .four-col { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .steps { flex-wrap: wrap; }
+    .step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="slide-num" id="slideNum"></div>
+
+<div class="deck" id="deck">
+
+  <!-- ══ SLIDE 1: COVER ══ -->
+  <div class="slide bg-gradient-hero active">
+    <div class="orb orb-blue"  style="width:500px;height:500px;top:-100px;left:-150px;"></div>
+    <div class="orb orb-violet" style="width:400px;height:400px;bottom:-80px;right:-100px;"></div>
+    <div class="orb orb-pink"  style="width:200px;height:200px;bottom:100px;left:300px;opacity:0.15;"></div>
+    <div class="slide-inner" style="text-align:center;">
+      <div class="label" style="color:rgba(255,255,255,0.5);">April 2026 Buildathon &nbsp;·&nbsp; Rethink Health</div>
+      <h1 style="font-size:clamp(3.5rem,8vw,6.5rem);margin-bottom:16px;">
+        <span class="gradient-text">Vitae</span>
+      </h1>
+      <p style="font-size:clamp(1.3rem,2.8vw,2rem);opacity:0.9;max-width:700px;margin:0 auto 12px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">
+        Your health records, finally understood.
+      </p>
+      <p style="font-size:clamp(0.95rem,1.8vw,1.25rem);opacity:0.55;max-width:620px;margin:0 auto 32px;font-weight:400;">
+        Your family's prescriptions — understood, organised, and always with you.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center;">
+        <span class="pill">Next.js 16</span>
+        <span class="pill">Supabase</span>
+        <span class="pill">Gemma 4 26B OCR</span>
+        <span class="pill">Claude AI</span>
+        <span class="pill">PWA</span>
+        <span class="pill" style="background:rgba(52,211,153,0.15);border-color:rgba(52,211,153,0.3);color:#34d399;">No Signup needed to try</span>
+      </div>
+      <div style="margin-top:52px;">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;opacity:0.35;margin-bottom:16px;">Built by</p>
+        <div style="display:flex;gap:0;justify-content:center;flex-wrap:wrap;">
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Shardul Ayare</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Gaurav Gupta</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Preeti Singh</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Varun Malani</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Aashik Villa</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;">Palak Punjabi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 2a: THE PROBLEM — SCALE ══ -->
+  <div class="slide bg-dark">
+    <div class="orb orb-violet" style="width:350px;height:350px;top:-80px;right:-80px;opacity:0.2;"></div>
+    <div class="orb orb-pink" style="width:250px;height:250px;bottom:-60px;left:60px;opacity:0.12;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">The Problem</div>
+      <h2 style="margin-bottom:8px;">India's healthcare system was built for <span class="gradient-text">doctors.</span><br>Not for the families managing care at home.</h2>
+      <div class="divider"></div>
+      <div class="four-col" style="margin-top:40px;">
+        <div class="card" style="text-align:center;padding:24px 16px;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1;" class="gradient-text">1:1,000</div>
+          <p style="font-size:0.8rem;opacity:0.55;margin-top:8px;line-height:1.5;">Doctor-to-patient ratio in India — one of the worst globally</p>
+        </div>
+        <div class="card" style="text-align:center;padding:24px 16px;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1;" class="gradient-text">70%+</div>
+          <p style="font-size:0.8rem;opacity:0.55;margin-top:8px;line-height:1.5;">Indians with chronic conditions have no structured health record</p>
+        </div>
+        <div class="card" style="text-align:center;padding:24px 16px;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1;" class="gradient-text">3+</div>
+          <p style="font-size:0.8rem;opacity:0.55;margin-top:8px;line-height:1.5;">Specialists seen by the average chronic patient — records never follow</p>
+        </div>
+        <div class="card" style="text-align:center;padding:24px 16px;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1;" class="gradient-text">450M+</div>
+          <p style="font-size:0.8rem;opacity:0.55;margin-top:8px;line-height:1.5;">Family caregivers in India managing elderly parents' health</p>
+        </div>
+      </div>
+      <div style="margin-top:28px;padding:20px 28px;border-radius:14px;background:rgba(248,113,113,0.07);border:1px solid rgba(248,113,113,0.2);">
+        <p style="font-size:0.9rem;opacity:0.75;line-height:1.7;">
+          <strong style="opacity:1;color:#f87171;">₹6,000+ crore</strong> is lost annually to repeat diagnostic tests — ordered because the previous results were on a piece of paper that got lost between visits. The problem isn't access to healthcare. It's <em>continuity</em>.
+        </p>
+      </div>
+      <div style="margin-top:20px;display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;opacity:0.55;">
+          <span style="color:#f87171;">●</span> 80% of medical information is lost between appointments
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;opacity:0.55;">
+          <span style="color:#fbbf24;">●</span> Caregivers spend avg. 3+ hours/week managing family health admin
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;opacity:0.55;">
+          <span style="color:#a78bfa;">●</span> 9 in 10 patients cannot name all their active medications
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 2b: THE PROBLEM — HUMAN STORY ══ -->
+  <div class="slide bg-dark">
+    <div class="orb orb-violet" style="width:350px;height:350px;top:-80px;right:-80px;opacity:0.2;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">The Problem</div>
+      <h2 style="margin-bottom:12px;">This isn't abstract. <span class="gradient-text">This is every family's Sunday evening.</span></h2>
+      <div class="divider"></div>
+      <div class="two-col" style="margin-top:40px;">
+        <div>
+          <p style="font-size:1.15rem;opacity:0.8;line-height:1.9;margin-bottom:32px;">
+            Priya, 28, lives in Bangalore. Her father in Jaipur sees three specialists for diabetes, blood pressure, and cholesterol. After every visit, Papa sends her a blurry photo of a handwritten prescription across WhatsApp, Telegram, or email — wherever he remembers.
+          </p>
+          <div class="quote" style="font-size:1.1rem;opacity:0.65;border-left:3px solid #8b5cf6;padding-left:20px;font-style:italic;">
+            "I can't read the doctor's handwriting. I don't know what Atorvastatin does. And I have no way to share a clean summary with Papa's next doctor."
+          </div>
+          <p style="margin-top:16px;font-size:0.85rem;opacity:0.4;">— Priya, primary caregiver</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card" style="border-left:3px solid #f87171;">
+            <div style="font-size:1.4rem;margin-bottom:6px;">✍️</div>
+            <h3 style="font-size:0.95rem;margin-bottom:4px;">Illegible handwriting</h3>
+            <p style="font-size:0.82rem;opacity:0.6;">Doctor handwriting is notoriously difficult — even pharmacists struggle.</p>
+          </div>
+          <div class="card" style="border-left:3px solid #fbbf24;">
+            <div style="font-size:1.4rem;margin-bottom:6px;">🔬</div>
+            <h3 style="font-size:0.95rem;margin-bottom:4px;">Impenetrable jargon</h3>
+            <p style="font-size:0.82rem;opacity:0.6;">"Atorvastatin 10mg OD HS" means nothing to a non-medical family member.</p>
+          </div>
+          <div class="card" style="border-left:3px solid #a78bfa;">
+            <div style="font-size:1.4rem;margin-bottom:6px;">📱</div>
+            <h3 style="font-size:0.95rem;margin-bottom:4px;">Scattered across multiple platforms</h3>
+            <p style="font-size:0.82rem;opacity:0.6;">Paper slips, hospital portals, WhatsApp photos, camera rolls — no single source of truth.</p>
+          </div>
+          <div class="card" style="border-left:3px solid #34d399;">
+            <div style="font-size:1.4rem;margin-bottom:6px;">🔗</div>
+            <h3 style="font-size:0.95rem;margin-bottom:4px;">Broken continuity of care</h3>
+            <p style="font-size:0.82rem;opacity:0.6;">Prescriptions lost between visits. Doctors repeat tests. Families lose track.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 3: WHO WE BUILT FOR ══ -->
+  <div class="slide bg-gradient-hero">
+    <div class="orb orb-blue" style="width:400px;height:400px;top:-100px;left:-100px;"></div>
+    <div class="orb orb-pink" style="width:300px;height:300px;bottom:-60px;right:0;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">Who We Built For</div>
+      <h2 style="text-align:center;margin-bottom:48px;">Three people. One health ecosystem.</h2>
+      <div class="three-col">
+        <div class="persona">
+          <div class="persona-avatar" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);">👩‍💻</div>
+          <h3 style="margin-bottom:8px;font-size:1.1rem;">Priya, 28</h3>
+          <div class="badge badge-blue" style="margin-bottom:12px;">Primary User</div>
+          <p style="font-size:0.82rem;opacity:0.65;line-height:1.6;">Young adult caregiver. Manages parents' health remotely. Tech-savvy but not medically trained. Panics when Papa sends a new prescription on WhatsApp.</p>
+        </div>
+        <div class="persona">
+          <div class="persona-avatar" style="background:linear-gradient(135deg,#0d9488,#006a66);">👴</div>
+          <h3 style="margin-bottom:8px;font-size:1.1rem;">Papa, 60</h3>
+          <div class="badge badge-built" style="margin-bottom:12px;">Benefits Indirectly</div>
+          <p style="font-size:0.82rem;opacity:0.65;line-height:1.6;">3 specialists. Multiple medications. No digital health record. Gets organised medication summaries without needing to be tech-savvy.</p>
+        </div>
+        <div class="persona">
+          <div class="persona-avatar" style="background:linear-gradient(135deg,#7c3aed,#9333ea);">🩺</div>
+          <h3 style="margin-bottom:8px;font-size:1.1rem;">Dr. Sharma</h3>
+          <div class="badge badge-future" style="margin-bottom:12px;">Future User</div>
+          <p style="font-size:0.82rem;opacity:0.65;line-height:1.6;">Receives a structured patient summary instead of crumpled paper. Sees full medication history. Makes better clinical decisions.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:48px;">
+        <p style="opacity:0.5;font-size:0.85rem;">India has <strong style="opacity:1;color:#60a5fa;">1.4 billion people</strong> and growing demand for family-managed health records. The caregiver segment is largely ignored by existing health-tech.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 4: THE SOLUTION ══ -->
+  <div class="slide bg-gradient-brand">
+    <div class="orb orb-pink" style="width:400px;height:400px;bottom:-100px;right:-80px;opacity:0.3;"></div>
+    <div class="slide-inner" style="text-align:center;">
+      <div class="label" style="color:rgba(255,255,255,0.5);">The Solution</div>
+      <h1 style="margin-bottom:24px;">Confused to clear —<br><span style="opacity:0.85;">in 60 seconds.</span></h1>
+      <p style="font-size:1.3rem;opacity:0.85;max-width:680px;margin:0 auto 48px;font-weight:500;">
+        Vitae turns a blurry prescription photo into a plain-language family health record — in under 60 seconds, without creating an account.
+      </p>
+      <div class="three-col" style="max-width:900px;margin:0 auto;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">📸</div>
+          <h3 style="margin-bottom:8px;">Upload</h3>
+          <p style="font-size:0.82rem;opacity:0.7;">Photo, PDF, or text. Camera, gallery, or WhatsApp screenshot.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">🤖</div>
+          <h3 style="margin-bottom:8px;">Understand</h3>
+          <p style="font-size:0.82rem;opacity:0.7;">AI explains each medication — what it treats, how to take it, side effects.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.5rem;margin-bottom:16px;">👨‍👩‍👧</div>
+          <h3 style="margin-bottom:8px;">Organise</h3>
+          <p style="font-size:0.82rem;opacity:0.7;">Save to a family health hub. Track active medications. Spot lab alerts.</p>
+        </div>
+      </div>
+      <div style="margin-top:40px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;opacity:0.8;font-size:0.9rem;">
+          <span style="color:#34d399;font-size:1.1rem;">✓</span> No account to try
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;opacity:0.8;font-size:0.9rem;">
+          <span style="color:#34d399;font-size:1.1rem;">✓</span> Works on any phone
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;opacity:0.8;font-size:0.9rem;">
+          <span style="color:#34d399;font-size:1.1rem;">✓</span> Handles handwritten prescriptions
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;opacity:0.8;font-size:0.9rem;">
+          <span style="color:#34d399;font-size:1.1rem;">✓</span> Lab reports too
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 5: HOW IT WORKS ══ -->
+  <div class="slide bg-dark">
+    <div class="orb orb-teal" style="width:300px;height:300px;bottom:-60px;left:-60px;opacity:0.2;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">User Journey</div>
+      <h2 style="margin-bottom:8px;">Zero friction to full value — <span class="gradient-text">6 stages</span></h2>
+      <p style="opacity:0.5;font-size:0.9rem;margin-bottom:48px;">Auth is deferred until save. Full explanation delivered before asking for a single detail.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Discovery</div>
+          <div class="step-desc">Landing page. "Upload a Prescription" CTA. No login prompt.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Upload</div>
+          <div class="step-desc">Camera, PDF, gallery, or manual text. WhatsApp tip shown.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">OCR</div>
+          <div class="step-desc">Gemma 4 26B multimodal extracts fields with confidence scores.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Review</div>
+          <div class="step-desc">User confirms or corrects. Per-field confidence indicators.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-title">Explanation</div>
+          <div class="step-desc">Claude explains every medication. "Ask your doctor" list generated.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-title">Save &amp; Hub</div>
+          <div class="step-desc">Auth gate. Save to family profile. Active medications tracked.</div>
+        </div>
+      </div>
+      <div style="margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:2rem;">⚡</div>
+          <div>
+            <h3 style="font-size:0.95rem;margin-bottom:4px;">3–5 second OCR</h3>
+            <p style="font-size:0.8rem;opacity:0.6;">Gemma 4 26B on OpenRouter — real multimodal, 256K context</p>
+          </div>
+        </div>
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:2rem;">🔒</div>
+          <div>
+            <h3 style="font-size:0.95rem;margin-bottom:4px;">Value before login</h3>
+            <p style="font-size:0.8rem;opacity:0.6;">Full explanation shown anonymously. Auth only at "Save"</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px;text-align:center;">
+        <a href="https://vitae-health.vercel.app/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:100px;background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;color:#fff;text-decoration:none;transition:opacity 0.2s,transform 0.2s;" onmouseover="this.style.opacity='0.85';this.style.transform='scale(1.03)'" onmouseout="this.style.opacity='1';this.style.transform=''">
+          Try it now &nbsp;·&nbsp; vitae-health.vercel.app
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 8: TECH STACK ══ -->
+  <div class="slide bg-gradient-hero">
+    <div class="orb orb-blue"  style="width:350px;height:350px;top:-80px;left:-60px;"></div>
+    <div class="orb orb-violet" style="width:300px;height:300px;bottom:-60px;right:-40px;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">Technical Architecture</div>
+      <h2 style="margin-bottom:40px;">Production-grade stack. <span class="gradient-text">Shipped in 10 days.</span></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="font-size:1.6rem;">⚛️</span>
+            <div>
+              <h3 style="font-size:0.95rem;">Frontend</h3>
+              <p style="font-size:0.75rem;opacity:0.5;">Next.js 16.2 · React 19 · TypeScript strict</p>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;opacity:0.65;">App Router, Server Components, Server Actions, Tailwind CSS v4, PWA with service worker.</p>
+        </div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="font-size:1.6rem;">🗄️</span>
+            <div>
+              <h3 style="font-size:0.95rem;">Backend / Database</h3>
+              <p style="font-size:0.75rem;opacity:0.5;">Supabase · PostgreSQL · RLS</p>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;opacity:0.65;">Row-level security on every table. Email + Google OAuth. Supabase Storage for prescription files.</p>
+        </div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="font-size:1.6rem;">🔍</span>
+            <div>
+              <h3 style="font-size:0.95rem;">OCR Engine</h3>
+              <p style="font-size:0.75rem;opacity:0.5;">Gemma 4 26B · OpenRouter · 256K context</p>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;opacity:0.65;">Multimodal — reads handwritten prescriptions directly from images. Extracts doctor, date, medications, dosages with confidence scores.</p>
+        </div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="font-size:1.6rem;">🧠</span>
+            <div>
+              <h3 style="font-size:0.95rem;">AI Explanation</h3>
+              <p style="font-size:0.75rem;opacity:0.5;">Claude (Anthropic) · Free model pool</p>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;opacity:0.65;">Structured prescription data → plain-language explanation per medication. 429 fallback across free model pool.</p>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding:16px 24px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:16px;">
+        <span style="font-size:1.4rem;">🚀</span>
+        <p style="font-size:0.85rem;opacity:0.7;"><strong style="opacity:1;">Deployed on Vercel</strong> — auto-deploy from master branch. Live at <span style="color:#60a5fa;">health-assistant-snowy.vercel.app</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 9: AI FEATURES IN DEPTH ══ -->
+  <div class="slide bg-dark">
+    <div class="orb orb-pink" style="width:300px;height:300px;top:-60px;right:-60px;opacity:0.2;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">AI Layer</div>
+      <h2 style="margin-bottom:40px;">Two AI pipelines. <span class="gradient-text-warm">One seamless flow.</span></h2>
+      <div class="two-col">
+        <div>
+          <div style="padding:28px;border-radius:16px;background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(139,92,246,0.1));border:1px solid rgba(139,92,246,0.2);margin-bottom:20px;">
+            <h3 style="font-size:1rem;margin-bottom:16px;color:#a78bfa;">Pipeline 1 — OCR Extraction</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#60a5fa;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Gemma 4 26B reads prescription image directly (multimodal)</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#60a5fa;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Extracts: doctor name, date, medication names, dosage, frequency, duration</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#60a5fa;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Assigns confidence: high / low per field</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#60a5fa;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Same pipeline handles lab reports — extracts test values, units, reference ranges, flags abnormals</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding:28px;border-radius:16px;background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(139,92,246,0.08));border:1px solid rgba(236,72,153,0.2);">
+            <h3 style="font-size:1rem;margin-bottom:16px;color:#f472b6;">Pipeline 2 — Plain-Language Explanation</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#f472b6;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Claude takes structured prescription data, generates 4-dimension explanation per medication</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#f472b6;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Dimensions: treats · how to take · side effects · things to avoid</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#f472b6;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Generates "Things to tell your doctor" actionable list</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#f472b6;font-size:0.9rem;flex-shrink:0;">→</span>
+                <p style="font-size:0.82rem;opacity:0.75;">Explanation cached in DB — never re-generated on repeat visits</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card" style="flex:1;">
+            <h3 style="font-size:0.85rem;margin-bottom:8px;opacity:0.5;letter-spacing:0.06em;text-transform:uppercase;">Example Output</h3>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="padding:12px;border-radius:10px;background:rgba(255,255,255,0.04);">
+                <p style="font-size:0.75rem;opacity:0.45;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Metformin 500mg · BD</p>
+                <p style="font-size:0.85rem;opacity:0.9;margin-bottom:6px;"><strong>Treats:</strong> Type 2 diabetes — helps lower blood sugar after meals</p>
+                <p style="font-size:0.8rem;opacity:0.65;margin-bottom:4px;"><strong>How to take:</strong> With meals, morning and night</p>
+                <p style="font-size:0.8rem;opacity:0.65;margin-bottom:4px;"><strong>Side effects:</strong> Nausea (common, usually fades)</p>
+                <p style="font-size:0.8rem;opacity:0.65;"><strong>Avoid:</strong> Alcohol, heavy carbs in one sitting</p>
+              </div>
+              <div style="padding:12px;border-radius:10px;background:rgba(255,255,255,0.04);">
+                <p style="font-size:0.75rem;opacity:0.45;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Atorvastatin 10mg · OD HS</p>
+                <p style="font-size:0.85rem;opacity:0.9;margin-bottom:6px;"><strong>Treats:</strong> High cholesterol — reduces LDL ("bad") cholesterol</p>
+                <p style="font-size:0.8rem;opacity:0.65;margin-bottom:4px;"><strong>How to take:</strong> At bedtime with water</p>
+                <p style="font-size:0.8rem;opacity:0.65;margin-bottom:4px;"><strong>Side effects:</strong> Muscle aches (rare)</p>
+                <p style="font-size:0.8rem;opacity:0.65;"><strong>Avoid:</strong> Grapefruit juice</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 11: ROADMAP ══ -->
+  <div class="slide bg-dark">
+    <div class="orb orb-blue"  style="width:350px;height:350px;top:-80px;left:-60px;opacity:0.2;"></div>
+    <div class="orb orb-pink"  style="width:250px;height:250px;bottom:-40px;right:80px;opacity:0.15;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">Roadmap</div>
+      <h2 style="margin-bottom:40px;">MVP shipped. <span class="gradient-text">What comes next.</span></h2>
+      <div class="three-col">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#34d399;"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.85rem;color:#34d399;">Now — Post-Buildathon</span>
+          </div>
+          <div class="roadmap-lane">
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#34d399;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Shareable read-only links</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Public prescription view. WhatsApp virality loop.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#34d399;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Profile editing</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Name, DOB, photo. Onboarding flow.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#34d399;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Doctor PDF export</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Structured summary to hand at next visit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#fbbf24;"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.85rem;color:#fbbf24;">Q3 2026 — Growth</span>
+          </div>
+          <div class="roadmap-lane">
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#fbbf24;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Medication reminders</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Push notifications at medication times. Daily/weekly.  DB schema already built.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#fbbf24;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Hindi + regional languages</p>
+                <p style="font-size:0.75rem;opacity:0.55;">AI explanation in the caregiver's first language.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#fbbf24;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Lab trends over time</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Glucose, cholesterol, BP charted across uploads.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#a78bfa;"></div>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.85rem;color:#a78bfa;">Q4 2026 — Monetise</span>
+          </div>
+          <div class="roadmap-lane">
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#a78bfa;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Drug interaction checker</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Flag dangerous combinations across a family's medications.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#a78bfa;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Vitae Pro</p>
+                <p style="font-size:0.75rem;opacity:0.55;">Unlimited profiles, reminders, pharmacy integration, priority AI.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-dot" style="background:#a78bfa;"></div>
+              <div>
+                <p style="font-size:0.85rem;font-weight:600;margin-bottom:2px;">Pharmacy delivery bridge</p>
+                <p style="font-size:0.75rem;opacity:0.55;">One-tap order from prescription. B2B2C revenue.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 12: GTM ══ -->
+  <div class="slide bg-gradient-teal">
+    <div class="orb orb-blue" style="width:350px;height:350px;top:-80px;right:-60px;opacity:0.3;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.5);">Go-to-Market Strategy</div>
+      <h2 style="margin-bottom:40px;">Built-in virality. <span style="color:rgba(255,255,255,0.6);">Network grows with every share.</span></h2>
+      <div class="two-col">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card">
+            <h3 style="font-size:0.95rem;margin-bottom:8px;color:#5eead4;">Phase 1 — Acquisition</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">📱</span> WhatsApp-native sharing — every shared prescription link is an acquisition channel
+              </div>
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">🆓</span> Zero-friction trial — no email, no credit card, instant value
+              </div>
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">📢</span> Word-of-mouth in caregiver communities, RWAs, senior citizen groups
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:0.95rem;margin-bottom:8px;color:#5eead4;">Phase 2 — Activation</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">👨‍👩‍👧</span> Family Hub creates immediate switching cost — 2nd upload = sticky
+              </div>
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">📊</span> Lab trends and medication history grow value with each record
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:0.95rem;margin-bottom:8px;color:#5eead4;">Phase 3 — Revenue</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">💎</span> Vitae Pro: reminders, unlimited profiles, drug checker
+              </div>
+              <div style="display:flex;gap:8px;align-items:flex-start;font-size:0.82rem;opacity:0.8;">
+                <span style="flex-shrink:0;">🏥</span> B2B: hospital chains, diagnostic labs, pharmacy delivery
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <h3 style="font-size:0.85rem;margin-bottom:16px;opacity:0.6;letter-spacing:0.06em;text-transform:uppercase;">The Viral Loop</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.06);">
+                <span style="font-size:1.2rem;">📤</span>
+                <p style="font-size:0.82rem;opacity:0.8;">Caregiver shares prescription link via WhatsApp</p>
+              </div>
+              <div style="text-align:center;font-size:0.8rem;opacity:0.35;">↓</div>
+              <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.06);">
+                <span style="font-size:1.2rem;">👁️</span>
+                <p style="font-size:0.82rem;opacity:0.8;">Recipient (doctor, family, pharmacist) sees clean prescription summary</p>
+              </div>
+              <div style="text-align:center;font-size:0.8rem;opacity:0.35;">↓</div>
+              <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.06);">
+                <span style="font-size:1.2rem;">🔗</span>
+                <p style="font-size:0.82rem;opacity:0.8;">"Try Vitae for your own family" — acquisition hook in every shared link</p>
+              </div>
+              <div style="text-align:center;font-size:0.8rem;opacity:0.35;">↓</div>
+              <div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);">
+                <span style="font-size:1.2rem;">🔄</span>
+                <p style="font-size:0.82rem;opacity:0.9;font-weight:600;">New caregiver joins → uploads → shares → loop repeats</p>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;">
+            <div style="flex:1;padding:16px;border-radius:12px;background:rgba(255,255,255,0.07);text-align:center;">
+              <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:800;color:#5eead4;">TAM</div>
+              <p style="font-size:0.75rem;opacity:0.6;margin-top:4px;">450M+ family caregivers in India</p>
+            </div>
+            <div style="flex:1;padding:16px;border-radius:12px;background:rgba(255,255,255,0.07);text-align:center;">
+              <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:800;color:#5eead4;">K-factor</div>
+              <p style="font-size:0.75rem;opacity:0.6;margin-top:4px;">Every WhatsApp share = potential new user</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 13: METRICS ══ -->
+  <div class="slide bg-dark">
+    <div class="orb orb-violet" style="width:350px;height:350px;bottom:-80px;right:-60px;opacity:0.2;"></div>
+    <div class="slide-inner">
+      <div class="label" style="color:rgba(255,255,255,0.4);">Success Metrics</div>
+      <h2 style="margin-bottom:40px;">How we measure what matters.</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;opacity:0.4;margin-bottom:16px;">Acquisition</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">Anonymous → Explanation completion</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#60a5fa;">> 70%</span>
+            </div>
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">Explanation → Sign-up conversion</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#60a5fa;">> 40%</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;opacity:0.4;margin-bottom:16px;">Engagement</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">Avg. family profiles per account</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#a78bfa;">> 2.5</span>
+            </div>
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">D30 retention (uploaded 2nd prescription)</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#a78bfa;">> 35%</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;opacity:0.4;margin-bottom:16px;">Virality</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">Explanations shared (% of saves)</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#f472b6;">> 25%</span>
+            </div>
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">Shared links → new sign-up rate</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#f472b6;">> 15%</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;opacity:0.4;margin-bottom:16px;">Quality</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">OCR accuracy (user confirms without edit)</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#34d399;">> 80%</span>
+            </div>
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+              <span style="font-size:0.85rem;opacity:0.7;">Upload-to-explanation latency</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;color:#34d399;">< 10s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 14: CLOSING ══ -->
+  <div class="slide bg-gradient-hero">
+    <div class="orb orb-blue"  style="width:500px;height:500px;top:-120px;left:-150px;"></div>
+    <div class="orb orb-violet" style="width:400px;height:400px;bottom:-80px;right:-100px;"></div>
+    <div class="orb orb-pink"  style="width:200px;height:200px;top:150px;right:200px;opacity:0.2;"></div>
+    <div class="slide-inner" style="text-align:center;">
+      <div class="label" style="color:rgba(255,255,255,0.5);">April 2026 Buildathon &nbsp;·&nbsp; Rethink Health</div>
+      <h1 style="font-size:clamp(3.5rem,8vw,6.5rem);margin-bottom:16px;">
+        <span class="gradient-text">Vitae</span>
+      </h1>
+      <p style="font-size:clamp(1.3rem,2.8vw,2rem);opacity:0.9;max-width:700px;margin:0 auto 12px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">
+        Your health records, finally understood.
+      </p>
+      <p style="font-size:clamp(0.95rem,1.8vw,1.25rem);opacity:0.55;max-width:620px;margin:0 auto 40px;font-weight:400;">
+        Healthcare is a family problem. We built a family solution.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center;margin-bottom:52px;">
+        <span class="pill">Next.js 16</span>
+        <span class="pill">Supabase</span>
+        <span class="pill">Gemma 4 26B OCR</span>
+        <span class="pill">Claude AI</span>
+        <span class="pill">PWA</span>
+        <span class="pill" style="background:rgba(52,211,153,0.15);border-color:rgba(52,211,153,0.3);color:#34d399;">No Signup needed to try</span>
+      </div>
+      <div>
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;opacity:0.35;margin-bottom:16px;">Built by</p>
+        <div style="display:flex;gap:0;justify-content:center;flex-wrap:wrap;">
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Shardul Ayare</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Gaurav Gupta</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Preeti Singh</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Varun Malani</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;border-right:1px solid rgba(255,255,255,0.12);">Aashik Villa</span>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(0.8rem,1.4vw,1rem);font-weight:500;opacity:0.7;padding:6px 16px;">Palak Punjabi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Navigation ── -->
+<nav class="nav">
+  <button onclick="prevSlide()" title="Previous">‹</button>
+  <div class="nav-counter" id="navCounter">1 / 14</div>
+  <button onclick="nextSlide()" title="Next">›</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function go(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    document.getElementById('navCounter').textContent = `${current + 1} / ${total}`;
+    document.getElementById('slideNum').textContent = `${current + 1} / ${total}`;
+    document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
+  }
+
+  function nextSlide() { go(current + 1); }
+  function prevSlide() { go(current - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prevSlide(); }
+  });
+
+  // Touch swipe
+  let tx = 0;
+  document.addEventListener('touchstart', e => tx = e.touches[0].clientX);
+  document.addEventListener('touchend',   e => {
+    const dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) dx > 0 ? nextSlide() : prevSlide();
+  });
+
+  // Init
+  go(0);
+</script>
+</body>
+</html>

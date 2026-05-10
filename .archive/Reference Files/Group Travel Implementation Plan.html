@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Group Travel PWA — Implementation Plan</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+:root {
+  --bg: #0f172a; --surface: #1e293b; --surface2: #162032;
+  --indigo: #6366f1; --teal: #14b8a6; --amber: #f59e0b;
+  --red: #ef4444; --purple: #a855f7; --green: #22c55e;
+  --text: #f8fafc; --muted: #94a3b8; --line: rgba(255,255,255,0.07);
+  --radius: 14px; --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.65; }
+a { color: var(--indigo); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line); padding: 0 24px; display: flex; align-items: center; gap: 4px; overflow-x: auto; height: 52px; }
+nav a { color: var(--muted); font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 6px;
+  white-space: nowrap; transition: all 0.15s; }
+nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); text-decoration: none; }
+.nav-brand { color: var(--text) !important; font-weight: 700; font-size: 14px; margin-right: 12px; padding-left: 0 !important; }
+
+/* LAYOUT */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+.section { margin-bottom: 56px; }
+.section-header { margin-bottom: 24px; }
+.section-num { font-size: 12px; font-weight: 600; color: var(--indigo); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+h2 { font-size: 26px; font-weight: 700; color: var(--text); }
+h3 { font-size: 18px; font-weight: 600; color: var(--text); margin: 28px 0 12px; }
+h4 { font-size: 15px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+p { color: var(--muted); margin-bottom: 12px; }
+.lead { color: var(--text); font-size: 16px; line-height: 1.7; }
+
+/* CARD */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+.card-sm { background: var(--surface2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px; }
+
+/* GRID */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media(max-width:768px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* TABLE */
+.table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: var(--radius); border: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead tr { background: rgba(99,102,241,0.12); }
+thead th { padding: 12px 14px; text-align: left; font-weight: 600; color: var(--text); font-size: 13px; border-bottom: 1px solid var(--line); }
+tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
+tbody td { padding: 11px 14px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+tbody td:first-child { color: var(--text); font-weight: 500; }
+
+/* CODE */
+pre, code { font-family: 'JetBrains Mono', monospace; }
+pre { background: #0a0f1e; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 18px 20px; overflow-x: auto; font-size: 13px; color: #c4d4f0; line-height: 1.6; margin-bottom: 16px; }
+code { background: rgba(99,102,241,0.12); color: var(--indigo); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+/* PILLS */
+.pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.p0 { background: rgba(239,68,68,0.15); color: #fca5a5; }
+.p1 { background: rgba(245,158,11,0.15); color: #fcd34d; }
+.p2 { background: rgba(148,163,184,0.12); color: #94a3b8; }
+.v4 { background: rgba(168,85,247,0.15); color: #d8b4fe; }
+.pill-green { background: rgba(34,197,94,0.12); color: #86efac; }
+.pill-teal { background: rgba(20,184,166,0.12); color: #5eead4; }
+.pill-amber { background: rgba(245,158,11,0.12); color: #fcd34d; }
+.pill-red { background: rgba(239,68,68,0.12); color: #fca5a5; }
+
+/* SWATCH ROW */
+.swatches { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.swatch { border-radius: var(--radius-sm); padding: 12px 16px; font-size: 13px; font-weight: 500; min-width: 160px; }
+
+/* PAGE SPEC */
+.page-spec { border-left: 3px solid var(--indigo); padding-left: 16px; margin-bottom: 20px; }
+.page-spec .page-title { font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.page-spec .page-purpose { color: var(--teal); font-size: 13px; margin-bottom: 8px; }
+.page-spec .page-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 10px; margin-bottom: 3px; }
+.page-spec p, .page-spec ul { color: var(--muted); font-size: 14px; margin-bottom: 0; }
+.page-spec ul { padding-left: 18px; }
+.page-spec li { margin-bottom: 3px; }
+.page-spec .note { color: var(--amber); font-size: 13px; margin-top: 6px; }
+
+/* API GROUP */
+.api-group { margin-bottom: 24px; }
+.api-group h4 { color: var(--teal); }
+.api-row { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.api-row:last-child { border-bottom: none; }
+.method { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+.get { background: rgba(20,184,166,0.15); color: var(--teal); }
+.post { background: rgba(99,102,241,0.15); color: #818cf8; }
+.put { background: rgba(245,158,11,0.12); color: var(--amber); }
+.delete { background: rgba(239,68,68,0.12); color: var(--red); }
+.api-path { font-family: 'JetBrains Mono', monospace; color: var(--text); }
+.api-desc { color: var(--muted); margin-left: 8px; }
+
+/* RISK BADGE */
+.risk-h { color: #fca5a5; } .risk-m { color: #fcd34d; } .risk-l { color: #86efac; }
+.sev-c { color: #fca5a5; } .sev-h { color: #fcd34d; } .sev-m { color: var(--muted); }
+
+/* DIVIDER */
+hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+
+/* LOOP STEPS */
+.loop { display: flex; gap: 0; flex-wrap: wrap; margin: 16px 0; }
+.loop-step { background: var(--surface2); border: 1px solid var(--line); padding: 10px 16px; font-size: 13px; font-weight: 500; position: relative; }
+.loop-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--indigo); font-weight: 700; z-index: 1; }
+.loop-step:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.loop-step:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+@media(max-width:600px) { .loop { flex-direction: column; } .loop-step { border-radius: 0; } .loop-step::after { display: none; } }
+
+/* INLINE BADGE */
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+.badge-v1 { background: rgba(99,102,241,0.15); color: #818cf8; }
+.badge-v2 { background: rgba(245,158,11,0.12); color: #fcd34d; }
+.badge-v3 { background: rgba(20,184,166,0.12); color: #5eead4; }
+</style>
+</head>
+<body>
+<nav><span class="nav-brand">✈ Group Travel PWA</span><a href="#s1">01 Overview</a><a href="#s2">02 Design Language</a><a href="#s3">03 App Pages</a><a href="#s4">04 Features</a><a href="#s5">05 Architecture</a><a href="#s6">06 AI Layer</a><a href="#s7">07 API Design</a><a href="#s8">08 Sprint Plan</a><a href="#s9">09 Metrics</a><a href="#s10">10 Risk Register</a></nav>
+<div class="wrap">
+  <div style="padding:40px 0 32px">
+    <div style="font-size:12px;font-weight:600;color:var(--indigo);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">Rethink AI MPM Cohort 7 · Week 7 · April 2026</div>
+    <h1 style="font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.1;margin-bottom:12px">Group Travel Planning Platform<br><span style="color:var(--indigo)">Implementation Plan</span></h1>
+    <p style="color:var(--muted);max-width:700px;font-size:16px">Progressive Web App · Next.js 14 + FastAPI · Claude API · Neon PostgreSQL · Razorpay UPI</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      <span class="pill p0">V1 MVP — 6 Weeks</span>
+      <span class="pill p1">V2 AI Layer — +4 Weeks</span>
+      <span class="pill p2">V3 Intelligence — +8 Weeks</span>
+      <span class="pill v4">V4 Strategic</span>
+    </div>
+  </div>
+  <div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num">Section 01</div>
+    <h2>Product Overview</h2>
+  </div>
+  
+    <div class="card">
+      <p class="lead">Group travel planning is a $168.7 billion global market growing at 7.2% CAGR — faster than solo travel — yet the coordination layer that helps groups decide, plan, and execute trips together remains almost entirely unsolved. Today, groups stitch together 4–5 disconnected tools and one person absorbs the entire coordination burden.</p>
+      <p class="lead" style="margin-top:10px"><strong style="color:var(--indigo)">This platform</strong> is an AI-native group trip coordination PWA — from the first 'let's go!' message to final expense settlement — making it safe and frictionless to align on preferences before planning begins.</p>
+    </div>
+    <div class="loop" style="margin:24px 0"><div class="loop-step">Create</div><div class="loop-step">Align</div><div class="loop-step">Decide</div><div class="loop-step">Plan</div><div class="loop-step">Trip</div><div class="loop-step">Settle</div></div>
+    <h3>The Three Root Problems</h3><div class="table-wrap"><table><thead><tr><th>Root Problem</th><th>Core Pain</th><th>Impact</th></tr></thead><tbody><tr><td>Silent Budget Misalignment</td><td>Groups proxy budget via Airbnb price selection; mismatch surfaces mid-trip as resentment</td><td><span class="pill p0">Critical</span></td></tr><tr><td>The Organizer Tax</td><td>1-2 people absorb 80%+ of coordination load; organizer has the worst trip experience</td><td><span class="pill p0">Critical</span></td></tr><tr><td>No Single Source of Truth</td><td>Decisions scattered across WhatsApp, Docs, email, Splitwise, Notes; passive members disengage</td><td><span class="pill p0">Critical</span></td></tr></tbody></table></div>
+    <h3>Market Context</h3><div class="table-wrap"><table><thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Global Group Travel Market (2024)</td><td>$168.7 Billion</td><td>Growth Market Reports</td></tr><tr><td>Group Travel CAGR (2025–2033)</td><td>7.2% (outpacing solo travel)</td><td>Growth Market Reports</td></tr><tr><td>Projected Market (2033)</td><td>$314.7 Billion</td><td>APAC leading at 8.4% CAGR</td></tr><tr><td>India Travel & Tourism (2024)</td><td>$22.5 Billion</td><td>IMARC Group</td></tr><tr><td>India Travel Tech Funding Jump (2024)</td><td>$600M (+182% YoY)</td><td>Inc42</td></tr><tr><td>AI share of Travel-Tech VC (mid-2025)</td><td>45% (up from 10% in 2023)</td><td>Skift Research</td></tr></tbody></table></div>
+    <h3>Primary Persona</h3><div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Profile</th></tr></thead><tbody><tr><td>Name</td><td>Aarav Sharma</td></tr><tr><td>Age & Location</td><td>32, Tier 1 Indian city (Bangalore / Jaipur / Delhi) or Indian expat in the US</td></tr><tr><td>Life Stage</td><td>Recently married or young parent (child 0–5). Transitioning from spontaneous to planned group travel.</td></tr><tr><td>Occupation</td><td>Mid-senior professional (PM, SWE, Tech Manager). Comfortable with apps.</td></tr><tr><td>Travel Frequency</td><td>2–3 domestic trips/year; 1 international every 1–2 years. Group: 4–8 adults + kids.</td></tr><tr><td>Budget Behaviour</td><td>Has a clear private budget floor but won't state it openly. Uses indirect signals.</td></tr><tr><td>Top Goal</td><td>Whole group enjoys the trip — without it becoming a management project for one person.</td></tr><tr><td>Core Frustration</td><td>Silent misalignments (budget, food, activities) baked in before the trip starts.</td></tr></tbody></table></div>
+    
+</div><div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">Section 02</div>
+    <h2>Design Language</h2>
+  </div>
+  
+    <div class="card" style="border-color:rgba(245,158,11,0.3)">
+      <p style="color:var(--amber);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Deferred</p>
+      <p class="lead">Full design spec to be generated via <code>/frontend-design</code> skill at development start.</p>
+      <p style="margin-top:10px">Design decisions — color palette, typography, component language, landing page, dashboard layout — will be worked out collaboratively using the <code>/frontend-design</code> skill when V1 development begins. No design choices are pre-baked here to avoid generic AI-driven aesthetics.</p>
+    </div>
+    
+</div><div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">Section 03</div>
+    <h2>App Pages — 18 Screens</h2>
+  </div>
+  <div class="page-spec"><div class="page-title">P1. Landing Page<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PUBLIC</span></div><div class="page-purpose">Convert visitor to trip creator or joiner</div><div class="page-label">Key Components</div><p>Hero (headline + CTA), 3 feature highlight cards, How it works (6-step flow), social proof stat bar, footer</p><div class="page-label">Flow</div><p>CTA → Login/Signup</p></div>
+<div class="page-spec"><div class="page-title">P2. Join Trip (Invite Link)<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PUBLIC</span></div><div class="page-purpose">Zero-friction group joining via WhatsApp share link</div><div class="page-label">Key Components</div><p>Trip summary card (name, organizer, member count, destination if set), 'Join this trip' CTA, Google one-tap login</p><div class="page-label">Flow</div><p>Join → Preference Survey (first time) → Dashboard</p></div>
+<div class="page-spec"><div class="page-title">P3. Login / Signup<span class="pill pill-teal" style="font-size:11px;margin-left:8px">AUTH</span></div><div class="page-purpose">Authenticate with minimal friction</div><div class="page-label">Key Components</div><p>Google OAuth button, Phone number with WhatsApp OTP, 'Continue as guest' (view-only)</p><div class="note">PWA: Auth state persists via secure cookie (Auth.js session) on PWA install</div></div>
+<div class="page-spec"><div class="page-title">P4. Create Trip<span class="pill pill-teal" style="font-size:11px;margin-left:8px">ONBOARDING</span></div><div class="page-purpose">Initialize the group coordination workspace</div><div class="page-label">Key Components</div><p>Trip name input, rough destination (optional), approx date range picker (optional), trip type tag (leisure / adventure / family / office), group size estimate</p><div class="page-label">Flow</div><p>Create → Invite Members</p></div>
+<div class="page-spec"><div class="page-title">P5. Invite Members<span class="pill pill-teal" style="font-size:11px;margin-left:8px">ONBOARDING</span></div><div class="page-purpose">Get the group into the app via WhatsApp</div><div class="page-label">Key Components</div><p>Share link (copy button + WhatsApp deep link), preview of WhatsApp message text, member join status counter ('0 of N joined'), skip option</p><div class="note">PWA: Web Share API for native share sheet on mobile</div></div>
+<div class="page-spec"><div class="page-title">P6. Preference Survey<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PREFERENCE</span></div><div class="page-purpose">Collect group preferences without social awkwardness</div><div class="page-label">Key Components</div><p>Budget range slider (₹ per day, anonymous), dietary type multi-select (veg / non-veg / vegan / Jain / halal / no restriction), trip style selector (adventure / relaxed / cultural / party / mixed), mobility constraints (stroller / wheelchair / none), free-text special notes, anonymity reminder banner</p><div class="page-label">Flow</div><p>Submit → confirmation → Dashboard</p><div class="page-label">AI</div><p style="color:#a5b4fc">None in V1 — responses stored raw for synthesis</p></div>
+<div class="page-spec"><div class="page-title">P7. Preference Summary<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PREFERENCE</span></div><div class="page-purpose">Show group-level alignment without revealing who said what</div><div class="page-label">Key Components</div><p>Budget overlap bar (common range across all responses), dietary constraint union list, trip style donut chart, constraint flags ('2 members need kitchen access'), budget gap alert if spread > 40% (amber card), 'Start planning' CTA</p><div class="page-label">AI</div><p style="color:#a5b4fc">Claude synthesizes natural language summary: budget overlap, dietary needs, style distribution, gap flags. Fallback: rule-based aggregation (avg + union + mode)</p></div>
+<div class="page-spec"><div class="page-title">P8. Group Dashboard<span class="pill pill-teal" style="font-size:11px;margin-left:8px">CORE</span></div><div class="page-purpose">Single source of truth — everything in one screen</div><div class="page-label">Key Components</div><p>Trip header (name, dates, destination, member avatars), Decisions Pending section (amber), Trip stats card, Task board preview (top 3 tasks), Expense snapshot, Quick actions FAB (+ expense, + task, share itinerary)</p><div class="page-label">AI</div><p style="color:#a5b4fc">None — display only</p><div class="note">PWA: SSE EventSource connection; updates push within 3s (task complete, new member, new vote)</div></div>
+<div class="page-spec"><div class="page-title">P9. Destination Voting<span class="badge badge-v2">V2</span><span class="pill pill-teal" style="font-size:11px;margin-left:8px">DECISIONS</span></div><div class="page-purpose">Reach group consensus on destination without deadlock</div><div class="page-label">Key Components</div><p>AI-generated destination cards (2-3 options: name, cost/person, travel time, group fit highlights, MakeMyTrip link), voting buttons (thumbs up/neutral/down), live vote tally (visible after voting), deadline countdown, 'Remind others' nudge button</p><div class="page-label">AI</div><p style="color:#a5b4fc">Claude generates options from preference synthesis output. Prompt: group size, trip type, city, budget overlap, dietary constraints → 3 structured destination options</p></div>
+<div class="page-spec"><div class="page-title">P10. Date Coordination<span class="badge badge-v2">V2</span><span class="pill pill-teal" style="font-size:11px;margin-left:8px">DECISIONS</span></div><div class="page-purpose">Find dates that work for everyone</div><div class="page-label">Key Components</div><p>Calendar grid where each member marks available dates, overlap highlight (dates where all/most available), 'Set these dates' CTA for organizer, conflict view (who's unavailable for proposed dates)</p></div>
+<div class="page-spec"><div class="page-title">P11. Task Board<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PLANNING</span></div><div class="page-purpose">Distribute planning load across group members</div><div class="page-label">Key Components</div><p>Kanban columns (To Do / In Progress / Done), task cards (title, assignee avatar, category icon, due date, status pill), Add Task (+) button, Assign dropdown, completion progress bar ('5 of 12 tasks done'), per-task 'Remind [name]' nudge button. Categories: Flights / Accommodation / Food / Transport / Activities / Documents / Other</p></div>
+<div class="page-spec"><div class="page-title">P12. Itinerary Builder<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PLANNING</span></div><div class="page-purpose">Day-by-day shared trip plan — editable by all</div><div class="page-label">Key Components</div><p>Day tabs (Day 1, Day 2...), timeline per day (morning / afternoon / evening blocks), activity cards (title, location, time, cost estimate, notes, assignee), AI suggestion button, map pin view toggle, Export to PDF / Share link button</p><div class="page-label">AI</div><p style="color:#a5b4fc">Claude suggests activities for a given day + destination based on confirmed preferences and group constraints</p></div>
+<div class="page-spec"><div class="page-title">P13. Sub-Group Planner<span class="badge badge-v2">V2</span><span class="pill pill-teal" style="font-size:11px;margin-left:8px">PLANNING</span></div><div class="page-purpose">Plan parallel tracks within the group for divergent activities</div><div class="page-label">Key Components</div><p>'Split' toggle per day-block, Sub-group A / Sub-group B parallel timelines, reunion point marker (e.g., 'Dinner together at 7pm'), member assignment to sub-groups, WhatsApp-style sub-group chat deep link</p></div>
+<div class="page-spec"><div class="page-title">P14. Live Trip View<span class="pill pill-teal" style="font-size:11px;margin-left:8px">DURING TRIP</span></div><div class="page-purpose">Real-time reference during the trip — who, where, what</div><div class="page-label">Key Components</div><p>Today's itinerary (simplified clean view), opt-in group location sharing, emergency contacts card, 'I'm here' check-in button, floating action button for quick expense log, weather banner (current conditions)</p></div>
+<div class="page-spec"><div class="page-title">P15. Location AI Helper<span class="badge badge-v2">V2</span><span class="pill pill-teal" style="font-size:11px;margin-left:8px">DURING TRIP</span></div><div class="page-purpose">GPS-aware AI concierge providing real-time contextual help</div><div class="page-label">Key Components</div><p>Chat interface (ask anything about current location), proactive push cards (road conditions / eateries filtered by group dietary / ATMs / restrooms / petrol / medical), safety push alerts for 'Kid Friendly' or 'Female Group' trips near risky areas, ground truth stay rating (last 30 days reviews)</p><div class="page-label">AI</div><p style="color:#a5b4fc">Claude with tool use: get_weather(lat,lng), search_nearby_eateries(lat,lng,dietary_filter), get_road_conditions(route), search_local_forums(query,location). Safety trigger: trip tag + location risk DB → push notification via Web Push API</p></div>
+<div class="page-spec"><div class="page-title">P16. Expense Tracker<span class="pill pill-teal" style="font-size:11px;margin-left:8px">EXPENSES</span></div><div class="page-purpose">Log and split expenses without Splitwise fatigue</div><div class="page-label">Key Components</div><p>Add expense form (amount, category, paid by, split type: equal/custom/category-owner), expense list with category filter, running total per person, category ownership display (Person A = accommodation, Person B = food). Smart: auto-detect recurring patterns, suggest category ownership at trip start</p></div>
+<div class="page-spec"><div class="page-title">P17. Settlement Page<span class="pill pill-teal" style="font-size:11px;margin-left:8px">EXPENSES</span></div><div class="page-purpose">Close the trip cleanly — who owes whom</div><div class="page-label">Key Components</div><p>Net balance per member (owes / is owed), simplified debt graph (minimized transactions), UPI pay button via Razorpay, manual settlement mark ('I paid outside the app'), WhatsApp export button ('Send settlement summary to group'), Download PDF receipt</p></div>
+<div class="page-spec"><div class="page-title">P18. User Profile & Settings<span class="pill pill-teal" style="font-size:11px;margin-left:8px">PROFILE</span></div><div class="page-purpose">Manage personal preferences and trip history</div><div class="page-label">Key Components</div><p>Profile (name, phone, avatar), default dietary/mobility preferences (pre-fills future surveys), notification settings (push / WhatsApp), trip history list, saved preferences toggle</p></div>
+</div><div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">Section 04</div>
+    <h2>Feature Specifications</h2>
+  </div>
+  <h3>P0 — V1 MVP (Weeks 1–6)</h3><div class="table-wrap"><table><thead><tr><th>Feature</th><th>What It Does</th><th>Acceptance Criteria</th><th>Priority</th></tr></thead><tbody><tr><td>Anonymous Preference Polling</td><td>Budget range, dietary, trip style, constraints — per member, private</td><td>60% response rate within 48h; group summary visible without individual reveal</td><td><span class="pill p0">P0</span></td></tr><tr><td>Upfront Constraint Onboarding</td><td>Structured checklist at trip creation for all members</td><td>Completed before planning begins; dietary + mobility captured</td><td><span class="pill p0">P0</span></td></tr><tr><td>Planning Task Board</td><td>Assign sub-tasks to members; track completion; send push nudges</td><td>Organizer assigns 5 tasks to 5 members; all 5 receive push notification</td><td><span class="pill p0">P0</span></td></tr><tr><td>Single Group Dashboard</td><td>One screen: destination, dates, itinerary, budget, task status</td><td>All members see same state; SSE updates within 3s</td><td><span class="pill p0">P0</span></td></tr><tr><td>Basic Expense Tracking</td><td>Category pre-assignment; variable expense log; settlement calculation</td><td>Group settles all expenses in under 5 taps post-trip</td><td><span class="pill p0">P0</span></td></tr><tr><td>WhatsApp Invite Flow</td><td>Zero-friction group joining via Web Share API link</td><td>Group of 5 created + all joined via WhatsApp link in under 2 minutes</td><td><span class="pill p0">P0</span></td></tr></tbody></table></div><h3>P1 — V2 (Weeks 7–10 post-V1)</h3><div class="table-wrap"><table><thead><tr><th>Feature</th><th>What It Does</th><th>Version</th></tr></thead><tbody><tr><td>AI Trip Concierge</td><td>Claude generates 2-3 destination options matching preference synthesis; mediates group decisions without interpersonal tension</td><td><span class="badge badge-v2">V2</span></td></tr><tr><td>Passive Member Nudging</td><td>Push notifications with one-tap actions (vote, confirm preference) — no app-open required for basic inputs</td><td><span class="badge badge-v2">V2</span></td></tr><tr><td>Integrated Expense Tracking</td><td>Category-based pre-assignment; auto-calculate variable splits; one-tap UPI settlement via Razorpay</td><td><span class="badge badge-v2">V2</span></td></tr><tr><td>Sub-Group Itinerary Planning</td><td>Parallel day tracks with reunion points; each sub-group has own schedule</td><td><span class="badge badge-v2">V2</span></td></tr><tr><td>Date Coordination Tool</td><td>Calendar availability grid; overlap detection; organizer sets confirmed dates</td><td><span class="badge badge-v2">V2</span></td></tr></tbody></table></div><h3>P2 — V3 (Weeks 11–18 post-V1)</h3><div class="table-wrap"><table><thead><tr><th>Feature</th><th>What It Does</th><th>Source</th><th>Version</th></tr></thead><tbody><tr><td>Location AI Helper</td><td>GPS-aware Claude bot: road conditions, eateries by dietary filter, ATMs, safety alerts for Kid / Female-tagged trips</td><td>Tab 2 idea</td><td><span class="badge badge-v3">V3</span></td></tr><tr><td>Trip Optimizer</td><td>Anonymous individual profile → personalized solo-experience suggestions during sub-group time within the group trip</td><td>Tab 2 idea</td><td><span class="badge badge-v3">V3</span></td></tr><tr><td>Mountain / Off-Grid Advisories</td><td>Crowd-sourced road conditions, landslide alerts, network dead zones for Himalayan routes (data partnership required)</td><td>PRD P2</td><td><span class="badge badge-v3">V3</span></td></tr><tr><td>Ground Truth Hotel Scoring</td><td>Last-30-days reviews + local forum aggregation shown alongside star ratings</td><td>PRD P2</td><td><span class="badge badge-v3">V3</span></td></tr><tr><td>Kids-Friendly Filter Layer</td><td>Stroller-friendliness, kitchen access, kid menus, medical proximity overlaid on destination/stay search</td><td>PRD P2</td><td><span class="badge badge-v3">V3</span></td></tr></tbody></table></div><h3><span class='pill v4'>V4</span> Strategic</h3>
+    <div class="card-sm">
+      <ul style="color:var(--muted);font-size:14px;padding-left:20px">
+        <li>Platform accountability layer — service guarantees, refund workflows for bad stays</li>
+        <li>B2B corporate / MICE group travel (separate product line with compliance features)</li>
+        <li style="margin-top:8px"><strong style="color:var(--purple)">Revenue model:</strong> Freemium — free for groups ≤6 members. Pro plan (₹199/trip or ₹999/year) for larger groups + AI concierge + location helper + trip optimizer. Commission-free V1 to maximize adoption.</li>
+      </ul>
+    </div>
+    
+</div><div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">Section 05</div>
+    <h2>PWA Architecture</h2>
+  </div>
+  <h3>Tech Stack</h3><div class="table-wrap"><table><thead><tr><th>Layer</th><th>Technology</th><th>Why</th><th>Fallback</th></tr></thead><tbody><tr><td>Frontend</td><td>Next.js 14 + next-pwa (Workbox)</td><td>PWA installability; WhatsApp links open in browser = zero-friction invite; App Router; SSR for landing page SEO</td><td>Vite + React (if Next.js overhead too high for MVP)</td></tr><tr><td>Backend / API</td><td>FastAPI (Python)</td><td>Gaurav's comfort zone; async support; Claude API integration native; auto-generated OpenAPI docs</td><td>Node.js + Express</td></tr><tr><td>Database</td><td>PostgreSQL via Neon</td><td>Serverless scaling; generous free tier; relational model fits trip/task/expense; connection pooling via PgBouncer</td><td>PlanetScale MySQL</td></tr><tr><td>AI Layer</td><td>Claude API — claude-sonnet-4-6</td><td>Preference synthesis, destination suggestions, location helper, itinerary generation</td><td>OpenAI GPT-4o</td></tr><tr><td>Auth</td><td>Auth.js (OAuth)</td><td>Google OAuth + phone OTP; session via secure cookie; zero friction for Indian users</td><td>Clerk</td></tr><tr><td>Payments</td><td>Razorpay (UPI)</td><td>UPI-native for India; expense settlement flow; apply early (onboarding takes time)</td><td>Cashfree</td></tr><tr><td>Realtime</td><td>FastAPI SSE (Server-Sent Events)</td><td>Zero extra infra; built into FastAPI async; sufficient for dashboard push updates (task done, member joined, vote cast)</td><td>Ably free tier (3M msg/month) if SSE proves insufficient</td></tr><tr><td>Push Notifications</td><td>Web Push API + VAPID + pywebpush (FastAPI)</td><td>Browser-native; no FCM dependency; works on Android Chrome; limited on iOS < 16.4</td><td>WhatsApp nudge link as fallback</td></tr><tr><td>Hosting — Frontend</td><td>Vercel</td><td>Existing account; Next.js native; auto CDN; free hobby tier fine for MVP</td><td>Cloudflare Pages</td></tr><tr><td>Hosting — Backend</td><td>Railway</td><td>Existing account; simple FastAPI deploy; $5 free credit then ~$5/month</td><td>Render</td></tr><tr><td><strong style='color:var(--red)'>Excluded</strong></td><td>Supabase</td><td>Both free tier slots already used on active cohort projects</td><td>—</td></tr><tr><td><strong style='color:var(--red)'>Excluded</strong></td><td>React Native</td><td>PWA replaces it; WhatsApp invite links open in browser natively</td><td>—</td></tr></tbody></table></div><h3>PWA Capabilities</h3><div class="table-wrap"><table><thead><tr><th>PWA Capability</th><th>Implementation</th><th>Notes</th></tr></thead><tbody><tr><td>Installable</td><td>manifest.json: name, icons (192+512px), theme_color #0f172a, display: standalone</td><td>Chrome on Android prompts install banner after 2 visits</td></tr><tr><td>Offline</td><td>Workbox service worker: cache-first (static), network-first (API), stale-while-revalidate (trip data)</td><td>Trip dashboard + task list readable offline</td></tr><tr><td>Offline Actions Queue</td><td>IndexedDB queue: add expense, complete task, submit vote — syncs on reconnect via Background Sync API</td><td>Show 'queued' indicator on offline actions</td></tr><tr><td>Push Notifications</td><td>Web Push API + VAPID keys; FastAPI endpoint sends via pywebpush</td><td>iOS requires 16.4+ and PWA installed to home screen; fallback = WhatsApp</td></tr><tr><td>App Shell</td><td>Next.js App Router; shell cached on install; trip data fetched on demand</td><td>Perceived load < 1s on repeat visits</td></tr><tr><td>Share</td><td>Web Share API for invite links; falls back to clipboard copy</td><td>Native share sheet on Android/iOS</td></tr></tbody></table></div><h3>Data Model (PostgreSQL / Neon)</h3><pre>-- Core entities
+
+users           (id uuid PK, name text, phone text UNIQUE, email text, avatar_url text,
+                 default_dietary text[], default_mobility text, created_at timestamptz)
+
+trips           (id uuid PK, name text, destination text, start_date date, end_date date,
+                 status text, trip_type text, created_by uuid FK→users, created_at timestamptz)
+
+trip_members    (id uuid PK, trip_id uuid FK→trips, user_id uuid FK→users,
+                 role text CHECK(role IN ('organizer','member')), joined_at timestamptz)
+
+-- Preference layer
+
+preferences     (id uuid PK, trip_id uuid FK→trips, user_id uuid FK→users,
+                 budget_min int, budget_max int, dietary text[], trip_style text,
+                 constraints text[], notes text, is_anonymous bool DEFAULT true,
+                 submitted_at timestamptz)
+
+-- Planning
+
+tasks           (id uuid PK, trip_id uuid FK→trips, title text, category text,
+                 assigned_to uuid FK→users, status text, due_date date, created_by uuid)
+
+itinerary_days  (id uuid PK, trip_id uuid FK→trips, day_number int, date date)
+
+itinerary_items (id uuid PK, day_id uuid FK→itinerary_days, title text, location text,
+                 start_time time, end_time time, cost_estimate int, notes text,
+                 assigned_to uuid FK→users, sub_group text)
+
+-- Decisions
+
+vote_options    (id uuid PK, trip_id uuid FK→trips, vote_type text, title text,
+                 description text, ai_generated bool)
+
+votes           (id uuid PK, trip_id uuid FK→trips, vote_type text, user_id uuid,
+                 option_id uuid FK→vote_options, value text CHECK(value IN ('up','neutral','down')))
+
+-- Expenses
+
+expenses        (id uuid PK, trip_id uuid FK→trips, amount int, category text,
+                 paid_by uuid FK→users, split_type text, description text, created_at timestamptz)
+
+expense_splits  (id uuid PK, expense_id uuid FK→expenses,
+                 user_id uuid FK→users, amount_owed int, settled bool DEFAULT false)
+
+-- PWA
+
+push_subscriptions (id uuid PK, user_id uuid FK→users, endpoint text,
+                    keys_p256dh text, keys_auth text, created_at timestamptz)</pre><h3>Realtime Architecture (SSE)</h3><div class="card-sm">
+    <h4 style="margin-top:0;color:var(--teal)">SSE Realtime Events</h4>
+    <pre style="margin-bottom:0">GET /trips/{trip_id}/stream
+→ Content-Type: text/event-stream
+
+event: task_completed    data: {"task_id": "...", "title": "...", "completed_by": "..."}
+event: member_joined     data: {"user_id": "...", "name": "...", "joined_at": "..."}
+event: vote_cast         data: {"vote_type": "destination", "tally": {...}}
+event: expense_added     data: {"amount": 2500, "category": "food", "paid_by": "..."}
+event: preference_submitted  data: {"count_responded": 4, "count_total": 6}
+
+# Client (sse.ts): EventSource auto-reconnects on drop. Reconnect delay: 3s → 10s → 30s (backoff)</pre></div>
+</div><div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num">Section 06</div>
+    <h2>AI Layer Design</h2>
+  </div>
+  <h3>Overview</h3><p>The AI layer has 4 distinct features across V1–V3. All use Claude API (claude-sonnet-4-6). Each has a defined trigger, input, prompt structure, output format, and fallback.</p><div class="card-sm">
+    <h4 style="color:var(--indigo);margin-top:0">AI Feature 1 — Preference Synthesis <span class="badge badge-v1">V1 / P0</span></h4>
+    <p><strong>Trigger:</strong> All / majority of members complete preference survey</p>
+    <p><strong>Input:</strong> Aggregated anonymized survey responses (budget ranges, dietary types, trip styles, constraints)</p>
+    <p><strong>Claude Prompt:</strong></p>
+    <pre>"You are a group travel coordinator. Given these anonymous group preferences:
+Budget ranges: {ranges}
+Dietary types: {dietary}
+Trip styles: {styles}
+Constraints: {constraints}
+
+Summarize: what does the group agree on, flag significant gaps, suggest 2-3 broad trip directions.
+Be warm, concise, practical. Output: paragraph summary + JSON with keys:
+budget_overlap_range, dietary_union, style_distribution, gap_flags[]"</pre>
+    <p><strong>Output:</strong> Natural language paragraph + structured JSON displayed as visual summary cards</p>
+    <p><strong>Fallback:</strong> Rule-based aggregation (average budget, union of dietary constraints, mode of trip style) if Claude unavailable</p></div><div class="card-sm">
+    <h4 style="color:var(--indigo);margin-top:0">AI Feature 2 — Destination Suggestions <span class="badge badge-v2">V2 / P1</span></h4>
+    <p><strong>Trigger:</strong> Organizer clicks "Get AI destination suggestions" after preference synthesis</p>
+    <p><strong>Input:</strong> Preference synthesis output + trip type + group size + date range + origin city</p>
+    <p><strong>Claude Prompt:</strong></p>
+    <pre>"Based on this group's preferences: {synthesis_summary}
+Suggest 3 destination options for a {size}-person {trip_type} trip from {city} for {duration}.
+For each provide: name, why_it_fits_this_group, estimated_cost_per_person_inr,
+travel_time_from_origin, top_3_highlights[], watch_out_for.
+Format as JSON array."</pre>
+    <p><strong>Output:</strong> 3 destination cards rendered on Destination Voting page — each with vote buttons</p></div><div class="card-sm">
+    <h4 style="color:var(--indigo);margin-top:0">AI Feature 3 — Location Helper (GPS-aware) <span class="badge badge-v3">V3 / P2</span></h4>
+    <p><strong>Trigger:</strong> Active during trip (GPS permission granted); also proactive based on location changes</p>
+    <p><strong>Architecture:</strong> Claude with tool use (claude-sonnet-4-6 tool_use beta)</p>
+    <pre>Tools available to Claude:
+- get_weather(lat, lng)                        → current conditions + 24h forecast
+- search_nearby_eateries(lat, lng, dietary[])  → filtered by group dietary constraints
+- get_road_conditions(route_polyline)          → crowd-sourced alerts, landslide flags
+- find_nearest(lat, lng, category)             → ATM / petrol / medical / restroom
+- search_local_forums(query, location)         → travel forum snippets for ground truth</pre>
+    <p><strong>Safety alerts:</strong> If trip tagged 'Kid Friendly' or 'Female Group' AND location matches risk area DB → send Web Push notification immediately</p>
+    <p><strong>Personalization:</strong> Uses anonymous individual preference profiles from Trip Optimizer feature</p></div><div class="card-sm">
+    <h4 style="color:var(--indigo);margin-top:0">AI Feature 4 — Trip Optimizer (Individual Suggestions) <span class="badge badge-v3">V3 / P2</span></h4>
+    <p><strong>Origin:</strong> Tab 2 idea from PRD</p>
+    <p><strong>Concept:</strong> Each member has an anonymous individual preference profile (separate from group survey). Claude generates personalized "you might enjoy" suggestions for their sub-group time slots.</p>
+    <pre>Profile inputs (anonymous form, per-person, not shared with group):
+- Solo interests: food / culture / adventure / shopping / photography / nature
+- Energy level: slow-paced / moderate / high-energy
+- Budget flexibility: fixed / flexible
+- Hidden gem vs popular: prefers off-beat or iconic?
+
+Suggestions: solo experiences, local finds, divergent activities
+that match individual (not group) preferences.
+Shown only to that individual member.</pre>
+    <p><strong>Privacy:</strong> Individual suggestions never visible to other members. Profile stored anonymously (hashed user_id).</p></div>
+</div><div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num">Section 07</div>
+    <h2>API Design</h2>
+  </div>
+  <div class='card'><p>All endpoints prefixed with <code>/api/v1</code>. FastAPI auto-generates OpenAPI docs at <code>/docs</code>. Auth via Auth.js session cookie on all protected routes.</p></div><div class="api-group"><h4>Auth</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/auth/google</span><span class="api-desc">→ OAuth callback; create/update user; return session cookie</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/auth/phone</span><span class="api-desc">→ Initiate WhatsApp OTP for phone number</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/auth/verify-otp</span><span class="api-desc">→ Verify OTP; create Auth.js session</span></div></div></div><div class="api-group"><h4>Trips</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips</span><span class="api-desc">→ Create trip (name, destination?, dates?, trip_type, group_size_estimate)</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips</span><span class="api-desc">→ List user's trips (active + archived)</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}</span><span class="api-desc">→ Full trip detail</span></div><div class="api-row"><span class="method put">PUT</span><span class="api-path">/trips/{trip_id}</span><span class="api-desc">→ Update trip details</span></div><div class="api-row"><span class="method delete">DELETE</span><span class="api-path">/trips/{trip_id}</span><span class="api-desc">→ Archive trip (soft delete)</span></div></div></div><div class="api-group"><h4>Members</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/invite</span><span class="api-desc">→ Generate invite token + WhatsApp deep link</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/join</span><span class="api-desc">→ Join via invite token</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/members</span><span class="api-desc">→ List members with roles and join status</span></div></div></div><div class="api-group"><h4>Preferences</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/preferences</span><span class="api-desc">→ Submit anonymous preference survey</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/preferences/summary</span><span class="api-desc">→ Aggregated anonymized group summary</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/preferences/ai-synthesis</span><span class="api-desc">→ Claude-generated natural language synthesis</span></div></div></div><div class="api-group"><h4>Tasks</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/tasks</span><span class="api-desc">→ Create task (title, category, assigned_to, due_date)</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/tasks</span><span class="api-desc">→ List tasks (filter: status, assignee, category)</span></div><div class="api-row"><span class="method put">PUT</span><span class="api-path">/trips/{trip_id}/tasks/{task_id}</span><span class="api-desc">→ Update status / reassign</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/tasks/{task_id}/nudge</span><span class="api-desc">→ Send push notification to assignee</span></div></div></div><div class="api-group"><h4>Itinerary</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/itinerary</span><span class="api-desc">→ Full itinerary (all days + items)</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/itinerary/days/{day}/items</span><span class="api-desc">→ Add itinerary item to a day</span></div><div class="api-row"><span class="method put">PUT</span><span class="api-path">/trips/{trip_id}/itinerary/days/{day}/items/{item_id}</span><span class="api-desc">→ Update item</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/itinerary/ai-suggest</span><span class="api-desc">→ Claude generates day activity suggestions</span></div></div></div><div class="api-group"><h4>Votes</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/votes</span><span class="api-desc">→ Cast vote (vote_type, option_id, value: up|neutral|down)</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/votes/{vote_type}</span><span class="api-desc">→ Get vote tally for a vote type</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/vote-options/ai-generate</span><span class="api-desc">→ Claude generates destination vote options</span></div></div></div><div class="api-group"><h4>Expenses</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/trips/{trip_id}/expenses</span><span class="api-desc">→ Log expense (amount, category, paid_by, split_type)</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/expenses</span><span class="api-desc">→ List expenses (filter: category, date)</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/expenses/summary</span><span class="api-desc">→ Per-person totals</span></div><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/expenses/settlement</span><span class="api-desc">→ Net balances + Razorpay UPI payload</span></div></div></div><div class="api-group"><h4>Realtime</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method get">GET</span><span class="api-path">/trips/{trip_id}/stream</span><span class="api-desc">→ SSE stream — yields JSON events for dashboard live updates</span></div></div></div><div class="api-group"><h4>AI / Location</h4><div class="card-sm" style="padding:8px 16px"><div class="api-row"><span class="method post">POST</span><span class="api-path">/ai/location-helper</span><span class="api-desc">→ Claude location query (lat, lng, query, trip_context)</span></div><div class="api-row"><span class="method post">POST</span><span class="api-path">/ai/trip-optimizer</span><span class="api-desc">→ Individual suggestions (trip_id, anonymous_profile)</span></div></div></div>
+</div><div class="section" id="s8">
+  <div class="section-header">
+    <div class="section-num">Section 08</div>
+    <h2>Sprint Plan</h2>
+  </div>
+  <h3>V1 — MVP <span class="badge badge-v1">6 Weeks</span> — P0 features only</h3><div class="table-wrap"><table><thead><tr><th>Phase</th><th>Weeks</th><th>Deliverable</th><th>Test Gate</th><th>Key Risk</th><th>Fallback</th></tr></thead><tbody><tr><td>Foundation</td><td>1–2</td><td>Trip creation, WhatsApp invite flow, dashboard skeleton, Auth.js + Neon setup</td><td>5 people create + join trip via WhatsApp link in < 2 min</td><td>WhatsApp API rate limits</td><td>Generic share link + clipboard copy</td></tr><tr><td>Preference Layer</td><td>2–3</td><td>Anonymous survey form, AI synthesis (Claude), preference summary UI, budget gap alert</td><td>60%+ invited members complete survey; Claude synthesis displays correctly</td><td>Claude hallucination in synthesis</td><td>Rule-based aggregation fallback (avg + union + mode)</td></tr><tr><td>Planning Tools</td><td>3–4</td><td>Task board (Kanban), task assignment, push notifications, SSE live dashboard updates</td><td>Organizer assigns 5 tasks to 5 members; all 5 receive push notification within 10s</td><td>Push permission denied by users</td><td>In-app notification badge + WhatsApp fallback</td></tr><tr><td>Expense Layer</td><td>4–5</td><td>Category pre-assignment, variable expense logging, settlement calculation, Razorpay UPI button</td><td>Group settles all expenses in under 5 taps post-trip</td><td>Razorpay onboarding delay (apply early)</td><td>Export WhatsApp summary + manual UPI settlement</td></tr><tr><td>Polish + Launch</td><td>5–6</td><td>PWA manifest + Workbox service worker, offline mode, error states, onboarding flow, beta test</td><td>End-to-end: create → survey → tasks → settle; install as PWA on Android Chrome</td><td>Low beta engagement</td><td>Pre-load 2 sample trips to demo the flow</td></tr></tbody></table></div>
+    <h3>V2 — AI + Collaboration Layer <span class="badge badge-v2">Weeks 7–10 post-V1</span></h3><div class="card-sm"><ul style="color:var(--muted);font-size:14px;padding-left:20px">
+    <li>AI Trip Concierge — Claude destination suggestions from preference synthesis</li>
+    <li>Passive member nudging — one-tap WhatsApp actions (vote / confirm preference, no app open required)</li>
+    <li>Date coordination tool — availability grid, overlap detection</li>
+    <li>Sub-group itinerary planning — parallel tracks with reunion points</li>
+    <li>Integrated expense tracking upgrade — auto-split categories, UPI settlement in-app</li></ul></div>
+    <h3>V3 — Intelligence + Scale <span class="badge badge-v3">Weeks 11–18 post-V1</span></h3><div class="card-sm"><ul style="color:var(--muted);font-size:14px;padding-left:20px">
+    <li>Location AI Helper — GPS + Claude tool use (road conditions, eateries, safety alerts)</li>
+    <li>Trip Optimizer — anonymous individual profiles → personalized solo-experience suggestions</li>
+    <li>Mountain / off-grid advisories — crowd-sourced data partnership</li>
+    <li>Ground truth hotel scoring — last-30-days review aggregation</li>
+    <li>Kids-friendly filter layer — stroller, kitchen, medical proximity overlay</li></ul></div>
+    <h3><span class="pill v4">V4</span> Strategic</h3><div class="card-sm"><ul style="color:var(--muted);font-size:14px;padding-left:20px">
+    <li>Platform accountability + service guarantees + refund workflows</li>
+    <li>B2B corporate / MICE group travel (separate product line, compliance features)</li>
+    <li><strong style="color:var(--purple)">Revenue:</strong> Freemium — free for groups ≤6 members. Pro plan ₹199/trip or ₹999/year for larger groups + all AI features.</li></ul></div>
+</div><div class="section" id="s9">
+  <div class="section-header">
+    <div class="section-num">Section 09</div>
+    <h2>Success Metrics</h2>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>Metric</th><th>Stage</th><th>V1 Target</th><th>Why It Matters</th></tr></thead><tbody><tr><td>Survey completion rate</td><td>Activation</td><td>60% of invited members within 48h</td><td>Core thesis: removing social friction changes group planning behavior</td></tr><tr><td>Planning sessions per trip</td><td>Engagement</td><td>3+ sessions per trip (50% of trips)</td><td>Platform becomes default coordination tool, not one-time use</td></tr><tr><td>Destination decision velocity</td><td>Decision</td><td>40% of trips decide destination within 7 days</td><td>Addresses the 'planning inactivity death zone' identified in research</td></tr><tr><td>Organizer NPS</td><td>Experience</td><td>NPS > 40 (organizer specifically)</td><td>If organizer experience improves, product solves the right problem</td></tr><tr><td>Expense settlement rate</td><td>Completion</td><td>60% of trips settle in-app within 7 days post-trip</td><td>Validates integrated tracking over Splitwise</td></tr><tr><td>PWA install rate</td><td>Adoption</td><td>30% of active users install PWA to home screen</td><td>Installed app = higher retention; measures product stickiness</td></tr><tr><td>North Star</td><td>Outcome</td><td>0 silent misalignment conflicts surfacing mid-trip (post-trip survey)</td><td>The ultimate outcome this product is designed to prevent</td></tr></tbody></table></div>
+</div><div class="section" id="s10">
+  <div class="section-header">
+    <div class="section-num">Section 10</div>
+    <h2>Risk Register</h2>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>Risk</th><th>Likelihood</th><th>Severity</th><th>Mitigation</th><th>Fallback</th></tr></thead><tbody><tr><td>Passive members don't complete preference survey</td><td><span class="risk-h">High</span></td><td><span class="sev-c">Critical</span></td><td>One-tap WhatsApp response link; social proof counter ('4 of 6 responded')</td><td>Show partial synthesis to motivate remaining members</td></tr><tr><td>Organizer skips app, uses WhatsApp anyway</td><td><span class="risk-h">High</span></td><td><span class="sev-h">High</span></td><td>First WhatsApp share message = deep link into app flow; app adds structure from that entry point</td><td>Accept WhatsApp as entry; product adds value immediately</td></tr><tr><td>AI preference synthesis feels off or weird to users</td><td><span class="risk-m">Medium</span></td><td><span class="sev-h">High</span></td><td>Show confidence levels on output; allow organizer to override; frame Claude as 'assistant, not decider'</td><td>Fallback to bar charts + rule-based distribution (avg/union/mode)</td></tr><tr><td>Budget misalignment still surfaces despite anonymous poll</td><td><span class="risk-m">Medium</span></td><td><span class="sev-m">Medium</span></td><td>Budget gap alert if spread > 40%; prompt group discussion before destination selection</td><td>Manual override: organizer sets group budget ceiling</td></tr><tr><td>Razorpay onboarding delays MVP</td><td><span class="risk-l">Low</span></td><td><span class="sev-m">Medium</span></td><td>Apply for Razorpay account early in Week 1 of development</td><td>V1 ships without in-app UPI; WhatsApp export for manual settlement</td></tr><tr><td>PWA push notifications blocked on iOS < 16.4</td><td><span class="risk-m">Medium</span></td><td>Low</td><td>Detect iOS version; show in-app notification badge + banner instead</td><td>WhatsApp nudge links as primary notification channel for iOS</td></tr><tr><td>Neon cold start latency on first API call</td><td><span class="risk-l">Low</span></td><td>Low</td><td>PgBouncer connection pooling; keep-alive ping every 5 minutes</td><td>Acceptable for MVP; optimize in V2 with connection pre-warming</td></tr></tbody></table></div>
+</div>
+</div>
+</body>
+</html>

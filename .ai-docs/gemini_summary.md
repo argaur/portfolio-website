@@ -1,7 +1,9 @@
 # Portfolio Website — Current State Summary
-*Last updated: 2026-04-29*
+*Last updated: 2026-05-10*
 
-This document reflects the portfolio as it stands after the 2026-04-26 session. Use this as the reference for future Claude/Gemini sessions.
+> **⚠️ NOTE FOR AI SESSIONS:** A full master improvement plan exists at `PORTFOLIO_PLAN.md` in this directory. Read it before starting any implementation work. It contains the current audit findings, phased task list, and 7 open questions that need resolving.
+
+This document reflects the portfolio as it stands after the 2026-05-08 design overhaul. Use this as the reference for future Claude/Gemini sessions.
 
 ---
 
@@ -10,7 +12,7 @@ This document reflects the portfolio as it stands after the 2026-04-26 session. 
 ### Pages
 | File | Purpose |
 |------|---------|
-| `index.html` | Main portfolio — 7 panels, panel-based SPA, single modal overlay, mobile nav overlay |
+| `index.html` | Main portfolio — **8 panels**, panel-based SPA, single modal overlay, mobile nav overlay |
 | `case-study-founder-crm.html` | CS01 — Founder's CRM (6 pages) |
 | `case-study-blinkit.html` | CS02 — Blinkit Dark Store (5 pages) |
 | `case-study-youtube.html` | CS03 — YouTube 2.0 (4 pages) |
@@ -227,15 +229,24 @@ CSS: `.cs-pagination` is `position: fixed; bottom: 28px; left: 50%; transform: t
 
 ---
 
-## 8. Known Issues / Debt
+## 8. Known Issues / Debt (as of 2026-05-10)
 
 | Item | Severity | Notes |
 |------|---------|-------|
-| Product links for CS01, CS03, CS04 are `#` | Medium | Update once products are deployed |
-| Vitae on personal Vercel account | Low | Team discussing migration to shared account |
-| "Google Analytics Certified — Google" not in LinkedIn export | Low | Verify it's still valid; remove if expired |
-| "Product Management Professional Certificate — LinkedIn Learning" not in LinkedIn export | Low | Verify it's a real cert (not just course completion) |
-| Minor mobile polish issues noted | Low | User said "looks decent, fix later" — no specific tickets yet |
+| 7 broken `href="#"` links on live site | High | 4 personal project GitHub URLs + 3 case study "View Product" buttons |
+| Missing Rethink AI MPM Cohort 7 credential | High | Referenced in 2 case studies but not in Credentials panel |
+| No resume download CTA | High | PDF exists at `Reference Files/Gaurav Gupta - SPM_10YE_Jan26.pdf` |
+| LinkedIn URL inconsistency | Medium | Hero uses `/ar-gaurav-gupta/`, contact uses `/ar-gaurav` |
+| Credentials rows not clickable | Medium | No verification links or badge images |
+| OneValley, Taccomacco, RSP work modals are thin | Medium | Only JindalX cards (0–5) have 7-part narratives |
+| No profile photo or biography | Medium | `photo.jpg` exists in root (1.6MB, unused) |
+| No PWA (manifest/service worker) | Low | Ironic given Vitae is marketed as PWA |
+| No light/dark mode | Low | CSS vars are set up for it; toggle not implemented |
+| `tabs.js` is 64-byte stub | Low | Probably safe to remove |
+| `GauravG Portfolio/` (old React stubs) in root | Low | Dead code from prior implementation |
+| Stale copy: "7 panel SPA" in personalProjects | Low | Should be "8 panel SPA" |
+
+> **Full plan:** See `PORTFOLIO_PLAN.md` for the complete 20-task phased roadmap with effort estimates and open questions.
 
 ---
 
@@ -258,31 +269,40 @@ CSS: `.cs-pagination` is `position: fixed; bottom: 28px; left: 50%; transform: t
 - **Graph-paper grid**: baked into all cream/white panels
 - **SVG drawings**: tried floor plan + user flow on hero/contact, removed after user found them too noisy
 - **GG Logo**: geometric SVG monogram in nav + favicon.svg
-- **Hero**: removed "View Work" CTA, single "Get in touch →" → panel-contact
 - **Nav**: solid `#0b1628`, no backdrop-filter
-- **Contact panel**: changed to `#0b1628` (matches hero)
-- **Credentials**: added 4 missing certs from LinkedIn, fixed years/names, now 11 rows
-- **app.js**: `modalOverlay` rename (was `overlay`, clashed with nav overlay); projects[] = 9 objects
-- **CSS**: `box-sizing: border-box` on `.section` fixed phantom scroll
+- **Credentials**: added 4 missing certs from LinkedIn, now 11 rows
 
 ### 2026-04-29 (Session D)
-- **"Case Studies" → "Projects"**: panel ID, nav label, hash routing all renamed (`#case-studies` → `#projects`)
-- **Two-section panel**: "Case Studies" (5 rows, static) + "Personal Projects" (4 rows, JS-rendered)
+- **"Case Studies" → "Projects"**: panel ID, nav label, hash routing all renamed
+- **Two-section panel**: "Case Studies" (5 rows) + "Personal Projects" (4 rows, JS-rendered)
 - **Personal projects added**: Telegram Bot, Portfolio Website, Homelab, GWS CLI
-- **GitHub Repo button**: terracotta ghost style, conditional on `githubUrl`; CS all null, personal projects use `'#'` placeholder
-- **Project detail pages**: 4 new HTML pages using `case-study.css`, content from CLAUDE.md only
-- **Unified modal**: `buildModalActions()` + `openItemModal()` replace `openCsModal()`; `pageLabel` field controls button text
-- **Back links fixed**: all 5 case study pages updated from `#case-studies` → `#projects`
+- **Project detail pages**: 4 new HTML pages (`project-*.html`)
+- **Unified modal**: `buildModalActions()` + `openItemModal()`
+
+### 2026-05-08 (Session E)
+- **Full design overhaul → Product Systems Archive**
+- Hero rebuilt: 2-col split, animated 12-node systems-map canvas (`#hero-canvas`), stats strip, 2 CTAs
+- **Philosophy panel** added (panel #05): 7 product principles, 4-col grid, terra accent on #07
+- **Panel numbering:** Philosophy=05, Credentials=06, Contact=07
+- **7-part narrative modals**: JindalX work cards now open wide 760px modal (Problem → Tradeoffs)
+- **Lead cards**: first card per company group gets `.proj-card--lead`
+- **Skills tier highlighting**: `.skill-top` + oversized `.skill-group-num`
+- **Credentials year separators**: `.cert-year-sep`
+- **Contact canvas** (`#contact-canvas`): 4-node mini canvas bookend
+- **Progressive reveal**: `panel:activate` CustomEvent, double-rAF, `.reveal-child` stagger
+
+### 2026-05-10 (Session F — Planning)
+- Full site audit using Opus agent
+- Master improvement plan created → `PORTFOLIO_PLAN.md`
+- Architecture decisions confirmed: Contact → About/Bio panel, chatbot on Oracle VM, timeline as standalone page
 
 ---
 
 ## 10. Git History (recent)
 ```
+58f7fb0  Full design overhaul: Product Systems Archive redesign
+055c9c1  Update gemini_summary.md to reflect 2026-04-29 session
 b5ed3dd  Add project detail pages for personal projects, wire up Read Full Project Details button
 dbc0c73  Rename Case Studies panel to Projects, add Personal Projects section
 0af1956  Update CLAUDE.md and gemini_summary.md to reflect 2026-04-26 session
-672574a  Add 4 missing certs from LinkedIn, fix names and years
-726ea52  Fix pagination buttons not working on case study pages
-30e0e8b  Remove architectural SVG drawings, keep blueprint grid only
-46909a7  Mobile polish: zoomed SVGs, left-aligned nav overlay, contact vertical layout
 ```

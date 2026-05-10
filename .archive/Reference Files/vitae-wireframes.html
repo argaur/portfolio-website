@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuskha — User Flow Wireframes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #F0F0F0;
+    color: #111;
+    padding: 32px 24px;
+  }
+
+  /* Page Header */
+  .page-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .page-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .page-header p { font-size: 13px; color: #666; margin-top: 6px; }
+  .legend {
+    display: flex; gap: 20px; justify-content: center; margin-top: 14px; flex-wrap: wrap;
+  }
+  .legend span {
+    font-size: 11px; color: #555; display: flex; align-items: center; gap: 6px;
+  }
+  .legend-box { width: 12px; height: 12px; border: 1px solid #999; display: inline-block; }
+  .legend-box.action { background: #222; }
+  .legend-box.note { background: #fff3cd; border-color: #f0c040; }
+  .legend-box.gate { background: #fce4e4; border-color: #e88; }
+
+  /* Flow Grid */
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 375px);
+    gap: 40px 32px;
+    justify-content: center;
+  }
+
+  /* Stage Divider */
+  .stage-divider {
+    grid-column: 1 / -1;
+    border-top: 2px dashed #BBBABA;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .stage-label {
+    background: #333;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .stage-desc { font-size: 12px; color: #666; }
+
+  /* Screen wrapper */
+  .screen-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .screen-meta { display: flex; align-items: baseline; gap: 8px; }
+  .screen-num {
+    font-size: 10px; font-weight: 700; color: #fff;
+    background: #555; border-radius: 3px; padding: 2px 6px; letter-spacing: 0.5px;
+  }
+  .screen-name { font-size: 13px; font-weight: 600; color: #222; }
+  .screen-ann { font-size: 11px; color: #777; font-style: italic; margin-top: 2px; }
+
+  /* Phone Frame */
+  .phone {
+    width: 375px;
+    min-height: 680px;
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .phone-status {
+    background: #F5F5F5;
+    padding: 6px 16px;
+    font-size: 10px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .phone-body { padding: 20px 18px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+  /* Wireframe components */
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E8E8E8;
+    margin-bottom: 4px;
+  }
+  .nav-back { font-size: 12px; border: 1px solid #CCC; padding: 4px 8px; border-radius: 4px; color: #444; }
+  .nav-title { font-size: 14px; font-weight: 700; }
+  .nav-action { font-size: 11px; color: #555; border: 1px solid #CCC; padding: 3px 8px; border-radius: 4px; }
+
+  .logo-block { text-align: center; padding: 24px 0 8px; }
+  .logo-text { font-size: 26px; font-weight: 800; letter-spacing: -1px; }
+  .logo-sub { font-size: 11px; color: #888; margin-top: 2px; }
+
+  .hero-text { text-align: center; }
+  .hero-text h2 { font-size: 20px; font-weight: 700; line-height: 1.3; }
+  .hero-text p { font-size: 13px; color: #555; margin-top: 6px; line-height: 1.4; }
+
+  .btn {
+    display: block; width: 100%; padding: 14px 16px;
+    background: #222; color: #fff;
+    font-size: 14px; font-weight: 600; text-align: center;
+    border: none; border-radius: 8px; cursor: pointer;
+  }
+  .btn-outline {
+    display: block; width: 100%; padding: 12px 16px;
+    background: #fff; color: #222;
+    font-size: 13px; font-weight: 500; text-align: center;
+    border: 1.5px solid #333; border-radius: 8px;
+  }
+  .btn-ghost {
+    display: block; width: 100%; padding: 10px 16px;
+    background: none; color: #555;
+    font-size: 12px; text-align: center;
+    border: none; text-decoration: underline;
+  }
+  .btn-sm {
+    display: inline-block; padding: 8px 14px;
+    background: #222; color: #fff;
+    font-size: 12px; font-weight: 600; text-align: center;
+    border: none; border-radius: 6px;
+  }
+
+  .feature-list { display: flex; flex-direction: column; gap: 10px; }
+  .feature-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 12px;
+    background: #F8F8F8;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  .feature-icon {
+    width: 28px; height: 28px; background: #E0E0E0; border-radius: 6px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .feature-item-text strong { display: block; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+  .feature-item-text span { font-size: 11px; color: #666; }
+
+  .upload-options { display: flex; flex-direction: column; gap: 12px; }
+  .upload-card {
+    padding: 16px; border: 2px solid #CCC; border-radius: 10px;
+    display: flex; align-items: center; gap: 14px; cursor: pointer;
+  }
+  .upload-card.primary { border-color: #333; background: #F8F8F8; }
+  .upload-card-icon {
+    width: 44px; height: 44px; background: #E0E0E0; border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .upload-card-text strong { display: block; font-size: 13px; font-weight: 600; }
+  .upload-card-text span { font-size: 11px; color: #666; }
+  .primary-badge {
+    margin-left: auto; background: #333; color: #fff;
+    font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .loading-block { text-align: center; padding: 20px 0; }
+  .loading-bar-wrap {
+    background: #EFEFEF; border-radius: 99px; height: 6px; margin: 16px 0;
+    overflow: hidden;
+  }
+  .loading-bar {
+    width: 65%; height: 100%; background: #555; border-radius: 99px;
+  }
+  .loading-step { font-size: 12px; color: #666; margin-top: 6px; }
+  .loading-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .step-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: #444; padding: 8px 12px;
+    background: #F8F8F8; border-radius: 6px;
+  }
+  .step-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .step-dot.done { background: #555; }
+  .step-dot.active { background: #AAA; border: 2px solid #555; }
+  .step-dot.pending { background: #DDD; }
+
+  .data-table { border: 1px solid #E0E0E0; border-radius: 8px; overflow: hidden; }
+  .data-row {
+    display: flex; align-items: center;
+    padding: 10px 14px; border-bottom: 1px solid #EFEFEF;
+    font-size: 12px; gap: 8px;
+  }
+  .data-row:last-child { border-bottom: none; }
+  .data-label { color: #888; width: 80px; flex-shrink: 0; }
+  .data-val { font-weight: 500; flex: 1; }
+  .data-flag {
+    font-size: 10px; padding: 2px 6px; border-radius: 3px;
+    font-weight: 600;
+  }
+  .flag-ok { background: #E6F4EA; color: #2E7D32; }
+  .flag-warn { background: #FFF3CD; color: #856404; }
+  .data-row.warn { background: #FFFBEE; }
+
+  .disclaimer {
+    background: #FFF3CD; border: 1px solid #F0C040;
+    border-radius: 6px; padding: 10px 12px;
+    font-size: 11px; color: #555; line-height: 1.4;
+  }
+
+  .score-block {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px; background: #F5F5F5; border-radius: 10px;
+    border: 1px solid #E0E0E0;
+  }
+  .score-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    border: 4px solid #333; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .score-num { font-size: 20px; font-weight: 800; }
+  .score-text strong { display: block; font-size: 13px; font-weight: 700; }
+  .score-text span { font-size: 11px; color: #666; }
+
+  .med-card {
+    border: 1px solid #E0E0E0; border-radius: 8px; overflow: hidden;
+  }
+  .med-header {
+    background: #F5F5F5; padding: 10px 14px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .med-name { font-size: 13px; font-weight: 700; }
+  .med-dose { font-size: 11px; color: #666; }
+  .med-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .med-row { font-size: 11px; color: #444; display: flex; gap: 6px; }
+  .med-row-label { color: #888; width: 80px; flex-shrink: 0; }
+  .med-collapsed {
+    font-size: 11px; color: #666; padding: 6px 14px 10px;
+    border-top: 1px solid #F0F0F0;
+  }
+
+  .doctor-section {
+    background: #FAFAFA; border: 1px dashed #CCC;
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .doctor-section h4 { font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+  .doctor-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .doctor-list li { font-size: 11px; color: #444; padding-left: 12px; position: relative; }
+  .doctor-list li::before { content: "—"; position: absolute; left: 0; color: #AAA; }
+
+  .auth-gate {
+    background: #FAFAFA; border: 1px solid #DDD;
+    border-radius: 12px; padding: 20px 16px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .auth-gate h3 { font-size: 16px; font-weight: 700; text-align: center; }
+  .auth-gate p { font-size: 12px; color: #555; text-align: center; line-height: 1.4; }
+  .auth-benefits { display: flex; flex-direction: column; gap: 6px; }
+  .auth-benefit {
+    font-size: 11px; color: #444;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .auth-benefit::before { content: "✓"; font-weight: 700; }
+
+  .otp-input-wrap {
+    border: 1.5px solid #CCC; border-radius: 8px; padding: 12px 14px;
+    font-size: 15px; color: #333; background: #FAFAFA;
+    text-align: center; letter-spacing: 2px;
+  }
+  .otp-grid { display: flex; gap: 8px; justify-content: center; margin-top: 4px; }
+  .otp-box {
+    width: 42px; height: 48px; border: 1.5px solid #CCC; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; background: #FAFAFA;
+  }
+  .otp-box.filled { border-color: #333; }
+
+  .hub-welcome { font-size: 16px; font-weight: 700; }
+  .hub-welcome span { font-weight: 400; color: #555; }
+  .profile-wheel { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .profile-chip {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .profile-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #E0E0E0; border: 2px solid #333;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #444;
+  }
+  .profile-avatar.active { border-color: #111; background: #DDD; }
+  .profile-avatar.add {
+    border: 2px dashed #BBB; background: #F5F5F5; color: #AAA; font-size: 20px;
+  }
+  .profile-label { font-size: 10px; color: #666; text-align: center; }
+
+  .rx-list { display: flex; flex-direction: column; gap: 8px; }
+  .rx-item {
+    padding: 12px 14px; border: 1px solid #E0E0E0; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer;
+  }
+  .rx-item:hover { background: #FAFAFA; }
+  .rx-left { display: flex; flex-direction: column; gap: 3px; }
+  .rx-doctor { font-size: 13px; font-weight: 600; }
+  .rx-meta { font-size: 11px; color: #888; }
+  .rx-tag {
+    font-size: 10px; padding: 2px 6px; background: #F0F0F0;
+    border-radius: 3px; color: #555;
+  }
+  .rx-chevron { color: #CCC; font-size: 14px; }
+  .rx-new {
+    background: #F8F8F8; border: 1.5px solid #333; border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .rx-new-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #777; margin-bottom: 6px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 12px; font-weight: 600; color: #444; }
+  .form-input {
+    border: 1.5px solid #CCC; border-radius: 8px; padding: 11px 14px;
+    font-size: 13px; background: #FAFAFA; color: #333;
+  }
+  .form-input.placeholder { color: #BBB; }
+  .form-select {
+    border: 1.5px solid #CCC; border-radius: 8px; padding: 11px 14px;
+    font-size: 13px; background: #FAFAFA; color: #888;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .form-hint { font-size: 10px; color: #AAA; }
+
+  .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill {
+    padding: 5px 12px; border-radius: 99px;
+    font-size: 11px; font-weight: 600; border: 1.5px solid #CCC;
+    color: #555; background: #fff;
+  }
+  .pill.active { background: #222; color: #fff; border-color: #222; }
+
+  .timeline-list { display: flex; flex-direction: column; }
+  .timeline-item {
+    display: flex; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid #EFEFEF;
+    align-items: flex-start;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date {
+    flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
+    gap: 2px; padding-top: 2px;
+  }
+  .tl-month { font-size: 9px; font-weight: 700; text-transform: uppercase; color: #888; }
+  .tl-day { font-size: 18px; font-weight: 800; line-height: 1; }
+  .tl-year { font-size: 9px; color: #AAA; }
+  .timeline-content { flex: 1; }
+  .tl-doctor { font-size: 13px; font-weight: 600; }
+  .tl-person { font-size: 10px; color: #888; margin-bottom: 4px; }
+  .tl-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tl-tag {
+    font-size: 10px; padding: 2px 8px;
+    background: #F0F0F0; border-radius: 99px; color: #555;
+  }
+  .tl-chevron { color: #CCC; font-size: 14px; padding-top: 4px; }
+
+  .rx-detail-header {
+    background: #F5F5F5; border-radius: 8px;
+    padding: 14px; display: flex; flex-direction: column; gap: 4px;
+    border: 1px solid #E5E5E5;
+  }
+  .rx-detail-title { font-size: 15px; font-weight: 700; }
+  .rx-detail-sub { font-size: 11px; color: #777; }
+  .rx-detail-meds { display: flex; flex-direction: column; gap: 8px; }
+  .rx-med-row {
+    padding: 11px 14px; border: 1px solid #E0E0E0; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .rx-med-name { font-size: 13px; font-weight: 600; }
+  .rx-med-info { font-size: 11px; color: #777; margin-top: 2px; }
+  .rx-med-dose { font-size: 11px; color: #555; text-align: right; }
+
+  .share-buttons { display: flex; gap: 10px; }
+  .share-btn {
+    flex: 1; padding: 12px 8px; border: 1.5px solid #CCC; border-radius: 8px;
+    text-align: center; font-size: 12px; font-weight: 600; color: #333;
+    background: #fff; cursor: pointer;
+  }
+  .share-btn-icon { height: 24px; background: #E0E0E0; border-radius: 4px; margin-bottom: 6px; }
+  .share-note { font-size: 11px; color: #888; text-align: center; margin-top: 4px; }
+
+  .pdf-preview {
+    border: 1.5px solid #CCC; border-radius: 8px; overflow: hidden;
+  }
+  .pdf-header {
+    background: #333; color: #fff; padding: 10px 14px;
+    font-size: 12px; font-weight: 600;
+  }
+  .pdf-body { padding: 14px; background: #FAFAFA; }
+  .pdf-row { font-size: 11px; color: #555; padding: 4px 0; border-bottom: 1px solid #EFEFEF; }
+  .pdf-row:last-child { border-bottom: none; }
+  .pdf-row strong { color: #333; }
+
+  .readonly-banner {
+    background: #F5F5F5; border-bottom: 1px solid #DDD;
+    padding: 10px 18px; text-align: center;
+    font-size: 11px; color: #555;
+  }
+  .cta-banner {
+    background: #222; color: #fff;
+    padding: 16px 18px; text-align: center;
+    font-size: 13px;
+  }
+  .cta-banner a { color: #fff; font-weight: 700; text-decoration: underline; }
+
+  .bottom-nav {
+    display: flex; border-top: 1px solid #E0E0E0; padding: 10px 0;
+    margin-top: auto;
+  }
+  .bottom-nav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 10px; color: #888;
+  }
+  .bottom-nav-item.active { color: #111; font-weight: 700; }
+  .nav-icon { width: 20px; height: 20px; background: #E0E0E0; border-radius: 4px; }
+  .nav-icon.active { background: #333; }
+
+  .pro-locked {
+    opacity: 0.5; position: relative;
+  }
+  .pro-badge {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    background: #EEE; border: 1px solid #CCC;
+    color: #777; padding: 1px 6px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .flow-arrow {
+    grid-column: 1 / -1;
+    text-align: center; font-size: 12px; color: #888;
+    padding: 0; margin: -20px 0;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .arrow-line { flex: 1; max-width: 120px; height: 1px; background: #CCC; }
+
+  .section-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: #999; padding-bottom: 6px;
+    border-bottom: 1px solid #E5E5E5; margin-bottom: 2px;
+  }
+
+  .spacer { height: 8px; }
+  .divider { height: 1px; background: #EFEFEF; margin: 2px 0; }
+
+  .input-row { display: flex; gap: 8px; align-items: center; }
+  .input-label-inline { font-size: 12px; color: #777; width: 60px; flex-shrink: 0; }
+
+  .tab-bar {
+    display: flex; border-bottom: 1.5px solid #E0E0E0; margin-bottom: 12px;
+  }
+  .tab {
+    flex: 1; padding: 8px; text-align: center;
+    font-size: 12px; font-weight: 600; color: #AAA;
+  }
+  .tab.active { color: #111; border-bottom: 2px solid #111; margin-bottom: -1.5px; }
+
+  .empty-state {
+    text-align: center; padding: 20px 10px; color: #AAA;
+  }
+  .empty-state-box {
+    width: 60px; height: 60px; border: 2px dashed #CCC; border-radius: 12px;
+    margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: #CCC;
+  }
+  .empty-state p { font-size: 12px; line-height: 1.4; }
+
+  .small { font-size: 11px; color: #777; }
+  .bold { font-weight: 700; }
+  .center { text-align: center; }
+
+  @media (max-width: 800px) {
+    .flow-grid { grid-template-columns: 375px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Nuskha — User Flow Wireframes</h1>
+  <p>14 screens · Mobile-first · Low-fidelity UX reference · April 2026 Buildathon</p>
+  <div class="legend">
+    <span><span class="legend-box action"></span> Primary action</span>
+    <span><span class="legend-box note"></span> Disclaimer / note</span>
+    <span><span class="legend-box gate"></span> Auth gate</span>
+  </div>
+</div>
+
+<div class="flow-grid">
+
+  <!-- ═══════════════════════════════ STAGE 1: DISCOVERY ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 1 — Discovery</span>
+    <span class="stage-desc">First impression → upload trigger · No login required</span>
+  </div>
+
+  <!-- S01: Landing -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S01</span>
+      <span class="screen-name">Landing / Homepage</span>
+    </div>
+    <div class="screen-ann">First impression. Single CTA. No login wall.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:41 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="logo-block">
+          <div class="logo-text">Nuskha</div>
+          <div class="logo-sub">नुस्खा · prescription · remedy</div>
+        </div>
+
+        <div class="hero-text">
+          <h2>Your parents' prescriptions, explained in plain English</h2>
+          <p>And shared with your family in one tap. No medical knowledge needed.</p>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="btn">Upload a Prescription</div>
+        <div class="small center">No account needed to try</div>
+
+        <div class="spacer"></div>
+        <div class="divider"></div>
+        <div class="spacer"></div>
+
+        <div class="section-label">What Nuskha does</div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">📷</div>
+            <div class="feature-item-text">
+              <strong>Photograph any prescription</strong>
+              <span>Handwritten, printed, PDF — it reads them all</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-item-text">
+              <strong>Plain-language explanation</strong>
+              <span>What each drug does, how to take it, what to avoid</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">👨‍👩‍👧</div>
+            <div class="feature-item-text">
+              <strong>Family history, one place</strong>
+              <span>Manage Papa, Mummy and yourself under one account</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ STAGE 2: UPLOAD ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 2 — Upload</span>
+    <span class="stage-desc">Photo → OCR → Confirm → Value moment</span>
+  </div>
+
+  <!-- S02: Upload Picker -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S02</span>
+      <span class="screen-name">Upload Picker</span>
+    </div>
+    <div class="screen-ann">Camera leads — most prescriptions arrive as WhatsApp photos.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:41 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-back">← Back</div>
+          <div class="nav-title">Upload Prescription</div>
+          <div></div>
+        </div>
+
+        <div class="small">Choose how to add the prescription</div>
+
+        <div class="upload-options">
+          <div class="upload-card primary">
+            <div class="upload-card-icon"></div>
+            <div class="upload-card-text">
+              <strong>Take a Photo</strong>
+              <span>Use camera or pick from gallery</span>
+            </div>
+            <span class="primary-badge">Primary</span>
+          </div>
+
+          <div class="upload-card">
+            <div class="upload-card-icon"></div>
+            <div class="upload-card-text">
+              <strong>Upload PDF</strong>
+              <span>Digital hospital prescriptions</span>
+            </div>
+          </div>
+
+          <div class="upload-card">
+            <div class="upload-card-icon"></div>
+            <div class="upload-card-text">
+              <strong>Type Manually</strong>
+              <span>Fallback if OCR fails</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          Tip: If your prescription arrived on WhatsApp, screenshot it and upload the image.
+        </div>
+
+        <div class="small center" style="margin-top:8px;">For best results, ensure the prescription is flat and well-lit</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S03: OCR Loading -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S03</span>
+      <span class="screen-name">OCR Processing</span>
+    </div>
+    <div class="screen-ann">~3 seconds. Builds trust. Don't skip the loading state — it sets quality expectations.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:42 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <!-- Image placeholder -->
+        <div style="width:100%;height:180px;background:#E8E8E8;border-radius:10px;border:1px solid #D0D0D0;display:flex;align-items:center;justify-content:center;color:#AAA;font-size:12px;">
+          [Prescription image preview]
+        </div>
+
+        <div class="loading-block">
+          <div style="font-size:15px;font-weight:700;">Reading your prescription...</div>
+          <div class="loading-bar-wrap">
+            <div class="loading-bar"></div>
+          </div>
+          <div class="loading-step">Identifying medications...</div>
+        </div>
+
+        <div class="loading-steps">
+          <div class="step-item">
+            <div class="step-dot done"></div>
+            Detecting text in image
+          </div>
+          <div class="step-item">
+            <div class="step-dot active"></div>
+            Identifying medications &amp; dosages
+          </div>
+          <div class="step-item">
+            <div class="step-dot pending"></div>
+            Structuring prescription data
+          </div>
+          <div class="step-item">
+            <div class="step-dot pending"></div>
+            Generating explanation
+          </div>
+        </div>
+
+        <div class="small center" style="margin-top:12px;">Google Vision AI + Claude · Usually takes 3–5 seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S04: Confirm & Review -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S04</span>
+      <span class="screen-name">Confirm &amp; Review</span>
+    </div>
+    <div class="screen-ann">Always shown — regardless of OCR confidence. Natural home for the disclaimer.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:42 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-back">← Edit</div>
+          <div class="nav-title">Does this look right?</div>
+          <div></div>
+        </div>
+
+        <div class="small">We extracted the following. Tap any field to correct it.</div>
+
+        <div class="data-table">
+          <div class="data-row">
+            <div class="data-label">Doctor</div>
+            <div class="data-val">Dr. R. Sharma</div>
+            <div class="data-flag flag-ok">✓</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Date</div>
+            <div class="data-val">08 Apr 2026</div>
+            <div class="data-flag flag-ok">✓</div>
+          </div>
+          <div class="data-row warn">
+            <div class="data-label">Drug 1</div>
+            <div class="data-val">Metformin 500mg</div>
+            <div class="data-flag flag-warn">⚠ Review</div>
+          </div>
+          <div class="data-row warn">
+            <div class="data-label">Dose 1</div>
+            <div class="data-val">Twice daily after meals</div>
+            <div class="data-flag flag-warn">⚠ Review</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Drug 2</div>
+            <div class="data-val">Atorvastatin 10mg</div>
+            <div class="data-flag flag-ok">✓</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Duration</div>
+            <div class="data-val">30 days</div>
+            <div class="data-flag flag-ok">✓</div>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          ⚠️ Highlighted fields have lower confidence. Please verify before continuing. AI-generated — consult your doctor before making any decisions.
+        </div>
+
+        <div class="btn">Looks right, continue →</div>
+        <div class="btn-ghost">Correct the fields above</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ STAGE 3: INSIGHT ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 3 — Insight</span>
+    <span class="stage-desc">Core value moment · AI explanation · Body Score</span>
+  </div>
+
+  <!-- S05: AI Explanation + Body Score -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S05</span>
+      <span class="screen-name">AI Explanation + Body Score</span>
+    </div>
+    <div class="screen-ann">Core value moment. Body Score = complexity indicator (not a health grade). Scrollable.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:43 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div></div>
+          <div class="nav-title">Your Prescription</div>
+          <div class="nav-action">Share</div>
+        </div>
+
+        <div class="small" style="color:#888;">Dr. Sharma · 08 Apr 2026 · For Papa</div>
+
+
+        <div class="section-label">Medications Explained</div>
+
+        <div class="med-card">
+          <div class="med-header">
+            <span class="med-name">Metformin 500mg</span>
+            <span class="med-dose">Twice daily</span>
+          </div>
+          <div class="med-body">
+            <div class="med-row"><span class="med-row-label">Treats</span> Type 2 diabetes — lowers blood sugar</div>
+            <div class="med-row"><span class="med-row-label">How to take</span> After meals, morning and night</div>
+            <div class="med-row"><span class="med-row-label">Side effects</span> Nausea (common), stomach upset</div>
+            <div class="med-row"><span class="med-row-label">Avoid</span> Alcohol · Heavy carb meals</div>
+          </div>
+        </div>
+
+        <div class="med-card">
+          <div class="med-header">
+            <span class="med-name">Atorvastatin 10mg</span>
+            <span class="med-dose">Once at night</span>
+          </div>
+          <div class="med-body">
+            <div class="med-row"><span class="med-row-label">Treats</span> High cholesterol — reduces LDL</div>
+            <div class="med-row"><span class="med-row-label">How to take</span> At bedtime with water</div>
+            <div class="med-row"><span class="med-row-label">Side effects</span> Muscle aches (rare)</div>
+            <div class="med-row"><span class="med-row-label">Avoid</span> Grapefruit juice</div>
+          </div>
+        </div>
+
+        <div class="doctor-section">
+          <h4>Things to tell your doctor at next visit</h4>
+          <ul class="doctor-list">
+            <li>Any muscle pain or weakness (Atorvastatin)</li>
+            <li>Stomach discomfort that doesn't settle in 2 weeks</li>
+            <li>Blood sugar readings if you're monitoring at home</li>
+          </ul>
+        </div>
+
+        <div class="disclaimer">
+          ⚠️ AI-generated summary. Do not adjust medication based on this. Consult Dr. Sharma before making any changes.
+        </div>
+
+        <div class="btn">Save to My Records</div>
+        <div class="btn-ghost">Copy share link (no account needed)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ STAGE 4: AUTH + SAVE ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 4 — Auth Gate</span>
+    <span class="stage-desc">First login wall · Only triggered when user wants to save · OTP only</span>
+  </div>
+
+  <!-- S06: Save Prompt -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S06</span>
+      <span class="screen-name">Save Prompt (Auth Gate)</span>
+    </div>
+    <div class="screen-ann">Bottom sheet style. Triggered only when user taps "Save". Skip = share link only.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:43 AM</span><span>● ● ●</span></div>
+      <div class="phone-body" style="justify-content:flex-end;gap:0;">
+        <!-- Dimmed background hint -->
+        <div style="flex:1;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#BBB;font-size:12px;margin-bottom:12px;">
+          [AI Explanation screen behind]
+        </div>
+
+        <!-- Bottom sheet -->
+        <div class="auth-gate">
+          <div style="width:40px;height:4px;background:#DDD;border-radius:99px;margin:0 auto -4px;"></div>
+          <h3>Save to your records</h3>
+          <p>Create a free account to build your medical history and share with family. No passwords — just your phone or email.</p>
+
+          <div class="auth-benefits">
+            <div class="auth-benefit">Medical history saved across all visits</div>
+            <div class="auth-benefit">Up to 5 family profiles under one login</div>
+            <div class="auth-benefit">Shareable link for each prescription</div>
+          </div>
+
+          <div class="btn">Continue with Phone Number</div>
+          <div class="btn-outline">Continue with Email</div>
+          <div class="btn-ghost">Skip — just copy the share link</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S07: OTP Entry -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S07</span>
+      <span class="screen-name">OTP Entry</span>
+    </div>
+    <div class="screen-ann">No passwords. Phone or email. Supabase Auth magic link / OTP.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:44 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-back">← Back</div>
+          <div></div><div></div>
+        </div>
+
+        <div style="padding:16px 0 8px;">
+          <div style="font-size:20px;font-weight:800;line-height:1.2;">Enter your phone number</div>
+          <div class="small" style="margin-top:6px;">We'll send a 6-digit code. No passwords, ever.</div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-row">
+            <div class="form-input" style="width:64px;text-align:center;">+91</div>
+            <div class="form-input" style="flex:1;color:#BBB;">98XXXXXXXX</div>
+          </div>
+        </div>
+
+        <div class="btn">Send OTP</div>
+
+        <div class="divider" style="margin:16px 0;"></div>
+
+        <!-- OTP Entry State (shown after send) -->
+        <div class="small center" style="color:#888;margin-bottom:12px;">Enter the 6-digit code sent to +91 98XXXXX890</div>
+        <div class="otp-grid">
+          <div class="otp-box filled">3</div>
+          <div class="otp-box filled">7</div>
+          <div class="otp-box filled">4</div>
+          <div class="otp-box">_</div>
+          <div class="otp-box">_</div>
+          <div class="otp-box">_</div>
+        </div>
+
+        <div class="btn" style="margin-top:16px;">Verify &amp; Continue</div>
+        <div class="btn-ghost">Resend code (30s)</div>
+
+        <div class="small center" style="margin-top:auto;">Use email instead?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ STAGE 5: HUB + FAMILY ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 5 — Family Hub</span>
+    <span class="stage-desc">Central dashboard · Multi-profile · Add family members</span>
+  </div>
+
+  <!-- S08: Family Hub Empty -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S08</span>
+      <span class="screen-name">Family Hub — Empty State</span>
+    </div>
+    <div class="screen-ann">Post-signup. First prescription saved. "Add family member" is the growth hook.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:45 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-title">Nuskha</div>
+          <div class="nav-action">🔔</div>
+        </div>
+
+        <div class="hub-welcome">Hi Priya <span>👋</span></div>
+        <div class="small">Your family's prescriptions, all in one place</div>
+
+        <div class="section-label">Family Profiles</div>
+        <div class="profile-wheel">
+          <div class="profile-chip">
+            <div class="profile-avatar active">You</div>
+            <div class="profile-label">Priya</div>
+          </div>
+          <div class="profile-chip">
+            <div class="profile-avatar add">+</div>
+            <div class="profile-label">Add Papa</div>
+          </div>
+          <div class="profile-chip">
+            <div class="profile-avatar add">+</div>
+            <div class="profile-label">Add Mummy</div>
+          </div>
+          <div class="profile-chip">
+            <div class="profile-avatar add">+</div>
+            <div class="profile-label">Add more</div>
+          </div>
+        </div>
+
+        <div class="section-label">Your Prescriptions</div>
+        <div class="rx-new">
+          <div class="rx-new-label">Just saved</div>
+          <div class="rx-doctor">Dr. Sharma</div>
+          <div class="rx-meta">08 Apr 2026 · Metformin + Atorvastatin</div>
+        </div>
+
+        <div class="btn">+ Upload Another Prescription</div>
+        <div class="btn-outline" style="margin-top:-4px;">Add a family member profile</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S09: Add Family Profile -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S09</span>
+      <span class="screen-name">Add Family Profile</span>
+    </div>
+    <div class="screen-ann">Simple form. Parent never needs an account — child manages everything.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:45 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-back">← Back</div>
+          <div class="nav-title">Add Family Member</div>
+          <div></div>
+        </div>
+
+        <div class="small">You manage their prescriptions — they don't need to sign up.</div>
+
+        <!-- Photo -->
+        <div style="display:flex;gap:14px;align-items:center;padding:12px;border:1.5px dashed #CCC;border-radius:10px;">
+          <div style="width:52px;height:52px;background:#EEE;border-radius:50%;border:2px dashed #CCC;display:flex;align-items:center;justify-content:center;color:#BBB;font-size:20px;">+</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;">Add a photo</div>
+            <div class="small">Optional — helps identify profiles quickly</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Full Name</div>
+          <div class="form-input placeholder">e.g. Ramesh Gupta</div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Relationship</div>
+          <div class="form-select">
+            <span>Select relationship</span><span>▾</span>
+          </div>
+          <div class="form-hint">Father / Mother / Spouse / Sibling / Other</div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Date of Birth</div>
+          <div class="form-input placeholder">DD / MM / YYYY</div>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="btn">Save Profile</div>
+        <div class="btn-ghost">Skip for now</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10: Family Hub Populated -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S10</span>
+      <span class="screen-name">Family Hub — Populated</span>
+    </div>
+    <div class="screen-ann">Tap a profile to switch context. Active profile determines which prescriptions show.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:46 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-title">Nuskha Family</div>
+          <div class="nav-action">🔔</div>
+        </div>
+
+        <div class="section-label">Profiles</div>
+        <div class="profile-wheel">
+          <div class="profile-chip">
+            <div class="profile-avatar">You</div>
+            <div class="profile-label">Priya</div>
+          </div>
+          <div class="profile-chip">
+            <div class="profile-avatar active">Pa</div>
+            <div class="profile-label" style="font-weight:700;color:#111;">Papa ✓</div>
+          </div>
+          <div class="profile-chip">
+            <div class="profile-avatar">Ma</div>
+            <div class="profile-label">Mummy</div>
+          </div>
+          <div class="profile-chip">
+            <div class="profile-avatar add">+</div>
+            <div class="profile-label">Add</div>
+          </div>
+        </div>
+
+        <div class="section-label">Papa's Prescriptions</div>
+        <div class="rx-list">
+          <div class="rx-item">
+            <div class="rx-left">
+              <div class="rx-doctor">Dr. Mehta</div>
+              <div class="rx-meta">08 Apr 2026 · 3 medications</div>
+            </div>
+            <span class="rx-tag">Diabetes</span>
+            <span class="rx-chevron">›</span>
+          </div>
+          <div class="rx-item">
+            <div class="rx-left">
+              <div class="rx-doctor">Dr. Singh</div>
+              <div class="rx-meta">15 Feb 2026 · 2 medications</div>
+            </div>
+            <span class="rx-tag">BP</span>
+            <span class="rx-chevron">›</span>
+          </div>
+          <div class="rx-item">
+            <div class="rx-left">
+              <div class="rx-doctor">Dr. Patel</div>
+              <div class="rx-meta">10 Nov 2025 · 4 medications</div>
+            </div>
+            <span class="rx-tag">Seasonal</span>
+            <span class="rx-chevron">›</span>
+          </div>
+        </div>
+
+        <div class="btn" style="margin-top:8px;">+ Upload for Papa</div>
+
+        <div class="bottom-nav">
+          <div class="bottom-nav-item active">
+            <div class="nav-icon active"></div>
+            Home
+          </div>
+          <div class="bottom-nav-item">
+            <div class="nav-icon"></div>
+            Timeline
+          </div>
+          <div class="bottom-nav-item">
+            <div class="nav-icon"></div>
+            Profile
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ STAGE 6: DETAIL + HISTORY ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 6 — Records</span>
+    <span class="stage-desc">Prescription detail · Medical history timeline · Two distinct views</span>
+  </div>
+
+  <!-- S11: Prescription Detail -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S11</span>
+      <span class="screen-name">Prescription Detail</span>
+    </div>
+    <div class="screen-ann">Per-visit record. All meds from that visit. AI explanation collapsible. Share from here.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:47 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-back">← Papa</div>
+          <div class="nav-title">Prescription</div>
+          <div class="nav-action">Share</div>
+        </div>
+
+        <div class="rx-detail-header">
+          <div class="rx-detail-title">Dr. Mehta</div>
+          <div class="rx-detail-sub">08 April 2026 · City Hospital, Jaipur</div>
+          <div class="rx-detail-sub" style="margin-top:4px;">For: Papa (Ramesh Gupta)</div>
+        </div>
+
+        <div class="section-label">Medications (3)</div>
+        <div class="rx-detail-meds">
+          <div class="rx-med-row">
+            <div>
+              <div class="rx-med-name">Metformin 500mg</div>
+              <div class="rx-med-info">Twice daily after meals · 30 days</div>
+            </div>
+            <div class="rx-med-dose">2x / day</div>
+          </div>
+          <div class="rx-med-row">
+            <div>
+              <div class="rx-med-name">Atorvastatin 10mg</div>
+              <div class="rx-med-info">Once at night · 30 days</div>
+            </div>
+            <div class="rx-med-dose">1x / day</div>
+          </div>
+          <div class="rx-med-row">
+            <div>
+              <div class="rx-med-name">Aspirin 75mg</div>
+              <div class="rx-med-info">Once daily with meals · Ongoing</div>
+            </div>
+            <div class="rx-med-dose">1x / day</div>
+          </div>
+        </div>
+
+        <!-- Collapsible AI Summary -->
+        <div style="border:1px solid #E0E0E0;border-radius:8px;overflow:hidden;">
+          <div style="padding:12px 14px;background:#F5F5F5;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+            <span style="font-size:13px;font-weight:700;">AI Explanation</span>
+            <span style="font-size:12px;color:#888;">View full ›</span>
+          </div>
+          <div style="padding:10px 14px;font-size:11px;color:#666;line-height:1.5;">
+            Metformin manages blood sugar in Type 2 diabetes. Atorvastatin lowers cholesterol. Aspirin is for cardiovascular protection...
+            <span style="color:#333;font-weight:600;"> Read more</span>
+          </div>
+        </div>
+
+        <div class="btn">Share This Prescription</div>
+        <div class="btn-outline">Generate Doctor PDF</div>
+
+        <!-- Pro locked feature -->
+        <div class="pro-locked">
+          <div class="btn-outline" style="opacity:0.5;">
+            Set Medication Reminders <span class="pro-badge">Pro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S12: Medical History Timeline -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S12</span>
+      <span class="screen-name">Medical History Timeline</span>
+    </div>
+    <div class="screen-ann">Chronological across all visits. Filter by profile. Longitudinal intelligence asset.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:48 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div></div>
+          <div class="nav-title">Timeline</div>
+          <div class="nav-action">Filter</div>
+        </div>
+
+        <div class="filter-pills">
+          <div class="pill active">All</div>
+          <div class="pill">Priya</div>
+          <div class="pill">Papa</div>
+          <div class="pill">Mummy</div>
+        </div>
+
+        <div class="small" style="margin-top:-4px;">Showing all family prescriptions · 6 total</div>
+
+        <div class="timeline-list">
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <div class="tl-month">APR</div>
+              <div class="tl-day">08</div>
+              <div class="tl-year">2026</div>
+            </div>
+            <div class="timeline-content">
+              <div class="tl-person">Papa</div>
+              <div class="tl-doctor">Dr. Mehta — City Hospital</div>
+              <div class="tl-tags">
+                <span class="tl-tag">Diabetes</span>
+                <span class="tl-tag">Cholesterol</span>
+                <span class="tl-tag">3 meds</span>
+              </div>
+            </div>
+            <div class="tl-chevron">›</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <div class="tl-month">MAR</div>
+              <div class="tl-day">22</div>
+              <div class="tl-year">2026</div>
+            </div>
+            <div class="timeline-content">
+              <div class="tl-person">Priya (You)</div>
+              <div class="tl-doctor">Dr. Khanna — Apollo Clinic</div>
+              <div class="tl-tags">
+                <span class="tl-tag">General</span>
+                <span class="tl-tag">2 meds</span>
+              </div>
+            </div>
+            <div class="tl-chevron">›</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <div class="tl-month">FEB</div>
+              <div class="tl-day">15</div>
+              <div class="tl-year">2026</div>
+            </div>
+            <div class="timeline-content">
+              <div class="tl-person">Papa</div>
+              <div class="tl-doctor">Dr. Singh — Fortis</div>
+              <div class="tl-tags">
+                <span class="tl-tag">Blood Pressure</span>
+                <span class="tl-tag">2 meds</span>
+              </div>
+            </div>
+            <div class="tl-chevron">›</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <div class="tl-month">NOV</div>
+              <div class="tl-day">10</div>
+              <div class="tl-year">2025</div>
+            </div>
+            <div class="timeline-content">
+              <div class="tl-person">Mummy</div>
+              <div class="tl-doctor">Dr. Patel — Max Hospital</div>
+              <div class="tl-tags">
+                <span class="tl-tag">Thyroid</span>
+                <span class="tl-tag">4 meds</span>
+              </div>
+            </div>
+            <div class="tl-chevron">›</div>
+          </div>
+        </div>
+
+        <div class="bottom-nav">
+          <div class="bottom-nav-item">
+            <div class="nav-icon"></div>
+            Home
+          </div>
+          <div class="bottom-nav-item active">
+            <div class="nav-icon active"></div>
+            Timeline
+          </div>
+          <div class="bottom-nav-item">
+            <div class="nav-icon"></div>
+            Profile
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ STAGE 7: SHARE ═══════════════════════════════ -->
+  <div class="stage-divider">
+    <span class="stage-label">Stage 7 — Share</span>
+    <span class="stage-desc">Share link (MVP) · Doctor PDF · Read-only view for recipients</span>
+  </div>
+
+  <!-- S13: Share + Doctor PDF -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S13</span>
+      <span class="screen-name">Share &amp; Doctor PDF</span>
+    </div>
+    <div class="screen-ann">UUID read-only link ~2hr engineering. Doctor PDF = formatted summary to hand to next doctor.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:49 AM</span><span>● ● ●</span></div>
+      <div class="phone-body">
+        <div class="nav-bar">
+          <div class="nav-back">← Back</div>
+          <div class="nav-title">Share Prescription</div>
+          <div></div>
+        </div>
+
+        <div class="small">Dr. Mehta · 08 Apr 2026 · For Papa</div>
+
+        <div class="section-label">Share Link</div>
+        <div style="border:1.5px solid #E0E0E0;border-radius:8px;padding:12px 14px;background:#F8F8F8;display:flex;gap:10px;align-items:center;">
+          <div style="flex:1;font-size:11px;color:#666;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">nuskha.in/rx/a3f9c2e1...</div>
+          <div class="btn-sm">Copy</div>
+        </div>
+        <div class="share-note">Anyone with this link can view without logging in</div>
+
+        <div class="share-buttons">
+          <div class="share-btn">
+            <div class="share-btn-icon"></div>
+            WhatsApp
+          </div>
+          <div class="share-btn">
+            <div class="share-btn-icon"></div>
+            Email
+          </div>
+          <div class="share-btn">
+            <div class="share-btn-icon"></div>
+            More
+          </div>
+        </div>
+
+        <div class="divider" style="margin:8px 0;"></div>
+
+        <div class="section-label">Doctor PDF</div>
+        <div class="small" style="margin-bottom:8px;">Generate a formatted summary to hand to Papa's next doctor. Includes medications, questions to ask, and prescription history.</div>
+
+        <div class="pdf-preview">
+          <div class="pdf-header">Nuskha · Patient Summary · Ramesh Gupta</div>
+          <div class="pdf-body">
+            <div class="pdf-row"><strong>Date:</strong> 08 April 2026 &nbsp; <strong>Doctor:</strong> Dr. Mehta</div>
+            <div class="pdf-row"><strong>Current Medications:</strong> Metformin 500mg, Atorvastatin 10mg, Aspirin 75mg</div>
+            <div class="pdf-row"><strong>Questions for doctor:</strong> Muscle pain check, Blood sugar monitoring</div>
+            <div class="pdf-row" style="color:#AAA;font-style:italic;">AI-generated. Verify with treating physician.</div>
+          </div>
+        </div>
+
+        <div class="btn">Download / Share PDF</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S14: Share Link Read-Only View -->
+  <div class="screen-wrap">
+    <div class="screen-meta">
+      <span class="screen-num">S14</span>
+      <span class="screen-name">Share Link — Read-Only View</span>
+    </div>
+    <div class="screen-ann">No login. No nav. Recipient sees AI explanation. Bottom banner = acquisition hook.</div>
+    <div class="phone">
+      <div class="phone-status"><span>9:50 AM</span><span>● ● ●</span></div>
+
+      <!-- Shared by banner -->
+      <div class="readonly-banner">
+        Shared by Priya via Nuskha · View only
+      </div>
+
+      <div class="phone-body" style="padding-bottom:0;">
+        <div style="font-size:13px;font-weight:700;">Dr. Mehta — 08 April 2026</div>
+        <div class="small">For: Ramesh Gupta (Papa)</div>
+
+
+        <div class="med-card">
+          <div class="med-header">
+            <span class="med-name">Metformin 500mg</span>
+            <span class="med-dose">Twice daily</span>
+          </div>
+          <div class="med-body">
+            <div class="med-row"><span class="med-row-label">Treats</span> Type 2 diabetes</div>
+            <div class="med-row"><span class="med-row-label">How to take</span> After meals</div>
+            <div class="med-row"><span class="med-row-label">Avoid</span> Alcohol</div>
+          </div>
+        </div>
+
+        <div class="doctor-section">
+          <h4>Things to tell the doctor</h4>
+          <ul class="doctor-list">
+            <li>Any muscle pain or weakness</li>
+            <li>Stomach discomfort beyond 2 weeks</li>
+          </ul>
+        </div>
+
+        <div class="disclaimer">
+          ⚠️ AI-generated summary. Consult Dr. Mehta before making any decisions.
+        </div>
+
+        <!-- No bottom nav — read only -->
+        <div style="height:16px;"></div>
+      </div>
+
+      <!-- CTA Banner -->
+      <div class="cta-banner">
+        Want to manage your family's prescriptions?<br>
+        <a href="#">Create a free Nuskha account →</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /flow-grid -->
+
+<!-- Flow Summary -->
+<div style="max-width:780px;margin:60px auto 40px;padding:24px;background:#fff;border:1px solid #DDD;border-radius:12px;">
+  <div style="font-size:14px;font-weight:700;margin-bottom:16px;">Complete User Flow Summary</div>
+  <div style="font-size:12px;color:#555;line-height:2;font-family:monospace;">
+    S01 Landing
+    → S02 Upload Picker
+    → S03 OCR Loading
+    → S04 Confirm &amp; Review
+    → S05 AI Explanation + Body Score
+    → S06 Save Prompt [AUTH GATE]
+    → S07 OTP Entry
+    → S08 Family Hub (Empty)
+      → S09 Add Family Profile → S10 Family Hub (Populated)
+    → S11 Prescription Detail
+      ↳ S12 Medical History Timeline
+      ↳ S13 Share + Doctor PDF
+        → S14 Read-Only View (no login, recipient)
+  </div>
+  <div style="margin-top:16px;padding-top:16px;border-top:1px solid #EEE;font-size:11px;color:#888;">
+    14 screens · Buildathon April 6–15 2026 · Stack: Next.js + Supabase + Google Vision + Claude
+  </div>
+</div>
+
+</body>
+</html>

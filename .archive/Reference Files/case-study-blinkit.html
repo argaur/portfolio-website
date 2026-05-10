@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Peak-Hour Decision Support System | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+    <!-- Back Nav -->
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Case Study</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <!-- Hero -->
+        <header class="cs-hero">
+            <span class="cs-label">Product Requirements Document</span>
+            <h1 class="cs-title">Peak-Hour Decision Support System for Dark Store Managers</h1>
+            <p class="cs-subtitle">A mobile-first command layer for Blinkit dark store managers &mdash; giving real-time picker visibility and exception management during the critical 6&ndash;10 PM peak window.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Quick Commerce</span>
+                <span class="cs-meta-tag">Operations</span>
+                <span class="cs-meta-tag">Real-Time Systems</span>
+                <span class="cs-meta-tag">Mobile-First</span>
+            </div>
+            <div class="cs-meta-row" style="margin-top: 12px;">
+                <a href="https://blinkit-command-hub.vercel.app/" target="_blank" rel="noopener noreferrer" class="cs-link-btn">Live Prototype &rarr;</a>
+            </div>
+        </header>
+
+        <!-- TOC -->
+        <nav class="cs-toc">
+            <h3 class="cs-toc-title">Contents</h3>
+            <div class="cs-toc-columns">
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Discovery</span>
+                    <a href="#problem-context">1. Problem Context &amp; Industry Landscape</a>
+                    <a href="#broad-problem">2. Broad Problem Exploration</a>
+                    <a href="#stakeholders">3. Stakeholder Ecosystem Mapping</a>
+                    <a href="#current-system">4. Current System Understanding</a>
+                    <a href="#gap-analysis">5. Gap Analysis in Current System</a>
+                    <a href="#primary-research">6. Primary Research Findings</a>
+                    <a href="#secondary-research">7. Secondary Research Insights</a>
+                    <a href="#business-economics">8. Business &amp; Unit Economics</a>
+                </div>
+                <div class="cs-toc-col">
+                    <span class="cs-toc-heading">Analysis &amp; Solution</span>
+                    <a href="#problem-consolidation">9. Problem Space Consolidation</a>
+                    <a href="#target-segment">10. Target Segment Narrowing</a>
+                    <a href="#core-decision-gap">11. Final Core Decision Gap</a>
+                    <a href="#problem-statement">12. Final Problem Statement</a>
+                    <a href="#product-concept">13. Product Concept</a>
+                    <a href="#dsm-product-flow">14. DSM Product Flow</a>
+                    <a href="#workflow-mapping">15. Workflow Mapping</a>
+                    <a href="#picker-flow">16. Picker Side Product Flow</a>
+                    <a href="#moonshot">17. Moonshot</a>
+                    <a href="#mvp-scope">18. MVP Scope</a>
+                    <a href="#success-metrics">19. Success Metrics</a>
+                    <a href="#tradeoffs">20. Trade-offs &amp; Limitations</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 1. Problem Context -->
+        <section class="cs-section" id="problem-context">
+            <span class="cs-section-label">Section 1</span>
+            <h2 class="cs-section-title">Problem Context &amp; Industry Landscape</h2>
+
+            <h3>1.1 Quick Commerce Evolution in India</h3>
+            <p>India's quick commerce industry was built on a single promise: delivery in minutes. What started as a convenience has become an expectation. Millions of urban Indians now plan their lives around it &mdash; ordering groceries mid-cooking, medicines at midnight, snacks before a match. That expectation is enforced at the software level: Blinkit, Zepto, and Instamart all run strict SLA timers that trigger penalties when delivery crosses the promised window.</p>
+            <p>The competitive pressure is extreme. None of the three players can win on product range (all carry similar SKUs) or pricing alone. The only real differentiator is execution speed and reliability. A customer who gets a late delivery or a wrong item twice will switch apps. <strong>Dark store operations &mdash; not marketing, not app design &mdash; are the actual battleground.</strong></p>
+
+            <h3>1.2 Role of Dark Stores in Business Success</h3>
+            <p>Every Blinkit order is fulfilled through a dark store &mdash; a small, densely packed warehouse of roughly 2,000&ndash;4,000 sq ft, positioned within a 2&ndash;4 km radius of the customers it serves. No walk-in customers. The sole job of a dark store is to pick, pack, and hand over orders as fast as possible.</p>
+
+            <h3>1.3 Peak Hour as System Stress Moment</h3>
+            <h4>The Standard Daily Peak</h4>
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">6&ndash;10 PM</span>
+                    <span class="cs-stat-label">Peak window (4 hours)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">~50%</span>
+                    <span class="cs-stat-label">of daily order volume in this window</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">~225</span>
+                    <span class="cs-stat-label">orders per hour (~4 orders/minute)</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">~900</span>
+                    <span class="cs-stat-label">orders out of 1,800 daily total</span>
+                </div>
+            </div>
+            <p>The dark store operates fine during off-peak hours. Problems appear because peak volume exposes every small inefficiency that was invisible at lower load. Peak hour also has an amplification effect: one stuck picker affects 3&ndash;4 orders. Those orders delay riders. Delayed riders cluster at the handover point, creating physical congestion that slows other pickers. The chaos is self-reinforcing and escalates faster than a manager can respond manually.</p>
+
+            <h4>Event-Triggered Peaks</h4>
+            <p>Beyond the daily evening peak, dark stores experience sudden demand spikes from external triggers &mdash; IPL matches (snacks/beverages surge), rain (volume spikes while rider availability drops simultaneously), and festive occasions (Diwali, Valentine's Day, Holi). These do not follow a predictable daily pattern.</p>
+        </section>
+
+        <!-- 2. Broad Problem Exploration -->
+        <section class="cs-section" id="broad-problem">
+            <span class="cs-section-label">Section 2</span>
+            <h2 class="cs-section-title">Broad Problem Exploration</h2>
+
+            <h3>2.1 Observable Customer-Level Symptoms</h3>
+            <ul>
+                <li><strong>Late deliveries:</strong> Orders breach the promised SLA.</li>
+                <li><strong>Wrong items:</strong> Customer receives a different product than ordered. Often caused by a mispick or unauthorised substitution.</li>
+                <li><strong>Missing items:</strong> Part of the order does not arrive. Caused by picking error, ghost inventory, or packing oversight.</li>
+                <li><strong>Rider arrived but order not ready:</strong> Rider reaches the store but has to wait because picking or packing is incomplete, creating backlog at the handover area.</li>
+            </ul>
+
+            <h3>2.2 Internal Operational Symptoms</h3>
+            <ul>
+                <li><strong>Picker delays:</strong> When a picker cannot find an item where the system says it should be, they lose 2&ndash;5 minutes per affected order &mdash; time spent searching adjacent bins or walking to the manager. This dead time compounds across concurrent orders during peak.</li>
+                <li><strong>Packing bottlenecks:</strong> Physical congestion at packing stations where pickers and riders converge in the same small space. Multiple people scanning QR codes in a crowded area leads to order mix-ups.</li>
+                <li><strong>Manager overload:</strong> Manager simultaneously tracks staff attendance, resolves picker issues, coordinates with riders, and manages physical congestion with no consolidated tool.</li>
+                <li><strong>Rider clustering:</strong> Riders who arrive on time find orders not ready. They wait at the store entrance, compounding chaos.</li>
+                <li><strong>KPI manipulation:</strong> Some managers mark orders as 'packed' before packing is complete. SLA metric looks better than reality; corrupts the data Blinkit uses at city ops level.</li>
+            </ul>
+        </section>
+
+        <!-- 3. Stakeholder Ecosystem -->
+        <section class="cs-section" id="stakeholders">
+            <span class="cs-section-label">Section 3</span>
+            <h2 class="cs-section-title">Stakeholder Ecosystem Mapping</h2>
+
+            <h3>3.2 Indirect Stakeholders</h3>
+            <ul>
+                <li><strong>City Operations Team:</strong> Monitors SLA and GMV across all stores. Sets daily targets and staffing models. They see aggregate data, not store-level real-time events.</li>
+                <li><strong>Customer Support:</strong> Handles refund requests, late delivery complaints, and wrong item reports &mdash; downstream consequences of dark store failures.</li>
+                <li><strong>Business Leadership:</strong> Tracks overall GMV, SLA compliance, and profitability. The KPI manipulation finding directly corrupts the data this team relies on.</li>
+            </ul>
+        </section>
+
+        <!-- 4. Current System -->
+        <section class="cs-section" id="current-system">
+            <span class="cs-section-label">Section 4</span>
+            <h2 class="cs-section-title">Current System Understanding</h2>
+
+            <h3>4.1 Order Lifecycle &amp; Store Processes</h3>
+            <p>Every order follows: <strong>Order Received &rarr; Assigned to Picker &rarr; Picking &rarr; Packing &rarr; Rider Handoff &rarr; Delivery.</strong></p>
+            <p>The store must complete its side in <strong>2.5&ndash;3 minutes</strong>. Rider travel accounts for ~7.5 minutes. Customer handshake takes 1&ndash;3 minutes. All three must hold simultaneously for the delivery promise to be met.</p>
+
+            <p>Four core daily processes support this lifecycle:</p>
+            <ol>
+                <li><strong>Receiving:</strong> Unloading incoming inventory from the mother warehouse (crates, totes, LPNs).</li>
+                <li><strong>Put Away:</strong> Scanning received inventory into specific bins per the system planogram.</li>
+                <li><strong>Picking &amp; Packing:</strong> The primary peak-hour activity. Pickers receive orders on handheld terminals, navigate via alphanumeric bin codes (A-01-02 = Aisle A, Rack 1, Bin 2), scan items, and deliver to the drop zone.</li>
+                <li><strong>Inventory Reconciliation (Cycle Counting):</strong> Auditing bins to verify physical stock matches system inventory. Should catch ghost inventory pre-peak &mdash; but rarely happens frequently enough.</li>
+            </ol>
+
+            <h3>4.3 Existing Tools &amp; Their Limitations</h3>
+            <p>Blinkit Nexus shows a heatmap-style store view (Bottleneck Detected: Packing Station B) and a Picker Leaderboard. These are post-session analytical tools, not real-time intervention tools. The Picker App uses a countdown timer as tight as 14 seconds per item to maintain picking pace &mdash; significant cognitive pressure during peak.</p>
+
+            <h3>4.4 Time-Cost of a Single Picker Issue (Current State)</h3>
+            <div class="cs-callout">
+                <p>Put-away error in morning &rarr; Picker follows system pick path during peak hours &rarr; Item not in bin &rarr; Picker walks to manager &rarr; Manager diagnoses &rarr; Decision made &rarr; <strong>Order already late</strong></p>
+            </div>
+        </section>
+
+        <!-- 5. Gap Analysis -->
+        <section class="cs-section" id="gap-analysis">
+            <span class="cs-section-label">Section 5</span>
+            <h2 class="cs-section-title">Gap Analysis in Current System</h2>
+
+            <h3>5.1 Information Gaps</h3>
+            <p>Things the manager cannot see right now, even though the data exists in Blinkit's systems:</p>
+            <ul>
+                <li><strong>Picker real-time status:</strong> Manager does not know which picker is actively picking, stuck, idle, or on undeclared break. Nexus shows efficiency scores but these are historical aggregates, not live indicators.</li>
+                <li><strong>Stuck orders before breach:</strong> Manager only knows an order is late after the SLA counter turns red. No early warning that a specific order is about to breach based on picker behaviour.</li>
+                <li><strong>Workload imbalance:</strong> If 8 pickers are active and 3 are handling complex multi-item orders while 5 are idle, the manager does not see this distribution.</li>
+                <li><strong>Pre-peak put-away errors:</strong> Planogram mismatches &mdash; items placed in wrong bins during morning restocking &mdash; are invisible to the manager until a picker cannot find an item during peak hours.</li>
+                <li><strong>Ghost inventory:</strong> System shows an item as in-stock but the bin is physically empty. Manager finds out when a picker walks over to report it.</li>
+                <li><strong>SKU-level surge visibility:</strong> Managers know what sells on a normal day but not the exact product mix that will surge during a specific event.</li>
+            </ul>
+
+            <h3>5.2 Decision Gaps</h3>
+            <p>Questions the manager cannot answer during peak hours, even standing on the floor:</p>
+            <ul>
+                <li><strong>Who needs help first?</strong> When two pickers flag issues simultaneously, no way to determine which causes greater SLA impact if left unresolved.</li>
+                <li><strong>Is this picker slow or stuck?</strong> A picker who has not scanned in 3 minutes might be moving between aisles (normal) or standing at an empty bin (crisis). Cannot tell without walking over.</li>
+                <li><strong>Which order is about to breach?</strong> Nexus shows 'SLA Breach: 3 orders' &mdash; a count, not the specific orders at risk or the picker responsible.</li>
+                <li><strong>Is the store ready for peak?</strong> Before the rush, manager cannot see which high-velocity SKUs are running low or how many pickers have confirmed arrival.</li>
+            </ul>
+
+            <h3>5.3 The Planogram Mismatch: Root Cause of Peak Chaos</h3>
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Peak hour chaos is largely the result of preparation failures that happened hours earlier.</strong> High staff churn means put-away workers are often on a learning curve. Under pressure from high incoming inventory volumes, they place items in the nearest available bin rather than following the planogram.</p>
+            </div>
+            <p>The manager's decision gap exists at two moments:</p>
+            <ul>
+                <li><strong>Pre-peak (preventable):</strong> Before peak, the manager should see which bins have mismatches or which high-velocity SKUs are depleted. They currently cannot.</li>
+                <li><strong>During peak (actionable):</strong> When a picker is stuck, the manager should know within seconds. They currently find out in 3&ndash;7 minutes.</li>
+            </ul>
+        </section>
+
+        <!-- 6. Primary Research -->
+        <section class="cs-section" id="primary-research">
+            <span class="cs-section-label">Section 6</span>
+            <h2 class="cs-section-title">Primary Research Findings</h2>
+
+            <h3>6.1 Research Methodology</h3>
+            <p>Conversations with 2&ndash;3 people/internal AI agents depending on team contacts. Visited dark stores and talked to delivery personnel to understand the flow.</p>
+
+            <h3>6.2 Ops Professional Interview &mdash; Key Findings</h3>
+
+            <h4>On how dark stores actually work</h4>
+            <ul>
+                <li>Four core processes: Receiving, Put Away, Picking &amp; Packing, and Inventory Reconciliation. Each measured separately by productivity.</li>
+                <li>Pickers and packers are the same role ('non-fungible') to reduce costs. Productivity is measured by units picked and packed per hour.</li>
+                <li>Delivery maths: store-side must complete in 2.5&ndash;3 minutes. Rider travel ~7.5 minutes. Customer handshake 1&ndash;3 minutes. All three must hold simultaneously.</li>
+                <li><strong>3x Buffer Rule:</strong> riders waiting at the store should equal 3x the per-minute order volume. At 4 orders/minute, 12 riders must be present.</li>
+            </ul>
+
+            <h4>On why peak hours break down</h4>
+            <ul>
+                <li>Peak hour chaos rarely happens because of the peak itself. It happens because of Put Away failures earlier in the day.</li>
+                <li>High staff churn means put-away workers are frequently on a learning curve. Under pressure, they place items in the nearest available bin rather than following the planogram.</li>
+                <li>This creates a physical vs. system mismatch. During peak, a picker follows the app's suggested path to a bin &mdash; but the item is not there.</li>
+                <li>Managers lack SKU-level visibility for peak days.</li>
+            </ul>
+
+            <h4>On what the manager can and cannot do</h4>
+            <ul>
+                <li>Manager handles logistics and staffing: confirming pickers show up, making cold calls to riders, managing parking for 100+ bikes.</li>
+                <li>When warned in advance about a specific SKU surge, manager can station dedicated immobile pickers near those bins.</li>
+                <li>Order sequencing is fixed FIFO. The central system does not allow managers to sequence orders by size or value.</li>
+                <li>During actual peak hour, the manager is mostly helpless. Their only last resort is to 'dislodge packers from serviceability' &mdash; stopping new order inflow entirely, resulting in deliberate order loss.</li>
+            </ul>
+
+            <h3>6.3 Team Field Observations</h3>
+            <ul>
+                <li><strong>QR code mix-ups:</strong> Riders must scan QR codes to claim specific orders. During peak, the handover area becomes packed and frantic, leading to orders assigned to wrong riders.</li>
+                <li><strong>Physical congestion at packing stations:</strong> Packers and riders squeezed into the same small space.</li>
+                <li><strong>Finding items causes delay:</strong> Items are not always where the system says they are &mdash; a direct consequence of put-away errors.</li>
+                <li><strong>KPI manipulation is real:</strong> Managers update order status as 'packed' before packing is actually complete.</li>
+                <li><strong>Most delays originate inside the store:</strong> Picker and dark store efficiency issues, not last-mile rider delays, are the primary cause.</li>
+                <li><strong>Picker economics:</strong> Part-time pickers earn approximately Rs. 90/hr with Rs. 200 joining bonus. Monthly earnings average Rs. 9,000&ndash;9,500.</li>
+            </ul>
+        </section>
+
+        <!-- 7. Secondary Research -->
+        <section class="cs-section" id="secondary-research">
+            <span class="cs-section-label">Section 7</span>
+            <h2 class="cs-section-title">Secondary Research Insights</h2>
+
+            <h3>7.1 Online Community Analysis</h3>
+            <p>Sources: Reddit (r/blinkit, r/india), Google Play Store reviews for Blinkit Partner and Picker apps, employee discussion forums.</p>
+            <ul>
+                <li>Most delivery delays originate inside the dark store, not in last-mile rider travel.</li>
+                <li>During high-demand hours, the handover area becomes packed. Riders scanning QR codes under time pressure leads to order mix-ups.</li>
+                <li>High picker attrition creates a recurring onboarding gap. New pickers are more likely to make put-away and picking errors.</li>
+            </ul>
+
+            <h3>7.2 Operational Video Analysis</h3>
+            <p>Sources: YouTube operational walkthroughs of Blinkit dark stores (Hackonomics, Tech DP, Montu The Vlog, HitenStar channels)</p>
+            <ul>
+                <li>The Picker App uses a countdown timer as tight as <strong>14 seconds per item</strong> &mdash; significant cognitive pressure during peak.</li>
+                <li>Bin logic uses alphanumeric codes (A-01-02 = Aisle A, Rack 1, Bin 2). The system eliminates searching in theory but breaks down when put-away workers place items in incorrect bins.</li>
+                <li>Blinkit Nexus shows post-session analytical tools, not real-time intervention tools.</li>
+            </ul>
+
+            <h3>7.3 Competitor Analysis &mdash; Instamart Dark Store Operations</h3>
+            <p>Instamart's store manager KPI structure confirms the universality of the problem. The Store Manager is measured on:</p>
+            <ul>
+                <li><strong>O2MFR:</strong> Order-to-Marked-for-Ready time (equivalent to Blinkit's store-side SLA)</li>
+                <li><strong>FTR (First Time Right):</strong> Percentage of orders with no picking errors</li>
+                <li><strong>IGCC:</strong> Issues and complaints rate at the picker level</li>
+                <li><strong>OPD:</strong> Orders per day handled without SLA or quality dips during peak</li>
+            </ul>
+            <div class="cs-callout"><p>The problem of not having real-time picker visibility is not unique to Blinkit's tools &mdash; it is a structural gap in how quick commerce dark stores operate.</p></div>
+        </section>
+
+        <!-- 8. Business & Unit Economics -->
+        <section class="cs-section" id="business-economics">
+            <span class="cs-section-label">Section 8</span>
+            <h2 class="cs-section-title">Business &amp; Unit Economics Analysis</h2>
+
+            <h3>8.1 Impact of Picking Efficiency</h3>
+            <p>Using the team's guesstimate model:</p>
+            <ul>
+                <li>Approximately <strong>27 wrong orders per peak session per store</strong>.</li>
+                <li>At estimated refund cost per wrong order, this translates to approximately <strong>Rs. 81,000 per store per month</strong> in peak-hour picking error losses.</li>
+            </ul>
+
+            <h3>8.2 Why Picker Performance is the Critical Lever</h3>
+            <p>Of the total delivery time, the store-side process controls 2.5&ndash;3 minutes. Rider travel at ~7.5 minutes is largely fixed by geography. Customer handshake time is not controllable by Blinkit.</p>
+            <div class="cs-stats-row">
+                <div class="cs-stat">
+                    <span class="cs-stat-number">55&ndash;60%</span>
+                    <span class="cs-stat-label">of total fulfillment effort is picking</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">60&ndash;65%</span>
+                    <span class="cs-stat-label">of SLA breaches are store-side delays</span>
+                </div>
+                <div class="cs-stat">
+                    <span class="cs-stat-number">35&ndash;40%</span>
+                    <span class="cs-stat-label">of the problem is rider speed/routing</span>
+                </div>
+            </div>
+            <div class="cs-callout"><p>The only window where Blinkit can improve delivery performance is inside the dark store. Fixing the store-side process addresses the majority of the problem.</p></div>
+        </section>
+
+        <!-- 9. Problem Space Consolidation -->
+        <section class="cs-section" id="problem-consolidation">
+            <span class="cs-section-label">Section 9</span>
+            <h2 class="cs-section-title">Problem Space Consolidation</h2>
+
+            <h3>9.3 Prioritisation: Importance x Satisfaction (IS) Framework</h3>
+            <p>Each pain point was scored on Importance (1&ndash;5) and Satisfaction (1&ndash;5). Gap Score = Importance minus Satisfaction. Higher gap = higher priority.</p>
+            <p><strong>Top three pain points by gap score (all 4.0+):</strong></p>
+            <ol>
+                <li><strong>No real-time picker location/status visibility</strong> &mdash; Gap score: 4.5</li>
+                <li><strong>Problems discovered too late to fix</strong> &mdash; Gap score: 4.2</li>
+                <li><strong>Cannot prioritise between multiple stuck pickers</strong> &mdash; Gap score: 4.0</li>
+            </ol>
+            <div class="cs-callout"><p>These three share a common cause: the manager has no live information feed about what is happening on the floor during peak hours.</p></div>
+
+            <h3>9.4 Problem Elimination Logic</h3>
+            <p>Problems identified but deliberately excluded from solution scope:</p>
+            <ul>
+                <li><strong>Layout / physical congestion:</strong> Requires capital investment in store redesign. Not within software scope.</li>
+                <li><strong>Demand spike management:</strong> Predictable; already handled by Blinkit's central demand forecasting team.</li>
+                <li><strong>Picker hiring and attrition:</strong> A structural HR and compensation problem.</li>
+                <li><strong>KPI manipulation:</strong> A systemic incentive design problem. Requires changing the KPI structure, not building a new tool.</li>
+                <li><strong>Rider supply and routing:</strong> Managed by city ops team. Outside dark store manager's decision scope.</li>
+            </ul>
+        </section>
+
+        <!-- 10. Target Segment -->
+        <section class="cs-section" id="target-segment">
+            <span class="cs-section-label">Section 10</span>
+            <h2 class="cs-section-title">Target Segment Narrowing</h2>
+
+            <h3>Geographic Focus: Why Bengaluru?</h3>
+            <ul>
+                <li>One of Blinkit's most operationally active markets, with high order density and strong consumer adoption.</li>
+                <li>The team's field observations were conducted in Bengaluru, making it the primary data source.</li>
+                <li>A fix that works in Bengaluru is likely replicable to other Tier-1 cities with minimal adaptation.</li>
+            </ul>
+
+            <h3>Store Type: Why &gt;1,800 Orders/Day CoCo Stores?</h3>
+            <ul>
+                <li>At this volume, peak hour failures have a measurable business impact.</li>
+                <li>Company-Owned, Company-Operated (CoCo) stores give Blinkit full operational control.</li>
+                <li>Franchise stores operate under different incentive structures and are excluded from V1 scope.</li>
+            </ul>
+
+            <h3>Peak Hour Definition: Why 6 PM &ndash; 10 PM?</h3>
+            <ul>
+                <li>This 4-hour window accounts for approximately 50% of daily order volume.</li>
+                <li>Operational failures have the greatest business impact and manager cognitive load is highest during this window.</li>
+            </ul>
+        </section>
+
+        <!-- 11. Final Core Decision Gap -->
+        <section class="cs-section" id="core-decision-gap">
+            <span class="cs-section-label">Section 11</span>
+            <h2 class="cs-section-title">Final Core Decision Gap</h2>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p>The data exists in the system: every scan event, every timer, every bin location is logged. But <strong>none of it is surfaced to the manager in a form that enables action</strong>. The existing Nexus dashboard shows the manager that 3 orders have breached SLA. It does not show which picker caused it, what happened, or what to do next.</p>
+            </div>
+
+            <p><strong>The decision failure chain:</strong></p>
+            <p>This failure chain repeats multiple times per peak session, across multiple pickers, simultaneously. The manager cannot be in three places at once. The system gives them no leverage to act earlier.</p>
+        </section>
+
+        <!-- 12. Final Problem Statement -->
+        <section class="cs-section" id="problem-statement">
+            <span class="cs-section-label">Section 12</span>
+            <h2 class="cs-section-title">Final Problem Statement</h2>
+
+            <h3>13. Defined Core Pain Point</h3>
+            <p><strong>Full Picker Journey Visibility for the Dark Store Manager</strong></p>
+            <p>The core pain point is not simply that the manager needs a dashboard. The manager already has one (Nexus). It does not help because it shows aggregate outcomes, not real-time picker-level activity.</p>
+
+            <h4>What 'Visibility' Means in This Context</h4>
+            <p>Visibility does not mean a GPS map of every picker's precise location. It means the manager can answer these four questions at any moment during peak hours without leaving their station:</p>
+            <ol>
+                <li><strong>Is this picker moving or stuck?</strong> (Green/Amber/Red status based on scan event timestamps)</li>
+                <li><strong>Which order is at risk right now?</strong> (Ranked by time remaining to SLA breach)</li>
+                <li><strong>What is the problem?</strong> (OOS item, ghost inventory, conflict, unresponsive)</li>
+                <li><strong>What do I do about it?</strong> (One recommended action per exception, pre-ranked by the system)</li>
+            </ol>
+
+            <h4>What Decision Improves</h4>
+            <p>With visibility, the manager's decision shifts from:</p>
+            <ul>
+                <li><strong>Reactive:</strong> 'The rider is shouting. Let me walk over and find out what happened.'</li>
+                <li><strong>Proactive:</strong> 'Picker Suresh has been stationary for 2 minutes at Bin C-04. Order #4821 has 1 minute to SLA breach. Suggested substitute: Amul Taaza 500ml. Accept or decline.'</li>
+            </ul>
+
+            <h4>What Outcome Changes</h4>
+            <ul>
+                <li>SLA compliance improves because exceptions are caught 3&ndash;5 minutes earlier.</li>
+                <li>Wrong order rate drops because substitutions are manager-approved before they happen.</li>
+                <li>Manager cognitive load reduces because the system surfaces and ranks exceptions instead of the manager discovering them through floor walks.</li>
+                <li>The kill switch is used less because smaller interventions earlier prevent the cascade that requires it.</li>
+            </ul>
+        </section>
+
+        <!-- SOLUTION SPACE divider -->
+        <div class="cs-divider">
+            <span>Solution Space</span>
+        </div>
+
+        <!-- 13. Product Concept -->
+        <section class="cs-section" id="product-concept">
+            <span class="cs-section-label">Section 13</span>
+            <h2 class="cs-section-title">Product Concept</h2>
+
+            <h3>What We Built</h3>
+            <p>The <strong>DSM Operational Hub</strong> is a mobile-first command layer for dark store managers. It is not a replacement for the existing Nexus or WMS infrastructure &mdash; it is a real-time decision surface built on top of it.</p>
+            <p>The product gives the DSM one screen that answers the four questions they could not answer before:</p>
+            <ol>
+                <li>Who is picking what, right now?</li>
+                <li>Which order is closest to breach?</li>
+                <li>What is the exact problem?</li>
+                <li>What should I do about it?</li>
+            </ol>
+
+            <h3>Design Rationale &mdash; Mobile First</h3>
+            <p>The DSM is never seated. During peak, they are moving between the floor, the packing station, and the handover area. A desktop dashboard is inaccessible when they are 15 feet from it resolving a picker issue. All functionality is designed for single-screen mobile use &mdash; glanceable, action-oriented, and operable with one hand under cognitive load.</p>
+
+            <h3>Primary User Personas</h3>
+            <h4>Dark Store Manager (DSM) &mdash; Primary User</h4>
+            <p>End-to-end store P&amp;L and operations. Hires, schedules and manages pickers. Owns inventory accuracy, store layout &amp; process hygiene. Acts as primary point of contact for CX escalations, tech issues, and audits.</p>
+
+            <h4>Picker &mdash; Secondary User</h4>
+            <p>Pickers interact with the DSM Operational Hub via a simplified companion screen. They do not manage orders &mdash; they execute them. The picker-side product serves two functions: shift check-in (name selection) and exception reporting (alert or SOS to DSM).</p>
+        </section>
+
+        <!-- 14. DSM Product Flow -->
+        <section class="cs-section" id="dsm-product-flow">
+            <span class="cs-section-label">Section 14</span>
+            <h2 class="cs-section-title">DSM Side &mdash; Product Flow</h2>
+            <p>The app is structured into three sequential modes that mirror the natural arc of a shift: preparation before peak, live operations during peak, and formal handoff at shift end. The DSM cannot jump to a later mode before completing the prior one.</p>
+
+            <h3>14.1 Authentication &mdash; Login</h3>
+            <p>DSMs authenticate via a mobile OTP. OTP login is DSM-exclusive. Pickers do not go through OTP authentication. DSM cannot start a shift &mdash; or access Ops Mode &mdash; until they are physically present at the store and within the designated shift window.</p>
+
+            <h3>14.2 Prep Mode &mdash; Plan Your Shift</h3>
+            <p>Prep Mode is the pre-peak briefing layer. It solves the <strong>Prediction Gap</strong> &mdash; the DSM currently enters peak hour with no advance warning of what is coming.</p>
+            <h4>What the DSM Sees in Prep Mode</h4>
+            <ul>
+                <li>Forecasted orders per minute for the upcoming peak window (e.g., 2.8 &rarr; 4.2 surge expected)</li>
+                <li>Festive or event alerts &mdash; IPL, rain warning, Diwali &mdash; with expected demand impact</li>
+                <li>Recommended inventory repositioning: high-velocity SKUs flagged for pre-peak bin checks</li>
+                <li>Previous DSM's handoff notes (written and voice)</li>
+                <li>Picker roster: who is scheduled, who has confirmed arrival, new vs. experienced pickers</li>
+                <li>Break schedule and attendance visibility</li>
+            </ul>
+
+            <h4>Shift Start Control Logic</h4>
+            <p>A DSM cannot start the shift unless they are physically present at the store. The incoming DSM must activate their shift before the outgoing DSM can log off. This prevents an authority vacuum &mdash; the moment between shifts where no manager has operational ownership.</p>
+
+            <h3>14.3 Ops Mode &mdash; The Command Hub</h3>
+            <p>Ops Mode is the core of the product. It contains three tabs, each surfacing a different layer of operational intelligence.</p>
+
+            <h4>Tab 1 &mdash; Ongoing Orders</h4>
+            <p><strong>Goal:</strong> Show the current state of every active order on the floor. This is the primary response surface.</p>
+            <p><strong>What Each Order Card Shows:</strong></p>
+            <ul>
+                <li>Picker name + NEW tag for first-week pickers</li>
+                <li>Order ID</li>
+                <li>Item progress (e.g., 4/7 items scanned)</li>
+                <li>Live timer &mdash; time elapsed since order was assigned</li>
+                <li>Last scan signal + zone (tells DSM where the picker last was)</li>
+                <li>Status tag and colour code</li>
+            </ul>
+
+            <p><strong>Colour Coding Logic:</strong></p>
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card" style="border-left: 4px solid #ff4444;">
+                    <h4>BREACH (&gt;3 min)</h4>
+                    <p>Always at top of list. Expanded card view with issue diagnosis and recommended action.</p>
+                </div>
+                <div class="cs-card" style="border-left: 4px solid #ffaa00;">
+                    <h4>RED (2&ndash;3 min)</h4>
+                    <p>Second priority. Expandable for full order detail and DSM actions.</p>
+                </div>
+                <div class="cs-card" style="border-left: 4px solid #44cc44;">
+                    <h4>GREEN (&lt;2 min)</h4>
+                    <p>On track. Not expandable. Require no DSM action.</p>
+                </div>
+            </div>
+
+            <p><strong>Nudge System &mdash; DSM to Picker:</strong> When a card turns red or a picker has been idle for 3+ minutes, the DSM can send a digital nudge. The picker receives a push notification: "Please speed up." This replaces shouting across the floor or physical chasing. The DSM acts on the top red card, sends the nudge, and returns to monitoring &mdash; in under 10 seconds.</p>
+
+            <p><strong>SOS &amp; Alert System &mdash; Picker to DSM:</strong></p>
+            <ul>
+                <li><strong>Standard Alert:</strong> item not found, inventory mismatch, technical issue. Appears as an AMBER card.</li>
+                <li><strong>SOS (Critical Emergency):</strong> accident, safety issue. Overrides the standard card hierarchy. SOS banner appears at the bottom of the Ops screen and persists until acknowledged.</li>
+            </ul>
+
+            <h4>Tab 2 &mdash; Pending Orders</h4>
+            <p><strong>Goal:</strong> Visibility of the work about to come. Solves the moment where the DSM gets blindsided by a surge.</p>
+            <ul>
+                <li>Queue Summary: total pending orders and total items in queue &mdash; unassigned orders that no picker has started.</li>
+                <li>Each card shows: order number, order size (items), SLA countdown.</li>
+                <li><strong>The Dislodge Button &mdash; Kill Switch:</strong> The nuclear option. Adjacent to the queue summary, positioned for when it is most likely to be considered. Marks store unserviceable and pauses incoming orders.</li>
+            </ul>
+
+            <h4>Tab 3 &mdash; Pickers Info</h4>
+            <p><strong>Goal:</strong> Full workforce visibility in one screen.</p>
+            <ul>
+                <li>Each card shows: Name, PPI error rate, NEW tag (first-week pickers), Shift status (Active/Inactive/On Break/Absent), Shift ends in.</li>
+                <li><strong>Why the New Picker Tag Matters:</strong> High picker attrition (30&ndash;40% annual turnover) means a significant portion of the active floor team at any peak hour is in their first or second week. New pickers are more likely to make errors. The DSM needs to know who they are without asking.</li>
+            </ul>
+
+            <h3>14.4 Hand-Off Mode &mdash; Shift Complete</h3>
+            <p>Solves the coordination gap at shift transitions. Currently, shift changes happen verbally, with no structured transfer.</p>
+            <p><strong>What Hand-Off Includes:</strong></p>
+            <ul>
+                <li>Shift performance summary: orders processed, SLA compliance rate, breach count, pick accuracy</li>
+                <li>Compliance audit checklist: outgoing DSM confirms end-of-shift tasks before logging off</li>
+                <li>Auto-generated notes: key events from the shift (breaches, SOS events, dislodge actions)</li>
+                <li>Manual notes: outgoing DSM adds context the system cannot capture</li>
+                <li>Voice note recording: for nuance that is faster spoken than typed</li>
+            </ul>
+            <p>These notes appear in the incoming DSM's Prep Mode as the 'Previous DSM Handoff' section.</p>
+
+            <p><strong>Shift Completion Lock Logic:</strong> The outgoing DSM cannot complete log-off until the incoming DSM has activated their shift. This prevents the authority vacuum.</p>
+        </section>
+
+        <!-- 15. Workflow Mapping -->
+        <section class="cs-section" id="workflow-mapping">
+            <span class="cs-section-label">Section 15</span>
+            <h2 class="cs-section-title">Peak-Hour Workflow Mapping</h2>
+
+            <h3>Before This Product &mdash; Manager Workflow During Peak</h3>
+            <p>Manager operates in purely reactive mode. Discovers issues only when pickers physically walk over to report them, or when SLA counters turn red on Nexus. By the time the manager diagnoses an issue and makes a decision, the order is already late. Multiple simultaneous issues create cascading chaos.</p>
+
+            <h3>After This Product &mdash; Manager Workflow During Peak</h3>
+            <p>Manager operates from a single screen that auto-sorts exceptions by risk. Receives proactive alerts when pickers are stuck. Can send digital nudges without leaving their station. Makes informed decisions (approve substitute, reassign, redirect) within seconds instead of minutes. The cascade is prevented because smaller interventions happen earlier.</p>
+        </section>
+
+        <!-- 16. Picker Flow -->
+        <section class="cs-section" id="picker-flow">
+            <span class="cs-section-label">Section 16</span>
+            <h2 class="cs-section-title">Picker Side &mdash; Product Flow</h2>
+            <p>The picker-facing side is intentionally minimal. Pickers are not the primary user of this product. Their role is to execute orders, not manage operations.</p>
+
+            <h3>16.1 Authentication &mdash; Select Name</h3>
+            <p>Pickers do not go through OTP authentication. At the start of their shift, they open the app and select their name from a pre-populated roster. OTP adds friction that is inappropriate for a picker workforce that may include part-time and first-day staff.</p>
+
+            <h3>16.2 Shift Check-In</h3>
+            <p>Name selection triggers shift check-in. The DSM sees them appear in the Pickers tab as Active. If a picker does not check in, their status shows as Absent.</p>
+
+            <h3>16.3 Exception Reporting &mdash; Alert and SOS</h3>
+            <div class="cs-card-grid">
+                <div class="cs-card">
+                    <h4>Standard Alert</h4>
+                    <p>Triggered when: item not found, inventory mismatch, scan failure, or general issue. Appears in the DSM's Ongoing Orders tab as an AMBER card for the affected order. DSM sees the issue category and can send a nudge, approve a substitute, or walk over.</p>
+                </div>
+                <div class="cs-card">
+                    <h4>SOS &mdash; Critical Emergency</h4>
+                    <p>Triggered when: accident, safety issue, or critical emergency. Overrides the standard card hierarchy in the DSM hub. SOS banner appears at the bottom of the Ops screen and persists until acknowledged. Only visible in Ops Mode.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 17. Moonshot -->
+        <section class="cs-section" id="moonshot">
+            <span class="cs-section-label">Section 17</span>
+            <h2 class="cs-section-title">Moonshot &mdash; Predictive Breach Prevention via Cart Signal Intelligence</h2>
+
+            <p>The DSM Operational Hub as built responds to what is happening now. The moonshot shifts the system to <strong>predicting what will happen next</strong> &mdash; before an order is even placed.</p>
+            <p>Blinkit's consumer app has visibility into cart behaviour: items added, items removed, session duration, and time-to-checkout. These signals are leading indicators of demand &mdash; not forecasts derived from historical data, but real-time signals of orders that are about to arrive at the dark store in the next 5&ndash;10 minutes.</p>
+
+            <h3>Why This Is Not in MVP</h3>
+            <ul>
+                <li>Requires access to upstream consumer app cart data &mdash; a cross-product data pipeline that does not currently exist at store level.</li>
+                <li>Privacy and data governance implications of surfacing individual cart data, even in aggregate, to store-level staff.</li>
+                <li>Operationalises a new class of decision for the DSM &mdash; pre-emptive stock moves based on probabilistic demand, not confirmed orders.</li>
+            </ul>
+
+            <div class="cs-callout cs-callout--highlight">
+                <p>If validated, this feature would move the product from <strong>reactive command to predictive command</strong> &mdash; the only way to truly eliminate peak-hour chaos rather than manage it.</p>
+            </div>
+        </section>
+
+        <!-- 18. MVP Scope -->
+        <section class="cs-section" id="mvp-scope">
+            <span class="cs-section-label">Section 18</span>
+            <h2 class="cs-section-title">MVP Scope &mdash; Koramangala POC</h2>
+            <p>The MVP is scoped to validate four hypotheses at a single Koramangala dark store during the 6 PM peak window. Phase 1 deliberately excludes optimisation features to focus on proving that the core visibility and coordination layer works.</p>
+        </section>
+
+        <!-- 19. Success Metrics -->
+        <section class="cs-section" id="success-metrics">
+            <span class="cs-section-label">Section 19</span>
+            <h2 class="cs-section-title">Success Metrics</h2>
+            <p>The POC is validated if the following metrics move in the right direction at the Koramangala store over a 4-week measurement window during peak hours (6&ndash;10 PM).</p>
+        </section>
+
+        <!-- 20. Trade-offs -->
+        <section class="cs-section" id="tradeoffs">
+            <span class="cs-section-label">Section 20</span>
+            <h2 class="cs-section-title">Trade-offs and Limitations</h2>
+
+            <h3>What This Product Does Not Solve</h3>
+            <ul>
+                <li><strong>Physical congestion</strong> at packing stations and the handover area. Requires capital investment in store layout &mdash; outside software scope.</li>
+                <li><strong>Picker attrition</strong> and the recurring onboarding gap. A structural HR and compensation problem.</li>
+                <li><strong>KPI manipulation</strong> (marking orders as 'packed' before completion). Requires incentive redesign, not a new tool.</li>
+                <li><strong>Rider supply and routing.</strong> Managed by city ops and the Rider App.</li>
+                <li><strong>Ghost inventory and planogram mismatches at source.</strong> Requires upstream put-away process changes.</li>
+            </ul>
+
+            <h3>Dependency Risks</h3>
+            <ul>
+                <li>The product requires real-time data feeds from the existing WMS and OMS. If those systems have latency, card timers and status updates will lag.</li>
+                <li>Picker-side adoption depends on the picker app being available on every picker's device. Part-time pickers who use personal phones introduce device fragmentation risk.</li>
+                <li>Surge forecasting in Prep Mode is only as accurate as Blinkit's central demand model.</li>
+            </ul>
+        </section>
+
+        <!-- Prototype -->
+        <section class="cs-section">
+            <span class="cs-section-label">Prototype</span>
+            <h2 class="cs-section-title">Interactive Prototype</h2>
+            <p>A working, interactive prototype of the DSM Operational Hub has been built covering the complete DSM flow &mdash; Login, Prep Mode, Ops Mode (all three tabs), and Hand-Off &mdash; as well as the Picker side check-in and alert flows.</p>
+            <div class="cs-meta-row" style="margin-top: 16px;">
+                <a href="https://blinkit-command-hub.vercel.app/" target="_blank" rel="noopener noreferrer" class="cs-link-btn">DSM Dashboard &rarr;</a>
+                <a href="https://picker-blinkit-app.lovable.app/picking" target="_blank" rel="noopener noreferrer" class="cs-link-btn cs-link-btn--secondary">Picker Side &rarr;</a>
+            </div>
+
+            <h3>Design Decisions Visible in Prototype</h3>
+            <ul>
+                <li>All critical information on one screen &mdash; no navigation required to assess peak state.</li>
+                <li>Card list auto-sorts by risk, not arrival time &mdash; breach cards always at top.</li>
+                <li>Green cards intentionally non-interactive &mdash; reduces false alarms and cognitive load.</li>
+                <li>Dislodge button placement near queue total &mdash; contextually positioned for when it is most likely to be considered.</li>
+                <li>SOS banner persists until acknowledged &mdash; cannot be accidentally dismissed.</li>
+                <li>Shift Complete screen shows DSM their performance summary &mdash; closes the accountability loop.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#work" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Product Requirements Document</p>
+    </footer>
+
+</body>
+</html>
