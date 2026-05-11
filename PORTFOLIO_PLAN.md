@@ -460,6 +460,19 @@ GET  /health → { "status": "ok" }
 
 ---
 
+## Project Content Depth Initiative (sub-project, separate track)
+
+**Doc:** `Obsidian: Projects/Project Content Depth Initiative.md`  
+**Goal:** Every project reaches recruiter-grade depth — GitHub README, 4 diagram types (wireframes, user flow, workflow, architecture), full PRD narrative on portfolio page, and a working demo mode for live products.
+
+**9 projects in scope:** Rethink CRM · Blinkit Dark Store Command Hub · YouTube 2.0 · Trivo · Vitae · Telegram Bot · Portfolio Website · Homelab · GWS CLI
+
+**4 phases:** A — GitHub Audit → B — Artifact Creation (Gemini + Excalidraw) → C — Portfolio Page Depth (Gemini audit → Claude edits) → D — Demo Mode per product
+
+**Delegation:** Gemini reads large HTML files; Claude writes targeted edits; Codex stubs READMEs; Excalidraw MCP creates diagrams. Nothing goes live without Gaurav review.
+
+---
+
 ## Success Criteria
 
 A recruiter or hiring manager lands on this portfolio and:

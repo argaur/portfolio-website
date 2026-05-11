@@ -268,19 +268,19 @@
   var caseStudies = [
     {
       category: 'B2B SaaS · AI · Telegram Bot',
-      title: "Founder's CRM — Conversation-First Sales Tool",
+      title: "Rethink CRM — Conversation-First Sales Tool",
       problem: "60–70% of founders abandon CRM within 4 weeks. The real insight: founders already manage relationships in WhatsApp. The tool had to meet them there.",
       insight: "WhatsApp forwards become structured deal data through a Telegram bot interface — zero context-switching, no new app to learn.",
       stats: ['39-page PRD', '16 tools analysed', '10 founder interviews'],
       stage: 'PRD · Prototype',
       stageTags: 'prd,prototype',
-      githubUrl: null,
+      githubUrl: 'https://github.com/argaur/founder-crm-bot',
       protoUrl: 'https://argaur.github.io/founder-crm-landing/',
       pageUrl: 'case-study-founder-crm.html'
     },
     {
       category: 'Quick Commerce · Operations',
-      title: 'Peak-Hour Decision Support for Blinkit Dark Stores',
+      title: 'Blinkit Dark Store Command Hub — Peak-Hour Decision Support',
       problem: "Managers discover picker performance issues 3–7 minutes too late during the 6–10 PM peak window. By then the SLA is already broken.",
       insight: "A real-time command hub that surfaces picker-level alerts before the breach — turning reactive firefighting into proactive management.",
       stats: ['Working prototype', '3 research methods', 'Unit economics modelled'],
@@ -304,13 +304,13 @@
     },
     {
       category: 'Consumer App · AI',
-      title: 'Group Travel Planning Platform',
+      title: 'Trivo — Group Travel Planning Platform',
       problem: "1–2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments and preference conflicts surface mid-trip, not during planning.",
       insight: "An AI-powered coordination layer that distributes planning tasks, surfaces conflicts early, and keeps the whole group aligned without a group chat.",
       stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
       stage: 'PRD · Prototype',
       stageTags: 'prd,prototype',
-      githubUrl: null,
+      githubUrl: 'https://github.com/argaur/group-travel-pwa',
       protoUrl: 'https://frontend-argaurs-projects.vercel.app',
       pageUrl: 'case-study-group-travel.html'
     },
@@ -338,7 +338,7 @@
       stats: ['28+ commands', '5 daily automations', '10 integrations'],
       stage: 'Shipped · Active',
       stageTags: 'shipped',
-      githubUrl: null,
+      githubUrl: 'https://github.com/argaur/telegram-bot',
       protoUrl: null,
       pageUrl: 'project-telegram-bot.html',
       pageLabel: 'Read Full Project Details'
@@ -377,7 +377,7 @@
       stats: ['Gmail API', 'Calendar API', 'Telegram trigger WIP'],
       stage: 'Shipped · Active',
       stageTags: 'shipped',
-      githubUrl: null,
+      githubUrl: 'https://github.com/argaur/gws-cli',
       protoUrl: null,
       pageUrl: 'project-gws-cli.html',
       pageLabel: 'Read Full Project Details'
@@ -487,34 +487,40 @@
 
   /* ---- Cert Modal ---- */
   var certData = {
-    'rethink-mpm':      { name: 'Product Management (MPM) Cohort 7', issuer: 'Rethink AI', year: '2026', pdfUrl: 'assets/rethink-cert.pdf' },
-    'rethink-buildathon': { name: 'Rethink Health Buildathon', issuer: 'Rethink AI', year: 'April 2026', pdfUrl: 'assets/rethink-cert.pdf' },
+    'rethink-mpm':        { name: 'Product Management (MPM) Cohort 7', issuer: 'Rethink AI', year: '2026', pdfUrl: 'assets/rethink-cert.pdf', verifyUrl: null },
+    'rethink-buildathon': { name: 'Rethink Buildathon', issuer: 'Rethink AI', year: 'April 2026', pdfUrl: 'assets/certs/rethink-buildathon.pdf', verifyUrl: null },
 
-    'csm':              { name: 'Certified Scrum Master (CSM)', issuer: 'Scrum Alliance', year: '2025', pdfUrl: 'assets/certs/csm.pdf' },
-    'cspo':             { name: 'Certified Scrum Product Owner (CSPO)', issuer: 'Scrum Alliance', year: '2025', pdfUrl: 'assets/certs/cspo.pdf' },
-    'airtable-admin':   { name: 'Airtable Admin', issuer: 'Airtable', year: '2024', pdfUrl: 'assets/certs/airtable-admin.pdf' },
-    'airtable-builder': { name: 'Airtable Builder Certification', issuer: 'Airtable', year: '2024', pdfUrl: 'assets/certs/airtable-builder.pdf' },
-    'lean':             { name: 'Lean Certification', issuer: 'JindalX', year: '2023', pdfUrl: 'assets/certs/lean.pdf' },
-    'sql':              { name: 'SQL for Data Analytics & Business Intelligence', issuer: 'Udemy', year: '2020', pdfUrl: 'assets/certs/sql.pdf' },
-    'data-science':     { name: 'Applied Data Science with Python — Level 2', issuer: 'IBM / Cognitive Class', year: '2020', pdfUrl: 'assets/certs/data-science-ibm.pdf' },
-    'pm-cert':          { name: 'Product Management Professional Certificate', issuer: 'Udemy', year: null, pdfUrl: 'assets/certs/product-management.pdf' }
+    'csm':              { name: 'Certified Scrum Master (CSM)', issuer: 'Scrum Alliance', year: '2025', pdfUrl: 'assets/certs/csm.pdf', verifyUrl: 'https://certification.scrumalliance.org/accounts/1760465-gaurav-gupta/certifications/2087011-csm' },
+    'cspo':             { name: 'Certified Scrum Product Owner (CSPO)', issuer: 'Scrum Alliance', year: '2025', pdfUrl: 'assets/certs/cspo.pdf', verifyUrl: 'https://certification.scrumalliance.org/accounts/1760465-gaurav-gupta/certifications/2102661-cspo' },
+    'automation-anywhere': { name: 'Essentials Automation Certification', issuer: 'Automation Anywhere', year: '2025', pdfUrl: null, verifyUrl: 'https://certificates.automationanywhere.com/a24976ab-4809-4d8c-85a9-82ac8b2836b9' },
+    'airtable-admin':   { name: 'Airtable Admin', issuer: 'Airtable', year: '2024', pdfUrl: 'assets/certs/airtable-admin.pdf', verifyUrl: 'https://verify.skilljar.com/c/pxw5zdsqq2qj' },
+    'airtable-builder': { name: 'Airtable Builder Certification', issuer: 'Airtable', year: '2024', pdfUrl: 'assets/certs/airtable-builder.pdf', verifyUrl: 'https://verify.skilljar.com/c/itfxffciw2bn' },
+    'power-bi':         { name: 'Learning Power BI Desktop', issuer: 'LinkedIn Learning', year: '2024', pdfUrl: null, verifyUrl: 'https://www.linkedin.com/learning/certificates/5a507a9f4113ad4c3efb57c82d7e82b725cc00f3369471368e4f26f79811c72b/' },
+    'lean':             { name: 'Lean Certification', issuer: 'JindalX', year: '2023', pdfUrl: 'assets/certs/lean.pdf', verifyUrl: null },
+    'sql':              { name: 'SQL for Data Analytics & Business Intelligence', issuer: 'Udemy', year: '2020', pdfUrl: 'assets/certs/sql.pdf', verifyUrl: 'https://www.udemy.com/certificate/UC-e2df66ab-5af3-4a05-817b-61e4a16a2109/' },
+    'data-science':     { name: 'Applied Data Science with Python — Level 2', issuer: 'IBM / Cognitive Class', year: '2020', pdfUrl: 'assets/certs/data-science-ibm.pdf', verifyUrl: 'https://www.youracclaim.com/badges/ab5ebc91-23a4-4568-9586-cf987f51e368/linked_in_profile' },
+    'pm-cert':          { name: 'Product Management Professional Certificate', issuer: 'Udemy', year: null, pdfUrl: 'assets/certs/product-management.pdf', verifyUrl: 'https://www.udemy.com/certificate/UC-9034c06a-c9bc-4b88-906b-07f4abb94f42/' }
   };
 
   function openCertModal(key) {
     var cert = certData[key];
     if (!cert) return;
     modalPanel.classList.add('modal-panel--wide');
+    var embedHtml = cert.pdfUrl
+      ? '<div class="cert-modal-embed">' +
+          '<iframe src="' + cert.pdfUrl + '" width="100%" height="500" style="border:none;display:block;"></iframe>' +
+          '<p class="cert-modal-fallback">Can\'t see the PDF? <a href="' + cert.pdfUrl + '" target="_blank" rel="noopener">Open in new tab &rarr;</a></p>' +
+        '</div>'
+      : '';
+    var actionsHtml = cert.verifyUrl
+      ? '<div class="modal-actions"><a href="' + cert.verifyUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">Verify Certificate &rarr;</a></div>'
+      : '';
     modalBody.innerHTML =
       '<div class="cert-modal-meta">' + cert.issuer + (cert.year ? ' &middot; ' + cert.year : '') + '</div>' +
       '<h2 class="cert-modal-name">' + cert.name + '</h2>' +
       '<div class="cert-modal-divider"></div>' +
-      '<div class="cert-modal-embed">' +
-        '<iframe src="' + cert.pdfUrl + '" width="100%" height="500" style="border:none;display:block;"></iframe>' +
-        '<p class="cert-modal-fallback">Can\'t see the PDF? <a href="' + cert.pdfUrl + '" target="_blank" rel="noopener">Open in new tab &rarr;</a></p>' +
-      '</div>' +
-      '<div class="modal-actions">' +
-        '<a href="' + cert.pdfUrl + '" target="_blank" rel="noopener" download class="modal-btn modal-btn--primary">Download Certificate &darr;</a>' +
-      '</div>';
+      embedHtml +
+      actionsHtml;
     modalOverlay.removeAttribute('hidden');
   }
 

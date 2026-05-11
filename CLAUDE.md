@@ -124,21 +124,24 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 
 ## Status
 - **State:** active — Phase 0 complete; Phase 1 in progress
-- **Last session:** 2026-05-10
+- **Last session:** 2026-05-11
 - **What was done (this session):**
-  - **Resume download CTA** wired into Contact panel (`index.html` + `styles.css`) — terracotta rectangular button, `download` attribute, points to `assets/gaurav-gupta-resume-2026.pdf`
-  - **Repo cleanup** done — `.ai-docs/` created (AGENTS.md, GEMINI.md, Design Analysis.txt, Changes_26 Apr.md, gemini_summary.md moved in); `.archive/` created (GauravG Portfolio/, Reference Files/ moved in); `Day 1.png` and `tabs.js` deleted (unreferenced)
-  - **Content parity audit** complete — all 9 pages inventoried; Phase 1.6 gap-fill tasks written into PORTFOLIO_PLAN.md; top gaps: GitHub links missing on all 9 pages, dead product links on Founder CRM + Group Travel, wireframes missing on 5 pages
-  - **GenAI Mastermind credential removed** — cert row deleted from `index.html`, entry removed from `app.js` certData, 103 MB PDF deleted; pushed live
-- **Next session trigger:** Gaurav will say **"lets continue"** — resume Phase 1 content work in this order:
-- **Next session — Phase 1 content work:**
-  1. **Priority 1:** Add GitHub links (or "Private — ask me" notes) to all 9 pages — highest recruiter credibility signal
-  2. **Priority 2:** Fix dead product links — Founder CRM + Group Travel (create prototype or change button text); Vitae wireframes link
-  3. **Priority 3:** Complete 3 thin work modals (OneValley, Taccomacco, RSP) — see Phase 1.4 in PORTFOLIO_PLAN.md
-  4. **Priority 4:** Detailed PRDs for personal projects — see Phase 1.3 in PORTFOLIO_PLAN.md
+  - **Fixed 4 dead product links** — Founder CRM and Group Travel `href="#"` → live URLs; YouTube 2.0 dead button removed; Vitae "View Wireframes →" placeholder removed
+  - **Renamed 3 projects** across `app.js` + case study HTML titles/h1s + `index.html` static rows: "Founder's CRM" → "Rethink CRM", "Group Travel Planning Platform" → "Trivo — Group Travel Planning Platform", "Peak-Hour Decision Support for Blinkit Dark Stores" → "Blinkit Dark Store Command Hub"
+  - **GitHub links added** to `app.js` for 4 projects: Rethink CRM (`founder-crm-bot`), Trivo (`group-travel-pwa`), Telegram Bot, GWS CLI; Blinkit + YouTube stay null until prototypes built
+  - **Credentials panel** — wired up 2 unlinked rows (Automation Anywhere, Power BI) with `data-cert`; added `verifyUrl` to all 10 certData entries; updated `openCertModal` to show "Verify Certificate →" primary button + "Download PDF →" ghost button; modal now handles certs with no PDF gracefully
+  - **Project Content Depth Initiative scoped** — master task at `Obsidian: Projects/Project Content Depth Initiative.md`; work modal drafts at `Obsidian: Projects/Work Modal Narratives Draft.md`
+  - **Nothing committed yet** — Gaurav testing locally before push
+- **Next session trigger:** Gaurav will say **"lets continue"**
+- **Next session — priority order:**
+  1. **Content depth** — start Project Content Depth Initiative Phase A: GitHub READMEs for all 9 repos now public
+  2. **Work modals** — LOW PRIORITY; drafts saved at `Obsidian: Projects/Work Modal Narratives Draft.md`; Gaurav reviews and corrects facts, then says "work modals ready" for Claude to drop into app.js
+  3. **Blinkit + YouTube prototypes** — when Gaurav builds them, add `githubUrl` and `protoUrl` to those case study entries in app.js
+- **Sub-projects:**
+  - **Project Content Depth Initiative** → `Obsidian: Projects/Project Content Depth Initiative.md` — GitHub + READMEs + 4 diagrams per project + PRD depth + demo modes
 - **Remaining phases (see PORTFOLIO_PLAN.md):**
-  - Phase 1 remainder: GitHub links, dead links, work modals, detailed PRDs, Career History Obsidian doc, content parity gap fill (Phase 1.6)
+  - Phase 1 remainder: GitHub links, work modals, Career History Obsidian doc
   - Phase 2: Profile photo; Contact → About/Bio panel; light/dark mode; timeline.html
   - Phase 3: PWA; RAG Chatbot "Ask Gaurav"
 - **Still open:** photo.jpg headshot confirm; Oracle VM HTTPS status; portfolio domain; chatbot embedding model; testimonials; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending)
-- **Last updated:** 2026-05-10
+- **Last updated:** 2026-05-11
