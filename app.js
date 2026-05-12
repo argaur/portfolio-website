@@ -112,13 +112,9 @@
       detail: 'Designed and shipped a full ATS with AI-powered screening, job description generation, and candidate-role matching. Integrated with existing HRMS for seamless data flow across the talent lifecycle. Deployed for 200+ hiring managers across 16 enterprise clients.',
       metrics: ['50% faster hiring', '200+ hiring managers', '40% internal mobility↑'],
       narrative: [
-        { label: 'Problem', body: 'JindalX\'s recruitment team was screening hundreds of applications per week with a 3-person TA team. Resume review alone consumed 60% of recruiter time — mostly pattern-matching against a checklist that hadn\'t changed in 4 years.' },
-        { label: 'Operational Reality', body: 'Recruiters were spending Tuesday and Wednesday of every week in pure screening mode. Interview slots were being offered to candidates who cleared the checklist but failed first-round anyway — a screening-to-interview conversion problem, not a headcount problem.' },
-        { label: 'User Friction', body: 'Candidates received no communication between application and interview. Drop-off at the scheduling stage was 40% — candidates were being ghosted by a process that moved slower than their other offers.' },
-        { label: 'Product Decision', body: 'Built an AI screening layer that ranked candidates by a multi-factor score (role-fit, trajectory, tenure-fit) derived from structured resume parsing plus historical hire quality data. Recruiters reviewed ranked batches, not raw inboxes.' },
-        { label: 'AI / System Design', body: 'Structured data extraction from CVs via LLM → scoring model trained on 18 months of historical hire quality ratings → ranked queue with explainability (recruiters could see why each candidate scored as they did). Human-in-the-loop on all final hiring decisions.' },
-        { label: 'Outcome', body: 'Time-to-hire reduced 50%. Screening-to-interview conversion improved 22%. TA team capacity freed by 35% — redirected to candidate experience and employer branding. Internal mobility increased 40% once the system was extended to open roles.' },
-        { label: 'Tradeoffs', body: 'Opted against automated interview scheduling in v1 to avoid adding complexity to an already sensitive recruiter workflow. Accepted some scheduling overhead in exchange for recruiter trust in the system — adoption was 100% within 6 weeks.' }
+        { label: 'Overview', body: 'End-to-end talent management suite combining an Applicant Tracking System and Internal Job Portal, built for a 5,000+ employee BPO organization across 16 enterprise clients.' },
+        { label: 'What I drove', body: 'Owned product strategy and roadmap end-to-end. Worked directly with engineering — no BA or JPM. Defined requirements, ran UAT, and managed phased rollout to 200+ hiring managers.' },
+        { label: 'Impact', body: '50% reduction in hiring time · 40% increase in internal mobility · adopted by 200+ hiring managers across 16 clients.' }
       ]
     },
     {
@@ -127,13 +123,9 @@
       detail: 'Replaced annual review cycles with continuous feedback loops. AI recommendation engine surfaces personalized development actions based on role, tenure, and past performance data. Single multi-tenant architecture deployed across 16 enterprise clients.',
       metrics: ['60% less manual review', '15 FTEs saved', '25% engagement↑'],
       narrative: [
-        { label: 'Problem', body: 'Performance reviews at JindalX happened once per year, by calendar, regardless of what was actually happening on the floor. High performers and low performers received the same cadence of feedback. The review had no structural link to compensation, learning, or career development.' },
-        { label: 'Operational Reality', body: 'Floor supervisors found annual reviews performative — they were writing summaries of things that had been resolved (or hadn\'t) months earlier. The review document had no downstream effect on anything the supervisor or employee actually cared about.' },
-        { label: 'User Friction', body: 'The most common complaint from agents: "My manager doesn\'t know what I\'ve been doing." The annual form didn\'t capture the day-to-day — it captured whatever the supervisor remembered in the week they had to fill it in.' },
-        { label: 'Product Decision', body: 'Replaced annual reviews with a continuous feedback loop: weekly check-in prompts for supervisors (3 structured questions, under 5 min), monthly performance summaries auto-generated from attendance, quality scores, and check-in history, and a bi-annual formal review that synthesized the record.' },
-        { label: 'AI / System Design', body: 'AI generated the monthly summary from structured data — attendance, call quality scores, training completion, grievance history — with a natural language narrative the supervisor could review and edit. Eliminated the blank-page problem and ensured summaries were data-grounded.' },
-        { label: 'Outcome', body: 'Supervisor time on performance documentation reduced 60% (narrative generation automated). Agent satisfaction with feedback process improved 34% (pulse survey). Formal review quality improved — reviewers arrived with 6 months of documented context rather than memory.' },
-        { label: 'Tradeoffs', body: 'The automated summary required supervisors to trust AI-generated narratives they\'d attach their name to. Ran a 4-week pilot with 12 supervisors, incorporating their edit patterns to tune the generation. Final adoption: supervisors edited less than 20% of the generated text.' }
+        { label: 'Overview', body: 'Performance monitoring tool built from scratch on Airtable with AI automations, serving 5,000+ employees across all BPO verticals at JindalX.' },
+        { label: 'What I drove', body: 'Sole PM and builder. Designed the data model, built automation workflows in Airtable, managed rollout, and trained business users. No engineering dependency — no-code + AI stack throughout.' },
+        { label: 'Impact', body: '15 FTEs saved · 25% agent engagement increase · 60% reduction in manual review effort.' }
       ]
     },
     {
@@ -142,13 +134,9 @@
       detail: 'Intelligent learning pathways adapt to agent performance data in real-time. Integrated chatbot handles 60% of queries without human escalation. Reduced onboarding time and improved frontline performance across 10,000+ seat operations.',
       metrics: ['45% performance↑', '35% training time↓', '60% faster resolution'],
       narrative: [
-        { label: 'Problem', body: 'JindalX onboards 200+ BPO agents per month. The existing training was a 5-day classroom program with 40% retention at 30 days — measured by post-training assessments and floor supervisor feedback. It wasn\'t scaling.' },
-        { label: 'Operational Reality', body: 'Training coordinators spent 60% of their time on scheduling logistics, not content quality. Agents across different delivery centers received inconsistent training based on which trainer was available. No data existed on which modules correlated with floor performance.' },
-        { label: 'User Friction', body: 'Agents had to complete training in fixed classroom slots — often disrupting their first weeks on the floor. There was no way to revisit material after onboarding. Knowledge gaps that surfaced on the floor had no correction path.' },
-        { label: 'Product Decision', body: 'Moved training to a modular, self-paced digital format with completion gating. Assessment-adaptive sequencing — agents who scored below threshold on a module were automatically routed to a remediation path before advancing.' },
-        { label: 'AI / System Design', body: 'Content recommendation engine suggested supplementary modules based on floor performance data (error rates, supervisor flags). Post-90-day floor performance correlated back to training completion patterns to identify which modules were predictive — these were elevated in the standard path.' },
-        { label: 'Outcome', body: '30-day retention improved from 40% to 67%. Time-to-productivity for new agents fell by 35%. Training logistics overhead reduced 45% (from 3 coordinators to 2). Floor supervisors reported measurably fewer first-month errors.' },
-        { label: 'Tradeoffs', body: 'Chose to build on an existing LMS platform rather than a custom build, sacrificing some UX quality for a 6-week deployment timeline. Accepted this debt — the content and sequencing logic were the real value, not the platform.' }
+        { label: 'Overview', body: 'Internal knowledge management and L&D platform with integrated AI chatbot for BPO agent training and performance support across JindalX operations.' },
+        { label: 'What I drove', body: 'Product strategy, vendor coordination, content architecture, and AI integration roadmap. Coordinated across L&D, operations, and engineering teams.' },
+        { label: 'Impact', body: '45% agent performance improvement · 35% reduction in training time · 60% faster issue resolution.' }
       ]
     },
     {
@@ -157,13 +145,9 @@
       detail: 'Full auction lifecycle management from listing through settlement. Automated invoicing eliminated manual reconciliation entirely. The UX redesign drove the 30% transaction volume increase.',
       metrics: ['30% transactions↑', 'Auto-invoicing', 'CRM integration'],
       narrative: [
-        { label: 'Problem', body: 'JindalX\'s B2B procurement arm was running auctions through a combination of spreadsheets, email threads, and phone calls. There was no single source of truth for bid history, settlement status, or client relationships.' },
-        { label: 'Operational Reality', body: 'Finance teams spent 2 days per week on manual invoice reconciliation. Auction outcomes were stored in email threads — no searchability, no audit trail, no client visibility into their own bid history.' },
-        { label: 'User Friction', body: 'Enterprise clients (buyers) had no self-serve access to their auction history or settlement status. Every question required a phone call to the sales team, creating support overhead and slowing deal velocity.' },
-        { label: 'Product Decision', body: 'Built a unified platform covering full auction lifecycle — listing, bidding, settlement, invoicing — with a client portal for self-serve visibility. CRM layer tracked all client interactions and relationship context.' },
-        { label: 'AI / System Design', body: 'Automated invoicing via rule-based engine triggered on auction close. Settlement status tracked via state machine. Client portal surfaced real-time bid history, settlement status, and transaction documents without human intervention.' },
-        { label: 'Outcome', body: 'Transaction volume increased 30% in first quarter post-launch. Invoice reconciliation time eliminated entirely. Client support calls for status queries reduced 65%. Sales team redirected from support to new business development.' },
-        { label: 'Tradeoffs', body: 'Chose to build self-serve portal before CRM integration, which meant the first 6 weeks required manual data sync between the two systems. Accepted this overhead to get client-facing value shipped faster — the self-serve feature was the deal-winner in sales conversations.' }
+        { label: 'Overview', body: 'B2B metal scrap auction platform connecting large manufacturers to SME dealers with automated bidding, settlement, and invoicing workflows.' },
+        { label: 'What I drove', body: 'Led product roadmap for CRM and auction modules. Defined workflows, ran discovery with business stakeholders, and coordinated engineering delivery.' },
+        { label: 'Impact', body: '30% increase in transaction volume · automated invoicing deployed · full CRM integration completed.' }
       ]
     },
     {
@@ -172,13 +156,9 @@
       detail: 'Handles shift workers, floating assignments, and multi-state compliance challenges unique to BPO operations. Full RESTful API integration with ERP backbone.',
       metrics: ['5,000+ agents', '25% satisfaction↑', 'Full ERP integration'],
       narrative: [
-        { label: 'Problem', body: 'JindalX\'s legacy HR operation ran on 12 disconnected tools — payroll in one system, compliance in another, workforce planning in a spreadsheet. Every reporting cycle required 3 days of manual consolidation by analysts who should have been doing strategic work.' },
-        { label: 'Operational Reality', body: 'Middle managers were spending 40% of their time on administrative coordination. The data to answer their questions existed — it just couldn\'t talk to itself. This was an integration problem masquerading as a tooling problem.' },
-        { label: 'User Friction', body: 'HR teams had to export-copy-paste across 5 systems to answer a single workforce query. BPO floor managers didn\'t know their team\'s actual capacity until the shift had already started.' },
-        { label: 'Product Decision', body: 'Rather than replacing systems (politically risky, 18-month timeline), we built an intelligence layer that unified data across existing tools via APIs. A single command-center surface — no migration, no retraining on new platforms.' },
-        { label: 'AI / System Design', body: 'Compliance anomaly detection flagged payroll irregularities before submission. Shift-optimization engine surfaced capacity recommendations to floor managers 2 hours before shift start. Natural language query layer answered workforce questions without analyst involvement.' },
-        { label: 'Outcome', body: '15 FTE equivalents recaptured from manual coordination. Payroll error rate dropped 73%. Compliance reporting time fell from 3 days to 4 hours. Employee satisfaction improved 25%. Adopted by 8 BPO delivery centers in 3 months.' },
-        { label: 'Tradeoffs', body: 'Integration over replacement was slower to build but avoided the political risk of forcing a platform switch on 5,000+ employee records. Accepted reduced intelligence quality (working from exports vs. live data) in exchange for 6-month deployment over 18.' }
+        { label: 'Overview', body: 'Internal HRMS serving 5,000+ BPO agents with attendance, payroll coordination, and employee self-service capabilities across JindalX delivery centers.' },
+        { label: 'What I drove', body: 'Product ownership across HRMS modules. Stakeholder management across HR, operations, and engineering. Managed rollout planning and transition to live operations.' },
+        { label: 'Impact', body: '5,000+ users onboarded · 25% employee satisfaction increase · full ERP integration achieved.' }
       ]
     },
     {
@@ -187,13 +167,9 @@
       detail: 'Replaced 7 siloed spreadsheet-based reports with a single real-time warehouse. Automated ETL pipelines reduced data engineering toil by 35%.',
       metrics: ['40% accuracy↑', '35% processing↓', 'Multi-source ETL'],
       narrative: [
-        { label: 'Problem', body: 'JindalX leadership had workforce data but no workforce intelligence. Attrition was analyzed quarterly in a slide deck. Performance patterns were invisible in real-time. Decisions about headcount and team structure were made on instinct.' },
-        { label: 'Operational Reality', body: 'Delivery center managers were running their teams on gut feel and experience. The data to make better decisions existed in payroll, attendance, performance, and grievance systems — but required a data analyst 3 days to pull and format.' },
-        { label: 'User Friction', body: 'Decisions lagged reality by 2-3 weeks. A spike in attrition in one delivery center wouldn\'t surface in any report until the quarter-end review — by which time 40+ people had already left.' },
-        { label: 'Product Decision', body: 'Built a real-time workforce dashboard that surfaced 12 leading indicators across 8 delivery centers. Designed for delivery center managers, not analysts — every metric had a recommended action state, not just a number.' },
-        { label: 'AI / System Design', body: 'Attrition risk scoring model trained on 24 months of exit data flagged individuals at elevated risk 4-6 weeks before predicted departure. Scores surfaced as a ranked list (High/Medium/Low), not a raw probability — managers could act without understanding the model.' },
-        { label: 'Outcome', body: 'Early-warning attrition model achieved 74% accuracy at 4-week prediction horizon. Two delivery centers reduced voluntary attrition 18% in Q1 using the proactive intervention playbook. Dashboard adopted by all 8 delivery centers within 60 days. Reporting accuracy improved 40%.' },
-        { label: 'Tradeoffs', body: 'Chose to display risk as a relative rank rather than a percentage — early testing showed managers over-indexing on raw probabilities and acting on employees who weren\'t actually at risk. The abstraction reduced false positives at the cost of precision.' }
+        { label: 'Overview', body: 'Centralized analytics platform unifying data from multiple enterprise systems into a single reporting layer for JindalX leadership decision-making.' },
+        { label: 'What I drove', body: 'Led product and data architecture decisions. Coordinated across data engineering, business units, and executive stakeholders on requirements and delivery.' },
+        { label: 'Impact', body: '40% improvement in reporting accuracy · 35% reduction in data processing time · multi-source ETL pipeline operational.' }
       ]
     },
     {
@@ -202,12 +178,9 @@
       detail: 'Led product strategy and roadmap for B2C and B2B entrepreneurship platforms supporting global programs including Entrepreneurship World Cup. Served universities, banks, accelerators, and corporate incubators across India and international markets. Drove feature development, KPI frameworks, mentorship systems, and SaaS ecosystem integration.',
       metrics: ['B2B + B2C product lines', 'Global multi-client SaaS', 'Startup ecosystem platform'],
       narrative: [
-        { label: 'Problem', body: 'OneValley\'s Passport platform was serving two radically different audiences — startup founders (B2C) and institutional partners like universities and accelerators (B2B) — on the same product surface. The result was feature sprawl: every stakeholder was asking for something different, and the roadmap had no clear north star.' },
-        { label: 'Operational Reality', body: 'Program managers at partner institutions were manually tracking founder progress through spreadsheets. Mentorship sessions were booked via email. Impact reporting to corporate sponsors required 2–3 hours of manual data aggregation per quarter — a recurring cost that scaled badly as the partner count grew.' },
-        { label: 'User Friction', body: 'Founders (B2C users) experienced the platform as a directory, not a tool. Discovery of mentors, resources, and peer connections required too many steps. Retention dropped sharply after onboarding — the platform captured signups from programs like Entrepreneurship World Cup but failed to convert them into engaged long-term users.' },
-        { label: 'Product Decision', body: 'Separated the product into two distinct surfaces: Passport (founder-facing) focused on discovery, connections, and program participation; PassportOS (institution-facing) focused on cohort management, mentor matching, and automated impact reporting. Shared data layer, divergent UX contracts.' },
-        { label: 'What I Built', body: 'Led roadmap strategy across both product lines — KPI frameworks, feature prioritization, mentorship system design, SaaS integration with partner ecosystems. Coordinated across engineering, design, and partner success teams to align quarterly releases with global program cycles including Entrepreneurship World Cup timelines. [VERIFY: team size, specific release cadence]' },
-        { label: 'Outcome', body: 'B2B partners moved from manual reporting to automated impact dashboards, recovering hours per quarter per program manager. Founder engagement with mentorship and peer features improved post-separation. Platform supported global programs across India and international markets simultaneously. [VERIFY: specific engagement metrics, partner count]' }
+        { label: 'Overview', body: 'B2C and B2B entrepreneurship platform supporting global startup ecosystems — Passport for individual founders, PassportOS for corporations and governments running accelerators.' },
+        { label: 'What I drove', body: 'Owned full product roadmap across both product lines. Led Entrepreneurship World Cup initiative across 200+ countries. Established Queens University partnership for virtual incubation program.' },
+        { label: 'Impact', body: 'Platform serving global multi-client SaaS model · partnerships operational across 200+ countries · corporate and university program adoption via PassportOS.' }
       ]
     },
     {
@@ -216,12 +189,9 @@
       detail: 'As Co-Founder & COO, built the content pipeline and publishing infrastructure from scratch. Designed version control workflows, creator onboarding, and multi-channel distribution. Ran a structured incubation program that helped 6+ creators go from idea to published digital titles.',
       metrics: ['500+ digital titles launched', '6 creators incubated', 'Full content pipeline built'],
       narrative: [
-        { label: 'Problem', body: 'Digital content creators — particularly in non-English markets — had no structured path from idea to distributed digital product. Existing platforms (Gumroad, Notion) gave creators a publishing endpoint but no production infrastructure: no editorial workflow, no version control, no channel strategy. The gap between "I want to create" and "I have a launched product" was entirely unaddressed.' },
-        { label: 'Operational Reality', body: 'Early creator partners were producing content across disconnected tools — Google Docs for writing, Canva for design, WhatsApp for feedback loops. There was no single system of record, no structured review stage, and no repeatable process for moving a title from draft to launch. Each title was an ad-hoc project.' },
-        { label: 'User Friction', body: 'Creators experienced the biggest drop-off between "content drafted" and "content published." The friction was structural: packaging, pricing, distribution channel selection, and post-launch marketing were each a separate rabbit hole. Most creators had creative capacity but no operational bandwidth to navigate all of it.' },
-        { label: 'Product Decision', body: 'Built a structured incubation model — a 6-stage pipeline (Ideation → Outline → Draft → Review → Package → Launch) with defined handoffs at each stage. Platform tooling codified the pipeline: version-controlled drafts, templated packaging, integrated multi-channel distribution. Creators focused on content; the platform handled the operations layer.' },
-        { label: 'What I Built', body: 'As Co-Founder & COO: designed the full content pipeline, version control workflow, creator onboarding program, and multi-channel distribution infrastructure from scratch. Ran incubation cohorts — selecting, briefing, and shipping titles with 6 creators from ideation to launch. Managed publishing operations, partner relationships, and platform roadmap. [VERIFY: tech stack, distribution channels used]' },
-        { label: 'Outcome', body: '500+ digital titles launched across the platform. 6 creators taken through the full incubation cycle — from raw idea to published, distributed digital product. Full content pipeline operational and repeatable. [VERIFY: revenue, creator satisfaction metrics, timeline]' }
+        { label: 'Overview', body: 'Mobile reading app — B2C subscription platform for digital content discovery and creator publishing. Co-founded and led as COO from 0 to launch.' },
+        { label: 'What I drove', body: 'Led product as Co-Founder & COO. Defined roadmap, pricing strategy, content architecture, and technology direction independently from 0 to launch.' },
+        { label: 'Impact', body: '500+ digital titles launched in 6 months · 6 creators incubated from idea to published product · covered by YourStory.' }
       ]
     },
     {
@@ -230,12 +200,9 @@
       detail: 'Managed 40+ architectural and interior design projects across IT campuses, healthcare facilities, and institutional buildings. Introduced project management best practices that reduced delivery time by 25% and maintained a 95% client retention rate across a 3-year tenure.',
       metrics: ['40+ projects delivered', '95% client retention', '25% faster delivery'],
       narrative: [
-        { label: 'Problem', body: 'RSP Design Consultants was managing a growing portfolio of complex multi-stakeholder projects — IT campuses, healthcare facilities, institutional buildings — without a structured project management framework. Projects ran on informal milestone tracking, and delivery timelines slipped routinely due to coordination gaps between design, client review, and contractor execution phases.' },
-        { label: 'Operational Reality', body: 'Design and delivery were treated as sequential phases, not parallel workstreams. Client feedback cycles were unstructured — revisions arrived at unpredictable times, causing cascading delays downstream. Contractors received finalized drawings without staged visibility into evolving design decisions, leading to late-stage rework. [VERIFY: typical project scale, team structure]' },
-        { label: 'User Friction', body: 'Clients experienced the process as opaque — long silences between submissions, surprise scope conversations, and revision cycles that felt reactive rather than managed. Internal teams operated under deadline pressure that was largely self-inflicted by the absence of a structured review cadence.' },
-        { label: 'Product Decision', body: 'Introduced phased project management: structured milestone gates, client review windows built into the schedule rather than triggered ad-hoc, and contractor engagement beginning at design development (not just construction documentation). Applied PM frameworks from software product development — sprint cycles, documented decision logs, structured sign-offs — to an architectural delivery context.' },
-        { label: 'What I Built', body: 'Managed 40+ projects across IT campuses, healthcare, and institutional typologies over a 3-year tenure. Introduced delivery frameworks that formalized the design-review-construction handoff. Built client communication cadences and internal milestone tracking that gave both teams and clients predictable, structured touchpoints. [VERIFY: specific tools used, team size managed]' },
-        { label: 'Outcome', body: 'Delivery time reduced 25% across managed projects through elimination of unstructured revision cycles and earlier contractor coordination. 95% client retention rate maintained across the tenure — a signal of both delivery reliability and client communication quality. Built the operational foundation that informed how I approach product management: clear phases, structured handoffs, and proactive stakeholder communication. [VERIFY: specific project examples you can name]' }
+        { label: 'Overview', body: 'Large-scale architectural projects across IT parks, healthcare, and institutional sectors in India — managed across a 3-year tenure at RSP Design Consultants.' },
+        { label: 'What I drove', body: 'Managed 40+ projects end-to-end. Coordinated multidisciplinary teams, client relationships, and structured delivery planning across concurrent projects.' },
+        { label: 'Impact', body: '40+ projects delivered · 95% client retention rate · 25% improvement in delivery timelines.' }
       ]
     }
   ];
