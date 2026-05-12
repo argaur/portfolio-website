@@ -264,6 +264,10 @@ img { display: block; max-width: 100%; }
   background: none;
   border: 1px solid rgba(11,22,40,0.4);
   padding: 8px 20px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
@@ -651,6 +655,15 @@ img { display: block; max-width: 100%; }
 
   .cs-section { margin-bottom: 48px; }
   .cs-section-title { font-size: clamp(22px, 6vw, 32px); }
+
+  /* Prevent long strings from causing horizontal overflow */
+  .cs-section p, .cs-section li, .cs-section td {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Reduce table cell padding on mobile */
+  .cs-table td, .cs-table th { padding: 8px 12px; }
 
   /* Floating pagination — narrower on mobile */
   .cs-pagination {
