@@ -11,6 +11,14 @@
     var errorEl = document.getElementById('gate-error');
     var btn = document.getElementById('gate-btn');
 
+    // Recruiter bypass — ?r=1 skips gate and sets returning-visitor flag
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('r') === '1') {
+        localStorage.setItem(STORAGE_KEY, '1');
+        gate.remove();
+        return;
+    }
+
     // Returning visitor — skip the gate
     if (localStorage.getItem(STORAGE_KEY)) {
         gate.remove();

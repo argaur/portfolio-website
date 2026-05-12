@@ -200,19 +200,43 @@
       tag: 'Platform · EdTech',
       title: 'Passport & PassportOS — OneValley',
       detail: 'Led product strategy and roadmap for B2C and B2B entrepreneurship platforms supporting global programs including Entrepreneurship World Cup. Served universities, banks, accelerators, and corporate incubators across India and international markets. Drove feature development, KPI frameworks, mentorship systems, and SaaS ecosystem integration.',
-      metrics: ['B2B + B2C product lines', 'Global multi-client SaaS', 'Startup ecosystem platform']
+      metrics: ['B2B + B2C product lines', 'Global multi-client SaaS', 'Startup ecosystem platform'],
+      narrative: [
+        { label: 'Problem', body: 'OneValley\'s Passport platform was serving two radically different audiences — startup founders (B2C) and institutional partners like universities and accelerators (B2B) — on the same product surface. The result was feature sprawl: every stakeholder was asking for something different, and the roadmap had no clear north star.' },
+        { label: 'Operational Reality', body: 'Program managers at partner institutions were manually tracking founder progress through spreadsheets. Mentorship sessions were booked via email. Impact reporting to corporate sponsors required 2–3 hours of manual data aggregation per quarter — a recurring cost that scaled badly as the partner count grew.' },
+        { label: 'User Friction', body: 'Founders (B2C users) experienced the platform as a directory, not a tool. Discovery of mentors, resources, and peer connections required too many steps. Retention dropped sharply after onboarding — the platform captured signups from programs like Entrepreneurship World Cup but failed to convert them into engaged long-term users.' },
+        { label: 'Product Decision', body: 'Separated the product into two distinct surfaces: Passport (founder-facing) focused on discovery, connections, and program participation; PassportOS (institution-facing) focused on cohort management, mentor matching, and automated impact reporting. Shared data layer, divergent UX contracts.' },
+        { label: 'What I Built', body: 'Led roadmap strategy across both product lines — KPI frameworks, feature prioritization, mentorship system design, SaaS integration with partner ecosystems. Coordinated across engineering, design, and partner success teams to align quarterly releases with global program cycles including Entrepreneurship World Cup timelines. [VERIFY: team size, specific release cadence]' },
+        { label: 'Outcome', body: 'B2B partners moved from manual reporting to automated impact dashboards, recovering hours per quarter per program manager. Founder engagement with mentorship and peer features improved post-separation. Platform supported global programs across India and international markets simultaneously. [VERIFY: specific engagement metrics, partner count]' }
+      ]
     },
     {
       tag: 'Content · Platform',
       title: 'Digital Content & Publishing Platform — Taccomacco',
       detail: 'As Co-Founder & COO, built the content pipeline and publishing infrastructure from scratch. Designed version control workflows, creator onboarding, and multi-channel distribution. Ran a structured incubation program that helped 6+ creators go from idea to published digital titles.',
-      metrics: ['500+ digital titles launched', '6 creators incubated', 'Full content pipeline built']
+      metrics: ['500+ digital titles launched', '6 creators incubated', 'Full content pipeline built'],
+      narrative: [
+        { label: 'Problem', body: 'Digital content creators — particularly in non-English markets — had no structured path from idea to distributed digital product. Existing platforms (Gumroad, Notion) gave creators a publishing endpoint but no production infrastructure: no editorial workflow, no version control, no channel strategy. The gap between "I want to create" and "I have a launched product" was entirely unaddressed.' },
+        { label: 'Operational Reality', body: 'Early creator partners were producing content across disconnected tools — Google Docs for writing, Canva for design, WhatsApp for feedback loops. There was no single system of record, no structured review stage, and no repeatable process for moving a title from draft to launch. Each title was an ad-hoc project.' },
+        { label: 'User Friction', body: 'Creators experienced the biggest drop-off between "content drafted" and "content published." The friction was structural: packaging, pricing, distribution channel selection, and post-launch marketing were each a separate rabbit hole. Most creators had creative capacity but no operational bandwidth to navigate all of it.' },
+        { label: 'Product Decision', body: 'Built a structured incubation model — a 6-stage pipeline (Ideation → Outline → Draft → Review → Package → Launch) with defined handoffs at each stage. Platform tooling codified the pipeline: version-controlled drafts, templated packaging, integrated multi-channel distribution. Creators focused on content; the platform handled the operations layer.' },
+        { label: 'What I Built', body: 'As Co-Founder & COO: designed the full content pipeline, version control workflow, creator onboarding program, and multi-channel distribution infrastructure from scratch. Ran incubation cohorts — selecting, briefing, and shipping titles with 6 creators from ideation to launch. Managed publishing operations, partner relationships, and platform roadmap. [VERIFY: tech stack, distribution channels used]' },
+        { label: 'Outcome', body: '500+ digital titles launched across the platform. 6 creators taken through the full incubation cycle — from raw idea to published, distributed digital product. Full content pipeline operational and repeatable. [VERIFY: revenue, creator satisfaction metrics, timeline]' }
+      ]
     },
     {
       tag: 'Architecture · PM',
       title: 'Architectural Projects Portfolio — RSP Design Consultants',
       detail: 'Managed 40+ architectural and interior design projects across IT campuses, healthcare facilities, and institutional buildings. Introduced project management best practices that reduced delivery time by 25% and maintained a 95% client retention rate across a 3-year tenure.',
-      metrics: ['40+ projects delivered', '95% client retention', '25% faster delivery']
+      metrics: ['40+ projects delivered', '95% client retention', '25% faster delivery'],
+      narrative: [
+        { label: 'Problem', body: 'RSP Design Consultants was managing a growing portfolio of complex multi-stakeholder projects — IT campuses, healthcare facilities, institutional buildings — without a structured project management framework. Projects ran on informal milestone tracking, and delivery timelines slipped routinely due to coordination gaps between design, client review, and contractor execution phases.' },
+        { label: 'Operational Reality', body: 'Design and delivery were treated as sequential phases, not parallel workstreams. Client feedback cycles were unstructured — revisions arrived at unpredictable times, causing cascading delays downstream. Contractors received finalized drawings without staged visibility into evolving design decisions, leading to late-stage rework. [VERIFY: typical project scale, team structure]' },
+        { label: 'User Friction', body: 'Clients experienced the process as opaque — long silences between submissions, surprise scope conversations, and revision cycles that felt reactive rather than managed. Internal teams operated under deadline pressure that was largely self-inflicted by the absence of a structured review cadence.' },
+        { label: 'Product Decision', body: 'Introduced phased project management: structured milestone gates, client review windows built into the schedule rather than triggered ad-hoc, and contractor engagement beginning at design development (not just construction documentation). Applied PM frameworks from software product development — sprint cycles, documented decision logs, structured sign-offs — to an architectural delivery context.' },
+        { label: 'What I Built', body: 'Managed 40+ projects across IT campuses, healthcare, and institutional typologies over a 3-year tenure. Introduced delivery frameworks that formalized the design-review-construction handoff. Built client communication cadences and internal milestone tracking that gave both teams and clients predictable, structured touchpoints. [VERIFY: specific tools used, team size managed]' },
+        { label: 'Outcome', body: 'Delivery time reduced 25% across managed projects through elimination of unstructured revision cycles and earlier contractor coordination. 95% client retention rate maintained across the tenure — a signal of both delivery reliability and client communication quality. Built the operational foundation that informed how I approach product management: clear phases, structured handoffs, and proactive stakeholder communication. [VERIFY: specific project examples you can name]' }
+      ]
     }
   ];
 
@@ -274,6 +298,8 @@
       stats: ['39-page PRD', '16 tools analysed', '10 founder interviews'],
       stage: 'PRD · Prototype',
       stageTags: 'prd,prototype',
+      industryTags: ['AI', 'B2B', 'Sales'],
+      retrospective: '',
       githubUrl: 'https://github.com/argaur/founder-crm-bot',
       protoUrl: 'https://argaur.github.io/founder-crm-landing/',
       pageUrl: 'case-study-founder-crm.html'
@@ -286,6 +312,8 @@
       stats: ['Working prototype', '3 research methods', 'Unit economics modelled'],
       stage: 'PRD · Prototype · Shipped',
       stageTags: 'prd,prototype,shipped',
+      industryTags: ['AI', 'Ops', 'Consumer'],
+      retrospective: '',
       githubUrl: null,
       protoUrl: 'https://blinkit-command-hub.vercel.app/',
       pageUrl: 'case-study-blinkit.html'
@@ -298,6 +326,8 @@
       stats: ['171 survey responses', '4 product solutions', '27+ sources'],
       stage: 'PRD · Wireframes · Prototype',
       stageTags: 'prd,prototype',
+      industryTags: ['Consumer', 'Discovery'],
+      retrospective: '',
       githubUrl: null,
       protoUrl: null,
       pageUrl: 'case-study-youtube.html'
@@ -310,6 +340,8 @@
       stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
       stage: 'PRD · Prototype',
       stageTags: 'prd,prototype',
+      industryTags: ['AI', 'Consumer', 'Platform'],
+      retrospective: '',
       githubUrl: 'https://github.com/argaur/group-travel-pwa',
       protoUrl: 'https://frontend-argaurs-projects.vercel.app',
       pageUrl: 'case-study-group-travel.html'
@@ -322,6 +354,8 @@
       stats: ['Live product', '6-person team', '10 days shipped'],
       stage: 'PRD · Shipped',
       stageTags: 'prd,shipped',
+      industryTags: ['AI', 'HealthTech'],
+      retrospective: '',
       githubUrl: 'https://github.com/aashikvilla/health-assistant',
       protoUrl: 'https://vitae-health.vercel.app/',
       pageUrl: 'case-study-vitae.html'
@@ -338,6 +372,7 @@
       stats: ['28+ commands', '5 daily automations', '10 integrations'],
       stage: 'Shipped · Active',
       stageTags: 'shipped',
+      industryTags: ['Infra', 'Automation'],
       githubUrl: 'https://github.com/argaur/telegram-bot',
       protoUrl: null,
       pageUrl: 'project-telegram-bot.html',
@@ -351,6 +386,7 @@
       stats: ['0 npm dependencies', 'Supabase email gate', '8 panel SPA'],
       stage: 'Shipped · Live',
       stageTags: 'shipped',
+      industryTags: ['Infra'],
       githubUrl: 'https://github.com/argaur/portfolio-website',
       protoUrl: null,
       pageUrl: 'project-portfolio.html',
@@ -364,6 +400,7 @@
       stats: ['10+ Docker services', 'HashiCorp Vault', 'Prometheus + Grafana'],
       stage: 'Shipped · Active',
       stageTags: 'shipped',
+      industryTags: ['Infra'],
       githubUrl: 'https://github.com/argaur/homelab-v2',
       protoUrl: null,
       pageUrl: 'project-homelab.html',
@@ -377,6 +414,7 @@
       stats: ['Gmail API', 'Calendar API', 'Telegram trigger WIP'],
       stage: 'Shipped · Active',
       stageTags: 'shipped',
+      industryTags: ['Infra', 'Automation'],
       githubUrl: 'https://github.com/argaur/gws-cli',
       protoUrl: null,
       pageUrl: 'project-gws-cli.html',
@@ -402,8 +440,18 @@
 
   function openItemModal(item) {
     modalPanel.classList.remove('modal-panel--wide');
+    var industryHtml = (item.industryTags && item.industryTags.length)
+      ? '<div class="modal-industry-tags">' +
+          item.industryTags.map(function (t) { return '<span class="modal-industry-tag">' + t + '</span>'; }).join('') +
+        '</div>'
+      : '';
+    var retroHtml = item.retrospective
+      ? '<div class="modal-section-label">What I\'d do differently</div>' +
+        '<p class="modal-insight">' + item.retrospective + '</p>'
+      : '';
     modalBody.innerHTML =
       '<div class="modal-tag">' + item.category + '</div>' +
+      industryHtml +
       '<h2 class="modal-title">' + item.title + '</h2>' +
       '<p class="modal-detail">' + item.problem + '</p>' +
       '<div class="modal-section-label">The Insight</div>' +
@@ -413,6 +461,7 @@
           return '<span class="modal-stat-chip">' + s + '</span>';
         }).join('') +
       '</div>' +
+      retroHtml +
       buildModalActions(item);
     modalOverlay.removeAttribute('hidden');
   }

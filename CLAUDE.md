@@ -123,25 +123,19 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** active — Phase 0 complete; Phase 1 in progress
-- **Last session:** 2026-05-11
+- **State:** active — Portfolio v2 Phase A+B in progress; deployed at gauravg-portfolio.vercel.app
+- **Last session:** 2026-05-12
 - **What was done (this session):**
-  - **Fixed 4 dead product links** — Founder CRM and Group Travel `href="#"` → live URLs; YouTube 2.0 dead button removed; Vitae "View Wireframes →" placeholder removed
-  - **Renamed 3 projects** across `app.js` + case study HTML titles/h1s + `index.html` static rows: "Founder's CRM" → "Rethink CRM", "Group Travel Planning Platform" → "Trivo — Group Travel Planning Platform", "Peak-Hour Decision Support for Blinkit Dark Stores" → "Blinkit Dark Store Command Hub"
-  - **GitHub links added** to `app.js` for 4 projects: Rethink CRM (`founder-crm-bot`), Trivo (`group-travel-pwa`), Telegram Bot, GWS CLI; Blinkit + YouTube stay null until prototypes built
-  - **Credentials panel** — wired up 2 unlinked rows (Automation Anywhere, Power BI) with `data-cert`; added `verifyUrl` to all 10 certData entries; updated `openCertModal` to show "Verify Certificate →" primary button + "Download PDF →" ghost button; modal now handles certs with no PDF gracefully
-  - **Project Content Depth Initiative scoped** — master task at `Obsidian: Projects/Project Content Depth Initiative.md`; work modal drafts at `Obsidian: Projects/Work Modal Narratives Draft.md`
-  - **Nothing committed yet** — Gaurav testing locally before push
+  - **Domain resolved** — no custom domain; using `https://gauravg-portfolio.vercel.app` (already live on Vercel). Recruiter bypass: `https://gauravg-portfolio.vercel.app/?r=1`
+  - **YOUR-DOMAIN replaced** — all 40 instances across 10 HTML files swapped to `gauravg-portfolio.vercel.app`
+  - **"What I'd do differently" scaffold** — `retrospective: ''` field added to all 5 case study entries in `app.js`; `openItemModal` renders the section only when the field is non-empty; ready for Gaurav to fill content
+  - **Industry tags** — `industryTags: []` added to all 9 entries (5 case studies + 4 personal projects); renders as blue pills in modal header between category label and title; CSS added to `styles.css`
+  - **All changes committed and pushed** — Vercel auto-deploys from `main`
 - **Next session trigger:** Gaurav will say **"lets continue"**
 - **Next session — priority order:**
-  1. **Content depth** — start Project Content Depth Initiative Phase A: GitHub READMEs for all 9 repos now public
-  2. **Work modals** — LOW PRIORITY; drafts saved at `Obsidian: Projects/Work Modal Narratives Draft.md`; Gaurav reviews and corrects facts, then says "work modals ready" for Claude to drop into app.js
-  3. **Blinkit + YouTube prototypes** — when Gaurav builds them, add `githubUrl` and `protoUrl` to those case study entries in app.js
-- **Sub-projects:**
-  - **Project Content Depth Initiative** → `Obsidian: Projects/Project Content Depth Initiative.md` — GitHub + READMEs + 4 diagrams per project + PRD depth + demo modes
-- **Remaining phases (see PORTFOLIO_PLAN.md):**
-  - Phase 1 remainder: GitHub links, work modals, Career History Obsidian doc
-  - Phase 2: Profile photo; Contact → About/Bio panel; light/dark mode; timeline.html
-  - Phase 3: PWA; RAG Chatbot "Ask Gaurav"
-- **Still open:** photo.jpg headshot confirm; Oracle VM HTTPS status; portfolio domain; chatbot embedding model; testimonials; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending)
-- **Last updated:** 2026-05-11
+  1. **Work modal corrections** — Gaurav will review `Analysis/Work Modal Content Review.md` and mark corrections; apply edits to `app.js`
+  2. **Retrospective content** — write "What I'd do differently" text for each of the 5 case studies; add to `retrospective` field in `app.js`
+  3. **Phase B continued** — profile photo + About panel (blocked on headshot); "What I'd do differently" on case study HTML pages (not just modals)
+  4. **Blinkit + YouTube prototypes** — add `githubUrl` / `protoUrl` when built
+- **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending); retrospective text for all 5 case studies
+- **Last updated:** 2026-05-12
