@@ -123,19 +123,20 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** active — Portfolio v2 Phase A+B in progress; deployed at gauravg-portfolio.vercel.app
+- **State:** stable — basic shareable version live; `dev` branch created for all future work
 - **Last session:** 2026-05-12
 - **What was done (this session):**
-  - **Domain resolved** — no custom domain; using `https://gauravg-portfolio.vercel.app` (already live on Vercel). Recruiter bypass: `https://gauravg-portfolio.vercel.app/?r=1`
-  - **YOUR-DOMAIN replaced** — all 40 instances across 10 HTML files swapped to `gauravg-portfolio.vercel.app`
-  - **"What I'd do differently" scaffold** — `retrospective: ''` field added to all 5 case study entries in `app.js`; `openItemModal` renders the section only when the field is non-empty; ready for Gaurav to fill content
-  - **Industry tags** — `industryTags: []` added to all 9 entries (5 case studies + 4 personal projects); renders as blue pills in modal header between category label and title; CSS added to `styles.css`
-  - **All changes committed and pushed** — Vercel auto-deploys from `main`
+  - **Work modals simplified** — all 9 `workProjects` narratives replaced with 3-part structure (Overview / What I drove / Impact) using verified resume content only; all `[VERIFY]` placeholders removed
+  - **Mobile responsiveness** — all touch targets ≥44px (modal-btn, gate-btn, hero CTAs, cs-page-btn); gate heading uses `clamp()`; nav overlay link min size 36→28px; gate + modal compress on 400px screens; case study tables reduce cell padding at 768px; `overflow-wrap: break-word` on case study content
+  - **Hero chip** — Trivo replaced with Rethink CRM (links to `argaur.github.io/founder-crm-landing/`)
+  - **Gmail draft saved** — reply to Aloha ABA India thread (Srinivas), sharing Xcellence story + Blinkit + Vitae + portfolio link; ready to send tomorrow
+  - **`dev` branch created** — `main` is now the stable version; all new features go to `dev`
+  - **All changes on `main` pushed to Vercel** — auto-deployed
 - **Next session trigger:** Gaurav will say **"lets continue"**
-- **Next session — priority order:**
-  1. **Work modal corrections** — Gaurav will review `Analysis/Work Modal Content Review.md` and mark corrections; apply edits to `app.js`
-  2. **Retrospective content** — write "What I'd do differently" text for each of the 5 case studies; add to `retrospective` field in `app.js`
-  3. **Phase B continued** — profile photo + About panel (blocked on headshot); "What I'd do differently" on case study HTML pages (not just modals)
-  4. **Blinkit + YouTube prototypes** — add `githubUrl` / `protoUrl` when built
+- **Next session — priority order (on `dev` branch):**
+  1. **Retrospective content** — write "What I'd do differently" for all 5 case studies → `retrospective` field in `app.js`
+  2. **Work modal upgrade** — restore rich narrative content once Gaurav verifies `Analysis/Work Modal Content Review.md`
+  3. **Phase B** — About/bio panel (blocked on headshot photo.jpg); "What I'd do differently" on case study HTML pages
+  4. **Blinkit + YouTube prototypes** — add `protoUrl` when built
 - **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending); retrospective text for all 5 case studies
 - **Last updated:** 2026-05-12
