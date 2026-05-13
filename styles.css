@@ -945,33 +945,6 @@ img { display: block; max-width: 100%; }
   border-color: rgba(255,255,255,0.2);
 }
 
-.projects-filter {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 32px;
-}
-.pf-btn {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border: 1px solid #c9c2b9;
-  background: transparent;
-  color: #6b6560;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-.pf-btn:hover {
-  border-color: #bf5c3a;
-  color: #bf5c3a;
-}
-.pf-btn--active {
-  background: #bf5c3a;
-  border-color: #bf5c3a;
-  color: #ffffff;
-}
 
 /* ============================================================
    SKILLS
@@ -1332,12 +1305,35 @@ img { display: block; max-width: 100%; }
   padding: 4px 10px;
   letter-spacing: 0.02em;
 }
-.modal-actions {
+.modal-docs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.modal-doc-chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid #2d5da1;
+  color: #2d5da1;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.modal-doc-chip:hover {
+  background: #2d5da1;
+  color: #f7f3ee;
+}
+.modal-ctas {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  padding-top: 24px;
+  padding-top: 20px;
   border-top: 1px solid #e2dbd3;
+  margin-top: 4px;
 }
 .modal-btn {
   font-family: 'DM Sans', sans-serif;
@@ -1364,6 +1360,12 @@ img { display: block; max-width: 100%; }
   border: 1px solid #e2dbd3;
 }
 .modal-btn--secondary:hover { border-color: #0b1628; }
+.modal-btn--proto {
+  background: #bf5c3a;
+  border: 1px solid #bf5c3a;
+  color: #ffffff;
+}
+.modal-btn--proto:hover { background: #a34d30; border-color: #a34d30; }
 .modal-btn--ghost {
   background: transparent;
   color: #bf5c3a;
@@ -1619,7 +1621,7 @@ img { display: block; max-width: 100%; }
   /* Modal */
   .modal-overlay { padding: 16px; }
   .modal-panel { padding: 28px 20px; max-height: 90vh; overflow-y: auto; }
-  .modal-actions { flex-direction: column; }
+  .modal-ctas { flex-direction: column; }
 }
 
 /* ============================================================

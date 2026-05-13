@@ -42,10 +42,279 @@
                 <span class="cs-meta-tag">India Travel Tech</span>
                 <span class="cs-meta-tag">Primary Research</span>
             </div>
-            <div class="cs-meta-row" style="margin-top: 16px;">
-                <a href="https://frontend-argaurs-projects.vercel.app" class="cs-link-btn" target="_blank" rel="noopener">View Product &rarr;</a>
-            </div>
         </header>
+
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">User Flow</button>
+          <button class="cs-docs-tab" data-doc="wireframe">Wireframe</button>
+          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
+          <button class="cs-docs-tab" data-doc="prd">PRD</button>
+          <a href="https://github.com/argaur/group-travel-pwa" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+          <a href="https://frontend-argaurs-projects.vercel.app" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">Prototype &rarr;</a>
+        </div>
+      </div>
+      <div class="cs-docs-panel" data-panel="flow">
+        <svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="tf-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="310" fill="#0b1628"/>
+          <text x="450" y="26" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" text-anchor="middle" opacity="0.7">GROUP TRIP COORDINATION — USER FLOW</text>
+
+          <!-- Node 1: Creator sets destination + dates (cream) -->
+          <rect x="5" y="108" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" rx="0"/>
+          <text x="60" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Creator sets</text>
+          <text x="60" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">destination + dates</text>
+
+          <!-- Arrow N1 -> N2 -->
+          <line x1="115" y1="130" x2="170" y2="130" stroke="#f7f3ee" stroke-width="1" marker-end="url(#tf-arr)" opacity="0.6"/>
+
+          <!-- Node 2: Invites group (cream) -->
+          <rect x="125" y="108" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" rx="0"/>
+          <text x="180" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Invites group</text>
+          <text x="180" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Link / QR code</text>
+
+          <!-- Arrow N2 -> N3 -->
+          <line x1="235" y1="130" x2="290" y2="130" stroke="#f7f3ee" stroke-width="1" marker-end="url(#tf-arr)" opacity="0.6"/>
+
+          <!-- Node 3: Members set prefs + budget (cream) -->
+          <rect x="245" y="108" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" rx="0"/>
+          <text x="300" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Members set</text>
+          <text x="300" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">prefs + budget</text>
+
+          <!-- Arrow N3 -> N4 -->
+          <line x1="355" y1="130" x2="420" y2="130" stroke="#f7f3ee" stroke-width="1" marker-end="url(#tf-arr)" opacity="0.6"/>
+
+          <!-- Node 4: AI surfaces conflicts (terracotta) -->
+          <rect x="375" y="108" width="110" height="44" fill="#bf5c3a" stroke="#bf5c3a" stroke-width="1" rx="0"/>
+          <text x="430" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">AI surfaces</text>
+          <text x="430" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">conflicts</text>
+
+          <!-- Arrow N4 -> N5 with label "conflict" -->
+          <line x1="485" y1="130" x2="550" y2="130" stroke="#f7f3ee" stroke-width="1" marker-end="url(#tf-arr)" opacity="0.6"/>
+          <text x="518" y="122" fill="#bf5c3a" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle">conflict</text>
+
+          <!-- Node 5: Group votes (terracotta) -->
+          <rect x="505" y="108" width="110" height="44" fill="#bf5c3a" stroke="#bf5c3a" stroke-width="1" rx="0"/>
+          <text x="560" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Group votes</text>
+          <text x="560" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">on resolutions</text>
+
+          <!-- Arrow N5 -> N6 -->
+          <line x1="615" y1="130" x2="680" y2="130" stroke="#f7f3ee" stroke-width="1" marker-end="url(#tf-arr)" opacity="0.6"/>
+
+          <!-- Node 6: Itinerary generated (cream) -->
+          <rect x="635" y="108" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" rx="0"/>
+          <text x="690" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Itinerary</text>
+          <text x="690" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">generated</text>
+
+          <!-- Arrow N6 -> N7 -->
+          <line x1="745" y1="130" x2="810" y2="130" stroke="#f7f3ee" stroke-width="1" marker-end="url(#tf-arr)" opacity="0.6"/>
+
+          <!-- Node 7: Trip begins (cream) -->
+          <rect x="765" y="108" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" rx="0"/>
+          <text x="820" y="128" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Trip begins</text>
+          <text x="820" y="142" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Live updates</text>
+
+          <!-- Branch from N4 down: dashed arrow to y=250 -->
+          <line x1="430" y1="152" x2="430" y2="232" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#tf-arr)" opacity="0.5"/>
+          <!-- Label "resolved" to the right of the down arrow -->
+          <text x="438" y="200" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8">resolved</text>
+
+          <!-- Node "No conflicts / Auto-proceed" at y=250 (cream, dimmed) -->
+          <rect x="375" y="228" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" rx="0" opacity="0.6"/>
+          <text x="430" y="248" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">No conflicts</text>
+          <text x="430" y="262" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">Auto-proceed</text>
+        </svg>
+      </div>
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="wireframe">
+        <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <rect width="900" height="400" fill="#0b1628"/>
+          <text x="450" y="26" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" text-anchor="middle" opacity="0.7">WIREFRAME — TRIP PLANNING SCREENS</text>
+
+          <!-- ===== SCREEN 1: SETUP ===== -->
+          <rect x="20" y="46" width="260" height="330" fill="#0d1e38" stroke="#2d5da1" stroke-width="1"/>
+          <!-- Header -->
+          <rect x="20" y="46" width="260" height="36" fill="#f7f3ee"/>
+          <text x="150" y="69" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" text-anchor="middle">New Trip</text>
+
+          <!-- Label: Destination -->
+          <text x="30" y="108" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.7">Destination</text>
+          <rect x="30" y="112" width="220" height="32" fill="#f7f3ee" opacity="0.9"/>
+
+          <!-- Label: Dates -->
+          <text x="30" y="162" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.7">Travel Dates</text>
+          <rect x="30" y="166" width="220" height="32" fill="#f7f3ee" opacity="0.9"/>
+
+          <!-- Label: Group Size -->
+          <text x="30" y="216" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.7">Group Size</text>
+          <rect x="30" y="220" width="220" height="32" fill="#f7f3ee" opacity="0.9"/>
+
+          <!-- Label: Budget -->
+          <text x="30" y="270" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.7">Budget per Person</text>
+          <rect x="30" y="274" width="220" height="32" fill="#f7f3ee" opacity="0.9"/>
+
+          <!-- CTA -->
+          <rect x="30" y="326" width="220" height="36" fill="#bf5c3a"/>
+          <text x="140" y="349" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Create Trip</text>
+
+          <!-- Screen label -->
+          <text x="150" y="388" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.8">SETUP</text>
+
+          <!-- ===== SCREEN 2: PREFERENCES ===== -->
+          <rect x="320" y="46" width="260" height="330" fill="#0d1e38" stroke="#2d5da1" stroke-width="1"/>
+          <!-- Header -->
+          <rect x="320" y="46" width="260" height="36" fill="#f7f3ee"/>
+          <text x="450" y="69" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" text-anchor="middle">Group Preferences</text>
+
+          <!-- Preference matrix: col headers -->
+          <text x="410" y="108" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" opacity="0.7">Budget</text>
+          <text x="470" y="108" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" opacity="0.7">Hotel</text>
+          <text x="530" y="108" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" opacity="0.7">Activities</text>
+
+          <!-- Row 1: Rahul -->
+          <text x="338" y="134" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.8">Rahul</text>
+          <rect x="388" y="120" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+          <rect x="448" y="120" width="44" height="26" fill="#bf5c3a"/>
+          <text x="470" y="136" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="7" text-anchor="middle">Budget clash</text>
+          <rect x="508" y="120" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+
+          <!-- Row 2: Meera -->
+          <text x="338" y="168" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.8">Meera</text>
+          <rect x="388" y="154" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+          <rect x="448" y="154" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+          <rect x="508" y="154" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+
+          <!-- Row 3: Dev -->
+          <text x="338" y="202" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.8">Dev</text>
+          <rect x="388" y="188" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+          <rect x="448" y="188" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+          <rect x="508" y="188" width="44" height="26" fill="#f7f3ee" opacity="0.85"/>
+
+          <!-- Screen label -->
+          <text x="450" y="388" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.8">PREFERENCES</text>
+
+          <!-- ===== SCREEN 3: ITINERARY ===== -->
+          <rect x="640" y="46" width="240" height="330" fill="#0d1e38" stroke="#2d5da1" stroke-width="1"/>
+          <!-- Header -->
+          <rect x="640" y="46" width="240" height="36" fill="#f7f3ee"/>
+          <text x="760" y="69" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" text-anchor="middle">Day 1 — Goa</text>
+
+          <!-- Itinerary item 1 -->
+          <rect x="655" y="100" width="210" height="60" fill="#f7f3ee" opacity="0.9"/>
+          <text x="665" y="122" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8" font-weight="600">9:00 AM</text>
+          <text x="665" y="138" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8">Beach arrival + check-in</text>
+          <rect x="820" y="108" width="36" height="16" fill="#bf5c3a"/>
+          <text x="838" y="119" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="7" text-anchor="middle">5/6</text>
+
+          <!-- Itinerary item 2 -->
+          <rect x="655" y="172" width="210" height="60" fill="#f7f3ee" opacity="0.9"/>
+          <text x="665" y="194" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8" font-weight="600">1:00 PM</text>
+          <text x="665" y="210" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8">Group lunch at shack</text>
+          <rect x="820" y="180" width="36" height="16" fill="#bf5c3a"/>
+          <text x="838" y="191" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="7" text-anchor="middle">6/6</text>
+
+          <!-- Itinerary item 3 -->
+          <rect x="655" y="244" width="210" height="60" fill="#f7f3ee" opacity="0.9"/>
+          <text x="665" y="266" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8" font-weight="600">6:00 PM</text>
+          <text x="665" y="282" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8">Sunset at Anjuna</text>
+          <rect x="820" y="252" width="36" height="16" fill="#bf5c3a"/>
+          <text x="838" y="263" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="7" text-anchor="middle">4/6</text>
+
+          <!-- Screen label -->
+          <text x="760" y="388" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.8">ITINERARY</text>
+        </svg>
+      </div>
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
+        <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="ta-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="360" fill="#0b1628"/>
+          <text x="450" y="26" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" text-anchor="middle" opacity="0.7">SYSTEM ARCHITECTURE — TRIVO PLATFORM</text>
+
+          <!-- Zone dividers -->
+          <line x1="170" y1="38" x2="170" y2="300" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="380" y1="38" x2="380" y2="300" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="590" y1="38" x2="590" y2="300" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="760" y1="38" x2="760" y2="300" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+
+          <!-- Zone labels -->
+          <text x="85" y="55" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.5" letter-spacing="1">CLIENT</text>
+          <text x="275" y="55" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.5" letter-spacing="1">API</text>
+          <text x="485" y="55" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.5" letter-spacing="1">AI ENGINE</text>
+          <text x="675" y="55" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.5" letter-spacing="1">DATA</text>
+          <text x="830" y="55" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.5" letter-spacing="1">NOTIFICATIONS</text>
+
+          <!-- Main path nodes at y=140 -->
+          <!-- Node 1: Mobile App / PWA (cream) x=85 w=140 -->
+          <rect x="15" y="118" width="140" height="44" fill="none" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="85" y="138" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Mobile App</text>
+          <text x="85" y="152" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">PWA</text>
+
+          <!-- Arrow N1 -> N2 -->
+          <line x1="155" y1="140" x2="195" y2="140" stroke="#f7f3ee" stroke-width="1" marker-end="url(#ta-arr)" opacity="0.6"/>
+
+          <!-- Node 2: Trip API / REST (cream) x=275 w=150 -->
+          <rect x="200" y="118" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="275" y="138" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Trip API</text>
+          <text x="275" y="152" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">REST</text>
+
+          <!-- Arrow N2 -> N3 -->
+          <line x1="350" y1="140" x2="390" y2="140" stroke="#f7f3ee" stroke-width="1" marker-end="url(#ta-arr)" opacity="0.6"/>
+
+          <!-- Node 3: Coordination Engine / Claude API (terracotta) x=485 w=170 -->
+          <rect x="400" y="118" width="170" height="44" fill="#bf5c3a" stroke="#bf5c3a" stroke-width="1"/>
+          <text x="485" y="138" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Coordination Engine</text>
+          <text x="485" y="152" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.8">Claude API</text>
+
+          <!-- Arrow N3 -> N4 -->
+          <line x1="570" y1="140" x2="600" y2="140" stroke="#f7f3ee" stroke-width="1" marker-end="url(#ta-arr)" opacity="0.6"/>
+
+          <!-- Node 4: Shared Trip DB / PostgreSQL (cream) x=675 w=150 -->
+          <rect x="600" y="118" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="675" y="138" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Shared Trip DB</text>
+          <text x="675" y="152" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">PostgreSQL</text>
+
+          <!-- Arrow N4 -> N5 -->
+          <line x1="750" y1="140" x2="775" y2="140" stroke="#f7f3ee" stroke-width="1" marker-end="url(#ta-arr)" opacity="0.6"/>
+
+          <!-- Node 5: Push Notifications / FCM (cream) x=840 w=120 -->
+          <rect x="780" y="118" width="110" height="44" fill="none" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="835" y="138" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Push Notifications</text>
+          <text x="835" y="152" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">FCM</text>
+
+          <!-- Secondary: Conflict Detector at x=380 y=260 w=150 -->
+          <rect x="305" y="238" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="380" y="258" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Conflict Detector</text>
+          <text x="380" y="272" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">Rules + AI</text>
+
+          <!-- Arrow from Coordination Engine down-left to Conflict Detector -->
+          <path d="M400,162 L380,162 L380,238" fill="none" stroke="#f7f3ee" stroke-width="1" marker-end="url(#ta-arr)" opacity="0.6"/>
+
+          <!-- Secondary: Voting Module at x=590 y=260 w=150 -->
+          <rect x="515" y="238" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="590" y="258" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle">Voting Module</text>
+          <text x="590" y="272" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" text-anchor="middle" opacity="0.6">Group decisions</text>
+
+          <!-- Arrow from Coordination Engine down-right to Voting Module -->
+          <path d="M570,162 L590,162 L590,238" fill="none" stroke="#f7f3ee" stroke-width="1" marker-end="url(#ta-arr)" opacity="0.6"/>
+
+          <!-- Footer note -->
+          <text x="450" y="320" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" text-anchor="middle" opacity="0.8">Coordination Engine resolves preference conflicts via Claude API before generating the group itinerary</text>
+        </svg>
+      </div>
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="prd">
+        <p class="cs-docs-prd-note">This case study page is the full Product Requirements Document for Trivo — covering the group travel coordination problem, user research, AI conflict detection, and product design.</p>
+        <button class="cs-docs-print-btn" onclick="window.print()">Save as PDF &rarr;</button>
+      </div>
+    </section>
 
         <!-- TOC -->
 
@@ -544,6 +813,21 @@
       if (e.key === 'ArrowLeft') show(current - 1);
     });
     show(0);
+  })();
+  </script>
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
   })();
   </script>
 </body>

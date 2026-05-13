@@ -42,6 +42,100 @@
             </div>
         </header>
 
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="arch">Architecture</button>
+          <a href="https://github.com/argaur/portfolio-website" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+        </div>
+      </div>
+      <div class="cs-docs-panel" data-panel="arch">
+        <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="pf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+              <path d="M0,0 L8,3.5 L0,7 Z" fill="#f7f3ee" opacity="0.7"/>
+            </marker>
+          </defs>
+
+          <!-- Background -->
+          <rect width="900" height="360" fill="#0b1628"/>
+
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="0.12em" opacity="0.9">SYSTEM ARCHITECTURE — PORTFOLIO WEBSITE</text>
+
+          <!-- Zone dividers -->
+          <line x1="160" y1="40" x2="160" y2="310" stroke="#f7f3ee" stroke-dasharray="4 4" stroke-width="1" opacity="0.4"/>
+          <line x1="380" y1="40" x2="380" y2="310" stroke="#f7f3ee" stroke-dasharray="4 4" stroke-width="1" opacity="0.4"/>
+          <line x1="580" y1="40" x2="580" y2="310" stroke="#f7f3ee" stroke-dasharray="4 4" stroke-width="1" opacity="0.4"/>
+          <line x1="740" y1="40" x2="740" y2="310" stroke="#f7f3ee" stroke-dasharray="4 4" stroke-width="1" opacity="0.4"/>
+
+          <!-- Zone labels -->
+          <text x="80" y="55" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.1em">VISITOR</text>
+          <text x="270" y="55" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.1em">CDN / HOSTING</text>
+          <text x="480" y="55" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.1em">APPLICATION</text>
+          <text x="660" y="55" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.1em">SERVICES</text>
+          <text x="820" y="55" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.1em">PERSISTENCE</text>
+
+          <!-- Main row nodes (y=140, centred on y=118 top) -->
+          <!-- Node 1: Browser -->
+          <rect x="10" y="118" width="140" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="80" y="136" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Browser</text>
+          <text x="80" y="152" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">First visit</text>
+
+          <!-- Arrow 1→2 -->
+          <line x1="150" y1="140" x2="188" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pf-arr)"/>
+
+          <!-- Node 2: Vercel CDN -->
+          <rect x="190" y="118" width="160" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="270" y="136" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Vercel CDN</text>
+          <text x="270" y="152" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">index.html + assets</text>
+
+          <!-- Arrow 2→3 -->
+          <line x1="350" y1="140" x2="388" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pf-arr)"/>
+
+          <!-- Node 3: app.js -->
+          <rect x="400" y="118" width="160" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="480" y="136" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">app.js</text>
+          <text x="480" y="152" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Panel SPA + modals</text>
+
+          <!-- Arrow 3→4 -->
+          <line x1="560" y1="140" x2="588" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pf-arr)"/>
+
+          <!-- Node 4: gate.js (terracotta) -->
+          <rect x="590" y="118" width="140" height="44" fill="#bf5c3a" opacity="0.85"/>
+          <text x="660" y="136" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">gate.js</text>
+          <text x="660" y="152" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="8" opacity="0.8">Email gate logic</text>
+
+          <!-- Arrow 4→5 -->
+          <line x1="730" y1="140" x2="748" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pf-arr)"/>
+
+          <!-- Node 5: Supabase DB (terracotta) -->
+          <rect x="750" y="118" width="140" height="44" fill="#bf5c3a" opacity="0.85"/>
+          <text x="820" y="136" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Supabase DB</text>
+          <text x="820" y="152" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="8" opacity="0.8">subscribers table</text>
+
+          <!-- Secondary nodes (y=238 top) -->
+          <!-- Dashed drop arrow from Vercel CDN -->
+          <line x1="270" y1="162" x2="270" y2="236" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.45" marker-end="url(#pf-arr)"/>
+          <!-- Node: styles.css -->
+          <rect x="185" y="238" width="170" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.7"/>
+          <text x="270" y="256" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">styles.css</text>
+          <text x="270" y="272" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Blueprint design system</text>
+
+          <!-- Dashed drop arrow from app.js -->
+          <line x1="480" y1="162" x2="480" y2="236" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.45" marker-end="url(#pf-arr)"/>
+          <!-- Node: case-study.css -->
+          <rect x="400" y="238" width="160" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.7"/>
+          <text x="480" y="256" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">case-study.css</text>
+          <text x="480" y="272" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Case study styles</text>
+
+          <!-- Footer note -->
+          <text x="450" y="330" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.8">Zero npm dependencies · plain HTML + CSS + JS · Supabase CDN for email gate · auto-deployed via Vercel</text>
+        </svg>
+      </div>
+    </section>
+
         <div class="cs-page is-active">
 
             <section class="cs-section">
@@ -173,5 +267,20 @@
         <p>Gaurav Gupta &mdash; Personal Project</p>
     </footer>
 
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

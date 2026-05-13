@@ -124,19 +124,19 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 
 ## Status
 - **State:** stable — basic shareable version live; `dev` branch created for all future work
-- **Last session:** 2026-05-12
+- **Last session:** 2026-05-13
 - **What was done (this session):**
-  - **Work modals simplified** — all 9 `workProjects` narratives replaced with 3-part structure (Overview / What I drove / Impact) using verified resume content only; all `[VERIFY]` placeholders removed
-  - **Mobile responsiveness** — all touch targets ≥44px (modal-btn, gate-btn, hero CTAs, cs-page-btn); gate heading uses `clamp()`; nav overlay link min size 36→28px; gate + modal compress on 400px screens; case study tables reduce cell padding at 768px; `overflow-wrap: break-word` on case study content
-  - **Hero chip** — Trivo replaced with Rethink CRM (links to `argaur.github.io/founder-crm-landing/`)
-  - **Gmail draft saved** — reply to Aloha ABA India thread (Srinivas), sharing Xcellence story + Blinkit + Vitae + portfolio link; ready to send tomorrow
-  - **`dev` branch created** — `main` is now the stable version; all new features go to `dev`
-  - **All changes on `main` pushed to Vercel** — auto-deployed
+  - **Mobile hero canvas fix** — `.hero-pane--canvas` set to `display: none` at ≤900px breakpoint; fixes stats strip overlap on mobile (commit 38ec6e2)
+  - **Aloha ABA email draft updated** — replaced Blinkit with Personal AI Assistant Telegram bot (24+ commands, 11 integrations, 4 pipelines, ~2,600 lines Python, CI/CD); added Rethink CRM prototype link; draft id `r9131315342372101759`; two older drafts pending deletion
+  - **`telegram-bot/docs/bot-overview.html` updated** — Notion DB count fixed (5→7), footer date updated; ready for Netlify deploy; Netlify URL needed to complete email `[NETLIFY-LINK]` placeholder
+- **Previous session (2026-05-12):**
+  - Work modals simplified; mobile touch targets; hero chip Trivo→Rethink CRM; dev branch created
 - **Next session trigger:** Gaurav will say **"lets continue"**
 - **Next session — priority order (on `dev` branch):**
-  1. **Retrospective content** — write "What I'd do differently" for all 5 case studies → `retrospective` field in `app.js`
-  2. **Work modal upgrade** — restore rich narrative content once Gaurav verifies `Analysis/Work Modal Content Review.md`
-  3. **Phase B** — About/bio panel (blocked on headshot photo.jpg); "What I'd do differently" on case study HTML pages
-  4. **Blinkit + YouTube prototypes** — add `protoUrl` when built
-- **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending); retrospective text for all 5 case studies
-- **Last updated:** 2026-05-12
+  1. **Netlify deploy** — deploy `telegram-bot/docs/bot-overview.html`; share URL; update email draft placeholder
+  2. **Retrospective content** — write "What I'd do differently" for all 5 case studies → `retrospective` field in `app.js`
+  3. **Work modal upgrade** — restore rich narrative content once Gaurav verifies `Analysis/Work Modal Content Review.md`
+  4. **Phase B** — About/bio panel (blocked on headshot photo.jpg)
+  5. **Blinkit + YouTube prototypes** — add `protoUrl` when built
+- **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename; retrospective text for all 5 case studies; Netlify URL for bot-overview.html
+- **Last updated:** 2026-05-13

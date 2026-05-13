@@ -681,3 +681,122 @@ img { display: block; max-width: 100%; }
   .cs-stats-row { grid-template-columns: 1fr; }
   .cs-main { padding: 0 16px 100px; }
 }
+
+/* ============================================================
+   Documentation Section
+   ============================================================ */
+.cs-docs {
+  background: var(--cs-cream);
+  padding: 40px 0 48px;
+  border-bottom: 1px solid var(--cs-border);
+}
+
+.cs-docs-header {
+  max-width: 860px;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cs-docs-label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+
+.cs-docs-tabs {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.cs-docs-tab {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border: 1px solid var(--cs-border);
+  border-right: none;
+  background: transparent;
+  color: var(--cs-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.cs-docs-tab:last-child { border-right: 1px solid var(--cs-border); }
+.cs-docs-tab:hover {
+  border-color: var(--cs-terra);
+  color: var(--cs-terra);
+  z-index: 1;
+  position: relative;
+}
+.cs-docs-tab.cs-docs-tab--active {
+  background: var(--cs-navy);
+  border-color: var(--cs-navy);
+  color: var(--cs-cream);
+}
+.cs-docs-tab--link {
+  text-decoration: none;
+}
+.cs-docs-tab--link:first-of-type {
+  margin-left: 16px;
+}
+
+.cs-docs-panel {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+  overflow-x: auto;
+}
+.cs-docs-panel--hidden { display: none; }
+
+.cs-docs-panel svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-docs-prd-note {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--cs-text);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid var(--cs-border);
+  background: var(--cs-white);
+}
+
+.cs-docs-print-btn {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  background: var(--cs-navy);
+  color: var(--cs-cream);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cs-docs-print-btn:hover { background: var(--cs-terra); }
+
+@media (max-width: 768px) {
+  .cs-docs-header { padding: 0 20px; flex-direction: column; align-items: flex-start; }
+  .cs-docs-panel { padding: 0 20px; }
+  .cs-docs-tab { padding: 8px 12px; font-size: 10px; }
+}
+
+@media print {
+  .cs-docs { display: none; }
+  .cs-pagination { display: none; }
+}

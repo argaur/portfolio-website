@@ -409,6 +409,21 @@
   /* ---- Case Study Modal ---- */
   var caseStudies = [
     {
+      category: 'Health Tech · AI · PWA',
+      title: 'Vitae — Health Records, Finally Understood',
+      problem: "Indian families manage health via blurry WhatsApp prescription photos. ₹6,000+ crore lost annually to repeat diagnostic tests.",
+      insight: "A PWA that turns prescription photos into structured, searchable health timelines — built by a 6-person team and shipped in 10 days.",
+      stats: ['Live product', '6-person team', '10 days shipped'],
+      stage: 'PRD · Shipped',
+      stageTags: 'prd,shipped',
+      industryTags: ['AI', 'HealthTech'],
+      retrospective: '',
+      docs: ['flow', 'wireframe', 'arch', 'prd'],
+      githubUrl: 'https://github.com/aashikvilla/health-assistant',
+      protoUrl: 'https://vitae-health.vercel.app/',
+      pageUrl: 'case-study-vitae.html'
+    },
+    {
       category: 'B2B SaaS · AI · Telegram Bot',
       title: "Rethink CRM — Conversation-First Sales Tool",
       problem: "60–70% of founders abandon CRM within 4 weeks. The real insight: founders already manage relationships in WhatsApp. The tool had to meet them there.",
@@ -418,6 +433,7 @@
       stageTags: 'prd,prototype',
       industryTags: ['AI', 'B2B', 'Sales'],
       retrospective: '',
+      docs: ['flow', 'wireframe', 'arch', 'prd'],
       githubUrl: 'https://github.com/argaur/founder-crm-bot',
       protoUrl: 'https://argaur.github.io/founder-crm-landing/',
       pageUrl: 'case-study-founder-crm.html'
@@ -432,23 +448,10 @@
       stageTags: 'prd,prototype,shipped',
       industryTags: ['AI', 'Ops', 'Consumer'],
       retrospective: '',
+      docs: ['flow', 'wireframe', 'arch', 'prd'],
       githubUrl: null,
       protoUrl: 'https://blinkit-command-hub.vercel.app/',
       pageUrl: 'case-study-blinkit.html'
-    },
-    {
-      category: 'Consumer Platform · Algorithm',
-      title: 'YouTube 2.0 — Fixing Long-Form Discovery',
-      problem: "47% of users manually search every session. 29% of Gen Z sessions end without watching anything. The algorithm optimises for click, not for satisfaction.",
-      insight: "Four product interventions targeting the discovery gap — from contextual playlists to an intent-aware home feed redesign.",
-      stats: ['171 survey responses', '4 product solutions', '27+ sources'],
-      stage: 'PRD · Wireframes · Prototype',
-      stageTags: 'prd,prototype',
-      industryTags: ['Consumer', 'Discovery'],
-      retrospective: '',
-      githubUrl: null,
-      protoUrl: null,
-      pageUrl: 'case-study-youtube.html'
     },
     {
       category: 'Consumer App · AI',
@@ -460,23 +463,25 @@
       stageTags: 'prd,prototype',
       industryTags: ['AI', 'Consumer', 'Platform'],
       retrospective: '',
+      docs: ['flow', 'wireframe', 'arch', 'prd'],
       githubUrl: 'https://github.com/argaur/group-travel-pwa',
       protoUrl: 'https://frontend-argaurs-projects.vercel.app',
       pageUrl: 'case-study-group-travel.html'
     },
     {
-      category: 'Health Tech · AI · PWA',
-      title: 'Vitae — Health Records, Finally Understood',
-      problem: "Indian families manage health via blurry WhatsApp prescription photos. ₹6,000+ crore lost annually to repeat diagnostic tests.",
-      insight: "A PWA that turns prescription photos into structured, searchable health timelines — built by a 6-person team and shipped in 10 days.",
-      stats: ['Live product', '6-person team', '10 days shipped'],
-      stage: 'PRD · Shipped',
-      stageTags: 'prd,shipped',
-      industryTags: ['AI', 'HealthTech'],
+      category: 'Consumer Platform · Algorithm',
+      title: 'YouTube 2.0 — Fixing Long-Form Discovery',
+      problem: "47% of users manually search every session. 29% of Gen Z sessions end without watching anything. The algorithm optimises for click, not for satisfaction.",
+      insight: "Four product interventions targeting the discovery gap — from contextual playlists to an intent-aware home feed redesign.",
+      stats: ['171 survey responses', '4 product solutions', '27+ sources'],
+      stage: 'PRD · Wireframes · Prototype',
+      stageTags: 'prd,prototype',
+      industryTags: ['Consumer', 'Discovery'],
       retrospective: '',
-      githubUrl: 'https://github.com/aashikvilla/health-assistant',
-      protoUrl: 'https://vitae-health.vercel.app/',
-      pageUrl: 'case-study-vitae.html'
+      docs: ['flow', 'wireframe', 'arch', 'prd'],
+      githubUrl: null,
+      protoUrl: null,
+      pageUrl: 'case-study-youtube.html'
     }
   ];
 
@@ -491,6 +496,7 @@
       stage: 'Shipped · Active',
       stageTags: 'shipped',
       industryTags: ['Infra', 'Automation'],
+      docs: ['flow', 'arch'],
       githubUrl: 'https://github.com/argaur/telegram-bot',
       protoUrl: null,
       pageUrl: 'project-telegram-bot.html',
@@ -505,6 +511,7 @@
       stage: 'Shipped · Live',
       stageTags: 'shipped',
       industryTags: ['Infra'],
+      docs: ['arch'],
       githubUrl: 'https://github.com/argaur/portfolio-website',
       protoUrl: null,
       pageUrl: 'project-portfolio.html',
@@ -519,6 +526,7 @@
       stage: 'Shipped · Active',
       stageTags: 'shipped',
       industryTags: ['Infra'],
+      docs: ['arch'],
       githubUrl: 'https://github.com/argaur/homelab-v2',
       protoUrl: null,
       pageUrl: 'project-homelab.html',
@@ -533,6 +541,7 @@
       stage: 'Shipped · Active',
       stageTags: 'shipped',
       industryTags: ['Infra', 'Automation'],
+      docs: ['flow', 'arch'],
       githubUrl: 'https://github.com/argaur/gws-cli',
       protoUrl: null,
       pageUrl: 'project-gws-cli.html',
@@ -540,21 +549,20 @@
     }
   ];
 
-  function buildModalActions(item) {
-    var html = '<div class="modal-actions">';
-    if (item.githubUrl) {
-      html += '<a href="' + item.githubUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--ghost">GitHub Repo &rarr;</a>';
+  function buildModalCtas(item) {
+    var html = '<div class="modal-ctas">';
+    if (item.pageUrl) {
+      var label = item.pageLabel || 'Read Full Case Study';
+      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--primary">' + label + ' &rarr;</a>';
     }
     if (item.protoUrl) {
-      html += '<a href="' + item.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">View Prototype &rarr;</a>';
-    }
-    if (item.pageUrl) {
-      var pageLabel = item.pageLabel || 'Read Full Case Study';
-      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--secondary">' + pageLabel + ' &rarr;</a>';
+      html += '<a href="' + item.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--proto">View Prototype &rarr;</a>';
     }
     html += '</div>';
     return html;
   }
+
+  var docLabels = { flow: 'User Flow', wireframe: 'Wireframe', arch: 'Architecture', prd: 'PRD' };
 
   function openItemModal(item) {
     modalPanel.classList.remove('modal-panel--wide');
@@ -567,6 +575,16 @@
       ? '<div class="modal-section-label">What I\'d do differently</div>' +
         '<p class="modal-insight">' + item.retrospective + '</p>'
       : '';
+    var docsHtml = '';
+    if (item.docs && item.docs.length && item.pageUrl) {
+      var chips = item.docs.map(function (d) {
+        return '<a href="' + item.pageUrl + '#documentation" class="modal-doc-chip">' + (docLabels[d] || d) + '</a>';
+      });
+      if (item.githubUrl) {
+        chips.push('<a href="' + item.githubUrl + '" target="_blank" rel="noopener" class="modal-doc-chip">GitHub &rarr;</a>');
+      }
+      docsHtml = '<div class="modal-docs">' + chips.join('') + '</div>';
+    }
     modalBody.innerHTML =
       '<div class="modal-tag">' + item.category + '</div>' +
       industryHtml +
@@ -580,7 +598,8 @@
         }).join('') +
       '</div>' +
       retroHtml +
-      buildModalActions(item);
+      docsHtml +
+      buildModalCtas(item);
     modalOverlay.removeAttribute('hidden');
   }
 
@@ -629,26 +648,6 @@
         }
       });
       personalTable.appendChild(row);
-    });
-  }
-
-  /* ---- Projects Filter Bar ---- */
-  var filterBtns = document.querySelectorAll('#projects-filter .pf-btn');
-  if (filterBtns.length) {
-    filterBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var filter = btn.dataset.filter;
-        filterBtns.forEach(function (b) { b.classList.remove('pf-btn--active'); });
-        btn.classList.add('pf-btn--active');
-        document.querySelectorAll('.cs-row').forEach(function (row) {
-          if (filter === 'all') {
-            row.style.display = '';
-          } else {
-            var tags = (row.dataset.stage || '').split(',');
-            row.style.display = tags.indexOf(filter) !== -1 ? '' : 'none';
-          }
-        });
-      });
     });
   }
 
