@@ -47,13 +47,12 @@
     </button>
     <nav class="nav-overlay-links">
       <a href="#home"         class="nav-overlay-link" data-panel="panel-home"><em>00</em>Home</a>
-      <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Experience</a>
-      <a href="#work"         class="nav-overlay-link" data-panel="panel-work"><em>02</em>Work</a>
-      <a href="#projects"     class="nav-overlay-link" data-panel="panel-projects"><em>03</em>Projects</a>
-      <a href="#skills"       class="nav-overlay-link" data-panel="panel-skills"><em>04</em>Skills</a>
-      <a href="#philosophy"   class="nav-overlay-link" data-panel="panel-philosophy"><em>05</em>Philosophy</a>
-      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>06</em>Credentials</a>
-      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>07</em>Contact</a>
+      <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Work</a>
+      <a href="#projects"     class="nav-overlay-link" data-panel="panel-projects"><em>02</em>Projects</a>
+      <a href="#skills"       class="nav-overlay-link" data-panel="panel-skills"><em>03</em>Skills</a>
+      <a href="#philosophy"   class="nav-overlay-link" data-panel="panel-philosophy"><em>04</em>Philosophy</a>
+      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>05</em>Credentials</a>
+      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>06</em>Contact</a>
     </nav>
     <div class="nav-overlay-footer">
       <span>Gaurav Gupta &middot; Jaipur &middot; 2026</span>
@@ -76,8 +75,7 @@
         </svg>
       </a>
       <div class="nav-links">
-        <a href="#experience"   class="nav-link" data-panel="panel-experience">Experience</a>
-        <a href="#work"         class="nav-link" data-panel="panel-work">Work</a>
+        <a href="#experience"   class="nav-link" data-panel="panel-experience">Work</a>
         <a href="#projects"     class="nav-link" data-panel="panel-projects">Projects</a>
         <a href="#skills"       class="nav-link" data-panel="panel-skills">Skills</a>
         <a href="#philosophy"   class="nav-link" data-panel="panel-philosophy">Philosophy</a>
@@ -124,7 +122,7 @@
 
             <div class="hero-actions-new">
               <a href="#contact" data-panel="panel-contact" class="btn-primary-hero">Get in touch &rarr;</a>
-              <a href="#work" data-panel="panel-work" class="btn-ghost-hero">View Work &rarr;</a>
+              <a href="#experience" data-panel="panel-experience" class="btn-ghost-hero">View Work &rarr;</a>
             </div>
 
             <div class="hero-live-products">
@@ -187,15 +185,23 @@
       </section>
     </div>
 
-    <!-- EXPERIENCE -->
+    <!-- EXPERIENCE & WORK (merged) -->
     <div id="panel-experience" class="panel">
       <section class="section section--cream grid-bg">
-        <div class="section-inner section-inner--narrow">
+        <div class="section-inner section-inner--wide">
 
           <div class="section-label">
             <span class="section-label-line"></span>
-            <span class="section-label-text">01 &mdash; WORK EXPERIENCE</span>
+            <span class="section-label-text">01 &mdash; EXPERIENCE &amp; PROJECTS</span>
             <span class="section-label-rule"></span>
+          </div>
+
+          <div class="work-header">
+            <div>
+              <h2 class="work-title">Career &amp; Projects</h2>
+              <p class="work-sub">10 years spanning architecture, founding, and enterprise product. Click any role to expand its work.</p>
+            </div>
+            <span class="work-hint">Click role &rarr; projects</span>
           </div>
 
           <div class="career-arc">
@@ -232,10 +238,11 @@
                 </div>
                 <div class="exp-body">
                   <ul>
-                    <li>Built 6 enterprise products 0&rarr;1 for 5,000+ users across HR, EdTech, and BI</li>
+                    <li>Built 7 enterprise products 0&rarr;1 for 5,000+ users across HR, EdTech, BI, and Quality</li>
                     <li>Led AI integration into ATS, performance management, and knowledge platforms</li>
                     <li>Managed cross-functional squads across product, engineering, design, and data</li>
                   </ul>
+                  <div class="exp-projects" data-company="jindal"></div>
                 </div>
               </div>
             </div>
@@ -262,6 +269,7 @@
                     <li>Product strategy and roadmap for a global startup ecosystem platform</li>
                     <li>Drove feature development aligned with investor and founder personas</li>
                   </ul>
+                  <div class="exp-projects" data-company="onevalley"></div>
                 </div>
               </div>
             </div>
@@ -278,7 +286,7 @@
               <div class="exp-right">
                 <div class="exp-header">
                   <div>
-                    <div class="exp-company">Taccomacco</div>
+                    <div class="exp-company">Taccomacco Edutainment</div>
                     <div class="exp-meta">Co-Founder &amp; COO &middot; 3y 2m</div>
                   </div>
                   <span class="exp-toggle-icon">+</span>
@@ -289,6 +297,7 @@
                     <li>Managed full operations, client relationships, and product direction</li>
                     <li>Translated physical design thinking into digital product strategy</li>
                   </ul>
+                  <div class="exp-projects" data-company="taccomacco"></div>
                 </div>
               </div>
             </div>
@@ -315,168 +324,11 @@
                     <li>Managed multi-disciplinary teams and contractor coordination</li>
                     <li>Built the foundation: systems thinking, spatial logic, UX at scale</li>
                   </ul>
+                  <div class="exp-projects" data-company="rsp"></div>
                 </div>
               </div>
             </div>
 
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- WORK -->
-    <div id="panel-work" class="panel">
-      <section class="section section--white grid-bg">
-        <div class="section-inner section-inner--wide">
-
-          <div class="section-label">
-            <span class="section-label-line"></span>
-            <span class="section-label-text">02 &mdash; FEATURED PROJECTS</span>
-            <span class="section-label-rule"></span>
-          </div>
-
-          <div class="work-header">
-            <div>
-              <h2 class="work-title">Products &amp; Projects</h2>
-              <p class="work-sub">10 years of product, platform, and design work across four roles.</p>
-            </div>
-            <span class="work-hint">Click any card for details</span>
-          </div>
-
-          <!-- JindalX -->
-          <div class="work-company-label">
-            <span class="work-company-name">JindalX</span>
-            <span class="work-company-period">Jun 2022 &ndash; May 2025</span>
-          </div>
-          <div class="proj-grid">
-            <div class="proj-card proj-card--lead reveal-child" data-proj="0" role="button" tabindex="0">
-              <span class="proj-tag">AI &middot; HR Tech</span>
-              <h3 class="proj-title">AI-Powered Talent Management Suite</h3>
-              <p class="proj-desc">Comprehensive ATS built from scratch with embedded AI workflows &mdash; automated screening and GenAI-driven job matching.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">50% faster hiring</span>
-                <span class="proj-metric">200+ hiring managers</span>
-                <span class="proj-metric">40% internal mobility&uarr;</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-
-            <div class="proj-card reveal-child" data-proj="1" role="button" tabindex="0">
-              <span class="proj-tag">AI &middot; Performance</span>
-              <h3 class="proj-title">Performance Management Platform</h3>
-              <p class="proj-desc">Evaluation system for 5,000+ employees across 16 clients. AI-driven recommendation engine for personalized development plans.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">60% less manual review</span>
-                <span class="proj-metric">15 FTEs saved</span>
-                <span class="proj-metric">25% engagement&uarr;</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-
-            <div class="proj-card reveal-child" data-proj="2" role="button" tabindex="0">
-              <span class="proj-tag">EdTech &middot; AI</span>
-              <h3 class="proj-title">Knowledge &amp; Learning Platform (Insight)</h3>
-              <p class="proj-desc">AI-powered EdTech system for BPO agents with integrated chatbot for instant query resolution and intelligent learning paths.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">45% performance&uarr;</span>
-                <span class="proj-metric">35% training time&darr;</span>
-                <span class="proj-metric">60% faster resolution</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-
-            <div class="proj-card reveal-child" data-proj="3" role="button" tabindex="0">
-              <span class="proj-tag">B2B &middot; CRM</span>
-              <h3 class="proj-title">B2B CRM &amp; Auction Platform (AuctionIT)</h3>
-              <p class="proj-desc">End-to-end B2B CRM with integrated auction management, automated bidding workflows, and invoice generation.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">30% transactions&uarr;</span>
-                <span class="proj-metric">Auto-invoicing</span>
-                <span class="proj-metric">CRM integration</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-
-            <div class="proj-card reveal-child" data-proj="4" role="button" tabindex="0">
-              <span class="proj-tag">HRMS &middot; Automation</span>
-              <h3 class="proj-title">HR Management System (Touchpoint HRMS)</h3>
-              <p class="proj-desc">Purpose-built HRMS for floating BPO agents &mdash; payroll, leave management, and compliance with full ERP integration.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">5,000+ agents</span>
-                <span class="proj-metric">25% satisfaction&uarr;</span>
-                <span class="proj-metric">Full ERP integration</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-
-            <div class="proj-card reveal-child" data-proj="5" role="button" tabindex="0">
-              <span class="proj-tag">Analytics &middot; BI</span>
-              <h3 class="proj-title">Business Intelligence Platform (Jx Data Cloud)</h3>
-              <p class="proj-desc">Centralized data warehouse consolidating 7 operational sources. Real-time Power BI and Looker Studio dashboards with automated ETL.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">40% accuracy&uarr;</span>
-                <span class="proj-metric">35% processing&darr;</span>
-                <span class="proj-metric">Multi-source ETL</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-          </div>
-
-          <!-- OneValley -->
-          <div class="work-company-label">
-            <span class="work-company-name">OneValley</span>
-            <span class="work-company-period">Sep 2020 &ndash; Jul 2022</span>
-          </div>
-          <div class="proj-grid">
-            <div class="proj-card proj-card--lead reveal-child" data-proj="6" role="button" tabindex="0">
-              <span class="proj-tag">Platform &middot; EdTech</span>
-              <h3 class="proj-title">Passport &amp; PassportOS</h3>
-              <p class="proj-desc">B2C and B2B platforms powering global entrepreneurship programs including Entrepreneurship World Cup. Served universities, banks, accelerators, and corporate incubators.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">B2B + B2C</span>
-                <span class="proj-metric">Global reach</span>
-                <span class="proj-metric">Multi-client SaaS</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-          </div>
-
-          <!-- Taccomacco -->
-          <div class="work-company-label">
-            <span class="work-company-name">Taccomacco Edutainment</span>
-            <span class="work-company-period">Jul 2017 &ndash; Sep 2020</span>
-          </div>
-          <div class="proj-grid">
-            <div class="proj-card proj-card--lead reveal-child" data-proj="7" role="button" tabindex="0">
-              <span class="proj-tag">Content &middot; Platform</span>
-              <h3 class="proj-title">Digital Content &amp; Publishing Platform</h3>
-              <p class="proj-desc">Built content pipeline and publishing infrastructure from scratch. Structured creator incubation program with version control and distribution workflows.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">500+ titles launched</span>
-                <span class="proj-metric">6 creators incubated</span>
-                <span class="proj-metric">Content pipeline</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
-          </div>
-
-          <!-- RSP Design Consultants -->
-          <div class="work-company-label">
-            <span class="work-company-name">RSP Design Consultants</span>
-            <span class="work-company-period">Sep 2014 &ndash; Jun 2017</span>
-          </div>
-          <div class="proj-grid">
-            <div class="proj-card proj-card--lead reveal-child" data-proj="8" role="button" tabindex="0">
-              <span class="proj-tag">Architecture &middot; PM</span>
-              <h3 class="proj-title">Architectural Projects Portfolio</h3>
-              <p class="proj-desc">Managed 40+ architectural and design projects across IT campuses, healthcare facilities, and institutional buildings. Introduced PM processes that cut delivery time by 25%.</p>
-              <div class="proj-metrics">
-                <span class="proj-metric">40+ projects</span>
-                <span class="proj-metric">95% client retention</span>
-                <span class="proj-metric">25% faster delivery</span>
-              </div>
-              <span class="proj-cta">View details &rarr;</span>
-            </div>
           </div>
         </div>
       </section>

@@ -66,7 +66,7 @@
   var hashToPanel = {
     'home':         'panel-home',
     'experience':   'panel-experience',
-    'work':         'panel-work',
+    'work':         'panel-experience',
     'projects':     'panel-projects',
     'skills':       'panel-skills',
     'philosophy':   'panel-philosophy',
@@ -79,9 +79,14 @@
   }
 
   /* ---- Experience Accordion ---- */
-  document.querySelectorAll('.exp-row').forEach(function (row) {
-    row.addEventListener('click', function () {
+  document.querySelectorAll('.exp-row .exp-header').forEach(function (header) {
+    header.addEventListener('click', function () {
+      var row = header.closest('.exp-row');
       row.classList.toggle('is-open');
+      var body = row.querySelector('.exp-body');
+      if (body) {
+        body.style.maxHeight = row.classList.contains('is-open') ? body.scrollHeight + 'px' : '0';
+      }
     });
   });
 
@@ -104,156 +109,302 @@
     if (e.key === 'Escape') { closeModal(); closeOverlay(); }
   });
 
-  /* ---- Work Project Modal ---- */
+  /* ---- Work Project Data (14 projects, dynamically rendered) ---- */
   var workProjects = [
+    /* JindalX — Xcellence lead, then ATS, AuctionIT, Jx Data Cloud, HRMS, AQUA, Insight */
     {
+      company: 'jindal', role: 'Independent Builder · Strategist', year: '2023–2025',
+      tag: 'AI · Performance',
+      title: 'Performance Management Platform (Xcellence)',
+      detail: 'Sole PM and builder — designed data models, built AI-powered automation on a no-code + GenAI stack, and deployed to 5,000+ employees across 16 enterprise clients with zero engineering team dependency.',
+      technology: 'Generative AI APIs, Airtable (Advanced), REST APIs, SQL',
+      activities: [
+        'Defined product strategy independently and built the entire platform on a no-code + GenAI stack — sole PM and builder.',
+        'Designed data models, automation workflows, and AI-powered performance scoring logic from scratch in Airtable.',
+        'Owned product lifecycle end-to-end: requirements, build, testing, rollout, and business user training.',
+        'Drove adoption across 16 enterprise clients through direct stakeholder engagement without engineering team dependency.',
+        'Delivered 15 FTE savings through intelligent automation — fully self-built with zero traditional engineering dependency.'
+      ],
+      metrics: ['60% less manual review', '15 FTEs saved', '25% engagement↑']
+    },
+    {
+      company: 'jindal', role: 'Independent Builder · Strategist', year: '2023–2025',
       tag: 'AI · HR Tech',
       title: 'AI-Powered Talent Management Suite',
-      detail: 'Designed and shipped a full ATS with AI-powered screening, job description generation, and candidate-role matching. Integrated with existing HRMS for seamless data flow across the talent lifecycle. Deployed for 200+ hiring managers across 16 enterprise clients.',
-      metrics: ['50% faster hiring', '200+ hiring managers', '40% internal mobility↑'],
-      narrative: [
-        { label: 'Overview', body: 'End-to-end talent management suite combining an Applicant Tracking System and Internal Job Portal, built for a 5,000+ employee BPO organization across 16 enterprise clients.' },
-        { label: 'What I drove', body: 'Owned product strategy and roadmap end-to-end. Worked directly with engineering — no BA or JPM. Defined requirements, ran UAT, and managed phased rollout to 200+ hiring managers.' },
-        { label: 'Impact', body: '50% reduction in hiring time · 40% increase in internal mobility · adopted by 200+ hiring managers across 16 clients.' }
-      ]
+      detail: 'Independently built and deployed GenAI hiring workflows — candidate screening, JD generation, and job matching — while owning full product strategy and rollout to 200+ hiring managers with no engineering dependency on the AI layer.',
+      technology: 'Generative AI APIs, Airtable (Advanced), REST APIs, SQL',
+      activities: [
+        'Owned product vision, strategy, and roadmap end-to-end across ATS, IJP, and HRMS platforms.',
+        'Independently built Generative AI-driven workflows for candidate screening, JD generation, and job matching using no-code + AI stack.',
+        'Defined data architecture and integration approach with existing HRMS — no BA or JPM dependency.',
+        'Led phased rollout to 200+ hiring managers, managing requirements, UAT, and go-live directly.',
+        'Coordinated cross-functional stakeholders (HR, Operations, IT) while maintaining sole PM and builder accountability.'
+      ],
+      metrics: ['50% faster hiring', '200+ hiring managers', '40% internal mobility↑']
     },
     {
-      tag: 'AI · Performance',
-      title: 'Performance Management Platform',
-      detail: 'Replaced annual review cycles with continuous feedback loops. AI recommendation engine surfaces personalized development actions based on role, tenure, and past performance data. Single multi-tenant architecture deployed across 16 enterprise clients.',
-      metrics: ['60% less manual review', '15 FTEs saved', '25% engagement↑'],
-      narrative: [
-        { label: 'Overview', body: 'Performance monitoring tool built from scratch on Airtable with AI automations, serving 5,000+ employees across all BPO verticals at JindalX.' },
-        { label: 'What I drove', body: 'Sole PM and builder. Designed the data model, built automation workflows in Airtable, managed rollout, and trained business users. No engineering dependency — no-code + AI stack throughout.' },
-        { label: 'Impact', body: '15 FTEs saved · 25% agent engagement increase · 60% reduction in manual review effort.' }
-      ]
-    },
-    {
-      tag: 'EdTech · AI',
-      title: 'Knowledge & Learning Platform (Insight)',
-      detail: 'Intelligent learning pathways adapt to agent performance data in real-time. Integrated chatbot handles 60% of queries without human escalation. Reduced onboarding time and improved frontline performance across 10,000+ seat operations.',
-      metrics: ['45% performance↑', '35% training time↓', '60% faster resolution'],
-      narrative: [
-        { label: 'Overview', body: 'Internal knowledge management and L&D platform with integrated AI chatbot for BPO agent training and performance support across JindalX operations.' },
-        { label: 'What I drove', body: 'Product strategy, vendor coordination, content architecture, and AI integration roadmap. Coordinated across L&D, operations, and engineering teams.' },
-        { label: 'Impact', body: '45% agent performance improvement · 35% reduction in training time · 60% faster issue resolution.' }
-      ]
-    },
-    {
+      company: 'jindal', role: 'Team Manager · Strategist', year: '2022–2025',
       tag: 'B2B · CRM',
       title: 'B2B CRM & Auction Platform (AuctionIT)',
-      detail: 'Full auction lifecycle management from listing through settlement. Automated invoicing eliminated manual reconciliation entirely. The UX redesign drove the 30% transaction volume increase.',
-      metrics: ['30% transactions↑', 'Auto-invoicing', 'CRM integration'],
-      narrative: [
-        { label: 'Overview', body: 'B2B metal scrap auction platform connecting large manufacturers to SME dealers with automated bidding, settlement, and invoicing workflows.' },
-        { label: 'What I drove', body: 'Led product roadmap for CRM and auction modules. Defined workflows, ran discovery with business stakeholders, and coordinated engineering delivery.' },
-        { label: 'Impact', body: '30% increase in transaction volume · automated invoicing deployed · full CRM integration completed.' }
-      ]
+      detail: 'Owned product strategy and led cross-functional squads to build end-to-end auction lifecycle and CRM management — drove 30% transaction growth through a UX redesign and managed multi-team delivery across concurrent workstreams.',
+      technology: 'PHP/.NET, Microsoft Azure, REST APIs, SQL',
+      activities: [
+        'Owned product strategy and roadmap for CRM and auction modules — defined scope, prioritization, and release planning.',
+        'Managed development teams and external integration partners across concurrent workstreams.',
+        'Led UX strategy and redesign effort that drove 30% increase in transaction volume.',
+        'Facilitated executive stakeholder communication, change control, and progress reporting.',
+        'Oversaw UAT execution, release management, and operational transition.'
+      ],
+      metrics: ['30% transactions↑', 'Auto-invoicing', 'CRM integration']
     },
     {
-      tag: 'HRMS · Automation',
-      title: 'HR Management System (Touchpoint HRMS)',
-      detail: 'Handles shift workers, floating assignments, and multi-state compliance challenges unique to BPO operations. Full RESTful API integration with ERP backbone.',
-      metrics: ['5,000+ agents', '25% satisfaction↑', 'Full ERP integration'],
-      narrative: [
-        { label: 'Overview', body: 'Internal HRMS serving 5,000+ BPO agents with attendance, payroll coordination, and employee self-service capabilities across JindalX delivery centers.' },
-        { label: 'What I drove', body: 'Product ownership across HRMS modules. Stakeholder management across HR, operations, and engineering. Managed rollout planning and transition to live operations.' },
-        { label: 'Impact', body: '5,000+ users onboarded · 25% employee satisfaction increase · full ERP integration achieved.' }
-      ]
-    },
-    {
+      company: 'jindal', role: 'Team Manager · Strategist', year: '2022–2025',
       tag: 'Analytics · BI',
       title: 'Business Intelligence Platform (Jx Data Cloud)',
-      detail: 'Replaced 7 siloed spreadsheet-based reports with a single real-time warehouse. Automated ETL pipelines reduced data engineering toil by 35%.',
-      metrics: ['40% accuracy↑', '35% processing↓', 'Multi-source ETL'],
-      narrative: [
-        { label: 'Overview', body: 'Centralized analytics platform unifying data from multiple enterprise systems into a single reporting layer for JindalX leadership decision-making.' },
-        { label: 'What I drove', body: 'Led product and data architecture decisions. Coordinated across data engineering, business units, and executive stakeholders on requirements and delivery.' },
-        { label: 'Impact', body: '40% improvement in reporting accuracy · 35% reduction in data processing time · multi-source ETL pipeline operational.' }
-      ]
+      detail: 'Defined data platform strategy and led teams to centralize distributed sources into a unified warehouse — built Power BI dashboards, automated KPI alerts for BPO operations, and ensured HIPAA compliance for US enterprise clients.',
+      technology: 'SQL, Power BI, SQL Server Integration Services (SSIS)',
+      activities: [
+        'Owned data platform strategy, roadmap, and governance framework aligned with data privacy and retention policies.',
+        'Centralized multiple distributed data sources into a unified warehouse; led ETL strategy on the central DB to surface actionable insights through Power BI dashboards.',
+        'Delivered platform for enterprise clients including RCM-process-based US clients — ensured HIPAA compliance for all data handling and reporting workflows.',
+        'Designed and created wireframes for all client dashboards, ensuring only approved layouts were handed to engineering for build.',
+        'Implemented automated KPI alert logic that flagged falling hourly agent performance to BPO team leads for real-time intervention.',
+        'Led cross-functional teams across data engineering, business units, and executive stakeholders for structured rollout.'
+      ],
+      metrics: ['40% accuracy↑', '35% processing↓', 'Multi-source ETL']
     },
     {
-      tag: 'Platform · EdTech',
-      title: 'Passport & PassportOS — OneValley',
-      detail: 'Led product strategy and roadmap for B2C and B2B entrepreneurship platforms supporting global programs including Entrepreneurship World Cup. Served universities, banks, accelerators, and corporate incubators across India and international markets. Drove feature development, KPI frameworks, mentorship systems, and SaaS ecosystem integration.',
-      metrics: ['B2B + B2C product lines', 'Global multi-client SaaS', 'Startup ecosystem platform'],
-      narrative: [
-        { label: 'Overview', body: 'B2C and B2B entrepreneurship platform supporting global startup ecosystems — Passport for individual founders, PassportOS for corporations and governments running accelerators.' },
-        { label: 'What I drove', body: 'Owned full product roadmap across both product lines. Led Entrepreneurship World Cup initiative across 200+ countries. Established Queens University partnership for virtual incubation program.' },
-        { label: 'Impact', body: 'Platform serving global multi-client SaaS model · partnerships operational across 200+ countries · corporate and university program adoption via PassportOS.' }
-      ]
+      company: 'jindal', role: 'Team Manager · Strategist', year: '2023–2025',
+      tag: 'HRMS · Automation',
+      title: 'HR Management System (Touchpoint HRMS)',
+      detail: 'Led teams to build a purpose-built HRMS for 5,000+ floating BPO agents — defined product strategy for shift-based scheduling, multi-state compliance, and full ERP integration across a complex distributed workforce.',
+      technology: 'REST APIs, ERP integration, SQL',
+      activities: [
+        'Defined product strategy for HRMS covering attendance, payroll, and compliance for floating workforce operations.',
+        'Managed delivery teams across HR, engineering, and operations for multi-module rollout.',
+        'Led architectural decisions for shift-based workflows and multi-state compliance requirements.',
+        'Coordinated full ERP integration strategy with existing enterprise backbone.',
+        'Oversaw phased rollout to 5,000+ agents, managing UAT, transition, and adoption.'
+      ],
+      metrics: ['5,000+ agents', '25% satisfaction↑', 'Full ERP integration']
     },
     {
-      tag: 'Content · Platform',
-      title: 'Digital Content & Publishing Platform — Taccomacco',
-      detail: 'As Co-Founder & COO, built the content pipeline and publishing infrastructure from scratch. Designed version control workflows, creator onboarding, and multi-channel distribution. Ran a structured incubation program that helped 6+ creators go from idea to published digital titles.',
-      metrics: ['500+ digital titles launched', '6 creators incubated', 'Full content pipeline built'],
-      narrative: [
-        { label: 'Overview', body: 'Mobile reading app — B2C subscription platform for digital content discovery and creator publishing. Co-founded and led as COO from 0 to launch.' },
-        { label: 'What I drove', body: 'Led product as Co-Founder & COO. Defined roadmap, pricing strategy, content architecture, and technology direction independently from 0 to launch.' },
-        { label: 'Impact', body: '500+ digital titles launched in 6 months · 6 creators incubated from idea to published product · covered by YourStory.' }
-      ]
+      company: 'jindal', role: 'Team Manager · Strategist', year: '2022–2024',
+      tag: 'Quality · Compliance',
+      title: 'Quality Management & Auditing Platform (AQUA)',
+      detail: 'Led cross-functional teams to deliver a cloud-based quality auditing and compliance platform — owned product strategy, governance frameworks, and enterprise-wide UAT coordination across system integrations.',
+      technology: 'PHP/.NET, Microsoft Azure, REST APIs, SQL',
+      activities: [
+        'Defined product strategy, requirements, and implementation roadmap for quality and compliance workflows.',
+        'Managed cross-functional teams for enterprise system integration and delivery.',
+        'Established delivery governance including milestone tracking, RAID management, and risk mitigation.',
+        'Led structured reporting cadence to leadership on compliance metrics and program progress.',
+        'Oversaw UAT cycles and managed operational transition post-deployment.'
+      ],
+      metrics: ['Cloud-based auditing', 'Compliance workflows', 'Enterprise UAT']
     },
     {
+      company: 'jindal', role: 'Team Manager · Strategist', year: '2022–2024',
+      tag: 'EdTech · AI',
+      title: 'Knowledge & Learning Platform (Insight)',
+      detail: 'Led cross-functional teams to deliver an AI-powered knowledge and L&D platform for 5,000+ employees — owned product strategy, vendor coordination for AI chatbot integration, and phased rollout across BPO operations.',
+      technology: 'PHP/.NET, Microsoft Azure, REST APIs, SQL',
+      activities: [
+        'Defined product strategy and roadmap for knowledge management and L&D platform serving 5,000+ employees.',
+        'Managed cross-functional teams across engineering, content, L&D, and operations for structured delivery.',
+        'Led vendor selection and coordination for AI-enabled knowledge search and chatbot integration.',
+        'Governed delivery timelines, dependency tracking, risk management, and executive updates.',
+        'Oversaw UAT planning, phased rollout, and operational handover to business teams.'
+      ],
+      metrics: ['45% performance↑', '35% training time↓', '60% faster resolution']
+    },
+    /* OneValley — B2B lead card first */
+    {
+      company: 'onevalley', role: 'Strategist · Stakeholder Lead', year: '2020–2022',
+      tag: 'Platform · B2B',
+      title: 'PassportOS — Ecosystem Platform',
+      detail: 'Worked as the product manager for a B2B SaaS platform deployed for institutes, incubators, accelerators, universities, and banks — owned requirements, sprint delivery, stakeholder coordination, and KPI reporting across enterprise clients.',
+      technology: 'Atlassian Confluence (platform base), REST APIs, SQL, SaaS integrations',
+      activities: [
+        'Managed product requirements, sprint planning, and delivery cycles for a B2B SaaS incubator and accelerator platform.',
+        'Coordinated across enterprise clients — institutes, incubators, accelerators, universities, and banks — to gather requirements and align on rollouts.',
+        'Established Queens University partnership for virtual incubation — managed requirements gathering, onboarding, and go-live.',
+        'Defined integration requirements and multi-tenant configuration specifications for each client deployment.',
+        'Monitored KPIs across active B2B programs and reported product performance to leadership.'
+      ],
+      metrics: ['B2B SaaS', 'University partnerships', 'Corporate incubators']
+    },
+    {
+      company: 'onevalley', role: 'Product Contributor', year: '2020–2022',
+      tag: 'Platform · B2C',
+      title: 'Passport — Founder Platform',
+      detail: 'Contributed to the B2C founder platform as part of the OneValley product team — supported feature delivery, roadmap planning, and KPI tracking for a global platform serving startup founders.',
+      technology: 'Atlassian Confluence (platform base), REST APIs, SQL, third-party integrations',
+      activities: [
+        'Contributed to product roadmap planning and feature prioritization within the OneValley product team.',
+        'Tracked and reported platform KPIs across the global base of startup founders using the platform.',
+        'Supported engineering and ecosystem partner coordination for feature delivery cycles.',
+        'Participated in sprint planning, milestone tracking, and release governance processes.',
+        'Assisted UAT coordination and rollout support across product releases.'
+      ],
+      metrics: ['B2C platform', 'Global founders', 'Multi-feature']
+    },
+    {
+      company: 'onevalley', role: 'Product Contributor · Stakeholder Lead', year: '2020–2022',
+      tag: 'Program · Global',
+      title: 'Entrepreneurship World Cup Platform',
+      detail: 'Contributed to product delivery for the Entrepreneurship World Cup across 200+ countries — owned stakeholder coordination across national bodies, universities, and corporate partners as the connective tissue across a complex global program.',
+      technology: 'Atlassian Confluence (platform base), REST APIs, SaaS ecosystem integrations',
+      activities: [
+        'Contributed to product delivery for Entrepreneurship World Cup spanning 200+ countries.',
+        'Owned stakeholder coordination across national bodies, universities, and corporate program partners.',
+        'Defined program workflows for application intake, judging panels, and participant management at scale.',
+        'Managed time-bound release governance for global rollouts with fixed program deadlines.',
+        'Acted as cross-functional connector across engineering, operations, and global program management.'
+      ],
+      metrics: ['200+ countries', 'Global rollout', 'Multi-stakeholder']
+    },
+    /* Taccomacco */
+    {
+      company: 'taccomacco', role: 'Product Lead · Co-Founder · Strategist', year: '2018–2020',
+      tag: 'Mobile · B2C',
+      title: 'Mobile Reading App — Android & iOS',
+      detail: 'Co-founded and led product for a B2C subscription reading app from concept to live product on Android and iOS — defined strategy, led development teams, and owned every product decision from pricing through launch.',
+      technology: 'Android, iOS, PHP backend',
+      activities: [
+        'Co-founded the venture and led product strategy from 0 to launch as Product Lead and COO.',
+        'Defined pricing strategy, content architecture, user acquisition approach, and go-to-market plan.',
+        'Led app development teams across Android and iOS platforms as the product decision-maker.',
+        'Managed release schedules, scope prioritization, and stakeholder communication end-to-end.',
+        'Oversaw testing, deployment, and initial scaling of mobile applications post-launch.'
+      ],
+      metrics: ['Android + iOS', 'B2C subscription', '0 to launch']
+    },
+    {
+      company: 'taccomacco', role: 'Product Lead · Co-Founder · Strategist', year: '2018–2020',
+      tag: 'Platform · CMS',
+      title: 'Creator Publishing Dashboard',
+      detail: 'Led product strategy and built internal CMS and publishing infrastructure from scratch as co-founder — structured workflows and distribution pipelines that enabled 500+ digital titles in 6 months.',
+      technology: 'PHP, CMS workflows, publishing pipeline',
+      activities: [
+        'Defined product strategy for internal publishing infrastructure — led as Product Lead and Co-Founder.',
+        'Built CMS workflows and version control systems enabling structured creator-to-publication pipeline.',
+        'Designed multi-channel distribution architecture and content review governance processes.',
+        'Led backend dashboard implementation and coordinated technical delivery teams.',
+        'Enabled 500+ digital titles published in 6 months through the platform — a direct outcome of the product decisions made.'
+      ],
+      metrics: ['500+ titles launched', 'Creator publishing', 'CMS pipeline']
+    },
+    {
+      company: 'taccomacco', role: 'Program Lead · Content Head', year: '2017–2020',
+      tag: 'Program · Content',
+      title: 'Creator Incubation Program',
+      detail: 'Designed and ran a structured creator incubation program as Program Lead and Content Head — defined editorial frameworks, mentored 6 creators from idea to published product, and earned YourStory coverage.',
+      technology: 'Content workflows, publishing tools',
+      activities: [
+        'Designed and led the creator incubation program structure — from intake criteria to published product milestones.',
+        'Served as Content Head: defined editorial quality frameworks, content standards, and review processes.',
+        'Onboarded, mentored, and guided 6 creators through the full development lifecycle from idea to publication.',
+        'Coordinated cross-functional support across content, design, and tech teams for each creator track.',
+        'Achieved YourStory coverage for the program\'s impact on the creator economy in digital publishing.'
+      ],
+      metrics: ['6 creators incubated', 'YourStory coverage', '0→published']
+    },
+    /* RSP Design Consultants */
+    {
+      company: 'rsp', role: 'Design Team Member', year: '2014–2017',
       tag: 'Architecture · PM',
-      title: 'Architectural Projects Portfolio — RSP Design Consultants',
-      detail: 'Managed 40+ architectural and interior design projects across IT campuses, healthcare facilities, and institutional buildings. Introduced project management best practices that reduced delivery time by 25% and maintained a 95% client retention rate across a 3-year tenure.',
-      metrics: ['40+ projects delivered', '95% client retention', '25% faster delivery'],
-      narrative: [
-        { label: 'Overview', body: 'Large-scale architectural projects across IT parks, healthcare, and institutional sectors in India — managed across a 3-year tenure at RSP Design Consultants.' },
-        { label: 'What I drove', body: 'Managed 40+ projects end-to-end. Coordinated multidisciplinary teams, client relationships, and structured delivery planning across concurrent projects.' },
-        { label: 'Impact', body: '40+ projects delivered · 95% client retention rate · 25% improvement in delivery timelines.' }
-      ]
+      title: 'Architectural Projects Portfolio',
+      detail: 'Contributed as a design team member at RSP, taking 40+ projects from initiation through government approval and submission drawings — with a dedicated compliance brief covering NBC, state and city bylaws, and special zone regulations.',
+      technology: 'AutoCAD, project management frameworks, multidisciplinary coordination',
+      activities: [
+        'Contributed to design and delivery of 40+ architectural projects across IT campuses, healthcare, and institutional typologies.',
+        'Managed project lifecycle from initiation through government approval and submission drawings stage.',
+        'Tasked with compliance analysis across all projects — covered NBC, state bylaws, city bylaws, and special zone regulations including metro corridors, highways, and riverside development norms.',
+        'Introduced structured PM frameworks that reduced delivery timelines by 25% across the team.',
+        'Maintained 95% client retention through consistent stakeholder communication and delivery discipline.'
+      ],
+      metrics: ['40+ projects', '95% client retention', '25% faster delivery']
     }
   ];
 
+  var _companyNames = {
+    jindal: 'JindalX', onevalley: 'OneValley',
+    taccomacco: 'Taccomacco Edutainment', rsp: 'RSP Design Consultants'
+  };
+
   function openProjectModal(idx) {
     var p = workProjects[idx];
+    if (!p) return;
+    var companyLabel = _companyNames[p.company] || '';
     var metricsHtml = (p.metrics || []).map(function (m) {
       return '<span class="modal-metric">' + m + '</span>';
     }).join('');
-
-    var narrativeHtml = '';
-    if (p.narrative && p.narrative.length) {
-      var parts = p.narrative.map(function (part, i) {
-        var num = String(i + 1).padStart(2, '0');
-        return '<div class="modal-part">' +
-          '<div class="modal-part-header">' +
-            '<span class="modal-part-num">' + num + '</span>' +
-            '<span class="modal-part-label">' + part.label + '</span>' +
-          '</div>' +
-          '<p class="modal-part-body">' + part.body + '</p>' +
-        '</div>';
-      }).join('');
-      narrativeHtml = '<div class="modal-narrative">' + parts + '</div>';
+    var activitiesHtml = '';
+    if (p.activities && p.activities.length) {
+      activitiesHtml =
+        '<div class="modal-section-label">Activities</div>' +
+        '<ul class="modal-activities">' +
+        p.activities.map(function (a) { return '<li>' + a + '</li>'; }).join('') +
+        '</ul>';
     }
-
-    if (p.narrative && p.narrative.length) {
-      modalPanel.classList.add('modal-panel--wide');
-    } else {
-      modalPanel.classList.remove('modal-panel--wide');
-    }
-
+    modalPanel.classList.add('modal-panel--wide');
     modalBody.innerHTML =
-      '<div class="modal-tag">' + p.tag + '</div>' +
+      '<div class="modal-header-chips">' +
+        '<span class="modal-tag">' + p.tag + '</span>' +
+        '<span class="modal-role">' + p.role + '</span>' +
+      '</div>' +
       '<h2 class="modal-title">' + p.title + '</h2>' +
-      '<p class="modal-detail">' + p.detail + '</p>' +
-      '<div class="modal-metrics">' + metricsHtml + '</div>' +
-      narrativeHtml;
+      '<p class="modal-company-year">' + companyLabel + ' &middot; ' + p.year + '</p>' +
+      (p.technology ? '<div class="modal-tech-row"><strong>Technology:</strong> ' + p.technology + '</div>' : '') +
+      activitiesHtml +
+      '<div class="modal-metrics">' + metricsHtml + '</div>';
     modalOverlay.removeAttribute('hidden');
   }
 
-  document.querySelectorAll('.proj-card').forEach(function (card) {
-    card.addEventListener('click', function () {
-      openProjectModal(parseInt(card.dataset.proj, 10));
+  function renderWorkProjects() {
+    var companies = ['jindal', 'onevalley', 'taccomacco', 'rsp'];
+    companies.forEach(function (co) {
+      var container = document.querySelector('.exp-projects[data-company="' + co + '"]');
+      if (!container) return;
+      var projects = workProjects.filter(function (p) { return p.company === co; });
+      var html = '<div class="proj-grid">';
+      projects.forEach(function (p, i) {
+        var idx = workProjects.indexOf(p);
+        var isLead = (i === 0);
+        var metricsHtml = (p.metrics || []).map(function (m) {
+          return '<span class="proj-metric">' + m + '</span>';
+        }).join('');
+        html +=
+          '<div class="proj-card' + (isLead ? ' proj-card--lead' : '') + ' reveal-child"' +
+          ' data-proj="' + idx + '" role="button" tabindex="0">' +
+          '<div class="proj-card-meta">' +
+            '<span class="proj-tag">' + p.tag + '</span>' +
+            '<span class="proj-role-chip">' + p.role + '</span>' +
+          '</div>' +
+          '<h3 class="proj-title">' + p.title + '</h3>' +
+          '<p class="proj-desc">' + p.detail + '</p>' +
+          '<div class="proj-metrics">' + metricsHtml + '</div>' +
+          '<span class="proj-cta">View details &rarr;</span>' +
+          '</div>';
+      });
+      html += '</div>';
+      container.innerHTML = html;
+      container.querySelectorAll('.proj-card').forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          e.stopPropagation();
+          openProjectModal(parseInt(card.dataset.proj, 10));
+        });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            e.stopPropagation();
+            openProjectModal(parseInt(card.dataset.proj, 10));
+          }
+        });
+      });
     });
-    card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openProjectModal(parseInt(card.dataset.proj, 10));
-      }
-    });
-  });
+  }
 
   /* ---- Case Study Modal ---- */
   var caseStudies = [
@@ -350,7 +501,7 @@
       title: 'This Portfolio Website',
       problem: 'Plain HTML/CSS/JS SPA with an email gate, Supabase lead capture, and a Blueprint-to-Bits design system.',
       insight: "Zero-dependency panel navigation and a CSS-only grid theme prove you don't need a framework to ship a polished product.",
-      stats: ['0 npm dependencies', 'Supabase email gate', '8 panel SPA'],
+      stats: ['0 npm dependencies', 'Supabase email gate', '7 panel SPA'],
       stage: 'Shipped · Live',
       stageTags: 'shipped',
       industryTags: ['Infra'],
@@ -792,6 +943,7 @@
   }
 
   /* ---- Init ---- */
+  renderWorkProjects();
   initSystemsCanvas();
   initContactCanvas();
 
