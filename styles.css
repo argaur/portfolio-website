@@ -2257,7 +2257,7 @@ img { display: block; max-width: 100%; }
     padding: 48px 24px;
     gap: 40px;
   }
-  .contact-pane--canvas { height: 180px; }
+  .contact-pane--canvas { display: none; }
 }
 
 /* ============================================================
@@ -2338,10 +2338,6 @@ img { display: block; max-width: 100%; }
   .contact-wrap-new .section-label { padding: 32px 24px 0; }
 }
 
-/* Mobile: hide contact canvas */
-@media (max-width: 600px) {
-  .contact-pane--canvas { display: none; }
-}
 
 /* ============================================================
    MERGED EXPERIENCE & WORK PANEL
