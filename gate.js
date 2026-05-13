@@ -69,6 +69,11 @@
         }
     }
 
+    var skipBtn = document.getElementById('gate-skip');
+    skipBtn.addEventListener('click', function () {
+        dismissGate();
+    });
+
     emailInput.addEventListener('input', clearError);
 
     form.addEventListener('submit', function (e) {
