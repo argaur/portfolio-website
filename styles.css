@@ -1961,7 +1961,7 @@ img { display: block; max-width: 100%; }
     padding: 40px 24px 28px;
     gap: 28px;
   }
-  .hero-pane--canvas { height: 240px; }
+  .hero-pane--canvas { display: none; }
   .hero-stats-strip {
     padding: 14px 24px;
     flex-wrap: wrap;
