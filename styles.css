@@ -588,7 +588,8 @@ img { display: block; max-width: 100%; }
   min-height: 40px;
 }
 
-.exp-row { cursor: pointer; }
+.exp-row { cursor: default; }
+.exp-header { cursor: pointer; }
 
 .exp-right {}
 .exp-header {
@@ -632,7 +633,7 @@ img { display: block; max-width: 100%; }
   margin-top: 0;
 }
 .exp-row.is-open .exp-body {
-  max-height: 240px;
+  max-height: 4000px;
   margin-top: 20px;
 }
 .exp-body ul {
@@ -2338,4 +2339,101 @@ img { display: block; max-width: 100%; }
 /* Mobile: hide contact canvas */
 @media (max-width: 600px) {
   .contact-pane--canvas { display: none; }
+}
+
+/* ============================================================
+   MERGED EXPERIENCE & WORK PANEL
+   ============================================================ */
+
+/* Project grid inside accordion body */
+.exp-projects { margin-top: 1.5rem; }
+/* proj-tag in card-meta flex row: cancel block margin */
+.proj-card-meta .proj-tag { margin-bottom: 0; display: inline; }
+
+/* Card meta row: tag + role chip */
+.proj-card-meta {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .5rem;
+  align-items: center;
+}
+
+/* Role chip on project cards */
+.proj-role-chip {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(45,93,161,.1);
+  padding: .22rem .48rem;
+  line-height: 1;
+}
+
+/* ============================================================
+   MODAL — PDF-style (role chip, tech, activities)
+   ============================================================ */
+
+/* Header chips row */
+.modal-header-chips {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: .75rem;
+}
+
+/* Role chip in modal */
+.modal-role {
+  font-family: var(--font-body);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(45,93,161,.1);
+  padding: .25rem .6rem;
+  line-height: 1;
+}
+
+/* Company · Year subtitle */
+.modal-company-year {
+  font-family: var(--font-body);
+  font-size: .85rem;
+  color: #888;
+  margin: .2rem 0 1rem;
+  line-height: 1;
+}
+
+/* Technology row */
+.modal-tech-row {
+  font-family: var(--font-body);
+  font-size: .82rem;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.modal-tech-row strong { color: var(--navy); }
+
+/* Activities list */
+.modal-activities {
+  padding-left: 1.1rem;
+  margin: 0 0 1.5rem;
+  list-style: disc;
+}
+.modal-activities li {
+  font-family: var(--font-body);
+  font-size: .9rem;
+  line-height: 1.65;
+  margin-bottom: .35rem;
+  color: #333;
+}
+
+/* Mobile: single-column card grid inside accordion */
+@media (max-width: 768px) {
+  .exp-projects .proj-grid { grid-template-columns: 1fr; }
+  .exp-projects .proj-card--lead { grid-column: span 1; }
+  .exp-projects .proj-card--lead .proj-title { font-size: 16px; }
 }
