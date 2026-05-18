@@ -950,39 +950,39 @@
 
   /* ---- Projects Panel (v2 — unified list) ---- */
   var allProjects = [
-    { rank: ‘01’, type: ‘case-study’, name: ‘Vitae — Health Records, Finally Understood’,       sub: ‘Live prototype · Health tech · Redesigning health data for patients’,          links: [{ label: ‘View →’, href: ‘https://vitae-health.vercel.app/’ }], itemRef: function(){ return caseStudies[4]; } },
-    { rank: ‘02’, type: ‘personal’,   name: ‘Telegram PM Bot — Workflow Automation’,            sub: ‘Deployed · AI / Automation · Claude + Airtable + Notion integration’,        links: [{ label: ‘GitHub →’, href: ‘#’ }], itemRef: function(){ return personalProjects[0]; } },
-    { rank: ‘03’, type: ‘case-study’, name: ‘Blinkit Command Hub — Peak-Hour Decision Support’, sub: ‘Live prototype · Ops / Quick Commerce · Real-time dark store dashboard’,      links: [{ label: ‘View →’, href: ‘https://blinkit-command-hub.vercel.app/’ }], itemRef: function(){ return caseStudies[1]; } },
-    { rank: ‘04’, type: ‘case-study’, name: "Founder’s CRM — Conversation-First Sales Tool",   sub: ‘Concept · SaaS / Sales · CRM built around the founder sales motion’,          links: [{ label: ‘View →’, href: ‘#’ }], itemRef: function(){ return caseStudies[0]; } },
-    { rank: ‘05’, type: ‘case-study’, name: ‘Group Travel Planning Platform’,                   sub: ‘Concept · Consumer · Collaborative trip planning for friend groups’,          links: [{ label: ‘View →’, href: ‘#’ }], itemRef: function(){ return caseStudies[3]; } },
-    { rank: ‘06’, type: ‘case-study’, name: ‘YouTube 2.0 — Fixing Long-Form Discovery’,        sub: ‘Concept · Consumer / Media · Rethinking recommendation for depth-seeking users’, links: [{ label: ‘View →’, href: ‘#’ }], itemRef: function(){ return caseStudies[2]; } },
-    { rank: ‘07’, type: ‘personal’,   name: ‘Portfolio Website — This Site’,                    sub: ‘Live · Plain HTML/CSS/JS · 7-panel SPA with canvas and email gate’,           links: [], itemRef: null },
-    { rank: ‘08’, type: ‘personal’,   name: ‘GWS CLI — Google Workspace Terminal Tool’,         sub: ‘Open source · Dev tooling · CLI for managing GWS from terminal’,              links: [{ label: ‘GitHub →’, href: ‘#’ }], itemRef: null }
+    { rank: '01', type: 'case-study', name: 'Vitae — Health Records, Finally Understood',       sub: 'Live prototype · Health tech · Redesigning health data for patients',          links: [{ label: 'View →', href: 'https://vitae-health.vercel.app/' }], itemRef: function(){ return caseStudies[4]; } },
+    { rank: '02', type: 'personal',   name: 'Telegram PM Bot — Workflow Automation',            sub: 'Deployed · AI / Automation · Claude + Airtable + Notion integration',        links: [{ label: 'GitHub →', href: '#' }], itemRef: function(){ return personalProjects[0]; } },
+    { rank: '03', type: 'case-study', name: 'Blinkit Command Hub — Peak-Hour Decision Support', sub: 'Live prototype · Ops / Quick Commerce · Real-time dark store dashboard',      links: [{ label: 'View →', href: 'https://blinkit-command-hub.vercel.app/' }], itemRef: function(){ return caseStudies[1]; } },
+    { rank: '04', type: 'case-study', name: "Founder's CRM — Conversation-First Sales Tool",   sub: 'Concept · SaaS / Sales · CRM built around the founder sales motion',          links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[0]; } },
+    { rank: '05', type: 'case-study', name: 'Group Travel Planning Platform',                   sub: 'Concept · Consumer · Collaborative trip planning for friend groups',          links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[3]; } },
+    { rank: '06', type: 'case-study', name: 'YouTube 2.0 — Fixing Long-Form Discovery',        sub: 'Concept · Consumer / Media · Rethinking recommendation for depth-seeking users', links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[2]; } },
+    { rank: '07', type: 'personal',   name: 'Portfolio Website — This Site',                    sub: 'Live · Plain HTML/CSS/JS · 7-panel SPA with canvas and email gate',           links: [], itemRef: null },
+    { rank: '08', type: 'personal',   name: 'GWS CLI — Google Workspace Terminal Tool',         sub: 'Open source · Dev tooling · CLI for managing GWS from terminal',              links: [{ label: 'GitHub →', href: '#' }], itemRef: null }
   ];
 
   function renderProjects() {
-    var list = document.getElementById(‘projects-list’);
+    var list = document.getElementById('projects-list');
     if (!list) return;
     list.innerHTML = allProjects.map(function (p, i) {
-      var pillClass = p.type === ‘case-study’ ? ‘project-pill--case-study’ : ‘project-pill--personal’;
-      var pillLabel = p.type === ‘case-study’ ? ‘Case Study’ : ‘Personal’;
+      var pillClass = p.type === 'case-study' ? 'project-pill--case-study' : 'project-pill--personal';
+      var pillLabel = p.type === 'case-study' ? 'Case Study' : 'Personal';
       var linksHtml = p.links.map(function (l) {
-        return ‘<a class="project-row__link" href="’ + l.href + ‘" target="_blank" rel="noopener" onclick="event.stopPropagation()">’ + l.label + ‘</a>’;
-      }).join(‘’);
-      var clickable = p.itemRef ? ‘ data-idx="’ + i + ‘"’ : ‘’;
-      return ‘<div class="project-row"’ + clickable + ‘>’ +
-        ‘<span class="project-row__num">’ + p.rank + ‘</span>’ +
-        ‘<span class="project-pill ‘ + pillClass + ‘">’ + pillLabel + ‘</span>’ +
-        ‘<div class="project-row__info">’ +
-          ‘<span class="project-row__name">’ + p.name + ‘</span>’ +
-          ‘<span class="project-row__sub">’ + p.sub + ‘</span>’ +
-        ‘</div>’ +
-        ‘<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">’ + linksHtml + ‘</div>’ +
-        ‘</div>’;
-    }).join(‘’);
+        return '<a class="project-row__link" href="' + l.href + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + l.label + '</a>';
+      }).join('');
+      var clickable = p.itemRef ? ' data-idx="' + i + '"' : '';
+      return '<div class="project-row"' + clickable + '>' +
+        '<span class="project-row__num">' + p.rank + '</span>' +
+        '<span class="project-pill ' + pillClass + '">' + pillLabel + '</span>' +
+        '<div class="project-row__info">' +
+          '<span class="project-row__name">' + p.name + '</span>' +
+          '<span class="project-row__sub">' + p.sub + '</span>' +
+        '</div>' +
+        '<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">' + linksHtml + '</div>' +
+        '</div>';
+    }).join('');
 
-    list.querySelectorAll(‘.project-row[data-idx]’).forEach(function (row) {
-      row.addEventListener(‘click’, function () {
+    list.querySelectorAll('.project-row[data-idx]').forEach(function (row) {
+      row.addEventListener('click', function () {
         var idx = parseInt(row.dataset.idx, 10);
         var p = allProjects[idx];
         if (p && p.itemRef) { openItemModal(p.itemRef()); }
