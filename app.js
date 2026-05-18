@@ -1,6 +1,6 @@
 /* ============================================================
-   app.js — Blueprint to Bits Portfolio
-   Panel nav · Experience accordion · Project modal · CS modal
+   app.js — Portfolio v2
+   Panel nav · Theme toggle · Experience accordion · Project modal
    ============================================================ */
 
 (function () {
@@ -62,14 +62,24 @@
     if (e.key === 'Escape') closeOverlay();
   });
 
+  /* ---- Theme Toggle ---- */
+  var themeToggle = document.getElementById('theme-toggle');
+  var savedTheme = localStorage.getItem('portfolio_theme') || 'dark';
+  if (savedTheme === 'light') document.body.classList.add('theme-light');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var isLight = document.body.classList.toggle('theme-light');
+      localStorage.setItem('portfolio_theme', isLight ? 'light' : 'dark');
+    });
+  }
+
   /* Hash routing on load */
   var hashToPanel = {
     'home':         'panel-home',
     'experience':   'panel-experience',
-    'work':         'panel-experience',
+    'work':         'panel-work',
     'projects':     'panel-projects',
-    'skills':       'panel-skills',
-    'philosophy':   'panel-philosophy',
+    'how-i-think':  'panel-how-i-think',
     'credentials':  'panel-credentials',
     'contact':      'panel-contact'
   };
@@ -78,15 +88,11 @@
     activatePanel(hashToPanel[initHash]);
   }
 
-  /* ---- Experience Accordion ---- */
-  document.querySelectorAll('.exp-row .exp-header').forEach(function (header) {
+  /* ---- Experience Accordion (v2: .acc-row / .acc-header) ---- */
+  document.querySelectorAll('.acc-header').forEach(function (header) {
     header.addEventListener('click', function () {
-      var row = header.closest('.exp-row');
-      row.classList.toggle('is-open');
-      var body = row.querySelector('.exp-body');
-      if (body) {
-        body.style.maxHeight = row.classList.contains('is-open') ? body.scrollHeight + 'px' : '0';
-      }
+      var row = header.closest('.acc-row');
+      if (row) row.classList.toggle('open');
     });
   });
 
@@ -942,8 +948,144 @@
     resize();
   }
 
+  /* ---- Projects Panel (v2 — unified list) ---- */
+  var allProjects = [
+    { rank: ‘01’, type: ‘case-study’, name: ‘Vitae — Health Records, Finally Understood’,       sub: ‘Live prototype · Health tech · Redesigning health data for patients’,          links: [{ label: ‘View →’, href: ‘https://vitae-health.vercel.app/’ }], itemRef: function(){ return caseStudies[4]; } },
+    { rank: ‘02’, type: ‘personal’,   name: ‘Telegram PM Bot — Workflow Automation’,            sub: ‘Deployed · AI / Automation · Claude + Airtable + Notion integration’,        links: [{ label: ‘GitHub →’, href: ‘#’ }], itemRef: function(){ return personalProjects[0]; } },
+    { rank: ‘03’, type: ‘case-study’, name: ‘Blinkit Command Hub — Peak-Hour Decision Support’, sub: ‘Live prototype · Ops / Quick Commerce · Real-time dark store dashboard’,      links: [{ label: ‘View →’, href: ‘https://blinkit-command-hub.vercel.app/’ }], itemRef: function(){ return caseStudies[1]; } },
+    { rank: ‘04’, type: ‘case-study’, name: "Founder’s CRM — Conversation-First Sales Tool",   sub: ‘Concept · SaaS / Sales · CRM built around the founder sales motion’,          links: [{ label: ‘View →’, href: ‘#’ }], itemRef: function(){ return caseStudies[0]; } },
+    { rank: ‘05’, type: ‘case-study’, name: ‘Group Travel Planning Platform’,                   sub: ‘Concept · Consumer · Collaborative trip planning for friend groups’,          links: [{ label: ‘View →’, href: ‘#’ }], itemRef: function(){ return caseStudies[3]; } },
+    { rank: ‘06’, type: ‘case-study’, name: ‘YouTube 2.0 — Fixing Long-Form Discovery’,        sub: ‘Concept · Consumer / Media · Rethinking recommendation for depth-seeking users’, links: [{ label: ‘View →’, href: ‘#’ }], itemRef: function(){ return caseStudies[2]; } },
+    { rank: ‘07’, type: ‘personal’,   name: ‘Portfolio Website — This Site’,                    sub: ‘Live · Plain HTML/CSS/JS · 7-panel SPA with canvas and email gate’,           links: [], itemRef: null },
+    { rank: ‘08’, type: ‘personal’,   name: ‘GWS CLI — Google Workspace Terminal Tool’,         sub: ‘Open source · Dev tooling · CLI for managing GWS from terminal’,              links: [{ label: ‘GitHub →’, href: ‘#’ }], itemRef: null }
+  ];
+
+  function renderProjects() {
+    var list = document.getElementById(‘projects-list’);
+    if (!list) return;
+    list.innerHTML = allProjects.map(function (p, i) {
+      var pillClass = p.type === ‘case-study’ ? ‘project-pill--case-study’ : ‘project-pill--personal’;
+      var pillLabel = p.type === ‘case-study’ ? ‘Case Study’ : ‘Personal’;
+      var linksHtml = p.links.map(function (l) {
+        return ‘<a class="project-row__link" href="’ + l.href + ‘" target="_blank" rel="noopener" onclick="event.stopPropagation()">’ + l.label + ‘</a>’;
+      }).join(‘’);
+      var clickable = p.itemRef ? ‘ data-idx="’ + i + ‘"’ : ‘’;
+      return ‘<div class="project-row"’ + clickable + ‘>’ +
+        ‘<span class="project-row__num">’ + p.rank + ‘</span>’ +
+        ‘<span class="project-pill ‘ + pillClass + ‘">’ + pillLabel + ‘</span>’ +
+        ‘<div class="project-row__info">’ +
+          ‘<span class="project-row__name">’ + p.name + ‘</span>’ +
+          ‘<span class="project-row__sub">’ + p.sub + ‘</span>’ +
+        ‘</div>’ +
+        ‘<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">’ + linksHtml + ‘</div>’ +
+        ‘</div>’;
+    }).join(‘’);
+
+    list.querySelectorAll(‘.project-row[data-idx]’).forEach(function (row) {
+      row.addEventListener(‘click’, function () {
+        var idx = parseInt(row.dataset.idx, 10);
+        var p = allProjects[idx];
+        if (p && p.itemRef) { openItemModal(p.itemRef()); }
+      });
+    });
+  }
+
+  /* ---- Work Panel Row Clicks ---- */
+  function initWorkRows() {
+    /* Work modals are placeholder content — no-op until modal data is mapped */
+  }
+
+  /* ---- Credentials Toggle ---- */
+  function initCredentials() {
+    var toggle = document.getElementById('cred-other-toggle');
+    var list   = document.getElementById('cred-other-list');
+    var link   = toggle ? toggle.querySelector('.cred-show-link') : null;
+    if (toggle && list) {
+      toggle.addEventListener('click', function () {
+        var isOpen = list.style.display !== 'none';
+        list.style.display = isOpen ? 'none' : 'block';
+        if (link) link.textContent = isOpen ? 'Show ↓' : 'Hide ↑';
+      });
+    }
+  }
+
+  /* ---- How I Think Canvas ---- */
+  function initHowIThinkCanvas() {
+    var canvas = document.getElementById('skills-graph-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var rafId = null;
+
+    var nodes = [
+      { id: 'arch', label: 'Architecture',     x: 0.5,  y: 0.88, tier: 0 },
+      { id: 'sys',  label: 'Systems Thinking', x: 0.25, y: 0.66, tier: 1 },
+      { id: 'ux',   label: 'UX Research',      x: 0.75, y: 0.66, tier: 1 },
+      { id: 'pm',   label: 'Product Strategy', x: 0.28, y: 0.42, tier: 2 },
+      { id: 'data', label: 'Data Analysis',    x: 0.55, y: 0.42, tier: 2 },
+      { id: 'eng',  label: 'Engineering',      x: 0.78, y: 0.42, tier: 2 },
+      { id: 'ai',   label: 'AI / LLMs',        x: 0.5,  y: 0.12, tier: 3 }
+    ];
+    var edges = [
+      ['arch','sys'],['arch','ux'],
+      ['sys','pm'],['ux','data'],['sys','eng'],
+      ['pm','ai'],['data','ai'],['eng','ai']
+    ];
+    var tierColors = { 0: '#56546e', 1: '#9896a0', 2: '#ece8e2', 3: '#c9a84c' };
+
+    function draw() {
+      var w = canvas.offsetWidth;
+      var h = canvas.offsetHeight;
+      canvas.width  = w * window.devicePixelRatio;
+      canvas.height = h * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      ctx.clearRect(0, 0, w, h);
+
+      edges.forEach(function (e) {
+        var a = nodes.find(function(n){ return n.id === e[0]; });
+        var b = nodes.find(function(n){ return n.id === e[1]; });
+        ctx.beginPath();
+        ctx.strokeStyle = '#2a2a38';
+        ctx.lineWidth = 1;
+        ctx.moveTo(a.x * w, a.y * h);
+        ctx.lineTo(b.x * w, b.y * h);
+        ctx.stroke();
+      });
+
+      nodes.forEach(function (n) {
+        var x = n.x * w;
+        var y = n.y * h;
+        var r = n.tier === 0 ? 8 : n.tier === 3 ? 7 : 5;
+        var col = tierColors[n.tier];
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = col;
+        ctx.fill();
+        ctx.font = '400 11px "DM Sans", sans-serif';
+        ctx.fillStyle = col;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = n.tier === 0 ? 'top' : 'bottom';
+        ctx.fillText(n.label, x, n.tier === 0 ? y + r + 5 : y - r - 5);
+      });
+    }
+
+    document.addEventListener('panel:activate', function (e) {
+      if (e.detail.panelId === 'panel-how-i-think') {
+        requestAnimationFrame(draw);
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (document.getElementById('panel-how-i-think').classList.contains('is-active')) {
+        requestAnimationFrame(draw);
+      }
+    });
+  }
+
   /* ---- Init ---- */
-  renderWorkProjects();
+  renderProjects();
+  initWorkRows();
+  initCredentials();
+  initHowIThinkCanvas();
   initSystemsCanvas();
   initContactCanvas();
 

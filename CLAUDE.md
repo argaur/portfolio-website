@@ -123,20 +123,18 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** stable — basic shareable version live; `dev` branch created for all future work
-- **Last session:** 2026-05-12
+- **State:** stable — no code changed; design framework session 01 complete
+- **Last session:** 2026-05-18
 - **What was done (this session):**
-  - **Work modals simplified** — all 9 `workProjects` narratives replaced with 3-part structure (Overview / What I drove / Impact) using verified resume content only; all `[VERIFY]` placeholders removed
-  - **Mobile responsiveness** — all touch targets ≥44px (modal-btn, gate-btn, hero CTAs, cs-page-btn); gate heading uses `clamp()`; nav overlay link min size 36→28px; gate + modal compress on 400px screens; case study tables reduce cell padding at 768px; `overflow-wrap: break-word` on case study content
-  - **Hero chip** — Trivo replaced with Rethink CRM (links to `argaur.github.io/founder-crm-landing/`)
-  - **Gmail draft saved** — reply to Aloha ABA India thread (Srinivas), sharing Xcellence story + Blinkit + Vitae + portfolio link; ready to send tomorrow
-  - **`dev` branch created** — `main` is now the stable version; all new features go to `dev`
-  - **All changes on `main` pushed to Vercel** — auto-deployed
+  - **Design Framework updated** — removed Blueprint to Bits tokens (design language always fresh); added Track A (design language questions) to Stage 2 Interview; generic token template replaces portfolio-specific table
+  - **Stage 1 (Brainstorm) complete** — scope confirmed, v2 strategy loaded, three-identities problem documented; see `Documentation/design/session-01-brainstorm.md`
+  - **Architecture portfolio analyzed** — 2014 B.Arch cover had custom 3D-modeled letterforms over self-rendered Mughal building; "medium is the message" principle extracted as design constraint for PM portfolio
+  - **Design constraint:** portfolio's visual language must itself be a proof point — recruiter should feel "different level" before reading a word
+- **Previous session (2026-05-17):**
+  - 4 Excalidraw wireframes; Stitch project created; design framework extracted to Claude Optimisation project
 - **Next session trigger:** Gaurav will say **"lets continue"**
-- **Next session — priority order (on `dev` branch):**
-  1. **Retrospective content** — write "What I'd do differently" for all 5 case studies → `retrospective` field in `app.js`
-  2. **Work modal upgrade** — restore rich narrative content once Gaurav verifies `Analysis/Work Modal Content Review.md`
-  3. **Phase B** — About/bio panel (blocked on headshot photo.jpg); "What I'd do differently" on case study HTML pages
-  4. **Blinkit + YouTube prototypes** — add `protoUrl` when built
-- **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename (aashikvilla/health-assistant → vitae-health pending); retrospective text for all 5 case studies
-- **Last updated:** 2026-05-12
+- **Next session — Stage 2 Interview:**
+  - Start Track A (design language): mood, aesthetic references, dark/light, type direction, what to avoid
+  - Then Track B: 8 panels, one question at a time (Home first)
+- **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename; retrospective text for all 5 case studies; Netlify URL for bot-overview.html; 3 empty work modals (OneValley/Passport, Taccomacco, RSP)
+- **Last updated:** 2026-05-18
