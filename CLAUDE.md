@@ -123,18 +123,17 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** stable — no code changed; design framework session 01 complete
-- **Last session:** 2026-05-18
+- **State:** v2 redesign core implemented on `dev` — ready for browser review
+- **Last session:** 2026-05-18 (session 2)
 - **What was done (this session):**
-  - **Design Framework updated** — removed Blueprint to Bits tokens (design language always fresh); added Track A (design language questions) to Stage 2 Interview; generic token template replaces portfolio-specific table
-  - **Stage 1 (Brainstorm) complete** — scope confirmed, v2 strategy loaded, three-identities problem documented; see `Documentation/design/session-01-brainstorm.md`
-  - **Architecture portfolio analyzed** — 2014 B.Arch cover had custom 3D-modeled letterforms over self-rendered Mughal building; "medium is the message" principle extracted as design constraint for PM portfolio
-  - **Design constraint:** portfolio's visual language must itself be a proof point — recruiter should feel "different level" before reading a word
-- **Previous session (2026-05-17):**
-  - 4 Excalidraw wireframes; Stitch project created; design framework extracted to Claude Optimisation project
-- **Next session trigger:** Gaurav will say **"lets continue"**
-- **Next session — Stage 2 Interview:**
-  - Start Track A (design language): mood, aesthetic references, dark/light, type direction, what to avoid
-  - Then Track B: 8 panels, one question at a time (Home first)
-- **Still open:** photo.jpg headshot; Oracle VM HTTPS; Vitae GitHub repo rename; retrospective text for all 5 case studies; Netlify URL for bot-overview.html; 3 empty work modals (OneValley/Passport, Taccomacco, RSP)
+  - **Full design framework completed** — Interview (Track A + B), Excalidraw wireframes (5 panels), brand guide, spec doc, impl plan
+  - **v2 implementation on `dev`** — commit `9c2fd35` — 7-panel redesign with Bodoni Moda / DM Sans / amber tokens
+  - **7 panels rebuilt:** Home (new headline + CTAs), Experience (arc bar + accordions), Work (product-name anchors), Projects (single complexity list), How I Think (principles + graph canvas), Credentials (curated + collapsed), Contact (email primary)
+  - **Theme toggle:** dark default / light via `body.theme-light`, persisted in localStorage
+- **Next session — on `dev` branch:**
+  1. Open `index.html` in browser — review all 7 panels visually
+  2. Fix open items: work modal mapping, hero canvas colors (#c9a84c), nav hamburger CSS
+  3. Content review: credentials curation, confirm project ordering with Gaurav
+  4. When satisfied → merge `dev` → `main` to deploy to Vercel
+- **Still open:** photo.jpg; Oracle VM HTTPS; Vitae GitHub rename; Aloha ABA email draft; Stitch MCP auth
 - **Last updated:** 2026-05-18
