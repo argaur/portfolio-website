@@ -1117,7 +1117,7 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   align-items: baseline;
   padding: 14px 0;
-  border-bottom: 1px solid #e2dbd3;
+  border-bottom: 1px solid var(--c-border);
 }
 .cert-row--last { border-bottom: none; }
 .cert-row--linked {
