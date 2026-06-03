@@ -387,6 +387,13 @@ img { display: block; max-width: 100%; }
 }
 .theme-toggle:hover { border-color: var(--c-accent); color: var(--c-accent); }
 
+/* Show moon in dark mode (default), sun in light mode */
+.theme-icon--sun  { display: none; }
+.theme-icon--moon { display: block; }
+
+body.theme-light .theme-icon--sun  { display: block; }
+body.theme-light .theme-icon--moon { display: none; }
+
 /* ============================================================
    HERO
    ============================================================ */
