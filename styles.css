@@ -897,7 +897,7 @@ img { display: block; max-width: 100%; }
   gap: 32px;
   align-items: center;
   padding: 36px 48px;
-  border-bottom: 1px solid #e2dbd3;
+  border-bottom: 1px solid var(--c-border);
   background: #ffffff;
   text-decoration: none;
   cursor: pointer;
