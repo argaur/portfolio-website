@@ -123,17 +123,22 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** v2 redesign core implemented on `dev` — ready for browser review
-- **Last session:** 2026-05-18 (session 2)
+- **State:** v2.1 redesign complete on `dev` — ready for browser QA then merge to main
+- **Last session:** 2026-06-03 (session 4)
 - **What was done (this session):**
-  - **Full design framework completed** — Interview (Track A + B), Excalidraw wireframes (5 panels), brand guide, spec doc, impl plan
-  - **v2 implementation on `dev`** — commit `9c2fd35` — 7-panel redesign with Bodoni Moda / DM Sans / amber tokens
-  - **7 panels rebuilt:** Home (new headline + CTAs), Experience (arc bar + accordions), Work (product-name anchors), Projects (single complexity list), How I Think (principles + graph canvas), Credentials (curated + collapsed), Contact (email primary)
-  - **Theme toggle:** dark default / light via `body.theme-light`, persisted in localStorage
-- **Next session — on `dev` branch:**
-  1. Open `index.html` in browser — review all 7 panels visually
-  2. Fix open items: work modal mapping, hero canvas colors (#c9a84c), nav hamburger CSS
-  3. Content review: credentials curation, confirm project ordering with Gaurav
-  4. When satisfied → merge `dev` → `main` to deploy to Vercel
-- **Still open:** photo.jpg; Oracle VM HTTPS; Vitae GitHub rename; Aloha ABA email draft; Stitch MCP auth
-- **Last updated:** 2026-05-18
+  - **v2.1 design spec written** — purpose-derived derivation; Bodoni Moda → Space Mono at display scale; inevitability test passed
+  - **Implementation plan written** — 8 tasks, all complete
+  - **Task 1:** `--font-display` swapped to Space Mono; Bodoni removed from Google Fonts URL
+  - **Task 2:** 80+ v1 legacy hardcoded hex values purged from styles.css; replaced with v2 tokens
+  - **Task 3:** Surface contrast fix — 1px `--c-border` on nav + card surfaces; row dividers added
+  - **Task 4:** Theme toggle `●` glyph replaced with moon/sun SVG icons
+  - **Task 5:** Hero right side — canvas replaced with `.stack-diagram` Architecture Stack + Build Log HTML
+  - **Task 6:** Stack diagram CSS — layers, typewriter entries, `.stack-solidified` animation states
+  - **Task 7:** `initSystemsCanvas()` (148 lines) replaced with `initStackDiagram()` (~70 lines); plays once on load, `prefers-reduced-motion` safe
+  - **Spec + implementation docs** saved to `docs/superpowers/`
+- **Next session — browser QA, then merge:**
+  1. Open `index.html` in browser — verify all panels, stack animation, theme toggle SVGs
+  2. Plan B (separate scope): Work modal wiring, Skills panel, Contact canvas, Philosophy panel
+  3. Merge `dev` → `main` → Vercel auto-deploys
+- **Still open:** photo.jpg; Oracle VM HTTPS; Vitae GitHub rename; Work modals; Skills panel; Contact canvas; Notion Companies DB
+- **Last updated:** 2026-06-03
