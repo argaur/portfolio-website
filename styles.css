@@ -38,6 +38,7 @@
   --c-border: var(--border);
 
   /* Typography */
+  /* Both display and mono use Space Mono — intentional full-mono identity */
   --font-display: 'Space Mono', 'Courier New', monospace;
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    'Space Mono', 'Courier New', monospace;
@@ -468,8 +469,7 @@ img { display: block; max-width: 100%; }
 .hero-statement-left {
   font-family: var(--font-display);
   font-size: 19px;
-  font-style: italic;
-  color: rgba(255,255,255,0.65);
+  color: var(--c-text-2);
   line-height: 1.55;
 }
 .hero-statement-right {
@@ -1108,7 +1108,6 @@ img { display: block; max-width: 100%; }
 .creds-quote {
   font-family: var(--font-display);
   font-size: 17px;
-  font-style: italic;
   color: rgba(255,255,255,0.38);
   line-height: 1.65;
 }
@@ -1804,7 +1803,6 @@ img { display: block; max-width: 100%; }
   margin: 0;
 }
 .hero-headline-new em {
-  font-style: italic;
   color: var(--terra);
 }
 
@@ -2053,7 +2051,6 @@ img { display: block; max-width: 100%; }
   margin: 0;
 }
 .philosophy-hed-em {
-  font-style: italic;
   color: var(--terra);
 }
 
