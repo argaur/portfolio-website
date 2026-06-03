@@ -804,15 +804,15 @@
 
         if (n.primary) {
           var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, pulseR * 4);
-          grad.addColorStop(0, 'rgba(191,92,58,0.28)');
-          grad.addColorStop(1, 'rgba(191,92,58,0)');
+          grad.addColorStop(0, 'rgba(201,168,76,0.28)');
+          grad.addColorStop(1, 'rgba(201,168,76,0)');
           ctx.fillStyle = grad;
           ctx.beginPath();
           ctx.arc(p.x, p.y, pulseR * 4, 0, Math.PI * 2);
           ctx.fill();
         }
 
-        ctx.fillStyle = n.primary ? '#bf5c3a' : 'rgba(120,170,230,0.85)';
+        ctx.fillStyle = n.primary ? '#c9a84c' : 'rgba(120,170,230,0.85)';
         ctx.beginPath();
         ctx.arc(p.x, p.y, pulseR, 0, Math.PI * 2);
         ctx.fill();
@@ -918,11 +918,11 @@
         var pulseR = prefersReduced ? n.r : n.r + Math.sin(n.pulse + t * 0.001) * 0.5;
         if (n.primary) {
           var g = ctx.createRadialGradient(px, py, 0, px, py, pulseR * 5);
-          g.addColorStop(0, 'rgba(191,92,58,0.22)'); g.addColorStop(1, 'rgba(191,92,58,0)');
+          g.addColorStop(0, 'rgba(201,168,76,0.22)'); g.addColorStop(1, 'rgba(201,168,76,0)');
           ctx.fillStyle = g;
           ctx.beginPath(); ctx.arc(px, py, pulseR * 5, 0, Math.PI * 2); ctx.fill();
         }
-        ctx.fillStyle = n.primary ? '#bf5c3a' : 'rgba(120,170,230,0.7)';
+        ctx.fillStyle = n.primary ? '#c9a84c' : 'rgba(120,170,230,0.7)';
         ctx.beginPath(); ctx.arc(px, py, pulseR, 0, Math.PI * 2); ctx.fill();
         ctx.font = '500 9px "DM Sans", system-ui, sans-serif';
         ctx.fillStyle = 'rgba(255,255,255,0.38)';
