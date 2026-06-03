@@ -705,155 +705,77 @@
   });
 
   /* ============================================================
-     SYSTEMS CANVAS — Hero Right Pane
+     ARCHITECTURE STACK — Hero Right Pane
      ============================================================ */
-  function initSystemsCanvas() {
-    var canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var dpr = window.devicePixelRatio || 1;
-    var W = 0, H = 0;
-    var rafId = null;
-    var mouse = { x: -9999, y: -9999, active: false };
+  function initStackDiagram() {
+    var diagram = document.getElementById('stack-diagram');
+    if (!diagram) return;
+
+    var LOG_LINES = [
+      '[2024] SCALE  ai.products → 7 deployed',
+      '[2025] CONSULT  16 enterprise clients',
+      '[2022] MIGRATE  → enterprise.pm @ JindalX',
+      '[2023] INTEGRATE  airtable.platform × 16',
+      '[2015] DEPLOY  ops.systems × RSP Group',
+      '[2019] OPTIMIZE  process.efficiency → JindalX',
+      '[2009] INIT  civil.engineering @ MNIT',
+      '[2014] BUILD  load.bearing.thinking'
+    ];
+
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var entries = diagram.querySelectorAll('.stack-log-entry');
+    var hasAnimated = false;
 
-    var nodes = [
-      { id: 'arch',   label: 'ARCHITECTURE',   x: 0.18, y: 0.22, r: 5, primary: true  },
-      { id: 'prod',   label: 'PRODUCT',        x: 0.50, y: 0.30, r: 7, primary: true  },
-      { id: 'ai',     label: 'AI SYSTEMS',     x: 0.80, y: 0.22, r: 6, primary: true  },
-      { id: 'ent',    label: 'ENTERPRISE',     x: 0.30, y: 0.50, r: 4, primary: false },
-      { id: 'wf',     label: 'WORKFLOWS',      x: 0.65, y: 0.50, r: 4, primary: false },
-      { id: 'agents', label: 'AGENTS',         x: 0.88, y: 0.42, r: 3, primary: false },
-      { id: 'data',   label: 'DATA',           x: 0.12, y: 0.62, r: 3, primary: false },
-      { id: 'infra',  label: 'INFRASTRUCTURE', x: 0.22, y: 0.78, r: 3, primary: false },
-      { id: 'ops',    label: 'OPERATIONS',     x: 0.45, y: 0.72, r: 3, primary: false },
-      { id: 'users',  label: 'USERS',          x: 0.58, y: 0.85, r: 4, primary: false },
-      { id: 'design', label: 'DESIGN',         x: 0.75, y: 0.78, r: 3, primary: false },
-      { id: 'strat',  label: 'STRATEGY',       x: 0.92, y: 0.62, r: 3, primary: false }
-    ];
-
-    var edges = [
-      ['arch','prod'], ['prod','ai'], ['arch','ent'], ['ent','prod'],
-      ['prod','wf'], ['ai','agents'], ['ai','wf'], ['wf','ops'],
-      ['data','ent'], ['data','ai'], ['infra','ops'], ['ops','users'],
-      ['users','prod'], ['design','prod'], ['strat','ai'], ['strat','prod'],
-      ['agents','wf']
-    ];
-
-    nodes.forEach(function (n) {
-      n.bx = n.x; n.by = n.y;
-      n.dx = 0;   n.dy = 0;
-      n.phaseX = Math.random() * Math.PI * 2;
-      n.phaseY = Math.random() * Math.PI * 2;
-      n.speedX = 0.0003 + Math.random() * 0.0003;
-      n.speedY = 0.0003 + Math.random() * 0.0003;
-      n.pulse  = Math.random() * Math.PI * 2;
-    });
-
-    function resize() {
-      var rect = canvas.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return;
-      W = rect.width;
-      H = rect.height;
-      canvas.width  = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function nodePos(n) {
-      var x = (n.bx + n.dx) * W;
-      var y = (n.by + n.dy) * H;
-      if (mouse.active) {
-        var dx = mouse.x - x, dy = mouse.y - y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200 && dist > 0) {
-          var pull = (1 - dist / 200) * 12;
-          x += (dx / dist) * pull;
-          y += (dy / dist) * pull;
-        }
-      }
-      return { x: x, y: y };
-    }
-
-    function frame(t) {
-      if (W === 0 || H === 0) { resize(); rafId = requestAnimationFrame(frame); return; }
-      ctx.clearRect(0, 0, W, H);
-
-      if (!prefersReduced) {
-        nodes.forEach(function (n) {
-          n.dx = Math.sin(n.phaseX + t * n.speedX) * 0.012;
-          n.dy = Math.cos(n.phaseY + t * n.speedY) * 0.012;
-        });
-      }
-
-      ctx.lineWidth = 1;
-      edges.forEach(function (e) {
-        var a = nodes.find(function (n) { return n.id === e[0]; });
-        var b = nodes.find(function (n) { return n.id === e[1]; });
-        var pa = nodePos(a), pb = nodePos(b);
-        ctx.strokeStyle = 'rgba(120,170,230,0.18)';
-        ctx.beginPath();
-        ctx.moveTo(pa.x, pa.y);
-        ctx.lineTo(pb.x, pb.y);
-        ctx.stroke();
+    function showInstant() {
+      entries.forEach(function (el, i) {
+        el.textContent = LOG_LINES[i] || '';
       });
-
-      nodes.forEach(function (n) {
-        var p = nodePos(n);
-        var pulseR = prefersReduced ? n.r : n.r + Math.sin(n.pulse + t * 0.0015) * 0.6;
-
-        if (n.primary) {
-          var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, pulseR * 4);
-          grad.addColorStop(0, 'rgba(201,168,76,0.28)');
-          grad.addColorStop(1, 'rgba(201,168,76,0)');
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, pulseR * 4, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        ctx.fillStyle = n.primary ? '#c9a84c' : 'rgba(120,170,230,0.85)';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, pulseR, 0, Math.PI * 2);
-        ctx.fill();
-
-        if (n.primary || W > 480) {
-          ctx.font = '500 9px "DM Sans", system-ui, sans-serif';
-          ctx.fillStyle = n.primary ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.42)';
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(n.label, p.x + pulseR + 8, p.y);
-        }
-      });
-
-      rafId = requestAnimationFrame(frame);
+      diagram.classList.add('stack-solidified');
     }
 
-    canvas.addEventListener('mousemove', function (e) {
-      var rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
-    });
-    canvas.addEventListener('mouseleave', function () {
-      mouse.active = false;
-    });
+    function animateStack() {
+      if (hasAnimated) return;
+      hasAnimated = true;
 
-    var ro = new ResizeObserver(resize);
-    ro.observe(canvas);
+      if (prefersReduced) { showInstant(); return; }
+
+      var MS_PER_CHAR = 16;
+      var LINE_GAP    = 100;
+      var totalDelay  = 0;
+
+      entries.forEach(function (el, i) {
+        var text = LOG_LINES[i] || '';
+        var startAt = totalDelay;
+        totalDelay += text.length * MS_PER_CHAR + LINE_GAP;
+
+        setTimeout(function () {
+          var pos = 0;
+          var tick = setInterval(function () {
+            pos += 1;
+            el.textContent = text.slice(0, pos);
+            if (pos >= text.length) {
+              clearInterval(tick);
+              if (i === entries.length - 1) {
+                setTimeout(function () {
+                  diagram.classList.add('stack-solidified');
+                }, 200);
+              }
+            }
+          }, MS_PER_CHAR);
+        }, startAt);
+      });
+    }
 
     document.addEventListener('panel:activate', function (e) {
       if (e.detail.panelId === 'panel-home') {
-        requestAnimationFrame(resize);
-        if (!rafId) { rafId = requestAnimationFrame(frame); }
-      } else if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
+        animateStack();
       }
     });
 
-    resize();
-    rafId = requestAnimationFrame(frame);
+    if (document.getElementById('panel-home') &&
+        document.getElementById('panel-home').classList.contains('is-active')) {
+      animateStack();
+    }
   }
 
   /* ============================================================
@@ -1086,7 +1008,7 @@
   initWorkRows();
   initCredentials();
   initHowIThinkCanvas();
-  initSystemsCanvas();
+  initStackDiagram();
   initContactCanvas();
 
 })();
