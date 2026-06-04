@@ -77,7 +77,6 @@
   var hashToPanel = {
     'home':         'panel-home',
     'experience':   'panel-experience',
-    'work':         'panel-work',
     'projects':     'panel-projects',
     'how-i-think':  'panel-how-i-think',
     'credentials':  'panel-credentials',
@@ -92,7 +91,17 @@
   document.querySelectorAll('.acc-header').forEach(function (header) {
     header.addEventListener('click', function () {
       var row = header.closest('.acc-row');
-      if (row) row.classList.toggle('open');
+      if (!row) return;
+      var wasOpen = row.classList.contains('open');
+      row.classList.toggle('open');
+      if (!wasOpen) {
+        /* trigger reveal animation for proj-cards inside this accordion */
+        var body = row.querySelector('.acc-body');
+        if (body) {
+          body.classList.add('is-revealing');
+          setTimeout(function () { body.classList.remove('is-revealing'); }, 800);
+        }
+      }
     });
   });
 
@@ -708,73 +717,298 @@
      ARCHITECTURE STACK — Hero Right Pane
      ============================================================ */
   function initStackDiagram() {
-    var diagram = document.getElementById('stack-diagram');
-    if (!diagram) return;
+    var canvas = document.getElementById('stack-diagram');
+    if (!canvas || !canvas.getContext) return;
 
-    var LOG_LINES = [
-      '[2024] SCALE  ai.products → 7 deployed',
-      '[2025] CONSULT  16 enterprise clients',
-      '[2022] MIGRATE  → enterprise.pm @ JindalX',
-      '[2023] INTEGRATE  airtable.platform × 16',
-      '[2015] DEPLOY  ops.systems × RSP Group',
-      '[2019] OPTIMIZE  process.efficiency → JindalX',
-      '[2009] INIT  civil.engineering @ MNIT',
-      '[2014] BUILD  load.bearing.thinking'
-    ];
-
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var entries = diagram.querySelectorAll('.stack-log-entry');
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
     var hasAnimated = false;
+    var rafId = null;
 
-    function showInstant() {
-      entries.forEach(function (el, i) {
-        el.textContent = LOG_LINES[i] || '';
-      });
-      diagram.classList.add('stack-solidified');
+    function colors() {
+      var light = document.body.classList.contains('theme-light');
+      return light ? {
+        amber:   '#b8922a', amberR: '184,146,42',
+        greenR:  '20,110,20',
+        grid:    'rgba(0,0,0,0.05)',
+        shell:   'rgba(0,0,0,0.10)',
+        hdr:     'rgba(0,0,0,0.28)',
+        bracket: function (a) { return 'rgba(0,0,0,' + a * 0.28 + ')'; },
+        year:    function (a) { return 'rgba(0,0,0,' + a * 0.35 + ')'; }
+      } : {
+        amber:   '#e8b84b', amberR: '232,184,75',
+        greenR:  '106,191,105',
+        grid:    'rgba(255,255,255,0.028)',
+        shell:   'rgba(255,255,255,0.07)',
+        hdr:     'rgba(255,255,255,0.18)',
+        bracket: function (a) { return 'rgba(255,255,255,' + a * 0.22 + ')'; },
+        year:    function (a) { return 'rgba(255,255,255,' + a * 0.32 + ')'; }
+      };
     }
 
-    function animateStack() {
+    var FLOORS = [
+      { label: 'ARCHITECTURE',            years: '2009—2014',
+        log1: '> INIT b.arch @ MNIT, Jaipur',          log2: '> BUILD spatial.systems.thinking'     },
+      { label: 'ENTERPRISE OPERATIONS',  years: '2015—2022',
+        log1: '> DEPLOY ops.systems × RSP Group', log2: '> OPTIMIZE process.efficiency'        },
+      { label: 'PRODUCT SYSTEMS',        years: '2022—2025',
+        log1: '> MIGRATE → enterprise.pm @ JindalX', log2: '> INTEGRATE airtable.platform × 16' },
+      { label: 'AI PRODUCT STRATEGY',    years: '2024—PRESENT',
+        log1: '> SCALE ai.products → 7 deployed', log2: '> CONSULT 16 enterprise clients'      }
+    ];
+    var BASE_H = [65, 75, 82, 92];
+    var TOTAL_BASE_H = BASE_H.reduce(function (s, h) { return s + h; }, 0);
+
+    var W, H, bX, bY, bW, bH, rects;
+
+    function layout() {
+      var rect = canvas.getBoundingClientRect();
+      W = (rect.width  || canvas.offsetWidth  || 440);
+      H = (rect.height || canvas.offsetHeight || 320);
+      canvas.width  = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bX = 54; bY = 38; bW = W - 66; bH = H - 58;
+      var scale = bH / TOTAL_BASE_H;
+      rects = [];
+      var y = bY + bH;
+      for (var i = 0; i < 4; i++) {
+        var fh = Math.round(BASE_H[i] * scale);
+        y -= fh;
+        rects.push({ x: bX, y: y, w: bW, h: fh });
+      }
+    }
+
+    var PHASE   = 680;
+    var GAP     = 260;
+    var LOG1_AT = 300;
+    var LOG2_AT = PHASE + 140;
+    var CHAR_MS = 20;
+
+    var log1T = ['', '', '', ''];
+    var log2T = ['', '', '', ''];
+    var t0    = null;
+
+    function fp(i, el) {
+      return Math.max(0, Math.min((el - i * (PHASE + GAP)) / PHASE, 1));
+    }
+    function ease(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+
+    function drawGrid() {
+      var C = colors();
+      ctx.save();
+      ctx.strokeStyle = C.grid;
+      ctx.lineWidth = 1;
+      for (var x = 0.5; x < W; x += 28) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (var y = 0.5; y < H; y += 28) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+      ctx.restore();
+    }
+
+    function drawHeader() {
+      var C = colors();
+      ctx.save();
+      ctx.font = '700 9px "Space Mono",monospace';
+      ctx.fillStyle = C.hdr;
+      ctx.fillText('BUILD LOG', bX, bY - 14);
+      ctx.textAlign = 'right';
+      ctx.fillText('CAREER ARCHITECTURE', bX + bW, bY - 14);
+      ctx.textAlign = 'left';
+      ctx.restore();
+    }
+
+    function drawShell() {
+      var C = colors();
+      ctx.save();
+      ctx.strokeStyle = C.shell;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 7]);
+      [[bX, bY, bX, bY + bH], [bX + bW, bY, bX + bW, bY + bH], [bX, bY + bH, bX + bW, bY + bH]].forEach(function (l) {
+        ctx.beginPath(); ctx.moveTo(l[0], l[1]); ctx.lineTo(l[2], l[3]); ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    function drawFloor(i, p, elapsed) {
+      var C   = colors();
+      var r   = rects[i];
+      var ep  = ease(p);
+      var sweepH   = Math.round(r.h * ep);
+      var sweepTop = r.y + r.h - sweepH;
+
+      if (sweepH > 0) {
+        ctx.save();
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + (0.06 + i * 0.025) + ')';
+        ctx.fillRect(r.x + 1, sweepTop, r.w - 2, sweepH);
+        if (p < 1) {
+          var band = Math.min(18, sweepH);
+          var g = ctx.createLinearGradient(0, sweepTop, 0, sweepTop + band);
+          g.addColorStop(0, 'rgba(' + C.amberR + ',0.32)');
+          g.addColorStop(1, 'rgba(' + C.amberR + ',0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(r.x + 1, sweepTop, r.w - 2, band);
+        }
+        ctx.restore();
+      }
+
+      if (p > 0 && p < 1 && Math.floor(elapsed / 240) % 2 === 0) {
+        ctx.save();
+        ctx.strokeStyle = C.amber;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(r.x + 6, sweepTop);
+        ctx.lineTo(r.x + r.w - 6, sweepTop);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
+
+      if (p >= 0.6) {
+        var lp = Math.min((p - 0.6) / 0.35, 1);
+        ctx.save();
+        ctx.strokeStyle = C.amber;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = lp;
+        ctx.beginPath();
+        ctx.moveTo(r.x, r.y);
+        ctx.lineTo(r.x + r.w * lp, r.y);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      if (p >= 0.68) {
+        var fa = Math.min((p - 0.68) / 0.28, 1);
+        var fl = FLOORS[i];
+
+        ctx.save();
+        ctx.strokeStyle = C.bracket(fa);
+        ctx.lineWidth = 1;
+        var bkx = r.x - 20;
+        ctx.beginPath();
+        ctx.moveTo(bkx - 3, r.y + 3);     ctx.lineTo(bkx, r.y + 3);
+        ctx.moveTo(bkx, r.y + 3);          ctx.lineTo(bkx, r.y + r.h - 3);
+        ctx.moveTo(bkx, r.y + r.h - 3);   ctx.lineTo(bkx - 3, r.y + r.h - 3);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = '700 8px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + (fa * 0.65) + ')';
+        ctx.textAlign = 'right';
+        ctx.fillText('F' + (i + 1), r.x - 6, r.y + r.h / 2 + 3);
+        ctx.textAlign = 'left';
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = '700 9px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + fa + ')';
+        ctx.fillText(fl.label, r.x + 8, r.y + 13);
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = '400 9px "Space Mono",monospace';
+        ctx.fillStyle = C.year(fa);
+        ctx.textAlign = 'right';
+        ctx.fillText(fl.years, r.x + r.w - 8, r.y + 13);
+        ctx.textAlign = 'left';
+        ctx.restore();
+      }
+
+      var midY = r.y + Math.round(r.h * 0.54);
+      if (log1T[i]) {
+        ctx.save();
+        ctx.font = '400 10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.85)';
+        ctx.fillText(log1T[i], r.x + 8, midY);
+        ctx.restore();
+      }
+      if (log2T[i]) {
+        ctx.save();
+        ctx.font = '400 10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.55)';
+        ctx.fillText(log2T[i], r.x + 8, midY + 16);
+        ctx.restore();
+      }
+    }
+
+    function updateTyping(elapsed) {
+      for (var i = 0; i < 4; i++) {
+        var base = i * (PHASE + GAP);
+        var e1 = elapsed - (base + LOG1_AT);
+        var e2 = elapsed - (base + LOG2_AT);
+        if (e1 > 0) log1T[i] = FLOORS[i].log1.slice(0, Math.min(Math.floor(e1 / CHAR_MS), FLOORS[i].log1.length));
+        if (e2 > 0) log2T[i] = FLOORS[i].log2.slice(0, Math.min(Math.floor(e2 / CHAR_MS), FLOORS[i].log2.length));
+      }
+    }
+
+    function frame(ts) {
+      if (!t0) t0 = ts;
+      var el = ts - t0;
+      ctx.clearRect(0, 0, W, H);
+      drawGrid(); drawHeader(); drawShell();
+      for (var i = 0; i < 4; i++) drawFloor(i, fp(i, el), el);
+      updateTyping(el);
+      if (el < 3 * (PHASE + GAP) + PHASE + 1600) rafId = requestAnimationFrame(frame);
+    }
+
+    function renderStatic() {
+      var C = colors();
+      ctx.clearRect(0, 0, W, H);
+      drawGrid(); drawHeader(); drawShell();
+      for (var i = 0; i < 4; i++) {
+        var r = rects[i]; var fl = FLOORS[i];
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + (0.06 + i * 0.025) + ')';
+        ctx.fillRect(r.x + 1, r.y, r.w - 2, r.h);
+        ctx.strokeStyle = C.amber; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(r.x, r.y); ctx.lineTo(r.x + r.w, r.y); ctx.stroke();
+        ctx.font = '700 9px "Space Mono",monospace'; ctx.fillStyle = C.amber;
+        ctx.fillText(fl.label, r.x + 8, r.y + 13);
+        ctx.textAlign = 'right';
+        ctx.font = '400 9px "Space Mono",monospace';
+        ctx.fillStyle = C.year(1);
+        ctx.fillText(fl.years, r.x + r.w - 8, r.y + 13);
+        ctx.textAlign = 'left';
+        var midY = r.y + Math.round(r.h * 0.54);
+        ctx.font = '400 10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.85)'; ctx.fillText(fl.log1, r.x + 8, midY);
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.55)'; ctx.fillText(fl.log2, r.x + 8, midY + 16);
+      }
+    }
+
+    /* re-render static state when theme toggles */
+    var themeObserver = new MutationObserver(function () {
+      if (hasAnimated && !rafId) { layout(); renderStatic(); }
+    });
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    function animate() {
       if (hasAnimated) return;
       hasAnimated = true;
+      layout();
+      t0 = null;
+      rafId = requestAnimationFrame(frame);
+    }
 
-      if (prefersReduced) { showInstant(); return; }
-
-      var MS_PER_CHAR = 16;
-      var LINE_GAP    = 100;
-      var totalDelay  = 0;
-
-      entries.forEach(function (el, i) {
-        var text = LOG_LINES[i] || '';
-        var startAt = totalDelay;
-        totalDelay += text.length * MS_PER_CHAR + LINE_GAP;
-
-        setTimeout(function () {
-          var pos = 0;
-          var tick = setInterval(function () {
-            pos += 1;
-            el.textContent = text.slice(0, pos);
-            if (pos >= text.length) {
-              clearInterval(tick);
-              if (i === entries.length - 1) {
-                setTimeout(function () {
-                  diagram.classList.add('stack-solidified');
-                }, 200);
-              }
-            }
-          }, MS_PER_CHAR);
-        }, startAt);
+    var replayBtn = document.getElementById('stack-replay');
+    if (replayBtn) {
+      replayBtn.addEventListener('click', function () {
+        if (rafId) cancelAnimationFrame(rafId);
+        hasAnimated = false;
+        log1T = ['', '', '', ''];
+        log2T = ['', '', '', ''];
+        animate();
       });
     }
 
     document.addEventListener('panel:activate', function (e) {
-      if (e.detail.panelId === 'panel-home') {
-        animateStack();
-      }
+      if (e.detail.panelId === 'panel-home') animate();
     });
-
     if (document.getElementById('panel-home') &&
         document.getElementById('panel-home').classList.contains('is-active')) {
-      animateStack();
+      animate();
     }
   }
 
@@ -1005,6 +1239,7 @@
 
   /* ---- Init ---- */
   renderProjects();
+  renderWorkProjects();
   initWorkRows();
   initCredentials();
   initHowIThinkCanvas();
