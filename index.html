@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
@@ -19,78 +19,75 @@
       theme: {
         extend: {
           colors: {
-            "background":               "#0b1628",
-            "surface":                  "#0b1628",
-            "surface-dim":              "#070f1e",
-            "surface-bright":           "#1e3255",
-            "surface-container-lowest": "#070f1e",
-            "surface-container-low":    "#0d1e35",
-            "surface-container":        "#102040",
-            "surface-container-high":   "#152548",
-            "surface-container-highest":"#1e3255",
-            "surface-variant":          "#1e3255",
-            "on-surface":               "#f7f3ee",
-            "on-surface-variant":       "#8fa8c8",
-            "on-background":            "#f7f3ee",
-            "outline":                  "#2d5da1",
-            "outline-variant":          "#1e3255",
-            "primary":                  "#f7f3ee",
-            "primary-container":        "#bf5c3a",
-            "primary-fixed":            "#d4683e",
-            "primary-fixed-dim":        "#bf5c3a",
-            "on-primary":               "#ffffff",
-            "on-primary-container":     "#ffffff",
-            "on-primary-fixed":         "#ffffff",
-            "on-primary-fixed-variant": "#f0d0c0",
-            "inverse-primary":          "#8b3d22",
-            "secondary":                "#8fa8c8",
-            "secondary-container":      "#1e3255",
-            "secondary-fixed":          "#c4d6ec",
-            "secondary-fixed-dim":      "#8fa8c8",
-            "on-secondary":             "#0b1628",
-            "on-secondary-container":   "#8fa8c8",
-            "on-secondary-fixed":       "#0b1628",
-            "on-secondary-fixed-variant":"#1e3255",
-            "tertiary":                 "#f7f3ee",
-            "tertiary-container":       "#3d5c3a",
-            "tertiary-fixed":           "#c4d9c1",
-            "tertiary-fixed-dim":       "#8fb48b",
-            "on-tertiary":              "#0b1628",
-            "on-tertiary-container":    "#f7f3ee",
-            "on-tertiary-fixed":        "#0b1628",
-            "on-tertiary-fixed-variant":"#1e3255",
+            /* Dev branch tokens — dark charcoal + amber/gold */
+            "background":               "#0e0e12",
+            "surface":                  "#0e0e12",
+            "surface-dim":              "#0a0a0e",
+            "surface-bright":           "#2e2e3e",
+            "surface-container-lowest": "#0a0a0e",
+            "surface-container-low":    "#1a1a22",
+            "surface-container":        "#242432",
+            "surface-container-high":   "#2e2e3e",
+            "surface-container-highest":"#383848",
+            "surface-variant":          "#2a2a38",
+            "on-surface":               "#ece8e2",
+            "on-surface-variant":       "#9896a0",
+            "on-background":            "#ece8e2",
+            "outline":                  "#3a3a50",
+            "outline-variant":          "#2a2a38",
+            "primary":                  "#ece8e2",
+            "primary-container":        "#c9a84c",
+            "primary-fixed":            "#d4b356",
+            "primary-fixed-dim":        "#c9a84c",
+            "on-primary":               "#0e0e12",
+            "on-primary-container":     "#0e0e12",
+            "on-primary-fixed":         "#0e0e12",
+            "on-primary-fixed-variant": "#3a2800",
+            "inverse-primary":          "#8a6f2e",
+            "secondary":                "#9896a0",
+            "secondary-container":      "#2a2a38",
+            "secondary-fixed":          "#c8c6d0",
+            "secondary-fixed-dim":      "#9896a0",
+            "on-secondary":             "#0e0e12",
+            "on-secondary-container":   "#9896a0",
+            "on-secondary-fixed":       "#0e0e12",
+            "on-secondary-fixed-variant":"#2a2a38",
+            "tertiary":                 "#ece8e2",
+            "tertiary-container":       "#2a3850",
+            "on-tertiary":              "#0e0e12",
+            "on-tertiary-container":    "#ece8e2",
             "error":                    "#ffb4ab",
             "error-container":          "#93000a",
             "on-error":                 "#690005",
             "on-error-container":       "#ffdad6",
-            "inverse-surface":          "#f7f3ee",
-            "inverse-on-surface":       "#0b1628",
-            "surface-tint":             "#bf5c3a",
+            "inverse-surface":          "#ece8e2",
+            "inverse-on-surface":       "#0e0e12",
+            "surface-tint":             "#c9a84c",
           },
-          borderRadius: { DEFAULT:"0px", lg:"0px", xl:"0px", full:"9999px" },
+          borderRadius: { DEFAULT:"4px", lg:"4px", xl:"8px", full:"9999px" },
           spacing: {
             "stack-gap":"24px","gutter":"12px",
             "margin-side":"48px","base":"4px","container-max":"1440px",
           },
           fontFamily: {
-            "display":            ["Cormorant Garamond","serif"],
-            "headline-lg":        ["Cormorant Garamond","serif"],
-            "headline-lg-mobile": ["Cormorant Garamond","serif"],
-            "headline-md":        ["Cormorant Garamond","serif"],
-            "body-lg":            ["DM Sans","sans-serif"],
-            "body-md":            ["DM Sans","sans-serif"],
-            "label-md":           ["DM Sans","sans-serif"],
-            "label-sm":           ["DM Sans","sans-serif"],
+            "display":            ["Space Mono","Courier New","monospace"],
+            "headline-lg":        ["Space Mono","Courier New","monospace"],
+            "headline-lg-mobile": ["Space Mono","Courier New","monospace"],
+            "headline-md":        ["Space Mono","Courier New","monospace"],
+            "body-lg":            ["DM Sans","system-ui","sans-serif"],
+            "body-md":            ["DM Sans","system-ui","sans-serif"],
+            "label-md":           ["Space Mono","Courier New","monospace"],
+            "label-sm":           ["Space Mono","Courier New","monospace"],
           },
           fontSize: {
-            "display":            ["56px",{lineHeight:"1.05",letterSpacing:"-0.01em",fontWeight:"600"}],
-            "headline-lg":        ["36px",{lineHeight:"1.15",letterSpacing:"-0.005em",fontWeight:"600"}],
-            "headline-lg-mobile": ["30px",{lineHeight:"1.2",fontWeight:"600"}],
-            "headline-md":        ["26px",{lineHeight:"1.25",letterSpacing:"0",fontWeight:"600"}],
+            "display":            ["clamp(36px,5vw,64px)",{lineHeight:"1.1", letterSpacing:"-0.02em",fontWeight:"700"}],
+            "headline-lg":        ["clamp(24px,3vw,36px)",{lineHeight:"1.15",letterSpacing:"-0.01em",fontWeight:"700"}],
+            "headline-lg-mobile": ["24px",{lineHeight:"1.2",fontWeight:"700"}],
+            "headline-md":        ["20px",{lineHeight:"1.3",letterSpacing:"-0.01em",fontWeight:"700"}],
             "body-lg":            ["18px",{lineHeight:"1.6",letterSpacing:"0",fontWeight:"400"}],
-            "body-md":            ["16px",{lineHeight:"1.5",letterSpacing:"0",fontWeight:"400"}],
-            "label-md":           ["13px",{lineHeight:"1.4",letterSpacing:"0.04em",fontWeight:"500"}],
-            "label-sm":           ["11px",{lineHeight:"1.4",letterSpacing:"0.06em",fontWeight:"500"}],
+            "body-md":            ["15px",{lineHeight:"1.6",letterSpacing:"0",fontWeight:"400"}],
+            "label-md":           ["12px",{lineHeight:"1.4",letterSpacing:"0.05em",fontWeight:"400"}],
+            "label-sm":           ["11px",{lineHeight:"1.4",letterSpacing:"0.05em",fontWeight:"400"}],
           },
         },
       },
@@ -100,25 +97,27 @@
   <style>
     .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 
-    /* SPA */
+    /* SPA — nav is 56px to match dev branch */
     body{overflow:hidden;height:100vh;}
-    .panels-wrap{height:calc(100vh - 64px);position:relative;overflow:hidden;}
+    .panels-wrap{height:calc(100vh - 56px);position:relative;overflow:hidden;}
     .v3-panel{position:absolute;inset:0;overflow-y:auto;display:none;}
     .v3-panel.is-active{display:block;}
 
-    /* Blueprint grid — same on every panel */
+    /* Blueprint grid — dev branch blue-tinted, two levels (major + minor) */
     .grid-bg{
       background-image:
-        linear-gradient(to right,rgba(247,243,238,0.04) 1px,transparent 1px),
-        linear-gradient(to bottom,rgba(247,243,238,0.04) 1px,transparent 1px);
-      background-size:80px 80px;
+        linear-gradient(rgba(65,120,220,0.07) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(65,120,220,0.07) 1px,transparent 1px),
+        linear-gradient(rgba(65,120,220,0.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(65,120,220,0.025) 1px,transparent 1px);
+      background-size:80px 80px,80px 80px,20px 20px,20px 20px;
     }
 
     /* Scrollbar */
     ::-webkit-scrollbar{width:4px;}
-    ::-webkit-scrollbar-track{background:#0b1628;}
-    ::-webkit-scrollbar-thumb{background:#1e3255;}
-    ::-webkit-scrollbar-thumb:hover{background:#2d5da1;}
+    ::-webkit-scrollbar-track{background:#0e0e12;}
+    ::-webkit-scrollbar-thumb{background:#2a2a38;}
+    ::-webkit-scrollbar-thumb:hover{background:#3a3a50;}
 
     /* Accordion */
     .accordion-content{transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease;max-height:0;overflow:hidden;opacity:0;}
@@ -126,11 +125,11 @@
     .timeline-dot{transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}
     .caret-icon{transition:transform 0.3s ease;}
     .accordion-row.is-open .caret-icon{transform:rotate(180deg);}
-    .etched-border{border:1px solid rgba(45,93,161,0.25);}
+    .etched-border{border:1px solid #2a2a38;}
 
     /* Work cards */
     .tonal-card{transition:all 0.2s cubic-bezier(0.4,0,0.2,1);}
-    .tonal-card:hover{background-color:#0d1e35;border-color:#bf5c3a;}
+    .tonal-card:hover{background-color:#1a1a22;border-color:#c9a84c;}
 
     /* Skills */
     @keyframes fadeInStagger{to{opacity:1;transform:translateY(0)}}
@@ -142,35 +141,37 @@
 
     /* Projects table */
     .project-row{transition:background-color 0.2s ease;cursor:pointer;}
-    .project-row:hover{background-color:#0d1e35;}
-    .project-row:hover .arrow-icon{transform:translateX(4px);color:#bf5c3a;}
+    .project-row:hover{background-color:#1a1a22;}
+    .project-row:hover .arrow-icon{transform:translateX(4px);color:#c9a84c;}
 
     /* Philosophy */
     .kinetic-cell{transition:all 0.3s ease;}
-    .kinetic-cell:hover{border-color:#bf5c3a;background-color:rgba(191,92,58,0.03);transform:translateY(-2px);}
+    .kinetic-cell:hover{border-color:#c9a84c;background-color:rgba(201,168,76,0.04);transform:translateY(-2px);}
 
     /* Credentials scrollbar */
     .cred-scroll::-webkit-scrollbar{width:4px;}
     .cred-scroll::-webkit-scrollbar-track{background:transparent;}
-    .cred-scroll::-webkit-scrollbar-thumb{background:#1e3255;}
+    .cred-scroll::-webkit-scrollbar-thumb{background:#2a2a38;}
 
     /* Nav */
-    .nav-link-active{color:#bf5c3a!important;border-bottom:1px solid #bf5c3a;padding-bottom:2px;}
+    .nav-link-active{color:#c9a84c!important;border-bottom:1px solid #c9a84c;padding-bottom:2px;}
     #mobile-nav{transform:translateX(100%);transition:transform 0.3s ease;}
     #mobile-nav.is-open{transform:translateX(0);}
 
     /* Gate */
-    #gate{position:fixed;inset:0;z-index:200;background:#070f1e;display:flex;align-items:center;justify-content:center;transition:opacity 0.4s ease;}
+    #gate{position:fixed;inset:0;z-index:200;background:#0e0e12;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease;
+      background-image:linear-gradient(rgba(65,120,220,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(65,120,220,0.07) 1px,transparent 1px),linear-gradient(rgba(65,120,220,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(65,120,220,0.025) 1px,transparent 1px);
+      background-size:80px 80px,80px 80px,20px 20px,20px 20px;}
     #gate.gate-hidden{opacity:0;pointer-events:none;}
 
     /* Contact hover */
-    .weight-shift-hover:hover{font-weight:600;color:#bf5c3a;}
+    .weight-shift-hover:hover{font-weight:700;color:#c9a84c;}
 
     /* V3 Modal */
     #v3-modal{position:fixed;inset:0;z-index:150;display:none;}
     #v3-modal.is-open{display:flex;align-items:center;justify-content:center;padding:16px;}
-    .v3-modal-backdrop{position:absolute;inset:0;background:rgba(7,15,30,0.92);}
-    .v3-modal-panel{position:relative;background:#102040;border:1px solid #1e3255;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;z-index:1;}
+    .v3-modal-backdrop{position:absolute;inset:0;background:rgba(10,10,14,0.94);}
+    .v3-modal-panel{position:relative;background:#1a1a22;border:1px solid #2a2a38;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;z-index:1;}
 
     @media(max-width:640px){
       .v3-modal-panel{padding:24px;}
@@ -198,8 +199,8 @@
 </div>
 
 <!-- MOBILE NAV -->
-<aside id="mobile-nav" class="fixed inset-y-0 right-0 w-80 max-w-full bg-surface-container-highest border-l border-outline-variant z-[100] flex flex-col">
-  <div class="flex items-center justify-between px-6 border-b border-outline-variant h-16">
+<aside id="mobile-nav" class="fixed inset-y-0 right-0 w-80 max-w-full bg-surface-container border-l border-outline-variant z-[100] flex flex-col">
+  <div class="flex items-center justify-between px-6 border-b border-outline-variant h-14">
     <span class="font-label-md text-label-md text-primary-fixed-dim font-bold tracking-widest uppercase">Gaurav Gupta</span>
     <button type="button" id="mobile-nav-close" class="text-on-surface-variant hover:text-on-surface">
       <span class="material-symbols-outlined">close</span>
@@ -221,7 +222,7 @@
 </aside>
 
 <!-- TOP NAV -->
-<header class="fixed top-0 left-0 right-0 z-50 h-16 bg-background border-b border-outline-variant">
+<header class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface-container-low border-b border-outline-variant">
   <div class="flex justify-between items-center w-full h-full px-margin-side max-w-container-max mx-auto">
     <button type="button" class="flex flex-col text-left nav-link" data-panel="panel-home">
       <span class="font-headline-md text-headline-md font-semibold text-on-surface leading-none">Gaurav Gupta</span>
@@ -244,7 +245,7 @@
 </header>
 
 <!-- PANELS -->
-<div class="panels-wrap mt-16">
+<div class="panels-wrap mt-14">
 
   <!-- HOME -->
   <section id="panel-home" class="v3-panel is-active grid-bg bg-background">
@@ -290,10 +291,10 @@
         <div class="relative flex flex-col items-center py-6">
           <div class="absolute top-0 bottom-0 w-px bg-outline-variant opacity-40"></div>
           <div class="flex flex-col gap-[220px] z-10">
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#bf5c3a;box-shadow:0 0 8px rgba(191,92,58,0.5)"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#4a6080"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#4a6080"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#4a6080"></div>
+            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#c9a84c;box-shadow:0 0 8px rgba(201,168,76,0.5)"></div>
+            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
+            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
+            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
           </div>
         </div>
         <!-- Accordion -->
@@ -640,10 +641,10 @@
 
 <!-- app.js modal compat -->
 <div id="modal-overlay" hidden style="position:fixed;inset:0;z-index:140;">
-  <div style="position:absolute;inset:0;background:rgba(7,15,30,0.92);" onclick="document.getElementById('modal-overlay').hidden=true"></div>
+  <div style="position:absolute;inset:0;background:rgba(10,10,14,0.94);" onclick="document.getElementById('modal-overlay').hidden=true"></div>
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;pointer-events:none;">
-    <div style="position:relative;background:#102040;border:1px solid #1e3255;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;pointer-events:auto;">
-      <button style="position:absolute;top:16px;right:16px;color:#8fa8c8;" onclick="document.getElementById('modal-overlay').hidden=true"><span class="material-symbols-outlined">close</span></button>
+    <div style="position:relative;background:#1a1a22;border:1px solid #2a2a38;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;pointer-events:auto;">
+      <button style="position:absolute;top:16px;right:16px;color:#9896a0;" onclick="document.getElementById('modal-overlay').hidden=true"><span class="material-symbols-outlined">close</span></button>
       <div id="modal-body"></div>
     </div>
   </div>
@@ -728,8 +729,8 @@ function toggleExpAccordion(index) {
   rows.forEach(function(r, i){ if(i===index) r.classList.toggle('is-open'); else r.classList.remove('is-open'); });
   dots.forEach(function(d, i){
     var on = rows[i] && rows[i].classList.contains('is-open');
-    d.style.backgroundColor = on ? '#bf5c3a' : '#4a6080';
-    d.style.boxShadow = on ? '0 0 8px rgba(191,92,58,0.5)' : 'none';
+    d.style.backgroundColor = on ? '#c9a84c' : '#3a3a50';
+    d.style.boxShadow = on ? '0 0 8px rgba(201,168,76,0.5)' : 'none';
   });
 }
 
