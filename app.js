@@ -747,14 +747,14 @@
     }
 
     var FLOORS = [
-      { label: 'ARCHITECTURE',            years: '2009—2014',
+      { label: 'ARCHITECTURE',       years: '2009—2014',
         log1: '> INIT b.arch @ MNIT, Jaipur',          log2: '> BUILD spatial.systems.thinking'     },
-      { label: 'ENTERPRISE OPERATIONS',  years: '2015—2022',
-        log1: '> DEPLOY ops.systems × RSP Group', log2: '> OPTIMIZE process.efficiency'        },
-      { label: 'PRODUCT SYSTEMS',        years: '2022—2025',
-        log1: '> MIGRATE → enterprise.pm @ JindalX', log2: '> INTEGRATE airtable.platform × 16' },
-      { label: 'AI PRODUCT STRATEGY',    years: '2024—PRESENT',
-        log1: '> SCALE ai.products → 7 deployed', log2: '> CONSULT 16 enterprise clients'      }
+      { label: 'ENTERPRISE SOFTWARE', years: '2015—2019',
+        log1: '> DEPLOY erp.modules @ Tata, JSW',      log2: '> OPTIMIZE process.efficiency'        },
+      { label: 'PRODUCT STRATEGY',   years: '2019—2023',
+        log1: '> SHIP product.v1 @ JindalX, Blinkit',  log2: '> INTEGRATE airtable.platform × 16'  },
+      { label: 'AI STRATEGY',        years: '2023—PRESENT',
+        log1: '> RUN ai_layer.init() @ present',       log2: '> SCALE ai.products → 7 deployed'     }
     ];
     var BASE_H = [65, 75, 82, 92];
     var TOTAL_BASE_H = BASE_H.reduce(function (s, h) { return s + h; }, 0);

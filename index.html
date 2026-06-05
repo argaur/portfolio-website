@@ -19,6 +19,7 @@
   <meta name="theme-color" content="#0e0e12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -67,6 +68,7 @@
       <a href="#credentials" class="nav-link" data-panel="panel-credentials">Credentials</a>
       <a href="#contact"     class="nav-link" data-panel="panel-contact">Contact</a>
     </div>
+    <a href="#contact" class="nav-cta" data-panel="panel-contact">Get in touch</a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark">
       <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -278,11 +280,11 @@
 
           <div class="cred-section">
             <p class="label cred-section-label">Education</p>
-            <div class="cred-row">
-              <span class="cred-year label">2009&ndash;14</span>
+            <div class="cred-row cred-edu-entry">
+              <span class="cred-ref">REF_01</span>
               <div class="cred-info">
                 <span class="cred-name body-m">Bachelor of Architecture (B.Arch)</span>
-                <span class="cred-org label">National Institute of Technology (NIT), Jaipur</span>
+                <span class="cred-org label">MNIT Jaipur &mdash; 2009&ndash;2014</span>
               </div>
             </div>
           </div>
@@ -345,12 +347,19 @@
     <div id="panel-contact" class="panel">
       <section class="panel-contact">
         <div class="contact-container">
+          <div class="contact-status-pill">
+            <span class="status-dot"></span>
+            AVAILABLE FOR SENIOR PM / AI STRATEGY ROLES
+          </div>
           <h2 class="display-m panel-title">Contact</h2>
           <p class="body-l contact-lead">
             If you&apos;re building something ambitious at the intersection of product and AI &mdash; or you want to talk about systems thinking, architecture, or PM strategy &mdash; I&apos;d like to hear from you.
           </p>
           <div class="contact-ctas">
-            <a class="cta-primary" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com &rarr;</a>
+            <div class="contact-cta-group">
+              <span class="contact-channel-label">Direct Channel</span>
+              <a class="cta-primary" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com &rarr;</a>
+            </div>
             <a class="cta-secondary" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener">LinkedIn &nearr;</a>
             <a class="cta-secondary" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener">Download Resume &darr;</a>
           </div>

@@ -37,15 +37,27 @@
   --c-accent: var(--accent);
   --c-border: var(--border);
 
-  /* Typography */
-  /* Both display and mono use Space Mono — intentional full-mono identity */
-  --font-display: 'Space Mono', 'Courier New', monospace;
+  /* v3 typography — Geist for display, Space Mono for labels/data */
+  --font-display: 'Geist', 'DM Sans', system-ui, sans-serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    'Space Mono', 'Courier New', monospace;
 
-  /* Shape */
-  --radius:      4px;
-  --radius-pill: 2px;
+  /* v3 5-step surface tonal scale (dark mode) */
+  --surface-0: #0c0d11;
+  --surface-1: #0e0e12;
+  --surface-2: #16161e;
+  --surface-3: #1a1a22;
+  --surface-4: #242432;
+
+  /* v3 micro-signal colour — green only for verified/available/live dots */
+  --green-signal: #4caf74;
+
+  /* v3 border token */
+  --border-1px: 1px solid #2a2a38;
+
+  /* Shape — 0px everywhere (architectural principle) */
+  --radius:      0px;
+  --radius-pill: 0px;
 
   /* Spacing (8px grid) */
   --space-1:  8px;
@@ -99,6 +111,11 @@ img { display: block; max-width: 100%; }
 .body-l     { font-family: var(--font-body);    font-size: 18px; font-weight: 400; line-height: 1.6; }
 .body-m     { font-family: var(--font-body);    font-size: 15px; font-weight: 400; line-height: 1.6; }
 .label      { font-family: var(--font-mono);    font-size: 12px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* v3 display headings use Geist specifically */
+.home-headline, h1, h2.display-m, h2.display-l, h2.display-xl {
+  font-family: var(--font-display);
+}
 
 /* --- Blueprint Grid Background --- */
 .blueprint-bg {
@@ -2750,4 +2767,336 @@ body.theme-light .proj-grid { background: #c8c3be; }
   .cred-container    { padding: var(--space-4); }
   .contact-container { padding: var(--space-4); }
   .contact-ctas { flex-direction: column; align-items: flex-start; }
+}
+
+/* ============================================================
+   V3 DESIGN SYSTEM — Geist display · 0px radius · 5-step surfaces
+   ============================================================ */
+
+/* --- Zero out all border-radius globally --- */
+*, *::before, *::after { border-radius: 0 !important; }
+/* Exception: status dots only use border-radius for the circle shape */
+.status-dot,
+.hero-product-dot,
+.arc-node__dot,
+.exp-dot { border-radius: 50% !important; }
+
+/* --- Remove box-shadow on cards/panels — depth via tone + border --- */
+.proj-card,
+.proj-card:hover,
+.modal-panel,
+.theme-toggle,
+body.theme-light .proj-card,
+body.theme-light .proj-card:hover { box-shadow: none !important; }
+
+/* --- Nav: bottom border, amber CTA button --- */
+.nav { border-bottom: var(--border-1px); }
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--surface-0);
+  background: var(--c-accent);
+  padding: 6px 14px;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-right: var(--space-2);
+}
+.nav-cta:hover { background: #d4b45c; color: var(--surface-0); }
+
+/* --- Surface tiering: update card backgrounds --- */
+.proj-card {
+  background: var(--surface-2);
+  border: var(--border-1px);
+}
+.proj-card:hover {
+  background: var(--surface-4);
+  border-color: #3a3a4c;
+}
+
+/* Override light-mode card to keep border, no box-shadow */
+body.theme-light .proj-card {
+  background: #ffffff;
+  border: 1px solid #c8c3be;
+}
+body.theme-light .proj-card:hover {
+  background: #f0ebe6;
+  border-color: var(--c-accent);
+}
+
+/* --- Experience accordion: vertical rail + node dots --- */
+.acc-list {
+  position: relative;
+}
+.acc-list::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #2a2a38;
+  pointer-events: none;
+}
+.acc-row {
+  position: relative;
+  padding-left: 36px;
+  border-top: var(--border-1px);
+}
+.acc-row:last-child { border-bottom: var(--border-1px); }
+.acc-row::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--surface-4);
+  border: 1px solid var(--c-accent);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.acc-row.open::before {
+  background: var(--c-accent);
+}
+.acc-header {
+  padding: var(--space-3) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.acc-role {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* --- Project rows: manifest-style table --- */
+.project-row {
+  display: grid;
+  grid-template-columns: 2rem 110px 1fr auto;
+  align-items: center;
+  gap: 0 16px;
+  padding: 14px 16px;
+  border-bottom: var(--border-1px);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.project-row:hover { background: var(--surface-3); }
+
+.project-row__num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--c-accent);
+  padding-top: 0;
+}
+
+.project-pill {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 0 !important;
+}
+.project-pill--case-study {
+  background: rgba(201,168,76,0.08);
+  color: var(--c-accent);
+  border: var(--border-1px);
+}
+.project-pill--personal {
+  background: var(--surface-3);
+  color: var(--c-text-3);
+  border: var(--border-1px);
+}
+
+.project-row__name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-text);
+}
+.project-row__sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c-text-3);
+  letter-spacing: 0;
+}
+
+/* --- Skills panel: ghosted watermark number + tiering --- */
+.skill-group {
+  position: relative;
+  border: var(--border-1px);
+  overflow: hidden;
+  padding: var(--space-3);
+}
+
+.skill-group-num {
+  position: absolute;
+  bottom: -8px;
+  right: 8px;
+  font-size: 96px;
+  font-family: var(--font-mono);
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.skill-group-header { position: relative; z-index: 1; }
+.skill-list { position: relative; z-index: 1; }
+
+.skill-list li { font-size: 11px; color: #6a6880; }
+.skill-list li.skill-top { font-size: 13px; color: var(--c-text); font-weight: 500; }
+
+/* --- Credentials: REF ledger + verify glyph --- */
+.cred-ref {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--c-accent);
+  margin-right: 12px;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.cred-edu-entry {
+  display: flex;
+  align-items: flex-start;
+}
+
+.cert-verify {
+  color: var(--green-signal);
+  font-size: 11px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* --- Modal: 0px radius, border --- */
+.modal-panel {
+  background: var(--surface-2);
+  color: var(--c-text);
+  border: var(--border-1px);
+}
+.modal-close { color: var(--c-text-3); }
+.modal-close:hover { color: var(--c-text); }
+.modal-title { color: var(--c-text); }
+.modal-detail { color: var(--c-text-2); }
+.modal-insight { color: var(--c-text-2); }
+.modal-section-label { color: var(--c-text-3); }
+.modal-actions { border-top: var(--border-1px); }
+.modal-metrics { border-top: var(--border-1px); }
+
+/* --- Contact: availability pill + channel label --- */
+.contact-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--green-signal);
+  padding: 4px 12px;
+  margin-bottom: 24px;
+  color: var(--green-signal);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green-signal);
+  border-radius: 50% !important;
+  flex-shrink: 0;
+  animation: v3-pulse 2s infinite;
+}
+
+@keyframes v3-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.contact-channel-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-3);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contact-cta-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Philosophy panel: principle 07 accent update --- */
+.principle--accent {
+  background: transparent;
+  border: 1px solid var(--c-accent);
+}
+.principle--accent:hover { background: rgba(201,168,76,0.06); }
+.principle--accent .principle-body { font-style: italic; }
+
+/* --- Principle cards: all get border --- */
+.principle { border: var(--border-1px); }
+
+/* --- cert rows: border --- */
+.cert-row { border-bottom: var(--border-1px); }
+.cred-row { border-bottom: var(--border-1px); }
+.exp-acc-row { border: var(--border-1px); margin-bottom: 1px; }
+.principle-item { border-bottom: var(--border-1px); }
+
+/* --- Work proj-card tag: mono, 0px --- */
+.proj-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.proj-role-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--c-text-3);
+}
+
+.proj-metric-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-left: auto;
+}
+
+/* --- Gate and button: 0px --- */
+#gate-email,
+#gate-btn,
+.cta-primary,
+.cta-secondary,
+.btn-primary-hero,
+.btn-ghost-hero,
+.modal-btn,
+.contact-resume,
+.pf-btn,
+.stage-badge,
+.modal-stat-chip,
+.modal-metric,
+.proj-metric,
+.modal-industry-tag { border-radius: 0 !important; }
+
+/* --- Mobile v3 adjustments --- */
+@media (max-width: 768px) {
+  .acc-list::before { left: 9px; }
+  .acc-row { padding-left: 28px; }
+  .acc-row::before { left: 4px; }
+  .nav-cta { display: none; }
+  .contact-status-pill { font-size: 10px; }
 }
