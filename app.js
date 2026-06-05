@@ -1,6 +1,6 @@
 /* ============================================================
-   app.js — Blueprint to Bits Portfolio
-   Panel nav · Experience accordion · Project modal · CS modal
+   app.js — Portfolio v2
+   Panel nav · Theme toggle · Experience accordion · Project modal
    ============================================================ */
 
 (function () {
@@ -62,14 +62,23 @@
     if (e.key === 'Escape') closeOverlay();
   });
 
+  /* ---- Theme Toggle ---- */
+  var themeToggle = document.getElementById('theme-toggle');
+  var savedTheme = localStorage.getItem('portfolio_theme') || 'dark';
+  if (savedTheme === 'light') document.body.classList.add('theme-light');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var isLight = document.body.classList.toggle('theme-light');
+      localStorage.setItem('portfolio_theme', isLight ? 'light' : 'dark');
+    });
+  }
+
   /* Hash routing on load */
   var hashToPanel = {
     'home':         'panel-home',
     'experience':   'panel-experience',
-    'work':         'panel-experience',
     'projects':     'panel-projects',
-    'skills':       'panel-skills',
-    'philosophy':   'panel-philosophy',
+    'how-i-think':  'panel-how-i-think',
     'credentials':  'panel-credentials',
     'contact':      'panel-contact'
   };
@@ -78,14 +87,20 @@
     activatePanel(hashToPanel[initHash]);
   }
 
-  /* ---- Experience Accordion ---- */
-  document.querySelectorAll('.exp-row .exp-header').forEach(function (header) {
+  /* ---- Experience Accordion (v2: .acc-row / .acc-header) ---- */
+  document.querySelectorAll('.acc-header').forEach(function (header) {
     header.addEventListener('click', function () {
-      var row = header.closest('.exp-row');
-      row.classList.toggle('is-open');
-      var body = row.querySelector('.exp-body');
-      if (body) {
-        body.style.maxHeight = row.classList.contains('is-open') ? body.scrollHeight + 'px' : '0';
+      var row = header.closest('.acc-row');
+      if (!row) return;
+      var wasOpen = row.classList.contains('open');
+      row.classList.toggle('open');
+      if (!wasOpen) {
+        /* trigger reveal animation for proj-cards inside this accordion */
+        var body = row.querySelector('.acc-body');
+        if (body) {
+          body.classList.add('is-revealing');
+          setTimeout(function () { body.classList.remove('is-revealing'); }, 800);
+        }
       }
     });
   });
@@ -409,21 +424,6 @@
   /* ---- Case Study Modal ---- */
   var caseStudies = [
     {
-      category: 'Health Tech · AI · PWA',
-      title: 'Vitae — Health Records, Finally Understood',
-      problem: "Indian families manage health via blurry WhatsApp prescription photos. ₹6,000+ crore lost annually to repeat diagnostic tests.",
-      insight: "A PWA that turns prescription photos into structured, searchable health timelines — built by a 6-person team and shipped in 10 days.",
-      stats: ['Live product', '6-person team', '10 days shipped'],
-      stage: 'PRD · Shipped',
-      stageTags: 'prd,shipped',
-      industryTags: ['AI', 'HealthTech'],
-      retrospective: '',
-      docs: ['flow', 'wireframe', 'arch', 'prd'],
-      githubUrl: 'https://github.com/aashikvilla/health-assistant',
-      protoUrl: 'https://vitae-health.vercel.app/',
-      pageUrl: 'case-study-vitae.html'
-    },
-    {
       category: 'B2B SaaS · AI · Telegram Bot',
       title: "Rethink CRM — Conversation-First Sales Tool",
       problem: "60–70% of founders abandon CRM within 4 weeks. The real insight: founders already manage relationships in WhatsApp. The tool had to meet them there.",
@@ -433,7 +433,6 @@
       stageTags: 'prd,prototype',
       industryTags: ['AI', 'B2B', 'Sales'],
       retrospective: '',
-      docs: ['flow', 'wireframe', 'arch', 'prd'],
       githubUrl: 'https://github.com/argaur/founder-crm-bot',
       protoUrl: 'https://argaur.github.io/founder-crm-landing/',
       pageUrl: 'case-study-founder-crm.html'
@@ -448,25 +447,9 @@
       stageTags: 'prd,prototype,shipped',
       industryTags: ['AI', 'Ops', 'Consumer'],
       retrospective: '',
-      docs: ['flow', 'wireframe', 'arch', 'prd'],
       githubUrl: null,
       protoUrl: 'https://blinkit-command-hub.vercel.app/',
       pageUrl: 'case-study-blinkit.html'
-    },
-    {
-      category: 'Consumer App · AI',
-      title: 'Trivo — Group Travel Planning Platform',
-      problem: "1–2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments and preference conflicts surface mid-trip, not during planning.",
-      insight: "An AI-powered coordination layer that distributes planning tasks, surfaces conflicts early, and keeps the whole group aligned without a group chat.",
-      stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
-      stage: 'PRD · Prototype',
-      stageTags: 'prd,prototype',
-      industryTags: ['AI', 'Consumer', 'Platform'],
-      retrospective: '',
-      docs: ['flow', 'wireframe', 'arch', 'prd'],
-      githubUrl: 'https://github.com/argaur/group-travel-pwa',
-      protoUrl: 'https://frontend-argaurs-projects.vercel.app',
-      pageUrl: 'case-study-group-travel.html'
     },
     {
       category: 'Consumer Platform · Algorithm',
@@ -478,10 +461,37 @@
       stageTags: 'prd,prototype',
       industryTags: ['Consumer', 'Discovery'],
       retrospective: '',
-      docs: ['flow', 'wireframe', 'arch', 'prd'],
       githubUrl: null,
       protoUrl: null,
       pageUrl: 'case-study-youtube.html'
+    },
+    {
+      category: 'Consumer App · AI',
+      title: 'Trivo — Group Travel Planning Platform',
+      problem: "1–2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments and preference conflicts surface mid-trip, not during planning.",
+      insight: "An AI-powered coordination layer that distributes planning tasks, surfaces conflicts early, and keeps the whole group aligned without a group chat.",
+      stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
+      stage: 'PRD · Prototype',
+      stageTags: 'prd,prototype',
+      industryTags: ['AI', 'Consumer', 'Platform'],
+      retrospective: '',
+      githubUrl: 'https://github.com/argaur/group-travel-pwa',
+      protoUrl: 'https://frontend-argaurs-projects.vercel.app',
+      pageUrl: 'case-study-group-travel.html'
+    },
+    {
+      category: 'Health Tech · AI · PWA',
+      title: 'Vitae — Health Records, Finally Understood',
+      problem: "Indian families manage health via blurry WhatsApp prescription photos. ₹6,000+ crore lost annually to repeat diagnostic tests.",
+      insight: "A PWA that turns prescription photos into structured, searchable health timelines — built by a 6-person team and shipped in 10 days.",
+      stats: ['Live product', '6-person team', '10 days shipped'],
+      stage: 'PRD · Shipped',
+      stageTags: 'prd,shipped',
+      industryTags: ['AI', 'HealthTech'],
+      retrospective: '',
+      githubUrl: 'https://github.com/aashikvilla/health-assistant',
+      protoUrl: 'https://vitae-health.vercel.app/',
+      pageUrl: 'case-study-vitae.html'
     }
   ];
 
@@ -496,7 +506,6 @@
       stage: 'Shipped · Active',
       stageTags: 'shipped',
       industryTags: ['Infra', 'Automation'],
-      docs: ['flow', 'arch'],
       githubUrl: 'https://github.com/argaur/telegram-bot',
       protoUrl: null,
       pageUrl: 'project-telegram-bot.html',
@@ -511,7 +520,6 @@
       stage: 'Shipped · Live',
       stageTags: 'shipped',
       industryTags: ['Infra'],
-      docs: ['arch'],
       githubUrl: 'https://github.com/argaur/portfolio-website',
       protoUrl: null,
       pageUrl: 'project-portfolio.html',
@@ -526,7 +534,6 @@
       stage: 'Shipped · Active',
       stageTags: 'shipped',
       industryTags: ['Infra'],
-      docs: ['arch'],
       githubUrl: 'https://github.com/argaur/homelab-v2',
       protoUrl: null,
       pageUrl: 'project-homelab.html',
@@ -541,7 +548,6 @@
       stage: 'Shipped · Active',
       stageTags: 'shipped',
       industryTags: ['Infra', 'Automation'],
-      docs: ['flow', 'arch'],
       githubUrl: 'https://github.com/argaur/gws-cli',
       protoUrl: null,
       pageUrl: 'project-gws-cli.html',
@@ -549,20 +555,21 @@
     }
   ];
 
-  function buildModalCtas(item) {
-    var html = '<div class="modal-ctas">';
-    if (item.pageUrl) {
-      var label = item.pageLabel || 'Read Full Case Study';
-      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--primary">' + label + ' &rarr;</a>';
+  function buildModalActions(item) {
+    var html = '<div class="modal-actions">';
+    if (item.githubUrl) {
+      html += '<a href="' + item.githubUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--ghost">GitHub Repo &rarr;</a>';
     }
     if (item.protoUrl) {
-      html += '<a href="' + item.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--proto">View Prototype &rarr;</a>';
+      html += '<a href="' + item.protoUrl + '" target="_blank" rel="noopener" class="modal-btn modal-btn--primary">View Prototype &rarr;</a>';
+    }
+    if (item.pageUrl) {
+      var pageLabel = item.pageLabel || 'Read Full Case Study';
+      html += '<a href="' + item.pageUrl + '" class="modal-btn modal-btn--secondary">' + pageLabel + ' &rarr;</a>';
     }
     html += '</div>';
     return html;
   }
-
-  var docLabels = { flow: 'User Flow', wireframe: 'Wireframe', arch: 'Architecture', prd: 'PRD' };
 
   function openItemModal(item) {
     modalPanel.classList.remove('modal-panel--wide');
@@ -575,16 +582,6 @@
       ? '<div class="modal-section-label">What I\'d do differently</div>' +
         '<p class="modal-insight">' + item.retrospective + '</p>'
       : '';
-    var docsHtml = '';
-    if (item.docs && item.docs.length && item.pageUrl) {
-      var chips = item.docs.map(function (d) {
-        return '<a href="' + item.pageUrl + '#documentation" class="modal-doc-chip">' + (docLabels[d] || d) + '</a>';
-      });
-      if (item.githubUrl) {
-        chips.push('<a href="' + item.githubUrl + '" target="_blank" rel="noopener" class="modal-doc-chip">GitHub &rarr;</a>');
-      }
-      docsHtml = '<div class="modal-docs">' + chips.join('') + '</div>';
-    }
     modalBody.innerHTML =
       '<div class="modal-tag">' + item.category + '</div>' +
       industryHtml +
@@ -598,8 +595,7 @@
         }).join('') +
       '</div>' +
       retroHtml +
-      docsHtml +
-      buildModalCtas(item);
+      buildModalActions(item);
     modalOverlay.removeAttribute('hidden');
   }
 
@@ -651,6 +647,26 @@
     });
   }
 
+  /* ---- Projects Filter Bar ---- */
+  var filterBtns = document.querySelectorAll('#projects-filter .pf-btn');
+  if (filterBtns.length) {
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.dataset.filter;
+        filterBtns.forEach(function (b) { b.classList.remove('pf-btn--active'); });
+        btn.classList.add('pf-btn--active');
+        document.querySelectorAll('.cs-row').forEach(function (row) {
+          if (filter === 'all') {
+            row.style.display = '';
+          } else {
+            var tags = (row.dataset.stage || '').split(',');
+            row.style.display = tags.indexOf(filter) !== -1 ? '' : 'none';
+          }
+        });
+      });
+    });
+  }
+
   /* ---- Cert Modal ---- */
   var certData = {
     'rethink-mpm':        { name: 'Product Management (MPM) Cohort 7', issuer: 'Rethink AI', year: '2026', pdfUrl: 'assets/rethink-cert.pdf', verifyUrl: null },
@@ -698,155 +714,302 @@
   });
 
   /* ============================================================
-     SYSTEMS CANVAS — Hero Right Pane
+     ARCHITECTURE STACK — Hero Right Pane
      ============================================================ */
-  function initSystemsCanvas() {
-    var canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
+  function initStackDiagram() {
+    var canvas = document.getElementById('stack-diagram');
+    if (!canvas || !canvas.getContext) return;
+
     var ctx = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
-    var W = 0, H = 0;
+    var hasAnimated = false;
     var rafId = null;
-    var mouse = { x: -9999, y: -9999, active: false };
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var nodes = [
-      { id: 'arch',   label: 'ARCHITECTURE',   x: 0.18, y: 0.22, r: 5, primary: true  },
-      { id: 'prod',   label: 'PRODUCT',        x: 0.50, y: 0.30, r: 7, primary: true  },
-      { id: 'ai',     label: 'AI SYSTEMS',     x: 0.80, y: 0.22, r: 6, primary: true  },
-      { id: 'ent',    label: 'ENTERPRISE',     x: 0.30, y: 0.50, r: 4, primary: false },
-      { id: 'wf',     label: 'WORKFLOWS',      x: 0.65, y: 0.50, r: 4, primary: false },
-      { id: 'agents', label: 'AGENTS',         x: 0.88, y: 0.42, r: 3, primary: false },
-      { id: 'data',   label: 'DATA',           x: 0.12, y: 0.62, r: 3, primary: false },
-      { id: 'infra',  label: 'INFRASTRUCTURE', x: 0.22, y: 0.78, r: 3, primary: false },
-      { id: 'ops',    label: 'OPERATIONS',     x: 0.45, y: 0.72, r: 3, primary: false },
-      { id: 'users',  label: 'USERS',          x: 0.58, y: 0.85, r: 4, primary: false },
-      { id: 'design', label: 'DESIGN',         x: 0.75, y: 0.78, r: 3, primary: false },
-      { id: 'strat',  label: 'STRATEGY',       x: 0.92, y: 0.62, r: 3, primary: false }
+    function colors() {
+      var light = document.body.classList.contains('theme-light');
+      return light ? {
+        amber:   '#b8922a', amberR: '184,146,42',
+        greenR:  '20,110,20',
+        grid:    'rgba(0,0,0,0.05)',
+        shell:   'rgba(0,0,0,0.10)',
+        hdr:     'rgba(0,0,0,0.28)',
+        bracket: function (a) { return 'rgba(0,0,0,' + a * 0.28 + ')'; },
+        year:    function (a) { return 'rgba(0,0,0,' + a * 0.35 + ')'; }
+      } : {
+        amber:   '#e8b84b', amberR: '232,184,75',
+        greenR:  '106,191,105',
+        grid:    'rgba(255,255,255,0.028)',
+        shell:   'rgba(255,255,255,0.07)',
+        hdr:     'rgba(255,255,255,0.18)',
+        bracket: function (a) { return 'rgba(255,255,255,' + a * 0.22 + ')'; },
+        year:    function (a) { return 'rgba(255,255,255,' + a * 0.32 + ')'; }
+      };
+    }
+
+    var FLOORS = [
+      { label: 'ARCHITECTURE',       years: '2009—2014',
+        log1: '> INIT b.arch @ MNIT, Jaipur',          log2: '> BUILD spatial.systems.thinking'     },
+      { label: 'ENTERPRISE SOFTWARE', years: '2015—2019',
+        log1: '> DEPLOY erp.modules @ Tata, JSW',      log2: '> OPTIMIZE process.efficiency'        },
+      { label: 'PRODUCT STRATEGY',   years: '2019—2023',
+        log1: '> SHIP product.v1 @ JindalX, Blinkit',  log2: '> INTEGRATE airtable.platform × 16'  },
+      { label: 'AI STRATEGY',        years: '2023—PRESENT',
+        log1: '> RUN ai_layer.init() @ present',       log2: '> SCALE ai.products → 7 deployed'     }
     ];
+    var BASE_H = [65, 75, 82, 92];
+    var TOTAL_BASE_H = BASE_H.reduce(function (s, h) { return s + h; }, 0);
 
-    var edges = [
-      ['arch','prod'], ['prod','ai'], ['arch','ent'], ['ent','prod'],
-      ['prod','wf'], ['ai','agents'], ['ai','wf'], ['wf','ops'],
-      ['data','ent'], ['data','ai'], ['infra','ops'], ['ops','users'],
-      ['users','prod'], ['design','prod'], ['strat','ai'], ['strat','prod'],
-      ['agents','wf']
-    ];
+    var W, H, bX, bY, bW, bH, rects;
 
-    nodes.forEach(function (n) {
-      n.bx = n.x; n.by = n.y;
-      n.dx = 0;   n.dy = 0;
-      n.phaseX = Math.random() * Math.PI * 2;
-      n.phaseY = Math.random() * Math.PI * 2;
-      n.speedX = 0.0003 + Math.random() * 0.0003;
-      n.speedY = 0.0003 + Math.random() * 0.0003;
-      n.pulse  = Math.random() * Math.PI * 2;
-    });
-
-    function resize() {
+    function layout() {
       var rect = canvas.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return;
-      W = rect.width;
-      H = rect.height;
-      canvas.width  = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
+      W = (rect.width  || canvas.offsetWidth  || 440);
+      H = (rect.height || canvas.offsetHeight || 320);
+      canvas.width  = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bX = 54; bY = 38; bW = W - 66; bH = H - 58;
+      var scale = bH / TOTAL_BASE_H;
+      rects = [];
+      var y = bY + bH;
+      for (var i = 0; i < 4; i++) {
+        var fh = Math.round(BASE_H[i] * scale);
+        y -= fh;
+        rects.push({ x: bX, y: y, w: bW, h: fh });
+      }
     }
 
-    function nodePos(n) {
-      var x = (n.bx + n.dx) * W;
-      var y = (n.by + n.dy) * H;
-      if (mouse.active) {
-        var dx = mouse.x - x, dy = mouse.y - y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200 && dist > 0) {
-          var pull = (1 - dist / 200) * 12;
-          x += (dx / dist) * pull;
-          y += (dy / dist) * pull;
-        }
-      }
-      return { x: x, y: y };
+    var PHASE   = 680;
+    var GAP     = 260;
+    var LOG1_AT = 300;
+    var LOG2_AT = PHASE + 140;
+    var CHAR_MS = 20;
+
+    var log1T = ['', '', '', ''];
+    var log2T = ['', '', '', ''];
+    var t0    = null;
+
+    function fp(i, el) {
+      return Math.max(0, Math.min((el - i * (PHASE + GAP)) / PHASE, 1));
     }
+    function ease(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
 
-    function frame(t) {
-      if (W === 0 || H === 0) { resize(); rafId = requestAnimationFrame(frame); return; }
-      ctx.clearRect(0, 0, W, H);
-
-      if (!prefersReduced) {
-        nodes.forEach(function (n) {
-          n.dx = Math.sin(n.phaseX + t * n.speedX) * 0.012;
-          n.dy = Math.cos(n.phaseY + t * n.speedY) * 0.012;
-        });
-      }
-
+    function drawGrid() {
+      var C = colors();
+      ctx.save();
+      ctx.strokeStyle = C.grid;
       ctx.lineWidth = 1;
-      edges.forEach(function (e) {
-        var a = nodes.find(function (n) { return n.id === e[0]; });
-        var b = nodes.find(function (n) { return n.id === e[1]; });
-        var pa = nodePos(a), pb = nodePos(b);
-        ctx.strokeStyle = 'rgba(120,170,230,0.18)';
+      for (var x = 0.5; x < W; x += 28) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (var y = 0.5; y < H; y += 28) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+      ctx.restore();
+    }
+
+    function drawHeader() {
+      var C = colors();
+      ctx.save();
+      ctx.font = '700 9px "Space Mono",monospace';
+      ctx.fillStyle = C.hdr;
+      ctx.fillText('BUILD LOG', bX, bY - 14);
+      ctx.textAlign = 'right';
+      ctx.fillText('CAREER ARCHITECTURE', bX + bW, bY - 14);
+      ctx.textAlign = 'left';
+      ctx.restore();
+    }
+
+    function drawShell() {
+      var C = colors();
+      ctx.save();
+      ctx.strokeStyle = C.shell;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 7]);
+      [[bX, bY, bX, bY + bH], [bX + bW, bY, bX + bW, bY + bH], [bX, bY + bH, bX + bW, bY + bH]].forEach(function (l) {
+        ctx.beginPath(); ctx.moveTo(l[0], l[1]); ctx.lineTo(l[2], l[3]); ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    function drawFloor(i, p, elapsed) {
+      var C   = colors();
+      var r   = rects[i];
+      var ep  = ease(p);
+      var sweepH   = Math.round(r.h * ep);
+      var sweepTop = r.y + r.h - sweepH;
+
+      if (sweepH > 0) {
+        ctx.save();
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + (0.06 + i * 0.025) + ')';
+        ctx.fillRect(r.x + 1, sweepTop, r.w - 2, sweepH);
+        if (p < 1) {
+          var band = Math.min(18, sweepH);
+          var g = ctx.createLinearGradient(0, sweepTop, 0, sweepTop + band);
+          g.addColorStop(0, 'rgba(' + C.amberR + ',0.32)');
+          g.addColorStop(1, 'rgba(' + C.amberR + ',0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(r.x + 1, sweepTop, r.w - 2, band);
+        }
+        ctx.restore();
+      }
+
+      if (p > 0 && p < 1 && Math.floor(elapsed / 240) % 2 === 0) {
+        ctx.save();
+        ctx.strokeStyle = C.amber;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
         ctx.beginPath();
-        ctx.moveTo(pa.x, pa.y);
-        ctx.lineTo(pb.x, pb.y);
+        ctx.moveTo(r.x + 6, sweepTop);
+        ctx.lineTo(r.x + r.w - 6, sweepTop);
         ctx.stroke();
-      });
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
 
-      nodes.forEach(function (n) {
-        var p = nodePos(n);
-        var pulseR = prefersReduced ? n.r : n.r + Math.sin(n.pulse + t * 0.0015) * 0.6;
-
-        if (n.primary) {
-          var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, pulseR * 4);
-          grad.addColorStop(0, 'rgba(191,92,58,0.28)');
-          grad.addColorStop(1, 'rgba(191,92,58,0)');
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, pulseR * 4, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        ctx.fillStyle = n.primary ? '#bf5c3a' : 'rgba(120,170,230,0.85)';
+      if (p >= 0.6) {
+        var lp = Math.min((p - 0.6) / 0.35, 1);
+        ctx.save();
+        ctx.strokeStyle = C.amber;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = lp;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, pulseR, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.moveTo(r.x, r.y);
+        ctx.lineTo(r.x + r.w * lp, r.y);
+        ctx.stroke();
+        ctx.restore();
+      }
 
-        if (n.primary || W > 480) {
-          ctx.font = '500 9px "DM Sans", system-ui, sans-serif';
-          ctx.fillStyle = n.primary ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.42)';
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(n.label, p.x + pulseR + 8, p.y);
-        }
-      });
+      if (p >= 0.68) {
+        var fa = Math.min((p - 0.68) / 0.28, 1);
+        var fl = FLOORS[i];
 
+        ctx.save();
+        ctx.strokeStyle = C.bracket(fa);
+        ctx.lineWidth = 1;
+        var bkx = r.x - 20;
+        ctx.beginPath();
+        ctx.moveTo(bkx - 3, r.y + 3);     ctx.lineTo(bkx, r.y + 3);
+        ctx.moveTo(bkx, r.y + 3);          ctx.lineTo(bkx, r.y + r.h - 3);
+        ctx.moveTo(bkx, r.y + r.h - 3);   ctx.lineTo(bkx - 3, r.y + r.h - 3);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = '700 8px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + (fa * 0.65) + ')';
+        ctx.textAlign = 'right';
+        ctx.fillText('F' + (i + 1), r.x - 6, r.y + r.h / 2 + 3);
+        ctx.textAlign = 'left';
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = '700 9px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + fa + ')';
+        ctx.fillText(fl.label, r.x + 8, r.y + 13);
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = '400 9px "Space Mono",monospace';
+        ctx.fillStyle = C.year(fa);
+        ctx.textAlign = 'right';
+        ctx.fillText(fl.years, r.x + r.w - 8, r.y + 13);
+        ctx.textAlign = 'left';
+        ctx.restore();
+      }
+
+      var midY = r.y + Math.round(r.h * 0.54);
+      if (log1T[i]) {
+        ctx.save();
+        ctx.font = '400 10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.85)';
+        ctx.fillText(log1T[i], r.x + 8, midY);
+        ctx.restore();
+      }
+      if (log2T[i]) {
+        ctx.save();
+        ctx.font = '400 10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.55)';
+        ctx.fillText(log2T[i], r.x + 8, midY + 16);
+        ctx.restore();
+      }
+    }
+
+    function updateTyping(elapsed) {
+      for (var i = 0; i < 4; i++) {
+        var base = i * (PHASE + GAP);
+        var e1 = elapsed - (base + LOG1_AT);
+        var e2 = elapsed - (base + LOG2_AT);
+        if (e1 > 0) log1T[i] = FLOORS[i].log1.slice(0, Math.min(Math.floor(e1 / CHAR_MS), FLOORS[i].log1.length));
+        if (e2 > 0) log2T[i] = FLOORS[i].log2.slice(0, Math.min(Math.floor(e2 / CHAR_MS), FLOORS[i].log2.length));
+      }
+    }
+
+    function frame(ts) {
+      if (!t0) t0 = ts;
+      var el = ts - t0;
+      ctx.clearRect(0, 0, W, H);
+      drawGrid(); drawHeader(); drawShell();
+      for (var i = 0; i < 4; i++) drawFloor(i, fp(i, el), el);
+      updateTyping(el);
+      if (el < 3 * (PHASE + GAP) + PHASE + 1600) rafId = requestAnimationFrame(frame);
+    }
+
+    function renderStatic() {
+      var C = colors();
+      ctx.clearRect(0, 0, W, H);
+      drawGrid(); drawHeader(); drawShell();
+      for (var i = 0; i < 4; i++) {
+        var r = rects[i]; var fl = FLOORS[i];
+        ctx.fillStyle = 'rgba(' + C.amberR + ',' + (0.06 + i * 0.025) + ')';
+        ctx.fillRect(r.x + 1, r.y, r.w - 2, r.h);
+        ctx.strokeStyle = C.amber; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(r.x, r.y); ctx.lineTo(r.x + r.w, r.y); ctx.stroke();
+        ctx.font = '700 9px "Space Mono",monospace'; ctx.fillStyle = C.amber;
+        ctx.fillText(fl.label, r.x + 8, r.y + 13);
+        ctx.textAlign = 'right';
+        ctx.font = '400 9px "Space Mono",monospace';
+        ctx.fillStyle = C.year(1);
+        ctx.fillText(fl.years, r.x + r.w - 8, r.y + 13);
+        ctx.textAlign = 'left';
+        var midY = r.y + Math.round(r.h * 0.54);
+        ctx.font = '400 10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.85)'; ctx.fillText(fl.log1, r.x + 8, midY);
+        ctx.fillStyle = 'rgba(' + C.greenR + ',0.55)'; ctx.fillText(fl.log2, r.x + 8, midY + 16);
+      }
+    }
+
+    /* re-render static state when theme toggles */
+    var themeObserver = new MutationObserver(function () {
+      if (hasAnimated && !rafId) { layout(); renderStatic(); }
+    });
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    function animate() {
+      if (hasAnimated) return;
+      hasAnimated = true;
+      layout();
+      t0 = null;
       rafId = requestAnimationFrame(frame);
     }
 
-    canvas.addEventListener('mousemove', function (e) {
-      var rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
-    });
-    canvas.addEventListener('mouseleave', function () {
-      mouse.active = false;
-    });
-
-    var ro = new ResizeObserver(resize);
-    ro.observe(canvas);
+    var replayBtn = document.getElementById('stack-replay');
+    if (replayBtn) {
+      replayBtn.addEventListener('click', function () {
+        if (rafId) cancelAnimationFrame(rafId);
+        hasAnimated = false;
+        log1T = ['', '', '', ''];
+        log2T = ['', '', '', ''];
+        animate();
+      });
+    }
 
     document.addEventListener('panel:activate', function (e) {
-      if (e.detail.panelId === 'panel-home') {
-        requestAnimationFrame(resize);
-        if (!rafId) { rafId = requestAnimationFrame(frame); }
-      } else if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      if (e.detail.panelId === 'panel-home') animate();
     });
-
-    resize();
-    rafId = requestAnimationFrame(frame);
+    if (document.getElementById('panel-home') &&
+        document.getElementById('panel-home').classList.contains('is-active')) {
+      animate();
+    }
   }
 
   /* ============================================================
@@ -911,11 +1074,11 @@
         var pulseR = prefersReduced ? n.r : n.r + Math.sin(n.pulse + t * 0.001) * 0.5;
         if (n.primary) {
           var g = ctx.createRadialGradient(px, py, 0, px, py, pulseR * 5);
-          g.addColorStop(0, 'rgba(191,92,58,0.22)'); g.addColorStop(1, 'rgba(191,92,58,0)');
+          g.addColorStop(0, 'rgba(201,168,76,0.22)'); g.addColorStop(1, 'rgba(201,168,76,0)');
           ctx.fillStyle = g;
           ctx.beginPath(); ctx.arc(px, py, pulseR * 5, 0, Math.PI * 2); ctx.fill();
         }
-        ctx.fillStyle = n.primary ? '#bf5c3a' : 'rgba(120,170,230,0.7)';
+        ctx.fillStyle = n.primary ? '#c9a84c' : 'rgba(120,170,230,0.7)';
         ctx.beginPath(); ctx.arc(px, py, pulseR, 0, Math.PI * 2); ctx.fill();
         ctx.font = '500 9px "DM Sans", system-ui, sans-serif';
         ctx.fillStyle = 'rgba(255,255,255,0.38)';
@@ -941,9 +1104,146 @@
     resize();
   }
 
+  /* ---- Projects Panel (v2 — unified list) ---- */
+  var allProjects = [
+    { rank: '01', type: 'case-study', name: 'Vitae — Health Records, Finally Understood',       sub: 'Live prototype · Health tech · Redesigning health data for patients',          links: [{ label: 'View →', href: 'https://vitae-health.vercel.app/' }], itemRef: function(){ return caseStudies[4]; } },
+    { rank: '02', type: 'personal',   name: 'Telegram PM Bot — Workflow Automation',            sub: 'Deployed · AI / Automation · Claude + Airtable + Notion integration',        links: [{ label: 'GitHub →', href: '#' }], itemRef: function(){ return personalProjects[0]; } },
+    { rank: '03', type: 'case-study', name: 'Blinkit Command Hub — Peak-Hour Decision Support', sub: 'Live prototype · Ops / Quick Commerce · Real-time dark store dashboard',      links: [{ label: 'View →', href: 'https://blinkit-command-hub.vercel.app/' }], itemRef: function(){ return caseStudies[1]; } },
+    { rank: '04', type: 'case-study', name: "Founder's CRM — Conversation-First Sales Tool",   sub: 'Concept · SaaS / Sales · CRM built around the founder sales motion',          links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[0]; } },
+    { rank: '05', type: 'case-study', name: 'Group Travel Planning Platform',                   sub: 'Concept · Consumer · Collaborative trip planning for friend groups',          links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[3]; } },
+    { rank: '06', type: 'case-study', name: 'YouTube 2.0 — Fixing Long-Form Discovery',        sub: 'Concept · Consumer / Media · Rethinking recommendation for depth-seeking users', links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[2]; } },
+    { rank: '07', type: 'personal',   name: 'Portfolio Website — This Site',                    sub: 'Live · Plain HTML/CSS/JS · 7-panel SPA with canvas and email gate',           links: [], itemRef: null },
+    { rank: '08', type: 'personal',   name: 'GWS CLI — Google Workspace Terminal Tool',         sub: 'Open source · Dev tooling · CLI for managing GWS from terminal',              links: [{ label: 'GitHub →', href: '#' }], itemRef: null }
+  ];
+
+  function renderProjects() {
+    var list = document.getElementById('projects-list');
+    if (!list) return;
+    list.innerHTML = allProjects.map(function (p, i) {
+      var pillClass = p.type === 'case-study' ? 'project-pill--case-study' : 'project-pill--personal';
+      var pillLabel = p.type === 'case-study' ? 'Case Study' : 'Personal';
+      var linksHtml = p.links.map(function (l) {
+        return '<a class="project-row__link" href="' + l.href + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + l.label + '</a>';
+      }).join('');
+      var clickable = p.itemRef ? ' data-idx="' + i + '"' : '';
+      return '<div class="project-row"' + clickable + '>' +
+        '<span class="project-row__num">' + p.rank + '</span>' +
+        '<span class="project-pill ' + pillClass + '">' + pillLabel + '</span>' +
+        '<div class="project-row__info">' +
+          '<span class="project-row__name">' + p.name + '</span>' +
+          '<span class="project-row__sub">' + p.sub + '</span>' +
+        '</div>' +
+        '<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">' + linksHtml + '</div>' +
+        '</div>';
+    }).join('');
+
+    list.querySelectorAll('.project-row[data-idx]').forEach(function (row) {
+      row.addEventListener('click', function () {
+        var idx = parseInt(row.dataset.idx, 10);
+        var p = allProjects[idx];
+        if (p && p.itemRef) { openItemModal(p.itemRef()); }
+      });
+    });
+  }
+
+  /* ---- Work Panel Row Clicks ---- */
+  function initWorkRows() {
+    /* Work modals are placeholder content — no-op until modal data is mapped */
+  }
+
+  /* ---- Credentials Toggle ---- */
+  function initCredentials() {
+    var toggle = document.getElementById('cred-other-toggle');
+    var list   = document.getElementById('cred-other-list');
+    var link   = toggle ? toggle.querySelector('.cred-show-link') : null;
+    if (toggle && list) {
+      toggle.addEventListener('click', function () {
+        var isOpen = !list.classList.contains('is-hidden');
+        list.classList.toggle('is-hidden', isOpen);
+        if (link) link.textContent = isOpen ? 'Show ↓' : 'Hide ↑';
+      });
+    }
+  }
+
+  /* ---- How I Think Canvas ---- */
+  function initHowIThinkCanvas() {
+    var canvas = document.getElementById('skills-graph-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var rafId = null;
+
+    var nodes = [
+      { id: 'arch', label: 'Architecture',     x: 0.5,  y: 0.88, tier: 0 },
+      { id: 'sys',  label: 'Systems Thinking', x: 0.25, y: 0.66, tier: 1 },
+      { id: 'ux',   label: 'UX Research',      x: 0.75, y: 0.66, tier: 1 },
+      { id: 'pm',   label: 'Product Strategy', x: 0.28, y: 0.42, tier: 2 },
+      { id: 'data', label: 'Data Analysis',    x: 0.55, y: 0.42, tier: 2 },
+      { id: 'eng',  label: 'Engineering',      x: 0.78, y: 0.42, tier: 2 },
+      { id: 'ai',   label: 'AI / LLMs',        x: 0.5,  y: 0.12, tier: 3 }
+    ];
+    var edges = [
+      ['arch','sys'],['arch','ux'],
+      ['sys','pm'],['ux','data'],['sys','eng'],
+      ['pm','ai'],['data','ai'],['eng','ai']
+    ];
+    var tierColors = { 0: '#56546e', 1: '#9896a0', 2: '#ece8e2', 3: '#c9a84c' };
+
+    function draw() {
+      var w = canvas.offsetWidth;
+      var h = canvas.offsetHeight;
+      canvas.width  = w * window.devicePixelRatio;
+      canvas.height = h * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      ctx.clearRect(0, 0, w, h);
+
+      edges.forEach(function (e) {
+        var a = nodes.find(function(n){ return n.id === e[0]; });
+        var b = nodes.find(function(n){ return n.id === e[1]; });
+        ctx.beginPath();
+        ctx.strokeStyle = '#2a2a38';
+        ctx.lineWidth = 1;
+        ctx.moveTo(a.x * w, a.y * h);
+        ctx.lineTo(b.x * w, b.y * h);
+        ctx.stroke();
+      });
+
+      nodes.forEach(function (n) {
+        var x = n.x * w;
+        var y = n.y * h;
+        var r = n.tier === 0 ? 8 : n.tier === 3 ? 7 : 5;
+        var col = tierColors[n.tier];
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = col;
+        ctx.fill();
+        ctx.font = '400 11px "DM Sans", sans-serif';
+        ctx.fillStyle = col;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = n.tier === 0 ? 'top' : 'bottom';
+        ctx.fillText(n.label, x, n.tier === 0 ? y + r + 5 : y - r - 5);
+      });
+    }
+
+    document.addEventListener('panel:activate', function (e) {
+      if (e.detail.panelId === 'panel-how-i-think') {
+        requestAnimationFrame(draw);
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (document.getElementById('panel-how-i-think').classList.contains('is-active')) {
+        requestAnimationFrame(draw);
+      }
+    });
+  }
+
   /* ---- Init ---- */
+  renderProjects();
   renderWorkProjects();
-  initSystemsCanvas();
+  initWorkRows();
+  initCredentials();
+  initHowIThinkCanvas();
+  initStackDiagram();
   initContactCanvas();
 
 })();

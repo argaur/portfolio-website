@@ -4,22 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gaurav Gupta — Senior PM &amp; AI Builder</title>
-  <meta name="description" content="Senior PM with 10 years building systems — enterprise CX at JindalX, AI consumer apps, B2C platforms. 9 products shipped. 3 live in production. Based in Jaipur, India.">
+  <meta name="description" content="Senior PM with 10 years building systems — 7 B2B SaaS products, 16 enterprise clients, 5,000+ users. Hands-on AI builder. 3 live products in production. Based in Jaipur, India.">
   <link rel="canonical" href="https://gauravg-portfolio.vercel.app/">
   <meta property="og:title" content="Gaurav Gupta — Senior PM &amp; AI Builder">
-  <meta property="og:description" content="9 products shipped over 10 years — enterprise CX at JindalX, AI consumer apps, B2C platforms. 3 live in production.">
+  <meta property="og:description" content="7 B2B SaaS products, 16 enterprise clients, 5,000+ users — enterprise PM turned hands-on AI builder. 3 live products in production.">
   <meta property="og:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gauravg-portfolio.vercel.app/">
   <meta property="og:site_name" content="Gaurav Gupta — Portfolio">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gaurav Gupta — Senior PM &amp; AI Builder">
-  <meta name="twitter:description" content="9 products shipped over 10 years — enterprise CX at JindalX, AI consumer apps, B2C platforms. 3 live in production.">
+  <meta name="twitter:description" content="7 B2B SaaS products, 16 enterprise clients, 5,000+ users — enterprise PM turned hands-on AI builder. 3 live products in production.">
   <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
-  <meta name="theme-color" content="#0b1628">
+  <meta name="theme-color" content="#0e0e12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
@@ -37,23 +38,19 @@
         <p id="gate-error" class="gate-error"></p>
         <button id="gate-btn" type="submit">Enter Portfolio</button>
       </form>
-      <button id="gate-skip">Skip for now</button>
     </div>
   </div>
 
   <!-- MOBILE NAV OVERLAY -->
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-    <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Close menu">
-      <span></span><span></span>
-    </button>
+    <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Close menu">&times;</button>
     <nav class="nav-overlay-links">
       <a href="#home"         class="nav-overlay-link" data-panel="panel-home"><em>00</em>Home</a>
-      <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Work</a>
+      <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Experience</a>
       <a href="#projects"     class="nav-overlay-link" data-panel="panel-projects"><em>02</em>Projects</a>
-      <a href="#skills"       class="nav-overlay-link" data-panel="panel-skills"><em>03</em>Skills</a>
-      <a href="#philosophy"   class="nav-overlay-link" data-panel="panel-philosophy"><em>04</em>Philosophy</a>
-      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>05</em>Credentials</a>
-      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>06</em>Contact</a>
+      <a href="#how-i-think"  class="nav-overlay-link" data-panel="panel-how-i-think"><em>03</em>How I Think</a>
+      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>04</em>Credentials</a>
+      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>05</em>Contact</a>
     </nav>
     <div class="nav-overlay-footer">
       <span>Gaurav Gupta &middot; Jaipur &middot; 2026</span>
@@ -61,31 +58,23 @@
   </div>
 
   <!-- NAV -->
-  <nav id="nav" class="nav nav--scrolled">
-    <div class="nav-inner">
-      <a href="#home" class="nav-logo" data-panel="panel-home" aria-label="Home">
-        <svg width="38" height="28" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Left G -->
-          <path d="M2 2 L2 26 L10 26 L10 16 L6 16 L6 18 L8 18 L8 24 L4 24 L4 4 L10 4 L10 2 Z" fill="#ffffff"/>
-          <rect x="6" y="14" width="4" height="2" fill="#bf5c3a"/>
-          <!-- Right G -->
-          <path d="M13 2 L13 26 L21 26 L21 16 L17 16 L17 18 L19 18 L19 24 L15 24 L15 4 L21 4 L21 2 Z" fill="#ffffff"/>
-          <rect x="17" y="14" width="4" height="2" fill="#bf5c3a"/>
-          <!-- Corner bracket accent -->
-          <polyline points="25,2 36,2 36,10" fill="none" stroke="#bf5c3a" stroke-width="1.5" stroke-linecap="square"/>
-        </svg>
-      </a>
-      <div class="nav-links">
-        <a href="#experience"   class="nav-link" data-panel="panel-experience">Work</a>
-        <a href="#projects"     class="nav-link" data-panel="panel-projects">Projects</a>
-        <a href="#skills"       class="nav-link" data-panel="panel-skills">Skills</a>
-        <a href="#philosophy"   class="nav-link" data-panel="panel-philosophy">Philosophy</a>
-        <a href="#credentials"  class="nav-link" data-panel="panel-credentials">Credentials</a>
-      </div>
-      <a href="#contact" class="nav-cta nav-cta--desktop" data-panel="panel-contact">Contact</a>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <nav id="nav" class="nav">
+    <span class="nav-logo" data-panel="panel-home">GG</span>
+    <div class="nav-links">
+      <a href="#home"        class="nav-link" data-panel="panel-home">Home</a>
+      <a href="#experience"  class="nav-link" data-panel="panel-experience">Experience</a>
+      <a href="#projects"    class="nav-link" data-panel="panel-projects">Projects</a>
+      <a href="#how-i-think" class="nav-link" data-panel="panel-how-i-think">How I Think</a>
+      <a href="#credentials" class="nav-link" data-panel="panel-credentials">Credentials</a>
+      <a href="#contact"     class="nav-link" data-panel="panel-contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#contact" class="nav-cta" data-panel="panel-contact">Get in touch</a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark">
+        <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">&#9776;</button>
     </div>
   </nav>
 
@@ -94,242 +83,123 @@
 
     <!-- HOME -->
     <div id="panel-home" class="panel is-active">
-      <section class="hero blueprint-bg">
-
-        <span class="hero-coord hero-coord--tl">26.9124&deg; N &middot; 75.7873&deg; E &middot; JAIPUR</span>
-        <span class="hero-coord hero-coord--tr">SYS.v2.6 &middot; ACTIVE</span>
-
-        <!-- Split: text left, canvas right -->
-        <div class="hero--split">
-
-          <div class="hero-pane--text">
-            <div class="hero-overline">
-              <span class="hero-overline-num">00</span>
-              <span class="hero-overline-rule"></span>
-              <span>Senior Product Manager &middot; AI Builder &middot; Jaipur</span>
-            </div>
-
-            <h1 class="hero-name">Gaurav Gupta</h1>
-
-            <p class="hero-headline-new">
-              9 products shipped<br>
-              <em>across</em> enterprise CX,<br>
-              AI apps, and B2C platforms.
-            </p>
-
-            <p class="hero-statement-new">
-              Senior PM with 10 years building systems &mdash; from physical architecture to JindalX enterprise CX to AI-native consumer products. I don&rsquo;t just write PRDs; I ship working prototypes. 3 are live today.
-            </p>
-
-            <div class="hero-actions-new">
-              <a href="#contact" data-panel="panel-contact" class="btn-primary-hero">Get in touch &rarr;</a>
-              <a href="#experience" data-panel="panel-experience" class="btn-ghost-hero">View Work &rarr;</a>
-            </div>
-
-            <div class="hero-live-products">
-              <a href="https://vitae-health.vercel.app/" target="_blank" rel="noopener" class="hero-product-chip">
-                <span class="hero-product-dot"></span>
-                <span class="hero-product-name">Vitae</span>
-                <span class="hero-product-desc">Health records AI</span>
-                <span class="hero-product-live">live &nearr;</span>
-              </a>
-              <a href="https://blinkit-command-hub.vercel.app/" target="_blank" rel="noopener" class="hero-product-chip">
-                <span class="hero-product-dot"></span>
-                <span class="hero-product-name">Blinkit Hub</span>
-                <span class="hero-product-desc">Dark store ops</span>
-                <span class="hero-product-live">live &nearr;</span>
-              </a>
-              <a href="https://argaur.github.io/founder-crm-landing/" target="_blank" rel="noopener" class="hero-product-chip">
-                <span class="hero-product-dot"></span>
-                <span class="hero-product-name">Rethink CRM</span>
-                <span class="hero-product-desc">Founder sales tool</span>
-                <span class="hero-product-live">live &nearr;</span>
-              </a>
+      <section class="panel-home">
+        <div class="hero-split">
+          <div class="hero-left">
+            <p class="hero-eyebrow label">GG / PORTFOLIO &mdash; SENIOR PM &amp; AI STRATEGIST</p>
+            <h1 class="hero-headline">Designing systems across architecture, enterprise software, and AI.</h1>
+            <p class="hero-sub body-l">Building at the intersection of product thinking and machine intelligence. From B.Arch to AI strategy &mdash; every layer deliberate.</p>
+            <div class="hero-ctas">
+              <a class="cta-primary" data-panel="panel-experience">View Experience &rarr;</a>
+              <a class="cta-outline" data-panel="panel-contact">Contact</a>
             </div>
           </div>
-
-          <div class="hero-pane--canvas">
-            <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <div class="canvas-system-label">SYSTEMS MAP &middot; ACTIVE</div>
-          </div>
-
-        </div><!-- /.hero--split -->
-
-        <!-- Full-width stats strip below split -->
-        <div class="hero-stats-strip">
-          <div class="hero-stat-item">
-            <span class="hero-stat-num">10</span>
-            <span class="hero-stat-label">Years spanning<br>physical + digital</span>
-          </div>
-          <div class="hero-stat-sep"></div>
-          <div class="hero-stat-item">
-            <span class="hero-stat-num">9</span>
-            <span class="hero-stat-label">Products shipped</span>
-          </div>
-          <div class="hero-stat-sep"></div>
-          <div class="hero-stat-item">
-            <span class="hero-stat-num">3</span>
-            <span class="hero-stat-label">Live in production</span>
-          </div>
-          <div class="hero-stat-sep"></div>
-          <div class="hero-currently">
-            <span class="hero-currently-label">Currently</span>
-            <span class="hero-currently-text">Rethink AI MPM Cohort 7 &middot; Last shipped: Vitae lab parser</span>
-          </div>
-          <div class="hero-stat-sep"></div>
-          <div class="hero-stat-socials">
-            <a href="https://www.linkedin.com/in/ar-gaurav/" target="_blank" rel="noopener" class="hero-social-link">LinkedIn &nearr;</a>
-            <a href="mailto:ar.gaurav20@gmail.com" class="hero-social-link">Email &nearr;</a>
+          <div class="hero-right">
+            <div class="stack-wrap" id="stack-wrap">
+              <canvas class="stack-diagram" id="stack-diagram" aria-label="Career architecture — building constructed floor by floor from architecture through AI product strategy"></canvas>
+              <button type="button" class="stack-replay" id="stack-replay" aria-label="Replay animation">&#8635; REPLAY</button>
+            </div>
           </div>
         </div>
-
+        <div class="stats-strip">
+          <div class="stat"><span class="stat__num">8+</span><span class="stat__lbl label">years in product</span></div>
+          <div class="stat"><span class="stat__num">7</span><span class="stat__lbl label">B2B SaaS shipped</span></div>
+          <div class="stat"><span class="stat__num">5,000+</span><span class="stat__lbl label">enterprise users</span></div>
+          <div class="stat"><span class="stat__num">30+</span><span class="stat__lbl label">initiatives delivered</span></div>
+        </div>
       </section>
     </div>
 
-    <!-- EXPERIENCE & WORK (merged) -->
+    <!-- EXPERIENCE -->
     <div id="panel-experience" class="panel">
-      <section class="section section--cream grid-bg">
-        <div class="section-inner section-inner--wide">
+      <section class="panel-experience">
+        <div class="exp-container">
+          <h2 class="panel-title display-m">Experience</h2>
+          <div class="exp-layout">
+            <div class="exp-rail" aria-hidden="true"></div>
+            <div class="acc-list" id="acc-list">
 
-          <div class="section-label">
-            <span class="section-label-line"></span>
-            <span class="section-label-text">01 &mdash; EXPERIENCE &amp; PROJECTS</span>
-            <span class="section-label-rule"></span>
-          </div>
-
-          <div class="work-header">
-            <div>
-              <h2 class="work-title">Career &amp; Projects</h2>
-              <p class="work-sub">10 years spanning architecture, founding, and enterprise product. Click any role to expand its work.</p>
-            </div>
-            <span class="work-hint">Click role &rarr; projects</span>
-          </div>
-
-          <div class="career-arc">
-            <div class="career-arc-bar">
-              <div class="career-arc-seg career-arc-seg--arch" style="flex:2.75"></div>
-              <div class="career-arc-seg career-arc-seg--pivot" style="flex:3.2"></div>
-              <div class="career-arc-seg career-arc-seg--tech" style="flex:4.8"></div>
-            </div>
-            <div class="career-arc-labels">
-              <span class="career-arc-lbl career-arc-lbl--arch">Architecture &middot; 2014</span>
-              <span class="career-arc-lbl career-arc-lbl--pivot">Founding &middot; 2017</span>
-              <span class="career-arc-lbl career-arc-lbl--tech">Product &amp; AI &middot; 2025</span>
-            </div>
-          </div>
-
-          <div class="exp-rows">
-
-            <div class="exp-row">
-              <div class="exp-left">
-                <div class="exp-period">Jun 2022 &ndash; May 2025</div>
-                <span class="exp-badge exp-badge--tech">Tech</span>
-              </div>
-              <div class="exp-gutter">
-                <div class="exp-dot exp-dot--tech"></div>
-                <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(45,93,161,.4),rgba(45,93,161,.3))"></div>
-              </div>
-              <div class="exp-right">
-                <div class="exp-header">
-                  <div>
-                    <div class="exp-company">JindalX</div>
-                    <div class="exp-meta">Sr. PM &ndash; Digital Transformation &middot; 3 yrs</div>
+              <div class="acc-row" data-acc="jindal">
+                <div class="acc-node"></div>
+                <div class="acc-inner">
+                  <div class="acc-header">
+                    <div class="acc-meta">
+                      <span class="acc-company label">JindalX</span>
+                      <span class="acc-role">Sr. Product Manager &amp; AI Strategist</span>
+                    </div>
+                    <div class="acc-right">
+                      <span class="acc-date label">Jun 2022 &ndash; May 2025</span>
+                      <span class="acc-chevron">&#x25BE;</span>
+                    </div>
                   </div>
-                  <span class="exp-toggle-icon">+</span>
-                </div>
-                <div class="exp-body">
-                  <ul>
-                    <li>Built 7 enterprise products 0&rarr;1 for 5,000+ users across HR, EdTech, BI, and Quality</li>
-                    <li>Led AI integration into ATS, performance management, and knowledge platforms</li>
-                    <li>Managed cross-functional squads across product, engineering, design, and data</li>
-                  </ul>
-                  <div class="exp-projects" data-company="jindal"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="exp-row">
-              <div class="exp-left">
-                <div class="exp-period">Sep 2020 &ndash; Jul 2022</div>
-                <span class="exp-badge exp-badge--tech">Tech</span>
-              </div>
-              <div class="exp-gutter">
-                <div class="exp-dot exp-dot--tech"></div>
-                <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(45,93,161,.4),rgba(191,92,58,.3))"></div>
-              </div>
-              <div class="exp-right">
-                <div class="exp-header">
-                  <div>
-                    <div class="exp-company">OneValley</div>
-                    <div class="exp-meta">Product Manager &middot; 1y 10m</div>
+                  <div class="acc-body">
+                    <p class="body-m acc-desc">Owned a portfolio of 7 B2B SaaS products across 16 enterprise clients and 5,000+ users &mdash; AI-powered talent management, performance evaluation, knowledge management, CRM, HRMS, quality auditing, and BI. Delivered 30+ digital transformation initiatives.</p>
+                    <div class="exp-projects" data-company="jindal"></div>
                   </div>
-                  <span class="exp-toggle-icon">+</span>
-                </div>
-                <div class="exp-body">
-                  <ul>
-                    <li>Product strategy and roadmap for a global startup ecosystem platform</li>
-                    <li>Drove feature development aligned with investor and founder personas</li>
-                  </ul>
-                  <div class="exp-projects" data-company="onevalley"></div>
                 </div>
               </div>
-            </div>
 
-            <div class="exp-row">
-              <div class="exp-left">
-                <div class="exp-period">Jul 2017 &ndash; Sep 2020</div>
-                <span class="exp-badge exp-badge--pivot">Pivot</span>
-              </div>
-              <div class="exp-gutter">
-                <div class="exp-dot exp-dot--pivot"></div>
-                <div class="exp-connector" style="background:linear-gradient(to bottom,rgba(191,92,58,.4),rgba(61,92,58,.3))"></div>
-              </div>
-              <div class="exp-right">
-                <div class="exp-header">
-                  <div>
-                    <div class="exp-company">Taccomacco Edutainment</div>
-                    <div class="exp-meta">Co-Founder &amp; COO &middot; 3y 2m</div>
+              <div class="acc-row" data-acc="onevalley">
+                <div class="acc-node"></div>
+                <div class="acc-inner">
+                  <div class="acc-header">
+                    <div class="acc-meta">
+                      <span class="acc-company label">OneValley</span>
+                      <span class="acc-role">Product Manager</span>
+                    </div>
+                    <div class="acc-right">
+                      <span class="acc-date label">Sep 2020 &ndash; Jul 2022</span>
+                      <span class="acc-chevron">&#x25BE;</span>
+                    </div>
                   </div>
-                  <span class="exp-toggle-icon">+</span>
-                </div>
-                <div class="exp-body">
-                  <ul>
-                    <li>Co-founded a design-meets-technology venture &mdash; the bridge between worlds</li>
-                    <li>Managed full operations, client relationships, and product direction</li>
-                    <li>Translated physical design thinking into digital product strategy</li>
-                  </ul>
-                  <div class="exp-projects" data-company="taccomacco"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="exp-row exp-row--last">
-              <div class="exp-left">
-                <div class="exp-period">Sep 2014 &ndash; Jun 2017</div>
-                <span class="exp-badge exp-badge--arch">Arch</span>
-              </div>
-              <div class="exp-gutter">
-                <div class="exp-dot exp-dot--arch"></div>
-              </div>
-              <div class="exp-right">
-                <div class="exp-header">
-                  <div>
-                    <div class="exp-company">RSP Design Consultants</div>
-                    <div class="exp-meta">Design Manager (Architecture) &middot; 2y 9m</div>
+                  <div class="acc-body">
+                    <p class="body-m acc-desc">Owned product strategy and roadmap for Passport (B2C founder platform) and PassportOS (B2B SaaS) serving accelerators, universities, and banks. Contributed to Entrepreneurship World Cup platform across 200+ countries.</p>
+                    <div class="exp-projects" data-company="onevalley"></div>
                   </div>
-                  <span class="exp-toggle-icon">+</span>
-                </div>
-                <div class="exp-body">
-                  <ul>
-                    <li>Led design and delivery of large-scale architectural projects</li>
-                    <li>Managed multi-disciplinary teams and contractor coordination</li>
-                    <li>Built the foundation: systems thinking, spatial logic, UX at scale</li>
-                  </ul>
-                  <div class="exp-projects" data-company="rsp"></div>
                 </div>
               </div>
-            </div>
 
+              <div class="acc-row" data-acc="taccomacco">
+                <div class="acc-node"></div>
+                <div class="acc-inner">
+                  <div class="acc-header">
+                    <div class="acc-meta">
+                      <span class="acc-company label">Taccomacco Edutainment</span>
+                      <span class="acc-role">Co-Founder &amp; COO</span>
+                    </div>
+                    <div class="acc-right">
+                      <span class="acc-date label">Jul 2017 &ndash; Sep 2020</span>
+                      <span class="acc-chevron">&#x25BE;</span>
+                    </div>
+                  </div>
+                  <div class="acc-body">
+                    <p class="body-m acc-desc">Co-founded digital content platform from 0&rarr;1. Launched Android &amp; iOS apps, shipped 500+ digital titles in 6 months. Ran a creator incubation program &mdash; mentored 6+ creators from concept to published product.</p>
+                    <div class="exp-projects" data-company="taccomacco"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="acc-row" data-acc="rsp">
+                <div class="acc-node"></div>
+                <div class="acc-inner">
+                  <div class="acc-header">
+                    <div class="acc-meta">
+                      <span class="acc-company label">RSP Design Consultants</span>
+                      <span class="acc-role">Design Manager &mdash; Architecture</span>
+                    </div>
+                    <div class="acc-right">
+                      <span class="acc-date label">Sep 2014 &ndash; Jun 2017</span>
+                      <span class="acc-chevron">&#x25BE;</span>
+                    </div>
+                  </div>
+                  <div class="acc-body">
+                    <p class="body-m acc-desc">Managed 40+ architectural projects across IT, healthcare, and institutional sectors. 95% client retention, 25% delivery time reduction. Systems thinking and delivery discipline &mdash; foundational to product work.</p>
+                    <div class="exp-projects" data-company="rsp"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
@@ -337,415 +207,258 @@
 
     <!-- PROJECTS -->
     <div id="panel-projects" class="panel">
-      <section class="section section--cream grid-bg">
-        <div class="section-inner section-inner--wide">
-
-          <div class="section-label">
-            <span class="section-label-line"></span>
-            <span class="section-label-text">03 &mdash; PROJECTS</span>
-            <span class="section-label-rule"></span>
+      <section class="panel-projects">
+        <div class="projects-container">
+          <div class="projects-header">
+            <h2 class="display-m panel-title">Projects</h2>
+            <p class="projects-sort-note label">Sorted by complexity</p>
           </div>
-
-          <div class="cs-header">
-            <h2 class="cs-title">Projects</h2>
-            <p class="cs-sub">PM case studies and personal builds &mdash; from problem discovery through shipped product.</p>
+          <div class="projects-divider"></div>
+          <div id="projects-list" class="projects-list">
+            <!-- Rendered by app.js renderProjects() -->
           </div>
-
-          <div class="projects-section">
-            <h3 class="projects-section__label">Case Studies</h3>
-            <div class="cs-table">
-
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="0" data-stage="prd,shipped">
-                <span class="cs-index">01</span>
-                <div class="cs-content">
-                  <div class="cs-category">Health Tech &middot; AI &middot; PWA</div>
-                  <div class="cs-name">Vitae &mdash; Health Records, Finally Understood</div>
-                  <div class="cs-problem">Indian families manage health via blurry WhatsApp prescription photos. &#8377;6,000+ crore lost to repeat tests.</div>
-                  <span class="stage-badge stage-badge--shipped">PRD &middot; Shipped</span>
-                </div>
-                <div class="cs-stats">
-                  <span>Live product</span>
-                  <span>6-person team</span>
-                  <span>10 days shipped</span>
-                  <span class="cs-arrow">&rarr;</span>
-                </div>
-              </div>
-
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="1" data-stage="prd,prototype">
-                <span class="cs-index">02</span>
-                <div class="cs-content">
-                  <div class="cs-category">B2B SaaS &middot; AI &middot; Telegram Bot</div>
-                  <div class="cs-name">Rethink CRM &mdash; Conversation-First Sales Tool</div>
-                  <div class="cs-problem">60&ndash;70% of founders abandon CRM within 4 weeks. WhatsApp forwards become structured deal data.</div>
-                  <span class="stage-badge">PRD &middot; Prototype</span>
-                </div>
-                <div class="cs-stats">
-                  <span>39-page PRD</span>
-                  <span>16 tools analysed</span>
-                  <span>10 founder interviews</span>
-                  <span class="cs-arrow">&rarr;</span>
-                </div>
-              </div>
-
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="2" data-stage="prd,prototype,shipped">
-                <span class="cs-index">03</span>
-                <div class="cs-content">
-                  <div class="cs-category">Quick Commerce &middot; Operations</div>
-                  <div class="cs-name">Blinkit Dark Store Command Hub &mdash; Peak-Hour Decision Support</div>
-                  <div class="cs-problem">Managers discover picker issues 3&ndash;7 minutes too late during the 6&ndash;10 PM peak window.</div>
-                  <span class="stage-badge stage-badge--shipped">PRD &middot; Prototype &middot; Shipped</span>
-                </div>
-                <div class="cs-stats">
-                  <span>Working prototype</span>
-                  <span>3 research methods</span>
-                  <span>Unit economics modelled</span>
-                  <span class="cs-arrow">&rarr;</span>
-                </div>
-              </div>
-
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="3" data-stage="prd,prototype">
-                <span class="cs-index">04</span>
-                <div class="cs-content">
-                  <div class="cs-category">Consumer App &middot; AI</div>
-                  <div class="cs-name">Trivo &mdash; Group Travel Planning Platform</div>
-                  <div class="cs-problem">1&ndash;2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments surface mid-trip.</div>
-                  <span class="stage-badge">PRD &middot; Prototype</span>
-                </div>
-                <div class="cs-stats">
-                  <span>6 user interviews</span>
-                  <span>$168.7B market</span>
-                  <span>Full PRD</span>
-                  <span class="cs-arrow">&rarr;</span>
-                </div>
-              </div>
-
-              <div class="cs-row reveal-child" role="button" tabindex="0" data-cs="4" data-stage="prd,prototype">
-                <span class="cs-index">05</span>
-                <div class="cs-content">
-                  <div class="cs-category">Consumer Platform &middot; Algorithm</div>
-                  <div class="cs-name">YouTube 2.0 &mdash; Fixing Long-Form Discovery</div>
-                  <div class="cs-problem">47% of users manually search every session. 29% of Gen Z sessions end without watching anything.</div>
-                  <span class="stage-badge">PRD &middot; Wireframes &middot; Prototype</span>
-                </div>
-                <div class="cs-stats">
-                  <span>171 survey responses</span>
-                  <span>4 product solutions</span>
-                  <span>27+ sources</span>
-                  <span class="cs-arrow">&rarr;</span>
-                </div>
-              </div>
-
+          <div class="proj-section">
+            <p class="proj-section-header label">// PERSONAL PROJECTS</p>
+            <div class="proj-index" id="personal-projects-table">
+              <!-- Rendered by app.js personalProjects array as .cs-row elements -->
             </div>
-          </div>
-
-          <div class="projects-section">
-            <h3 class="projects-section__label">Personal Projects</h3>
-            <div class="cs-table" id="personal-projects-table">
-              <!-- rendered by app.js -->
-            </div>
-          </div>
-
-        </div>
-      </section>
-    </div>
-
-    <!-- SKILLS -->
-    <div id="panel-skills" class="panel">
-      <section class="section section--navy blueprint-bg">
-        <div class="section-inner section-inner--wide">
-
-          <div class="section-label section-label--dark">
-            <span class="section-label-line"></span>
-            <span class="section-label-text">04 &mdash; SKILLS</span>
-            <span class="section-label-rule section-label-rule--dark"></span>
-          </div>
-
-          <div class="skills-grid">
-
-            <div class="skill-group reveal-child">
-              <span class="skill-group-num">01</span>
-              <div class="skill-group-header">Product Management</div>
-              <ul class="skill-list">
-                <li class="skill-top">Product Strategy</li>
-                <li class="skill-top">AI Product Management</li>
-                <li class="skill-top">Systems Thinking</li>
-                <li>Product Lifecycle Mgmt</li>
-                <li>Go-to-Market Strategy</li>
-                <li>Roadmap Development</li>
-                <li>Feature Prioritization</li>
-                <li>Agile / Scrum / Kanban</li>
-                <li>Stakeholder Management</li>
-              </ul>
-            </div>
-
-            <div class="skill-group reveal-child">
-              <span class="skill-group-num">02</span>
-              <div class="skill-group-header">AI &amp; Automation</div>
-              <ul class="skill-list">
-                <li class="skill-top">AI Strategy &amp; Implementation</li>
-                <li class="skill-top">Generative AI Integration</li>
-                <li class="skill-top">AI Agent Development</li>
-                <li>Autonomous Automation</li>
-                <li>MLOps</li>
-                <li>Workflow Optimization</li>
-              </ul>
-            </div>
-
-            <div class="skill-group reveal-child">
-              <span class="skill-group-num">03</span>
-              <div class="skill-group-header">Analytics &amp; Data</div>
-              <ul class="skill-list">
-                <li class="skill-top">SQL</li>
-                <li class="skill-top">Power BI</li>
-                <li class="skill-top">Python</li>
-                <li>Looker Studio</li>
-                <li>Tableau</li>
-                <li>Google Analytics</li>
-                <li>Excel (Advanced)</li>
-              </ul>
-            </div>
-
-            <div class="skill-group reveal-child">
-              <span class="skill-group-num">04</span>
-              <div class="skill-group-header">No-Code / Low-Code</div>
-              <ul class="skill-list">
-                <li class="skill-top">Airtable (Advanced)</li>
-                <li class="skill-top">n8n</li>
-                <li class="skill-top">Make.com</li>
-                <li>Zapier</li>
-                <li>Power Automate</li>
-                <li>Automation Anywhere</li>
-              </ul>
-            </div>
-
-            <div class="skill-group reveal-child">
-              <span class="skill-group-num">05</span>
-              <div class="skill-group-header">Product Tools</div>
-              <ul class="skill-list">
-                <li class="skill-top">Figma</li>
-                <li class="skill-top">Jira</li>
-                <li class="skill-top">Miro</li>
-                <li>Confluence</li>
-                <li>Balsamiq</li>
-                <li>Lucidchart</li>
-              </ul>
-            </div>
-
-            <div class="skill-group reveal-child">
-              <span class="skill-group-num">06</span>
-              <div class="skill-group-header">Dev &amp; Integration</div>
-              <ul class="skill-list">
-                <li class="skill-top">API Integration</li>
-                <li class="skill-top">RESTful Services</li>
-                <li class="skill-top">HTML / CSS / JS</li>
-                <li>Microservices</li>
-                <li>JSON / XML</li>
-              </ul>
-            </div>
-
           </div>
         </div>
       </section>
     </div>
 
-    <!-- PHILOSOPHY / HOW I THINK -->
-    <div id="panel-philosophy" class="panel">
-      <section class="section section--navy blueprint-bg philosophy-wrap">
+    <!-- HOW I THINK -->
+    <div id="panel-how-i-think" class="panel">
+      <section class="panel-how-i-think">
+        <div class="hit-container">
+          <h2 class="display-m panel-title">How I Think</h2>
+          <div class="hit-layout">
 
-        <div class="section-label section-label--dark">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">05 &mdash; HOW I THINK</span>
-          <span class="section-label-rule section-label-rule--dark"></span>
+            <div class="hit-principles">
+              <p class="label hit-section-label">// PRODUCT PRINCIPLES</p>
+              <ol class="principles-list">
+                <li class="principle-item">
+                  <span class="principle-num label">01</span>
+                  <span class="principle-text body-m">Purpose before aesthetics &mdash; define what the artifact must prove before any visual choice</span>
+                </li>
+                <li class="principle-item">
+                  <span class="principle-num label">02</span>
+                  <span class="principle-text body-m">Systems thinking precedes solution design &mdash; understand the whole before optimising a part</span>
+                </li>
+                <li class="principle-item">
+                  <span class="principle-num label">03</span>
+                  <span class="principle-text body-m">Complexity is a product failure &mdash; if users need training, the design failed first</span>
+                </li>
+                <li class="principle-item">
+                  <span class="principle-num label">04</span>
+                  <span class="principle-text body-m">Build for the constraint, not the ideal &mdash; constraints reveal the real design problem</span>
+                </li>
+                <li class="principle-item">
+                  <span class="principle-num label">05</span>
+                  <span class="principle-text body-m">Medium is the message &mdash; the artifact itself should demonstrate the skill, not just claim it</span>
+                </li>
+                <li class="principle-item">
+                  <span class="principle-num label">06</span>
+                  <span class="principle-text body-m">Ship to learn &mdash; a hypothesis is only as good as the data that refutes or confirms it</span>
+                </li>
+                <li class="principle-item principle-item--accent">
+                  <span class="principle-num label">07</span>
+                  <span class="principle-text body-m"><em>Inevitability test &mdash; if the design language could be transplanted to a different product without feeling wrong, it was imposed, not derived</em></span>
+                </li>
+              </ol>
+              <p class="principles-footer label">BUILD_ENV: B.ARCH (NIT JAIPUR) &rarr; COO &rarr; PM &rarr; AI_STRATEGY</p>
+            </div>
+
+            <div class="hit-capabilities">
+              <p class="label hit-section-label">// CAPABILITIES MATRIX</p>
+              <div class="cap-matrix">
+
+                <div class="cap-cell">
+                  <span class="cap-num">01</span>
+                  <h3 class="cap-title label">AI Strategy</h3>
+                  <ul class="cap-skills">
+                    <li class="cap-skill cap-skill--primary">LLM Product Design</li>
+                    <li class="cap-skill cap-skill--primary">AI Workflow Architecture</li>
+                    <li class="cap-skill cap-skill--primary">Prompt Engineering</li>
+                    <li class="cap-skill cap-skill--secondary">RAG Systems</li>
+                    <li class="cap-skill cap-skill--secondary">Model Evaluation</li>
+                  </ul>
+                </div>
+
+                <div class="cap-cell">
+                  <span class="cap-num">02</span>
+                  <h3 class="cap-title label">Product Management</h3>
+                  <ul class="cap-skills">
+                    <li class="cap-skill cap-skill--primary">Roadmap &amp; Prioritisation</li>
+                    <li class="cap-skill cap-skill--primary">Discovery &amp; Research</li>
+                    <li class="cap-skill cap-skill--primary">B2B SaaS GTM</li>
+                    <li class="cap-skill cap-skill--secondary">Sprint Planning</li>
+                    <li class="cap-skill cap-skill--secondary">OKR Design</li>
+                  </ul>
+                </div>
+
+                <div class="cap-cell">
+                  <span class="cap-num">03</span>
+                  <h3 class="cap-title label">Systems Architecture</h3>
+                  <ul class="cap-skills">
+                    <li class="cap-skill cap-skill--primary">Data Flow Mapping</li>
+                    <li class="cap-skill cap-skill--primary">API Design Thinking</li>
+                    <li class="cap-skill cap-skill--primary">Enterprise Integration</li>
+                    <li class="cap-skill cap-skill--secondary">Systems Modelling</li>
+                    <li class="cap-skill cap-skill--secondary">Automation Design</li>
+                  </ul>
+                </div>
+
+                <div class="cap-cell">
+                  <span class="cap-num">04</span>
+                  <h3 class="cap-title label">Data &amp; Analytics</h3>
+                  <ul class="cap-skills">
+                    <li class="cap-skill cap-skill--primary">SQL &amp; Python</li>
+                    <li class="cap-skill cap-skill--primary">Power BI / Airtable</li>
+                    <li class="cap-skill cap-skill--primary">Metrics Design</li>
+                    <li class="cap-skill cap-skill--secondary">Cohort Analysis</li>
+                    <li class="cap-skill cap-skill--secondary">A/B Testing</li>
+                  </ul>
+                </div>
+
+                <div class="cap-cell">
+                  <span class="cap-num">05</span>
+                  <h3 class="cap-title label">Design &amp; UX</h3>
+                  <ul class="cap-skills">
+                    <li class="cap-skill cap-skill--primary">Information Architecture</li>
+                    <li class="cap-skill cap-skill--primary">Interaction Design</li>
+                    <li class="cap-skill cap-skill--primary">Design Systems</li>
+                    <li class="cap-skill cap-skill--secondary">Figma / Stitch</li>
+                    <li class="cap-skill cap-skill--secondary">Prototyping</li>
+                  </ul>
+                </div>
+
+                <div class="cap-cell">
+                  <span class="cap-num">06</span>
+                  <h3 class="cap-title label">Leadership</h3>
+                  <ul class="cap-skills">
+                    <li class="cap-skill cap-skill--primary">Cross-functional Teams</li>
+                    <li class="cap-skill cap-skill--primary">Stakeholder Alignment</li>
+                    <li class="cap-skill cap-skill--primary">0&rarr;1 Execution</li>
+                    <li class="cap-skill cap-skill--secondary">Hiring &amp; Mentoring</li>
+                    <li class="cap-skill cap-skill--secondary">Executive Comms</li>
+                  </ul>
+                </div>
+
+              </div>
+              <!-- keep canvas hidden — app.js initHowIThinkCanvas() references this element -->
+              <canvas id="skills-graph-canvas" class="skills-graph-canvas is-hidden" aria-hidden="true"></canvas>
+            </div>
+
+          </div>
         </div>
-
-        <div class="philosophy-header">
-          <h2 class="philosophy-hed">
-            Systems over features.<br>
-            <em class="philosophy-hed-em">Always.</em>
-          </h2>
-          <p class="philosophy-subhed">
-            I approach product work the way an architect approaches a building &mdash;
-            first understand the forces acting on the system, then design the structure.
-            Features are load-bearing walls, not decoration.
-          </p>
-        </div>
-
-        <div class="principles-grid">
-
-          <div class="principle reveal-child">
-            <div class="principle-num">01</div>
-            <h3 class="principle-title">Systems Over Features</h3>
-            <p class="principle-body">Features are the visible 10%. The system underneath &mdash; data flow, decision rights, escalation paths &mdash; is the 90% that decides whether the feature ships value or noise.</p>
-          </div>
-
-          <div class="principle reveal-child">
-            <div class="principle-num">02</div>
-            <h3 class="principle-title">Compress Complexity, Don&rsquo;t Hide It</h3>
-            <p class="principle-body">Good products don&rsquo;t pretend the underlying problem is simple; they make complexity navigable. The best interfaces expose the right three of the fourteen edge cases &mdash; deliberately.</p>
-          </div>
-
-          <div class="principle reveal-child">
-            <div class="principle-num">03</div>
-            <h3 class="principle-title">AI Reduces Operational Entropy</h3>
-            <p class="principle-body">AI is most valuable where humans repeat structured judgment under fatigue: screening, triage, routing, summarisation. It earns its place when entropy goes down, not just when capability goes up.</p>
-          </div>
-
-          <div class="principle reveal-child">
-            <div class="principle-num">04</div>
-            <h3 class="principle-title">The Interface Is the Org Chart</h3>
-            <p class="principle-body">How a tool routes work tells you who has authority. Designing software is, quietly, designing organisational behaviour. Architects know this; product people often forget it.</p>
-          </div>
-
-          <div class="principle reveal-child">
-            <div class="principle-num">05</div>
-            <h3 class="principle-title">Workflows Reveal Culture</h3>
-            <p class="principle-body">You cannot understand a company&rsquo;s product priorities by reading its roadmap. You understand them by watching what its top-paid people actually do every day.</p>
-          </div>
-
-          <div class="principle reveal-child">
-            <div class="principle-num">06</div>
-            <h3 class="principle-title">Build for the 6 PM Manager</h3>
-            <p class="principle-body">Enterprise software is judged at peak load, not in demos. Every screen should answer one question someone needs at 6 PM on a Tuesday, under pressure, with no time to think.</p>
-          </div>
-
-          <div class="principle principle--accent reveal-child">
-            <div class="principle-num">07</div>
-            <h3 class="principle-title">Architecture Trains the Eye</h3>
-            <p class="principle-body">Five years of drawing buildings teaches that constraints are generative. Site, brief, code, budget &mdash; they don&rsquo;t limit the design, they <em>are</em> the design. Same rule in software.</p>
-          </div>
-
-        </div><!-- /.principles-grid -->
-
       </section>
     </div>
 
     <!-- CREDENTIALS -->
     <div id="panel-credentials" class="panel">
-      <section class="section section--white grid-bg">
-        <div class="section-inner section-inner--narrow">
+      <section class="panel-credentials">
+        <div class="cred-container">
+          <h2 class="display-m panel-title">Credentials</h2>
 
-          <div class="section-label">
-            <span class="section-label-line"></span>
-            <span class="section-label-text">06 &mdash; EDUCATION &amp; CREDENTIALS</span>
-            <span class="section-label-rule"></span>
-          </div>
+          <div class="cred-split">
 
-          <div class="creds-split">
-            <div class="creds-edu">
-              <div class="creds-overline">Foundation</div>
-              <h3 class="creds-degree">Bachelor of Architecture</h3>
-              <p class="creds-institution">National Institute of Technology (NIT), Jaipur &middot; 2009&ndash;2014</p>
-              <p class="creds-quote">Five years learning how to think about space, systems, and the people who inhabit them &mdash; the same mental model, now applied to products.</p>
-            </div>
-            <div class="creds-certs">
-              <div class="creds-overline">Certifications</div>
-
-              <div class="cert-year-sep">2026</div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="rethink-mpm">
-                <div><div class="cert-name">Product Management (MPM) Cohort 7</div><div class="cert-issuer">Rethink AI</div></div>
-                <span class="cert-year">2026 &nearr;</span>
-              </div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="rethink-buildathon">
-                <div><div class="cert-name">Rethink Buildathon</div><div class="cert-issuer">Rethink AI &middot; April 2026</div></div>
-                <span class="cert-year">2026 &nearr;</span>
-              </div>
-
-              <div class="cert-year-sep">2025</div>
-
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="csm">
-                <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-issuer">Scrum Alliance</div></div>
-                <span class="cert-year">2025 &nearr;</span>
-              </div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="cspo">
-                <div><div class="cert-name">Certified Scrum Product Owner (CSPO)</div><div class="cert-issuer">Scrum Alliance</div></div>
-                <span class="cert-year">2025 &nearr;</span>
-              </div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="automation-anywhere">
-                <div><div class="cert-name">Essentials Automation Certification</div><div class="cert-issuer">Automation Anywhere</div></div>
-                <span class="cert-year">2025 &nearr;</span>
-              </div>
-
-              <div class="cert-year-sep">2024</div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="airtable-admin">
-                <div><div class="cert-name">Airtable Admin</div><div class="cert-issuer">Airtable</div></div>
-                <span class="cert-year">2024 &nearr;</span>
-              </div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="airtable-builder">
-                <div><div class="cert-name">Airtable Builder Certification</div><div class="cert-issuer">Airtable</div></div>
-                <span class="cert-year">2024 &nearr;</span>
-              </div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="power-bi">
-                <div><div class="cert-name">Learning Power BI Desktop</div><div class="cert-issuer">LinkedIn Learning</div></div>
-                <span class="cert-year">2024 &nearr;</span>
-              </div>
-
-              <div class="cert-year-sep">2023</div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="lean">
-                <div><div class="cert-name">Lean Certification</div><div class="cert-issuer">JindalX</div></div>
-                <span class="cert-year">2023 &nearr;</span>
-              </div>
-
-              <div class="cert-year-sep">2020</div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="sql">
-                <div><div class="cert-name">SQL for Data Analytics &amp; Business Intelligence</div><div class="cert-issuer">Udemy</div></div>
-                <span class="cert-year">2020 &nearr;</span>
-              </div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="data-science">
-                <div><div class="cert-name">Applied Data Science with Python &mdash; Level 2</div><div class="cert-issuer">IBM / Cognitive Class</div></div>
-                <span class="cert-year">2020 &nearr;</span>
-              </div>
-
-              <div class="cert-year-sep">Ongoing</div>
-              <div class="cert-row cert-row--linked" role="button" tabindex="0" data-cert="pm-cert">
-                <div><div class="cert-name">Product Management Professional Certificate</div><div class="cert-issuer">Udemy</div></div>
-                <span class="cert-year">&nearr;</span>
-              </div>
-              <div class="cert-row cert-row--last">
-                <div><div class="cert-name">Google Analytics Certified</div><div class="cert-issuer">Google</div></div>
-                <span class="cert-year"></span>
+            <div class="cred-col-edu">
+              <p class="label cred-section-label">Education</p>
+              <div class="cred-row cred-edu-entry">
+                <span class="cred-ref label">REF_01</span>
+                <div class="cred-info">
+                  <span class="cred-name body-m">Bachelor of Architecture (B.Arch)</span>
+                  <span class="cred-org label">MNIT Jaipur &mdash; 2009&ndash;2014</span>
+                </div>
               </div>
             </div>
+
+            <div class="cred-col-certs">
+              <p class="label cred-section-label">Certifications &mdash; High Signal</p>
+
+              <div class="cred-row" role="button" tabindex="0" data-cert="rethink-mpm">
+                <span class="cred-year label">2026</span>
+                <div class="cred-info">
+                  <span class="cred-name body-m">Mastering AI Product Management, Cohort 7</span>
+                  <span class="cred-org label">Rethink Systems</span>
+                </div>
+                <span class="cred-verify label">&#x2713;</span>
+              </div>
+              <div class="cred-row" role="button" tabindex="0" data-cert="rethink-buildathon">
+                <span class="cred-year label">2026</span>
+                <div class="cred-info">
+                  <span class="cred-name body-m">3rd Place &mdash; Rethink AI-First Buildathon</span>
+                  <span class="cred-org label">Rethink AI (competitive 10-day build sprint)</span>
+                </div>
+                <span class="cred-verify label">&#x2713;</span>
+              </div>
+              <div class="cred-row" role="button" tabindex="0" data-cert="csm">
+                <span class="cred-year label">2025</span>
+                <div class="cred-info">
+                  <span class="cred-name body-m">Certified Scrum Master (CSM)</span>
+                  <span class="cred-org label">Scrum Alliance</span>
+                </div>
+                <span class="cred-verify label">&#x2713;</span>
+              </div>
+              <div class="cred-row" role="button" tabindex="0" data-cert="cspo">
+                <span class="cred-year label">2025</span>
+                <div class="cred-info">
+                  <span class="cred-name body-m">Certified Scrum Product Owner (CSPO)</span>
+                  <span class="cred-org label">Scrum Alliance</span>
+                </div>
+                <span class="cred-verify label">&#x2713;</span>
+              </div>
+
+              <p class="label cred-section-label cred-section-label--mt">Other Certifications</p>
+              <div class="cred-row cred-collapsed" id="cred-other-toggle" role="button" tabindex="0">
+                <span class="cred-other-label body-m">9 additional certifications</span>
+                <span class="label cred-show-link">Show &darr;</span>
+              </div>
+              <div class="cred-other-list is-hidden" id="cred-other-list">
+                <div class="cred-row" role="button" tabindex="0" data-cert="automation-anywhere"><span class="cred-year label">2025</span><div class="cred-info"><span class="cred-name body-m">Essentials Automation Certification</span><span class="cred-org label">Automation Anywhere</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="airtable-admin"><span class="cred-year label">2024</span><div class="cred-info"><span class="cred-name body-m">Airtable Admin Certification</span><span class="cred-org label">Airtable</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="airtable-builder"><span class="cred-year label">2024</span><div class="cred-info"><span class="cred-name body-m">Airtable Builder Certification</span><span class="cred-org label">Airtable</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="power-bi"><span class="cred-year label">2024</span><div class="cred-info"><span class="cred-name body-m">Learning Power BI Desktop</span><span class="cred-org label">LinkedIn Learning</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="lean"><span class="cred-year label">2023</span><div class="cred-info"><span class="cred-name body-m">Lean Certification</span><span class="cred-org label">JindalX</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="sql"><span class="cred-year label">2020</span><div class="cred-info"><span class="cred-name body-m">SQL for Data Analytics &amp; Business Intelligence</span><span class="cred-org label">Udemy</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="data-science"><span class="cred-year label">2020</span><div class="cred-info"><span class="cred-name body-m">Applied Data Science with Python (Level 2)</span><span class="cred-org label">IBM / Cognitive Class</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row" role="button" tabindex="0" data-cert="pm-cert"><span class="cred-year label">&mdash;</span><div class="cred-info"><span class="cred-name body-m">Product Management Professional Certificate</span><span class="cred-org label">LinkedIn Learning</span></div><span class="cred-verify label">&#x2713;</span></div>
+                <div class="cred-row"><span class="cred-year label">&mdash;</span><div class="cred-info"><span class="cred-name body-m">Google Analytics Certified</span><span class="cred-org label">Google</span></div></div>
+              </div>
+            </div>
+
           </div>
 
+          <p class="cred-footer label">CERTS: 13 VERIFIED &nbsp;/&nbsp; CSM &middot; CSPO &middot; IBM &middot; AIRTABLE &middot; AA</p>
         </div>
       </section>
     </div>
 
     <!-- CONTACT -->
     <div id="panel-contact" class="panel">
-      <section class="section section--navy blueprint-bg contact-wrap-new">
-
-        <div class="section-label section-label--dark">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">07 &mdash; CONTACT</span>
-          <span class="section-label-rule section-label-rule--dark"></span>
+      <section class="panel-contact">
+        <div class="contact-container">
+          <div class="contact-status-pill">
+            <span class="status-dot"></span>
+            AVAILABLE FOR SENIOR PM / AI STRATEGY ROLES
+          </div>
+          <h2 class="display-m panel-title">Contact</h2>
+          <p class="body-l contact-lead">
+            If you&apos;re building something ambitious at the intersection of product and AI &mdash; or you want to talk about systems thinking, architecture, or PM strategy &mdash; I&apos;d like to hear from you.
+          </p>
+          <div class="contact-ctas">
+            <div class="contact-cta-group">
+              <span class="contact-channel-label label">Direct Channel</span>
+              <a class="cta-primary" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com &rarr;</a>
+            </div>
+            <a class="cta-secondary" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener">LinkedIn &nearr;</a>
+            <a class="cta-secondary" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener">Download Resume &darr;</a>
+          </div>
+          <p class="label contact-location">Jaipur, India &mdash; Open to remote</p>
+          <p class="contact-footer label">DOMAINS: ENTERPRISE_SAAS &nbsp;/&nbsp; EDTECH &nbsp;/&nbsp; FINTECH &nbsp;/&nbsp; QUICK_COMMERCE</p>
+          <canvas id="contact-canvas" class="contact-canvas" aria-hidden="true"></canvas>
         </div>
-
-        <div class="contact--split">
-
-          <div class="contact-pane--text">
-            <h2 class="contact-headline">Have a product<br>challenge to solve?</h2>
-            <p class="contact-sub">Whether it&rsquo;s an AI idea, a product strategy question, or you&rsquo;re looking for a senior PM &mdash; I&rsquo;m listening.</p>
-
-            <div class="contact-links">
-              <a href="mailto:ar.gaurav20@gmail.com" class="contact-email">ar.gaurav20@gmail.com</a>
-              <a href="https://www.linkedin.com/in/ar-gaurav/" target="_blank" rel="noopener" class="contact-linkedin">linkedin.com/in/ar-gaurav &rarr;</a>
-              <a href="assets/gaurav-gupta-resume-2026.pdf" download="gaurav-gupta-resume-2026.pdf" class="contact-resume">Download Resume &darr;</a>
-            </div>
-
-            <div class="footer-bar">
-              <span class="footer-logo">GG</span>
-              <span class="footer-copy">Gaurav Gupta &middot; Jaipur &middot; 2026</span>
-            </div>
-          </div>
-
-          <div class="contact-pane--canvas">
-            <canvas id="contact-canvas" aria-hidden="true"></canvas>
-            <div class="canvas-system-label">SYSTEM STATE &middot; AVAILABLE</div>
-          </div>
-
-        </div><!-- /.contact--split -->
-
       </section>
     </div>
 
