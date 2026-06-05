@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Philosophy | STRATEGIST_OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#333537",
+                    "secondary-fixed": "#dde3eb",
+                    "primary-fixed": "#72ff70",
+                    "tertiary": "#fff8f4",
+                    "on-tertiary": "#442b10",
+                    "surface-container-lowest": "#0c0e10",
+                    "on-secondary": "#2b3137",
+                    "on-tertiary-fixed": "#2c1701",
+                    "on-surface": "#e2e2e5",
+                    "on-tertiary-fixed-variant": "#5d4124",
+                    "on-surface-variant": "#b9ccb2",
+                    "primary-fixed-dim": "#00e639",
+                    "surface-variant": "#333537",
+                    "outline": "#84967e",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#7a5b3c",
+                    "on-background": "#e2e2e5",
+                    "secondary-container": "#41474e",
+                    "on-secondary-container": "#b0b6bd",
+                    "inverse-on-surface": "#2f3033",
+                    "background": "#121416",
+                    "on-primary-fixed": "#002203",
+                    "secondary-fixed-dim": "#c1c7cf",
+                    "secondary": "#c1c7cf",
+                    "error": "#ffb4ab",
+                    "surface-container": "#1e2022",
+                    "surface-bright": "#38393c",
+                    "tertiary-container": "#ffd5ae",
+                    "tertiary-fixed-dim": "#e7bf99",
+                    "surface-dim": "#121416",
+                    "outline-variant": "#3b4b37",
+                    "inverse-primary": "#006e16",
+                    "primary": "#ebffe2",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#41474e",
+                    "surface-container-high": "#282a2c",
+                    "on-secondary-fixed": "#161c22",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#e2e2e5",
+                    "on-primary-fixed-variant": "#00530e",
+                    "surface-tint": "#00e639",
+                    "primary-container": "#00ff41",
+                    "surface-container-low": "#1a1c1e",
+                    "on-primary": "#003907",
+                    "tertiary-fixed": "#ffdcbd",
+                    "surface": "#121416",
+                    "on-primary-container": "#007117"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-side": "48px",
+                    "gutter": "12px",
+                    "stack-gap": "24px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Geist"],
+                    "body-md": ["Geist"],
+                    "display": ["Geist"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #121416;
+            background-image: 
+                linear-gradient(to right, #3b4b37 1px, transparent 1px),
+                linear-gradient(to bottom, #3b4b37 1px, transparent 1px);
+            background-size: 80px 80px;
+            background-attachment: fixed;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-cell:hover {
+            border-color: #00ff41;
+            background-color: rgba(0, 255, 65, 0.02);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation -->
+<header class="w-full top-0 sticky bg-background dark:bg-background border-b border-outline-variant dark:border-outline-variant z-50">
+<nav class="flex justify-between items-center h-16 px-margin-side max-w-container-max mx-auto">
+<div class="font-label-md text-label-md font-bold tracking-tighter text-primary-fixed">
+                STRATEGIST_OS
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">Work</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">Expertise</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-primary-fixed border-b border-primary-fixed pb-1" href="#">About</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">Insights</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-200 ease-in-out" href="#">Contact</a>
+</div>
+<button class="bg-primary-fixed text-on-primary-fixed font-label-md text-label-md px-6 py-2 uppercase tracking-widest hover:bg-primary-fixed-dim transition-colors">
+                Connect
+            </button>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-side pt-24 pb-32">
+<!-- Manifesto Header -->
+<div class="mb-20">
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-widest block mb-4">Foundation // 00</span>
+<h1 class="font-display text-display max-w-2xl text-on-surface leading-tight">
+                The Manifesto for <span class="text-primary-fixed">Strategic Logic</span>
+</h1>
+<div class="w-24 h-px bg-primary-fixed mt-8"></div>
+</div>
+<!-- Principles Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-t border-l border-outline-variant">
+<!-- Principle 01 -->
+<div class="kinetic-cell group p-8 border-r border-b border-outline-variant transition-all duration-300 min-h-[320px] flex flex-col justify-between bg-background/80 backdrop-blur-sm">
+<span class="font-label-md text-label-md text-primary-fixed">01</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Systems First</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Everything is a node in a larger network. We design for the ripple, not the splash. Total ecosystem awareness is the prerequisite for impact.
+                    </p>
+</div>
+</div>
+<!-- Principle 02 -->
+<div class="kinetic-cell group p-8 border-r border-b border-outline-variant transition-all duration-300 min-h-[320px] flex flex-col justify-between bg-background/80 backdrop-blur-sm">
+<span class="font-label-md text-label-md text-primary-fixed">02</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Radical Clarity</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        If it's not simple, it's not solved. Complexity is a debt we refuse to carry. We strip away the noise until only the essential remains.
+                    </p>
+</div>
+</div>
+<!-- Principle 03 -->
+<div class="kinetic-cell group p-8 border-r border-b border-outline-variant transition-all duration-300 min-h-[320px] flex flex-col justify-between bg-background/80 backdrop-blur-sm">
+<span class="font-label-md text-label-md text-primary-fixed">03</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Kinetic Feedback</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Interfaces should feel alive. Every action deserves a precise, immediate response. Motion is not decoration; it is information in flight.
+                    </p>
+</div>
+</div>
+<!-- Principle 04 -->
+<div class="kinetic-cell group p-8 border-r border-b border-outline-variant transition-all duration-300 min-h-[320px] flex flex-col justify-between bg-background/80 backdrop-blur-sm">
+<span class="font-label-md text-label-md text-primary-fixed">04</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Data Sovereignty</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        User trust is our primary currency. Privacy is not a feature; it is the foundation. Security is woven into the very first line of code.
+                    </p>
+</div>
+</div>
+<!-- Principle 05 -->
+<div class="kinetic-cell group p-8 border-r border-b border-outline-variant transition-all duration-300 min-h-[320px] flex flex-col justify-between bg-background/80 backdrop-blur-sm">
+<span class="font-label-md text-label-md text-primary-fixed">05</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Relentless Iteration</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        The first version is a hypothesis. The tenth version is a product. Perfection is an asymptote we approach through constant measurement.
+                    </p>
+</div>
+</div>
+<!-- Principle 06 -->
+<div class="kinetic-cell group p-8 border-r border-b border-outline-variant transition-all duration-300 min-h-[320px] flex flex-col justify-between bg-background/80 backdrop-blur-sm">
+<span class="font-label-md text-label-md text-primary-fixed">06</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Human-Centric AI</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Machines serve people, not the other way around. We build tools that empower, not replace. Intelligence must be legible and controllable.
+                    </p>
+</div>
+</div>
+<!-- Principle 07 (Capstone) -->
+<div class="group p-8 border-r border-b border-outline-variant bg-surface-container-low transition-all duration-300 min-h-[320px] flex flex-col justify-between relative overflow-hidden">
+<div class="absolute inset-0 border-4 border-primary-fixed/20 pointer-events-none"></div>
+<span class="font-label-md text-label-md text-primary-fixed font-bold">07 [CAPSTONE]</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary-fixed mb-4 uppercase tracking-tight font-bold">Intentional Design</h3>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed italic">
+                        We do not build because we can; we build because it must exist. Every pixel is a decision. Every interaction is an act of will.
+                    </p>
+</div>
+</div>
+<!-- Negative Space / Empty Cell -->
+<div class="hidden md:flex p-8 border-r border-b border-outline-variant bg-transparent opacity-20 flex-col items-center justify-center grayscale">
+<div class="w-full h-px bg-outline-variant rotate-45"></div>
+<div class="w-full h-px bg-outline-variant -rotate-45 -mt-px"></div>
+</div>
+</div>
+<!-- Manifesto Footer Meta -->
+<div class="mt-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-t border-outline-variant pt-12">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Revision Index</p>
+<p class="font-label-md text-label-md text-on-surface">V4.2.0-STABLE</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Philosophy Status</p>
+<div class="flex items-center gap-2 justify-end">
+<span class="w-2 h-2 bg-primary-fixed"></span>
+<span class="font-label-md text-label-md text-primary-fixed">OPERATIONAL_PROTOCOL_ACTIVE</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container-low dark:bg-surface-container-low border-t border-outline-variant dark:border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap px-margin-side max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<div class="font-label-md text-label-md text-on-surface font-bold tracking-tighter">STRATEGIST_OS</div>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed">
+                    © 2024 STRATEGIST_OS. ALL RIGHTS RESERVED.
+                </p>
+</div>
+<div class="flex gap-8 md:justify-end items-center">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">LinkedIn</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">GitHub</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Twitter</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Email</a>
+</div>
+</div>
+</footer>
+<script>
+        // Atmospheric effect: Subtle grid pulse on scroll
+        window.addEventListener('scroll', () => {
+            const opacity = Math.min(0.1, window.scrollY / 1000);
+            document.body.style.backgroundColor = `rgba(18, 20, 22, ${1 - opacity})`;
+        });
+
+        // Cell hover micro-interaction
+        document.querySelectorAll('.kinetic-cell').forEach(cell => {
+            cell.addEventListener('mouseenter', () => {
+                const number = cell.querySelector('.text-primary-fixed');
+                if (number) number.classList.add('translate-x-1');
+            });
+            cell.addEventListener('mouseleave', () => {
+                const number = cell.querySelector('.text-primary-fixed');
+                if (number) number.classList.remove('translate-x-1');
+            });
+        });
+    </script>
+</body></html>

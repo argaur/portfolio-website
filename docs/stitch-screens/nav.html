@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio Identity | AI Strategy &amp; Design</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for technical feel */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121416;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4b37;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #84967e;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#3b4b37",
+                      "on-primary-fixed-variant": "#00530e",
+                      "background": "#121416",
+                      "on-surface": "#e2e2e5",
+                      "surface-dim": "#121416",
+                      "surface-container-high": "#282a2c",
+                      "surface-tint": "#00e639",
+                      "on-secondary-container": "#b0b6bd",
+                      "secondary-fixed": "#dde3eb",
+                      "tertiary-container": "#ffd5ae",
+                      "surface-container-highest": "#333537",
+                      "on-surface-variant": "#b9ccb2",
+                      "on-background": "#e2e2e5",
+                      "surface-container-low": "#1a1c1e",
+                      "surface-container": "#1e2022",
+                      "tertiary": "#fff8f4",
+                      "inverse-surface": "#e2e2e5",
+                      "inverse-on-surface": "#2f3033",
+                      "inverse-primary": "#006e16",
+                      "primary-fixed": "#72ff70",
+                      "outline": "#84967e",
+                      "on-tertiary": "#442b10",
+                      "primary": "#ebffe2",
+                      "secondary": "#c1c7cf",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#2c1701",
+                      "on-primary-fixed": "#002203",
+                      "on-primary-container": "#007117",
+                      "surface-container-lowest": "#0c0e10",
+                      "primary-fixed-dim": "#00e639",
+                      "on-secondary-fixed": "#161c22",
+                      "error": "#ffb4ab",
+                      "secondary-container": "#41474e",
+                      "surface": "#121416",
+                      "surface-bright": "#38393c",
+                      "tertiary-fixed": "#ffdcbd",
+                      "surface-variant": "#333537",
+                      "on-tertiary-container": "#7a5b3c",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#41474e",
+                      "secondary-fixed-dim": "#c1c7cf",
+                      "on-primary": "#003907",
+                      "on-tertiary-fixed-variant": "#5d4124",
+                      "on-secondary": "#2b3137",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#e7bf99",
+                      "primary-container": "#00ff41"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "stack-gap": "24px",
+                      "gutter": "12px",
+                      "container-max": "1440px",
+                      "margin-side": "48px"
+              },
+              "fontFamily": {
+                      "body-md": ["Geist"],
+                      "display": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Geist"],
+                      "label-md": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                      "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-[90] bg-background border-b border-outline-variant h-[72px] flex items-center">
+<div class="flex justify-between items-center w-full px-margin-side max-w-container-max mx-auto">
+<!-- Identity Block -->
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight leading-none">Portfolio</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Senior PM &amp; AI Strategist</span>
+</div>
+<!-- Desktop Links -->
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-primary border-b border-primary pb-1 transition-colors duration-200" href="#">Work</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Insights</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Labs</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Archives</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Resume</a>
+</nav>
+<!-- Hamburger (Mobile Only) -->
+<button class="md:hidden flex items-center justify-center p-2 text-on-surface" onclick="toggleSideNav()">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Mobile Overlay) -->
+<aside class="fixed inset-y-0 right-0 w-full md:w-80 bg-surface-container-highest border-l border-outline-variant z-[100] translate-x-full transition-transform duration-300 ease-in-out flex flex-col" id="side-nav">
+<div class="flex items-center justify-between p-gutter border-b border-outline-variant h-[72px]">
+<div class="flex flex-col">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Portfolio Identity</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Strategy &amp; Design</span>
+</div>
+<button class="p-2" onclick="toggleSideNav()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto p-gutter space-y-2 py-8">
+<a class="flex items-center space-x-4 p-4 bg-primary-container text-on-primary-container font-bold rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">01</span>
+<span class="font-label-md text-label-md">Work</span>
+<span class="material-symbols-outlined ml-auto" data-icon="work">work</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">02</span>
+<span class="font-label-md text-label-md">Expertise</span>
+<span class="material-symbols-outlined ml-auto" data-icon="psychology">psychology</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">03</span>
+<span class="font-label-md text-label-md">About</span>
+<span class="material-symbols-outlined ml-auto" data-icon="person">person</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">04</span>
+<span class="font-label-md text-label-md">Insights</span>
+<span class="material-symbols-outlined ml-auto" data-icon="article">article</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">05</span>
+<span class="font-label-md text-label-md">Labs</span>
+<span class="material-symbols-outlined ml-auto" data-icon="science">science</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">06</span>
+<span class="font-label-md text-label-md">Archives</span>
+<span class="material-symbols-outlined ml-auto" data-icon="inventory_2">inventory_2</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">07</span>
+<span class="font-label-md text-label-md">Contact</span>
+<span class="material-symbols-outlined ml-auto" data-icon="mail">mail</span>
+</a>
+<a class="flex items-center space-x-4 p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors duration-200 rounded-sm" href="#">
+<span class="font-label-md text-label-md opacity-60">08</span>
+<span class="font-label-md text-label-md">Resume</span>
+<span class="material-symbols-outlined ml-auto" data-icon="description">description</span>
+</a>
+</nav>
+<div class="p-gutter border-t border-outline-variant grid grid-cols-2 gap-2">
+<a class="flex items-center justify-center space-x-2 py-3 border border-outline-variant hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined text-label-sm" data-icon="link">link</span>
+<span class="font-label-sm text-label-sm">LinkedIn</span>
+</a>
+<a class="flex items-center justify-center space-x-2 py-3 border border-outline-variant hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined text-label-sm" data-icon="code">code</span>
+<span class="font-label-sm text-label-sm">GitHub</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-[72px] min-h-screen">
+<!-- Hero Section -->
+<section class="px-margin-side max-w-container-max mx-auto py-24 border-b border-outline-variant">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-gap items-end">
+<div class="lg:col-span-8">
+<h1 class="font-display text-display text-primary uppercase leading-tight max-w-4xl">
+                        Synthesizing AI Strategy into <span class="text-on-surface">Precision Products.</span>
+</h1>
+<p class="mt-8 font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Orchestrating complex machine learning ecosystems through meticulous product management and technical design. I build instruments for the future of enterprise intelligence.
+                    </p>
+</div>
+<div class="lg:col-span-4 flex flex-col items-end space-y-4">
+<div class="w-full h-48 bg-surface-container border border-outline-variant flex flex-col p-gutter">
+<div class="flex justify-between items-center mb-auto">
+<span class="font-label-sm text-label-sm text-primary uppercase">Status: Active</span>
+<div class="w-2 h-2 bg-primary animate-pulse"></div>
+</div>
+<div class="space-y-1">
+<div class="h-1 bg-outline-variant w-full">
+<div class="h-full bg-primary w-[82%]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">System Confidence: 0.82</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Projects Bento Grid -->
+<section class="px-margin-side max-w-container-max mx-auto py-24">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter auto-rows-[240px]">
+<!-- Project 1: Large Focus -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A cinematic, low-angle shot of a high-tech data center with servers glowing in a deep forest green and charcoal grey palette. The environment is clean, professional, and architectural, emphasizing technical precision and massive computational power. Lighting is dramatic and atmospheric, using cool-toned industrial aesthetics to match a premium dark-mode portfolio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ_ILWdlS7E_KPuIZ1cq7mUqm_lLTSr6Nh74B0olnE1zeypWosBoXObVK9ZiM2fWPd2iBl3PcBa_9BdJE3PrYGksr6cJIbFQvQbELEve3dcUq9Y5-hgF4pfZpO4NLeMIqvAhMdhH6nd1ZOJSHN465zykYNmarjIDgO7UFctBJwfoXZMp1i0ywMCYVoXJAczM0Ctnx6HhWh57CMqImVkeNMnmxF6BVaweRnqtvpcLxSOYA_GdJgMDyDbVviPPdxrHUHpbUcnmoznUU"/>
+<div class="absolute inset-0 p-stack-gap flex flex-col justify-between">
+<div class="flex justify-between">
+<span class="bg-background border border-outline-variant px-3 py-1 font-label-sm text-label-sm">Project 01</span>
+<span class="material-symbols-outlined text-primary" data-icon="north_east">north_east</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Neural Nexus Engine</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time prediction infrastructure for supply chain logistics.</p>
+</div>
+</div>
+</div>
+<!-- Project 2: Expertise Chip -->
+<div class="lg:col-span-2 bg-surface-container-high border border-outline-variant p-stack-gap flex flex-col justify-center">
+<span class="font-label-sm text-label-sm text-primary uppercase mb-4 tracking-widest">Expertise</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 border border-outline-variant font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors duration-200">LLM Fine-tuning</span>
+<span class="px-3 py-1 border border-outline-variant font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors duration-200">Product Strategy</span>
+<span class="px-3 py-1 border border-outline-variant font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors duration-200">RAG Architectures</span>
+<span class="px-3 py-1 border border-outline-variant font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors duration-200">User Research</span>
+<span class="px-3 py-1 border border-outline-variant font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors duration-200">Data Visualization</span>
+</div>
+</div>
+<!-- Project 3: Vertical Stat -->
+<div class="lg:row-span-2 bg-surface-container-lowest border border-outline-variant p-stack-gap flex flex-col items-center justify-center text-center">
+<div class="w-full aspect-square border border-outline-variant mb-6 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+<span class="font-display text-4xl text-primary">12+</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Years Experience</span>
+<p class="mt-4 font-body-md text-body-md">Leading cross-functional teams in Silicon Valley and beyond.</p>
+</div>
+<!-- Project 4: Secondary Project -->
+<div class="bg-surface-container border border-outline-variant group relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-30 grayscale group-hover:opacity-60 transition-opacity" data-alt="Abstract macro photography of silicon wafer textures and circuit patterns. The lighting is harsh and directional, highlighting the etched metallic surfaces in shades of emerald green and dark obsidian. The style is microscopic, clinical, and high-tech, reflecting deep technical expertise and AI hardware focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeUIHUvN5Y6twUEaZSdk9HzoMsf_VBJrvCJ3Zk0IUC9qo61xsoTlvciUfhhkhDbm5n8VbIIUQE_rIK7DX0FYudFjQR1kvznWpgycpe13FJ2z1UGJWYUdakwSNRFUTU6wDXoxNBgHqUo6UGvsfXmtnRkwHfnd6jnlJxk11VAwN33IBlyNOvlxLWV60s4HxgiZ0BQPeh-Ww258dN6OPmOTokwE08GJDO1Cssop3OpdFKCfsv4cqeS_RvCq5kkZ_ngcjQovkPaopweow"/>
+<div class="absolute inset-0 p-gutter flex flex-col justify-end">
+<h4 class="font-label-md text-label-md text-on-surface">Synthetix API</h4>
+</div>
+</div>
+<!-- Project 5: Mini List -->
+<div class="bg-background border border-outline-variant p-gutter flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="article">article</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">RECENT INSIGHTS</span>
+</div>
+<ul class="space-y-2 mt-4">
+<li class="font-label-sm text-label-sm text-on-surface hover:text-primary cursor-pointer truncate">→ Scaling ML Prototypes</li>
+<li class="font-label-sm text-label-sm text-on-surface hover:text-primary cursor-pointer truncate">→ The Ethics of Generative AI</li>
+<li class="font-label-sm text-label-sm text-on-surface hover:text-primary cursor-pointer truncate">→ PMing for Black Box Models</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Technical Specs / Experience List -->
+<section class="px-margin-side max-w-container-max mx-auto py-24 bg-surface-container-low">
+<div class="flex flex-col space-y-12">
+<div class="flex items-end justify-between border-b border-outline-variant pb-4">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">Technical Trajectory</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">[02/08] CV / EXPERIENCE</span>
+</div>
+<div class="space-y-0">
+<!-- Item 1 -->
+<div class="group border-b border-outline-variant py-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-container transition-colors duration-200">
+<div class="md:col-span-2 font-label-md text-label-md text-on-surface-variant">2021 — PRESENT</div>
+<div class="md:col-span-4 font-headline-md text-headline-md text-on-surface">Lead AI Strategist</div>
+<div class="md:col-span-4 font-body-md text-body-md text-on-surface-variant">Cognitive Labs Inc.</div>
+<div class="md:col-span-2 flex justify-end">
+<span class="px-3 py-1 border border-primary text-primary font-label-sm text-label-sm">SAN FRANCISCO</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group border-b border-outline-variant py-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-container transition-colors duration-200">
+<div class="md:col-span-2 font-label-md text-label-md text-on-surface-variant">2018 — 2021</div>
+<div class="md:col-span-4 font-headline-md text-headline-md text-on-surface">Senior Product Manager</div>
+<div class="md:col-span-4 font-body-md text-body-md text-on-surface-variant">DataFlow Systems</div>
+<div class="md:col-span-2 flex justify-end">
+<span class="px-3 py-1 border border-outline-variant text-on-surface-variant font-label-sm text-label-sm">LONDON</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group border-b border-outline-variant py-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-container transition-colors duration-200">
+<div class="md:col-span-2 font-label-md text-label-md text-on-surface-variant">2015 — 2018</div>
+<div class="md:col-span-4 font-headline-md text-headline-md text-on-surface">Technical Analyst</div>
+<div class="md:col-span-4 font-body-md text-body-md text-on-surface-variant">Vector Analytics</div>
+<div class="md:col-span-2 flex justify-end">
+<span class="px-3 py-1 border border-outline-variant text-on-surface-variant font-label-sm text-label-sm">NEW YORK</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="px-margin-side max-w-container-max mx-auto py-12 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center text-on-surface-variant space-y-8 md:space-y-0">
+<div class="flex flex-col space-y-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold">PORTFOLIO IDENTITY</span>
+<span class="font-label-sm text-label-sm">© 2024 ALL RIGHTS RESERVED — SYSTEM v4.2.1</span>
+</div>
+<div class="flex space-x-12">
+<div class="flex flex-col space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">CONTACT</span>
+<a class="font-label-md text-label-md hover:text-on-surface transition-colors" href="mailto:hello@identity.ai">hello@identity.ai</a>
+</div>
+<div class="flex flex-col space-y-2">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">SOCIAL</span>
+<div class="flex space-x-4">
+<a class="font-label-md text-label-md hover:text-on-surface" href="#">LN</a>
+<a class="font-label-md text-label-md hover:text-on-surface" href="#">GH</a>
+<a class="font-label-md text-label-md hover:text-on-surface" href="#">TW</a>
+</div>
+</div>
+</div>
+<div class="hidden md:block">
+<button class="w-12 h-12 border border-outline-variant flex items-center justify-center hover:bg-surface-container-high transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<span class="material-symbols-outlined" data-icon="north">north</span>
+</button>
+</div>
+</footer>
+</main>
+<script>
+        function toggleSideNav() {
+            const nav = document.getElementById('side-nav');
+            const isOpen = nav.classList.contains('translate-x-0');
+            
+            if (isOpen) {
+                nav.classList.remove('translate-x-0');
+                nav.classList.add('translate-x-full');
+            } else {
+                nav.classList.remove('translate-x-full');
+                nav.classList.add('translate-x-0');
+            }
+        }
+
+        // Close sidebar on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const nav = document.getElementById('side-nav');
+                nav.classList.add('translate-x-full');
+                nav.classList.remove('translate-x-0');
+            }
+        });
+    </script>
+</body></html>

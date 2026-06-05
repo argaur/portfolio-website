@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact — STRAT_OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#ffd5ae",
+            "error-container": "#93000a",
+            "on-secondary-container": "#b0b6bd",
+            "on-primary-fixed-variant": "#00530e",
+            "surface-bright": "#38393c",
+            "on-secondary-fixed-variant": "#41474e",
+            "surface-container-lowest": "#0c0e10",
+            "on-tertiary": "#442b10",
+            "surface-container-high": "#282a2c",
+            "on-tertiary-container": "#7a5b3c",
+            "primary-container": "#00ff41",
+            "on-background": "#e2e2e5",
+            "primary-fixed": "#72ff70",
+            "surface-container-highest": "#333537",
+            "on-primary": "#003907",
+            "inverse-primary": "#006e16",
+            "on-tertiary-fixed-variant": "#5d4124",
+            "surface-container": "#1e2022",
+            "on-surface-variant": "#b9ccb2",
+            "on-primary-container": "#007117",
+            "on-error": "#690005",
+            "error": "#ffb4ab",
+            "secondary": "#c1c7cf",
+            "tertiary-fixed-dim": "#e7bf99",
+            "outline-variant": "#3b4b37",
+            "on-secondary": "#2b3137",
+            "on-tertiary-fixed": "#2c1701",
+            "surface-tint": "#00e639",
+            "primary": "#ebffe2",
+            "secondary-container": "#41474e",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed": "#ffdcbd",
+            "surface-dim": "#121416",
+            "outline": "#84967e",
+            "surface-container-low": "#1a1c1e",
+            "surface-variant": "#333537",
+            "surface": "#121416",
+            "tertiary": "#fff8f4",
+            "inverse-surface": "#e2e2e5",
+            "on-surface": "#e2e2e5",
+            "background": "#121416",
+            "on-secondary-fixed": "#161c22",
+            "primary-fixed-dim": "#00e639",
+            "inverse-on-surface": "#2f3033",
+            "secondary-fixed": "#dde3eb",
+            "secondary-fixed-dim": "#c1c7cf",
+            "on-primary-fixed": "#002203"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-max": "1440px",
+            "stack-gap": "24px",
+            "base": "4px",
+            "gutter": "12px",
+            "margin-side": "48px"
+          },
+          "fontFamily": {
+            "body-md": ["Geist", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-lg": ["Geist", "sans-serif"],
+            "display": ["Geist", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "headline-md": ["Geist", "sans-serif"],
+            "headline-lg-mobile": ["Geist", "sans-serif"],
+            "headline-lg": ["Geist", "sans-serif"]
+          },
+          "fontSize": {
+            "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+            "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #121416;
+      color: #e2e2e5;
+      overflow-x: hidden;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .grid-bg {
+      background-image: 
+        linear-gradient(to right, #3b4b37 1px, transparent 1px),
+        linear-gradient(to bottom, #3b4b37 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .weight-shift-hover:hover {
+      font-weight: 700;
+      color: #00ff41;
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- Shared Component: TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-side h-16 bg-background dark:bg-background border-b border-outline-variant">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary">
+      STRAT_OS
+    </div>
+<div class="hidden md:flex items-center gap-8 font-label-md text-label-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Work</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Insights</a>
+<a class="text-primary dark:text-primary border-b border-primary pb-1 font-bold" href="#">Contact</a>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<!-- Main Canvas -->
+<main class="min-h-screen grid-bg relative flex flex-col justify-center px-margin-side pt-16 pb-16">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Left Content Block -->
+<div class="md:col-span-7 flex flex-col space-y-stack-gap">
+<div class="inline-flex items-center gap-2 mb-4">
+<div class="w-2 h-2 bg-primary-container"></div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Available for Q4 Advisory</span>
+</div>
+<h1 class="font-display text-display text-primary leading-tight">
+          Get in touch
+        </h1>
+<p class="font-body-lg text-body-lg text-on-secondary-container max-w-xl">
+          Available for strategic partnerships and high-impact advisory. We specialize in engineering precision architectures for AI-native enterprise solutions.
+        </p>
+<div class="pt-8 space-y-4">
+<div>
+<span class="font-label-sm text-label-sm text-outline block mb-1">DIRECT CHANNEL</span>
+<a class="font-headline-lg text-headline-lg text-primary weight-shift-hover transition-all duration-200" href="mailto:hello@kineticprecision.com">
+              hello@kineticprecision.com
+            </a>
+</div>
+<div class="pt-4">
+<a class="inline-flex items-center gap-2 group" href="#">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">LINKEDIN</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" style="font-size: 18px;">north_east</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Diagram Block -->
+<div class="md:col-span-5 flex justify-center md:justify-end mt-12 md:mt-0">
+<div class="relative w-64 h-64 border border-outline-variant bg-surface-container-low p-8 flex items-center justify-center">
+<!-- Systems Diagram SVG -->
+<svg class="w-full h-full text-outline-variant" viewbox="0 0 100 100">
+<!-- Connection Lines -->
+<line stroke="currentColor" stroke-width="0.5" x1="20" x2="80" y1="20" y2="20"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="80" x2="80" y1="20" y2="80"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="80" x2="20" y1="80" y2="80"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="20" x2="20" y1="80" y2="20"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="50" x2="50" y1="20" y2="80"></line>
+<!-- Nodes -->
+<!-- Node 1: Top Left -->
+<rect fill="#121416" height="8" stroke="currentColor" stroke-width="1" width="8" x="16" y="16"></rect>
+<rect fill="#00ff41" height="4" width="4" x="18" y="18"></rect>
+<!-- Node 2: Top Right -->
+<rect fill="#121416" height="8" stroke="currentColor" stroke-width="1" width="8" x="76" y="16"></rect>
+<rect fill="#00ff41" height="4" width="4" x="78" y="18"></rect>
+<!-- Node 3: Bottom Right -->
+<rect fill="#121416" height="8" stroke="currentColor" stroke-width="1" width="8" x="76" y="76"></rect>
+<rect fill="#00ff41" height="4" width="4" x="78" y="78"></rect>
+<!-- Node 4: Bottom Left -->
+<rect fill="#121416" height="8" stroke="currentColor" stroke-width="1" width="8" x="16" y="76"></rect>
+<rect fill="#00ff41" height="4" width="4" x="18" y="78"></rect>
+<!-- Center Descriptor -->
+<text class="uppercase tracking-tighter" fill="#84967e" font-family="JetBrains Mono" font-size="4" text-anchor="middle" x="50" y="52">STRAT_OS V1.0</text>
+</svg>
+<!-- Decorative Corner Accents -->
+<div class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-primary"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-surface border-t border-outline-variant py-4 px-margin-side flex justify-between items-center">
+<div class="font-label-md text-label-md font-bold text-on-surface">
+      © 2024 KINETIC PRECISION
+    </div>
+<div class="flex items-center gap-6">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-widest hidden sm:inline">PRECISION ENGINEERED</span>
+<div class="flex gap-4">
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary hover:underline transition-all duration-150" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary hover:underline transition-all duration-150" href="#">Terms</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary hover:underline transition-all duration-150" href="#">Security</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Script for Atmospheric Background -->
+<script>
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      const grid = document.querySelector('.grid-bg');
+      if (grid) {
+        grid.style.backgroundPosition = `${mouseX * 20}px ${mouseY * 20}px`;
+      }
+    });
+  </script>
+</body></html>

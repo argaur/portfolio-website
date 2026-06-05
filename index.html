@@ -1,431 +1,692 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gaurav Gupta — Senior PM &amp; AI Builder</title>
-  <meta name="description" content="Senior PM with 10 years building systems — 7 B2B SaaS products, 16 enterprise clients, 5,000+ users. Hands-on AI builder. 3 live products in production. Based in Jaipur, India.">
-  <link rel="canonical" href="https://gauravg-portfolio.vercel.app/">
-  <meta property="og:title" content="Gaurav Gupta — Senior PM &amp; AI Builder">
-  <meta property="og:description" content="7 B2B SaaS products, 16 enterprise clients, 5,000+ users — enterprise PM turned hands-on AI builder. 3 live products in production.">
-  <meta property="og:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://gauravg-portfolio.vercel.app/">
-  <meta property="og:site_name" content="Gaurav Gupta — Portfolio">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gaurav Gupta — Senior PM &amp; AI Builder">
-  <meta name="twitter:description" content="7 B2B SaaS products, 16 enterprise clients, 5,000+ users — enterprise PM turned hands-on AI builder. 3 live products in production.">
-  <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
-  <meta name="theme-color" content="#0e0e12">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <title>Gaurav Gupta — Senior PM &amp; AI Strategist</title>
+  <meta name="description" content="Senior PM with 8+ years building systems — 7 B2B SaaS products, 16 enterprise clients, 5,000+ users. Hands-on AI builder based in Jaipur, India.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+  <!-- Design System Tokens (Kinetic Precision) -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background":               "#121416",
+            "surface":                  "#121416",
+            "surface-dim":              "#121416",
+            "surface-bright":           "#38393c",
+            "surface-container-lowest": "#0c0e10",
+            "surface-container-low":    "#1a1c1e",
+            "surface-container":        "#1e2022",
+            "surface-container-high":   "#282a2c",
+            "surface-container-highest":"#333537",
+            "surface-variant":          "#333537",
+            "on-surface":               "#e2e2e5",
+            "on-surface-variant":       "#b9ccb2",
+            "on-background":            "#e2e2e5",
+            "outline":                  "#84967e",
+            "outline-variant":          "#3b4b37",
+            "primary":                  "#ebffe2",
+            "primary-container":        "#00ff41",
+            "primary-fixed":            "#72ff70",
+            "primary-fixed-dim":        "#00e639",
+            "on-primary":               "#003907",
+            "on-primary-container":     "#007117",
+            "on-primary-fixed":         "#002203",
+            "on-primary-fixed-variant": "#00530e",
+            "inverse-primary":          "#006e16",
+            "secondary":                "#c1c7cf",
+            "secondary-container":      "#41474e",
+            "secondary-fixed":          "#dde3eb",
+            "secondary-fixed-dim":      "#c1c7cf",
+            "on-secondary":             "#2b3137",
+            "on-secondary-container":   "#b0b6bd",
+            "on-secondary-fixed":       "#161c22",
+            "on-secondary-fixed-variant":"#41474e",
+            "tertiary":                 "#fff8f4",
+            "tertiary-container":       "#ffd5ae",
+            "tertiary-fixed":           "#ffdcbd",
+            "tertiary-fixed-dim":       "#e7bf99",
+            "on-tertiary":              "#442b10",
+            "on-tertiary-container":    "#7a5b3c",
+            "on-tertiary-fixed":        "#2c1701",
+            "on-tertiary-fixed-variant":"#5d4124",
+            "error":                    "#ffb4ab",
+            "error-container":          "#93000a",
+            "on-error":                 "#690005",
+            "on-error-container":       "#ffdad6",
+            "inverse-surface":          "#e2e2e5",
+            "inverse-on-surface":       "#2f3033",
+            "surface-tint":             "#00e639",
+          },
+          borderRadius: { DEFAULT:"0px", lg:"0px", xl:"0px", full:"9999px" },
+          spacing: {
+            "stack-gap":"24px","gutter":"12px",
+            "margin-side":"48px","base":"4px","container-max":"1440px",
+          },
+          fontFamily: {
+            "display":            ["Geist","sans-serif"],
+            "headline-lg":        ["Geist","sans-serif"],
+            "headline-lg-mobile": ["Geist","sans-serif"],
+            "headline-md":        ["Geist","sans-serif"],
+            "body-lg":            ["Geist","sans-serif"],
+            "body-md":            ["Geist","sans-serif"],
+            "label-md":           ["JetBrains Mono","monospace"],
+            "label-sm":           ["JetBrains Mono","monospace"],
+          },
+          fontSize: {
+            "display":            ["48px",{lineHeight:"1.1", letterSpacing:"-0.02em",fontWeight:"600"}],
+            "headline-lg":        ["32px",{lineHeight:"1.2", letterSpacing:"-0.01em",fontWeight:"500"}],
+            "headline-lg-mobile": ["28px",{lineHeight:"1.2", fontWeight:"500"}],
+            "headline-md":        ["24px",{lineHeight:"1.3", letterSpacing:"-0.01em",fontWeight:"500"}],
+            "body-lg":            ["18px",{lineHeight:"1.6", letterSpacing:"0",       fontWeight:"400"}],
+            "body-md":            ["16px",{lineHeight:"1.5", letterSpacing:"0",       fontWeight:"400"}],
+            "label-md":           ["14px",{lineHeight:"1.4", letterSpacing:"0.02em", fontWeight:"500"}],
+            "label-sm":           ["12px",{lineHeight:"1.4", letterSpacing:"0.04em", fontWeight:"500"}],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+
+    /* SPA Panel System */
+    body{overflow:hidden;height:100vh;}
+    .panels-wrap{height:calc(100vh - 64px);position:relative;overflow:hidden;}
+    .v3-panel{position:absolute;inset:0;overflow-y:auto;display:none;}
+    .v3-panel.is-active{display:block;}
+
+    /* Grid backgrounds */
+    .grid-bg{background-image:linear-gradient(to right,#3b4b37 1px,transparent 1px),linear-gradient(to bottom,#3b4b37 1px,transparent 1px);background-size:80px 80px;}
+    .grid-pattern{background-image:linear-gradient(to right,rgba(132,150,126,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(132,150,126,0.05) 1px,transparent 1px);background-size:40px 40px;}
+    .skills-grid-bg{background-image:linear-gradient(to right,rgba(59,75,55,0.1) 1px,transparent 1px),linear-gradient(to bottom,rgba(59,75,55,0.1) 1px,transparent 1px);background-size:40px 40px;}
+    .cred-grid-bg{background-image:linear-gradient(to right,rgba(59,75,55,0.1) 1px,transparent 1px),linear-gradient(to bottom,rgba(59,75,55,0.1) 1px,transparent 1px);background-size:24px 24px;}
+
+    /* Scrollbar */
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:#121416;}
+    ::-webkit-scrollbar-thumb{background:#3b4b37;}::-webkit-scrollbar-thumb:hover{background:#84967e;}
+
+    /* Typewriter */
+    @keyframes typewriter{from{width:0}to{width:100%}}
+    @keyframes frameFadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes subtleFadeIn{from{opacity:0}to{opacity:1}}
+    .animate-typewriter{overflow:hidden;white-space:nowrap;display:inline-block;width:0;animation:typewriter 0.6s steps(40,end) forwards;}
+    .animate-frame{opacity:0;animation:frameFadeIn 0.8s ease-out forwards;animation-delay:3s;}
+    .animate-hero{animation:subtleFadeIn 1s ease-out forwards;}
+    .delay-line-1{animation-delay:0.1s}.delay-line-2{animation-delay:0.4s}
+    .delay-line-3{animation-delay:0.8s}.delay-line-4{animation-delay:1.1s}
+    .delay-line-5{animation-delay:1.5s}.delay-line-6{animation-delay:1.8s}
+    .delay-line-7{animation-delay:2.2s}.delay-line-8{animation-delay:2.5s}
+    @media(prefers-reduced-motion:reduce){.animate-typewriter,.animate-frame,.animate-hero{animation:none!important;opacity:1!important;width:auto!important;}}
+
+    /* Accordion */
+    .accordion-content{transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease;max-height:0;overflow:hidden;opacity:0;}
+    .accordion-row.is-open .accordion-content{max-height:500px;opacity:1;}
+    .timeline-dot{transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}
+    .caret-icon{transition:transform 0.3s ease;}
+    .accordion-row.is-open .caret-icon{transform:rotate(180deg);}
+    .etched-border{border:1px solid rgba(132,150,126,0.2);}
+
+    /* Skills */
+    @keyframes fadeInStagger{to{opacity:1;transform:translateY(0)}}
+    .skill-block{opacity:0;transform:translateY(20px);animation:fadeInStagger 0.6s cubic-bezier(0.16,1,0.3,1) forwards;}
+    .skill-block.delay-1{animation-delay:0.1s}.skill-block.delay-2{animation-delay:0.2s}
+    .skill-block.delay-3{animation-delay:0.3s}.skill-block.delay-4{animation-delay:0.4s}
+    .skill-block.delay-5{animation-delay:0.5s}.skill-block.delay-6{animation-delay:0.6s}
+    .number-bg{user-select:none;pointer-events:none;line-height:1;}
+
+    /* Work/Projects */
+    .tonal-card{transition:all 0.2s cubic-bezier(0.4,0,0.2,1);}
+    .tonal-card:hover{background-color:#1a1c1e;border-color:#00e639;}
+    .project-row{transition:background-color 0.2s ease;}
+    .project-row:hover{background-color:#1e2022;}
+    .project-row:hover .arrow-icon{transform:translateX(4px);color:#00ff41;}
+    .mono-stat{font-family:'JetBrains Mono',monospace;}
+
+    /* Philosophy */
+    .kinetic-cell{transition:all 0.3s ease;}
+    .kinetic-cell:hover{border-color:#00ff41;background-color:rgba(0,255,65,0.02);transform:translateY(-2px);}
+
+    /* Credentials */
+    .cred-scroll::-webkit-scrollbar{width:4px;}
+    .cred-scroll::-webkit-scrollbar-track{background:transparent;}
+    .cred-scroll::-webkit-scrollbar-thumb{background:#3b4b37;}
+
+    /* Nav */
+    .nav-link-active{color:#00e639!important;border-bottom:1px solid #00e639;padding-bottom:2px;}
+    #mobile-nav{transform:translateX(100%);transition:transform 0.3s ease;}
+    #mobile-nav.is-open{transform:translateX(0);}
+
+    /* Gate */
+    #gate{position:fixed;inset:0;z-index:200;background:#0c0e10;display:flex;align-items:center;justify-content:center;transition:opacity 0.4s ease;}
+    #gate.gate-hidden{opacity:0;pointer-events:none;}
+
+    /* Contact */
+    .weight-shift-hover:hover{font-weight:700;color:#00ff41;}
+  </style>
 </head>
-<body>
+<body class="bg-background text-on-background">
 
-  <!-- EMAIL GATE -->
-  <div id="gate">
-    <div class="gate-content">
-      <div class="gate-logo">GG</div>
-      <h1 class="gate-heading">Product thinking meets AI strategy.</h1>
-      <p class="gate-sub">Enter your email to explore the portfolio.</p>
-      <form id="gate-form">
-        <input id="gate-email" type="email" placeholder="your@email.com" autocomplete="email">
-        <p id="gate-error" class="gate-error"></p>
-        <button id="gate-btn" type="submit">Enter Portfolio</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MOBILE NAV OVERLAY -->
-  <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-    <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Close menu">&times;</button>
-    <nav class="nav-overlay-links">
-      <a href="#home"         class="nav-overlay-link" data-panel="panel-home"><em>00</em>Home</a>
-      <a href="#experience"   class="nav-overlay-link" data-panel="panel-experience"><em>01</em>Experience</a>
-      <a href="#projects"     class="nav-overlay-link" data-panel="panel-projects"><em>02</em>Projects</a>
-      <a href="#how-i-think"  class="nav-overlay-link" data-panel="panel-how-i-think"><em>03</em>How I Think</a>
-      <a href="#credentials"  class="nav-overlay-link" data-panel="panel-credentials"><em>04</em>Credentials</a>
-      <a href="#contact"      class="nav-overlay-link" data-panel="panel-contact"><em>05</em>Contact</a>
-    </nav>
-    <div class="nav-overlay-footer">
-      <span>Gaurav Gupta &middot; Jaipur &middot; 2026</span>
-    </div>
-  </div>
-
-  <!-- NAV -->
-  <nav id="nav" class="nav">
-    <span class="nav-logo" data-panel="panel-home">GG</span>
-    <div class="nav-links">
-      <a href="#home"        class="nav-link" data-panel="panel-home">Home</a>
-      <a href="#experience"  class="nav-link" data-panel="panel-experience">Experience</a>
-      <a href="#projects"    class="nav-link" data-panel="panel-projects">Projects</a>
-      <a href="#how-i-think" class="nav-link" data-panel="panel-how-i-think">How I Think</a>
-      <a href="#credentials" class="nav-link" data-panel="panel-credentials">Credentials</a>
-      <a href="#contact"     class="nav-link" data-panel="panel-contact">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a href="#contact" class="nav-cta" data-panel="panel-contact">Get in touch</a>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark">
-        <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<!-- EMAIL GATE -->
+<div id="gate">
+  <div class="gate-content max-w-sm w-full mx-4 p-10 border border-outline-variant bg-surface-container-lowest">
+    <div class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest mb-8">GG / PORTFOLIO — V3</div>
+    <h1 class="font-display text-headline-lg text-on-surface mb-4 leading-tight">Product thinking meets<br>AI strategy.</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mb-8">Enter your email to explore the portfolio.</p>
+    <form id="gate-form" class="flex flex-col gap-4">
+      <input id="gate-email" type="email" placeholder="your@email.com" autocomplete="email"
+        class="bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md px-4 py-3 focus:outline-none focus:border-primary-fixed-dim w-full">
+      <p id="gate-error" class="font-label-sm text-label-sm text-error hidden"></p>
+      <button id="gate-btn" type="submit"
+        class="bg-primary-container text-on-primary font-label-md text-label-md px-6 py-3 uppercase tracking-widest hover:bg-primary-fixed transition-colors">
+        Enter Portfolio →
       </button>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">&#9776;</button>
-    </div>
+    </form>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<aside id="mobile-nav" class="fixed inset-y-0 right-0 w-80 max-w-full bg-surface-container-highest border-l border-outline-variant z-[100] flex flex-col">
+  <div class="flex items-center justify-between px-6 border-b border-outline-variant h-16">
+    <span class="font-label-md text-label-md text-primary-fixed-dim font-bold tracking-tight">GAURAV GUPTA</span>
+    <button id="mobile-nav-close" class="text-on-surface-variant hover:text-on-surface">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <nav class="flex-1 overflow-y-auto py-8 px-3 space-y-1">
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-home"><span class="font-label-sm text-label-sm opacity-60 w-6">01</span><span class="font-label-md text-label-md">Home</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-experience"><span class="font-label-sm text-label-sm opacity-60 w-6">02</span><span class="font-label-md text-label-md">Experience</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-work"><span class="font-label-sm text-label-sm opacity-60 w-6">03</span><span class="font-label-md text-label-md">Work</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-projects"><span class="font-label-sm text-label-sm opacity-60 w-6">04</span><span class="font-label-md text-label-md">Projects</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-skills"><span class="font-label-sm text-label-sm opacity-60 w-6">05</span><span class="font-label-md text-label-md">Skills</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-philosophy"><span class="font-label-sm text-label-sm opacity-60 w-6">06</span><span class="font-label-md text-label-md">Philosophy</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-credentials"><span class="font-label-sm text-label-sm opacity-60 w-6">07</span><span class="font-label-md text-label-md">Credentials</span></button>
+    <button class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-contact"><span class="font-label-sm text-label-sm opacity-60 w-6">08</span><span class="font-label-md text-label-md">Contact</span></button>
   </nav>
+  <div class="px-3 py-4 border-t border-outline-variant grid grid-cols-2 gap-2">
+    <a href="https://linkedin.com/in/argaur" target="_blank" rel="noopener" class="flex items-center justify-center py-3 border border-outline-variant hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">LinkedIn</a>
+    <a href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener" class="flex items-center justify-center py-3 border border-outline-variant hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">Resume</a>
+  </div>
+</aside>
 
-  <!-- PANELS -->
-  <main class="panels-wrap">
+<!-- TOP NAV -->
+<header class="fixed top-0 left-0 right-0 z-50 h-16 bg-background border-b border-outline-variant">
+  <div class="flex justify-between items-center w-full h-full px-margin-side max-w-container-max mx-auto">
+    <button class="flex flex-col text-left nav-link" data-panel="panel-home">
+      <span class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight leading-none">Gaurav Gupta</span>
+      <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-0.5">Senior PM &amp; AI Strategist</span>
+    </button>
+    <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-home">Home</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-experience">Experience</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-work">Work</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-projects">Projects</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-skills">Skills</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-philosophy">Philosophy</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-credentials">Credentials</button>
+      <button class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors" data-panel="panel-contact">Contact</button>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button class="nav-link hidden md:block bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 uppercase tracking-widest hover:bg-primary-fixed transition-colors" data-panel="panel-contact">Get in touch</button>
+      <button id="hamburger-btn" class="md:hidden text-on-surface p-1"><span class="material-symbols-outlined">menu</span></button>
+    </div>
+  </div>
+</header>
 
-    <!-- HOME -->
-    <div id="panel-home" class="panel is-active">
-      <section class="panel-home">
-        <div class="hero-split">
-          <div class="hero-left">
-            <p class="hero-eyebrow label">GG / PORTFOLIO &mdash; SENIOR PM &amp; AI STRATEGIST</p>
-            <h1 class="hero-headline">Designing systems across architecture, enterprise software, and AI.</h1>
-            <p class="hero-sub body-l">Building at the intersection of product thinking and machine intelligence. From B.Arch to AI strategy &mdash; every layer deliberate.</p>
-            <div class="hero-ctas">
-              <a class="cta-primary" data-panel="panel-experience">View Experience &rarr;</a>
-              <a class="cta-outline" data-panel="panel-contact">Contact</a>
-            </div>
+<!-- PANELS WRAP -->
+<div class="panels-wrap mt-16">
+
+  <!-- HOME -->
+  <section id="panel-home" class="v3-panel is-active grid-pattern bg-background">
+    <div class="max-w-container-max w-full px-margin-side mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-stack-gap items-center py-20 min-h-full">
+      <div class="flex flex-col justify-center z-10 animate-hero">
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-6">GG / PORTFOLIO — SENIOR PM &amp; AI STRATEGIST</p>
+        <h1 class="font-display text-[38px] md:text-[54px] leading-[1.05] font-extrabold tracking-tighter text-on-surface mb-6 max-w-2xl">
+          DESIGNING SYSTEMS ACROSS ARCHITECTURE, ENTERPRISE SOFTWARE, AND AI.
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">Building at the intersection of product thinking and machine intelligence. From B.Arch to AI strategy — every layer deliberate.</p>
+        <div class="flex gap-4 mb-14">
+          <button class="nav-link px-8 py-3 bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary-fixed transition-all uppercase tracking-widest" data-panel="panel-experience">View Experience</button>
+          <button class="nav-link px-8 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-all uppercase tracking-widest" data-panel="panel-contact">Contact</button>
+        </div>
+        <div class="flex flex-wrap items-center gap-8 border-t border-outline-variant pt-8">
+          <div class="flex flex-col"><span class="font-display text-headline-lg font-bold text-primary-fixed-dim">8+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Years in product</span></div>
+          <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
+          <div class="flex flex-col"><span class="font-display text-headline-lg font-bold text-primary-fixed-dim">7</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">B2B SaaS shipped</span></div>
+          <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
+          <div class="flex flex-col"><span class="font-display text-headline-lg font-bold text-primary-fixed-dim">5,000+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Enterprise users</span></div>
+          <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
+          <div class="flex flex-col"><span class="font-display text-headline-lg font-bold text-primary-fixed-dim">30+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Initiatives delivered</span></div>
+        </div>
+      </div>
+      <!-- Stack Diagram (Stitch structure) -->
+      <div class="relative hidden md:flex flex-col gap-gutter border-l border-outline-variant pl-gutter">
+        <div class="absolute -top-8 -left-3 flex flex-col items-center gap-1 opacity-40 animate-frame">
+          <div class="w-[1px] h-16 bg-outline-variant"></div>
+          <span class="font-label-sm text-[10px] text-outline rotate-90 origin-left mt-2">STRUCTURE.REF</span>
+        </div>
+        <div class="border border-outline-variant bg-surface-container-low p-4 animate-frame">
+          <div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+            <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest">AI PRODUCT STRATEGY</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2023–25</span>
           </div>
-          <div class="hero-right">
-            <div class="stack-wrap" id="stack-wrap">
-              <canvas class="stack-diagram" id="stack-diagram" aria-label="Career architecture — building constructed floor by floor from architecture through AI product strategy"></canvas>
-              <button type="button" class="stack-replay" id="stack-replay" aria-label="Replay animation">&#8635; REPLAY</button>
+          <div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+            <div><span class="animate-typewriter delay-line-1">&gt; agent_workflow.deploy(production)</span></div>
+            <div><span class="animate-typewriter delay-line-2">&gt; strategy_aligned_to_okrs</span></div>
+          </div>
+        </div>
+        <div class="border border-outline-variant bg-surface-container-low p-4 animate-frame" style="animation-delay:3.1s">
+          <div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+            <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest">ENTERPRISE SaaS PM</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2020–23</span>
+          </div>
+          <div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+            <div><span class="animate-typewriter delay-line-3">&gt; roadmap.build(7_products,16_clients)</span></div>
+            <div><span class="animate-typewriter delay-line-4">&gt; stakeholders.aligned(executive)</span></div>
+          </div>
+        </div>
+        <div class="border border-outline-variant bg-surface-container-low p-4 animate-frame" style="animation-delay:3.2s">
+          <div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+            <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest">0→1 FOUNDER</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2017–20</span>
+          </div>
+          <div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+            <div><span class="animate-typewriter delay-line-5">&gt; platform.launch(android,ios)</span></div>
+            <div><span class="animate-typewriter delay-line-6">&gt; titles.shipped(500+,6_months)</span></div>
+          </div>
+        </div>
+        <div class="border border-outline-variant bg-surface-container-low p-4 animate-frame" style="animation-delay:3.3s">
+          <div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+            <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest">SYSTEMS ARCHITECTURE</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2014–17</span>
+          </div>
+          <div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+            <div><span class="animate-typewriter delay-line-7">&gt; b.arch.init(nit_jaipur)</span></div>
+            <div><span class="animate-typewriter delay-line-8">&gt; projects.delivered(40+,on_schedule)</span></div>
+          </div>
+          <div class="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-primary-fixed-dim opacity-50"></div>
+        </div>
+        <div class="absolute -bottom-8 -right-3 flex flex-col items-center gap-1 opacity-40 animate-frame">
+          <span class="font-label-sm text-[10px] text-outline rotate-90 origin-right mb-2">END_STACK.LOG</span>
+          <div class="w-[1px] h-16 bg-outline-variant"></div>
+        </div>
+      </div>
+    </div>
+    <!-- app.js compat stubs -->
+    <canvas id="stack-diagram" style="display:none" aria-hidden="true"></canvas>
+    <canvas id="contact-canvas" style="display:none" aria-hidden="true"></canvas>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="panel-experience" class="v3-panel bg-background">
+    <div class="pt-12 pb-20 px-margin-side max-w-container-max mx-auto">
+      <div class="mb-16">
+        <h3 class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-[0.2em] mb-4">Professional Trajectory</h3>
+        <h1 class="font-display text-display text-on-surface">Experience</h1>
+      </div>
+      <div class="grid grid-cols-[auto_1fr] gap-x-12 md:gap-x-24 items-start">
+        <div class="relative flex flex-col items-center py-6">
+          <div class="absolute top-0 bottom-0 w-px bg-outline-variant opacity-30"></div>
+          <div class="flex flex-col gap-[140px] z-10">
+            <div class="timeline-dot w-3 h-3 rounded-full border border-background" style="background-color:#00ff41;transform:scale(1.5);box-shadow:0 0 10px rgba(0,255,65,0.5)"></div>
+            <div class="timeline-dot w-3 h-3 rounded-full border border-background" style="background-color:#b9ccb2"></div>
+            <div class="timeline-dot w-3 h-3 rounded-full border border-background" style="background-color:#b9ccb2"></div>
+            <div class="timeline-dot w-3 h-3 rounded-full border border-background" style="background-color:#b9ccb2"></div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-12" id="experience-accordion">
+
+          <div class="accordion-row is-open group cursor-pointer" onclick="toggleExpAccordion(0)">
+            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
+              <div class="flex flex-col gap-1"><span class="font-label-sm text-label-sm text-primary-fixed-dim">JindalX</span><h4 class="font-headline-md text-headline-md text-on-surface">Sr. Product Manager &amp; AI Strategist</h4></div>
+              <div class="flex items-center gap-6 mt-4 md:mt-0"><span class="font-label-md text-label-md text-on-surface-variant">Jun 2022 – May 2025</span><span class="material-symbols-outlined caret-icon text-outline">expand_more</span></div>
+            </div>
+            <div class="accordion-content"><div class="py-8 px-6 border-x border-b border-outline-variant/20"><p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Owned a portfolio of 7 B2B SaaS products across 16 enterprise clients and 5,000+ users — AI-powered talent management, performance evaluation, knowledge management, CRM, HRMS, quality auditing, and BI. Delivered 30+ digital transformation initiatives.</p></div></div>
+          </div>
+
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(1)">
+            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
+              <div class="flex flex-col gap-1"><span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">OneValley</span><h4 class="font-headline-md text-headline-md text-on-surface">Product Manager</h4></div>
+              <div class="flex items-center gap-6 mt-4 md:mt-0"><span class="font-label-md text-label-md text-on-surface-variant">Sep 2020 – Jul 2022</span><span class="material-symbols-outlined caret-icon text-outline">expand_more</span></div>
+            </div>
+            <div class="accordion-content"><div class="py-8 px-6 border-x border-b border-outline-variant/20"><p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Owned product strategy and roadmap for Passport (B2C founder platform) and PassportOS (B2B SaaS) serving accelerators, universities, and banks. Contributed to Entrepreneurship World Cup platform across 200+ countries.</p></div></div>
+          </div>
+
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(2)">
+            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
+              <div class="flex flex-col gap-1"><span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">Taccomacco Edutainment</span><h4 class="font-headline-md text-headline-md text-on-surface">Co-Founder &amp; COO</h4></div>
+              <div class="flex items-center gap-6 mt-4 md:mt-0"><span class="font-label-md text-label-md text-on-surface-variant">Jul 2017 – Sep 2020</span><span class="material-symbols-outlined caret-icon text-outline">expand_more</span></div>
+            </div>
+            <div class="accordion-content"><div class="py-8 px-6 border-x border-b border-outline-variant/20"><p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Co-founded digital content platform from 0→1. Launched Android &amp; iOS apps, shipped 500+ digital titles in 6 months. Ran a creator incubation program — mentored 6+ creators from concept to published product.</p></div></div>
+          </div>
+
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(3)">
+            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
+              <div class="flex flex-col gap-1"><span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">RSP Design Consultants</span><h4 class="font-headline-md text-headline-md text-on-surface">Design Manager — Architecture</h4></div>
+              <div class="flex items-center gap-6 mt-4 md:mt-0"><span class="font-label-md text-label-md text-on-surface-variant">Sep 2014 – Jun 2017</span><span class="material-symbols-outlined caret-icon text-outline">expand_more</span></div>
+            </div>
+            <div class="accordion-content"><div class="py-8 px-6 border-x border-b border-outline-variant/20"><p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Managed 40+ architectural projects across IT, healthcare, and institutional sectors. 95% client retention, 25% delivery time reduction. Systems thinking and delivery discipline — foundational to product work.</p></div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="etched-border p-6 bg-surface-container-low"><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2">Years Active</span><span class="font-display text-headline-lg text-primary-fixed-dim">8+</span></div>
+        <div class="etched-border p-6 bg-surface-container-low"><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2">B2B SaaS Products</span><span class="font-display text-headline-lg text-primary-fixed-dim">7</span></div>
+        <div class="etched-border p-6 bg-surface-container-low"><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2">Enterprise Users</span><span class="font-display text-headline-lg text-primary-fixed-dim">5,000+</span></div>
+        <div class="etched-border p-6 bg-surface-container-low"><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2">Initiatives Delivered</span><span class="font-display text-headline-lg text-primary-fixed-dim">30+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="panel-work" class="v3-panel bg-surface-container-lowest">
+    <div class="pt-12 pb-24 max-w-container-max mx-auto px-margin-side">
+      <div class="mb-16">
+        <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest mb-4 block">Selected Projects</span>
+        <h1 class="font-display text-display text-on-background">Portfolio of Strategic Execution</h1>
+      </div>
+      <div class="space-y-20">
+
+        <div class="space-y-gutter">
+          <div class="flex items-center gap-4 border-b border-outline-variant pb-2"><span class="font-label-md text-label-md text-primary-fixed-dim">01</span><h2 class="font-label-md text-label-md uppercase tracking-wider text-on-surface">JindalX</h2></div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div class="md:col-span-3 tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-8 flex flex-col justify-between min-h-[260px] cursor-pointer">
+              <div class="space-y-4"><h3 class="font-headline-lg text-headline-lg text-on-surface">AI Talent &amp; Performance Platform</h3><p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">AI-powered talent management and performance evaluation platform serving 16 enterprise clients and 5,000+ users. Multi-module SaaS: talent analytics, competency mapping, automated appraisals.</p></div>
+              <div class="flex items-center gap-4 mt-8"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">AI / ML</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">ENTERPRISE SAAS</span></div>
+            </div>
+            <div class="tonal-card bg-surface-container border border-outline-variant p-6 flex flex-col justify-between cursor-pointer"><h4 class="font-headline-md text-headline-md text-on-surface">Knowledge Management System</h4><p class="font-body-md text-body-md text-on-surface-variant mt-2">Enterprise knowledge base with intelligent search and workflow automation.</p></div>
+            <div class="tonal-card bg-surface-container border border-outline-variant p-6 flex flex-col justify-between cursor-pointer"><h4 class="font-headline-md text-headline-md text-on-surface">Quality Audit &amp; BI Dashboard</h4><p class="font-body-md text-body-md text-on-surface-variant mt-2">Real-time quality auditing with BI reporting and process analytics.</p></div>
+          </div>
+        </div>
+
+        <div class="space-y-gutter">
+          <div class="flex items-center gap-4 border-b border-outline-variant pb-2"><span class="font-label-md text-label-md text-primary-fixed-dim">02</span><h2 class="font-label-md text-label-md uppercase tracking-wider text-on-surface">OneValley</h2></div>
+          <div class="grid grid-cols-1 gap-gutter">
+            <div class="tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-8 flex flex-col justify-between min-h-[260px] cursor-pointer">
+              <div class="space-y-4"><h3 class="font-headline-lg text-headline-lg text-on-surface">PassportOS — Startup Ecosystem Platform</h3><p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">B2B SaaS for accelerators, universities, and banks. Powered the Entrepreneurship World Cup across 200+ countries. Roadmap ownership across Passport (B2C) and PassportOS (B2B).</p></div>
+              <div class="flex items-center gap-4 mt-8"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">B2B SAAS</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">GLOBAL</span></div>
             </div>
           </div>
         </div>
-        <div class="stats-strip">
-          <div class="stat"><span class="stat__num">8+</span><span class="stat__lbl label">years in product</span></div>
-          <div class="stat"><span class="stat__num">7</span><span class="stat__lbl label">B2B SaaS shipped</span></div>
-          <div class="stat"><span class="stat__num">5,000+</span><span class="stat__lbl label">enterprise users</span></div>
-          <div class="stat"><span class="stat__num">30+</span><span class="stat__lbl label">initiatives delivered</span></div>
+
+        <div class="space-y-gutter">
+          <div class="flex items-center gap-4 border-b border-outline-variant pb-2"><span class="font-label-md text-label-md text-primary-fixed-dim">03</span><h2 class="font-label-md text-label-md uppercase tracking-wider text-on-surface">Taccomacco Edutainment</h2></div>
+          <div class="grid grid-cols-1 gap-gutter">
+            <div class="tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-8 flex flex-col justify-between min-h-[260px] cursor-pointer">
+              <div class="space-y-4"><h3 class="font-headline-lg text-headline-lg text-on-surface">Digital Content Platform — 0→1</h3><p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Co-founded edutainment platform from scratch. Launched Android &amp; iOS apps in 6 months, shipped 500+ digital titles. Ran creator incubation program — mentored 6+ creators from concept to published product.</p></div>
+              <div class="flex items-center gap-4 mt-8"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">0→1 BUILD</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">EDTECH</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-gutter">
+          <div class="flex items-center gap-4 border-b border-outline-variant pb-2"><span class="font-label-md text-label-md text-primary-fixed-dim">04</span><h2 class="font-label-md text-label-md uppercase tracking-wider text-on-surface">RSP Design Consultants</h2></div>
+          <div class="grid grid-cols-1 gap-gutter">
+            <div class="tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-8 flex flex-col justify-between min-h-[260px] cursor-pointer">
+              <div class="space-y-4"><h3 class="font-headline-lg text-headline-lg text-on-surface">Institutional Architecture Portfolio</h3><p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Managed delivery of 40+ architectural projects across IT, healthcare, and institutional sectors. 95% client retention, 25% delivery time reduction through systems-driven project management.</p></div>
+              <div class="flex items-center gap-4 mt-8"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">ARCHITECTURE</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">DELIVERY</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="panel-projects" class="v3-panel bg-background">
+    <div class="pt-12 pb-24 max-w-container-max mx-auto w-full px-margin-side">
+      <header class="mb-12 border-l-2 border-primary-container pl-6">
+        <h1 class="font-display text-display uppercase">PROJECT INDEX</h1>
+        <p class="font-label-md text-label-md text-on-surface-variant mt-2 max-w-2xl">Case studies and personal builds — product thinking applied, from B2B SaaS to consumer apps.</p>
+      </header>
+      <section class="mb-20">
+        <div class="flex items-center gap-4 mb-4"><h2 class="font-label-md text-label-md text-primary-container font-bold tracking-[0.2em]">CASE STUDIES</h2><div class="h-[1px] flex-grow bg-outline-variant"></div></div>
+        <div id="projects-list">
+          <div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4"><div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">01</div><div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">FOUNDER'S CRM — CONVERSATION-FIRST SALES TOOL</div><div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">B2B SAAS</span></div><div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">CRM</div><div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div></div>
+          <div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4"><div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">02</div><div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">PEAK-HOUR DECISION SUPPORT — BLINKIT DARK STORES</div><div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">QUICK COMMERCE</span></div><div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">OPS TOOL</div><div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div></div>
+          <div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4"><div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">03</div><div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">YOUTUBE 2.0 — FIXING LONG-FORM DISCOVERY</div><div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">CONSUMER</span></div><div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">REDESIGN</div><div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div></div>
+          <div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4"><div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">04</div><div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">GROUP TRAVEL PLANNING PLATFORM</div><div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">TRAVEL</span></div><div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">0→1</div><div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div></div>
+          <div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4"><div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">05</div><div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">VITAE — HEALTH RECORDS, FINALLY UNDERSTOOD</div><div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">HEALTHTECH</span></div><div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">AI PRODUCT</div><div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div></div>
         </div>
       </section>
+      <section>
+        <div class="flex items-center gap-4 mb-4"><h2 class="font-label-md text-label-md text-primary-container font-bold tracking-[0.2em]">PERSONAL PROJECTS</h2><div class="h-[1px] flex-grow bg-outline-variant"></div></div>
+        <div id="personal-projects-table" class="w-full"><!-- rendered by app.js --></div>
+      </section>
     </div>
+  </section>
 
-    <!-- EXPERIENCE -->
-    <div id="panel-experience" class="panel">
-      <section class="panel-experience">
-        <div class="exp-container">
-          <h2 class="panel-title display-m">Experience</h2>
-          <div class="exp-layout">
-            <div class="exp-rail" aria-hidden="true"></div>
-            <div class="acc-list" id="acc-list">
+  <!-- SKILLS -->
+  <section id="panel-skills" class="v3-panel skills-grid-bg bg-background">
+    <div class="pt-12 pb-16 px-margin-side max-w-container-max mx-auto">
+      <header class="mb-16 border-l-2 border-primary-fixed pl-6">
+        <h1 class="font-display text-display uppercase tracking-tight mb-2">Capabilities Matrix</h1>
+        <p class="font-label-md text-label-md text-on-surface-variant tracking-widest uppercase">Systemic proficiency across product, AI, and delivery domains</p>
+      </header>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-outline-variant">
+        <div class="skill-block delay-1 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/20 font-black">01</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">psychology</span>PRODUCT STRATEGY</h2><ul class="space-y-3"><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Discovery &amp; Roadmapping</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Lifecycle Governance</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Go-to-Market</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">OKR Planning</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Stakeholder Mapping</li></ul></div></div>
+        <div class="skill-block delay-2 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/20 font-black">02</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">smart_toy</span>AI &amp; BUILDER TOOLS</h2><ul class="space-y-3"><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Prompt Engineering</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Agent Workflows</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">RAG &amp; AI Integration</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Claude / GPT APIs</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">AI Product Evaluation</li></ul></div></div>
+        <div class="skill-block delay-3 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/20 font-black">03</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">account_tree</span>ENTERPRISE SAAS</h2><ul class="space-y-3"><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">B2B Product Design</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Multi-tenant Arch</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Integration Design</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">CRM / HRMS / BI</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">API-first thinking</li></ul></div></div>
+        <div class="skill-block delay-4 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/20 font-black">04</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">database</span>DATA &amp; ANALYTICS</h2><ul class="space-y-3"><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">SQL &amp; Data Querying</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Mixpanel / Amplitude</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Power BI / Airtable</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Funnel Analysis</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Cohort Reporting</li></ul></div></div>
+        <div class="skill-block delay-5 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/20 font-black">05</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">grid_view</span>DESIGN &amp; PROTOTYPING</h2><ul class="space-y-3"><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Figma / Stitch</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Information Architecture</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">UX Research</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">B.Arch Systems Eye</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Rapid Prototyping</li></ul></div></div>
+        <div class="skill-block delay-6 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/20 font-black">06</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">groups</span>DELIVERY &amp; PROCESS</h2><ul class="space-y-3"><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Agile / Scrum (CSM)</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">Cross-functional Squads</li><li class="font-label-md text-headline-md font-bold text-on-surface border-b border-outline-variant/30 pb-2">CSPO Certified</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Sprint Planning</li><li class="font-label-sm text-label-md text-on-surface-variant py-1">Lean Process</li></ul></div></div>
+      </div>
+    </div>
+  </section>
 
-              <div class="acc-row" data-acc="jindal">
-                <div class="acc-node"></div>
-                <div class="acc-inner">
-                  <div class="acc-header">
-                    <div class="acc-meta">
-                      <span class="acc-company label">JindalX</span>
-                      <span class="acc-role">Sr. Product Manager &amp; AI Strategist</span>
-                    </div>
-                    <div class="acc-right">
-                      <span class="acc-date label">Jun 2022 &ndash; May 2025</span>
-                      <span class="acc-chevron">&#x25BE;</span>
-                    </div>
-                  </div>
-                  <div class="acc-body">
-                    <p class="body-m acc-desc">Owned a portfolio of 7 B2B SaaS products across 16 enterprise clients and 5,000+ users &mdash; AI-powered talent management, performance evaluation, knowledge management, CRM, HRMS, quality auditing, and BI. Delivered 30+ digital transformation initiatives.</p>
-                    <div class="exp-projects" data-company="jindal"></div>
-                  </div>
-                </div>
-              </div>
+  <!-- PHILOSOPHY -->
+  <section id="panel-philosophy" class="v3-panel grid-bg bg-background">
+    <div class="max-w-container-max mx-auto px-margin-side pt-12 pb-20">
+      <div class="mb-16">
+        <span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-widest block mb-4">Foundation // 00</span>
+        <h1 class="font-display text-display max-w-2xl text-on-surface leading-tight">The Manifesto for <span class="text-primary-fixed">Strategic Logic</span></h1>
+        <div class="w-24 h-px bg-primary-fixed mt-8"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-t border-l border-outline-variant">
+        <div class="kinetic-cell group p-8 border-r border-b border-outline-variant min-h-[300px] flex flex-col justify-between bg-background/80"><span class="font-label-md text-label-md text-primary-fixed">01</span><div><h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Purpose Before Aesthetics</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Define what the artifact must prove before any visual choice is made.</p></div></div>
+        <div class="kinetic-cell group p-8 border-r border-b border-outline-variant min-h-[300px] flex flex-col justify-between bg-background/80"><span class="font-label-md text-label-md text-primary-fixed">02</span><div><h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Systems Thinking First</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Understand the whole before optimising any part. Everything is a node in a larger network.</p></div></div>
+        <div class="kinetic-cell group p-8 border-r border-b border-outline-variant min-h-[300px] flex flex-col justify-between bg-background/80"><span class="font-label-md text-label-md text-primary-fixed">03</span><div><h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Complexity Is Failure</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">If users need training, the design failed first. Strip away noise until only the essential remains.</p></div></div>
+        <div class="kinetic-cell group p-8 border-r border-b border-outline-variant min-h-[300px] flex flex-col justify-between bg-background/80"><span class="font-label-md text-label-md text-primary-fixed">04</span><div><h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Build For the Constraint</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Constraints reveal the real design problem, not the ideal. Use them, don't fight them.</p></div></div>
+        <div class="kinetic-cell group p-8 border-r border-b border-outline-variant min-h-[300px] flex flex-col justify-between bg-background/80"><span class="font-label-md text-label-md text-primary-fixed">05</span><div><h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Medium Is the Message</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The artifact itself should demonstrate the skill. Every surface is a proof point.</p></div></div>
+        <div class="kinetic-cell group p-8 border-r border-b border-outline-variant min-h-[300px] flex flex-col justify-between bg-background/80"><span class="font-label-md text-label-md text-primary-fixed">06</span><div><h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase tracking-tight">Ship to Learn</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">A hypothesis is only as good as the data that refutes or confirms it. Iterate relentlessly.</p></div></div>
+        <div class="group p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[300px] flex flex-col justify-between relative overflow-hidden"><div class="absolute inset-0 border-4 border-primary-fixed/20 pointer-events-none"></div><span class="font-label-md text-label-md text-primary-fixed font-bold">07 [CAPSTONE]</span><div><h3 class="font-headline-md text-headline-md text-primary-fixed mb-4 uppercase tracking-tight font-bold">Inevitability Test</h3><p class="font-body-md text-body-md text-on-surface leading-relaxed italic">If the design language could be transplanted to a different product without feeling wrong, it was imposed, not derived. Every choice must be earned.</p></div></div>
+        <div class="hidden md:flex p-8 border-r border-b border-outline-variant bg-transparent opacity-20 flex-col items-center justify-center"><div class="w-full h-px bg-outline-variant rotate-45"></div><div class="w-full h-px bg-outline-variant -rotate-45 -mt-px"></div></div>
+      </div>
+      <div class="mt-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-t border-outline-variant pt-10">
+        <div><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Revision Index</p><p class="font-label-md text-label-md text-on-surface">V4.2.0-STABLE</p></div>
+        <div class="text-right"><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Build Environment</p><p class="font-label-sm text-label-sm text-on-surface-variant">B.ARCH (NIT JAIPUR) → COO → PM → AI_STRATEGY</p></div>
+      </div>
+    </div>
+  </section>
 
-              <div class="acc-row" data-acc="onevalley">
-                <div class="acc-node"></div>
-                <div class="acc-inner">
-                  <div class="acc-header">
-                    <div class="acc-meta">
-                      <span class="acc-company label">OneValley</span>
-                      <span class="acc-role">Product Manager</span>
-                    </div>
-                    <div class="acc-right">
-                      <span class="acc-date label">Sep 2020 &ndash; Jul 2022</span>
-                      <span class="acc-chevron">&#x25BE;</span>
-                    </div>
-                  </div>
-                  <div class="acc-body">
-                    <p class="body-m acc-desc">Owned product strategy and roadmap for Passport (B2C founder platform) and PassportOS (B2B SaaS) serving accelerators, universities, and banks. Contributed to Entrepreneurship World Cup platform across 200+ countries.</p>
-                    <div class="exp-projects" data-company="onevalley"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="acc-row" data-acc="taccomacco">
-                <div class="acc-node"></div>
-                <div class="acc-inner">
-                  <div class="acc-header">
-                    <div class="acc-meta">
-                      <span class="acc-company label">Taccomacco Edutainment</span>
-                      <span class="acc-role">Co-Founder &amp; COO</span>
-                    </div>
-                    <div class="acc-right">
-                      <span class="acc-date label">Jul 2017 &ndash; Sep 2020</span>
-                      <span class="acc-chevron">&#x25BE;</span>
-                    </div>
-                  </div>
-                  <div class="acc-body">
-                    <p class="body-m acc-desc">Co-founded digital content platform from 0&rarr;1. Launched Android &amp; iOS apps, shipped 500+ digital titles in 6 months. Ran a creator incubation program &mdash; mentored 6+ creators from concept to published product.</p>
-                    <div class="exp-projects" data-company="taccomacco"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="acc-row" data-acc="rsp">
-                <div class="acc-node"></div>
-                <div class="acc-inner">
-                  <div class="acc-header">
-                    <div class="acc-meta">
-                      <span class="acc-company label">RSP Design Consultants</span>
-                      <span class="acc-role">Design Manager &mdash; Architecture</span>
-                    </div>
-                    <div class="acc-right">
-                      <span class="acc-date label">Sep 2014 &ndash; Jun 2017</span>
-                      <span class="acc-chevron">&#x25BE;</span>
-                    </div>
-                  </div>
-                  <div class="acc-body">
-                    <p class="body-m acc-desc">Managed 40+ architectural projects across IT, healthcare, and institutional sectors. 95% client retention, 25% delivery time reduction. Systems thinking and delivery discipline &mdash; foundational to product work.</p>
-                    <div class="exp-projects" data-company="rsp"></div>
-                  </div>
-                </div>
-              </div>
-
+  <!-- CREDENTIALS -->
+  <section id="panel-credentials" class="v3-panel bg-background">
+    <div class="flex flex-col md:flex-row h-full">
+      <div class="w-full md:w-1/2 bg-surface-container-low border-r border-outline-variant cred-grid-bg flex flex-col">
+        <div class="flex-grow overflow-y-auto cred-scroll p-12">
+          <header class="mb-12">
+            <div class="flex items-center gap-4 mb-2"><span class="w-2 h-2 bg-primary"></span><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-outline">Section 01 // Education</h2></div>
+            <h1 class="font-display text-display text-on-surface">Academic<br/>Foundations</h1>
+          </header>
+          <div class="space-y-gutter border-l border-outline-variant pl-gutter">
+            <div class="py-4 border-b border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-primary mb-1 block">REF_01</span>
+              <h3 class="font-headline-lg text-headline-lg text-on-surface">Bachelor of Architecture (B.Arch)</h3>
+              <p class="font-label-md text-label-md text-on-surface-variant mt-1">MNIT Jaipur</p>
+              <p class="font-label-sm text-label-sm text-outline mt-2">PERIOD: 2009 — 2014</p>
             </div>
           </div>
         </div>
-      </section>
-    </div>
-
-    <!-- PROJECTS -->
-    <div id="panel-projects" class="panel">
-      <section class="panel-projects">
-        <div class="projects-container">
-          <div class="projects-header">
-            <h2 class="display-m panel-title">Projects</h2>
-            <p class="projects-sort-note label">Sorted by complexity</p>
-          </div>
-          <div class="projects-divider"></div>
-          <div id="projects-list" class="projects-list">
-            <!-- Rendered by app.js renderProjects() -->
-          </div>
-          <div class="proj-section">
-            <p class="proj-section-header label">// PERSONAL PROJECTS</p>
-            <div class="proj-index" id="personal-projects-table">
-              <!-- Rendered by app.js personalProjects array as .cs-row elements -->
-            </div>
+        <div class="h-12 border-t border-outline-variant bg-surface-container flex items-center px-12 justify-between font-label-sm text-label-sm text-outline flex-shrink-0">
+          <div class="flex gap-4"><span>SYS_STATUS: VERIFIED</span><span class="text-primary-fixed-dim">DATA_SYNC: ACTIVE</span></div>
+          <span class="hidden sm:block">LOC: JAIPUR, INDIA</span>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 bg-surface-container-lowest flex flex-col relative">
+        <div class="flex-grow overflow-y-auto cred-scroll p-12">
+          <header class="mb-8 sticky top-0 bg-surface-container-lowest pt-2 z-10">
+            <div class="flex items-center gap-4 mb-2"><span class="w-2 h-2 bg-outline"></span><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-outline">Section 02 // Certifications</h2></div>
+            <div class="flex justify-between items-end border-b-2 border-primary pb-2"><h1 class="font-display text-headline-lg text-on-surface">Technical Protocol Proficiency</h1><span class="font-label-sm text-label-sm text-primary">[ 13 ]</span></div>
+          </header>
+          <div class="space-y-8 pb-12">
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary bg-primary/10 px-2">2026</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid grid-cols-1 gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Mastering AI Product Management, Cohort 7</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink Systems</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">3rd Place — Rethink AI-First Buildathon</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink AI</p></div><span class="material-symbols-outlined text-primary-fixed-dim">workspace_premium</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary bg-primary/10 px-2">2025</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid grid-cols-1 gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Certified Scrum Master (CSM)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Certified Scrum Product Owner (CSPO)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Essentials Automation Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Automation Anywhere</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary bg-primary/10 px-2">2024</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid grid-cols-1 gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Airtable Admin Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Airtable Builder Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Learning Power BI Desktop</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary bg-primary/10 px-2">2023 &amp; Earlier</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid grid-cols-1 gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface">Lean Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">JindalX</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface">Applied Data Science with Python (Level 2)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">IBM / Cognitive Class</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface">SQL for Data Analytics &amp; Business Intelligence</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Udemy</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface">Google Analytics Certified</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Google</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-label-md text-label-md text-on-surface">Product Management Professional Certificate</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
           </div>
         </div>
-      </section>
+        <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-surface-container-lowest to-transparent pointer-events-none"></div>
+      </div>
     </div>
+  </section>
 
-    <!-- HOW I THINK -->
-    <div id="panel-how-i-think" class="panel">
-      <section class="panel-how-i-think">
-        <div class="hit-container">
-
-          <div class="hit-header">
-            <span class="hit-foundation label">Foundation // 00</span>
-            <h2 class="panel-title display-m">The Manifesto for Strategic Logic</h2>
-          </div>
-
-          <div class="principles-grid">
-
-            <div class="principle-card">
-              <span class="principle-num label">01</span>
-              <h3 class="principle-heading">Purpose before aesthetics</h3>
-              <p class="principle-body body-m">Define what the artifact must prove before any visual choice is made.</p>
-            </div>
-
-            <div class="principle-card">
-              <span class="principle-num label">02</span>
-              <h3 class="principle-heading">Systems thinking first</h3>
-              <p class="principle-body body-m">Understand the whole before optimising any part.</p>
-            </div>
-
-            <div class="principle-card">
-              <span class="principle-num label">03</span>
-              <h3 class="principle-heading">Complexity is failure</h3>
-              <p class="principle-body body-m">If users need training, the design failed first.</p>
-            </div>
-
-            <div class="principle-card">
-              <span class="principle-num label">04</span>
-              <h3 class="principle-heading">Build for the constraint</h3>
-              <p class="principle-body body-m">Constraints reveal the real design problem, not the ideal.</p>
-            </div>
-
-            <div class="principle-card principle-card--wide">
-              <span class="principle-num label">05</span>
-              <h3 class="principle-heading">Medium is the message</h3>
-              <p class="principle-body body-m">The artifact itself should demonstrate the skill, not just claim it. Every surface is a proof point.</p>
-            </div>
-
-            <div class="principle-card">
-              <span class="principle-num label">06</span>
-              <h3 class="principle-heading">Ship to learn</h3>
-              <p class="principle-body body-m">A hypothesis is only as good as the data that refutes or confirms it.</p>
-            </div>
-
-            <div class="principle-card principle-card--capstone">
-              <span class="principle-num label">07 [CAPSTONE]</span>
-              <h3 class="principle-heading">Inevitability test</h3>
-              <p class="principle-body body-m"><em>If the design language could be transplanted to a different product without feeling wrong, it was imposed, not derived. Every choice must be earned.</em></p>
-            </div>
-
-          </div>
-
-          <div class="hit-footer">
-            <div class="hit-footer-left">
-              <span class="label">REVISION INDEX</span>
-              <span class="label hit-footer-val">V4.2.0-STABLE</span>
-            </div>
-            <div class="hit-footer-right">
-              <span class="label hit-footer-val">BUILD_ENV: B.ARCH (NIT JAIPUR) &rarr; COO &rarr; PM &rarr; AI_STRATEGY</span>
+  <!-- CONTACT -->
+  <section id="panel-contact" class="v3-panel grid-bg bg-background">
+    <div class="min-h-full flex flex-col justify-center px-margin-side py-16">
+      <div class="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+        <div class="md:col-span-7 flex flex-col space-y-stack-gap">
+          <div class="inline-flex items-center gap-2"><div class="w-2 h-2 bg-primary-container"></div><span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Available for Senior PM / AI Strategy Roles</span></div>
+          <h1 class="font-display text-display text-primary leading-tight">Get in touch</h1>
+          <p class="font-body-lg text-body-lg text-on-secondary-container max-w-xl">If you're building something ambitious at the intersection of product and AI — or want to talk systems thinking, architecture, or PM strategy — I'd like to hear from you.</p>
+          <div class="pt-6 space-y-6">
+            <div><span class="font-label-sm text-label-sm text-outline block mb-2">DIRECT CHANNEL</span><a class="font-headline-lg text-headline-lg text-primary weight-shift-hover transition-all duration-200" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com</a></div>
+            <div class="flex gap-6">
+              <a class="inline-flex items-center gap-2 group" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">LINKEDIN</span><span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" style="font-size:18px">north_east</span></a>
+              <a class="inline-flex items-center gap-2 group" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">RESUME PDF</span><span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" style="font-size:18px">download</span></a>
             </div>
           </div>
-
-          <!-- keep canvas hidden for app.js compatibility -->
-          <canvas id="skills-graph-canvas" class="skills-graph-canvas" style="display:none" aria-hidden="true"></canvas>
-
+          <p class="font-label-sm text-label-sm text-on-surface-variant pt-4">Jaipur, India — Open to remote</p>
+          <p class="font-label-sm text-label-sm text-on-surface-variant opacity-50">DOMAINS: ENTERPRISE_SAAS / EDTECH / FINTECH / QUICK_COMMERCE</p>
         </div>
-      </section>
-    </div>
-
-    <!-- CREDENTIALS -->
-    <div id="panel-credentials" class="panel">
-      <section class="panel-credentials">
-        <div class="cred-container">
-          <h2 class="display-m panel-title">Credentials</h2>
-
-          <div class="cred-split">
-
-            <div class="cred-col-edu">
-              <p class="label cred-section-label">Education</p>
-              <div class="cred-row cred-edu-entry">
-                <span class="cred-ref label">REF_01</span>
-                <div class="cred-info">
-                  <span class="cred-name body-m">Bachelor of Architecture (B.Arch)</span>
-                  <span class="cred-org label">MNIT Jaipur &mdash; 2009&ndash;2014</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="cred-col-certs">
-              <p class="label cred-section-label">Certifications &mdash; High Signal</p>
-
-              <div class="cred-row" role="button" tabindex="0" data-cert="rethink-mpm">
-                <span class="cred-year label">2026</span>
-                <div class="cred-info">
-                  <span class="cred-name body-m">Mastering AI Product Management, Cohort 7</span>
-                  <span class="cred-org label">Rethink Systems</span>
-                </div>
-                <span class="cred-verify label">&#x2713;</span>
-              </div>
-              <div class="cred-row" role="button" tabindex="0" data-cert="rethink-buildathon">
-                <span class="cred-year label">2026</span>
-                <div class="cred-info">
-                  <span class="cred-name body-m">3rd Place &mdash; Rethink AI-First Buildathon</span>
-                  <span class="cred-org label">Rethink AI (competitive 10-day build sprint)</span>
-                </div>
-                <span class="cred-verify label">&#x2713;</span>
-              </div>
-              <div class="cred-row" role="button" tabindex="0" data-cert="csm">
-                <span class="cred-year label">2025</span>
-                <div class="cred-info">
-                  <span class="cred-name body-m">Certified Scrum Master (CSM)</span>
-                  <span class="cred-org label">Scrum Alliance</span>
-                </div>
-                <span class="cred-verify label">&#x2713;</span>
-              </div>
-              <div class="cred-row" role="button" tabindex="0" data-cert="cspo">
-                <span class="cred-year label">2025</span>
-                <div class="cred-info">
-                  <span class="cred-name body-m">Certified Scrum Product Owner (CSPO)</span>
-                  <span class="cred-org label">Scrum Alliance</span>
-                </div>
-                <span class="cred-verify label">&#x2713;</span>
-              </div>
-
-              <p class="label cred-section-label cred-section-label--mt">Other Certifications</p>
-              <div class="cred-row cred-collapsed" id="cred-other-toggle" role="button" tabindex="0">
-                <span class="cred-other-label body-m">9 additional certifications</span>
-                <span class="label cred-show-link">Show &darr;</span>
-              </div>
-              <div class="cred-other-list is-hidden" id="cred-other-list">
-                <div class="cred-row" role="button" tabindex="0" data-cert="automation-anywhere"><span class="cred-year label">2025</span><div class="cred-info"><span class="cred-name body-m">Essentials Automation Certification</span><span class="cred-org label">Automation Anywhere</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="airtable-admin"><span class="cred-year label">2024</span><div class="cred-info"><span class="cred-name body-m">Airtable Admin Certification</span><span class="cred-org label">Airtable</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="airtable-builder"><span class="cred-year label">2024</span><div class="cred-info"><span class="cred-name body-m">Airtable Builder Certification</span><span class="cred-org label">Airtable</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="power-bi"><span class="cred-year label">2024</span><div class="cred-info"><span class="cred-name body-m">Learning Power BI Desktop</span><span class="cred-org label">LinkedIn Learning</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="lean"><span class="cred-year label">2023</span><div class="cred-info"><span class="cred-name body-m">Lean Certification</span><span class="cred-org label">JindalX</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="sql"><span class="cred-year label">2020</span><div class="cred-info"><span class="cred-name body-m">SQL for Data Analytics &amp; Business Intelligence</span><span class="cred-org label">Udemy</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="data-science"><span class="cred-year label">2020</span><div class="cred-info"><span class="cred-name body-m">Applied Data Science with Python (Level 2)</span><span class="cred-org label">IBM / Cognitive Class</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row" role="button" tabindex="0" data-cert="pm-cert"><span class="cred-year label">&mdash;</span><div class="cred-info"><span class="cred-name body-m">Product Management Professional Certificate</span><span class="cred-org label">LinkedIn Learning</span></div><span class="cred-verify label">&#x2713;</span></div>
-                <div class="cred-row"><span class="cred-year label">&mdash;</span><div class="cred-info"><span class="cred-name body-m">Google Analytics Certified</span><span class="cred-org label">Google</span></div></div>
-              </div>
-            </div>
-
+        <div class="md:col-span-5 flex justify-center md:justify-end mt-12 md:mt-0">
+          <div class="relative w-56 h-56 border border-outline-variant bg-surface-container-low p-6 flex items-center justify-center">
+            <svg class="w-full h-full text-outline-variant" viewBox="0 0 100 100">
+              <line x1="20" y1="20" x2="80" y2="20" stroke="currentColor" stroke-width="0.5"/>
+              <line x1="80" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="0.5"/>
+              <line x1="80" y1="80" x2="20" y2="80" stroke="currentColor" stroke-width="0.5"/>
+              <line x1="20" y1="80" x2="20" y2="20" stroke="currentColor" stroke-width="0.5"/>
+              <line x1="50" y1="20" x2="50" y2="80" stroke="currentColor" stroke-width="0.5"/>
+              <rect x="16" y="16" width="8" height="8" fill="#121416" stroke="currentColor" stroke-width="1"/><rect x="18" y="18" width="4" height="4" fill="#00ff41"/>
+              <rect x="76" y="16" width="8" height="8" fill="#121416" stroke="currentColor" stroke-width="1"/><rect x="78" y="18" width="4" height="4" fill="#00ff41"/>
+              <rect x="76" y="76" width="8" height="8" fill="#121416" stroke="currentColor" stroke-width="1"/><rect x="78" y="78" width="4" height="4" fill="#00ff41"/>
+              <rect x="16" y="76" width="8" height="8" fill="#121416" stroke="currentColor" stroke-width="1"/><rect x="18" y="78" width="4" height="4" fill="#00ff41"/>
+              <text x="50" y="52" text-anchor="middle" fill="#84967e" font-family="JetBrains Mono" font-size="4">GG / PM + AI / 2026</text>
+            </svg>
+            <div class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary"></div>
+            <div class="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-primary"></div>
           </div>
-
-          <p class="cred-footer label">CERTS: 13 VERIFIED &nbsp;/&nbsp; CSM &middot; CSPO &middot; IBM &middot; AIRTABLE &middot; AA</p>
         </div>
-      </section>
+      </div>
     </div>
+  </section>
 
-    <!-- CONTACT -->
-    <div id="panel-contact" class="panel">
-      <section class="panel-contact">
-        <div class="contact-container">
+</div><!-- /panels-wrap -->
 
-          <div class="contact-status-pill">
-            <span class="status-dot"></span>
-            AVAILABLE FOR SENIOR PM / AI STRATEGY ROLES
-          </div>
-
-          <h2 class="contact-headline display-m">Get in touch.</h2>
-
-          <p class="contact-lead body-l">
-            If you&apos;re building something ambitious at the intersection of product and AI &mdash; or you want to talk systems thinking, architecture, or PM strategy &mdash; I&apos;d like to hear from you.
-          </p>
-
-          <div class="contact-ctas">
-            <div class="contact-cta-group">
-              <span class="contact-channel-label label">Direct Channel</span>
-              <a class="cta-primary" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com &rarr;</a>
-            </div>
-            <div class="contact-secondary-ctas">
-              <a class="cta-outline" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener">LinkedIn &nearr;</a>
-              <a class="cta-outline" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener">Download Resume &darr;</a>
-            </div>
-          </div>
-
-          <p class="label contact-location">Jaipur, India &mdash; Open to remote</p>
-          <p class="contact-footer label">DOMAINS: ENTERPRISE_SAAS &nbsp;/&nbsp; EDTECH &nbsp;/&nbsp; FINTECH &nbsp;/&nbsp; QUICK_COMMERCE</p>
-
-        </div>
-      </section>
-    </div>
-
-  </main>
-
-  <!-- MODAL (projects + case studies) -->
-  <div id="modal-overlay" class="modal-overlay" hidden>
-    <div class="modal-panel" id="modal-panel">
-      <button class="modal-close" id="modal-close">&times;</button>
+<!-- MODAL (app.js) -->
+<div id="modal-overlay" hidden style="position:fixed;inset:0;z-index:150;">
+  <div style="position:absolute;inset:0;background:rgba(18,20,22,0.9);" onclick="document.getElementById('modal-overlay').hidden=true"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;pointer-events:none;">
+    <div class="relative bg-surface-container border border-outline-variant w-full max-w-4xl p-8 md:p-12 max-h-[85vh] overflow-y-auto" style="pointer-events:auto;">
+      <button class="absolute top-4 right-4 text-on-surface-variant hover:text-primary-fixed" onclick="document.getElementById('modal-overlay').hidden=true"><span class="material-symbols-outlined">close</span></button>
       <div id="modal-body"></div>
     </div>
   </div>
+</div>
 
-  <script src="gate.js" defer></script>
-  <script src="app.js" defer></script>
+<!-- app.js compat: skills canvas stub -->
+<canvas id="skills-graph-canvas" style="display:none" aria-hidden="true"></canvas>
 
+<script src="gate.js" defer></script>
+<script src="app.js" defer></script>
+
+<script>
+// Panel map
+const HASH_MAP = {
+  'panel-home':'home','panel-experience':'experience','panel-work':'work',
+  'panel-projects':'projects','panel-skills':'skills','panel-philosophy':'philosophy',
+  'panel-credentials':'credentials','panel-contact':'contact'
+};
+const PANEL_MAP = Object.fromEntries(Object.entries(HASH_MAP).map(([k,v])=>[v,k]));
+
+function activatePanel(panelId, updateHash) {
+  document.querySelectorAll('.v3-panel').forEach(p => p.classList.remove('is-active'));
+  const panel = document.getElementById(panelId);
+  if (panel) { panel.classList.add('is-active'); panel.scrollTop = 0; }
+  document.querySelectorAll('.nav-link').forEach(btn => {
+    btn.classList.toggle('nav-link-active', btn.dataset && btn.dataset.panel === panelId);
+  });
+  if (updateHash && HASH_MAP[panelId]) history.pushState({}, '', '#' + HASH_MAP[panelId]);
+  document.dispatchEvent(new CustomEvent('panel:activate', { detail: { panelId } }));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-panel]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      activatePanel(el.dataset.panel, true);
+      document.getElementById('mobile-nav').classList.remove('is-open');
+    });
+  });
+
+  document.getElementById('hamburger-btn').addEventListener('click', () =>
+    document.getElementById('mobile-nav').classList.toggle('is-open'));
+  document.getElementById('mobile-nav-close').addEventListener('click', () =>
+    document.getElementById('mobile-nav').classList.remove('is-open'));
+
+  const hash = location.hash.replace('#','');
+  if (hash && PANEL_MAP[hash]) activatePanel(PANEL_MAP[hash], false);
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    document.getElementById('mobile-nav').classList.remove('is-open');
+    const m = document.getElementById('modal-overlay');
+    if (m) m.hidden = true;
+  });
+
+  document.querySelectorAll('.skill-block').forEach(b => {
+    b.addEventListener('mouseenter', () => { const n = b.querySelector('.number-bg'); if(n) n.style.opacity='0.4'; });
+    b.addEventListener('mouseleave', () => { const n = b.querySelector('.number-bg'); if(n) n.style.opacity=''; });
+  });
+
+  document.querySelectorAll('.kinetic-cell').forEach(c => {
+    c.addEventListener('mouseenter', () => { const n = c.querySelector('.text-primary-fixed'); if(n) n.style.transform='translateX(4px)'; });
+    c.addEventListener('mouseleave', () => { const n = c.querySelector('.text-primary-fixed'); if(n) n.style.transform=''; });
+  });
+
+  const cp = document.getElementById('panel-contact');
+  if (cp) cp.addEventListener('mousemove', e => {
+    cp.style.backgroundPosition = `${(e.clientX/window.innerWidth)*20}px ${(e.clientY/window.innerHeight)*20}px`;
+  });
+});
+
+function toggleExpAccordion(index) {
+  const rows = document.querySelectorAll('.accordion-row');
+  const dots = document.querySelectorAll('.timeline-dot');
+  rows.forEach((r, i) => { if(i===index) r.classList.toggle('is-open'); else r.classList.remove('is-open'); });
+  dots.forEach((d, i) => {
+    const on = rows[i] && rows[i].classList.contains('is-open');
+    d.style.backgroundColor = on ? '#00ff41' : '#b9ccb2';
+    d.style.transform      = on ? 'scale(1.5)' : 'scale(1)';
+    d.style.boxShadow      = on ? '0 0 10px rgba(0,255,65,0.5)' : 'none';
+  });
+}
+</script>
 </body>
 </html>

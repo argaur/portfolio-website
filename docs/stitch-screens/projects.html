@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ALEXANDER VANCE | Projects Index</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#00530e",
+                    "inverse-on-surface": "#2f3033",
+                    "on-background": "#e2e2e5",
+                    "primary-fixed-dim": "#00e639",
+                    "primary-fixed": "#72ff70",
+                    "secondary-container": "#41474e",
+                    "surface-container-highest": "#333537",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "background": "#121416",
+                    "surface-bright": "#38393c",
+                    "on-primary-fixed": "#002203",
+                    "surface-container": "#1e2022",
+                    "surface-container-low": "#1a1c1e",
+                    "tertiary-container": "#ffd5ae",
+                    "on-primary": "#003907",
+                    "secondary-fixed": "#dde3eb",
+                    "tertiary": "#fff8f4",
+                    "on-tertiary-fixed": "#2c1701",
+                    "on-primary-container": "#007117",
+                    "secondary-fixed-dim": "#c1c7cf",
+                    "primary-container": "#00ff41",
+                    "on-tertiary-fixed-variant": "#5d4124",
+                    "on-tertiary-container": "#7a5b3c",
+                    "error-container": "#93000a",
+                    "surface-tint": "#00e639",
+                    "primary": "#ebffe2",
+                    "surface-container-high": "#282a2c",
+                    "on-surface": "#e2e2e5",
+                    "surface": "#121416",
+                    "inverse-surface": "#e2e2e5",
+                    "surface-variant": "#333537",
+                    "inverse-primary": "#006e16",
+                    "outline-variant": "#3b4b37",
+                    "tertiary-fixed-dim": "#e7bf99",
+                    "tertiary-fixed": "#ffdcbd",
+                    "on-secondary-fixed": "#161c22",
+                    "on-secondary-fixed-variant": "#41474e",
+                    "on-tertiary": "#442b10",
+                    "on-surface-variant": "#b9ccb2",
+                    "on-secondary": "#2b3137",
+                    "surface-container-lowest": "#0c0e10",
+                    "outline": "#84967e",
+                    "on-secondary-container": "#b0b6bd",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#121416",
+                    "secondary": "#c1c7cf"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-side": "48px",
+                    "stack-gap": "24px",
+                    "container-max": "1440px",
+                    "gutter": "12px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display": ["Geist"],
+                    "label-sm": ["JetBrains Mono"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Geist"],
+                    "body-lg": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "body-md": ["Geist"]
+            },
+            "fontSize": {
+                    "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #121416;
+            color: #e2e2e5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .project-row:hover .arrow-icon {
+            transform: translateX(4px);
+            color: #00ff41;
+        }
+        .project-row {
+            transition: background-color 0.2s ease;
+        }
+        .project-row:hover {
+            background-color: #1e2022;
+        }
+        .mono-stat {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom Scrollbar for heavy data feel */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #121416; }
+        ::-webkit-scrollbar-thumb { background: #3b4b37; }
+        ::-webkit-scrollbar-thumb:hover { background: #00ff41; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-side py-4 max-w-container-max mx-auto">
+<div class="font-display text-headline-md font-bold text-on-surface uppercase tracking-tight">ALEXANDER VANCE</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">STRATEGY</a>
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">ROBOTICS</a>
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">LLM OPS</a>
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">ETHICS</a>
+<a class="font-display text-body-md uppercase tracking-widest text-primary-fixed border-b border-primary-fixed transition-colors duration-200" href="#">PORTFOLIO</a>
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">EXPERIENCE</a>
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">INSIGHTS</a>
+<a class="font-display text-body-md uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed transition-colors duration-200" href="#">CONTACT</a>
+</div>
+<div class="font-display text-body-md uppercase tracking-widest text-primary-fixed-dim">
+                Sr. AI Strategist
+            </div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-24 max-w-container-max mx-auto w-full px-margin-side">
+<!-- Section Header -->
+<header class="mb-12 border-l-2 border-primary-container pl-6">
+<h1 class="font-display text-display uppercase">PROJECT INDEX</h1>
+<p class="font-label-md text-label-md text-on-surface-variant mt-2 max-w-2xl">
+                A technical repository of strategic AI deployments, robotics architecture, and large language model operations. Data density prioritized over aesthetic flair.
+            </p>
+</header>
+<!-- CASE STUDIES SECTION -->
+<section class="mb-20">
+<div class="flex items-center gap-4 mb-4">
+<h2 class="font-label-md text-label-md text-primary-container font-bold tracking-[0.2em]">CASE STUDIES</h2>
+<div class="h-[1px] flex-grow bg-outline-variant"></div>
+</div>
+<div class="w-full">
+<!-- Row 01 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('01')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">01</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">NEURAL ARCHITECTURE FOR SEMICONDUCTOR LOGISTICS</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">STRATEGY</span>
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ML OPS</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">+42% EFFICIENCY</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 02 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('02')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">02</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">AUTONOMOUS FLEET OPTIMIZATION SYSTEM</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ROBOTICS</span>
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">RAG</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">-18% LATENCY</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 03 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('03')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">03</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">FEDERATED LEARNING FOR CLINICAL TRIALS</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ETHICS</span>
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ML OPS</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">$12M FUNDED</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 04 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('04')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">04</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">ETHICAL AI GOVERNANCE FRAMEWORK</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ETHICS</span>
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">STRATEGY</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">COMPLIANCE 100%</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 05 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('05')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">05</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">AGENTIC WORKFLOWS FOR FINTECH</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">LLM OPS</span>
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">RAG</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">3.5X THROUGHPUT</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- PERSONAL PROJECTS SECTION -->
+<section>
+<div class="flex items-center gap-4 mb-4">
+<h2 class="font-label-md text-label-md text-primary-container font-bold tracking-[0.2em]">PERSONAL PROJECTS</h2>
+<div class="h-[1px] flex-grow bg-outline-variant"></div>
+</div>
+<div class="w-full">
+<!-- Row 06 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('06')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">06</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">VOID-LANG: PROBABILISTIC LLM DSL</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">LLM OPS</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">OPEN SOURCE</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 07 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('07')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">07</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">SWARM-NET: DISTRIBUTED DRONE LOGIC</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ROBOTICS</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">SIMULATED 1K</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 08 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('08')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">08</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">QUANTUM-RESISTANT ENCRYPTION AGENTS</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">STRATEGY</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">SECURED $0.5M</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+<!-- Row 09 -->
+<div class="project-row group cursor-pointer flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openModal('09')">
+<div class="w-12 font-label-md text-label-md text-on-surface-variant mono-stat">09</div>
+<div class="flex-grow font-display text-headline-md md:text-headline-lg group-hover:text-primary-fixed transition-colors">MINIMALIST LLM BENCHMARK SUITE</div>
+<div class="flex flex-wrap gap-2 md:w-1/4">
+<span class="px-2 py-0.5 text-[10px] border border-outline font-label-sm text-on-surface-variant uppercase">ML OPS</span>
+</div>
+<div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim mono-stat text-right">5K STARS</div>
+<div class="w-8 flex justify-end">
+<span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Project Detail Modal (Hidden) -->
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4" id="projectModal">
+<div class="absolute inset-0 bg-background/90 backdrop-blur-sm" onclick="closeModal()"></div>
+<div class="relative bg-surface-container border border-outline-variant w-full max-w-4xl p-8 md:p-12">
+<button class="absolute top-4 right-4 text-on-surface-variant hover:text-primary-fixed" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex flex-col gap-8">
+<div class="border-b border-outline-variant pb-4">
+<span class="font-label-md text-label-md text-primary-container mono-stat" id="modalId">01</span>
+<h3 class="font-display text-display uppercase mt-2" id="modalTitle">PROJECT TITLE</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-6">
+<div>
+<h4 class="font-label-md text-label-md text-primary-fixed-dim tracking-widest uppercase mb-2">The Problem</h4>
+<p class="text-on-surface-variant font-body-md">Inefficient routing algorithms leading to increased energy consumption and delayed delivery timelines in semiconductor manufacturing chains.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary-fixed-dim tracking-widest uppercase mb-2">The Insight</h4>
+<p class="text-on-surface-variant font-body-md">Applying graph-based neural architectures allowed for real-time adjustments based on sensor-driven warehouse data streams.</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-container-high p-6 border border-outline-variant">
+<h4 class="font-label-md text-label-md text-primary-container tracking-widest uppercase mb-4">Outcome Metrics</h4>
+<div class="space-y-2">
+<div class="flex justify-between border-b border-outline-variant/30 py-2">
+<span class="font-label-sm text-on-surface">EFFICIENCY</span>
+<span class="mono-stat text-primary-fixed">+42%</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-2">
+<span class="font-label-sm text-on-surface">REDUCTION IN WASTE</span>
+<span class="mono-stat text-primary-fixed">12.4%</span>
+</div>
+<div class="flex justify-between py-2">
+<span class="font-label-sm text-on-surface">ROI</span>
+<span class="mono-stat text-primary-fixed">14.2X</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<a class="flex-grow py-3 px-6 border border-primary-container text-primary-container font-label-md text-center hover:bg-primary-container hover:text-on-primary transition-all" href="#">VIEW GITHUB</a>
+<a class="flex-grow py-3 px-6 bg-primary-container text-on-primary font-label-md text-center hover:opacity-90 transition-all" href="#">READ CASE STUDY</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-stack-gap border-t border-outline-variant bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-side py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="font-display text-body-lg font-bold text-primary-fixed mb-4">ALEXANDER VANCE</div>
+<div class="font-label-md text-label-md text-on-surface-variant max-w-sm uppercase">
+                    KINETIC PRECISION STRATEGY — ENGINEERING FUTURE ARCHITECTURES FOR ROBOTICS AND AI.
+                </div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim underline transition-all" href="#">LINKEDIN</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim underline transition-all" href="#">GITHUB</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim underline transition-all" href="#">TWITTER</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim underline transition-all" href="#">SUBSTACK</a>
+</div>
+</div>
+<div class="px-margin-side py-4 border-t border-outline-variant/30 text-center md:text-left">
+<span class="font-label-md text-label-md text-secondary-fixed opacity-60 uppercase">© 2024 KINETIC PRECISION STRATEGY. ALL RIGHTS RESERVED.</span>
+</div>
+</footer>
+<script>
+        function openModal(id) {
+            const modal = document.getElementById('projectModal');
+            const row = event.currentTarget;
+            const title = row.querySelector('.font-display').innerText;
+            
+            document.getElementById('modalId').innerText = id;
+            document.getElementById('modalTitle').innerText = title;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body></html>

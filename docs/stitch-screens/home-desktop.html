@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Typing animation for the Right Column terminal text */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block;
+      animation: typing 2s steps(40, end) forwards;
+    }
+    .delay-1 { animation-delay: 0.5s; width: 0; }
+    .delay-2 { animation-delay: 2.5s; width: 0; }
+    .delay-3 { animation-delay: 4.5s; width: 0; }
+    .delay-4 { animation-delay: 6.5s; width: 0; }
+
+    /* Structural Grid Pattern */
+    .grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(132, 150, 126, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(132, 150, 126, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#3b4b37",
+            "tertiary": "#fff8f4",
+            "on-primary": "#003907",
+            "on-secondary-fixed-variant": "#41474e",
+            "on-background": "#e2e2e5",
+            "surface-container": "#1e2022",
+            "primary-fixed-dim": "#00e639",
+            "primary-fixed": "#72ff70",
+            "tertiary-fixed": "#ffdcbd",
+            "surface-tint": "#00e639",
+            "on-tertiary-fixed-variant": "#5d4124",
+            "on-tertiary": "#442b10",
+            "secondary-fixed-dim": "#c1c7cf",
+            "surface": "#121416",
+            "error": "#ffb4ab",
+            "outline": "#84967e",
+            "surface-container-highest": "#333537",
+            "surface-container-high": "#282a2c",
+            "on-surface": "#e2e2e5",
+            "primary": "#ebffe2",
+            "surface-container-lowest": "#0c0e10",
+            "primary-container": "#00ff41",
+            "on-surface-variant": "#b9ccb2",
+            "on-error-container": "#ffdad6",
+            "on-secondary": "#2b3137",
+            "tertiary-fixed-dim": "#e7bf99",
+            "inverse-primary": "#006e16",
+            "on-secondary-fixed": "#161c22",
+            "secondary-fixed": "#dde3eb",
+            "surface-variant": "#333537",
+            "surface-container-low": "#1a1c1e",
+            "on-primary-fixed-variant": "#00530e",
+            "secondary": "#c1c7cf",
+            "on-tertiary-container": "#7a5b3c",
+            "inverse-surface": "#e2e2e5",
+            "surface-bright": "#38393c",
+            "background": "#121416",
+            "secondary-container": "#41474e",
+            "inverse-on-surface": "#2f3033",
+            "on-error": "#690005",
+            "error-container": "#93000a",
+            "surface-dim": "#121416",
+            "on-primary-container": "#007117",
+            "on-primary-fixed": "#002203",
+            "tertiary-container": "#ffd5ae",
+            "on-tertiary-fixed": "#2c1701",
+            "on-secondary-container": "#b0b6bd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-gap": "24px",
+            "gutter": "12px",
+            "margin-side": "48px",
+            "base": "4px",
+            "container-max": "1440px"
+          },
+          "fontFamily": {
+            "headline-md": ["Geist"],
+            "body-md": ["Geist"],
+            "label-sm": ["JetBrains Mono"],
+            "display": ["Geist"],
+            "body-lg": ["Geist"],
+            "label-md": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Geist"],
+            "headline-lg": ["Geist"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- Shared TopNavBar -->
+<header class="bg-background dark:bg-background border-b border-outline-variant fixed top-0 left-0 right-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-side h-16 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">Portfolio</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary border-b border-primary pb-1 hover:text-primary transition-colors duration-200" href="#">Work</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Insights</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Labs</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Archives</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Resume</a>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</nav>
+</header>
+<main class="min-h-screen pt-16 flex flex-col justify-center items-center grid-pattern relative overflow-hidden">
+<div class="max-w-container-max w-full px-margin-side grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-stack-gap items-center py-24">
+<!-- Left Column: 55% Content -->
+<div class="flex flex-col justify-center z-10">
+<h1 class="font-display text-[42px] md:text-[64px] leading-[1.05] font-extrabold tracking-tighter text-on-surface mb-6 max-w-2xl">
+          SYNTHESIZING COMPLEX SYSTEMS INTO SCALABLE ARCHITECTURES.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+          Leveraging machine learning and strategic product design to build the next generation of enterprise intelligence.
+        </p>
+<div class="flex gap-4 mb-16">
+<button class="px-8 py-3 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-none border border-primary-container hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 uppercase tracking-widest">
+            View Work
+          </button>
+<button class="px-8 py-3 border border-outline text-on-surface font-label-md text-label-md rounded-none hover:bg-surface-container-low transition-all duration-200 active:scale-95 uppercase tracking-widest">
+            Contact
+          </button>
+</div>
+<!-- Stats Strip -->
+<div class="flex items-center gap-12 border-t border-outline-variant pt-8">
+<div class="flex flex-col">
+<span class="font-display text-headline-lg font-bold text-primary-fixed-dim">12+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Years Experience</span>
+</div>
+<div class="w-px h-10 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-display text-headline-lg font-bold text-primary-fixed-dim">40+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Products Shipped</span>
+</div>
+<div class="w-px h-10 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-display text-headline-lg font-bold text-primary-fixed-dim">150M+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Users Impacted</span>
+</div>
+</div>
+</div>
+<!-- Right Column: 45% Diagram -->
+<div class="relative flex flex-col gap-gutter border-l border-outline-variant pl-gutter">
+<!-- Decoration Annotations -->
+<div class="absolute -top-8 -left-3 flex flex-col items-center gap-1 opacity-40">
+<div class="w-[1px] h-16 bg-outline-variant"></div>
+<span class="font-label-sm text-[10px] text-outline rotate-90 origin-left mt-2">STRUCTURE.REF</span>
+</div>
+<!-- Layer 1: USER INTERFACE -->
+<div class="border border-outline-variant bg-surface-container-low p-4 relative group">
+<div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">USER INTERFACE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2023-24</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+<span class="typing-effect delay-1">&gt; rendering_engine.v4_active</span>
+<span class="typing-effect delay-1">&gt; deployment_stable_edge_node</span>
+</div>
+<!-- Corner annotation -->
+<div class="absolute -right-2 top-1/2 w-4 h-[1px] bg-outline-variant"></div>
+</div>
+<!-- Layer 2: API LAYER -->
+<div class="border border-outline-variant bg-surface-container-low p-4 relative">
+<div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">API LAYER</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2023-24</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+<span class="typing-effect delay-2">&gt; gateway.auth(jwt_verified)</span>
+<span class="typing-effect delay-2">&gt; throughput_optimized(250ms)</span>
+</div>
+</div>
+<!-- Layer 3: ML PIPELINE -->
+<div class="border border-outline-variant bg-surface-container-low p-4 relative">
+<div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">ML PIPELINE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2022-23</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+<span class="typing-effect delay-3">&gt; model.load(transformer_xl)</span>
+<span class="typing-effect delay-3">&gt; training_loss(0.004)</span>
+</div>
+<!-- Side annotation line -->
+<div class="absolute -left-gutter w-gutter h-[1px] bg-outline-variant"></div>
+</div>
+<!-- Layer 4: CORE INFRASTRUCTURE -->
+<div class="border border-outline-variant bg-surface-container-low p-4 relative">
+<div class="flex justify-between items-center mb-2 border-b border-outline-variant pb-1">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">CORE INFRASTRUCTURE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-50">2021-22</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant opacity-80 flex flex-col">
+<span class="typing-effect delay-4">&gt; system.init(distributed_nodes)</span>
+<span class="typing-effect delay-4">&gt; shard_cluster_active(replica_01)</span>
+</div>
+<!-- Base corner decoration -->
+<div class="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-primary opacity-50"></div>
+</div>
+<div class="absolute -bottom-8 -right-3 flex flex-col items-center gap-1 opacity-40">
+<span class="font-label-sm text-[10px] text-outline rotate-90 origin-right mb-2">END_STACK.LOG</span>
+<div class="w-[1px] h-16 bg-outline-variant"></div>
+</div>
+</div>
+</div>
+<!-- Visual Divider / Footer Anchor -->
+<div class="absolute bottom-0 left-0 w-full px-margin-side">
+<div class="w-full h-px bg-outline-variant max-w-container-max mx-auto"></div>
+</div>
+</main>
+<!-- Interaction Script for simple effects -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Logic for active navigation highlight if multiple pages existed
+      // For this single-page view, "Work" is set as active by default in HTML.
+      
+      // Ensure typing animation resets properly if needed (not required for single load)
+      console.log('Kinetic Precision Interface Initialized');
+    });
+  </script>
+</body></html>
