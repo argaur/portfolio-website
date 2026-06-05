@@ -43,10 +43,298 @@
                 <span class="cs-meta-tag">Buildathon</span>
                 <span class="cs-meta-tag">Next.js</span>
             </div>
-            <div class="cs-meta-row" style="margin-top: 16px;">
-                <a href="https://vitae-health.vercel.app/" class="cs-link-btn" target="_blank" rel="noopener">View Product &rarr;</a>
-            </div>
         </header>
+
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">User Flow</button>
+          <button class="cs-docs-tab" data-doc="wireframe">Wireframe</button>
+          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
+          <button class="cs-docs-tab" data-doc="prd">PRD</button>
+          <a href="https://github.com/aashikvilla/health-assistant" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+          <a href="https://vitae-health.vercel.app/" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">Prototype &rarr;</a>
+        </div>
+      </div>
+
+      <!-- USER FLOW -->
+      <div class="cs-docs-panel" data-panel="flow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;">
+          <defs>
+            <marker id="vf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+            <marker id="vf-arr-blue" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2d5da1"/>
+            </marker>
+          </defs>
+          <!-- Background -->
+          <rect width="900" height="310" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" letter-spacing="1.5" opacity="0.7">PRESCRIPTION TO HEALTH TIMELINE — USER FLOW</text>
+
+          <!-- Nodes at y=130, each box w=112 h=44, centered on given x -->
+          <!-- Node 1: Photograph Prescription — cream -->
+          <rect x="4" y="108" width="112" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="60" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Photograph</text>
+          <text x="60" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Prescription</text>
+
+          <!-- Arrow N1→N2 -->
+          <line x1="116" y1="130" x2="169" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#vf-arr)"/>
+
+          <!-- Node 2: Upload to PWA — cream -->
+          <rect x="121" y="108" width="112" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="177" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Upload to PWA</text>
+          <text x="177" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Camera API</text>
+
+          <!-- Arrow N2→N3 -->
+          <line x1="233" y1="130" x2="286" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#vf-arr)"/>
+
+          <!-- Node 3: OCR Extracts — cream -->
+          <rect x="238" y="108" width="112" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="294" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">OCR Extracts</text>
+          <text x="294" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Text content</text>
+
+          <!-- Arrow N3→N4 with "AI enrichment" label -->
+          <line x1="350" y1="130" x2="413" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#vf-arr)"/>
+          <text x="381" y="120" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1">AI enrichment</text>
+
+          <!-- Node 4: AI Parser — TERRACOTTA -->
+          <rect x="365" y="108" width="112" height="44" fill="#bf5c3a" rx="0"/>
+          <text x="421" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">AI Parser</text>
+          <text x="421" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">Claude API</text>
+
+          <!-- Arrow N4→N5 -->
+          <line x1="477" y1="130" x2="540" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#vf-arr)"/>
+
+          <!-- Node 5: Record Created — cream -->
+          <rect x="492" y="108" width="112" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="548" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Record Created</text>
+          <text x="548" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Structured data</text>
+
+          <!-- Arrow N5→N6 -->
+          <line x1="604" y1="130" x2="657" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#vf-arr)"/>
+
+          <!-- Node 6: Timeline Updated — TERRACOTTA -->
+          <rect x="609" y="108" width="112" height="44" fill="#bf5c3a" rx="0"/>
+          <text x="665" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Timeline</text>
+          <text x="665" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">Updated</text>
+
+          <!-- Arrow N6→N7 -->
+          <line x1="721" y1="130" x2="762" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#vf-arr)"/>
+
+          <!-- Node 7: User Views Health history — cream -->
+          <rect x="766" y="108" width="122" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="827" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">User Views</text>
+          <text x="827" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Health history</text>
+
+          <!-- Branch from Node 4 down to y=250: dashed arrow -->
+          <line x1="421" y1="152" x2="421" y2="228" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#vf-arr)" opacity="0.6"/>
+          <!-- Parse Fails box -->
+          <rect x="365" y="228" width="112" height="44" fill="#0d1e38" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 3" rx="0" opacity="0.6"/>
+          <text x="421" y="247" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" opacity="0.6">Parse Fails</text>
+          <text x="421" y="262" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.5">Manual entry form</text>
+        </svg>
+      </div>
+
+      <!-- WIREFRAME -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="wireframe">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="width:100%;display:block;">
+          <!-- Background -->
+          <rect width="900" height="400" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" letter-spacing="1.5" opacity="0.7">WIREFRAME — VITAE PWA SCREENS</text>
+
+          <!-- Screen labels -->
+          <text x="160" y="42" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#2d5da1" letter-spacing="1.5">CAPTURE</text>
+          <text x="450" y="42" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#2d5da1" letter-spacing="1.5">REVIEW</text>
+          <text x="760" y="42" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#2d5da1" letter-spacing="1.5">TIMELINE</text>
+
+          <!-- =================== SCREEN 1: CAPTURE =================== -->
+          <rect x="30" y="46" width="260" height="330" fill="#0d1e38" stroke="#2d5da1" stroke-width="1.5" rx="0"/>
+          <!-- Header bar -->
+          <rect x="30" y="46" width="260" height="40" fill="#f7f3ee" rx="0"/>
+          <text x="160" y="71" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="#0b1628">Add Record</text>
+          <!-- Camera viewfinder -->
+          <rect x="50" y="102" width="220" height="180" fill="#0b1628" stroke="#f7f3ee" stroke-width="1" rx="0"/>
+          <!-- Guide rect inside viewfinder -->
+          <rect x="80" y="130" width="160" height="120" stroke="#bf5c3a" stroke-width="1.5" stroke-dasharray="6 4" fill="none" rx="0"/>
+          <!-- Corner marks on guide -->
+          <line x1="80" y1="130" x2="100" y2="130" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="80" y1="130" x2="80" y2="150" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="240" y1="130" x2="220" y2="130" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="240" y1="130" x2="240" y2="150" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="80" y1="250" x2="100" y2="250" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="80" y1="250" x2="80" y2="230" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="240" y1="250" x2="220" y2="250" stroke="#bf5c3a" stroke-width="2.5"/>
+          <line x1="240" y1="250" x2="240" y2="230" stroke="#bf5c3a" stroke-width="2.5"/>
+          <!-- Viewfinder hint text -->
+          <text x="160" y="196" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.4">Align prescription within frame</text>
+          <!-- Capture button -->
+          <circle cx="160" cy="320" r="24" fill="#bf5c3a"/>
+          <circle cx="160" cy="320" r="18" fill="none" stroke="#f7f3ee" stroke-width="2" opacity="0.5"/>
+
+          <!-- =================== SCREEN 2: REVIEW =================== -->
+          <rect x="320" y="46" width="260" height="330" fill="#0d1e38" stroke="#2d5da1" stroke-width="1.5" rx="0"/>
+          <!-- Header bar -->
+          <rect x="320" y="46" width="260" height="40" fill="#f7f3ee" rx="0"/>
+          <text x="450" y="71" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="#0b1628">Review Extract</text>
+          <!-- Field rows: y=100, 148, 196, 244 -->
+          <!-- Field 1: Medication -->
+          <text x="330" y="96" font-family="DM Sans, sans-serif" font-size="8" fill="#f7f3ee" opacity="0.5">MEDICATION</text>
+          <rect x="330" y="100" width="220" height="38" fill="#f7f3ee" rx="0"/>
+          <text x="340" y="124" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#0b1628">Metformin 500mg</text>
+          <!-- Field 2: Dosage -->
+          <text x="330" y="144" font-family="DM Sans, sans-serif" font-size="8" fill="#f7f3ee" opacity="0.5">DOSAGE</text>
+          <rect x="330" y="148" width="220" height="38" fill="#f7f3ee" rx="0"/>
+          <text x="340" y="172" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#0b1628">Twice daily</text>
+          <!-- Field 3: Prescriber -->
+          <text x="330" y="192" font-family="DM Sans, sans-serif" font-size="8" fill="#f7f3ee" opacity="0.5">PRESCRIBER</text>
+          <rect x="330" y="196" width="220" height="38" fill="#f7f3ee" rx="0"/>
+          <text x="340" y="220" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#0b1628">Dr. Sharma</text>
+          <!-- Field 4: Date -->
+          <text x="330" y="240" font-family="DM Sans, sans-serif" font-size="8" fill="#f7f3ee" opacity="0.5">DATE</text>
+          <rect x="330" y="244" width="220" height="38" fill="#f7f3ee" rx="0"/>
+          <text x="340" y="268" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#0b1628">April 10, 2026</text>
+          <!-- Confirm button -->
+          <rect x="330" y="300" width="220" height="36" fill="#bf5c3a" rx="0"/>
+          <text x="440" y="323" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#f7f3ee">Confirm &amp; Save</text>
+
+          <!-- =================== SCREEN 3: TIMELINE =================== -->
+          <rect x="640" y="46" width="240" height="330" fill="#0d1e38" stroke="#2d5da1" stroke-width="1.5" rx="0"/>
+          <!-- Search bar -->
+          <rect x="650" y="58" width="220" height="26" fill="#f7f3ee" rx="0"/>
+          <text x="660" y="75" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.4">Search records...</text>
+          <!-- Timeline entries: y=100, 158, 216, 274 each h=48 -->
+          <!-- Entry 1 (most recent — terracotta dot) -->
+          <rect x="650" y="100" width="220" height="48" fill="#f7f3ee" rx="0"/>
+          <circle cx="663" cy="124" r="5" fill="#bf5c3a"/>
+          <text x="674" y="114" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Apr 10, 2026</text>
+          <text x="674" y="128" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Metformin 500mg</text>
+          <text x="674" y="141" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Dr. Sharma</text>
+          <!-- Entry 2 -->
+          <rect x="650" y="158" width="220" height="48" fill="#f7f3ee" rx="0"/>
+          <circle cx="663" cy="182" r="5" fill="#2d5da1"/>
+          <text x="674" y="172" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Mar 22, 2026</text>
+          <text x="674" y="186" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Atorvastatin 10mg</text>
+          <text x="674" y="199" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Dr. Mehta</text>
+          <!-- Entry 3 -->
+          <rect x="650" y="216" width="220" height="48" fill="#f7f3ee" rx="0"/>
+          <circle cx="663" cy="240" r="5" fill="#2d5da1"/>
+          <text x="674" y="230" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Feb 14, 2026</text>
+          <text x="674" y="244" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Amlodipine 5mg</text>
+          <text x="674" y="257" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Dr. Sharma</text>
+          <!-- Entry 4 -->
+          <rect x="650" y="274" width="220" height="48" fill="#f7f3ee" rx="0"/>
+          <circle cx="663" cy="298" r="5" fill="#2d5da1"/>
+          <text x="674" y="288" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Jan 5, 2026</text>
+          <text x="674" y="302" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Telmisartan 40mg</text>
+          <text x="674" y="315" font-family="DM Sans, sans-serif" font-size="8" fill="#0b1628" opacity="0.5">Dr. Patel</text>
+        </svg>
+      </div>
+
+      <!-- ARCHITECTURE -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;">
+          <defs>
+            <marker id="va-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+            <marker id="va-arr-dash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee" opacity="0.6"/>
+            </marker>
+          </defs>
+          <!-- Background -->
+          <rect width="900" height="360" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" letter-spacing="1.5" opacity="0.7">SYSTEM ARCHITECTURE — VITAE PWA + AI PIPELINE</text>
+
+          <!-- Zone divider lines at x=160, 340, 535, 710 -->
+          <line x1="160" y1="40" x2="160" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+          <line x1="340" y1="40" x2="340" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+          <line x1="535" y1="40" x2="535" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+          <line x1="710" y1="40" x2="710" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+
+          <!-- Zone labels at y=55 -->
+          <text x="80" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">DEVICE</text>
+          <text x="250" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">PWA</text>
+          <text x="437" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">AI PIPELINE</text>
+          <text x="622" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">STORAGE</text>
+          <text x="805" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">CLIENT</text>
+
+          <!-- ===== MAIN PATH (y=140) ===== -->
+          <!-- Node 1: Camera / Device API at x=80 w=130 h=44 -->
+          <rect x="15" y="118" width="130" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="80" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Camera</text>
+          <text x="80" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Device API</text>
+
+          <!-- Arrow N1→N2 -->
+          <line x1="145" y1="140" x2="167" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#va-arr)"/>
+
+          <!-- Node 2: PWA / Service worker at x=250 w=150 h=44 -->
+          <rect x="175" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="250" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">PWA</text>
+          <text x="250" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Service worker</text>
+
+          <!-- Arrow N2→N3 -->
+          <line x1="325" y1="140" x2="354" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#va-arr)"/>
+
+          <!-- Node 3: AI Parser / Claude API at x=437 w=150 h=44 — TERRACOTTA -->
+          <rect x="362" y="118" width="150" height="44" fill="#bf5c3a" rx="0"/>
+          <text x="437" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">AI Parser</text>
+          <text x="437" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">Claude API</text>
+
+          <!-- Arrow N3→N4 -->
+          <line x1="512" y1="140" x2="544" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#va-arr)"/>
+
+          <!-- Node 4: Supabase DB / PostgreSQL at x=622 w=150 h=44 -->
+          <rect x="547" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="622" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#bf5c3a">Supabase DB</text>
+          <text x="622" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">PostgreSQL</text>
+
+          <!-- Arrow N4→N5 -->
+          <line x1="697" y1="140" x2="727" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#va-arr)"/>
+
+          <!-- Node 5: Health Timeline / React PWA view at x=805 w=140 h=44 -->
+          <rect x="735" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="810" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Health Timeline</text>
+          <text x="810" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">React PWA view</text>
+
+          <!-- ===== SECONDARY PATH (y=260) ===== -->
+          <!-- Vertical dashed arrow from PWA(250,162) down to OCR box top -->
+          <line x1="250" y1="162" x2="250" y2="238" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#va-arr-dash)" opacity="0.6"/>
+
+          <!-- OCR Service at x=250 y=260 w=130 h=44 -->
+          <rect x="185" y="238" width="130" height="44" fill="#f7f3ee" rx="0" opacity="0.85"/>
+          <text x="250" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">OCR Service</text>
+          <text x="250" y="272" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Gemma 4 26B</text>
+
+          <!-- Arrow from OCR(315,260) right to AI Parser zone border(362,260) -->
+          <line x1="315" y1="260" x2="354" y2="260" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#va-arr)" opacity="0.7"/>
+
+          <!-- Vertical dashed arrow from AI Parser(437,162) down to Health Record Model box top -->
+          <line x1="437" y1="162" x2="437" y2="238" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#va-arr-dash)" opacity="0.6"/>
+
+          <!-- Health Record Model at x=437 y=260 w=160 h=44 -->
+          <rect x="357" y="238" width="160" height="44" fill="#f7f3ee" rx="0" opacity="0.85"/>
+          <text x="437" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Health Record</text>
+          <text x="437" y="272" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0b1628" opacity="0.7">Data model</text>
+
+          <!-- Arrow from Health Record right edge joining up to Supabase -->
+          <path d="M517,260 L622,260 L622,162" fill="none" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#va-arr)" opacity="0.7"/>
+
+          <!-- Footnote -->
+          <text x="450" y="325" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.8">OCR extracts raw text from prescription images; Claude API structures it into medication, dosage, and doctor fields</text>
+        </svg>
+      </div>
+
+      <!-- PRD -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="prd">
+        <p class="cs-docs-prd-note">This case study page is the full Product Requirements Document for Vitae — covering the health records problem, AI pipeline design, PWA architecture, and the 10-day build sprint.</p>
+        <button class="cs-docs-print-btn" onclick="window.print()">Save as PDF &rarr;</button>
+      </div>
+    </section>
 
         <!-- TOC -->
 
@@ -386,6 +674,7 @@
         </section>
       </div></main>
 
+
     <footer class="cs-footer">
         <p>Gaurav Gupta &mdash; Rethink Health Buildathon &middot; April 2026</p>
         <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
@@ -421,6 +710,21 @@
       if (e.key === 'ArrowLeft') show(current - 1);
     });
     show(0);
+  })();
+  </script>
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
   })();
   </script>
 </body>

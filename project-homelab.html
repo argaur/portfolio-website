@@ -44,6 +44,105 @@
             </div>
         </header>
 
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="arch">Architecture</button>
+          <a href="https://github.com/argaur/homelab-v2" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+        </div>
+      </div>
+      <div class="cs-docs-panel" data-panel="arch">
+        <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="hl-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+              <path d="M0,0 L8,3.5 L0,7 Z" fill="#f7f3ee" opacity="0.7"/>
+            </marker>
+            <marker id="hl-arr-dashed" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+              <path d="M0,0 L8,3.5 L0,7 Z" fill="#f7f3ee" opacity="0.5"/>
+            </marker>
+          </defs>
+
+          <!-- Background -->
+          <rect width="900" height="400" fill="#0b1628"/>
+
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="0.12em" opacity="0.9">SYSTEM ARCHITECTURE — PERSONAL HOMELAB</text>
+
+          <!-- Host label -->
+          <text x="450" y="50" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="9" letter-spacing="0.08em">HOST: Linux Mint · Bare Metal</text>
+
+          <!-- Docker host boundary -->
+          <rect x="20" y="60" width="860" height="300" fill="none" stroke="#2d5da1" stroke-dasharray="6 4" stroke-width="1"/>
+
+          <!-- ── NETWORKING layer (y=100 top) ── -->
+          <text x="370" y="82" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.08em">NETWORKING</text>
+
+          <!-- Pi-hole -->
+          <rect x="85" y="100" width="130" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="150" y="118" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Pi-hole</text>
+          <text x="150" y="134" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">DNS filtering</text>
+
+          <!-- Arrow Pi-hole → Nginx -->
+          <line x1="215" y1="122" x2="288" y2="122" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#hl-arr)"/>
+
+          <!-- Nginx Proxy -->
+          <rect x="295" y="100" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="370" y="118" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Nginx Proxy</text>
+          <text x="370" y="134" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Reverse proxy</text>
+
+          <!-- Arrow Nginx → Tailscale -->
+          <line x1="445" y1="122" x2="533" y2="122" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#hl-arr)"/>
+
+          <!-- Tailscale -->
+          <rect x="535" y="100" width="130" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="600" y="118" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Tailscale</text>
+          <text x="600" y="134" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">VPN mesh</text>
+
+          <!-- ── SERVICES layer (y=215 top) ── -->
+          <text x="400" y="197" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.08em">SERVICES</text>
+
+          <!-- n8n -->
+          <rect x="60" y="215" width="120" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="120" y="233" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">n8n</text>
+          <text x="120" y="249" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Automation</text>
+
+          <!-- Prometheus + Grafana -->
+          <rect x="215" y="215" width="165" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="297" y="233" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Prometheus + Grafana</text>
+          <text x="297" y="249" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Observability</text>
+
+          <!-- HashiCorp Vault (terracotta) -->
+          <rect x="415" y="215" width="150" height="44" fill="#bf5c3a" opacity="0.9"/>
+          <text x="490" y="233" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">HashiCorp Vault</text>
+          <text x="490" y="249" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">Secrets mgmt</text>
+
+          <!-- Portainer -->
+          <rect x="600" y="215" width="130" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="665" y="233" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Portainer</text>
+          <text x="665" y="249" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Docker UI</text>
+
+          <!-- ── PROVISIONING: Ansible (right side) ── -->
+          <rect x="755" y="155" width="130" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="820" y="173" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Ansible</text>
+          <text x="820" y="189" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Infra as code</text>
+
+          <!-- Dashed fan-out arrows from Ansible to each service node -->
+          <!-- to n8n -->
+          <line x1="755" y1="172" x2="184" y2="237" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.4" marker-end="url(#hl-arr-dashed)"/>
+          <!-- to Prometheus+Grafana -->
+          <line x1="755" y1="177" x2="384" y2="237" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.4" marker-end="url(#hl-arr-dashed)"/>
+          <!-- to Vault -->
+          <line x1="755" y1="182" x2="567" y2="237" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.4" marker-end="url(#hl-arr-dashed)"/>
+          <!-- to Portainer -->
+          <line x1="755" y1="187" x2="732" y2="237" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.4" marker-end="url(#hl-arr-dashed)"/>
+
+          <!-- Footer note -->
+          <text x="450" y="375" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.8">Each service runs in an isolated Docker Compose stack · Vault handles all secrets · Ansible provisions from scratch</text>
+        </svg>
+      </div>
+    </section>
+
         <div class="cs-page is-active">
 
             <section class="cs-section">
@@ -153,5 +252,20 @@
         <p>Gaurav Gupta &mdash; Personal Project</p>
     </footer>
 
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

@@ -1158,8 +1158,9 @@
     var link   = toggle ? toggle.querySelector('.cred-show-link') : null;
     if (toggle && list) {
       toggle.addEventListener('click', function () {
-        var isOpen = list.style.display !== 'none';
+        var isOpen = list.style.display !== 'none' && !list.classList.contains('is-hidden');
         list.style.display = isOpen ? 'none' : 'block';
+        list.classList.toggle('is-hidden', isOpen);
         if (link) link.textContent = isOpen ? 'Show ↓' : 'Hide ↑';
       });
     }

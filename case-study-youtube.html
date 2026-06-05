@@ -45,6 +45,264 @@
             <div class="cs-meta-row" style="margin-top: 16px;"></div>
         </header>
 
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">User Flow</button>
+          <button class="cs-docs-tab" data-doc="wireframe">Wireframe</button>
+          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
+          <button class="cs-docs-tab" data-doc="prd">PRD</button>
+        </div>
+      </div>
+
+      <!-- User Flow panel -->
+      <div class="cs-docs-panel" data-panel="flow">
+        <svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="yf-arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+            <marker id="yf-arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2d5da1"/>
+            </marker>
+            <marker id="yf-arr-dash" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee" opacity="0.7"/>
+            </marker>
+          </defs>
+          <rect width="900" height="310" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" opacity="0.6">INTENT-AWARE SESSION — USER FLOW</text>
+
+          <!-- Node 1: Opens YouTube -->
+          <rect x="10" y="108" width="120" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="70" y="126" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Opens YouTube</text>
+          <text x="70" y="142" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Home feed</text>
+
+          <!-- Arrow 1→2 -->
+          <line x1="130" y1="130" x2="188" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#yf-arr)"/>
+
+          <!-- Node 2: Intent Detection (terracotta) -->
+          <rect x="140" y="108" width="120" height="44" fill="#bf5c3a" rx="0"/>
+          <text x="200" y="126" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Intent Detection</text>
+          <text x="200" y="142" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9">Time + context</text>
+
+          <!-- Arrow 2→3 -->
+          <line x1="260" y1="130" x2="328" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#yf-arr)"/>
+
+          <!-- Node 3: Personalised Feed -->
+          <rect x="280" y="108" width="120" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="340" y="126" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Personalised Feed</text>
+          <text x="340" y="142" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Intent-matched</text>
+
+          <!-- Arrow 3→4 -->
+          <line x1="400" y1="130" x2="468" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#yf-arr)"/>
+
+          <!-- Node 4: Contextual Playlist (wider) -->
+          <rect x="420" y="108" width="150" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="495" y="126" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Contextual Playlist</text>
+          <text x="495" y="142" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Surfaced proactively</text>
+
+          <!-- Arrow 4→5 -->
+          <line x1="570" y1="130" x2="623" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#yf-arr)"/>
+
+          <!-- Node 5: Watch Session -->
+          <rect x="575" y="108" width="120" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="635" y="126" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Watch Session</text>
+          <text x="635" y="142" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Starts playing</text>
+
+          <!-- Label between N5 and N6 -->
+          <text x="718" y="122" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8">implicit signal</text>
+
+          <!-- Arrow 5→6 -->
+          <line x1="695" y1="130" x2="768" y2="130" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#yf-arr)"/>
+
+          <!-- Node 6: Satisfaction Signal (terracotta) -->
+          <rect x="720" y="108" width="120" height="44" fill="#bf5c3a" rx="0"/>
+          <text x="780" y="126" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Satisfaction Signal</text>
+          <text x="780" y="142" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9">Captured</text>
+
+          <!-- Dashed arrow from N6 down to feedback box -->
+          <line x1="780" y1="154" x2="780" y2="228" stroke="#f7f3ee" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#yf-arr-dash)" opacity="0.7"/>
+
+          <!-- Feedback box -->
+          <rect x="720" y="228" width="120" height="44" fill="#f7f3ee" rx="0" opacity="0.7"/>
+          <text x="780" y="246" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Feeds model</text>
+          <text x="780" y="262" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Update</text>
+        </svg>
+      </div>
+
+      <!-- Wireframe panel -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="wireframe">
+        <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <rect width="900" height="420" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" opacity="0.6">WIREFRAME — REDESIGNED HOME FEED</text>
+
+          <!-- Browser/app frame -->
+          <rect x="25" y="46" width="850" height="360" fill="#0d1e38" stroke="#2d5da1" stroke-width="1"/>
+
+          <!-- Top nav bar -->
+          <rect x="25" y="46" width="850" height="46" fill="#f7f3ee"/>
+          <text x="50" y="75" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="13" font-weight="700">&#9654; YouTube</text>
+          <!-- Search bar -->
+          <rect x="280" y="58" width="340" height="22" fill="#0b1628" stroke="#f7f3ee" stroke-width="1"/>
+          <text x="450" y="73" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" opacity="0.5">Search</text>
+          <!-- Avatar -->
+          <circle cx="830" cy="69" r="12" fill="#c4933f"/>
+
+          <!-- Intent chips row -->
+          <rect x="25" y="92" width="850" height="36" fill="#112240"/>
+          <!-- Chip 1: Catch up (active / terracotta) -->
+          <rect x="40" y="101" width="90" height="22" fill="#bf5c3a" rx="0"/>
+          <text x="85" y="116" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9" font-weight="600">Catch up</text>
+          <!-- Chip 2: Learn -->
+          <rect x="142" y="101" width="80" height="22" fill="#f7f3ee" rx="0"/>
+          <text x="182" y="116" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Learn</text>
+          <!-- Chip 3: Unwind -->
+          <rect x="234" y="101" width="76" height="22" fill="#f7f3ee" rx="0"/>
+          <text x="272" y="116" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Unwind</text>
+          <!-- Chip 4: Discover -->
+          <rect x="322" y="101" width="88" height="22" fill="#f7f3ee" rx="0"/>
+          <text x="366" y="116" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Discover</text>
+
+          <!-- Left column label -->
+          <text x="33" y="150" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="1.5">FOR YOU NOW</text>
+
+          <!-- Left column video cards -->
+          <!-- Card 1 -->
+          <rect x="33" y="162" width="462" height="60" fill="#f7f3ee" rx="0"/>
+          <rect x="38" y="165" width="80" height="52" fill="#0b1628" rx="0"/>
+          <text x="130" y="185" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9" font-weight="600">Why AI Won't Replace Product Managers</text>
+          <text x="130" y="200" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Lenny's Podcast · 47 min</text>
+          <!-- Card 2 -->
+          <rect x="33" y="230" width="462" height="60" fill="#f7f3ee" rx="0"/>
+          <rect x="38" y="233" width="80" height="52" fill="#0b1628" rx="0"/>
+          <text x="130" y="253" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9" font-weight="600">Building in Public — The Real Numbers</text>
+          <text x="130" y="268" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">My First Million · 58 min</text>
+          <!-- Card 3 -->
+          <rect x="33" y="298" width="462" height="60" fill="#f7f3ee" rx="0"/>
+          <rect x="38" y="301" width="80" height="52" fill="#0b1628" rx="0"/>
+          <text x="130" y="321" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9" font-weight="600">The Future of Search — Deep Dive</text>
+          <text x="130" y="336" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">MKBHD · 32 min</text>
+
+          <!-- Right column label -->
+          <text x="505" y="150" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="1.5">CONTEXTUAL PLAYLIST</text>
+
+          <!-- Featured card (terracotta) -->
+          <rect x="505" y="162" width="362" height="196" fill="#bf5c3a" rx="0"/>
+          <text x="686" y="240" text-anchor="middle" fill="#f7f3ee" font-family="Cormorant Garamond, serif" font-size="18" font-weight="700">Tonight's Deep Dive</text>
+          <text x="686" y="264" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11">12 videos · AI &amp; Tech</text>
+
+          <!-- Two smaller cards below -->
+          <rect x="505" y="370" width="170" height="30" fill="#f7f3ee" rx="0"/>
+          <text x="590" y="389" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8">System Design · 8 videos</text>
+          <rect x="697" y="370" width="170" height="30" fill="#f7f3ee" rx="0"/>
+          <text x="782" y="389" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="8">Career Advice · 6 videos</text>
+        </svg>
+      </div>
+
+      <!-- Architecture panel -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
+        <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="ya-arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+            <marker id="ya-arr-dash" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#2d5da1"/>
+            </marker>
+          </defs>
+          <rect width="900" height="360" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" opacity="0.6">SYSTEM ARCHITECTURE — RECOMMENDATION ENGINE</text>
+
+          <!-- Zone dividers -->
+          <line x1="160" y1="40" x2="160" y2="320" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+          <line x1="340" y1="40" x2="340" y2="320" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+          <line x1="540" y1="40" x2="540" y2="320" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+          <line x1="720" y1="40" x2="720" y2="320" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+
+          <!-- Zone labels -->
+          <text x="80" y="55" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" letter-spacing="1.5" opacity="0.5">CLIENT</text>
+          <text x="250" y="55" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" letter-spacing="1.5" opacity="0.5">INTENT</text>
+          <text x="440" y="55" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" letter-spacing="1.5" opacity="0.5">RANKING</text>
+          <text x="630" y="55" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" letter-spacing="1.5" opacity="0.5">DELIVERY</text>
+          <text x="810" y="55" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9" letter-spacing="1.5" opacity="0.5">CLIENT</text>
+
+          <!-- Secondary inputs feeding Intent API -->
+          <!-- User History box -->
+          <rect x="150" y="68" width="100" height="30" fill="#f7f3ee" rx="0"/>
+          <text x="200" y="87" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">User History</text>
+          <!-- Time + Device box -->
+          <rect x="295" y="68" width="110" height="30" fill="#f7f3ee" rx="0"/>
+          <text x="350" y="87" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Time + Device</text>
+
+          <!-- Arrows from secondary inputs to Intent API node -->
+          <path d="M220,98 L250,123" stroke="#f7f3ee" stroke-width="1.2" marker-end="url(#ya-arr)"/>
+          <path d="M300,98 L262,123" stroke="#f7f3ee" stroke-width="1.2" marker-end="url(#ya-arr)"/>
+
+          <!-- Main path nodes -->
+          <!-- Node 1: Web/Mobile -->
+          <rect x="10" y="118" width="140" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="80" y="136" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Web / Mobile</text>
+          <text x="80" y="152" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Client app</text>
+
+          <!-- Arrow 1→2 -->
+          <line x1="150" y1="140" x2="168" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ya-arr)"/>
+
+          <!-- Node 2: Intent API (terracotta) -->
+          <rect x="175" y="118" width="150" height="44" fill="#bf5c3a" rx="0"/>
+          <text x="250" y="136" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Intent API</text>
+          <text x="250" y="152" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="9">Context service</text>
+
+          <!-- Arrow 2→3 -->
+          <line x1="325" y1="140" x2="353" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ya-arr)"/>
+
+          <!-- Node 3: Feed Ranking -->
+          <rect x="365" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="440" y="136" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Feed Ranking</text>
+          <text x="440" y="152" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Engine</text>
+
+          <!-- Arrow 3→4 -->
+          <line x1="515" y1="140" x2="543" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ya-arr)"/>
+
+          <!-- Node 4: Feed API -->
+          <rect x="555" y="118" width="140" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="625" y="136" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Feed API</text>
+          <text x="625" y="152" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">GraphQL</text>
+
+          <!-- Arrow 4→5 -->
+          <line x1="695" y1="140" x2="728" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ya-arr)"/>
+
+          <!-- Node 5: Client Feed -->
+          <rect x="730" y="118" width="140" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="800" y="136" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">Client Feed</text>
+          <text x="800" y="152" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Rendered</text>
+
+          <!-- ML Model box -->
+          <rect x="370" y="230" width="140" height="44" fill="#f7f3ee" rx="0"/>
+          <text x="440" y="248" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="10" font-weight="600">ML Model</text>
+          <text x="440" y="264" text-anchor="middle" fill="#0b1628" font-family="DM Sans, sans-serif" font-size="9">Collab filter</text>
+
+          <!-- Arrow from ML Model up to Feed Ranking -->
+          <line x1="440" y1="230" x2="440" y2="169" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ya-arr)"/>
+
+          <!-- Feedback loop: dashed path from Client Feed → ML Model -->
+          <path d="M800,162 L800,290 L512,290 L512,250" stroke="#2d5da1" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ya-arr-dash)"/>
+
+          <!-- Note at bottom -->
+          <text x="450" y="330" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" opacity="0.8">Implicit watch signals feed the collaborative filtering model for next-session personalisation</text>
+        </svg>
+      </div>
+
+      <!-- PRD panel -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="prd">
+        <p class="cs-docs-prd-note">This case study page is the full Product Requirements Document for YouTube 2.0 — covering discovery research, 171 survey responses, four product interventions, and success metrics.</p>
+        <button class="cs-docs-print-btn" onclick="window.print()">Save as PDF &rarr;</button>
+      </div>
+    </section>
+
         <!-- TOC -->
 
         <!-- 1. Problem Context -->
@@ -677,6 +935,21 @@
       if (e.key === 'ArrowLeft') show(current - 1);
     });
     show(0);
+  })();
+  </script>
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
   })();
   </script>
 </body>

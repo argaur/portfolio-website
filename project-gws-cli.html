@@ -42,6 +42,127 @@
             </div>
         </header>
 
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">User Flow</button>
+          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
+          <a href="https://github.com/argaur/gws-cli" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+        </div>
+      </div>
+      <div class="cs-docs-panel" data-panel="flow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" width="100%" aria-label="CLI Command Flow — GWS CLI">
+          <defs>
+            <marker id="gf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="310" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">CLI COMMAND FLOW — GWS CLI</text>
+          <!-- Node 1: gws cmd -->
+          <rect x="80" y="100" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="150" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">gws &lt;cmd&gt;</text>
+          <text x="150" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">User runs CLI</text>
+          <!-- Arrow 1->2 -->
+          <line x1="222" y1="122" x2="258" y2="122" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#gf-arr)" opacity="0.7"/>
+          <!-- Node 2: Arg Parser -->
+          <rect x="260" y="100" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="330" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Arg Parser</text>
+          <text x="330" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Click / argparse</text>
+          <!-- Arrow 2->3 -->
+          <line x1="402" y1="122" x2="448" y2="122" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#gf-arr)" opacity="0.7"/>
+          <!-- Node 3: OAuth2 (terracotta) -->
+          <rect x="450" y="100" width="140" height="44" fill="#bf5c3a"/>
+          <text x="520" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">OAuth2</text>
+          <text x="520" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">Token refresh</text>
+          <!-- Token note -->
+          <text x="520" y="162" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1">token.json cached · refresh if expired</text>
+          <!-- Arrow 3->4 -->
+          <line x1="592" y1="122" x2="638" y2="122" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#gf-arr)" opacity="0.7"/>
+          <!-- Node 4: API Call -->
+          <rect x="640" y="100" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="710" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">API Call</text>
+          <text x="710" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Gmail / Calendar</text>
+          <!-- Branch down from API Call -->
+          <path d="M710,144 L710,200 L540,200 L540,228" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)" opacity="0.7"/>
+          <path d="M710,144 L710,200 L840,200 L840,228" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)" opacity="0.7"/>
+          <!-- Output 1: Gmail API -->
+          <rect x="460" y="228" width="160" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="540" y="247" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Gmail API</text>
+          <text x="540" y="263" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">search, draft, send</text>
+          <!-- Output 2: Calendar API -->
+          <rect x="750" y="228" width="130" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="815" y="247" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Calendar API</text>
+          <text x="815" y="263" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">list, create, update</text>
+        </svg>
+      </div>
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="100%" aria-label="System Architecture — GWS CLI">
+          <defs>
+            <marker id="ga-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="360" fill="#0b1628"/>
+          <!-- Title -->
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">SYSTEM ARCHITECTURE — GWS CLI</text>
+          <!-- Zone dividers -->
+          <line x1="200" y1="42" x2="200" y2="318" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="400" y1="42" x2="400" y2="318" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="620" y1="42" x2="620" y2="318" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <!-- Zone labels -->
+          <text x="100" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">CLI LAYER</text>
+          <text x="300" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">COMMAND MODULES</text>
+          <text x="510" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">AUTH</text>
+          <text x="760" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">GOOGLE APIS</text>
+          <!-- Node 1: CLI Entrypoint -->
+          <rect x="22" y="118" width="155" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="100" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">CLI Entrypoint</text>
+          <text x="100" y="153" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Click / argparse</text>
+          <!-- Arrow CLI -> modules -->
+          <line x1="178" y1="140" x2="214" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ga-arr)" opacity="0.7"/>
+          <!-- Node 2: Command modules -->
+          <rect x="216" y="118" width="168" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="300" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">gmail.py + calendar.py</text>
+          <text x="300" y="153" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Command modules</text>
+          <!-- Arrow modules -> auth -->
+          <line x1="386" y1="140" x2="428" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ga-arr)" opacity="0.7"/>
+          <!-- Node 3: google-auth (terracotta) -->
+          <rect x="430" y="118" width="160" height="44" fill="#bf5c3a"/>
+          <text x="510" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">google-auth</text>
+          <text x="510" y="153" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">OAuth2 client</text>
+          <!-- Arrow auth -> Gmail REST API -->
+          <path d="M592,130 L680,130 L680,132 L718,132" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#ga-arr)" opacity="0.7"/>
+          <!-- Arrow auth -> Calendar REST API -->
+          <path d="M592,152 L680,152 L680,197 L718,197" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#ga-arr)" opacity="0.7"/>
+          <!-- Node 4a: Gmail REST API -->
+          <rect x="720" y="110" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="790" y="129" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Gmail REST API</text>
+          <text x="790" y="145" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">search · draft · send</text>
+          <!-- Node 4b: Calendar REST API -->
+          <rect x="720" y="175" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="790" y="194" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Calendar REST API</text>
+          <text x="790" y="210" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">list · create · update</text>
+          <!-- Auth secondary: token.json -->
+          <rect x="445" y="238" width="130" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="510" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">token.json</text>
+          <text x="510" y="273" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Cached token</text>
+          <!-- Dashed arrow auth down to token.json -->
+          <line x1="510" y1="162" x2="510" y2="236" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr)" opacity="0.5"/>
+          <!-- credentials.json -->
+          <rect x="225" y="238" width="150" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="300" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">credentials.json</text>
+          <text x="300" y="273" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">OAuth2 config</text>
+          <!-- Arrow credentials -> token.json -->
+          <line x1="376" y1="260" x2="443" y2="260" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr)" opacity="0.5"/>
+          <!-- Note -->
+          <text x="450" y="330" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.8">OAuth2 token cached locally; refreshed automatically on expiry using google-auth library</text>
+        </svg>
+      </div>
+    </section>
+
         <div class="cs-page is-active">
 
             <section class="cs-section">
@@ -124,5 +245,20 @@
         <p>Gaurav Gupta &mdash; Personal Project</p>
     </footer>
 
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
