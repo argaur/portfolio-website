@@ -176,6 +176,100 @@
     @media(max-width:640px){
       .v3-modal-panel{padding:24px;}
     }
+
+    /* ── Proj-card grid (app.js renders these) ──────────────────────────────── */
+    .proj-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media(min-width:640px) { .proj-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(min-width:1024px) { .proj-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .proj-card { background: #1a1a22; border: 1px solid #2a2a38; padding: 20px; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 8px; border-radius: 4px; }
+    .proj-card:hover { background: #242432; border-color: #c9a84c; }
+    .proj-card--lead { grid-column: 1 / -1; border-left: 3px solid #c9a84c; }
+    .proj-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .proj-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #c9a84c; }
+    .proj-role-chip { font-family: 'DM Sans', sans-serif; font-size: 11px; color: #9896a0; background: #242432; padding: 2px 8px; border-radius: 2px; }
+    .proj-title { font-family: 'Space Mono', monospace; font-size: 15px; font-weight: 700; color: #ece8e2; line-height: 1.3; }
+    .proj-desc { font-family: 'DM Sans', sans-serif; font-size: 14px; color: #9896a0; line-height: 1.5; flex-grow: 1; }
+    .proj-metrics { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .proj-metric { font-family: 'Space Mono', monospace; font-size: 10px; color: #c9a84c; background: rgba(201,168,76,0.08); padding: 3px 8px; border: 1px solid rgba(201,168,76,0.2); }
+    .proj-cta { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #c9a84c; margin-top: auto; }
+    .proj-card:hover .proj-cta { text-decoration: underline; }
+
+    /* Modal content styles for work projects */
+    .modal-header-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .modal-tag { font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #c9a84c; background: rgba(201,168,76,0.1); padding: 4px 10px; border: 1px solid rgba(201,168,76,0.25); }
+    .modal-role { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #9896a0; background: #242432; padding: 4px 10px; border-radius: 2px; }
+    .modal-title { font-family: 'Space Mono', monospace; font-size: clamp(18px,3vw,26px); font-weight: 700; color: #ece8e2; line-height: 1.25; margin-bottom: 8px; }
+    .modal-company-year { font-family: 'DM Sans', sans-serif; font-size: 14px; color: #9896a0; margin-bottom: 20px; display: block; }
+    .modal-tech-row { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #9896a0; padding: 12px 0; border-top: 1px solid #2a2a38; margin-bottom: 16px; }
+    .modal-tech-row strong { color: #ece8e2; }
+    .modal-section-label { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #c9a84c; margin-bottom: 10px; margin-top: 20px; }
+    .modal-activities { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .modal-activities li { font-family: 'DM Sans', sans-serif; font-size: 14px; color: #9896a0; line-height: 1.6; padding-left: 16px; position: relative; }
+    .modal-activities li::before { content: '→'; position: absolute; left: 0; color: #c9a84c; }
+    .modal-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a38; }
+    .modal-metric { font-family: 'Space Mono', monospace; font-size: 11px; color: #c9a84c; background: rgba(201,168,76,0.08); padding: 4px 12px; border: 1px solid rgba(201,168,76,0.2); }
+    .modal-panel--wide { max-width: 900px !important; }
+
+    /* ── Light mode (app.js toggles body.theme-light) ───────────────────────── */
+    .theme-icon--sun { display: none; }
+    .theme-icon--moon { display: block; }
+    body.theme-light .theme-icon--sun { display: block; }
+    body.theme-light .theme-icon--moon { display: none; }
+    body.theme-light { background: #f2ede8; color: #0e0e12; }
+    body.theme-light header { background: #ffffff; border-color: #d8d3ce; }
+    body.theme-light .v3-panel { background: #f2ede8; }
+    body.theme-light .accordion-row .etched-border { background: #ffffff; border-color: #d8d3ce; }
+    body.theme-light .accordion-row .bg-surface-container-low { background: #ffffff; }
+    body.theme-light .accordion-row .bg-surface-container { background: #f2ede8; }
+    body.theme-light .tonal-card { background: #ffffff; border-color: #d8d3ce; }
+    body.theme-light .tonal-card:hover { background: #f2ede8; border-color: #b8922a; }
+    body.theme-light .proj-card { background: #ffffff; border-color: #d8d3ce; }
+    body.theme-light .proj-card:hover { background: #f2ede8; border-color: #b8922a; }
+    body.theme-light .skill-block { background: #ffffff; }
+    body.theme-light .v3-modal-panel { background: #ffffff; border-color: #d8d3ce; }
+    body.theme-light #mobile-nav { background: #ffffff; border-color: #d8d3ce; }
+    body.theme-light #top-nav, body.theme-light header { background: #ffffff; }
+
+    /* ── Mobile responsive (< 768px) ─────────────────────────────────────────── */
+    @media (max-width: 767px) {
+      header { height: 52px; }
+      .panels-wrap { height: calc(100vh - 52px); margin-top: 52px; }
+
+      #panel-home .grid { display: flex !important; flex-direction: column; }
+      #panel-home .hidden { display: none !important; }
+
+      .font-display, [class*="text-display"] { font-size: clamp(28px, 8vw, 40px) !important; }
+      [class*="text-headline-lg"] { font-size: clamp(20px, 5vw, 28px) !important; }
+
+      .grid-cols-\[auto_1fr\] { grid-template-columns: 32px 1fr; gap: 16px; }
+
+      .timeline-dot { width: 8px; height: 8px; }
+
+      #panel-credentials .flex-col.md\:flex-row { flex-direction: column; }
+      #panel-credentials .md\:w-1\/2 { width: 100%; max-height: 50vh; }
+
+      #panel-contact .md\:col-span-7 { grid-column: 1 / -1; }
+      #panel-contact .md\:col-span-5 { grid-column: 1 / -1; display: flex; justify-content: center; }
+      #panel-contact canvas { width: 200px !important; height: 200px !important; }
+
+      .project-row { flex-direction: column; gap: 8px; padding: 16px 0; }
+      .project-row .md\:w-1\/4 { width: 100%; }
+      .project-row .md\:w-1\/6 { width: 100%; text-align: left !important; }
+
+      #panel-skills .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+
+      #panel-philosophy .md\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+
+      .px-margin-side { padding-left: 20px; padding-right: 20px; }
+
+      .proj-grid { grid-template-columns: 1fr !important; }
+      .proj-card--lead { grid-column: 1 / -1; }
+
+      .stats-row, .grid-cols-2.md\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+
+      #mobile-nav { width: 100% !important; }
+    }
   </style>
 </head>
 <body class="bg-background text-on-background">
@@ -239,6 +333,10 @@
     </nav>
     <div class="flex items-center gap-3">
       <button type="button" class="nav-link hidden md:block bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 uppercase tracking-widest hover:bg-primary-fixed transition-colors" data-panel="panel-contact">Get in touch</button>
+      <button type="button" id="theme-toggle" class="hidden md:flex items-center justify-center w-8 h-8 border border-outline-variant text-on-surface-variant hover:border-primary-fixed-dim hover:text-primary-fixed-dim transition-colors" aria-label="Toggle theme" title="Toggle light/dark mode">
+        <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
       <button type="button" id="hamburger-btn" class="md:hidden text-on-surface p-1"><span class="material-symbols-outlined">menu</span></button>
     </div>
   </div>
@@ -295,13 +393,40 @@
             <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
             <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
             <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
+            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
           </div>
         </div>
         <!-- Accordion -->
         <div class="flex flex-col gap-10" id="experience-accordion">
 
+          <!-- Independent AI Product Builder -->
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(0)">
+            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
+              <div class="flex flex-col gap-1">
+                <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Independent</span>
+                <h4 class="font-headline-md text-headline-md text-on-surface">Independent AI Product Builder</h4>
+              </div>
+              <div class="flex items-center gap-6 mt-4 md:mt-0">
+                <div class="flex flex-col items-end gap-1">
+                  <span class="font-label-md text-label-md text-on-surface-variant">Jun 2025 – Present</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">Jaipur</span>
+                </div>
+                <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+              </div>
+            </div>
+            <div class="accordion-content">
+              <div class="px-6 pt-6 pb-8 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">Shipped 5 full-cycle product case studies across B2B SaaS, quick commerce, consumer AI, and health tech. Awarded 3rd place at Rethink AI-First Buildathon. Built and maintain a personal Telegram AI assistant (28+ commands, 5 daily automations). Earned CSM, CSPO, and Mastering AI Product Management (Rethink, 2026).</p>
+                <div class="inline-flex">
+                  <button type="button" class="nav-link font-label-sm text-label-sm text-primary-fixed-dim border border-primary-fixed-dim/40 px-4 py-2 hover:bg-primary-fixed-dim/10 transition-colors uppercase tracking-wider" data-panel="panel-projects">Output in Projects panel →</button>
+                </div>
+                <div class="exp-projects" data-company="independent"></div>
+              </div>
+            </div>
+          </div>
+
           <!-- JindalX -->
-          <div class="accordion-row is-open group cursor-pointer" onclick="toggleExpAccordion(0)">
+          <div class="accordion-row is-open group cursor-pointer" onclick="toggleExpAccordion(1)">
             <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
               <div class="flex flex-col gap-1">
                 <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">JindalX</span>
@@ -324,12 +449,13 @@
                   <div class="tonal-card bg-surface-container border border-outline-variant p-5"><h4 class="font-headline-md text-headline-md text-on-surface mb-2">Quality Audit &amp; BI Dashboard</h4><p class="font-body-md text-body-md text-on-surface-variant">Real-time auditing platform with BI reporting and process analytics.</p></div>
                   <div class="tonal-card bg-surface-container border border-outline-variant p-5"><h4 class="font-headline-md text-headline-md text-on-surface mb-2">HRMS &amp; CRM Suite</h4><p class="font-body-md text-body-md text-on-surface-variant">Integrated HR and CRM modules serving mid-enterprise client base.</p></div>
                 </div>
+                <div class="exp-projects" data-company="jindal"></div>
               </div>
             </div>
           </div>
 
           <!-- OneValley -->
-          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(1)">
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(2)">
             <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
               <div class="flex flex-col gap-1">
                 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">OneValley</span>
@@ -349,12 +475,13 @@
                     <div class="flex gap-2 mt-4"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">B2B SAAS</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">GLOBAL PLATFORM</span></div>
                   </div>
                 </div>
+                <div class="exp-projects" data-company="onevalley"></div>
               </div>
             </div>
           </div>
 
           <!-- Taccomacco -->
-          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(2)">
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(3)">
             <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
               <div class="flex flex-col gap-1">
                 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Taccomacco Edutainment</span>
@@ -373,12 +500,13 @@
                   <p class="font-body-md text-body-md text-on-surface-variant">Android &amp; iOS apps, 500+ digital titles in 6 months, creator incubation for 6+ content creators.</p>
                   <div class="flex gap-2 mt-4"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">0→1 BUILD</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">EDTECH</span></div>
                 </div>
+                <div class="exp-projects" data-company="taccomacco"></div>
               </div>
             </div>
           </div>
 
           <!-- RSP -->
-          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(3)">
+          <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(4)">
             <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
               <div class="flex flex-col gap-1">
                 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">RSP Design Consultants</span>
@@ -397,6 +525,7 @@
                   <p class="font-body-md text-body-md text-on-surface-variant">40+ projects across IT, healthcare, institutional sectors. The systems thinking discipline that underpins all product work.</p>
                   <div class="flex gap-2 mt-4"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">ARCHITECTURE</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">DELIVERY</span></div>
                 </div>
+                <div class="exp-projects" data-company="rsp"></div>
               </div>
             </div>
           </div>
@@ -417,90 +546,105 @@
   <section id="panel-projects" class="v3-panel grid-bg bg-background">
     <div class="pt-12 pb-24 max-w-container-max mx-auto w-full px-margin-side">
       <header class="mb-12 border-l-2 border-primary-container pl-6">
-        <h1 class="font-display text-display uppercase text-on-surface">Project Index</h1>
+        <h1 class="font-display text-display uppercase text-on-surface">Projects</h1>
         <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Case studies and personal builds — product thinking applied.</p>
       </header>
-      <!-- Case Studies -->
-      <section class="mb-20">
-        <div class="flex items-center gap-4 mb-4">
-          <h2 class="font-label-md text-label-md text-primary-container uppercase tracking-[0.2em]">Case Studies</h2>
-          <div class="h-[1px] flex-grow bg-outline-variant"></div>
+      <div>
+        <!-- 01 Vitae -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-4')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">01</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Vitae — Health Records, Finally Understood</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Health Tech</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live prototype →</div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
-        <div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-0')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">01</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Rethink CRM — Conversation-First Sales Tool</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">B2B SAAS</span><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
+        <!-- 02 Telegram PM Bot -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-0')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">02</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Telegram PM Bot — Workflow Automation</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Automation</span>
           </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-1')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">02</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Blinkit Command Hub — Peak-Hour Decision Support</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">QUICK COMMERCE</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Shipped</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-2')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">03</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">YouTube 2.0 — Fixing Long-Form Discovery</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">CONSUMER</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-3')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">04</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Trivo — Group Travel Planning Platform</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">CONSUMER</span><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-4')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">05</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Vitae — Health Records, Finally Understood</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">HEALTHTECH</span><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Shipped</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Deployed · Active</div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
-      </section>
-      <!-- Personal Projects -->
-      <section>
-        <div class="flex items-center gap-4 mb-4">
-          <h2 class="font-label-md text-label-md text-primary-container uppercase tracking-[0.2em]">Personal Projects</h2>
-          <div class="h-[1px] flex-grow bg-outline-variant"></div>
+        <!-- 03 Blinkit -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-1')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">03</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Blinkit Command Hub — Peak-Hour Decision Support</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Quick Commerce</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live prototype →</div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
-        <div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-0')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">06</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Telegram Personal Assistant Bot</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AUTOMATION</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Shipped · Active</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
+        <!-- 04 Rethink CRM -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-0')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">04</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Rethink CRM — Conversation-First Sales Tool</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">B2B SaaS</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
           </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-1')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">07</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">This Portfolio Website</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">INFRA</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Shipped · Live</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-2')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">08</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Personal Homelab Server</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">DEVOPS</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Shipped · Active</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
-          <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-3')">
-            <div class="w-10 font-label-md text-label-md text-on-surface-variant">09</div>
-            <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">GWS CLI — Gmail &amp; Calendar CLI Tool</div>
-            <div class="flex flex-wrap gap-2 md:w-1/4"><span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AUTOMATION</span></div>
-            <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Shipped · Active</div>
-            <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
-          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
-      </section>
+        <!-- 05 Group Travel -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-3')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">05</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Group Travel Planning Platform</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
+        </div>
+        <!-- 06 YouTube 2.0 -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-2')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">06</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">YouTube 2.0 — Fixing Long-Form Discovery</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Media</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
+        </div>
+        <!-- 07 Portfolio Website (no modal) -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" style="cursor:default">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">07</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Portfolio Website — This Site</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Infra</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">JS</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Plain HTML/CSS/JS SPA</div>
+          <div class="w-8"></div>
+        </div>
+        <!-- 08 GWS CLI (no modal) -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" style="cursor:default">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">08</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">GWS CLI — Google Workspace Terminal Tool</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Dev Tooling</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Open source</div>
+          <div class="w-8"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -643,8 +787,8 @@
 <div id="modal-overlay" hidden style="position:fixed;inset:0;z-index:140;">
   <div style="position:absolute;inset:0;background:rgba(10,10,14,0.94);" onclick="document.getElementById('modal-overlay').hidden=true"></div>
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;pointer-events:none;">
-    <div style="position:relative;background:#1a1a22;border:1px solid #2a2a38;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;pointer-events:auto;">
-      <button style="position:absolute;top:16px;right:16px;color:#9896a0;" onclick="document.getElementById('modal-overlay').hidden=true"><span class="material-symbols-outlined">close</span></button>
+    <div id="modal-panel" style="position:relative;background:#1a1a22;border:1px solid #2a2a38;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;pointer-events:auto;">
+      <button id="modal-close" style="position:absolute;top:16px;right:16px;color:#9896a0;" onclick="document.getElementById('modal-overlay').hidden=true"><span class="material-symbols-outlined">close</span></button>
       <div id="modal-body"></div>
     </div>
   </div>
@@ -708,6 +852,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var m = document.getElementById('modal-overlay');
     if (m) m.hidden = true;
   });
+
+  // Theme toggle
+  var themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function() {
+      document.body.classList.toggle('theme-light');
+    });
+  }
 
   // Skills hover
   document.querySelectorAll('.skill-block').forEach(function(b) {
