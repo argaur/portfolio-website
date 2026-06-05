@@ -807,11 +807,11 @@ body.theme-light .proj-grid { background: #c8c3be; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
-  background: #e2dbd3;
+  background: var(--c-border, #2a2a38);
 }
 
 .proj-card {
-  background: #ffffff;
+  background: var(--surface-3, #1a1a22);
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -2723,6 +2723,10 @@ body.theme-light .proj-grid { background: #c8c3be; }
 .principle-item { display: flex; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--c-border); }
 .principle-num { color: var(--c-text-3); flex-shrink: 0; padding-top: 2px; }
 .principle-text { color: var(--c-text-2); line-height: 1.55; }
+.principle-item--accent { border: 1px solid var(--c-accent); padding: var(--space-3); margin-top: var(--space-2); }
+.principle-item--accent .principle-num { color: var(--c-accent); }
+.principle-item--accent .principle-text { color: var(--c-text); }
+.principles-footer { color: var(--c-text-3); margin-top: var(--space-4); letter-spacing: 0.06em; font-size: 11px; }
 .hit-graph { display: flex; flex-direction: column; }
 .skills-graph-canvas { width: 100%; aspect-ratio: 4/3; }
 .hit-graph-note { color: var(--c-text-3); margin-top: var(--space-2); font-size: 13px; font-family: var(--font-body); }
@@ -2737,6 +2741,7 @@ body.theme-light .proj-grid { background: #c8c3be; }
 .cred-info { display: flex; flex-direction: column; gap: 2px; flex: 1; }
 .cred-name { color: var(--c-text); }
 .cred-org { color: var(--c-text-3); }
+.cred-footer { color: var(--c-text-3); margin-top: var(--space-6); letter-spacing: 0.06em; font-size: 11px; }
 .cred-collapsed { cursor: pointer; justify-content: space-between; align-items: center; }
 .cred-other-label { color: var(--c-text-2); }
 .cred-show-link { color: var(--c-accent); cursor: pointer; }
@@ -2747,6 +2752,7 @@ body.theme-light .proj-grid { background: #c8c3be; }
 .contact-lead { color: var(--c-text-2); margin: 0 0 var(--space-6); max-width: 560px; }
 .contact-ctas { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 .contact-location { color: var(--c-text-3); margin-top: var(--space-6); display: block; }
+.contact-footer { color: var(--c-text-3); margin-top: var(--space-3); letter-spacing: 0.06em; font-size: 11px; }
 
 /* MOBILE */
 @media (max-width: 768px) {
