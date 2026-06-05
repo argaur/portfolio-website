@@ -1,18 +1,17 @@
 /* ============================================================
-   Case Study Shared Styles — Blueprint to Bits
+   Case Study Shared Styles — Kinetic Precision (v3)
    ============================================================ */
 :root {
-  --cs-navy:     #0b1628;
-  --cs-navy-mid: #112240;
-  --cs-cream:    #f7f3ee;
-  --cs-white:    #ffffff;
-  --cs-text:     #1c1917;
-  --cs-muted:    #6b6560;
-  --cs-border:   #e2dbd3;
-  --cs-terra:    #bf5c3a;
-  --cs-blue:     #2d5da1;
-  --font-display: 'Cormorant Garamond', serif;
-  --font-body:    'DM Sans', sans-serif;
+  --cs-bg:       #0e0e12;
+  --cs-bg-raised:#1a1a22;
+  --cs-bg-subtle:#242432;
+  --cs-text:     #ece8e2;
+  --cs-muted:    #9896a0;
+  --cs-border:   #2a2a38;
+  --cs-accent:   #c9a84c;
+  --cs-accent-dim: #8a6f2e;
+  --font-display: 'Space Mono', 'Courier New', monospace;
+  --font-body:    'DM Sans', system-ui, sans-serif;
 }
 
 *, *::before, *::after {
@@ -28,11 +27,13 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--cs-cream);
+  background-color: var(--cs-bg);
   background-image:
-    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
-  background-size: 120px 120px;
+    linear-gradient(rgba(65,120,220,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65,120,220,0.07) 1px, transparent 1px),
+    linear-gradient(rgba(65,120,220,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65,120,220,0.025) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
   color: var(--cs-text);
   line-height: 1.7;
   min-height: 100vh;
@@ -50,10 +51,10 @@ img { display: block; max-width: 100%; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11,22,40,0.97);
+  background: rgba(14,14,18,0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--cs-border);
   padding: 0 48px;
 }
 
@@ -63,26 +64,26 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 56px;
 }
 
 .cs-back-link {
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 500;
-  color: rgba(255,255,255,0.45);
+  color: var(--cs-muted);
   letter-spacing: 0.04em;
   transition: color 0.2s;
 }
-.cs-back-link:hover { color: #ffffff; }
+.cs-back-link:hover { color: var(--cs-accent); }
 
 .cs-nav-title {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
+  color: rgba(236,232,226,0.25);
 }
 
 /* ============================================================
@@ -105,10 +106,10 @@ img { display: block; max-width: 100%; }
 }
 
 .cs-label {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
-  color: var(--cs-terra);
+  font-weight: 400;
+  color: var(--cs-accent);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   display: block;
@@ -117,11 +118,11 @@ img { display: block; max-width: 100%; }
 
 .cs-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: var(--cs-navy);
+  letter-spacing: -0.02em;
+  color: var(--cs-text);
   margin-bottom: 20px;
 }
 
@@ -141,55 +142,60 @@ img { display: block; max-width: 100%; }
 }
 
 .cs-meta-tag {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cs-blue);
-  background: rgba(45,93,161,0.08);
+  color: var(--cs-accent);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
   padding: 4px 12px;
+  border-radius: 2px;
 }
 
 .cs-link-btn {
   display: inline-block;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #ffffff;
-  background: var(--cs-navy);
+  color: var(--cs-bg);
+  background: var(--cs-accent);
   padding: 12px 28px;
   transition: background 0.2s;
   margin-top: 24px;
+  border-radius: 2px;
 }
-.cs-link-btn:hover { background: var(--cs-navy-mid); }
+.cs-link-btn:hover { background: var(--cs-accent-dim); }
 
 .cs-link-btn--secondary {
   background: transparent;
-  color: var(--cs-navy);
+  color: var(--cs-text);
   border: 1px solid var(--cs-border);
 }
 .cs-link-btn--secondary:hover {
-  background: transparent;
-  border-color: var(--cs-navy);
+  background: var(--cs-bg-raised);
+  border-color: var(--cs-accent);
+  color: var(--cs-accent);
 }
 
 /* ============================================================
    Table of Contents
    ============================================================ */
 .cs-toc {
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
   border: 1px solid var(--cs-border);
   padding: 36px 40px;
   margin-bottom: 56px;
+  border-radius: 2px;
 }
 
 .cs-toc-title {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--cs-muted);
@@ -204,12 +210,12 @@ img { display: block; max-width: 100%; }
 
 .cs-toc-heading {
   display: block;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cs-terra);
+  color: var(--cs-accent);
   margin-bottom: 12px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--cs-border);
@@ -223,7 +229,7 @@ img { display: block; max-width: 100%; }
   padding: 4px 0;
   transition: color 0.15s;
 }
-.cs-toc a:hover { color: var(--cs-navy); }
+.cs-toc a:hover { color: var(--cs-accent); }
 
 /* ============================================================
    Pagination
@@ -246,23 +252,23 @@ img { display: block; max-width: 100%; }
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(247,243,238,0.55);
+  background: rgba(26,26,34,0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(11,22,40,0.1);
+  border: 1px solid var(--cs-border);
   z-index: 100;
   width: auto;
 }
 
 .cs-page-btn {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cs-navy);
+  color: var(--cs-text);
   background: none;
-  border: 1px solid rgba(11,22,40,0.4);
+  border: 1px solid var(--cs-border);
   padding: 8px 20px;
   min-height: 44px;
   display: inline-flex;
@@ -270,12 +276,13 @@ img { display: block; max-width: 100%; }
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border-radius: 2px;
 }
-.cs-page-btn:hover:not(:disabled) { background: var(--cs-navy); color: #ffffff; border-color: var(--cs-navy); }
+.cs-page-btn:hover:not(:disabled) { background: var(--cs-accent); color: var(--cs-bg); border-color: var(--cs-accent); }
 .cs-page-btn:disabled { opacity: 0.20; cursor: default; }
 
 .cs-page-counter {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -293,10 +300,10 @@ img { display: block; max-width: 100%; }
 }
 
 .cs-section-label {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
-  color: var(--cs-terra);
+  font-weight: 400;
+  color: var(--cs-accent);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   display: block;
@@ -305,26 +312,26 @@ img { display: block; max-width: 100%; }
 
 .cs-section-title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--cs-navy);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cs-text);
   margin-bottom: 28px;
   line-height: 1.2;
 }
 
 .cs-section h3 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--cs-navy);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cs-text);
   margin: 32px 0 14px;
 }
 
 .cs-section h4 {
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.03em;
   color: var(--cs-text);
   margin: 24px 0 10px;
@@ -369,29 +376,30 @@ img { display: block; max-width: 100%; }
   overflow-x: auto;
   margin: 20px 0;
   border: 1px solid var(--cs-border);
+  border-radius: 2px;
 }
 
 .cs-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
 }
 
 .cs-table thead {
-  background: var(--cs-navy);
+  background: var(--cs-bg-subtle);
 }
 
 .cs-table th {
   text-align: left;
   padding: 12px 20px;
-  color: rgba(255,255,255,0.55);
-  font-family: var(--font-body);
+  color: var(--cs-accent);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border-bottom: none;
+  border-bottom: 1px solid var(--cs-border);
 }
 
 .cs-table td {
@@ -408,10 +416,11 @@ img { display: block; max-width: 100%; }
    Callouts
    ============================================================ */
 .cs-callout {
-  background: var(--cs-white);
-  border-left: 3px solid var(--cs-terra);
+  background: var(--cs-bg-raised);
+  border-left: 3px solid var(--cs-accent);
   padding: 20px 28px;
   margin: 24px 0;
+  border-radius: 0 2px 2px 0;
 }
 
 .cs-callout p {
@@ -422,8 +431,8 @@ img { display: block; max-width: 100%; }
 .cs-callout p:last-child { margin-bottom: 0; }
 
 .cs-callout--highlight {
-  background: rgba(191,92,58,0.05);
-  border-left-color: var(--cs-terra);
+  background: rgba(201,168,76,0.06);
+  border-left-color: var(--cs-accent);
 }
 .cs-callout--highlight p { color: var(--cs-text); }
 
@@ -431,19 +440,20 @@ img { display: block; max-width: 100%; }
    Insights
    ============================================================ */
 .cs-insight {
-  background: rgba(45,93,161,0.05);
-  border: 1px solid rgba(45,93,161,0.15);
+  background: rgba(65,120,220,0.06);
+  border: 1px solid rgba(65,120,220,0.2);
   padding: 24px 28px;
   margin: 24px 0;
+  border-radius: 2px;
 }
 
 .cs-insight h4 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--cs-blue);
+  color: #6080c9;
   margin: 0 0 10px;
 }
 
@@ -460,13 +470,15 @@ img { display: block; max-width: 100%; }
 .cs-stats-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 2px;
+  gap: 1px;
   margin: 28px 0;
   background: var(--cs-border);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .cs-stat {
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
   padding: 24px;
   text-align: center;
 }
@@ -475,8 +487,8 @@ img { display: block; max-width: 100%; }
   display: block;
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 600;
-  color: var(--cs-blue);
+  font-weight: 700;
+  color: var(--cs-accent);
   margin-bottom: 6px;
   line-height: 1;
 }
@@ -494,22 +506,24 @@ img { display: block; max-width: 100%; }
 .cs-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2px;
+  gap: 1px;
   margin: 24px 0;
   background: var(--cs-border);
+  border-radius: 2px;
+  overflow: hidden;
 }
 .cs-card-grid--3 { grid-template-columns: repeat(3, 1fr); }
 
 .cs-card {
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
   padding: 24px;
 }
 
 .cs-card h4 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 13px;
   font-weight: 700;
-  color: var(--cs-navy);
+  color: var(--cs-text);
   margin: 0 0 10px;
 }
 
@@ -523,26 +537,28 @@ img { display: block; max-width: 100%; }
    Persona Card
    ============================================================ */
 .cs-persona-card {
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
   border: 1px solid var(--cs-border);
   overflow: hidden;
   margin: 24px 0;
+  border-radius: 2px;
 }
 
 .cs-persona-header {
-  background: var(--cs-navy);
+  background: var(--cs-bg-subtle);
   padding: 24px 28px;
   display: flex;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+  border-bottom: 1px solid var(--cs-border);
 }
 
 .cs-persona-header h3 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cs-text);
   margin: 0;
 }
 
@@ -557,26 +573,27 @@ img { display: block; max-width: 100%; }
 .cs-quotes { margin: 20px 0 24px; }
 
 .cs-quotes blockquote {
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
   border-left: 3px solid var(--cs-border);
   padding: 16px 24px;
   margin-bottom: 10px;
-  font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 1.0rem;
   font-style: italic;
-  color: var(--cs-text);
+  color: var(--cs-muted);
   line-height: 1.6;
-  opacity: 0.85;
+  border-radius: 0 2px 2px 0;
 }
 
 .cs-quotes blockquote cite {
   display: block;
   font-style: normal;
-  font-family: var(--font-body);
-  font-size: 11px;
-  color: var(--cs-muted);
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--cs-accent);
   margin-top: 8px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* ============================================================
@@ -609,11 +626,11 @@ img { display: block; max-width: 100%; }
 }
 .cs-divider span {
   position: relative;
-  background: var(--cs-cream);
+  background: var(--cs-bg);
   padding: 0 28px;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--cs-muted);
@@ -638,55 +655,10 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================================================
-   Responsive
-   ============================================================ */
-@media (max-width: 768px) {
-  .cs-nav { padding: 0 20px; }
-  .cs-main { padding: 0 20px 100px; }
-  .cs-footer { padding: 28px 20px; }
-
-  .cs-two-col { grid-template-columns: 1fr; }
-  .cs-card-grid--3 { grid-template-columns: 1fr; }
-  .cs-stats-row { grid-template-columns: repeat(2, 1fr); }
-
-  .cs-hero { padding: 40px 0 28px; }
-  .cs-hero-title { font-size: clamp(28px, 8vw, 44px); }
-  .cs-footer { flex-direction: column; gap: 12px; text-align: center; }
-
-  .cs-section { margin-bottom: 48px; }
-  .cs-section-title { font-size: clamp(22px, 6vw, 32px); }
-
-  /* Prevent long strings from causing horizontal overflow */
-  .cs-section p, .cs-section li, .cs-section td {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* Reduce table cell padding on mobile */
-  .cs-table td, .cs-table th { padding: 8px 12px; }
-
-  /* Floating pagination — narrower on mobile */
-  .cs-pagination {
-    bottom: 16px;
-    padding: 12px 20px;
-    gap: 16px;
-    width: calc(100% - 48px);
-    left: 24px;
-    transform: none;
-  }
-  .cs-page-btn { padding: 8px 14px; font-size: 10px; }
-}
-
-@media (max-width: 480px) {
-  .cs-stats-row { grid-template-columns: 1fr; }
-  .cs-main { padding: 0 16px 100px; }
-}
-
-/* ============================================================
    Documentation Section
    ============================================================ */
 .cs-docs {
-  background: var(--cs-cream);
+  background: var(--cs-bg);
   padding: 40px 0 48px;
   border-bottom: 1px solid var(--cs-border);
 }
@@ -705,7 +677,7 @@ img { display: block; max-width: 100%; }
 .cs-docs-label {
   font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cs-muted);
@@ -718,9 +690,9 @@ img { display: block; max-width: 100%; }
 }
 
 .cs-docs-tab {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 8px 18px;
@@ -733,15 +705,15 @@ img { display: block; max-width: 100%; }
 }
 .cs-docs-tab:last-child { border-right: 1px solid var(--cs-border); }
 .cs-docs-tab:hover {
-  border-color: var(--cs-terra);
-  color: var(--cs-terra);
+  border-color: var(--cs-accent);
+  color: var(--cs-accent);
   z-index: 1;
   position: relative;
 }
 .cs-docs-tab.cs-docs-tab--active {
-  background: var(--cs-navy);
-  border-color: var(--cs-navy);
-  color: var(--cs-cream);
+  background: var(--cs-accent);
+  border-color: var(--cs-accent);
+  color: var(--cs-bg);
 }
 .cs-docs-tab--link {
   text-decoration: none;
@@ -772,28 +744,69 @@ img { display: block; max-width: 100%; }
   margin-bottom: 24px;
   padding: 24px;
   border: 1px solid var(--cs-border);
-  background: var(--cs-white);
+  background: var(--cs-bg-raised);
+  border-radius: 2px;
 }
 
 .cs-docs-print-btn {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 10px 24px;
-  background: var(--cs-navy);
-  color: var(--cs-cream);
+  background: var(--cs-accent);
+  color: var(--cs-bg);
   border: none;
   cursor: pointer;
   transition: background 0.15s;
+  border-radius: 2px;
 }
-.cs-docs-print-btn:hover { background: var(--cs-terra); }
+.cs-docs-print-btn:hover { background: var(--cs-accent-dim); }
 
+/* ============================================================
+   Responsive
+   ============================================================ */
 @media (max-width: 768px) {
+  .cs-nav { padding: 0 20px; }
+  .cs-main { padding: 0 20px 100px; }
+  .cs-footer { padding: 28px 20px; }
+
+  .cs-two-col { grid-template-columns: 1fr; }
+  .cs-card-grid--3 { grid-template-columns: 1fr; }
+  .cs-stats-row { grid-template-columns: repeat(2, 1fr); }
+
+  .cs-hero { padding: 40px 0 28px; }
+  .cs-toc-columns { grid-template-columns: 1fr; }
+  .cs-footer { flex-direction: column; gap: 12px; text-align: center; }
+
+  .cs-section { margin-bottom: 48px; }
+
+  .cs-section p, .cs-section li, .cs-section td {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .cs-table td, .cs-table th { padding: 8px 12px; }
+
+  .cs-pagination {
+    bottom: 16px;
+    padding: 12px 20px;
+    gap: 16px;
+    width: calc(100% - 48px);
+    left: 24px;
+    transform: none;
+  }
+  .cs-page-btn { padding: 8px 14px; font-size: 10px; }
+
   .cs-docs-header { padding: 0 20px; flex-direction: column; align-items: flex-start; }
   .cs-docs-panel { padding: 0 20px; }
   .cs-docs-tab { padding: 8px 12px; font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .cs-stats-row { grid-template-columns: 1fr; }
+  .cs-main { padding: 0 16px 100px; }
 }
 
 @media print {
