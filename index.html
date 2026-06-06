@@ -177,25 +177,6 @@
       .v3-modal-panel{padding:24px;}
     }
 
-    /* ── Proj-card grid (app.js renders these) ──────────────────────────────── */
-    .proj-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    @media(min-width:640px) { .proj-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(min-width:1024px) { .proj-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    /* proj-card: Stitch tonal-card design language */
-    .proj-card { background: #1e2022; border: 1px solid #2a2a38; padding: 24px; cursor: pointer; transition: background 0.2s, border-color 0.2s; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; }
-    .proj-card:hover { background: #242432; border-color: #c9a84c; }
-    .proj-card--lead { grid-column: 1 / -1; border-left: 3px solid #c9a84c; min-height: 220px; }
-    .proj-card-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-    .proj-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #c9a84c; }
-    .proj-role-chip { font-family: 'DM Sans', sans-serif; font-size: 11px; color: #9896a0; padding: 0 6px; border-left: 1px solid #2a2a38; }
-    .proj-title { font-family: 'Space Mono', monospace; font-size: 16px; font-weight: 700; color: #ece8e2; line-height: 1.35; margin-bottom: 10px; }
-    .proj-desc { font-family: 'DM Sans', sans-serif; font-size: 14px; color: #9896a0; line-height: 1.6; flex-grow: 1; margin-bottom: 14px; }
-    .proj-metrics { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 12px; border-top: 1px solid #2a2a38; }
-    .proj-metric { font-family: 'Space Mono', monospace; font-size: 10px; color: #c9a84c; background: rgba(201,168,76,0.08); padding: 3px 8px; border: 1px solid rgba(201,168,76,0.2); }
-    .proj-cta { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #c9a84c; margin-top: 8px; }
-    .proj-card:hover .proj-cta { text-decoration: underline; }
-
     /* Modal content styles for work projects */
     .modal-header-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
     .modal-tag { font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #c9a84c; background: rgba(201,168,76,0.1); padding: 4px 10px; border: 1px solid rgba(201,168,76,0.25); }
@@ -243,10 +224,6 @@
       .font-display, [class*="text-display"] { font-size: clamp(28px, 8vw, 40px) !important; }
       [class*="text-headline-lg"] { font-size: clamp(20px, 5vw, 28px) !important; }
 
-      .grid-cols-\[auto_1fr\] { grid-template-columns: 32px 1fr; gap: 16px; }
-
-      .timeline-dot { width: 8px; height: 8px; }
-
       #panel-credentials .flex-col.md\:flex-row { flex-direction: column; }
       #panel-credentials .md\:w-1\/2 { width: 100%; max-height: 50vh; }
 
@@ -258,16 +235,28 @@
       .project-row .md\:w-1\/4 { width: 100%; }
       .project-row .md\:w-1\/6 { width: 100%; text-align: left !important; }
 
-      #panel-skills .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
-
-      #panel-philosophy .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+      /* Skills + Philosophy → 1-col on mobile (prevents title clipping) */
+      #panel-skills .lg\:grid-cols-3 { grid-template-columns: 1fr; }
+      #panel-philosophy .lg\:grid-cols-3 { grid-template-columns: 1fr; }
+      #panel-skills .skill-block,
+      #panel-philosophy .skill-block { min-height: 200px !important; }
 
       .px-margin-side { padding-left: 20px; padding-right: 20px; }
 
       .proj-grid { grid-template-columns: 1fr !important; }
       .proj-card--lead { grid-column: 1 / -1; }
 
+      /* Home stats → 2×2 grid (prevents 4th stat disappearing) */
+      .home-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+      .home-stats .w-px { display: none; }
+
       .stats-row, .grid-cols-2.md\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+
+      /* Projects: hide standalone arrow column on mobile */
+      .project-row .w-8 { display: none; }
+
+      /* Contact: hide canvas container on mobile */
+      #panel-contact .md\:col-span-5 { display: none !important; }
 
       #mobile-nav { width: 100% !important; }
     }
@@ -319,7 +308,7 @@
 <!-- TOP NAV -->
 <header class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface-container-low border-b border-outline-variant">
   <div class="flex justify-between items-center w-full h-full px-margin-side max-w-container-max mx-auto">
-    <button type="button" class="flex flex-col text-left nav-link" data-panel="panel-home">
+    <button type="button" class="flex flex-col text-left" data-panel="panel-home">
       <span class="font-headline-md text-headline-md font-semibold text-on-surface leading-none">Gaurav Gupta</span>
       <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-0.5">Senior PM &amp; AI Strategist</span>
     </button>
@@ -333,7 +322,7 @@
       <button type="button" class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" data-panel="panel-contact">Contact</button>
     </nav>
     <div class="flex items-center gap-3">
-      <button type="button" class="nav-link hidden md:block bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 uppercase tracking-widest hover:bg-primary-fixed transition-colors" data-panel="panel-contact">Get in touch</button>
+      <button type="button" class="hidden md:block bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 uppercase tracking-widest hover:bg-primary-fixed transition-colors" data-panel="panel-contact">Get in touch</button>
       <button type="button" id="theme-toggle" class="hidden md:flex items-center justify-center w-8 h-8 border border-outline-variant text-on-surface-variant hover:border-primary-fixed-dim hover:text-primary-fixed-dim transition-colors" aria-label="Toggle theme" title="Toggle light/dark mode">
         <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -352,7 +341,7 @@
       <!-- Left -->
       <div class="flex flex-col justify-center z-10">
         <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-6">GG / PORTFOLIO — SENIOR PM &amp; AI STRATEGIST</p>
-        <h1 class="font-display text-[44px] md:text-[60px] leading-[1.0] text-on-surface mb-6 max-w-2xl">
+        <h1 class="font-display text-[36px] md:text-[48px] leading-[1.05] text-on-surface mb-6 max-w-2xl">
           Designing systems across architecture, enterprise software, and AI.
         </h1>
         <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">Building at the intersection of product thinking and machine intelligence. From B.Arch to AI strategy — every layer deliberate.</p>
@@ -360,7 +349,7 @@
           <button type="button" class="nav-link px-8 py-3 bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary-fixed transition-all uppercase tracking-widest" data-panel="panel-experience">View Experience</button>
           <button type="button" class="nav-link px-8 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-all uppercase tracking-widest" data-panel="panel-contact">Contact</button>
         </div>
-        <div class="flex flex-wrap items-center gap-8 border-t border-outline-variant pt-8">
+        <div class="home-stats flex flex-wrap items-center gap-8 border-t border-outline-variant pt-8">
           <div class="flex flex-col"><span class="font-headline-lg text-headline-lg text-primary-fixed-dim">8+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Years in product</span></div>
           <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
           <div class="flex flex-col"><span class="font-headline-lg text-headline-lg text-primary-fixed-dim">7</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">B2B SaaS shipped</span></div>
@@ -381,38 +370,29 @@
   <!-- EXPERIENCE & WORK (merged) -->
   <section id="panel-experience" class="v3-panel grid-bg bg-background">
     <div class="pt-12 pb-20 px-margin-side max-w-container-max mx-auto">
-      <div class="mb-16">
+      <div class="mb-16 border-l-2 border-primary-container pl-6">
         <h3 class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-[0.2em] mb-4">Professional Trajectory &amp; Strategic Output</h3>
         <h1 class="font-display text-display text-on-surface">Experience &amp; Work</h1>
       </div>
-      <div class="grid grid-cols-[auto_1fr] gap-x-10 md:gap-x-20 items-start">
-        <!-- Timeline spine -->
-        <div class="relative flex flex-col items-center py-6">
-          <div class="absolute top-0 bottom-0 w-px bg-outline-variant opacity-40"></div>
-          <div class="flex flex-col gap-[220px] z-10">
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#c9a84c;box-shadow:0 0 8px rgba(201,168,76,0.5)"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
-            <div class="timeline-dot w-3 h-3 border border-background" style="background-color:#3a3a50"></div>
-          </div>
-        </div>
-        <!-- Accordion -->
-        <div class="flex flex-col gap-10" id="experience-accordion">
+      <div class="relative flex flex-col gap-10" id="experience-accordion">
+        <div class="absolute left-[5px] top-0 bottom-0 w-px bg-outline-variant opacity-40 hidden md:block"></div>
 
           <!-- Independent AI Product Builder -->
           <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(0)">
-            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
-              <div class="flex flex-col gap-1">
-                <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Independent</span>
-                <h4 class="font-headline-md text-headline-md text-on-surface">Independent AI Product Builder</h4>
-              </div>
-              <div class="flex items-center gap-6 mt-4 md:mt-0">
-                <div class="flex flex-col items-end gap-1">
-                  <span class="font-label-md text-label-md text-on-surface-variant">Jun 2025 – Present</span>
-                  <span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">Jaipur</span>
+            <div class="flex items-start md:items-center etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all gap-4">
+              <div class="timeline-dot mt-2 md:mt-0 w-3 h-3 flex-shrink-0 border border-background hidden md:block" style="background-color:#c9a84c;box-shadow:0 0 8px rgba(201,168,76,0.5)"></div>
+              <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between">
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Independent</span>
+                  <h4 class="font-headline-md text-headline-md text-on-surface">Independent AI Product Builder</h4>
                 </div>
-                <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+                <div class="flex items-center gap-6 mt-4 md:mt-0">
+                  <div class="flex flex-col items-end gap-1">
+                    <span class="font-label-md text-label-md text-on-surface-variant">Jun 2025 – Present</span>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">Jaipur</span>
+                  </div>
+                  <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+                </div>
               </div>
             </div>
             <div class="accordion-content">
@@ -421,21 +401,23 @@
                 <div class="inline-flex">
                   <button type="button" class="nav-link font-label-sm text-label-sm text-primary-fixed-dim border border-primary-fixed-dim/40 px-4 py-2 hover:bg-primary-fixed-dim/10 transition-colors uppercase tracking-wider" data-panel="panel-projects">Output in Projects panel →</button>
                 </div>
-                <div class="exp-projects" data-company="independent"></div>
               </div>
             </div>
           </div>
 
           <!-- JindalX -->
           <div class="accordion-row is-open group cursor-pointer" onclick="toggleExpAccordion(1)">
-            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
-              <div class="flex flex-col gap-1">
-                <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">JindalX</span>
-                <h4 class="font-headline-md text-headline-md text-on-surface">Sr. Product Manager &amp; AI Strategist</h4>
-              </div>
-              <div class="flex items-center gap-6 mt-4 md:mt-0">
-                <span class="font-label-md text-label-md text-on-surface-variant">Jun 2022 – May 2025</span>
-                <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+            <div class="flex items-start md:items-center etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all gap-4">
+              <div class="timeline-dot mt-2 md:mt-0 w-3 h-3 flex-shrink-0 border border-background hidden md:block" style="background-color:#3a3a50"></div>
+              <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between">
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">JindalX</span>
+                  <h4 class="font-headline-md text-headline-md text-on-surface">Sr. Product Manager &amp; AI Strategist</h4>
+                </div>
+                <div class="flex items-center gap-6 mt-4 md:mt-0">
+                  <span class="font-label-md text-label-md text-on-surface-variant">Jun 2022 – May 2025</span>
+                  <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+                </div>
               </div>
             </div>
             <div class="accordion-content">
@@ -450,21 +432,23 @@
                   <div class="tonal-card bg-surface-container border border-outline-variant p-5"><h4 class="font-headline-md text-headline-md text-on-surface mb-2">Quality Audit &amp; BI Dashboard</h4><p class="font-body-md text-body-md text-on-surface-variant">Real-time auditing platform with BI reporting and process analytics.</p></div>
                   <div class="tonal-card bg-surface-container border border-outline-variant p-5"><h4 class="font-headline-md text-headline-md text-on-surface mb-2">HRMS &amp; CRM Suite</h4><p class="font-body-md text-body-md text-on-surface-variant">Integrated HR and CRM modules serving mid-enterprise client base.</p></div>
                 </div>
-                <div class="exp-projects" data-company="jindal"></div>
               </div>
             </div>
           </div>
 
           <!-- OneValley -->
           <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(2)">
-            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
-              <div class="flex flex-col gap-1">
-                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">OneValley</span>
-                <h4 class="font-headline-md text-headline-md text-on-surface">Product Manager</h4>
-              </div>
-              <div class="flex items-center gap-6 mt-4 md:mt-0">
-                <span class="font-label-md text-label-md text-on-surface-variant">Sep 2020 – Jul 2022</span>
-                <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+            <div class="flex items-start md:items-center etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all gap-4">
+              <div class="timeline-dot mt-2 md:mt-0 w-3 h-3 flex-shrink-0 border border-background hidden md:block" style="background-color:#3a3a50"></div>
+              <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between">
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">OneValley</span>
+                  <h4 class="font-headline-md text-headline-md text-on-surface">Product Manager</h4>
+                </div>
+                <div class="flex items-center gap-6 mt-4 md:mt-0">
+                  <span class="font-label-md text-label-md text-on-surface-variant">Sep 2020 – Jul 2022</span>
+                  <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+                </div>
               </div>
             </div>
             <div class="accordion-content">
@@ -476,21 +460,23 @@
                     <div class="flex gap-2 mt-4"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">B2B SAAS</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">GLOBAL PLATFORM</span></div>
                   </div>
                 </div>
-                <div class="exp-projects" data-company="onevalley"></div>
               </div>
             </div>
           </div>
 
           <!-- Taccomacco -->
           <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(3)">
-            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
-              <div class="flex flex-col gap-1">
-                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Taccomacco Edutainment</span>
-                <h4 class="font-headline-md text-headline-md text-on-surface">Co-Founder &amp; COO</h4>
-              </div>
-              <div class="flex items-center gap-6 mt-4 md:mt-0">
-                <span class="font-label-md text-label-md text-on-surface-variant">Jul 2017 – Sep 2020</span>
-                <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+            <div class="flex items-start md:items-center etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all gap-4">
+              <div class="timeline-dot mt-2 md:mt-0 w-3 h-3 flex-shrink-0 border border-background hidden md:block" style="background-color:#3a3a50"></div>
+              <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between">
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Taccomacco Edutainment</span>
+                  <h4 class="font-headline-md text-headline-md text-on-surface">Co-Founder &amp; COO</h4>
+                </div>
+                <div class="flex items-center gap-6 mt-4 md:mt-0">
+                  <span class="font-label-md text-label-md text-on-surface-variant">Jul 2017 – Sep 2020</span>
+                  <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+                </div>
               </div>
             </div>
             <div class="accordion-content">
@@ -501,21 +487,23 @@
                   <p class="font-body-md text-body-md text-on-surface-variant">Android &amp; iOS apps, 500+ digital titles in 6 months, creator incubation for 6+ content creators.</p>
                   <div class="flex gap-2 mt-4"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">0→1 BUILD</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">EDTECH</span></div>
                 </div>
-                <div class="exp-projects" data-company="taccomacco"></div>
               </div>
             </div>
           </div>
 
           <!-- RSP -->
           <div class="accordion-row group cursor-pointer" onclick="toggleExpAccordion(4)">
-            <div class="flex flex-col md:flex-row md:items-center justify-between etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all">
-              <div class="flex flex-col gap-1">
-                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">RSP Design Consultants</span>
-                <h4 class="font-headline-md text-headline-md text-on-surface">Design Manager — Architecture</h4>
-              </div>
-              <div class="flex items-center gap-6 mt-4 md:mt-0">
-                <span class="font-label-md text-label-md text-on-surface-variant">Sep 2014 – Jun 2017</span>
-                <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+            <div class="flex items-start md:items-center etched-border p-6 bg-surface-container-low group-hover:bg-surface-container transition-all gap-4">
+              <div class="timeline-dot mt-2 md:mt-0 w-3 h-3 flex-shrink-0 border border-background hidden md:block" style="background-color:#3a3a50"></div>
+              <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between">
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">RSP Design Consultants</span>
+                  <h4 class="font-headline-md text-headline-md text-on-surface">Design Manager — Architecture</h4>
+                </div>
+                <div class="flex items-center gap-6 mt-4 md:mt-0">
+                  <span class="font-label-md text-label-md text-on-surface-variant">Sep 2014 – Jun 2017</span>
+                  <span class="material-symbols-outlined caret-icon text-on-surface-variant">expand_more</span>
+                </div>
               </div>
             </div>
             <div class="accordion-content">
@@ -526,12 +514,10 @@
                   <p class="font-body-md text-body-md text-on-surface-variant">40+ projects across IT, healthcare, institutional sectors. The systems thinking discipline that underpins all product work.</p>
                   <div class="flex gap-2 mt-4"><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">ARCHITECTURE</span><span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">DELIVERY</span></div>
                 </div>
-                <div class="exp-projects" data-company="rsp"></div>
               </div>
             </div>
           </div>
 
-        </div>
       </div>
       <!-- Stats -->
       <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -554,7 +540,7 @@
         <!-- 01 Vitae -->
         <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-4')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">01</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Vitae — Health Records, Finally Understood</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Vitae — Health Records, Finally Understood</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
             <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Health Tech</span>
@@ -566,7 +552,7 @@
         <!-- 02 Telegram PM Bot -->
         <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-0')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">02</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Telegram PM Bot — Workflow Automation</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Telegram PM Bot — Workflow Automation</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
             <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
@@ -578,7 +564,7 @@
         <!-- 03 Blinkit -->
         <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-1')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">03</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Blinkit Command Hub — Peak-Hour Decision Support</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Blinkit Command Hub — Peak-Hour Decision Support</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
             <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Quick Commerce</span>
@@ -589,7 +575,7 @@
         <!-- 04 Rethink CRM -->
         <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-0')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">04</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Rethink CRM — Conversation-First Sales Tool</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Rethink CRM — Conversation-First Sales Tool</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
             <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">B2B SaaS</span>
@@ -601,7 +587,7 @@
         <!-- 05 Group Travel -->
         <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-3')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">05</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Group Travel Planning Platform</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Group Travel Planning Platform</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
             <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
@@ -613,7 +599,7 @@
         <!-- 06 YouTube 2.0 -->
         <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-2')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">06</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">YouTube 2.0 — Fixing Long-Form Discovery</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">YouTube 2.0 — Fixing Long-Form Discovery</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
             <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
@@ -622,8 +608,8 @@
           <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
-        <!-- 07 Portfolio Website (no modal) -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" style="cursor:default">
+        <!-- 07 Portfolio Website -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-1')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">07</div>
           <div class="flex-grow font-headline-md text-headline-md text-on-surface">Portfolio Website — This Site</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
@@ -632,10 +618,10 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">JS</span>
           </div>
           <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Plain HTML/CSS/JS SPA</div>
-          <div class="w-8"></div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
-        <!-- 08 GWS CLI (no modal) -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" style="cursor:default">
+        <!-- 08 GWS CLI -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-3')">
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">08</div>
           <div class="flex-grow font-headline-md text-headline-md text-on-surface">GWS CLI — Google Workspace Terminal Tool</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
@@ -643,7 +629,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Dev Tooling</span>
           </div>
           <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Open source</div>
-          <div class="w-8"></div>
+          <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
       </div>
     </div>
@@ -657,12 +643,12 @@
         <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Systemic proficiency across product, AI, and delivery domains</p>
       </header>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-outline-variant">
-        <div class="skill-block delay-1 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">01</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">psychology</span>Product Strategy</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Discovery &amp; Roadmapping</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Lifecycle Governance</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Go-to-Market</li><li class="font-body-md text-body-md text-on-surface-variant py-1">OKR Planning</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Stakeholder Mapping</li></ul></div></div>
+        <div class="skill-block delay-1 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px] lg:col-span-2"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">01</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">psychology</span>Product Strategy</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Discovery &amp; Roadmapping</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Lifecycle Governance</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Go-to-Market</li><li class="font-body-md text-body-md text-on-surface-variant py-1">OKR Planning</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Stakeholder Mapping</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex gap-8"><div><span class="font-display text-[28px] text-primary-fixed-dim leading-none">8+</span><span class="font-label-sm text-label-sm text-on-surface-variant block mt-1 uppercase tracking-wider">Years</span></div><div><span class="font-display text-[28px] text-primary-fixed-dim leading-none">30+</span><span class="font-label-sm text-label-sm text-on-surface-variant block mt-1 uppercase tracking-wider">Initiatives</span></div><div><span class="font-display text-[28px] text-primary-fixed-dim leading-none">7</span><span class="font-label-sm text-label-sm text-on-surface-variant block mt-1 uppercase tracking-wider">Products</span></div></div></div></div>
         <div class="skill-block delay-2 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">02</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">smart_toy</span>AI &amp; Builder Tools</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Prompt Engineering</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Agent Workflows</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">RAG &amp; AI Integration</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Claude / GPT APIs</li><li class="font-body-md text-body-md text-on-surface-variant py-1">AI Product Evaluation</li></ul></div></div>
         <div class="skill-block delay-3 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">03</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">account_tree</span>Enterprise SaaS</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">B2B Product Design</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Multi-tenant Arch</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Integration Design</li><li class="font-body-md text-body-md text-on-surface-variant py-1">CRM / HRMS / BI</li><li class="font-body-md text-body-md text-on-surface-variant py-1">API-first thinking</li></ul></div></div>
         <div class="skill-block delay-4 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">04</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">database</span>Data &amp; Analytics</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">SQL &amp; Data Querying</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Mixpanel / Amplitude</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Power BI / Airtable</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Funnel Analysis</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Cohort Reporting</li></ul></div></div>
         <div class="skill-block delay-5 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">05</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">grid_view</span>Design &amp; Prototyping</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Figma / Stitch</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Information Architecture</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">UX Research</li><li class="font-body-md text-body-md text-on-surface-variant py-1">B.Arch Systems Eye</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Rapid Prototyping</li></ul></div></div>
-        <div class="skill-block delay-6 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">06</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">groups</span>Delivery &amp; Process</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Agile / Scrum (CSM)</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Cross-functional Squads</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">CSPO Certified</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Sprint Planning</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Lean Process</li></ul></div></div>
+        <div class="skill-block delay-6 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[280px] lg:col-span-3 md:col-span-2"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">06</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><span class="material-symbols-outlined">groups</span>Delivery &amp; Process</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Agile / Scrum (CSM)</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Cross-functional Squads</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">CSPO Certified</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Sprint Planning</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Lean Process</li></ul></div></div>
       </div>
     </div>
   </section>
@@ -725,11 +711,11 @@
         </div>
 
         <!-- Capstone: spans full row -->
-        <div class="skill-block lg:col-span-3 md:col-span-2 col-span-1 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container min-h-[200px]" style="animation-delay:0.7s">
+        <div class="skill-block lg:col-span-3 md:col-span-2 col-span-1 relative overflow-hidden p-8 border-r border-b border-outline-variant border-l-4 border-l-primary-fixed-dim min-h-[200px]" style="animation-delay:0.7s;background:rgba(201,168,76,0.08);">
           <div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">07</div>
           <div class="relative z-10 max-w-2xl">
             <p class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest mb-4">Capstone Principle</p>
-            <h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase">The Inevitability Test</h2>
+            <h2 class="font-headline-lg text-headline-lg text-primary-fixed-dim mb-6 uppercase">The Inevitability Test</h2>
             <p class="font-body-lg text-body-lg text-on-surface leading-relaxed italic">If the design language could be transplanted to a different product without feeling wrong, it was imposed, not derived. Every choice must be earned. Every pixel is a decision. Every interaction is an act of will.</p>
           </div>
         </div>
@@ -742,7 +728,7 @@
   <section id="panel-credentials" class="v3-panel grid-bg bg-background">
     <div class="flex flex-col md:flex-row h-full">
       <!-- Left: Education -->
-      <div class="w-full md:w-1/2 bg-surface-container-low border-r border-outline-variant flex flex-col">
+      <div class="w-full md:w-2/5 bg-surface-container-low border-r border-outline-variant flex flex-col">
         <div class="flex-grow overflow-y-auto cred-scroll p-12">
           <header class="mb-12">
             <div class="flex items-center gap-4 mb-2"><span class="w-2 h-2 bg-primary-fixed-dim"></span><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-on-surface-variant">Section 01 / Education</h2></div>
@@ -755,6 +741,10 @@
               <p class="font-body-md text-body-md text-on-surface-variant mt-1">MNIT Jaipur</p>
               <p class="font-label-sm text-label-sm text-on-surface-variant opacity-60 mt-2">PERIOD: 2009 — 2014</p>
             </div>
+            <div class="mt-8 p-5 border border-outline-variant/30 bg-surface-container-low/30">
+              <p class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider mb-3">Foundation</p>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">5 years studying how systems serve human needs at scale — spatial logic, load paths, site constraints — the same discipline that shapes product architecture thinking today.</p>
+            </div>
           </div>
         </div>
         <div class="h-12 border-t border-outline-variant bg-surface-container flex items-center px-12 justify-between font-label-sm text-label-sm text-on-surface-variant opacity-60 flex-shrink-0">
@@ -763,17 +753,17 @@
         </div>
       </div>
       <!-- Right: Certifications -->
-      <div class="w-full md:w-1/2 bg-surface-container-lowest flex flex-col relative">
+      <div class="w-full md:w-3/5 bg-surface-container-lowest flex flex-col relative">
         <div class="flex-grow overflow-y-auto cred-scroll p-12">
           <header class="mb-8 sticky top-0 bg-surface-container-lowest pt-2 z-10">
             <div class="flex items-center gap-4 mb-2"><span class="w-2 h-2 bg-outline"></span><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-on-surface-variant">Section 02 / Certifications</h2></div>
             <div class="flex justify-between items-end border-b-2 border-primary-fixed-dim pb-2"><h1 class="font-headline-lg text-headline-lg text-on-surface">Technical Protocol Proficiency</h1><span class="font-label-sm text-label-sm text-primary-fixed-dim">[ 13 ]</span></div>
           </header>
           <div class="space-y-8 pb-12">
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2026</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Mastering AI Product Management, Cohort 7</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink Systems</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">3rd Place — Rethink AI-First Buildathon</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink AI (10-day build sprint)</p></div><span class="material-symbols-outlined text-primary-fixed-dim">workspace_premium</span></div></div></div>
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2025</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Certified Scrum Master (CSM)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Certified Scrum Product Owner (CSPO)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Essentials Automation Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Automation Anywhere</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2024</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Airtable Admin Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Airtable Builder Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Learning Power BI Desktop</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2023 &amp; Earlier</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface">Lean Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">JindalX</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface">Applied Data Science with Python (Level 2)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">IBM / Cognitive Class</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface">SQL for Data Analytics &amp; Business Intelligence</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Udemy</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface">Google Analytics Certified</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Google</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center group hover:bg-surface-container-low transition-colors"><div><h4 class="font-body-md text-body-md text-on-surface">Product Management Professional Certificate</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2026</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Mastering AI Product Management, Cohort 7</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink Systems</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">3rd Place — Rethink AI-First Buildathon</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink AI (10-day build sprint)</p></div><span class="material-symbols-outlined text-primary-fixed-dim">workspace_premium</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2025</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Certified Scrum Master (CSM)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Certified Scrum Product Owner (CSPO)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Essentials Automation Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Automation Anywhere</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2024</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Airtable Admin Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Airtable Builder Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Learning Power BI Desktop</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2023 &amp; Earlier</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Lean Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">JindalX</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Applied Data Science with Python (Level 2)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">IBM / Cognitive Class</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">SQL for Data Analytics &amp; Business Intelligence</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Udemy</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Google Analytics Certified</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Google</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Product Management Professional Certificate</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
           </div>
         </div>
         <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-surface-container-lowest to-transparent pointer-events-none"></div>
@@ -792,8 +782,8 @@
           <div class="pt-6 space-y-6">
             <div><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2 uppercase tracking-widest">Direct Channel</span><a class="font-headline-lg text-headline-lg text-primary-fixed-dim weight-shift-hover transition-all duration-200" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com</a></div>
             <div class="flex gap-6">
-              <a class="inline-flex items-center gap-2 group" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface group-hover:text-primary-fixed-dim transition-colors uppercase tracking-wider">LinkedIn</span><span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors" style="font-size:18px">north_east</span></a>
-              <a class="inline-flex items-center gap-2 group" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface group-hover:text-primary-fixed-dim transition-colors uppercase tracking-wider">Resume PDF</span><span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors" style="font-size:18px">download</span></a>
+              <a class="inline-flex items-center gap-2 group" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">LinkedIn</span><span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors" style="font-size:18px">north_east</span></a>
+              <a class="inline-flex items-center gap-2 group" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Resume PDF</span><span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors" style="font-size:18px">download</span></a>
             </div>
           </div>
           <p class="font-label-sm text-label-sm text-on-surface-variant pt-4 uppercase tracking-wider">Jaipur, India — Open to Relocation and Remote roles</p>
@@ -805,8 +795,6 @@
             <div class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary-fixed-dim"></div>
             <div class="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-primary-fixed-dim"></div>
           </div>
-          <!-- Hidden compat: app.js's initContactCanvas still needs this element to not error -->
-          <canvas id="contact-canvas" style="display:none" aria-hidden="true"></canvas>
         </div>
       </div>
     </div>
@@ -825,21 +813,8 @@
   </div>
 </div>
 
-<!-- app.js modal compat -->
-<div id="modal-overlay" hidden style="position:fixed;inset:0;z-index:140;">
-  <div style="position:absolute;inset:0;background:rgba(10,10,14,0.94);" onclick="document.getElementById('modal-overlay').hidden=true"></div>
-  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;pointer-events:none;">
-    <div id="modal-panel" style="position:relative;background:#1a1a22;border:1px solid #2a2a38;width:100%;max-width:760px;padding:48px;max-height:85vh;overflow-y:auto;pointer-events:auto;">
-      <button id="modal-close" style="position:absolute;top:16px;right:16px;color:#9896a0;" onclick="document.getElementById('modal-overlay').hidden=true"><span class="material-symbols-outlined">close</span></button>
-      <div id="modal-body"></div>
-    </div>
-  </div>
-</div>
-
-<canvas id="skills-graph-canvas" style="display:none" aria-hidden="true"></canvas>
 
 <script src="gate.js" defer></script>
-<script src="app.js" defer></script>
 
 <script>
 // ── Panel routing ────────────────────────────────────────────────────────────
@@ -1024,8 +999,169 @@ function initContactStack() {
   }
 }
 
+function initStackDiagram() {
+  var canvas = document.getElementById('stack-diagram');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var hasAnimated = false;
+  var rafId = null;
+
+  function colors() {
+    var light = document.body.classList.contains('theme-light');
+    return light ? {
+      amber:'#b8922a',amberR:'184,146,42',greenR:'20,110,20',
+      grid:'rgba(0,0,0,0.05)',shell:'rgba(0,0,0,0.10)',hdr:'rgba(0,0,0,0.28)',
+      bracket:function(a){return 'rgba(0,0,0,'+a*0.28+')';},
+      year:function(a){return 'rgba(0,0,0,'+a*0.35+')';}
+    } : {
+      amber:'#e8b84b',amberR:'232,184,75',greenR:'106,191,105',
+      grid:'rgba(255,255,255,0.028)',shell:'rgba(255,255,255,0.07)',hdr:'rgba(255,255,255,0.18)',
+      bracket:function(a){return 'rgba(255,255,255,'+a*0.22+')';},
+      year:function(a){return 'rgba(255,255,255,'+a*0.32+')';}
+    };
+  }
+
+  var FLOORS = [
+    {label:'ARCHITECTURE',       years:'2009—2014',   log1:'> INIT b.arch @ MNIT, Jaipur',         log2:'> BUILD spatial.systems.thinking'},
+    {label:'ENTERPRISE SOFTWARE',years:'2015—2019',   log1:'> DEPLOY erp.modules @ Tata, JSW',     log2:'> OPTIMIZE process.efficiency'},
+    {label:'PRODUCT STRATEGY',   years:'2019—2023',   log1:'> SHIP product.v1 @ JindalX, Blinkit', log2:'> INTEGRATE airtable.platform × 16'},
+    {label:'AI STRATEGY',        years:'2023—PRESENT',log1:'> RUN ai_layer.init() @ present',       log2:'> SCALE ai.products → 7 deployed'}
+  ];
+  var BASE_H=[65,75,82,92];
+  var TOTAL_BASE_H=BASE_H.reduce(function(s,h){return s+h;},0);
+  var W,H,bX,bY,bW,bH,rects;
+
+  function layout(){
+    var rect=canvas.getBoundingClientRect();
+    W=(rect.width||canvas.offsetWidth||440); H=(rect.height||canvas.offsetHeight||320);
+    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    bX=54; bY=38; bW=W-66; bH=H-58;
+    var scale=bH/TOTAL_BASE_H; rects=[]; var y=bY+bH;
+    for(var i=0;i<4;i++){var fh=Math.round(BASE_H[i]*scale);y-=fh;rects.push({x:bX,y:y,w:bW,h:fh});}
+  }
+
+  var PHASE=680,GAP=260,LOG1_AT=300,LOG2_AT=820,CHAR_MS=20;
+  var log1T=['','','',''],log2T=['','','',''],t0=null;
+
+  function fp(i,el){return Math.max(0,Math.min((el-i*(PHASE+GAP))/PHASE,1));}
+  function ease(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
+
+  function drawGrid(){
+    var C=colors(); ctx.save(); ctx.strokeStyle=C.grid; ctx.lineWidth=1;
+    for(var x=0.5;x<W;x+=28){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(var y=0.5;y<H;y+=28){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.restore();
+  }
+  function drawHeader(){
+    var C=colors(); ctx.save(); ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.hdr;
+    ctx.fillText('BUILD LOG',bX,bY-14); ctx.textAlign='right';
+    ctx.fillText('CAREER ARCHITECTURE',bX+bW,bY-14); ctx.textAlign='left'; ctx.restore();
+  }
+  function drawShell(){
+    var C=colors(); ctx.save(); ctx.strokeStyle=C.shell; ctx.lineWidth=1; ctx.setLineDash([4,7]);
+    [[bX,bY,bX,bY+bH],[bX+bW,bY,bX+bW,bY+bH],[bX,bY+bH,bX+bW,bY+bH]].forEach(function(l){
+      ctx.beginPath();ctx.moveTo(l[0],l[1]);ctx.lineTo(l[2],l[3]);ctx.stroke();
+    }); ctx.setLineDash([]); ctx.restore();
+  }
+  function drawFloor(i,p,elapsed){
+    var C=colors(),r=rects[i],ep=ease(p);
+    var sweepH=Math.round(r.h*ep),sweepTop=r.y+r.h-sweepH;
+    if(sweepH>0){
+      ctx.save(); ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')';
+      ctx.fillRect(r.x+1,sweepTop,r.w-2,sweepH);
+      if(p<1){var band=Math.min(18,sweepH);var g=ctx.createLinearGradient(0,sweepTop,0,sweepTop+band);
+        g.addColorStop(0,'rgba('+C.amberR+',0.32)');g.addColorStop(1,'rgba('+C.amberR+',0)');
+        ctx.fillStyle=g;ctx.fillRect(r.x+1,sweepTop,r.w-2,band);}
+      ctx.restore();
+    }
+    if(p>0&&p<1&&Math.floor(elapsed/240)%2===0){
+      ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=2; ctx.setLineDash([5,5]);
+      ctx.beginPath();ctx.moveTo(r.x+6,sweepTop);ctx.lineTo(r.x+r.w-6,sweepTop);
+      ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+    }
+    if(p>=0.6){
+      var lp=Math.min((p-0.6)/0.35,1); ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=1;
+      ctx.globalAlpha=lp; ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w*lp,r.y);
+      ctx.stroke(); ctx.restore();
+    }
+    if(p>=0.68){
+      var fa=Math.min((p-0.68)/0.28,1),fl=FLOORS[i];
+      ctx.save(); ctx.strokeStyle=C.bracket(fa); ctx.lineWidth=1;
+      var bkx=r.x-20;
+      ctx.beginPath();
+      ctx.moveTo(bkx-3,r.y+3);ctx.lineTo(bkx,r.y+3);
+      ctx.moveTo(bkx,r.y+3);ctx.lineTo(bkx,r.y+r.h-3);
+      ctx.moveTo(bkx,r.y+r.h-3);ctx.lineTo(bkx-3,r.y+r.h-3);
+      ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.font='700 8px "Space Mono",monospace';
+      ctx.fillStyle='rgba('+C.amberR+','+(fa*0.65)+')';
+      ctx.textAlign='right'; ctx.fillText('F'+(i+1),r.x-6,r.y+r.h/2+3); ctx.textAlign='left'; ctx.restore();
+      ctx.save(); ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle='rgba('+C.amberR+','+fa+')';
+      ctx.fillText(fl.label,r.x+8,r.y+13); ctx.restore();
+      ctx.save(); ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(fa);
+      ctx.textAlign='right'; ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left'; ctx.restore();
+    }
+    var midY=r.y+Math.round(r.h*0.54);
+    if(log1T[i]){ctx.save();ctx.font='400 10px "Space Mono",monospace';ctx.fillStyle='rgba('+C.greenR+',0.85)';ctx.fillText(log1T[i],r.x+8,midY);ctx.restore();}
+    if(log2T[i]){ctx.save();ctx.font='400 10px "Space Mono",monospace';ctx.fillStyle='rgba('+C.greenR+',0.55)';ctx.fillText(log2T[i],r.x+8,midY+16);ctx.restore();}
+  }
+  function updateTyping(elapsed){
+    for(var i=0;i<4;i++){
+      var base=i*(PHASE+GAP);
+      var e1=elapsed-(base+LOG1_AT),e2=elapsed-(base+LOG2_AT);
+      if(e1>0)log1T[i]=FLOORS[i].log1.slice(0,Math.min(Math.floor(e1/CHAR_MS),FLOORS[i].log1.length));
+      if(e2>0)log2T[i]=FLOORS[i].log2.slice(0,Math.min(Math.floor(e2/CHAR_MS),FLOORS[i].log2.length));
+    }
+  }
+  function renderStatic(){
+    var C=colors(); ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
+    for(var i=0;i<4;i++){
+      var r=rects[i],fl=FLOORS[i];
+      ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')'; ctx.fillRect(r.x+1,r.y,r.w-2,r.h);
+      ctx.strokeStyle=C.amber; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w,r.y); ctx.stroke();
+      ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.amber; ctx.fillText(fl.label,r.x+8,r.y+13);
+      ctx.textAlign='right'; ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(1);
+      ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left';
+      var midY=r.y+Math.round(r.h*0.54);
+      ctx.font='400 10px "Space Mono",monospace';
+      ctx.fillStyle='rgba('+C.greenR+',0.85)'; ctx.fillText(fl.log1,r.x+8,midY);
+      ctx.fillStyle='rgba('+C.greenR+',0.55)'; ctx.fillText(fl.log2,r.x+8,midY+16);
+    }
+  }
+  var themeObserver=new MutationObserver(function(){if(hasAnimated&&!rafId){layout();renderStatic();}});
+  themeObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
+
+  function frame(ts){
+    if(!t0)t0=ts; var el=ts-t0;
+    ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
+    for(var i=0;i<4;i++) drawFloor(i,fp(i,el),el);
+    updateTyping(el);
+    if(el<3*(PHASE+GAP)+PHASE+1600){ rafId=requestAnimationFrame(frame); }
+    else { rafId=null; renderStatic(); }
+  }
+  function animate(){
+    if(hasAnimated)return; hasAnimated=true; layout(); t0=null; rafId=requestAnimationFrame(frame);
+  }
+  var replayBtn=document.getElementById('stack-replay');
+  if(replayBtn){
+    replayBtn.addEventListener('click',function(){
+      if(rafId)cancelAnimationFrame(rafId);
+      hasAnimated=false; log1T=['','','',''];log2T=['','','',''];animate();
+    });
+  }
+  document.addEventListener('panel:activate',function(e){if(e.detail.panelId==='panel-home')animate();});
+  if(document.getElementById('panel-home')&&document.getElementById('panel-home').classList.contains('is-active')){
+    animate();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   initContactStack();
+  initStackDiagram();
 });
 
 function toggleExpAccordion(index) {
