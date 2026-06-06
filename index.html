@@ -122,6 +122,8 @@
     /* Accordion */
     .accordion-content{transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease;max-height:0;overflow:hidden;opacity:0;}
     .accordion-row.is-open .accordion-content{max-height:1000px;opacity:1;}
+    /* Skills: separate "core" (top 3) from "familiar" (remaining) */
+    .skill-block ul li:nth-child(4){border-top:1px solid rgba(255,255,255,0.08);margin-top:6px;padding-top:10px;}
     .timeline-dot{transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}
     .caret-icon{transition:transform 0.3s ease;}
     .accordion-row.is-open .caret-icon{transform:rotate(180deg);}
@@ -362,7 +364,9 @@
       <!-- Right: canvas (initStackDiagram from app.js) -->
       <div class="hidden md:flex flex-col h-[380px] lg:h-[440px] border border-outline-variant bg-surface-container-lowest relative">
         <canvas id="stack-diagram" class="w-full h-full block" style="display:block" aria-label="Career architecture stack"></canvas>
-        <button type="button" id="stack-replay" class="absolute bottom-3 right-3 font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">&#8635; Replay</button>
+      </div>
+      <div class="hidden md:flex justify-end mt-2">
+        <button type="button" id="stack-replay" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">&#8635; Replay</button>
       </div>
     </div>
   </section>
@@ -396,7 +400,7 @@
               </div>
             </div>
             <div class="accordion-content">
-              <div class="px-6 pt-6 pb-8 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
+              <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">Shipped 5 full-cycle product case studies across B2B SaaS, quick commerce, consumer AI, and health tech. Awarded 3rd place at Rethink AI-First Buildathon. Built and maintain a personal Telegram AI assistant (28+ commands, 5 daily automations). Earned CSM, CSPO, and Mastering AI Product Management (Rethink, 2026).</p>
                 <div class="inline-flex">
                   <button type="button" class="nav-link font-label-sm text-label-sm text-primary-fixed-dim border border-primary-fixed-dim/40 px-4 py-2 hover:bg-primary-fixed-dim/10 transition-colors uppercase tracking-wider" data-panel="panel-projects">Output in Projects panel →</button>
@@ -421,7 +425,7 @@
               </div>
             </div>
             <div class="accordion-content">
-              <div class="px-6 pt-6 pb-8 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
+              <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-8">Owned a portfolio of 7 B2B SaaS products across 16 enterprise clients and 5,000+ users — AI-powered talent management, performance evaluation, knowledge management, CRM, HRMS, quality auditing, and BI. Delivered 30+ digital transformation initiatives.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
                   <div class="md:col-span-3 tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-6 flex flex-col justify-between min-h-[180px]">
@@ -452,7 +456,7 @@
               </div>
             </div>
             <div class="accordion-content">
-              <div class="px-6 pt-6 pb-8 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
+              <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-8">Owned product strategy and roadmap for Passport (B2C founder platform) and PassportOS (B2B SaaS) serving accelerators, universities, and banks. Contributed to Entrepreneurship World Cup platform across 200+ countries.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
                   <div class="md:col-span-2 tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-6 flex flex-col justify-between min-h-[160px]">
@@ -480,7 +484,7 @@
               </div>
             </div>
             <div class="accordion-content">
-              <div class="px-6 pt-6 pb-8 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
+              <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-8">Co-founded digital content platform from 0→1. Launched Android &amp; iOS apps, shipped 500+ digital titles in 6 months. Ran creator incubation program — mentored 6+ creators from concept to published product.</p>
                 <div class="tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-6">
                   <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Digital Content Platform — 0→1</h3>
@@ -507,7 +511,7 @@
               </div>
             </div>
             <div class="accordion-content">
-              <div class="px-6 pt-6 pb-8 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
+              <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-8">Managed 40+ architectural projects across IT, healthcare, and institutional sectors. 95% client retention, 25% delivery time reduction. Systems thinking and delivery discipline — foundational to product work.</p>
                 <div class="tonal-card bg-surface-container border border-outline-variant border-l-4 border-l-primary-fixed-dim p-6">
                   <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Institutional Architecture Portfolio</h3>
@@ -533,7 +537,7 @@
   <section id="panel-projects" class="v3-panel grid-bg bg-background">
     <div class="pt-12 pb-24 max-w-container-max mx-auto w-full px-margin-side">
       <header class="mb-12 border-l-2 border-primary-container pl-6">
-        <h1 class="font-display text-display uppercase text-on-surface">Projects</h1>
+        <h1 class="font-display text-display text-on-surface">Projects</h1>
         <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Case studies and personal builds — product thinking applied.</p>
       </header>
       <div>
@@ -546,7 +550,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Health Tech</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live prototype →</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 02 Telegram PM Bot -->
@@ -558,7 +562,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Automation</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Deployed · Active</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Deployed</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 03 Blinkit -->
@@ -569,7 +573,7 @@
             <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Quick Commerce</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live prototype →</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 04 Rethink CRM -->
@@ -581,7 +585,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">B2B SaaS</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Concept</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 05 Group Travel -->
@@ -593,7 +597,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Concept</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 06 YouTube 2.0 -->
@@ -605,7 +609,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Media</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">PRD · Prototype</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Concept</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 07 Portfolio Website -->
@@ -617,7 +621,7 @@
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Infra</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">JS</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Plain HTML/CSS/JS SPA</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Live</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
         <!-- 08 GWS CLI -->
@@ -628,7 +632,7 @@
             <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Dev Tooling</span>
           </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Open source</div>
+          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Open Source</div>
           <div class="w-8 flex justify-end"><span class="material-symbols-outlined arrow-icon transition-transform duration-200 text-on-surface-variant">arrow_forward</span></div>
         </div>
       </div>
@@ -761,9 +765,9 @@
           </header>
           <div class="space-y-8 pb-12">
             <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2026</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Mastering AI Product Management, Cohort 7</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink Systems</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">3rd Place — Rethink AI-First Buildathon</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Rethink AI (10-day build sprint)</p></div><span class="material-symbols-outlined text-primary-fixed-dim">workspace_premium</span></div></div></div>
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2025</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Certified Scrum Master (CSM)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Certified Scrum Product Owner (CSPO)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Essentials Automation Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Automation Anywhere</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2024</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Airtable Admin Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Airtable Builder Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Learning Power BI Desktop</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
-            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2023 &amp; Earlier</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Lean Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">JindalX</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Applied Data Science with Python (Level 2)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">IBM / Cognitive Class</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">SQL for Data Analytics &amp; Business Intelligence</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Udemy</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Google Analytics Certified</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Google</p></div><span class="material-symbols-outlined text-outline">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Product Management Professional Certificate</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-outline">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2025</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Certified Scrum Master (CSM)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Certified Scrum Product Owner (CSPO)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Scrum Alliance</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Essentials Automation Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Automation Anywhere</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2024</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Airtable Admin Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Airtable Builder Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Airtable</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Learning Power BI Desktop</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div></div></div>
+            <div><div class="flex items-center gap-4 mb-4"><span class="font-label-md text-label-md text-primary-fixed-dim bg-primary-fixed-dim/10 px-2">2023 &amp; Earlier</span><div class="h-px flex-grow bg-outline-variant"></div></div><div class="grid gap-px bg-outline-variant border border-outline-variant"><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Lean Certification</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">JindalX</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Applied Data Science with Python (Level 2)</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">IBM / Cognitive Class</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">SQL for Data Analytics &amp; Business Intelligence</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Udemy</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Google Analytics Certified</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Google</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div><div class="bg-surface-container-lowest p-4 flex justify-between items-center"><div><h4 class="font-body-md text-body-md text-on-surface">Product Management Professional Certificate</h4><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">LinkedIn Learning</p></div><span class="material-symbols-outlined text-primary-fixed-dim">verified</span></div></div></div>
           </div>
         </div>
         <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-surface-container-lowest to-transparent pointer-events-none"></div>
@@ -777,7 +781,7 @@
       <div class="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
         <div class="md:col-span-7 flex flex-col space-y-stack-gap">
           <div class="inline-flex items-center gap-2"><div class="w-2 h-2 bg-primary-container"></div><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Available for Senior PM / AI Strategy Roles</span></div>
-          <h1 class="font-display text-display text-on-surface leading-tight">Get in touch</h1>
+          <h1 class="font-display text-display text-on-surface leading-tight">Get in Touch</h1>
           <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">If you're building something ambitious at the intersection of product and AI — or want to talk systems thinking, architecture, or PM strategy — I'd like to hear from you.</p>
           <div class="pt-6 space-y-6">
             <div><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2 uppercase tracking-widest">Direct Channel</span><a class="font-headline-lg text-headline-lg text-primary-fixed-dim weight-shift-hover transition-all duration-200" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com</a></div>
@@ -792,8 +796,8 @@
         <div class="md:col-span-5 flex justify-center md:justify-end mt-12 md:mt-0">
           <div class="relative border border-outline-variant bg-surface-container-lowest" style="width:280px;height:320px;">
             <canvas id="contact-stack-canvas" style="display:block;width:100%;height:100%;" aria-label="Contact stack diagram"></canvas>
-            <div class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary-fixed-dim"></div>
-            <div class="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-primary-fixed-dim"></div>
+            <div class="absolute top-2 left-2 w-3 h-3 border-t border-l border-primary-fixed-dim"></div>
+            <div class="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-primary-fixed-dim"></div>
           </div>
         </div>
       </div>
