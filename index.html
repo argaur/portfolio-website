@@ -131,6 +131,13 @@
     .tonal-card{transition:all 0.2s cubic-bezier(0.4,0,0.2,1);}
     .tonal-card:hover{background-color:#1a1a22;border-color:#c9a84c;}
 
+    /* Mobile ticker */
+    @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    #mobile-ticker{position:fixed;bottom:0;left:0;right:0;z-index:998;height:28px;overflow:hidden;background:#0b1628;border-top:1px solid rgba(232,184,75,0.18);display:flex;align-items:center;}
+    @media(min-width:768px){#mobile-ticker{display:none}}
+    #mobile-ticker-track{display:flex;white-space:nowrap;animation:ticker-scroll 30s linear infinite;}
+    #mobile-ticker-track span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;color:rgba(232,184,75,0.6);padding-right:3rem;text-transform:uppercase;}
+
     /* Skills */
     @keyframes fadeInStagger{to{opacity:1;transform:translateY(0)}}
     .skill-block{opacity:0;transform:translateY(20px);animation:fadeInStagger 0.6s cubic-bezier(0.16,1,0.3,1) forwards;}
@@ -991,10 +998,10 @@ function initContactStack() {
   }
 
   var FLOORS = [
-    {label:'AVAILABILITY',  years:'JUN 2025 — NOW',    log1:'> status: open_to_work.confirmed', log2:'> type: full_time.preferred'},
-    {label:'TARGET DOMAIN', years:'HORIZONTAL SAAS',   log1:'> fit: enterprise_workflow.pm',     log2:'> sectors: saas|edtech|fintech'},
-    {label:'LOCATION',      years:'JAIPUR, INDIA',     log1:'> remote: available.globally',      log2:'> relocation: open.worldwide'},
-    {label:'CONTACT',       years:'ACTIVE',            log1:'> ar.gaurav20@gmail.com',           log2:'> linkedin.com/in/argaur'}
+    {label:'AVAILABILITY',  years:'OPEN — JUN 2026',   log1:'> status: open_to_work.confirmed', log2:'> role: senior_pm.or_above'},
+    {label:'TARGET DOMAIN', years:'HORIZONTAL SAAS',   log1:'> fit: builder_pm.workflow',       log2:'> tier: plg|ai_native|indian_saas'},
+    {label:'LOCATION',      years:'JAIPUR, INDIA',     log1:'> remote: available.globally',     log2:'> relocation: open.worldwide'},
+    {label:'CONTACT',       years:'ACTIVE',            log1:'> ar.gaurav20@gmail.com',          log2:'> linkedin.com/in/argaur'}
   ];
   var BASE_H=[55,65,72,80];
   var TOTAL_BASE_H=BASE_H.reduce(function(s,h){return s+h;},0);
@@ -1151,10 +1158,10 @@ function initStackDiagram() {
   }
 
   var FLOORS = [
-    {label:'ARCHITECTURE',       years:'2009—2014',   log1:'> INIT b.arch @ MNIT, Jaipur',         log2:'> BUILD spatial.systems.thinking'},
-    {label:'ENTERPRISE SOFTWARE',years:'2015—2019',   log1:'> DEPLOY erp.modules @ Tata, JSW',     log2:'> OPTIMIZE process.efficiency'},
-    {label:'PRODUCT STRATEGY',   years:'2019—2023',   log1:'> SHIP product.v1 @ JindalX, Blinkit', log2:'> INTEGRATE airtable.platform × 16'},
-    {label:'AI STRATEGY',        years:'2023—PRESENT',log1:'> RUN ai_layer.init() @ present',       log2:'> SCALE ai.products → 7 deployed'}
+    {label:'ARCHITECTURE',      years:'2014—2017',    log1:'> INIT b.arch @ MNIT, Jaipur',               log2:'> MANAGE 40+ projects @ RSP'},
+    {label:'PRODUCT 0→1',       years:'2017—2020',    log1:'> COFOUND taccomacco @ COO',                 log2:'> SHIP reading.app → ios+android'},
+    {label:'PLATFORM PRODUCT',  years:'2020—2025',    log1:'> OWN passport.os @ OneValley + JindalX',   log2:'> DEPLOY 7.products → 5000 users × 16'},
+    {label:'AI STRATEGY',       years:'2025—PRESENT', log1:'> BUILD ai.pm.stack → solo.founder.mode',    log2:'> SHIP 5 case.studies + live.prototypes'}
   ];
   var BASE_H=[65,75,82,92];
   var TOTAL_BASE_H=BASE_H.reduce(function(s,h){return s+h;},0);
@@ -1796,5 +1803,11 @@ function handleModalBackdrop(e) {
   }
 }
 </script>
+<div id="mobile-ticker" aria-hidden="true">
+  <div id="mobile-ticker-track">
+    <span>◈ OPEN ON DESKTOP FOR CANVAS ANIMATIONS + FULL LAYOUT EXPERIENCE ◈ DESKTOP VERSION RECOMMENDED</span>
+    <span>◈ OPEN ON DESKTOP FOR CANVAS ANIMATIONS + FULL LAYOUT EXPERIENCE ◈ DESKTOP VERSION RECOMMENDED</span>
+  </div>
+</div>
 </body>
 </html>
