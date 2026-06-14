@@ -174,6 +174,38 @@
     /* Contact hover */
     .weight-shift-hover:hover{font-weight:700;color:#c9a84c;}
 
+    /* ANIM #11 — Panel Wipe */
+    @keyframes wipe-sweep{0%{left:-2px}100%{left:100vw}}
+    .wipe-active{display:block!important;animation:wipe-sweep 0.3s linear forwards;}
+
+    /* ANIM #1 — Live Build Counter */
+    .stat-underline{display:block;height:1px;background:rgba(232,184,75,0.6);width:0;transition:width 0.4s ease;margin-top:2px;}
+    .stat-cursor{font-family:'Space Mono',monospace;color:rgba(232,184,75,0.8);animation:blink 0.8s step-end infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* ANIM #10 — Certification Stamp-In + Hover Pulse */
+    .cert-icon-wrap{display:inline-flex;align-items:center;justify-content:center;}
+    .cert-icon-wrap svg{transform:scale(0);opacity:0;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),opacity 0.15s;}
+    .cert-icon-wrap svg.stamped{transform:scale(1);opacity:1;}
+    .cert-icon-wrap svg.stamp-flash{color:#ffffff!important;}
+    @keyframes cert-badge-pulse{0%{transform:scale(1)}30%{transform:scale(1.5);filter:drop-shadow(0 0 5px rgba(232,184,75,0.9))}60%{transform:scale(0.9)}100%{transform:scale(1);filter:none}}
+    #panel-credentials [onclick*="openCertModal"]:hover .cert-icon-wrap svg.stamped{animation:cert-badge-pulse 0.45s cubic-bezier(0.34,1.56,0.64,1);}
+
+    /* ANIM #8 — Capability Heatmap */
+    .skill-lit{color:rgba(232,184,75,0.9)!important;transition:color 0.3s;}
+    .skill-block-dim{opacity:0.3;pointer-events:none;transition:opacity 0.2s;}
+
+    /* ANIM #7 — Metric Bar Fill */
+    .modal-metric{position:relative;}
+    .metric-bar{position:absolute;bottom:0;left:0;width:0%;height:2px;background:rgba(232,184,75,0.7);transition:width 0.5s cubic-bezier(0.16,1,0.3,1);pointer-events:none;}
+    .metric-bar.filled{width:100%;}
+
+    /* ANIM #9 — Philosophy Canvas */
+    #philosophy-canvas{display:block;}
+
+    /* PROFILE PICTURE */
+    #profile-block canvas{display:block;}
+
     /* V3 Modal */
     #v3-modal{position:fixed;inset:0;z-index:150;display:none;}
     #v3-modal.is-open{display:flex;align-items:center;justify-content:center;padding:16px;}
@@ -402,21 +434,34 @@
           <button type="button" class="nav-link px-8 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-all uppercase tracking-widest" data-panel="panel-contact">Contact</button>
         </div>
         <div class="home-stats flex flex-wrap items-center gap-8 border-t border-outline-variant pt-8">
-          <div class="flex flex-col"><span class="font-headline-lg text-headline-lg text-primary-fixed-dim">8+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Years in product</span></div>
+          <div class="flex flex-col"><span class="relative inline-block"><span id="stat-years" class="font-headline-lg text-headline-lg text-primary-fixed-dim">8+</span><span class="stat-underline" id="ul-years"></span></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Years in product</span></div>
           <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
-          <div class="flex flex-col"><span class="font-headline-lg text-headline-lg text-primary-fixed-dim">7</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">B2B SaaS shipped</span></div>
+          <div class="flex flex-col"><span class="relative inline-block"><span id="stat-products" class="font-headline-lg text-headline-lg text-primary-fixed-dim">7</span><span class="stat-underline" id="ul-products"></span></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">B2B SaaS shipped</span></div>
           <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
-          <div class="flex flex-col"><span class="font-headline-lg text-headline-lg text-primary-fixed-dim">5,000+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Enterprise users</span></div>
+          <div class="flex flex-col"><span class="relative inline-block"><span id="stat-users" class="font-headline-lg text-headline-lg text-primary-fixed-dim">5,000+</span><span class="stat-underline" id="ul-users"></span></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Enterprise users</span></div>
           <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
-          <div class="flex flex-col"><span class="font-headline-lg text-headline-lg text-primary-fixed-dim">30+</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Initiatives delivered</span></div>
+          <div class="flex flex-col"><span class="relative inline-block"><span id="stat-initiatives" class="font-headline-lg text-headline-lg text-primary-fixed-dim">30+</span><span class="stat-underline" id="ul-initiatives"></span></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Initiatives delivered</span></div>
         </div>
       </div>
-      <!-- Right: canvas (initStackDiagram from app.js) -->
-      <div class="hidden md:flex flex-col gap-2">
-        <div class="border border-outline-variant bg-surface-container-lowest h-[380px] lg:h-[440px] relative">
+      <!-- Right: profile + stack canvas -->
+      <div class="hidden md:flex flex-col gap-0">
+        <!-- PROFILE PICTURE BLOCK — bio overlays inside, never below -->
+        <div id="profile-block" class="relative cursor-pointer overflow-hidden border border-outline-variant" style="height:220px">
+          <canvas id="profile-canvas" style="width:100%;height:100%;display:block" aria-label="Profile photo"></canvas>
+          <div id="profile-bio" style="display:none;position:absolute;inset:0;background:rgba(11,22,40,0.94);padding:24px 28px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.8;color:rgba(247,243,238,0.88);z-index:10;overflow-y:auto;">
+            <button id="profile-bio-close" style="position:absolute;top:10px;right:14px;background:none;border:none;color:rgba(232,184,75,0.7);font-size:20px;cursor:pointer;font-family:'Space Mono',monospace;line-height:1;" aria-label="Close bio">×</button>
+            <div id="profile-bio-text" style="margin-top:6px;"></div>
+          </div>
+        </div>
+        <!-- Amber label separator -->
+        <div style="border-top:1px solid rgba(232,184,75,0.25);border-left:1px solid rgba(232,184,75,0.25);border-right:1px solid rgba(232,184,75,0.25);padding:4px 10px;display:flex;justify-content:space-between;align-items:center;background:rgba(232,184,75,0.04);">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(232,184,75,0.5);text-transform:uppercase;">Career Architecture</span>
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(232,184,75,0.3);">2014 → PRESENT</span>
+        </div>
+        <div class="border border-outline-variant border-t-0 bg-surface-container-lowest h-[340px] lg:h-[400px] relative">
           <canvas id="stack-diagram" class="w-full h-full block" style="display:block" aria-label="Career architecture stack"></canvas>
         </div>
-        <div class="flex justify-end">
+        <div class="flex justify-end pt-2">
           <button type="button" id="stack-replay" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">&#8635; Replay</button>
         </div>
       </div>
@@ -851,9 +896,8 @@
 
   <!-- CONTACT -->
   <section id="panel-contact" class="v3-panel grid-bg bg-background">
-    <div class="min-h-full flex flex-col justify-center px-margin-side py-16">
-      <div class="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-        <div class="md:col-span-7 flex flex-col space-y-stack-gap">
+    <div class="max-w-container-max w-full px-margin-side mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-stack-gap items-center py-20 min-h-full">
+        <div class="flex flex-col justify-center z-10 space-y-stack-gap">
           <div class="inline-flex items-center gap-2"><div class="w-2 h-2 bg-primary-container"></div><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Available for Senior PM / AI Strategy Roles</span></div>
           <h1 class="font-display text-display text-on-surface leading-tight">Get in Touch</h1>
           <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">If you're building something ambitious at the intersection of product and AI — or want to talk systems thinking, architecture, or PM strategy — I'd like to hear from you.</p>
@@ -867,17 +911,25 @@
           <p class="font-label-sm text-label-sm text-on-surface-variant pt-4 uppercase tracking-wider">Jaipur, India — Open to Relocation and Remote roles</p>
           <p class="font-label-sm text-label-sm text-on-surface-variant opacity-50 uppercase tracking-wider">Domains: Enterprise SaaS / Edtech / Fintech / Quick Commerce</p>
         </div>
-        <div class="md:col-span-5 flex flex-col mt-12 md:mt-0">
-          <div class="relative border border-outline-variant bg-surface-container-lowest w-full h-[380px] lg:h-[440px]">
-            <canvas id="contact-stack-canvas" style="display:block;width:100%;height:100%;" aria-label="Contact stack diagram"></canvas>
-            <div class="absolute top-2 left-2 w-3 h-3 border-t border-l border-primary-fixed-dim"></div>
-            <div class="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-primary-fixed-dim"></div>
+        <div class="hidden md:flex flex-col gap-0">
+          <div id="contact-profile-block" class="relative cursor-pointer overflow-hidden border border-outline-variant" style="height:220px">
+            <canvas id="contact-profile-canvas" style="width:100%;height:100%;display:block" aria-label="Profile photo"></canvas>
+            <div id="contact-profile-bio" style="display:none;position:absolute;inset:0;background:rgba(11,22,40,0.94);padding:24px 28px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.8;color:rgba(247,243,238,0.88);z-index:10;overflow-y:auto;">
+              <button id="contact-profile-bio-close" style="position:absolute;top:10px;right:14px;background:none;border:none;color:rgba(232,184,75,0.7);font-size:20px;cursor:pointer;font-family:'Space Mono',monospace;line-height:1;" aria-label="Close bio">×</button>
+              <div id="contact-profile-bio-text" style="margin-top:6px;"></div>
+            </div>
           </div>
-          <div class="flex justify-end mt-2">
+          <div style="border-top:1px solid rgba(232,184,75,0.25);border-left:1px solid rgba(232,184,75,0.25);border-right:1px solid rgba(232,184,75,0.25);padding:4px 10px;display:flex;justify-content:space-between;align-items:center;background:rgba(232,184,75,0.04);">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(232,184,75,0.5);text-transform:uppercase;">Availability Status</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(232,184,75,0.3);">OPEN — JUN 2026</span>
+          </div>
+          <div class="border border-outline-variant border-t-0 bg-surface-container-lowest h-[340px] lg:h-[400px] relative">
+            <canvas id="contact-stack-canvas" style="display:block;width:100%;height:100%;" aria-label="Contact stack diagram"></canvas>
+          </div>
+          <div class="flex justify-end pt-2">
             <button type="button" id="contact-replay" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">&#8635; Replay</button>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
@@ -907,15 +959,38 @@ var HASH_MAP = {
 var PANEL_MAP = {};
 Object.keys(HASH_MAP).forEach(function(k){ PANEL_MAP[HASH_MAP[k]] = k; });
 
+// ANIM #11 — Panel Transition Plotter Wipe
 function activatePanel(panelId, updateHash) {
-  document.querySelectorAll('.v3-panel').forEach(function(p){ p.classList.remove('is-active'); });
-  var panel = document.getElementById(panelId);
-  if (panel) { panel.classList.add('is-active'); panel.scrollTop = 0; }
-  document.querySelectorAll('.nav-link').forEach(function(btn){
-    btn.classList.toggle('nav-link-active', !!(btn.dataset && btn.dataset.panel === panelId));
-  });
-  if (updateHash && HASH_MAP[panelId]) history.pushState({}, '', '#' + HASH_MAP[panelId]);
-  document.dispatchEvent(new CustomEvent('panel:activate', { detail: { panelId: panelId } }));
+  var wipeLine = document.getElementById('wipe-line');
+
+  function doSwap() {
+    document.querySelectorAll('.v3-panel').forEach(function(p){ p.classList.remove('is-active'); });
+    var panel = document.getElementById(panelId);
+    if (panel) { panel.classList.add('is-active'); panel.scrollTop = 0; }
+    document.querySelectorAll('.nav-link').forEach(function(btn){
+      btn.classList.toggle('nav-link-active', !!(btn.dataset && btn.dataset.panel === panelId));
+    });
+    if (updateHash && HASH_MAP[panelId]) history.pushState({}, '', '#' + HASH_MAP[panelId]);
+    document.dispatchEvent(new CustomEvent('panel:activate', { detail: { panelId: panelId } }));
+  }
+
+  if (!wipeLine) { doSwap(); return; }
+
+  // Reset wipe line
+  wipeLine.classList.remove('wipe-active');
+  wipeLine.style.display = 'block';
+  // Force reflow so animation restarts cleanly
+  void wipeLine.offsetWidth;
+  wipeLine.classList.add('wipe-active');
+
+  // Swap at midpoint (150ms)
+  setTimeout(doSwap, 150);
+
+  // Hide after wipe completes (300ms)
+  setTimeout(function() {
+    wipeLine.classList.remove('wipe-active');
+    wipeLine.style.display = 'none';
+  }, 320);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -938,9 +1013,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Hash routing on load
   var hash = location.hash.replace('#','');
-  if (hash && PANEL_MAP[hash]) activatePanel(PANEL_MAP[hash], false);
-  // also support 'work' hash → experience
-  if (hash === 'work') activatePanel('panel-experience', false);
+  if (hash === 'work') { activatePanel('panel-experience', false); }
+  else if (hash && PANEL_MAP[hash]) { activatePanel(PANEL_MAP[hash], false); }
+  else {
+    // No hash — home is active by default; fire activate so canvas/profile inits run
+    document.dispatchEvent(new CustomEvent('panel:activate', { detail: { panelId: 'panel-home' } }));
+  }
 
   // ESC
   document.addEventListener('keydown', function(e) {
@@ -1110,13 +1188,46 @@ function initContactStack() {
   var themeObserver=new MutationObserver(function(){if(hasAnimated&&!rafId){layout();renderStatic();}});
   themeObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
 
+  var surveyTimer=null;
+  function startSurveyLoop(){
+    var delay=9000;
+    function doSweep(){
+      var sweepStart=null,sweepDur=1800,highlighted=-1;
+      function sweepFrame(ts){
+        if(!sweepStart)sweepStart=ts;
+        var prog=Math.min((ts-sweepStart)/sweepDur,1);
+        var beamX=bX+prog*bW;
+        renderStatic();
+        var C=colors();
+        ctx.save();
+        ctx.strokeStyle='rgba(232,184,75,0.35)';ctx.lineWidth=1.5;ctx.setLineDash([]);
+        ctx.beginPath();ctx.moveTo(beamX,bY-10);ctx.lineTo(beamX,bY+bH+10);ctx.stroke();
+        for(var i=0;i<4;i++){
+          var r=rects[i];
+          if(beamX>=r.x&&beamX<=r.x+r.w){
+            if(highlighted!==i){highlighted=i;}
+            ctx.globalAlpha=0.9;ctx.fillStyle=C.amber;
+            ctx.font='bold 11px "Space Mono",monospace';ctx.textAlign='left';
+            ctx.fillText(FLOORS[i].label,r.x+16,r.y+r.h/2-8);ctx.globalAlpha=1;
+          }
+        }
+        ctx.restore();
+        if(prog<1){requestAnimationFrame(sweepFrame);}
+        else{renderStatic();surveyTimer=setTimeout(doSweep,delay);}
+      }
+      requestAnimationFrame(sweepFrame);
+      if(window.__profileInstances&&window.__profileInstances.contact)window.__profileInstances.contact.startScan();
+    }
+    surveyTimer=setTimeout(doSweep,delay);
+  }
+
   function frame(ts){
     if(!t0)t0=ts; var el=ts-t0;
     ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
     for(var i=0;i<4;i++) drawFloor(i,fp(i,el),el);
     updateTyping(el);
     if(el<3*(PHASE+GAP)+PHASE+1600){ rafId=requestAnimationFrame(frame); }
-    else { rafId=null; renderStatic(); }
+    else { rafId=null; renderStatic(); startSurveyLoop(); }
   }
   function animate(){
     if(hasAnimated)return; hasAnimated=true; layout(); t0=null; rafId=requestAnimationFrame(frame);
@@ -1125,10 +1236,14 @@ function initContactStack() {
   if(replayBtn){
     replayBtn.addEventListener('click',function(){
       if(rafId)cancelAnimationFrame(rafId);
+      if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}
       hasAnimated=false; log1T=['','','',''];log2T=['','','',''];animate();
     });
   }
-  document.addEventListener('panel:activate',function(e){if(e.detail.panelId==='panel-contact')animate();});
+  document.addEventListener('panel:activate',function(e){
+    if(e.detail.panelId==='panel-contact'){animate();}
+    else{if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}}
+  });
   if(document.getElementById('panel-contact')&&document.getElementById('panel-contact').classList.contains('is-active')){
     animate();
   }
@@ -1270,13 +1385,57 @@ function initStackDiagram() {
   var themeObserver=new MutationObserver(function(){if(hasAnimated&&!rafId){layout();renderStatic();}});
   themeObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
 
+  // ANIM #2 — Cursor Beam Survey
+  var surveyTimer = null;
+  function startSurveyLoop() {
+    var delay = 9000;
+    function doSweep() {
+      var sweepStart = null;
+      var sweepDur = 1800;
+      var highlighted = -1;
+      function sweepFrame(ts) {
+        if (!sweepStart) sweepStart = ts;
+        var prog = Math.min((ts - sweepStart) / sweepDur, 1);
+        var beamX = bX + prog * bW;
+        renderStatic();
+        var C = colors();
+        ctx.save();
+        ctx.strokeStyle = 'rgba(232,184,75,0.35)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([]);
+        ctx.beginPath(); ctx.moveTo(beamX, bY - 10); ctx.lineTo(beamX, bY + bH + 10); ctx.stroke();
+        for (var i = 0; i < 4; i++) {
+          var r = rects[i];
+          if (beamX >= r.x && beamX <= r.x + r.w) {
+            if (highlighted !== i) { highlighted = i; }
+            ctx.globalAlpha = 0.9;
+            ctx.fillStyle = C.amber;
+            ctx.font = 'bold 11px "Space Mono", monospace';
+            ctx.textAlign = 'left';
+            ctx.fillText(FLOORS[i].label, r.x + 16, r.y + r.h / 2 - 8);
+            ctx.globalAlpha = 1;
+          }
+        }
+        ctx.restore();
+        if (prog < 1) { requestAnimationFrame(sweepFrame); }
+        else { renderStatic(); surveyTimer = setTimeout(doSweep, delay); }
+      }
+      requestAnimationFrame(sweepFrame);
+      if (window.__profileInstances) {
+        if (window.__profileInstances.home) window.__profileInstances.home.startScan();
+        if (window.__profileInstances.contact) window.__profileInstances.contact.startScan();
+      }
+    }
+    surveyTimer = setTimeout(doSweep, delay);
+  }
+
   function frame(ts){
     if(!t0)t0=ts; var el=ts-t0;
     ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
     for(var i=0;i<4;i++) drawFloor(i,fp(i,el),el);
     updateTyping(el);
     if(el<3*(PHASE+GAP)+PHASE+1600){ rafId=requestAnimationFrame(frame); }
-    else { rafId=null; renderStatic(); }
+    else { rafId=null; renderStatic(); startSurveyLoop(); }
   }
   function animate(){
     if(hasAnimated)return; hasAnimated=true; layout(); t0=null; rafId=requestAnimationFrame(frame);
@@ -1285,10 +1444,14 @@ function initStackDiagram() {
   if(replayBtn){
     replayBtn.addEventListener('click',function(){
       if(rafId)cancelAnimationFrame(rafId);
+      if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}
       hasAnimated=false; log1T=['','','',''];log2T=['','','',''];animate();
     });
   }
-  document.addEventListener('panel:activate',function(e){if(e.detail.panelId==='panel-home')animate();});
+  document.addEventListener('panel:activate',function(e){
+    if(e.detail.panelId==='panel-home'){animate();}
+    else{if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}}
+  });
   if(document.getElementById('panel-home')&&document.getElementById('panel-home').classList.contains('is-active')){
     animate();
   }
@@ -1598,6 +1761,7 @@ function openWorkModal(i) {
   document.getElementById('v3-modal-body').innerHTML = html;
   document.getElementById('v3-modal').classList.add('is-open');
   document.body.style.overflow = 'hidden';
+  animateModalMetrics();
 }
 
 // ── Certification data (PDF + verification links, ported from live main) ────
@@ -1633,6 +1797,7 @@ function openCertModal(key) {
     actionsHtml;
   document.getElementById('v3-modal').classList.add('is-open');
   document.body.style.overflow = 'hidden';
+  // certs don't have numeric metrics — skip animateModalMetrics here
 }
 
 // ── Project modal data ───────────────────────────────────────────────────────
@@ -1790,6 +1955,7 @@ function openV3Modal(id) {
 
   document.getElementById('v3-modal').classList.add('is-open');
   document.body.style.overflow = 'hidden';
+  animateModalMetrics();
 }
 
 function closeV3Modal() {
@@ -1802,7 +1968,425 @@ function handleModalBackdrop(e) {
     closeV3Modal();
   }
 }
+
+// ANIM #1 — Live Build Counter (Home stats)
+(function() {
+  var STATS = [
+    { id: 'stat-years',       ulId: 'ul-years',       target: 8,    suffix: '+',    dur: 1200 },
+    { id: 'stat-products',    ulId: 'ul-products',     target: 7,    suffix: '',     dur: 1200 },
+    { id: 'stat-users',       ulId: 'ul-users',        target: 5,    suffix: ',000+', dur: 1000 },
+    { id: 'stat-initiatives', ulId: 'ul-initiatives',  target: 30,   suffix: '+',    dur: 1200 }
+  ];
+  var cursorEl = null;
+
+  function formatNum(n, s) {
+    if (s === ',000+') { return n + ',000+'; }
+    return n + s;
+  }
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function runCounter(stat, delay, onDone) {
+    var el = document.getElementById(stat.id);
+    var ul = document.getElementById(stat.ulId);
+    if (!el) return;
+    el.textContent = formatNum(0, stat.suffix);
+    if (ul) ul.style.width = '0';
+
+    setTimeout(function() {
+      var start = null;
+      function tick(ts) {
+        if (!start) start = ts;
+        var prog = Math.min((ts - start) / stat.dur, 1);
+        var val = Math.round(easeOut(prog) * stat.target);
+        el.textContent = formatNum(val, stat.suffix);
+        if (prog < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = formatNum(stat.target, stat.suffix);
+          if (ul) { ul.style.transition = 'width 0.4s ease'; ul.style.width = '100%'; }
+          if (onDone) onDone();
+        }
+      }
+      requestAnimationFrame(tick);
+    }, delay);
+  }
+
+  function runAllCounters() {
+    if (window.innerWidth < 768) return;
+    // Remove any existing cursor
+    if (cursorEl && cursorEl.parentNode) { cursorEl.parentNode.removeChild(cursorEl); cursorEl = null; }
+    // Reset underlines immediately
+    STATS.forEach(function(s) {
+      var ul = document.getElementById(s.ulId);
+      if (ul) { ul.style.transition = 'none'; ul.style.width = '0'; }
+    });
+
+    var done = 0;
+    STATS.forEach(function(s, i) {
+      runCounter(s, i * 200, function() {
+        done++;
+        if (done === STATS.length) {
+          // Append blinking cursor after last stat
+          var lastEl = document.getElementById(STATS[STATS.length - 1].id);
+          if (lastEl) {
+            cursorEl = document.createElement('span');
+            cursorEl.className = 'stat-cursor';
+            cursorEl.textContent = '▊';
+            lastEl.parentNode.appendChild(cursorEl);
+            setTimeout(function() {
+              if (cursorEl) {
+                cursorEl.style.transition = 'opacity 0.5s';
+                cursorEl.style.opacity = '0';
+                setTimeout(function() { if (cursorEl && cursorEl.parentNode) { cursorEl.parentNode.removeChild(cursorEl); cursorEl = null; } }, 600);
+              }
+            }, 2000);
+          }
+        }
+      });
+    });
+  }
+
+  document.addEventListener('panel:activate', function(e) {
+    if (e.detail.panelId === 'panel-home') { runAllCounters(); }
+  });
+})();
+
+// ANIM #8 — Capability Heatmap Settle (Skills)
+(function() {
+  var skillsInitialized = false;
+
+  function setupSkillsHeatmap() {
+    if (window.innerWidth < 768) return;
+    var blocks = document.querySelectorAll('#panel-skills .skill-block');
+
+    blocks.forEach(function(block) {
+      // Hover: dim siblings
+      block.addEventListener('mouseenter', function() {
+        blocks.forEach(function(b) {
+          if (b !== block) { b.classList.add('skill-block-dim'); }
+        });
+      });
+      block.addEventListener('mouseleave', function() {
+        blocks.forEach(function(b) { b.classList.remove('skill-block-dim'); });
+      });
+    });
+  }
+
+  function applySkillLighting() {
+    if (window.innerWidth < 768) return;
+    var blocks = document.querySelectorAll('#panel-skills .skill-block');
+    blocks.forEach(function(block) {
+      var items = block.querySelectorAll('ul li');
+      items.forEach(function(li, idx) {
+        li.classList.remove('skill-lit');
+        if (idx < 3) {
+          li.classList.add('skill-lit');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('panel:activate', function(e) {
+    if (e.detail.panelId !== 'panel-skills') return;
+    // Reset
+    var blocks = document.querySelectorAll('#panel-skills .skill-block');
+    blocks.forEach(function(b) {
+      b.querySelectorAll('ul li').forEach(function(li) { li.classList.remove('skill-lit'); });
+    });
+    // Apply after CSS fade-in settles
+    setTimeout(applySkillLighting, 400);
+    if (!skillsInitialized) { setupSkillsHeatmap(); skillsInitialized = true; }
+  });
+})();
+
+// ANIM #10 — Certification Stamp-In (Credentials)
+(function() {
+  function setupCertDots() {
+    // Wrap each cert-row's SVG icon so we can animate it
+    var rows = document.querySelectorAll('#panel-credentials [onclick*="openCertModal"]');
+    rows.forEach(function(row, idx) {
+      var svg = row.querySelector('svg');
+      if (!svg) return;
+      if (!svg.parentNode.classList.contains('cert-icon-wrap')) {
+        var wrap = document.createElement('span');
+        wrap.className = 'cert-icon-wrap';
+        svg.parentNode.insertBefore(wrap, svg);
+        wrap.appendChild(svg);
+      }
+      row.setAttribute('data-cert-idx', idx);
+    });
+  }
+
+  function stampIn() {
+    var rows = document.querySelectorAll('#panel-credentials [data-cert-idx]');
+    // Reset all
+    rows.forEach(function(row) {
+      var svg = row.querySelector('.cert-icon-wrap svg');
+      if (svg) { svg.classList.remove('stamped', 'stamp-flash'); }
+    });
+
+    rows.forEach(function(row) {
+      var idx = parseInt(row.getAttribute('data-cert-idx'), 10);
+      var svg = row.querySelector('.cert-icon-wrap svg');
+      if (!svg) return;
+      setTimeout(function() {
+        svg.classList.add('stamped');
+        svg.classList.add('stamp-flash');
+        setTimeout(function() { svg.classList.remove('stamp-flash'); }, 100);
+      }, idx * 80);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() { setupCertDots(); });
+
+  document.addEventListener('panel:activate', function(e) {
+    if (e.detail.panelId !== 'panel-credentials') return;
+    stampIn();
+  });
+})();
+
+// ANIM #7 — Metric Bar Fill (Work/Projects modal metrics)
+function animateModalMetrics() {
+  var modal = document.getElementById('v3-modal-body');
+  if (!modal) return;
+  var chips = modal.querySelectorAll('.modal-metric');
+  if (!chips.length) return;
+
+  chips.forEach(function(chip) {
+    var bar = chip.querySelector('.metric-bar');
+    if (!bar) {
+      bar = document.createElement('span');
+      bar.className = 'metric-bar';
+      chip.appendChild(bar);
+    }
+    bar.classList.remove('filled');
+  });
+
+  setTimeout(function() {
+    chips.forEach(function(chip, i) {
+      setTimeout(function() {
+        var bar = chip.querySelector('.metric-bar');
+        if (bar) bar.classList.add('filled');
+      }, i * 160);
+    });
+  }, 250);
+}
+
+// ANIM #9 removed
+
+// PROFILE PICTURE — Blueprint Reveal
+(function() {
+  var dpr = window.devicePixelRatio || 1;
+
+  var BIO_TEXT =
+    'GAURAV GUPTA\n' +
+    'Senior PM · AI Strategist · Jaipur\n\n' +
+    '8 yr · 7 B2B SaaS products\n' +
+    '16 enterprise clients · 5,000+ users\n' +
+    'Co-founded Taccomacco (iOS & Android)\n\n' +
+    '→ Open: Senior PM at PLG / AI-native';
+
+  function coverCrop(img, w, h) {
+    var iw = img.naturalWidth || w, ih = img.naturalHeight || h;
+    var scale = Math.max(w / iw, h / ih);
+    var sw = w / scale, sh = h / scale;
+    return { sx: (iw - sw) / 2, sy: (ih - sh) / 2, sw: sw, sh: sh };
+  }
+
+  // Render blueprint image with circular colour-reveal lens at (mx, my)
+  function drawBlueprintLens(ctx, img, w, h, mx, my) {
+    var c = coverCrop(img, w, h);
+    var lr = 65;
+    ctx.fillStyle = '#0b1628';
+    ctx.fillRect(0, 0, w, h);
+    // Blueprint outside lens
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, w, h);
+    ctx.arc(mx, my, lr, 0, Math.PI * 2, true);
+    ctx.clip('evenodd');
+    ctx.filter = 'grayscale(1) contrast(1.2) brightness(0.8)';
+    ctx.drawImage(img, c.sx, c.sy, c.sw, c.sh, 0, 0, w, h);
+    ctx.filter = 'none';
+    ctx.fillStyle = 'rgba(20,55,160,0.45)';
+    ctx.fillRect(0, 0, w, h);
+    ctx.restore();
+    // Full colour inside lens
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(mx, my, lr, 0, Math.PI * 2);
+    ctx.clip();
+    ctx.drawImage(img, c.sx, c.sy, c.sw, c.sh, 0, 0, w, h);
+    ctx.restore();
+    // Amber dashed ring
+    ctx.save();
+    ctx.strokeStyle = 'rgba(232,184,75,0.85)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 5]);
+    ctx.beginPath();
+    ctx.arc(mx, my, lr, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  // Render blueprint image with optional vertical scan line at lineX
+  function drawBlueprint(ctx, img, w, h, lineX) {
+    var c = coverCrop(img, w, h);
+    ctx.fillStyle = '#0b1628';
+    ctx.fillRect(0, 0, w, h);
+    ctx.save();
+    ctx.filter = 'grayscale(1) contrast(1.2) brightness(0.8)';
+    ctx.drawImage(img, c.sx, c.sy, c.sw, c.sh, 0, 0, w, h);
+    ctx.filter = 'none';
+    ctx.fillStyle = 'rgba(20,55,160,0.45)';
+    ctx.fillRect(0, 0, w, h);
+    ctx.restore();
+    if (lineX !== null) {
+      // Glow halo
+      ctx.save();
+      ctx.strokeStyle = 'rgba(232,184,75,0.15)';
+      ctx.lineWidth = 8;
+      ctx.beginPath(); ctx.moveTo(lineX, 0); ctx.lineTo(lineX, h); ctx.stroke();
+      // Sharp beam line
+      ctx.strokeStyle = 'rgba(232,184,75,0.7)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(lineX, 0); ctx.lineTo(lineX, h); ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  function makeInstance(blockId, canvasId, bioId, closeBtnId, bioTextId) {
+    var initialized = false;
+    var img = null, canvasEl = null, ctx = null, W = 0, H = 0;
+    var idleTimer = null, scanActive = false, scanStart = null, scanRaf = null;
+    var mouseMoveRaf = null;
+
+    function layout() {
+      var block = document.getElementById(blockId);
+      if (!block || !canvasEl) return;
+      var rect = block.getBoundingClientRect();
+      W = rect.width || 300; H = rect.height || 220;
+      canvasEl.width = Math.round(W * dpr); canvasEl.height = Math.round(H * dpr);
+      canvasEl.style.width = W + 'px'; canvasEl.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function startScan() {
+      if (scanActive || !img) return;
+      scanActive = true; scanStart = null;
+      var dur = 1800;
+      function frame(ts) {
+        if (!scanActive) return;
+        if (!scanStart) scanStart = ts;
+        var prog = Math.min((ts - scanStart) / dur, 1);
+        drawBlueprint(ctx, img, W, H, prog * W);
+        if (prog < 1) { scanRaf = requestAnimationFrame(frame); }
+        else { scanActive = false; drawBlueprint(ctx, img, W, H, null); }
+      }
+      scanRaf = requestAnimationFrame(frame);
+    }
+
+    function stopScan() {
+      scanActive = false;
+      if (scanRaf) { cancelAnimationFrame(scanRaf); scanRaf = null; }
+    }
+
+    function init() {
+      if (initialized || window.innerWidth < 768) return;
+      initialized = true;
+      canvasEl = document.getElementById(canvasId);
+      if (!canvasEl) return;
+      ctx = canvasEl.getContext('2d');
+      img = new Image();
+      img.onload = function() {
+        layout();
+        drawBlueprint(ctx, img, W, H, null);
+        idleTimer = setTimeout(startScan, 3000);
+      };
+      img.onerror = function() {
+        layout();
+        ctx.fillStyle = '#0b1628'; ctx.fillRect(0, 0, W, H);
+        ctx.font = '10px "Space Mono",monospace';
+        ctx.fillStyle = 'rgba(232,184,75,0.35)'; ctx.textAlign = 'center';
+        ctx.fillText('[ photo.jpg ]', W/2, H/2); ctx.textAlign = 'left';
+      };
+      img.src = 'photo.jpg';
+
+      var block = document.getElementById(blockId);
+      if (!block) return;
+
+      block.addEventListener('mousemove', function(ev) {
+        if (!img || !img.complete || !img.naturalWidth) return;
+        var rect = block.getBoundingClientRect();
+        var mx = ev.clientX - rect.left, my = ev.clientY - rect.top;
+        if (mouseMoveRaf) return;
+        mouseMoveRaf = requestAnimationFrame(function() {
+          mouseMoveRaf = null;
+          stopScan(); clearTimeout(idleTimer);
+          drawBlueprintLens(ctx, img, W, H, mx, my);
+          idleTimer = setTimeout(startScan, 3000);
+        });
+      });
+
+      block.addEventListener('mouseleave', function() {
+        if (!img || !img.complete || !img.naturalWidth) return;
+        stopScan(); clearTimeout(idleTimer);
+        drawBlueprint(ctx, img, W, H, null);
+        idleTimer = setTimeout(startScan, 3000);
+      });
+
+      block.addEventListener('click', function() {
+        if (window.innerWidth < 768) return;
+        var bio = document.getElementById(bioId);
+        var bioText = document.getElementById(bioTextId);
+        if (!bio || !bioText) return;
+        if (bio.style.display === 'block') return;
+        bio.style.display = 'block';
+        bioText.textContent = '';
+        var chars = BIO_TEXT.split(''), i = 0;
+        function typeNext() {
+          if (i >= chars.length) return;
+          var ch = chars[i++];
+          if (ch === '\n') { bioText.appendChild(document.createElement('br')); }
+          else { bioText.appendChild(document.createTextNode(ch)); }
+          setTimeout(typeNext, 16);
+        }
+        typeNext();
+      });
+
+      var closeBtn = document.getElementById(closeBtnId);
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function(ev) {
+          ev.stopPropagation();
+          var bio = document.getElementById(bioId);
+          var bioText = document.getElementById(bioTextId);
+          if (bio) bio.style.display = 'none';
+          if (bioText) bioText.textContent = '';
+        });
+      }
+    }
+
+    return { init: init, startScan: startScan, stopScan: stopScan };
+  }
+
+  var homeInst = makeInstance('profile-block','profile-canvas','profile-bio','profile-bio-close','profile-bio-text');
+  var contactInst = makeInstance('contact-profile-block','contact-profile-canvas','contact-profile-bio','contact-profile-bio-close','contact-profile-bio-text');
+  window.__profileInstances = { home: homeInst, contact: contactInst };
+
+  document.addEventListener('panel:activate', function(e) {
+    if (e.detail.panelId === 'panel-home') homeInst.init();
+    if (e.detail.panelId === 'panel-contact') contactInst.init();
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var active = document.querySelector('.v3-panel.is-active');
+    if (active && active.id === 'panel-home') setTimeout(homeInst.init, 100);
+  });
+})();
 </script>
+<div id="wipe-line" style="position:fixed;top:0;left:-2px;width:2px;height:100vh;background:rgba(232,184,75,0.7);z-index:9997;pointer-events:none;display:none;will-change:transform"></div>
 <div id="mobile-ticker" aria-hidden="true">
   <div id="mobile-ticker-track">
     <span>◈ OPEN ON DESKTOP FOR CANVAS ANIMATIONS + FULL LAYOUT EXPERIENCE ◈ DESKTOP VERSION RECOMMENDED</span>
