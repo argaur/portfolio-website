@@ -123,22 +123,11 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** v2.1 redesign complete on `dev` — ready for browser QA then merge to main
-- **Last session:** 2026-06-03 (session 4)
-- **What was done (this session):**
-  - **v2.1 design spec written** — purpose-derived derivation; Bodoni Moda → Space Mono at display scale; inevitability test passed
-  - **Implementation plan written** — 8 tasks, all complete
-  - **Task 1:** `--font-display` swapped to Space Mono; Bodoni removed from Google Fonts URL
-  - **Task 2:** 80+ v1 legacy hardcoded hex values purged from styles.css; replaced with v2 tokens
-  - **Task 3:** Surface contrast fix — 1px `--c-border` on nav + card surfaces; row dividers added
-  - **Task 4:** Theme toggle `●` glyph replaced with moon/sun SVG icons
-  - **Task 5:** Hero right side — canvas replaced with `.stack-diagram` Architecture Stack + Build Log HTML
-  - **Task 6:** Stack diagram CSS — layers, typewriter entries, `.stack-solidified` animation states
-  - **Task 7:** `initSystemsCanvas()` (148 lines) replaced with `initStackDiagram()` (~70 lines); plays once on load, `prefers-reduced-motion` safe
-  - **Spec + implementation docs** saved to `docs/superpowers/`
-- **Next session — browser QA, then merge:**
-  1. Open `index.html` in browser — verify all panels, stack animation, theme toggle SVGs
-  2. Plan B (separate scope): Work modal wiring, Skills panel, Contact canvas, Philosophy panel
-  3. Merge `dev` → `main` → Vercel auto-deploys
-- **Still open:** photo.jpg; Oracle VM HTTPS; Vitae GitHub rename; Work modals; Skills panel; Contact canvas; Notion Companies DB
-- **Last updated:** 2026-06-03
+- **State:** v3 content-complete — main→v3 content gap bridged + 4 walkthrough fixes, pushed as `8f28082`, pending final Gaurav walkthrough before merge to main
+- **Last session:** 2026-06-10 (session 10) — ported main's content into v3 (14 work-project modals, cert modals w/ PDF+verify, doc chips, Homelab row, project pages relinked, gate skip, hybrid philosophy, skills tools); split experience into 14 individual cards; replaced all Material Symbols with inline SVG (icon font removed); contact canvas resized to match home
+- **Next session:**
+  1. Gaurav walkthrough of session-10 additions (14 cards/modals, cert modals, hybrid philosophy copy)
+  2. Address Issue 30 (build-log motif ×3) — design call needed
+  3. Merge v3 → main → Vercel auto-deploys
+- **Still open:** photo.jpg; Oracle VM HTTPS; Vitae GitHub rename; Notion Companies DB; Issue 30 design call; Google Analytics cert has no verify link/PDF
+- **Last updated:** 2026-06-10

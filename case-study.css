@@ -14,6 +14,49 @@
   --font-body:    'DM Sans', system-ui, sans-serif;
 }
 
+body.cs-light {
+  --cs-bg:        #f2ede8;
+  --cs-bg-raised: #ffffff;
+  --cs-bg-subtle: #e8e3de;
+  --cs-text:      #0e0e12;
+  --cs-muted:     #5c5870;
+  --cs-border:    #d8d3ce;
+  --cs-accent:    #b8922a;
+  --cs-accent-dim:#9a6d1a;
+  background-color: var(--cs-bg);
+  background-image:
+    linear-gradient(rgba(0,80,200,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,80,200,0.04) 1px, transparent 1px),
+    linear-gradient(rgba(0,80,200,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,80,200,0.015) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+}
+body.cs-light .cs-nav { background: rgba(242,237,232,0.96); }
+body.cs-light .cs-nav-title { color: rgba(14,14,18,0.35); }
+
+::selection { background: #c9a84c; color: #0e0e12; }
+body.cs-light ::selection { background: #0e0e12; color: #f2ede8; }
+
+/* Theme toggle button in case study nav */
+.cs-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: 1px solid var(--cs-border);
+  cursor: pointer;
+  color: var(--cs-muted);
+  transition: color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+.cs-theme-btn:hover { color: var(--cs-accent); border-color: var(--cs-accent); }
+.cs-theme-icon--sun { display: none; }
+.cs-theme-icon--moon { display: block; }
+body.cs-light .cs-theme-icon--sun { display: block; }
+body.cs-light .cs-theme-icon--moon { display: none; }
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
