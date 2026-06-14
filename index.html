@@ -1311,10 +1311,34 @@ function initStackDiagram() {
     ctx.fillText('CAREER ARCHITECTURE',bX+bW,bY-14); ctx.textAlign='left'; ctx.restore();
   }
   function drawShell(){
-    var C=colors(); ctx.save(); ctx.strokeStyle=C.shell; ctx.lineWidth=1; ctx.setLineDash([4,7]);
-    [[bX,bY,bX,bY+bH],[bX+bW,bY,bX+bW,bY+bH],[bX,bY+bH,bX+bW,bY+bH]].forEach(function(l){
-      ctx.beginPath();ctx.moveTo(l[0],l[1]);ctx.lineTo(l[2],l[3]);ctx.stroke();
-    }); ctx.setLineDash([]); ctx.restore();
+    var C=colors(); var colW=10; ctx.save();
+    // Structural column hatch fill — left
+    ctx.save(); ctx.beginPath(); ctx.rect(bX,bY,colW,bH); ctx.clip();
+    ctx.strokeStyle='rgba('+C.amberR+',0.10)'; ctx.lineWidth=0.5;
+    ctx.beginPath();
+    for(var hy=bY-colW;hy<bY+bH+colW;hy+=4){ctx.moveTo(bX,hy+colW);ctx.lineTo(bX+colW,hy);}
+    ctx.stroke(); ctx.restore();
+    // Structural column hatch fill — right
+    ctx.save(); ctx.beginPath(); ctx.rect(bX+bW-colW,bY,colW,bH); ctx.clip();
+    ctx.strokeStyle='rgba('+C.amberR+',0.10)'; ctx.lineWidth=0.5;
+    ctx.beginPath();
+    for(var hy2=bY-colW;hy2<bY+bH+colW;hy2+=4){ctx.moveTo(bX+bW-colW,hy2+colW);ctx.lineTo(bX+bW,hy2);}
+    ctx.stroke(); ctx.restore();
+    // Column outlines (solid)
+    ctx.strokeStyle=C.shell; ctx.lineWidth=1; ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(bX,bY); ctx.lineTo(bX,bY+bH);
+    ctx.moveTo(bX+bW,bY); ctx.lineTo(bX+bW,bY+bH);
+    ctx.stroke();
+    // Parapet / roof cap
+    ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(bX-5,bY); ctx.lineTo(bX+bW+5,bY); ctx.stroke();
+    // Foundation — solid base + dashed grade line
+    ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(bX-8,bY+bH); ctx.lineTo(bX+bW+8,bY+bH); ctx.stroke();
+    ctx.lineWidth=0.75; ctx.strokeStyle='rgba('+C.amberR+',0.20)'; ctx.setLineDash([3,5]);
+    ctx.beginPath(); ctx.moveTo(bX-6,bY+bH+5); ctx.lineTo(bX+bW+6,bY+bH+5); ctx.stroke();
+    ctx.setLineDash([]); ctx.restore();
   }
   function drawFloor(i,p,elapsed){
     var C=colors(),r=rects[i],ep=ease(p);
@@ -1333,9 +1357,13 @@ function initStackDiagram() {
       ctx.stroke(); ctx.setLineDash([]); ctx.restore();
     }
     if(p>=0.6){
-      var lp=Math.min((p-0.6)/0.35,1); ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=1;
+      var lp=Math.min((p-0.6)/0.35,1); ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=2.5;
       ctx.globalAlpha=lp; ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w*lp,r.y);
-      ctx.stroke(); ctx.restore();
+      ctx.stroke();
+      ctx.lineWidth=1; ctx.fillStyle=C.amber;
+      ctx.fillRect(r.x-3,r.y-3,7,6);
+      if(lp>=1) ctx.fillRect(r.x+r.w-4,r.y-3,7,6);
+      ctx.restore();
     }
     if(p>=0.68){
       var fa=Math.min((p-0.68)/0.28,1),fl=FLOORS[i];
@@ -1371,8 +1399,9 @@ function initStackDiagram() {
     for(var i=0;i<4;i++){
       var r=rects[i],fl=FLOORS[i];
       ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')'; ctx.fillRect(r.x+1,r.y,r.w-2,r.h);
-      ctx.strokeStyle=C.amber; ctx.lineWidth=1;
+      ctx.strokeStyle=C.amber; ctx.lineWidth=2.5;
       ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w,r.y); ctx.stroke();
+      ctx.lineWidth=1; ctx.fillStyle=C.amber; ctx.fillRect(r.x-3,r.y-3,7,6); ctx.fillRect(r.x+r.w-4,r.y-3,7,6);
       ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.amber; ctx.fillText(fl.label,r.x+8,r.y+13);
       ctx.textAlign='right'; ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(1);
       ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left';
