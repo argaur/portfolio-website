@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: PM Pathfinder | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+    <link rel="canonical" href="https://gauravg-portfolio.vercel.app/project-pm-pathfinder.html">
+    <meta name="description" content="Project: PM Pathfinder — an AI-powered PM learning platform with a RAG chatbot grounded in a self-deployed Supabase pgvector database. Built by Gaurav Gupta.">
+    <meta property="og:title" content="PM Pathfinder — RAG Chatbot on a Self-Deployed Vector DB | Gaurav Gupta">
+    <meta property="og:description" content="Diagnoses a PM archetype, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in document_chunks via Supabase pgvector.">
+    <meta property="og:url" content="https://gauravg-portfolio.vercel.app/project-pm-pathfinder.html">
+    <meta property="og:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
+    <meta name="theme-color" content="#0b1628">
+</head>
+<body>
+
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <span class="cs-nav-title">Personal Project</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <header class="cs-hero">
+            <span class="cs-label">Personal Project</span>
+            <h1 class="cs-title">PM Pathfinder</h1>
+            <p class="cs-subtitle">An AI-native learning platform that diagnoses a PM archetype from a 10-question quiz, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in a vector database I deployed and own end-to-end.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Next.js</span>
+                <span class="cs-meta-tag">Supabase</span>
+                <span class="cs-meta-tag">pgvector</span>
+                <span class="cs-meta-tag">Gemini API</span>
+                <span class="cs-meta-tag">RAG</span>
+                <span class="cs-meta-tag">TypeScript</span>
+            </div>
+        </header>
+
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="arch">Architecture</button>
+          <a href="https://pm-pathfinder.vercel.app" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">Live Product &rarr;</a>
+          <a href="https://github.com/argaur/pm-pathfinder" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+        </div>
+      </div>
+      <div class="cs-docs-panel" data-panel="arch">
+        <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <marker id="pmp-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+              <path d="M0,0 L8,3.5 L0,7 Z" fill="#f7f3ee" opacity="0.7"/>
+            </marker>
+            <marker id="pmp-arr-dashed" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+              <path d="M0,0 L8,3.5 L0,7 Z" fill="#f7f3ee" opacity="0.5"/>
+            </marker>
+          </defs>
+
+          <rect width="900" height="460" fill="#0b1628"/>
+          <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="0.12em" opacity="0.9">RAG PIPELINE — PM PATHFINDER NAVIGATOR CHATBOT</text>
+
+          <!-- Ingestion lane -->
+          <text x="150" y="54" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.08em">INGESTION (OFFLINE)</text>
+          <rect x="20" y="65" width="260" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="150" y="83" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Source Docs</text>
+          <text x="150" y="99" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">archetype-content · builder's-bible</text>
+
+          <line x1="150" y1="109" x2="150" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
+
+          <rect x="20" y="142" width="260" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="150" y="160" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Chunk + Embed</text>
+          <text x="150" y="176" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">gemini-embedding-001 · 3072-dim</text>
+
+          <line x1="150" y1="186" x2="150" y2="217" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
+
+          <!-- Vector DB (terracotta = self-deployed) -->
+          <rect x="20" y="219" width="260" height="52" fill="#bf5c3a" opacity="0.9"/>
+          <text x="150" y="240" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">document_chunks</text>
+          <text x="150" y="256" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">Supabase Postgres + pgvector</text>
+          <text x="150" y="268" text-anchor="middle" fill="#ffffff" font-family="DM Sans, sans-serif" font-size="8" opacity="0.7">IVFFlat · cosine · lists=50</text>
+
+          <!-- Runtime lane -->
+          <text x="620" y="54" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.08em">RUNTIME (PER REQUEST)</text>
+
+          <rect x="450" y="65" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="525" y="83" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">User Message</text>
+          <text x="525" y="99" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Chat UI</text>
+
+          <line x1="525" y1="109" x2="525" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
+
+          <rect x="450" y="142" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="525" y="160" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Embed Query</text>
+          <text x="525" y="176" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">/api/chat route.ts</text>
+
+          <!-- Arrow query embed → vector DB (cross-lane retrieval) -->
+          <line x1="450" y1="164" x2="290" y2="245" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.5" marker-end="url(#pmp-arr-dashed)"/>
+          <text x="370" y="200" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="7.5" opacity="0.8">match_chunks() RPC</text>
+
+          <!-- Vector DB → context block -->
+          <line x1="290" y1="255" x2="450" y2="232" stroke="#f7f3ee" stroke-dasharray="4 3" stroke-width="1" opacity="0.5" marker-end="url(#pmp-arr-dashed)"/>
+
+          <rect x="450" y="219" width="150" height="52" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="525" y="240" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Top-4 Chunks</text>
+          <text x="525" y="256" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">cosine similarity</text>
+          <text x="525" y="268" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">filtered by archetype</text>
+
+          <line x1="600" y1="245" x2="700" y2="245" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
+
+          <rect x="702" y="219" width="178" height="52" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="791" y="240" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Grounded Prompt</text>
+          <text x="791" y="256" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">system + context + history</text>
+          <text x="791" y="268" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">streamGenerateContent SSE</text>
+
+          <line x1="791" y1="271" x2="791" y2="330" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
+
+          <rect x="702" y="332" width="178" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
+          <text x="791" y="350" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Streamed Reply</text>
+          <text x="791" y="366" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">gemini-3.1-flash-lite</text>
+
+          <text x="450" y="430" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.8">Vector DB schema, IVFFlat index, and match_chunks() function were designed and deployed by hand — not a managed RAG service.</text>
+        </svg>
+      </div>
+    </section>
+
+        <div class="cs-page is-active">
+
+            <section class="cs-section">
+                <span class="cs-section-label">The Problem</span>
+                <h2 class="cs-section-title">Generic PM Content Doesn't Tell You Where You Stand</h2>
+                <p>Aspiring and transitioning PMs face the same five gaps: no portfolio to prove capability, no referral network into PM roles, content consumed but never converted into applied skill, no structured feedback outside real interviews, and PM education written by PMs for PMs that alienates career switchers.</p>
+                <p>PM Pathfinder addresses this with a 10-question diagnostic that places each user into one of 6 PM archetypes (Builder, Architect, Storyteller, Advocate, Operator, Strategist) and a roadmap targeted at their specific gap &mdash; not a generic course. The build challenge I set myself: ship a production RAG pipeline end-to-end, including deploying and owning the vector database, rather than wrapping a managed RAG API.</p>
+
+                <div class="cs-stats-row">
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">6</span>
+                        <span class="cs-stat-label">PM archetypes diagnosed</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">3072d</span>
+                        <span class="cs-stat-label">embedding vectors, self-deployed</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">RAG</span>
+                        <span class="cs-stat-label">grounded chat, not a wrapper</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Architecture</span>
+                <h2 class="cs-section-title">Retrieval Pipeline, End to End</h2>
+                <p>Source content (archetype playbooks, a "builder's bible" of PM frameworks) is chunked and embedded with Google's <code>gemini-embedding-001</code> model into 3072-dimension vectors, then written to a <code>document_chunks</code> table in Supabase Postgres with the <code>pgvector</code> extension enabled. An IVFFlat index (<code>lists=50</code>, cosine ops) keeps similarity search fast as the corpus grows.</p>
+                <p>At chat time, the user's message is embedded with the same model, then matched against <code>document_chunks</code> through a <code>match_chunks()</code> Postgres function: a plpgsql RPC that ranks by cosine distance and optionally filters to the user's diagnosed archetype (falling back to the shared "builder's bible" source when no archetype match exists). The top 4 chunks are stitched into the system prompt before the generation call &mdash; classic retrieve-then-generate, not a fine-tune or a static FAQ.</p>
+
+                <h3>Why Not Just Call the Gemini SDK</h3>
+                <ul>
+                    <li><strong>Raw REST over the SDK</strong> &mdash; the Node Gemini SDK hit Vercel Edge/serverless runtime incompatibilities; hand-rolled <code>fetch</code> calls to the REST endpoints removed that dependency entirely.</li>
+                    <li><strong>SSE streaming parsed manually</strong> &mdash; the chat route reads the <code>streamGenerateContent</code> response as a raw byte stream, splits on <code>data:</code> lines, and re-streams plain text to the client for a typing effect with no extra latency.</li>
+                    <li><strong>429 backoff built in</strong> &mdash; embedding and generation calls retry with exponential backoff (1s/2s/4s) before failing, since the free-tier Gemini API rate-limits aggressively under burst traffic.</li>
+                </ul>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Build Decisions</span>
+                <h2 class="cs-section-title">Key Design Choices</h2>
+
+                <div class="cs-callout">
+                    <p><strong>Why deploy my own vector DB instead of Pinecone or a managed RAG service?</strong> Supabase was already the auth and data layer for the app. Enabling <code>pgvector</code> on the same Postgres instance meant one fewer service to provision, one fewer API key to rotate, and row-level security applied consistently with the rest of the schema &mdash; while forcing me to actually understand chunking, embedding dimensionality, index tuning, and similarity search instead of treating retrieval as a black box.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Why archetype-aware filtering in the match function?</strong> A Builder archetype and a Storyteller archetype need different framing for the same PM concept. The <code>match_chunks()</code> function accepts an optional archetype filter so retrieved context is personalised, but always allows the shared "builder's bible" through so general PM questions never come back empty.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Why service-role keys only in the API route?</strong> <code>document_chunks</code> has RLS enabled with no public read policy &mdash; only the server-side Supabase client (service role key, never shipped to the browser) can query it. The chat route also gates on an authenticated user before it will spend an embedding call.</p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Stack</span>
+                <h2 class="cs-section-title">Full Tech Stack</h2>
+                <div class="cs-card-grid">
+                    <div class="cs-card">
+                        <h4>Frontend</h4>
+                        <p>Next.js App Router &middot; TypeScript &middot; Tailwind CSS &middot; Framer Motion</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Auth &amp; Data</h4>
+                        <p>Supabase Auth &middot; Supabase Postgres &middot; Row-Level Security</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Vector DB</h4>
+                        <p>pgvector extension &middot; IVFFlat cosine index &middot; plpgsql match function</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>AI / RAG</h4>
+                        <p>gemini-embedding-001 (3072d) &middot; gemini-3.1-flash-lite streaming &middot; manual SSE parsing</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Diagnostic Engine</h4>
+                        <p>10-question scenario quiz &middot; 6-archetype scoring &middot; personalised roadmap generation</p>
+                    </div>
+                    <div class="cs-card">
+                        <h4>Deployment</h4>
+                        <p>Vercel (serverless functions, 60s max duration on chat route)</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Personal Project</p>
+    </footer>
+
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      if (!tab.dataset.doc) return;
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { if (t.dataset.doc) t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
