@@ -758,9 +758,21 @@
           <div class="w-10 font-label-md text-label-md text-on-surface-variant">10</div>
           <div class="flex-grow font-headline-md text-headline-md text-on-surface">PM Pathfinder — RAG Chatbot on a Self-Deployed Vector DB</div>
           <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
             <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">RAG</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live</div>
+          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
+        </div>
+        <!-- 11 AI vs Human Capital Simulation -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-5')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">11</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">AI vs Human Capital — ROI Counterfactual Simulation</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Data</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Python</span>
           </div>
           <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Live</div>
           <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
@@ -2004,12 +2016,25 @@ var V3_PROJECTS = {
     title: 'PM Pathfinder — RAG Chatbot on a Self-Deployed Vector DB',
     problem: 'Aspiring PMs consume generic content but get no structured feedback on where they actually stand or what gap to close next.',
     insight: 'A 10-question diagnostic maps users to one of 6 PM archetypes; a RAG chatbot grounded in a vector database I deployed and own — Supabase pgvector, IVFFlat cosine index, hand-written match function — answers questions from real PM frameworks instead of guessing.',
-    stats: ['3072-dim embeddings', '6 PM archetypes', 'Self-deployed pgvector DB'],
-    stage: 'Shipped · Live',
-    docs: ['arch'],
+    stats: ['9 user interviews', '6 PM archetypes', 'Self-deployed pgvector DB'],
+    stage: 'PRD · Shipped · Live',
+    docs: ['flow', 'arch', 'prd'],
     githubUrl: 'https://github.com/argaur/pm-pathfinder',
     protoUrl: 'https://pm-pathfinder.vercel.app',
     pageUrl: 'project-pm-pathfinder.html',
+    pageLabel: 'Read Full Case Study'
+  },
+  'pp-5': {
+    tag: 'Python · Next.js · visx · Data Simulation',
+    title: 'AI vs Human Capital — An ROI Counterfactual Simulation',
+    problem: 'The world is pouring record capital into AI. What would the same money have returned if directed at human capital — education, health, skills — instead? The comparison is asserted everywhere and modelled almost nowhere.',
+    insight: 'A dual-track simulation engine with a fully-cited coefficient ledger: every projected dollar traces to a source, confidence propagates as a floor through each effect chain, and an Impact Translator converts the GDP delta into human-scale equivalents (schools, vaccinations, budgets).',
+    stats: ['Cited coefficient ledger', 'Confidence-floor propagation', 'Python engine + static frontend'],
+    stage: 'Shipped · Live',
+    docs: ['arch'],
+    githubUrl: null,
+    protoUrl: 'https://ai-vs-humancap-sim.netlify.app',
+    pageUrl: 'project-ai-humancap-sim.html',
     pageLabel: 'Read Full Project Details'
   }
 };

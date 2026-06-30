@@ -26,6 +26,10 @@
     <nav class="cs-nav">
         <div class="cs-nav-inner">
             <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <div class="cs-nav-tabs">
+                <a class="cs-nav-tab" href="#documentation" onclick="csNavTo(event,'documentation')">Documentation</a>
+                <a class="cs-nav-tab" href="#case-study" onclick="csNavTo(event,'case-study')">PRD</a>
+            </div>
             <div style="display:flex;align-items:center;gap:12px">
                 <span class="cs-nav-title">Case Study</span>
                 <button id="cs-theme-toggle" class="cs-theme-btn" aria-label="Toggle theme">
@@ -285,7 +289,7 @@
         <!-- TOC -->
 
         <!-- 1. Problem Context -->
-              <div class="cs-page is-active">
+              <div class="cs-page is-active" id="case-study">
 <section class="cs-section" id="problem-context">
             <span class="cs-section-label">Section 1</span>
             <h2 class="cs-section-title">Problem Context &amp; Industry Landscape</h2>
@@ -858,6 +862,7 @@
       nextBtn.disabled = current === pages.length - 1;
       window.scrollTo(0, 0);
     }
+    window.__csShow = show;
     prevBtn.addEventListener('click', function() { show(current - 1); });
     nextBtn.addEventListener('click', function() { show(current + 1); });
     document.addEventListener('keydown', function(e) {
@@ -890,6 +895,14 @@
     localStorage.setItem('portfolio_theme',isLight?'light':'dark');
   });}
 })();
+</script>
+<script>
+function csNavTo(e, id) {
+  if (e && e.preventDefault) e.preventDefault();
+  if (id === 'case-study' && window.__csShow) window.__csShow(0);
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 </script>
 </body>
 </html>

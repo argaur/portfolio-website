@@ -6,7 +6,7 @@
     <title>Project: GWS CLI | Gaurav Gupta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="case-study.css">
     <link rel="canonical" href="https://gauravg-portfolio.vercel.app/project-gws-cli.html">
     <meta name="description" content="Project: GWS CLI — a Python command-line tool for Gmail and Google Calendar APIs. Built by Gaurav Gupta.">
@@ -24,6 +24,10 @@
     <nav class="cs-nav">
         <div class="cs-nav-inner">
             <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <div class="cs-nav-tabs">
+                <a class="cs-nav-tab" href="#documentation" onclick="csNavTo(event,'documentation')">Documentation</a>
+                <a class="cs-nav-tab" href="#case-study" onclick="csNavTo(event,'case-study')">Write-up</a>
+            </div>
             <span class="cs-nav-title">Personal Project</span>
         </div>
     </nav>
@@ -163,7 +167,7 @@
       </div>
     </section>
 
-        <div class="cs-page is-active">
+        <div class="cs-page is-active" id="case-study">
 
             <section class="cs-section">
                 <span class="cs-section-label">What It Is</span>
@@ -259,6 +263,14 @@
       });
     });
   })();
+  </script>
+  <script>
+  function csNavTo(e, id) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (id === 'case-study' && window.__csShow) window.__csShow(0);
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   </script>
 </body>
 </html>

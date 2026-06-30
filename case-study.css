@@ -129,6 +129,36 @@ img { display: block; max-width: 100%; }
   color: rgba(236,232,226,0.25);
 }
 
+/* Sticky top-nav section tabs (Documentation / PRD / Write-up) */
+.cs-nav-tabs {
+  display: flex;
+  gap: 0;
+}
+
+.cs-nav-tab {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+  padding: 7px 16px;
+  border: 1px solid var(--cs-border);
+  border-right: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.cs-nav-tab:last-child { border-right: 1px solid var(--cs-border); }
+.cs-nav-tab:hover {
+  background: var(--cs-accent);
+  color: var(--cs-bg);
+  border-color: var(--cs-accent);
+}
+
+/* offset in-page jumps for the sticky nav */
+#documentation, #case-study { scroll-margin-top: 76px; }
+
 /* ============================================================
    Main Content
    ============================================================ */
@@ -845,11 +875,17 @@ img { display: block; max-width: 100%; }
   .cs-docs-header { padding: 0 20px; flex-direction: column; align-items: flex-start; }
   .cs-docs-panel { padding: 0 20px; }
   .cs-docs-tab { padding: 8px 12px; font-size: 10px; }
+
+  .cs-nav { padding: 0 16px; }
+  .cs-nav-tab { padding: 6px 11px; font-size: 9px; letter-spacing: 0.06em; }
 }
 
 @media (max-width: 480px) {
   .cs-stats-row { grid-template-columns: 1fr; }
   .cs-main { padding: 0 16px 100px; }
+  /* free up room for the tabs — drop the decorative section label */
+  .cs-nav-title { display: none; }
+  .cs-nav-tab { padding: 6px 9px; }
 }
 
 @media print {

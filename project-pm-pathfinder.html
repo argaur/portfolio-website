@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: PM Pathfinder | Gaurav Gupta</title>
+    <title>Case Study: PM Pathfinder | Gaurav Gupta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="case-study.css">
     <link rel="canonical" href="https://gauravg-portfolio.vercel.app/project-pm-pathfinder.html">
-    <meta name="description" content="Project: PM Pathfinder — an AI-powered PM learning platform with a RAG chatbot grounded in a self-deployed Supabase pgvector database. Built by Gaurav Gupta.">
-    <meta property="og:title" content="PM Pathfinder — RAG Chatbot on a Self-Deployed Vector DB | Gaurav Gupta">
-    <meta property="og:description" content="Diagnoses a PM archetype, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in document_chunks via Supabase pgvector.">
+    <meta name="description" content="Case study: PM Pathfinder — a career navigation platform for India's stuck PMs. Diagnoses a PM archetype, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in a self-deployed Supabase pgvector database.">
+    <meta property="og:title" content="PM Pathfinder — Career Navigation for India's Stuck PMs | Gaurav Gupta">
+    <meta property="og:description" content="From 9 user interviews to a shipped product: an archetype diagnostic, a personalised roadmap, and a RAG chatbot grounded in a vector database I deployed and own end-to-end.">
     <meta property="og:url" content="https://gauravg-portfolio.vercel.app/project-pm-pathfinder.html">
     <meta property="og:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
-    <meta name="theme-color" content="#0b1628">
+    <meta name="theme-color" content="#0e0e12">
 </head>
 <body>
+<script>if(localStorage.getItem('portfolio_theme')==='light')document.body.classList.add('cs-light');</script>
 
+    <!-- Back Nav -->
     <nav class="cs-nav">
         <div class="cs-nav-inner">
             <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
-            <span class="cs-nav-title">Personal Project</span>
+            <div class="cs-nav-tabs">
+                <a class="cs-nav-tab" href="#documentation" onclick="csNavTo(event,'documentation')">Documentation</a>
+                <a class="cs-nav-tab" href="#case-study" onclick="csNavTo(event,'case-study')">PRD</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+                <span class="cs-nav-title">Case Study 06</span>
+                <button type="button" id="cs-theme-toggle" class="cs-theme-btn" aria-label="Toggle theme">
+                    <svg class="cs-theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="cs-theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+            </div>
         </div>
     </nav>
 
     <main class="cs-main">
 
+        <!-- Hero -->
         <header class="cs-hero">
-            <span class="cs-label">Personal Project</span>
-            <h1 class="cs-title">PM Pathfinder</h1>
-            <p class="cs-subtitle">An AI-native learning platform that diagnoses a PM archetype from a 10-question quiz, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in a vector database I deployed and own end-to-end.</p>
+            <span class="cs-label">Case Study 06 &mdash; Rethink AI MPM Cohort 7 &middot; March 2026 &middot; Shipped &amp; Live</span>
+            <h1 class="cs-title">PM Pathfinder &mdash; Career Navigation for India&rsquo;s Stuck PMs</h1>
+            <p class="cs-subtitle">From 9 user interviews to a shipped product. An AI-native platform that diagnoses a PM archetype from a 10-question quiz, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in a vector database I deployed and own end-to-end &mdash; not a managed RAG API.</p>
             <div class="cs-meta-row">
+                <span class="cs-meta-tag">EdTech / Careers</span>
+                <span class="cs-meta-tag">AI / RAG</span>
                 <span class="cs-meta-tag">Next.js</span>
-                <span class="cs-meta-tag">Supabase</span>
-                <span class="cs-meta-tag">pgvector</span>
-                <span class="cs-meta-tag">Gemini API</span>
-                <span class="cs-meta-tag">RAG</span>
-                <span class="cs-meta-tag">TypeScript</span>
+                <span class="cs-meta-tag">Supabase pgvector</span>
+                <span class="cs-meta-tag">Solo Build</span>
             </div>
         </header>
 
@@ -48,12 +60,80 @@
       <div class="cs-docs-header">
         <span class="cs-docs-label">Documentation</span>
         <div class="cs-docs-tabs" role="tablist">
-          <button class="cs-docs-tab cs-docs-tab--active" data-doc="arch">Architecture</button>
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">User Flow</button>
+          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
+          <button class="cs-docs-tab" data-doc="prd">PRD</button>
           <a href="https://pm-pathfinder.vercel.app" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">Live Product &rarr;</a>
           <a href="https://github.com/argaur/pm-pathfinder" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
         </div>
       </div>
-      <div class="cs-docs-panel" data-panel="arch">
+
+      <!-- USER FLOW -->
+      <div class="cs-docs-panel" data-panel="flow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" style="width:100%;display:block;">
+          <defs>
+            <marker id="pf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="320" fill="#0e0e12"/>
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" letter-spacing="1.5" opacity="0.7">DIAGNOSE &rarr; PERSONALISE &rarr; PRACTICE — USER FLOW</text>
+
+          <!-- Row 1 -->
+          <rect x="14" y="74" width="120" height="44" fill="#f7f3ee"/>
+          <text x="74" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Onboarding</text>
+          <text x="74" y="108" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">background · years</text>
+          <line x1="134" y1="96" x2="180" y2="96" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#pf-arr)"/>
+
+          <rect x="184" y="74" width="120" height="44" fill="#f7f3ee"/>
+          <text x="244" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Diagnostic</text>
+          <text x="244" y="108" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">10 MCQs · 4 skills</text>
+          <line x1="304" y1="96" x2="350" y2="96" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#pf-arr)"/>
+
+          <rect x="354" y="74" width="130" height="44" fill="#bf5c3a"/>
+          <text x="419" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Archetype Reveal</text>
+          <text x="419" y="108" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">1 of 6 archetypes</text>
+          <line x1="484" y1="96" x2="530" y2="96" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#pf-arr)"/>
+
+          <rect x="534" y="74" width="130" height="44" fill="#f7f3ee"/>
+          <text x="599" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Dashboard</text>
+          <text x="599" y="108" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">multi-radar · readiness</text>
+
+          <!-- Auth gate marker -->
+          <text x="419" y="138" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1">Google OAuth · anon session migrated on sign-in</text>
+
+          <!-- Branches from dashboard -->
+          <line x1="599" y1="118" x2="599" y2="150" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.6" marker-end="url(#pf-arr)"/>
+          <text x="599" y="166" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" letter-spacing="1">PERSONALISED SURFACES</text>
+
+          <rect x="120" y="190" width="150" height="44" fill="#f7f3ee"/>
+          <text x="195" y="209" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Roadmap</text>
+          <text x="195" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">gap-targeted path</text>
+
+          <rect x="295" y="190" width="150" height="44" fill="#f7f3ee"/>
+          <text x="370" y="209" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Topics &amp; Deep-Dive</text>
+          <text x="370" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">15 content pages</text>
+
+          <rect x="470" y="190" width="150" height="44" fill="#bf5c3a"/>
+          <text x="545" y="209" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Navigator Chat</text>
+          <text x="545" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">RAG · grounded</text>
+
+          <rect x="645" y="190" width="150" height="44" fill="#f7f3ee"/>
+          <text x="720" y="209" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Interview Readiness</text>
+          <text x="720" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">vs APM/PM/Senior</text>
+
+          <!-- fan lines -->
+          <line x1="560" y1="156" x2="195" y2="188" stroke="#f7f3ee" stroke-width="1" opacity="0.35" marker-end="url(#pf-arr)"/>
+          <line x1="575" y1="156" x2="370" y2="188" stroke="#f7f3ee" stroke-width="1" opacity="0.35" marker-end="url(#pf-arr)"/>
+          <line x1="599" y1="156" x2="545" y2="188" stroke="#f7f3ee" stroke-width="1" opacity="0.35" marker-end="url(#pf-arr)"/>
+          <line x1="623" y1="156" x2="720" y2="188" stroke="#f7f3ee" stroke-width="1" opacity="0.35" marker-end="url(#pf-arr)"/>
+
+          <text x="450" y="280" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.85">Value is shown before sign-up: the quiz, archetype teaser, and blurred scores render anonymously; auth gates only the save.</text>
+        </svg>
+      </div>
+
+      <!-- ARCHITECTURE -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
         <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
           <defs>
             <marker id="pmp-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
@@ -64,14 +144,14 @@
             </marker>
           </defs>
 
-          <rect width="900" height="460" fill="#0b1628"/>
+          <rect width="900" height="460" fill="#0e0e12"/>
           <text x="450" y="26" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="0.12em" opacity="0.9">RAG PIPELINE — PM PATHFINDER NAVIGATOR CHATBOT</text>
 
           <!-- Ingestion lane -->
           <text x="150" y="54" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.08em">INGESTION (OFFLINE)</text>
           <rect x="20" y="65" width="260" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
           <text x="150" y="83" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Source Docs</text>
-          <text x="150" y="99" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">archetype-content · builder's-bible</text>
+          <text x="150" y="99" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">archetype playbooks · builder's bible</text>
 
           <line x1="150" y1="109" x2="150" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
 
@@ -92,7 +172,7 @@
 
           <rect x="450" y="65" width="150" height="44" fill="none" stroke="#f7f3ee" stroke-width="1" opacity="0.85"/>
           <text x="525" y="83" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">User Message</text>
-          <text x="525" y="99" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Chat UI</text>
+          <text x="525" y="99" text-anchor="middle" fill="#f7f3ee" font-family="DM Sans, sans-serif" font-size="8" opacity="0.6">Navigator Chat UI</text>
 
           <line x1="525" y1="109" x2="525" y2="140" stroke="#f7f3ee" stroke-width="1" opacity="0.6" marker-end="url(#pmp-arr)"/>
 
@@ -128,103 +208,255 @@
           <text x="450" y="430" text-anchor="middle" fill="#2d5da1" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.8">Vector DB schema, IVFFlat index, and match_chunks() function were designed and deployed by hand — not a managed RAG service.</text>
         </svg>
       </div>
+
+      <!-- PRD -->
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="prd">
+        <p class="cs-docs-prd-note">This case study is the product write-up. The original Product Requirements Document &mdash; the &ldquo;PM Career Navigation Platform for India&rdquo; PRD submitted to Rethink AI&rsquo;s MPM Cohort 7 (March 2026) &mdash; is the discovery foundation referenced throughout: 9 interviews, five user segments, and a problem-prioritisation chain. The Solution and Architecture sections below describe what was actually built and shipped.</p>
+        <button class="cs-docs-print-btn" onclick="window.print()">Save as PDF &rarr;</button>
+      </div>
     </section>
 
-        <div class="cs-page is-active">
+      <!-- ============ NARRATIVE ============ -->
+      <div class="cs-page is-active" id="case-study">
+        <section class="cs-section">
+            <span class="cs-section-label">Overview</span>
+            <h2 class="cs-section-title">A Product Built From Its Own Research</h2>
+            <div class="cs-callout cs-callout--highlight">
+                <p>PM Pathfinder began as a PRD for Rethink AI&rsquo;s Managed PM Cohort 7 and became a real, live product. It is live at <a href="https://pm-pathfinder.vercel.app" target="_blank" rel="noopener" style="color: var(--cs-accent);">pm-pathfinder.vercel.app</a> &mdash; quiz, archetype reveal, dashboard, roadmap, and a grounded RAG chatbot, all working.</p>
+            </div>
 
-            <section class="cs-section">
-                <span class="cs-section-label">The Problem</span>
-                <h2 class="cs-section-title">Generic PM Content Doesn't Tell You Where You Stand</h2>
-                <p>Aspiring and transitioning PMs face the same five gaps: no portfolio to prove capability, no referral network into PM roles, content consumed but never converted into applied skill, no structured feedback outside real interviews, and PM education written by PMs for PMs that alienates career switchers.</p>
-                <p>PM Pathfinder addresses this with a 10-question diagnostic that places each user into one of 6 PM archetypes (Builder, Architect, Storyteller, Advocate, Operator, Strategist) and a roadmap targeted at their specific gap &mdash; not a generic course. The build challenge I set myself: ship a production RAG pipeline end-to-end, including deploying and owning the vector database, rather than wrapping a managed RAG API.</p>
+            <div class="cs-stats-row">
+                <div class="cs-stat"><span class="cs-stat-number">9</span><span class="cs-stat-label">user interviews behind the PRD</span></div>
+                <div class="cs-stat"><span class="cs-stat-number">6</span><span class="cs-stat-label">PM archetypes diagnosed</span></div>
+                <div class="cs-stat"><span class="cs-stat-number">3072d</span><span class="cs-stat-label">embedding vectors, self-deployed</span></div>
+                <div class="cs-stat"><span class="cs-stat-number">Live</span><span class="cs-stat-label">shipped on Vercel, end to end</span></div>
+            </div>
 
-                <div class="cs-stats-row">
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">6</span>
-                        <span class="cs-stat-label">PM archetypes diagnosed</span>
-                    </div>
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">3072d</span>
-                        <span class="cs-stat-label">embedding vectors, self-deployed</span>
-                    </div>
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">RAG</span>
-                        <span class="cs-stat-label">grounded chat, not a wrapper</span>
-                    </div>
+            <p>This case study reads in two registers. <strong>Discovery</strong> is drawn from the submitted PRD &mdash; the research, segments, and problem chain that justified the bet. <strong>Solution and Architecture</strong> describe what I actually shipped: an archetype diagnostic, a personalised roadmap, and a retrieval-augmented chatbot grounded in a vector database I built and own. Where the live product and the original PRD diverge, this document says so plainly.</p>
+        </section>
+
+        <section class="cs-section" id="problem">
+            <span class="cs-section-label">01 &mdash; Problem</span>
+            <h2 class="cs-section-title">People Don&rsquo;t Stay Stuck for Lack of Effort. They Stay Stuck Because Nobody Tells Them Where They Stand.</h2>
+
+            <p>The audience is working professionals in India with 3+ years of experience trying to break into or advance in product management &mdash; engineers, consultants, narrow-domain PMs, designers, career-adjacent operators. Fresh graduates are explicitly excluded; the aspiration to become a PM forms only after real industry exposure.</p>
+
+            <div class="cs-stats-row">
+                <div class="cs-stat"><span class="cs-stat-number">200</span><span class="cs-stat-label">applications, ~2&ndash;3 replies (one interviewee)</span></div>
+                <div class="cs-stat"><span class="cs-stat-number">8/8</span><span class="cs-stat-label">consumed heavy PM content; none felt ready</span></div>
+                <div class="cs-stat"><span class="cs-stat-number">&#8377;2.5&ndash;4L</span><span class="cs-stat-label">bootcamp price vs. free YouTube &mdash; nothing between</span></div>
+                <div class="cs-stat"><span class="cs-stat-number">+42%</span><span class="cs-stat-label">YoY growth in Indian PM hiring through 2025</span></div>
+            </div>
+
+            <div class="cs-callout">
+                <p>The market runs from free (YouTube, WhatsApp groups, community Slacks) straight up to <strong>&#8377;2.5&ndash;4 lakh bootcamps</strong>. Nobody sells a monthly subscription of &#8377;2,000&ndash;5,000 that gives AI-powered practice, real feedback, and a believable readiness score. <em>That gap is the entire opportunity.</em></p>
+            </div>
+        </section>
+
+        <section class="cs-section" id="segments">
+            <span class="cs-section-label">02 &mdash; Segments</span>
+            <h2 class="cs-section-title">Five Ways to Be Stuck</h2>
+            <p>Research basis: 9 interviews with 8 people, March 2026, plus community research across Reddit, LinkedIn, Quora, Grapevine, Glassdoor, and 20+ industry reports.</p>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Segment</th><th>Who They Are</th><th>What We Saw</th></tr></thead>
+                    <tbody>
+                        <tr><td>Trapped Engineer</td><td>2&ndash;4 yrs at IT firms, want PM, no one in their network knows it</td><td>150&ndash;200 applications, 2&ndash;3 replies. Rates himself 15/100 while holding a product title.</td></tr>
+                        <tr><td>Niche-Locked PM</td><td>Working PMs, 1&ndash;7 yrs, experience too narrow to transfer</td><td>Has the title but cannot show the job outside one domain. Largest group by likely revenue.</td></tr>
+                        <tr><td>Methodical Planner</td><td>Consultants/analysts, 5&ndash;8 yrs, highly analytical</td><td>2 years of active interest, zero applications. Knows every framework; cannot act without certainty.</td></tr>
+                        <tr><td>Creative Crossover</td><td>Designers/marketers, 4&ndash;8 yrs, strong on users, weak on PM vocabulary</td><td>Made two study schedules, abandoned both. Applied to exactly one role, via a personal connection.</td></tr>
+                        <tr><td>Perpetual Preparer</td><td>Adjacent to product 5&ndash;10+ yrs, knows the most, in the longest loops</td><td>10 years of self-study, still calls himself &ldquo;aspiring.&rdquo; Deeply skeptical anything new will work.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cs-insight">
+                <h4>Research Insight</h4>
+                <p>The more someone knows, the longer they tend to stay stuck. Knowledge without a believable external signal of readiness produces preparation loops, not applications. The product&rsquo;s first job is not to teach &mdash; it is to measure.</p>
+            </div>
+        </section>
+
+        <section class="cs-section" id="findings">
+            <span class="cs-section-label">03 &mdash; Findings</span>
+            <h2 class="cs-section-title">Five Things That Decided What to Build</h2>
+
+            <div class="cs-card-grid">
+                <div class="cs-card"><h4>1 &middot; Progress, not motivation</h4><p>People are stuck because they cannot measure progress. Without a believable &ldquo;you are ready,&rdquo; the safest move is to keep preparing. Rejections arrive as a verdict with no explanation.</p></div>
+                <div class="cs-card"><h4>2 &middot; Network &gt; preparation</h4><p>Everyone who moved into PM did it through a person, not an online application. Network access is real &mdash; but it&rsquo;s a V2 problem. V1 fixes the root cause: practice and feedback.</p></div>
+                <div class="cs-card"><h4>3 &middot; Same course for everyone is the bug</h4><p>A 4.5-year PM sitting through the same intro as a first-timer wastes both. The product must figure out who you are within 10 minutes and feel built for you.</p></div>
+                <div class="cs-card"><h4>4 &middot; Watching &ne; doing</h4><p>All eight consumed huge amounts of content; none could perform. What moved the needle was practising with specific feedback. The centre must be a practice engine, not a library.</p></div>
+                <div class="cs-card"><h4>5 &middot; Feedback arrives too late</h4><p>The only time anyone learns they aren&rsquo;t ready is when they fail a real interview &mdash; the worst possible moment. Feedback has to be embedded into every practice session.</p></div>
+                <div class="cs-card" style="border-left:3px solid var(--cs-accent);"><h4>The Bet</h4><p>Turn studying into practice, give honest feedback, show a believable readiness score, and price it at &#8377;2,999/month &mdash; a point nobody else occupies.</p></div>
+            </div>
+        </section>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div class="cs-page">
+        <section class="cs-section" id="solution">
+            <span class="cs-section-label">04 &mdash; Solution (Shipped)</span>
+            <h2 class="cs-section-title">Diagnose, Personalise, Then Practise</h2>
+            <p>The live product delivers the first half of the bet end to end &mdash; identity and personalisation &mdash; and lays the rails for the practice loop. A returning or new user moves through a single, value-first flow.</p>
+
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>#</th><th>Surface</th><th>What Happens</th><th>Design Principle</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Onboarding + Diagnostic</td><td>3-step context (background, years, industry) then 10 scenario MCQs across 4 skill dimensions.</td><td>Figure out who you are in &lt;10 minutes</td></tr>
+                        <tr><td>2</td><td>Results teaser</td><td>Blurred 5-dimension scores shown <em>before</em> sign-up.</td><td>Value before commitment</td></tr>
+                        <tr><td>3</td><td>Archetype Reveal</td><td>One of 6 archetypes &mdash; Builder, Architect, Storyteller, Advocate, Operator, Strategist.</td><td>A specific mirror, not a generic grade</td></tr>
+                        <tr><td>4</td><td>Dashboard</td><td>Multi-radar, stat cards, a readiness ring scored 0&ndash;100 vs APM / PM / Senior PM benchmarks.</td><td>Make standing legible at a glance</td></tr>
+                        <tr><td>5</td><td>Roadmap + Topics</td><td>Gap-targeted learning path; 15 topic pages and per-dimension deep-dives.</td><td>The system picks what you work on</td></tr>
+                        <tr><td>6</td><td>Navigator Chat</td><td>A RAG chatbot answers PM questions from real frameworks, filtered to your archetype.</td><td>Grounded answers, not guesses</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cs-callout">
+                <p><strong>Where this diverges from the PRD, honestly:</strong> the submitted PRD centred a practice-problem engine and an AI feedback grader as the core loop. The shipped product nails identity, personalisation, and grounded Q&amp;A first &mdash; and treats the graded practice engine as the next build (see Roadmap). The discovery thesis is unchanged; the sequencing reflects what was provable in a cohort timeline.</p>
+            </div>
+        </section>
+
+        <section class="cs-section" id="architecture">
+            <span class="cs-section-label">05 &mdash; Architecture</span>
+            <h2 class="cs-section-title">A Retrieval Pipeline I Own End to End</h2>
+            <p>The Navigator chatbot is a real retrieve-then-generate pipeline, not a wrapper. Source content &mdash; archetype playbooks and a &ldquo;builder&rsquo;s bible&rdquo; of PM frameworks &mdash; is chunked and embedded with Google&rsquo;s <code>gemini-embedding-001</code> into 3072-dimension vectors, then written to a <code>document_chunks</code> table in Supabase Postgres with the <code>pgvector</code> extension. An IVFFlat index (<code>lists=50</code>, cosine ops) keeps similarity search fast as the corpus grows.</p>
+            <p>At chat time the user&rsquo;s message is embedded with the same model and matched against <code>document_chunks</code> through a <code>match_chunks()</code> Postgres function &mdash; a plpgsql RPC that ranks by cosine distance and optionally filters to the user&rsquo;s diagnosed archetype, always falling back to the shared &ldquo;builder&rsquo;s bible&rdquo; so general questions never come back empty. The top 4 chunks are stitched into the system prompt before generation.</p>
+
+            <h3>Why Raw REST Over the Gemini SDK</h3>
+            <ul>
+                <li><strong>SDK removed entirely</strong> &mdash; the Node Gemini SDK hit Vercel serverless runtime incompatibilities; hand-rolled <code>fetch</code> calls to the REST endpoints removed that dependency.</li>
+                <li><strong>SSE parsed by hand</strong> &mdash; the chat route reads <code>streamGenerateContent</code> as a raw byte stream, splits on <code>data:</code> lines, and re-streams plain text for a typing effect with no extra latency.</li>
+                <li><strong>429 backoff built in</strong> &mdash; embedding and generation retry with exponential backoff (1s/2s/4s) before failing, since the free Gemini tier rate-limits aggressively under burst.</li>
+                <li><strong>Service-role only, server-side</strong> &mdash; <code>document_chunks</code> has RLS with no public read; only the server-side client (service-role key, never shipped to the browser) can query it, and the route gates on an authenticated user before spending an embedding call.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="data-model">
+            <span class="cs-section-label">06 &mdash; Data Model</span>
+            <h2 class="cs-section-title">Seven Tables, One Auth Boundary</h2>
+            <p>Auth is Google OAuth via Supabase. An anonymous quiz session is migrated to the authenticated user on sign-in through a single service-role route &mdash; the only place in the app that bypasses RLS.</p>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead><tr><th>Table</th><th>Purpose</th></tr></thead>
+                    <tbody>
+                        <tr><td>profiles</td><td>archetype, display name, avatar, Pro flag</td></tr>
+                        <tr><td>assessments</td><td>dimension scores, archetype, tiers (JSONB) per user</td></tr>
+                        <tr><td>quiz_sessions</td><td>anonymous pre-auth sessions + migration flag</td></tr>
+                        <tr><td>learning_path_progress</td><td>step-level roadmap completion</td></tr>
+                        <tr><td>deep_dive_results</td><td>per-dimension answers (JSONB)</td></tr>
+                        <tr><td>portfolio_profiles / portfolio_case_studies</td><td>public portfolio snapshot, up to 3 case studies per user</td></tr>
+                        <tr><td>document_chunks</td><td>RAG corpus &mdash; pgvector(3072), IVFFlat cosine index</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+      </div>
+
+      <!-- PAGE 3 -->
+      <div class="cs-page">
+        <section class="cs-section" id="model">
+            <span class="cs-section-label">07 &mdash; Business Model</span>
+            <h2 class="cs-section-title">Free Shows You What&rsquo;s Wrong. Paid Helps You Fix It.</h2>
+            <p>The free tier is the hook, not the product. Users get enough to feel understood and to see themselves improve before the paywall &mdash; which is framed around their specific gaps, not a generic upsell.</p>
+            <div class="cs-two-col">
+                <div class="cs-col">
+                    <h4>Free, forever</h4>
+                    <ul>
+                        <li>Career-type quiz + radar + skill translations</li>
+                        <li>2 AI-graded practice sessions</li>
+                        <li>Readiness snapshot after the trial</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section class="cs-section">
-                <span class="cs-section-label">Architecture</span>
-                <h2 class="cs-section-title">Retrieval Pipeline, End to End</h2>
-                <p>Source content (archetype playbooks, a "builder's bible" of PM frameworks) is chunked and embedded with Google's <code>gemini-embedding-001</code> model into 3072-dimension vectors, then written to a <code>document_chunks</code> table in Supabase Postgres with the <code>pgvector</code> extension enabled. An IVFFlat index (<code>lists=50</code>, cosine ops) keeps similarity search fast as the corpus grows.</p>
-                <p>At chat time, the user's message is embedded with the same model, then matched against <code>document_chunks</code> through a <code>match_chunks()</code> Postgres function: a plpgsql RPC that ranks by cosine distance and optionally filters to the user's diagnosed archetype (falling back to the shared "builder's bible" source when no archetype match exists). The top 4 chunks are stitched into the system prompt before the generation call &mdash; classic retrieve-then-generate, not a fine-tune or a static FAQ.</p>
-
-                <h3>Why Not Just Call the Gemini SDK</h3>
-                <ul>
-                    <li><strong>Raw REST over the SDK</strong> &mdash; the Node Gemini SDK hit Vercel Edge/serverless runtime incompatibilities; hand-rolled <code>fetch</code> calls to the REST endpoints removed that dependency entirely.</li>
-                    <li><strong>SSE streaming parsed manually</strong> &mdash; the chat route reads the <code>streamGenerateContent</code> response as a raw byte stream, splits on <code>data:</code> lines, and re-streams plain text to the client for a typing effect with no extra latency.</li>
-                    <li><strong>429 backoff built in</strong> &mdash; embedding and generation calls retry with exponential backoff (1s/2s/4s) before failing, since the free-tier Gemini API rate-limits aggressively under burst traffic.</li>
-                </ul>
-            </section>
-
-            <section class="cs-section">
-                <span class="cs-section-label">Build Decisions</span>
-                <h2 class="cs-section-title">Key Design Choices</h2>
-
-                <div class="cs-callout">
-                    <p><strong>Why deploy my own vector DB instead of Pinecone or a managed RAG service?</strong> Supabase was already the auth and data layer for the app. Enabling <code>pgvector</code> on the same Postgres instance meant one fewer service to provision, one fewer API key to rotate, and row-level security applied consistently with the rest of the schema &mdash; while forcing me to actually understand chunking, embedding dimensionality, index tuning, and similarity search instead of treating retrieval as a black box.</p>
+                <div class="cs-col">
+                    <h4>Paid &mdash; &#8377;2,999/mo or &#8377;24,999/yr</h4>
+                    <ul>
+                        <li>Unlimited practice with live readiness updates</li>
+                        <li>Full dashboard, progress, streaks, roadmap</li>
+                        <li>Portfolio builder, weekly digest, timeline-to-ready</li>
+                    </ul>
                 </div>
+            </div>
+            <div class="cs-callout cs-callout--highlight">
+                <p><strong>Note on current state:</strong> as a cohort case-study product, Pro-gating is intentionally disabled platform-wide &mdash; every feature is unlocked for all users while payments (Razorpay) are pending. The gating logic exists and works; it is simply not called yet.</p>
+            </div>
+        </section>
 
-                <div class="cs-callout">
-                    <p><strong>Why archetype-aware filtering in the match function?</strong> A Builder archetype and a Storyteller archetype need different framing for the same PM concept. The <code>match_chunks()</code> function accepts an optional archetype filter so retrieved context is personalised, but always allows the shared "builder's bible" through so general PM questions never come back empty.</p>
-                </div>
+        <section class="cs-section" id="decisions">
+            <span class="cs-section-label">08 &mdash; Key Decisions</span>
+            <h2 class="cs-section-title">Three Bets a Skeptic Would Challenge</h2>
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card"><h4>AI-only feedback in V1</h4><p>Upraised charges &#8377;2.5L for human mentors. At &#8377;2,999/mo, even one human review per week per user erases the margin. The bet: AI feedback tuned to real PM interview standards closes 70&ndash;80% of the gap at ~5% of the cost.</p></div>
+                <div class="cs-card"><h4>The system picks what you practise</h4><p>Letting people choose what to study is the exact trap they&rsquo;re in &mdash; all eight tried it and failed. The system always routes you to your weakest scored area. Users lose the feeling of control; they gain faster improvement.</p></div>
+                <div class="cs-card"><h4>Free shows the gap, not a preview</h4><p>Not a watered-down sample of the course &mdash; a real diagnosis. &ldquo;You need 12 more sessions on metrics to be ready for mid-stage PM roles. Your plan is ready.&rdquo;</p></div>
+            </div>
+        </section>
 
-                <div class="cs-callout">
-                    <p><strong>Why service-role keys only in the API route?</strong> <code>document_chunks</code> has RLS enabled with no public read policy &mdash; only the server-side Supabase client (service role key, never shipped to the browser) can query it. The chat route also gates on an authenticated user before it will spend an embedding call.</p>
-                </div>
-            </section>
+        <section class="cs-section" id="roadmap">
+            <span class="cs-section-label">09 &mdash; Roadmap</span>
+            <h2 class="cs-section-title">What Ships Next</h2>
+            <div class="cs-card-grid cs-card-grid--3">
+                <div class="cs-card" style="border-left:3px solid #69db7c;"><h4 style="color:#69db7c;">Now</h4><ul><li>Razorpay payments + re-enable Pro-gating</li><li>Remove cohort submission banner for public launch</li><li>Real topic content (frameworks, videos)</li></ul></div>
+                <div class="cs-card" style="border-left:3px solid #ffd43b;"><h4 style="color:#ffd43b;">Next &mdash; the core loop</h4><ul><li>Practice-problem engine (15&ndash;20 scenarios, picks weakest area)</li><li>AI feedback grader: Framing, Rigor, Solution, Communication</li><li>Live readiness score updating after every session</li></ul></div>
+                <div class="cs-card" style="border-left:3px solid #a78bfa;"><h4 style="color:#a78bfa;">Later</h4><ul><li>Resume upload + AI parsing into the diagnostic</li><li>Practice groups &mdash; matched peers, anonymous comparison</li><li>Network access &mdash; the V2 problem the research flagged</li></ul></div>
+            </div>
+        </section>
 
-            <section class="cs-section">
-                <span class="cs-section-label">Stack</span>
-                <h2 class="cs-section-title">Full Tech Stack</h2>
-                <div class="cs-card-grid">
-                    <div class="cs-card">
-                        <h4>Frontend</h4>
-                        <p>Next.js App Router &middot; TypeScript &middot; Tailwind CSS &middot; Framer Motion</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Auth &amp; Data</h4>
-                        <p>Supabase Auth &middot; Supabase Postgres &middot; Row-Level Security</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Vector DB</h4>
-                        <p>pgvector extension &middot; IVFFlat cosine index &middot; plpgsql match function</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>AI / RAG</h4>
-                        <p>gemini-embedding-001 (3072d) &middot; gemini-3.1-flash-lite streaming &middot; manual SSE parsing</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Diagnostic Engine</h4>
-                        <p>10-question scenario quiz &middot; 6-archetype scoring &middot; personalised roadmap generation</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Deployment</h4>
-                        <p>Vercel (serverless functions, 60s max duration on chat route)</p>
-                    </div>
-                </div>
-            </section>
-
-        </div>
+        <section class="cs-section" id="tech-stack">
+            <span class="cs-section-label">10 &mdash; Tech</span>
+            <h2 class="cs-section-title">Full Stack</h2>
+            <div class="cs-card-grid">
+                <div class="cs-card"><h4>Frontend</h4><p>Next.js App Router &middot; TypeScript &middot; Tailwind &middot; Recharts radar</p></div>
+                <div class="cs-card"><h4>Auth &amp; Data</h4><p>Supabase Auth (Google OAuth) &middot; Postgres &middot; Row-Level Security</p></div>
+                <div class="cs-card"><h4>Vector DB</h4><p>pgvector &middot; IVFFlat cosine index &middot; plpgsql match_chunks()</p></div>
+                <div class="cs-card"><h4>AI / RAG</h4><p>gemini-embedding-001 (3072d) &middot; gemini-3.1-flash-lite streaming &middot; manual SSE</p></div>
+                <div class="cs-card"><h4>Diagnostic Engine</h4><p>10-question scenario quiz &middot; 6-archetype scoring &middot; roadmap generation</p></div>
+                <div class="cs-card"><h4>Deployment</h4><p>Vercel serverless (60s max duration on the chat route)</p></div>
+            </div>
+        </section>
+      </div>
 
     </main>
 
     <footer class="cs-footer">
+        <p>Gaurav Gupta &mdash; Rethink AI MPM Cohort 7 &middot; March 2026</p>
         <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
-        <p>Gaurav Gupta &mdash; Personal Project</p>
     </footer>
 
+  <!-- Pagination -->
+  <div class="cs-pagination">
+    <button class="cs-page-btn" id="cs-prev" disabled>&#8592; Prev</button>
+    <span class="cs-page-counter" id="cs-counter">Page 1 of 3</span>
+    <button class="cs-page-btn" id="cs-next">Next &#8594;</button>
+  </div>
+
+  <script>
+  (function() {
+    var pages = document.querySelectorAll('.cs-page');
+    var counter = document.getElementById('cs-counter');
+    var prevBtn = document.getElementById('cs-prev');
+    var nextBtn = document.getElementById('cs-next');
+    var current = 0;
+    function show(n) {
+      pages[current].classList.remove('is-active');
+      current = Math.max(0, Math.min(n, pages.length - 1));
+      pages[current].classList.add('is-active');
+      counter.textContent = 'Page ' + (current + 1) + ' of ' + pages.length;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === pages.length - 1;
+      window.scrollTo(0, 0);
+    }
+    window.__csShow = show;
+    prevBtn.addEventListener('click', function() { show(current - 1); });
+    nextBtn.addEventListener('click', function() { show(current + 1); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') show(current + 1);
+      if (e.key === 'ArrowLeft') show(current - 1);
+    });
+    show(0);
+  })();
+  </script>
   <script>
   (function() {
     var tabs = document.querySelectorAll('.cs-docs-tab');
@@ -239,6 +471,23 @@
         if (panel) panel.classList.remove('cs-docs-panel--hidden');
       });
     });
+  })();
+  </script>
+  <script>
+  function csNavTo(e, id) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (id === 'case-study' && window.__csShow) window.__csShow(0);
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  </script>
+  <script>
+  (function(){
+    var btn=document.getElementById('cs-theme-toggle');
+    if(btn){btn.addEventListener('click',function(){
+      var isLight=document.body.classList.toggle('cs-light');
+      localStorage.setItem('portfolio_theme',isLight?'light':'dark');
+    });}
   })();
   </script>
 </body>
