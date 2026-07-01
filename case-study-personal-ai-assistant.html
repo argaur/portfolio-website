@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Personal AI Assistant | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+    <link rel="canonical" href="https://gauravg-portfolio.vercel.app/case-study-personal-ai-assistant.html">
+    <meta name="description" content="Case study: Personal AI Assistant — an open-source personal AI operating system. A Telegram bot (28 commands, tiered Claude Haiku/Sonnet orchestration), a custom Google Workspace CLI, and a parallel Hermes agent. Built by Gaurav Gupta.">
+    <meta property="og:title" content="Personal AI Assistant — A Personal AI Operating System | Gaurav Gupta">
+    <meta property="og:description" content="Open source. A Telegram bot with 28 commands and tiered Claude orchestration, a custom Google Workspace CLI, and a parallel Hermes agent — running 24/7 on a $5 VM.">
+    <meta property="og:url" content="https://gauravg-portfolio.vercel.app/case-study-personal-ai-assistant.html">
+    <meta property="og:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
+    <meta name="theme-color" content="#0b1628">
+</head>
+<body>
+
+    <nav class="cs-nav">
+        <div class="cs-nav-inner">
+            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+            <div class="cs-nav-tabs">
+                <a class="cs-nav-tab" href="#documentation" onclick="csNavTo(event,'documentation')">Documentation</a>
+                <a class="cs-nav-tab" href="#case-study" onclick="csNavTo(event,'case-study')">Write-up</a>
+            </div>
+            <span class="cs-nav-title">Open-Source Project</span>
+        </div>
+    </nav>
+
+    <main class="cs-main">
+
+        <header class="cs-hero">
+            <span class="cs-label">Open-Source Project &middot; Built &amp; run in production</span>
+            <h1 class="cs-title">Personal AI Assistant</h1>
+            <p class="cs-subtitle">A personal AI operating system I designed, built, and run 24/7 on a single $5 VM. One Telegram bot with 28 commands and tiered Claude orchestration, a custom Google Workspace CLI behind one OAuth flow, and a parallel Hermes agent &mdash; consolidated into one public, recruiter-readable repo.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-tag">Python</span>
+                <span class="cs-meta-tag">Claude Haiku + Sonnet</span>
+                <span class="cs-meta-tag">Telegram</span>
+                <span class="cs-meta-tag">Notion API</span>
+                <span class="cs-meta-tag">Google Workspace</span>
+                <span class="cs-meta-tag">Oracle VM</span>
+                <span class="cs-meta-tag">Hermes</span>
+            </div>
+            <p style="margin-top:18px;">
+                <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--accent, #bf5c3a);color:var(--accent-soft, #d98a6a);text-decoration:none;font-family:'Space Mono',monospace;font-size:0.82rem;letter-spacing:0.3px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                    View source on GitHub &rarr;
+                </a>
+            </p>
+        </header>
+
+    <section class="cs-docs" id="documentation">
+      <div class="cs-docs-header">
+        <span class="cs-docs-label">Documentation</span>
+        <div class="cs-docs-tabs" role="tablist">
+          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">Command Flow</button>
+          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
+          <button class="cs-docs-tab" data-doc="llm">LLM Orchestration</button>
+          <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
+        </div>
+      </div>
+      <div class="cs-docs-panel" data-panel="flow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" width="100%" aria-label="Command Routing Flow">
+          <defs>
+            <marker id="tb-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="310" fill="#0b1628"/>
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">COMMAND ROUTING — USER FLOW</text>
+          <rect x="20" y="133" width="132" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="86" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">User sends</text>
+          <text x="86" y="168" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Telegram msg</text>
+          <line x1="152" y1="155" x2="378" y2="155" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#tb-arr)" opacity="0.7"/>
+          <rect x="380" y="133" width="140" height="44" fill="#bf5c3a"/>
+          <text x="450" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Keyword Router</text>
+          <text x="450" y="168" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">bot/router.py</text>
+          <path d="M522,155 L595,155 L595,74 L666,74" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arr)" opacity="0.6"/>
+          <path d="M522,155 L595,155 L595,130 L666,130" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arr)" opacity="0.6"/>
+          <path d="M522,155 L595,155 L595,186 L666,186" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arr)" opacity="0.6"/>
+          <path d="M522,155 L595,155 L595,242 L666,242" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arr)" opacity="0.6"/>
+          <rect x="668" y="52" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="738" y="71" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Notion API</text>
+          <text x="738" y="87" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">#idea, #post</text>
+          <rect x="668" y="108" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="738" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">GWS CLI</text>
+          <text x="738" y="143" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">#cal, #scan, #drive</text>
+          <rect x="668" y="164" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="738" y="183" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Obsidian</text>
+          <text x="738" y="199" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">#capture, #note</text>
+          <rect x="668" y="220" width="140" height="44" fill="#bf5c3a"/>
+          <text x="738" y="239" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Claude Haiku</text>
+          <text x="738" y="255" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">freetext catch-all</text>
+          <text x="450" y="295" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#2d5da1" opacity="0.9">&#x2192; No keyword match falls through to Claude Haiku, Tavily-grounded for factual queries</text>
+        </svg>
+      </div>
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="100%" aria-label="System Architecture">
+          <defs>
+            <marker id="tb-arch-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="360" fill="#0b1628"/>
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">SYSTEM ARCHITECTURE — PERSONAL AI ASSISTANT</text>
+          <rect x="375" y="128" width="150" height="44" fill="#bf5c3a"/>
+          <text x="450" y="147" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">assistant</text>
+          <text x="450" y="163" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">Python · Oracle VM</text>
+          <text x="450" y="188" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" letter-spacing="1">systemd + cron</text>
+          <rect x="30" y="123" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="100" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Telegram Bot API</text>
+          <text x="100" y="158" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Inbound messages</text>
+          <line x1="172" y1="145" x2="373" y2="150" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#tb-arch-arr)" opacity="0.7"/>
+          <rect x="30" y="223" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="100" y="242" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Hermes</text>
+          <text x="100" y="258" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">parallel agent</text>
+          <path d="M100,223 L100,200 L360,200" stroke="#2d5da1" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arch-arr)" opacity="0.5"/>
+          <rect x="730" y="48" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="800" y="67" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Notion</text>
+          <text x="800" y="83" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">7 databases</text>
+          <path d="M527,150 L628,150 L628,70 L728,70" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arch-arr)" opacity="0.55"/>
+          <rect x="730" y="108" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="800" y="127" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">GWS CLI</text>
+          <text x="800" y="143" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">5 Google APIs</text>
+          <path d="M527,150 L628,150 L628,130 L728,130" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arch-arr)" opacity="0.55"/>
+          <rect x="730" y="163" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="800" y="182" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Obsidian</text>
+          <text x="800" y="198" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Vault via rclone</text>
+          <line x1="527" y1="150" x2="728" y2="185" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#tb-arch-arr)" opacity="0.55"/>
+          <rect x="730" y="218" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="800" y="237" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Tavily · GitHub</text>
+          <text x="800" y="253" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">grounding + status</text>
+          <path d="M527,150 L628,150 L628,240 L728,240" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arch-arr)" opacity="0.55"/>
+          <rect x="730" y="273" width="140" height="44" fill="#bf5c3a"/>
+          <text x="800" y="292" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Claude API</text>
+          <text x="800" y="308" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">Haiku + Sonnet</text>
+          <path d="M527,150 L628,150 L628,295 L728,295" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arch-arr)" opacity="0.55"/>
+          <text x="450" y="345" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.8">A hand-built keyword router and a parallel Hermes agent run side by side on the same VM</text>
+        </svg>
+      </div>
+      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="llm">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" width="100%" aria-label="LLM Orchestration — tiered models and the two-call apply flow">
+          <defs>
+            <marker id="tb-llm-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
+            </marker>
+          </defs>
+          <rect width="900" height="330" fill="#0b1628"/>
+          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">LLM ORCHESTRATION — TIERED MODELS + TWO-CALL #apply</text>
+          <!-- Message in -->
+          <rect x="30" y="140" width="120" height="44" fill="#f7f3ee" opacity="0.92"/>
+          <text x="90" y="159" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Message</text>
+          <text x="90" y="175" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">command / text</text>
+          <line x1="150" y1="162" x2="205" y2="162" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#tb-llm-arr)" opacity="0.7"/>
+          <!-- Haiku column -->
+          <rect x="207" y="70" width="185" height="184" fill="none" stroke="#2d5da1" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+          <text x="299" y="60" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" letter-spacing="1.2" fill="#2d5da1">HAIKU — CHEAP / HIGH VOLUME</text>
+          <rect x="222" y="82" width="155" height="34" fill="#f7f3ee" opacity="0.92"/>
+          <text x="299" y="103" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#0b1628">Intent routing (freetext)</text>
+          <rect x="222" y="122" width="155" height="34" fill="#f7f3ee" opacity="0.92"/>
+          <text x="299" y="143" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#0b1628">Extraction / classify</text>
+          <rect x="222" y="162" width="155" height="34" fill="#f7f3ee" opacity="0.92"/>
+          <text x="299" y="183" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#0b1628">#apply · score_fit</text>
+          <rect x="222" y="202" width="155" height="34" fill="#f7f3ee" opacity="0.92"/>
+          <text x="299" y="223" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#0b1628">Salary script</text>
+          <!-- Gate -->
+          <path d="M377,179 L430,179" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#tb-llm-arr)" opacity="0.7"/>
+          <polygon points="490,150 545,179 490,208 435,179" fill="#0b1628" stroke="#f7f3ee" stroke-width="1.2"/>
+          <text x="490" y="176" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#f7f3ee">You</text>
+          <text x="490" y="189" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.8">approve?</text>
+          <text x="490" y="128" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1">fit score first</text>
+          <!-- Sonnet column -->
+          <path d="M545,179 L600,179" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#tb-llm-arr)" opacity="0.7"/>
+          <text x="545" y="169" text-anchor="start" font-family="DM Sans, sans-serif" font-size="8" fill="#69db7c">GO &rarr;</text>
+          <rect x="602" y="90" width="185" height="144" fill="none" stroke="#bf5c3a" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+          <text x="694" y="80" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" letter-spacing="1.2" fill="#bf5c3a">SONNET — RESERVED FOR HARD GEN</text>
+          <rect x="617" y="112" width="155" height="44" fill="#bf5c3a"/>
+          <text x="694" y="132" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#f7f3ee">#apply · generate_doc</text>
+          <text x="694" y="147" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">email / cover / bullets</text>
+          <rect x="617" y="168" width="155" height="44" fill="#bf5c3a"/>
+          <text x="694" y="188" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#f7f3ee">Post writer</text>
+          <text x="694" y="203" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">anti-AI-voice</text>
+          <text x="450" y="300" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#2d5da1" opacity="0.9">Haiku handles the high-volume work. Sonnet is only spent after a cheap fit score and your explicit approval.</text>
+        </svg>
+      </div>
+    </section>
+
+        <div class="cs-page is-active" id="case-study">
+
+            <section class="cs-section">
+                <span class="cs-section-label">The Problem</span>
+                <h2 class="cs-section-title">Context-Switching Was the Tax</h2>
+                <p>Every personal workflow lived in a different app. Saving an idea meant opening Notion. Logging a thought meant opening Obsidian. Checking today&rsquo;s calendar meant opening Google Calendar. Writing a LinkedIn post meant opening a browser, a notes app, and an image tool in sequence.</p>
+                <p>The cost wasn&rsquo;t the tasks themselves &mdash; it was the friction of switching between six-plus apps to do anything meaningful. I wanted one interface that could reach all of them, and I wanted to build it well enough that the design decisions underneath would hold up to scrutiny.</p>
+
+                <div class="cs-stats-row">
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">28</span>
+                        <span class="cs-stat-label">keyword commands</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">5</span>
+                        <span class="cs-stat-label">daily cron automations</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">10</span>
+                        <span class="cs-stat-label">integrated services</span>
+                    </div>
+                    <div class="cs-stat">
+                        <span class="cs-stat-number">$5/mo</span>
+                        <span class="cs-stat-label">single always-on VM</span>
+                    </div>
+                </div>
+
+                <div class="cs-callout cs-callout--highlight">
+                    <p>This case study covers the open-source consolidation of three of my own components into one public repo: <strong>assistant</strong> (the Telegram bot), <strong>gws-cli</strong> (a custom Google Workspace CLI), and <strong>hermes</strong> (my customizations on a parallel agent runtime). <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" style="color:var(--accent-soft, #d98a6a);">View the source &rarr;</a></p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Architecture</span>
+                <h2 class="cs-section-title">One Entry Point, Any System</h2>
+                <p>A single bot listener runs on an Oracle Cloud free-tier VM (systemd, always-on). Every Telegram message goes through a keyword router in <code>bot/router.py</code>. Matched commands dispatch to typed handlers; unmatched messages fall through to Claude Haiku &mdash; Tavily-grounded for factual queries. Adding a new command is one import and one list entry, and the <code>/help</code> text is generated from the same registry so docs never drift from code.</p>
+
+                <div class="cs-callout">
+                    <strong>Layered design:</strong>
+                    <pre style="margin:12px 0 0;font-size:12px;line-height:1.7;overflow-x:auto;">bot/handlers/  → thin: parse input, call a pipeline, format reply
+pipelines/     → multi-step LLM flows; model selection lives here
+integrations/  → one adapter per service; the only layer doing I/O
+prompts/       → prompt engineering, isolated from control flow</pre>
+                </div>
+
+                <p>Google Workspace operations (Gmail, Calendar, Drive, Tasks, Contacts) run through <strong>gws-cli</strong> as a subprocess using system Python &mdash; keeping Google&rsquo;s client libraries out of the bot&rsquo;s async virtualenv. All async Telegram handlers wrap sync I/O with <code>asyncio.to_thread()</code>. Local state is tracked in a small SQLite &ldquo;Memory OS&rdquo; with atomic writes.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">LLM Orchestration</span>
+                <h2 class="cs-section-title">Tiered Models &mdash; Spend Where It Counts</h2>
+                <p>The system is deliberately model-tiered. The vast majority of calls &mdash; intent routing, extraction, classification, fit scoring &mdash; run on <strong>Claude Haiku</strong>: cheap and fast enough to feel synchronous over chat. <strong>Claude Sonnet</strong> is reserved for the one class of artifact whose quality actually changes an outcome: a generated application document or a published post.</p>
+
+                <div class="cs-callout cs-callout--highlight">
+                    <p><strong>The <code>#apply</code> two-call pattern.</strong> Paste a job description and <code>score_fit</code> runs on Haiku, returning a JSON fit score with strengths and gaps. Only if I choose to proceed does <code>generate_doc</code> spend a Sonnet call to write the email, cover letter, or r&eacute;sum&eacute; bullets. The split is simultaneously a cost control and a human-in-the-loop gate &mdash; a premium call is never burned on a role I wasn&rsquo;t going to pursue.</p>
+                </div>
+
+                <p>Prompt engineering is treated as a first-class concern in <code>prompts/</code>: content-type-aware post generation, a forbidden-phrase list that strips the tell-tale &ldquo;AI voice,&rdquo; JSON-only extraction contracts, and a profile-grounded application writer.</p>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Two Agents</span>
+                <h2 class="cs-section-title">A Hand-Built Router and an Agent, Side by Side</h2>
+                <p>The primary bot is a deterministic keyword router: fast, predictable, cheap, and debuggable &mdash; when a command misbehaves I can read exactly one handler. But &ldquo;should this be an agent framework instead?&rdquo; is a real build-vs-adopt question a PM should answer with evidence, not a slide.</p>
+                <p>So I run <strong>Hermes</strong> &mdash; the open-source agent from Nous Research &mdash; as a <em>second, parallel agent</em> on the same VM. The repo contains only my customizations on top of it: a custom <code>#think</code> skill (structured Problem &rarr; Options &rarr; Recommendation output, ported from the bot), a memory template, and the systemd unit that runs the gateway. Running both lets me compare an agentic runtime against hand-written handlers on the same tasks, and see per-task where the agent actually wins.</p>
+
+                <div class="cs-callout">
+                    <p><strong>Why this matters:</strong> the interesting part of this project isn&rsquo;t that it works &mdash; it&rsquo;s the product judgment underneath. What to route where, which model to spend on, where to keep a human in the loop, and what to <em>not</em> build.</p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Commands</span>
+                <h2 class="cs-section-title">What It Does</h2>
+
+                <h3>Content &amp; LinkedIn Pipeline</h3>
+                <ul>
+                    <li><code>#idea</code> &mdash; Run the idea refiner &rarr; save to the Notion Post Ideas DB</li>
+                    <li><code>#post</code> &mdash; Generate a LinkedIn draft (type picker) &rarr; Notion Posts DB</li>
+                    <li><code>#mine</code> &mdash; Mine newsletters + Obsidian notes into fresh post ideas</li>
+                    <li><code>#scan</code> &mdash; Gmail newsletter digest, relevance-scored via Claude</li>
+                    <li>URL drop &mdash; Auto-summarise &rarr; Notion Saved Links (YouTube URLs enriched with title + channel)</li>
+                </ul>
+
+                <h3>Job-Application Subsystem</h3>
+                <ul>
+                    <li><code>#apply &lt;JD&gt;</code> &mdash; Haiku fit score &rarr; Sonnet document generator (email / cover / bullets) &rarr; salary prep</li>
+                    <li><code>#jd &lt;JD or file&gt;</code> &mdash; Full interview prep + GO/NO-GO (accepts .txt / .pdf / .docx)</li>
+                    <li><code>#hunt</code> &mdash; Weekly strategy + priorities &middot; <code>#followup</code> &mdash; applications pending &gt; 3 days</li>
+                </ul>
+
+                <h3>Second Brain &amp; Productivity</h3>
+                <ul>
+                    <li><code>#capture</code> / <code>#note</code> / <code>#journal</code> / <code>#career</code> &mdash; life &amp; career logging to Obsidian + Notion</li>
+                    <li><code>#think</code> &mdash; structured decision output with past decisions injected as memory</li>
+                    <li><code>#task &lt;project&gt; &lt;desc&gt;</code> &mdash; triple-write to Notion + Obsidian + Google Tasks</li>
+                    <li><code>#remind</code> &middot; <code>#cal [week]</code> &middot; <code>#drive &lt;query&gt;</code> &middot; <code>#gh</code> &middot; <code>#search</code></li>
+                </ul>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Automations</span>
+                <h2 class="cs-section-title">5 Daily Cron Jobs</h2>
+                <p>Beyond on-demand commands, five scheduled jobs run automatically every day on the VM:</p>
+
+                <table class="cs-table">
+                    <thead>
+                        <tr><th>Time (IST)</th><th>Job</th><th>Output</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>06:30</td><td>GWS auth check</td><td>Telegram alert if the OAuth token is near expiry</td></tr>
+                        <tr><td>08:00</td><td>Newsletter pipeline</td><td>Gmail &rarr; Obsidian &rarr; idea miner &rarr; Notion (silent)</td></tr>
+                        <tr><td>08:30</td><td>Morning brief</td><td>Telegram: calendar &middot; focus &middot; tasks &middot; GitHub &middot; news</td></tr>
+                        <tr><td>09:00</td><td>Content digest</td><td>Telegram: newsletters + RSS picks, relevance-scored</td></tr>
+                        <tr><td>17:00</td><td>Evening post</td><td>LinkedIn post generation from the idea queue</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Build Decisions</span>
+                <h2 class="cs-section-title">Key Technical Choices</h2>
+
+                <div class="cs-callout">
+                    <p><strong>Keyword router over an agent framework.</strong> The primary bot is deterministic and cheap by design; the agentic approach runs in parallel as Hermes so the tradeoff is measured, not assumed.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Tiered models, gated spend.</strong> Haiku for volume, Sonnet only for the artifact that changes an outcome &mdash; and never before a cheap fit score and an explicit human GO.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>GWS CLI as a subprocess, not a library.</strong> One OAuth flow covers five Google APIs, keeping auth complexity fully contained and Google&rsquo;s client libraries out of the bot&rsquo;s async process.</p>
+                </div>
+
+                <div class="cs-callout">
+                    <p><strong>Anthropic SDK is sync &mdash; never await it.</strong> Async handlers wrap Claude calls in <code>asyncio.to_thread()</code>. This was a silent failure mode early on; the rule is now enforced throughout.</p>
+                </div>
+            </section>
+
+            <section class="cs-section">
+                <span class="cs-section-label">Status</span>
+                <h2 class="cs-section-title">Shipped, Running, and Open Source</h2>
+                <p>All 28 commands and the 5 cron automations are in daily use, running unattended on the Oracle VM. The consolidated, sanitized template is public at <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" style="color:var(--accent-soft, #d98a6a);">github.com/argaur/personal-ai-assistant</a> &mdash; secrets and personal data are git-ignored, example profiles ship instead, and the test suite passes from a clean clone. The private, live version keeps running untouched.</p>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="cs-footer">
+        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
+        <p>Gaurav Gupta &mdash; Open-Source Project</p>
+    </footer>
+
+  <script>
+  (function() {
+    var tabs = document.querySelectorAll('.cs-docs-tab');
+    var panels = document.querySelectorAll('.cs-docs-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
+        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
+        tab.classList.add('cs-docs-tab--active');
+        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
+        if (panel) panel.classList.remove('cs-docs-panel--hidden');
+      });
+    });
+  })();
+  </script>
+  <script>
+  function csNavTo(e, id) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (id === 'case-study' && window.__csShow) window.__csShow(0);
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  </script>
+</body>
+</html>
