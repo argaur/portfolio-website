@@ -365,7 +365,7 @@
       <div class="os-headline">Gaurav's AI Operating System</div>
       <div class="os-meta">
         <span><span class="dot-live"></span> Live</span>
-        <span>v3.0 · 2026-07-02</span>
+        <span>v3.1 · 2026-07-03</span>
         <span>6 systems documented</span>
       </div>
     </div>
@@ -702,8 +702,8 @@
         <div class="phase-row">
           <div class="phase-id">S2</div>
           <div class="phase-content">
-            <div class="phase-name">Interview</div>
-            <div class="phase-desc detail-only">One question at a time. Step 0: Purpose Statement. Track A: design language derived from purpose (visual feel, references, fonts, negative constraint "what would make this look AI-generated?"). Track B: per-panel intent with real copy.</div>
+            <div class="phase-name">Interview <span class="phase-new">motion touchpoint 1/3</span></div>
+            <div class="phase-desc detail-only">One question at a time. Step 0: Purpose Statement. Track A: design language derived from purpose (visual feel, references, fonts, negative constraint "what would make this look AI-generated?"). Track B: per-panel intent with real copy + <strong>2–3 auto-suggested animations/micro-interactions per panel</strong>, confirmed or edited — never an afterthought.</div>
           </div>
         </div>
         <div class="phase-row">
@@ -726,9 +726,9 @@
         <div class="phase-row">
           <div class="phase-id">S4</div>
           <div class="phase-content">
-            <div class="phase-name">Design System <span class="phase-new">now a decision, not a fixed tool</span></div>
+            <div class="phase-name">Design System <span class="phase-new">motion touchpoint 2/3</span></div>
             <div class="concise-only">Claude Design (default) or Stitch — decided by a 4-question matrix.</div>
-            <div class="phase-desc detail-only">Every token carries a value + usage rule. Component showcase. Inevitability test on the full set. Output: <code>tailwind.config</code> + CSS vars + <code>components.json</code> + <code>brand-guide.md</code>.</div>
+            <div class="phase-desc detail-only">Every token carries a value + usage rule. Component showcase — states default/hover/focus/disabled/error + <strong>motion</strong> (live-triggerable, not just described). Saved at fixed path <code>Documentation/design/design-language.html</code> — doubles as the project's design-language artifact. Inevitability test on the full set. Output: <code>tailwind.config</code> + CSS vars + <code>components.json</code> + <code>brand-guide.md</code>.</div>
             <table class="matrix-table detail-only">
               <thead><tr><th>#</th><th>Question</th><th>Yes →</th></tr></thead>
               <tbody>
@@ -744,8 +744,8 @@
         <div class="phase-row">
           <div class="phase-id">S5</div>
           <div class="phase-content">
-            <div class="phase-name">Spec Doc</div>
-            <div class="phase-desc detail-only">What changed this session and why. Required: Analytics Surface · Constraints Contract · Implementation cost flags · Design risk resolution (all 3 from S1) · Visual changelog with thumbnails.</div>
+            <div class="phase-name">Spec Doc <span class="phase-new">motion touchpoint 3/3</span></div>
+            <div class="phase-desc detail-only">What changed this session and why. Required: Analytics Surface · Constraints Contract · Implementation cost flags (<strong>motion complexity</strong> flagged here — spring physics/scroll-linked/staggered → fallback noted) · Design risk resolution (all 3 from S1) · Visual changelog with thumbnails.</div>
           </div>
         </div>
         <div class="phase-row">
@@ -755,6 +755,9 @@
             <div class="phase-desc detail-only">Design ends at spec sign-off. Packet: tailwind.config + CSS vars + components.json + shadcn install list + component showcase + signed SPEC.md.</div>
           </div>
         </div>
+
+        <div class="label detail-only">Design-language artifact — publish gating <span class="phase-new">new</span></div>
+        <p class="detail-only">Stage 4's component showcase (<code>Documentation/design/design-language.html</code>) is private-staged by default — sign-off never auto-publishes it. Promotion is a separate, explicit <code>/promote-to-portfolio</code> command (never a CI/deploy hook) that pushes it into the project's portfolio case-study page as a top-level "Design" nav tab, embedded via iframe. No automation watches for changes; the command never commits or pushes on its own.</p>
       </div>
     </div>
   </div>
@@ -815,6 +818,11 @@
           <li><code>scripts/pull-global.sh</code> Snapshot live <code>~/.claude/</code> config back into the repo for audit (<code>global-audit/</code>, gitignored)</li>
           <li><code>pre-tool-use-guard.sh</code> Hook — blocks <code>git push --force</code>, <code>--no-verify</code>, home-dir <code>rm -rf</code>, reset+push chains</li>
           <li><code>framework-state-check.sh</code> Hook — flags an unlocked framework or a stalled <code>/prd-create</code> run at session boot</li>
+        </ul>
+
+        <div class="label">Publishing <span class="phase-new">new</span></div>
+        <ul class="cmd-list">
+          <li><code>/promote-to-portfolio</code> Manual, explicit only — pushes a project's <code>design-language.html</code> into its portfolio case-study page as a new "Design" tab. Idempotent, never commits/pushes on its own.</li>
         </ul>
 
         <div class="label">PM skills (phuryn/pm-skills)</div>
@@ -883,6 +891,7 @@
           <div class="gear gear-hold">SCOPE HOLD — plan + build, bulletproof rigor</div>
           <div class="gear gear-reduce">SCOPE REDUCE — cut to MVP, ship</div>
         </div>
+        <p class="detail-only"><strong>Plan</strong> — lock the plan, flip to auto-accept, execute in one pass: stop hand-holding mid-build. <strong>Prove</strong> — self-check gate before claiming done: did I run it? did I verify against real output/file:line/screenshot, not a plausible-looking guess? am I being agreeable instead of honest? No "done" without evidence.</p>
 
         <div class="label">Priority order (strict, no exceptions)</div>
         <div class="tag-row">
@@ -910,7 +919,7 @@
 
   <footer class="os-footer">
     <span>Gaurav Gupta · Claude OS</span>
-    <span>v3.0 · 2026-07-02</span>
+    <span>v3.1 · 2026-07-03</span>
   </footer>
 
 </div>
