@@ -777,7 +777,7 @@
 
         <div class="label">Session commands</div>
         <ul class="cmd-list">
-          <li><code>/continues</code> Load project context — reads project CLAUDE.md + latest session memory + decisions</li>
+          <li><code>/continues</code> Reload project context on demand — also auto-fires at session start via <code>init-project-context.sh</code> (Status/Last session/Blocked on/Next up printed automatically)</li>
           <li><code>/end-session</code> Sync memory + Obsidian — journal + mistakes + decisions + Obsidian page overwrite</li>
           <li><code>/compact</code> Compress context at ~30 turns — preserve modified files, failing output, current task state</li>
         </ul>
@@ -816,7 +816,8 @@
         <ul class="cmd-list">
           <li><code>scripts/install-global.sh</code> Push framework commands/hooks into <code>~/.claude/</code> — backs up first, idempotent</li>
           <li><code>scripts/pull-global.sh</code> Snapshot live <code>~/.claude/</code> config back into the repo for audit (<code>global-audit/</code>, gitignored)</li>
-          <li><code>pre-tool-use-guard.sh</code> Hook — blocks <code>git push --force</code>, <code>--no-verify</code>, home-dir <code>rm -rf</code>, reset+push chains</li>
+          <li><code>pre-tool-use-guard.sh</code> Hook — blocks <code>git push --force</code>, <code>--no-verify</code>, home-dir <code>rm -rf</code>, reset+push chains, echoing secret-shaped vars to output, <code>python3</code> where only <code>python</code> exists, and quoted Windows paths with a trailing-backslash-before-quote bug that breaks bash parsing</li>
+          <li><code>deploy-preflight-guard.sh</code> Hook <span class="phase-new">new</span> — blocks <code>vercel --prod/deploy</code> and <code>railway up/deploy</code> unless the target project's CLAUDE.md has a recorded <code>Deploy target:</code> line (prevents deploying to the wrong account by construction)</li>
           <li><code>framework-state-check.sh</code> Hook — flags an unlocked framework or a stalled <code>/prd-create</code> run at session boot</li>
         </ul>
 
@@ -862,28 +863,19 @@
     <div class="section-body">
       <div class="section-inner">
 
-        <div class="label">Stack defaults</div>
-        <table class="stack-table">
-          <thead><tr><th>Layer</th><th>Default</th><th>Override when</th></tr></thead>
-          <tbody>
-            <tr><td>Python backend</td><td>FastAPI</td><td>Non-Python project warrants it</td></tr>
-            <tr><td>Web apps</td><td>Railway</td><td>Frontend-only → Vercel</td></tr>
-            <tr><td>Bots / crons</td><td>Oracle VM (Ubuntu 22.04)</td><td>Needs a URL → Railway</td></tr>
-            <tr><td>Telegram</td><td>Single listener, keyword router</td><td>Upgrade to agent SDK when handlers > ~15</td></tr>
-            <tr><td>DB queries</td><td>Batch. Validate at boundary.</td><td>—</td></tr>
-            <tr><td>pyairtable / Anthropic SDK</td><td>Sync only — never await</td><td>Never</td></tr>
-          </tbody>
-        </table>
+        <div class="label">Stack <span class="phase-new">changed</span></div>
+        <p class="detail-only">Stack is project-specific, not a global default — it's recorded in each project's own CLAUDE.md "Framework state" block. A new project checks sibling <code>memory/project.md</code> files for a precedent stack before picking one from scratch; Gaurav confirms, it locks for that project. One gotcha stays global regardless of stack: <code>pyairtable</code> / <code>anthropic</code> SDKs are sync — never <code>await</code>.</p>
 
         <div class="label">Forbidden patterns</div>
         <div class="forbidden"><code>await</code> on sync libraries (pyairtable, anthropic SDK)</div>
         <div class="forbidden">Silent <code>except Exception: pass</code> — always surface errors</div>
         <div class="forbidden"><code>git push --force</code> / <code>--no-verify</code> / auto-commits without explicit request — <span class="detail-only">now enforced by <code>pre-tool-use-guard.sh</code>, not just convention</span></div>
         <div class="forbidden">Placeholder scaffolds: <code># TODO</code>, <code>pass</code>, stub functions left behind</div>
-        <div class="forbidden">Debug logging in prod · Secrets in code (env vars only)</div>
+        <div class="forbidden">Debug logging in prod · Secrets in code <em>or command output</em> — env vars only, never <code>echo</code>/<code>print</code>/<code>cat</code> a value <span class="phase-new">changed</span></div>
+        <div class="forbidden">Guessing IDs/API details/config against live systems — locate ground truth first <span class="phase-new">new</span></div>
 
         <div class="label">Non-negotiables — confirm before</div>
-        <p>Delete · overwrite · force-push · Railway redeploy · Oracle VM changes · anything destructive.</p>
+        <p>Delete · overwrite · force-push · deploy/redeploy · Oracle VM changes · anything destructive.</p>
 
         <div class="label">Think → Build → Prove</div>
         <div class="gear-strip">
