@@ -566,7 +566,7 @@
           <div class="phase-id">P4</div>
           <div class="phase-content">
             <div class="phase-name">Development</div>
-            <div class="phase-desc">Per-slice: Red (failing tests) → Green → Refactor → Instrument → Document → Review → Smoke-run → Commit. Between slices: 5-line PROGRESS.md + /compact.</div>
+            <div class="phase-desc">Per-slice: Red (failing tests, mandatory — no skipping to Green) → Green → Refactor → Instrument → Document → Review → Smoke-run → Commit. Between slices: 5-line PROGRESS.md + /compact.</div>
             <div class="phase-gate">◆ Gate: All tests green. HOW_TO_USE.md complete.</div>
           </div>
         </div>
@@ -883,7 +883,7 @@
           <div class="gear gear-hold">SCOPE HOLD — plan + build, bulletproof rigor</div>
           <div class="gear gear-reduce">SCOPE REDUCE — cut to MVP, ship</div>
         </div>
-        <p class="detail-only"><strong>Plan</strong> — lock the plan, flip to auto-accept, execute in one pass: stop hand-holding mid-build. <strong>Prove</strong> — self-check gate before claiming done: did I run it? did I verify against real output/file:line/screenshot, not a plausible-looking guess? am I being agreeable instead of honest? No "done" without evidence.</p>
+        <p class="detail-only"><strong>Plan</strong> — lock the plan, flip to auto-accept, execute in one pass: stop hand-holding mid-build. Non-trivial feature/bugfix work → write a failing test first (mandatory, trivial-task carve-out exempts TDD too) <span class="phase-new">new</span>. <strong>Prove</strong> — self-check gate before claiming done: did I run it? did I verify against real output/file:line/screenshot, not a plausible-looking guess? am I being agreeable instead of honest? No "done" without evidence.</p>
 
         <div class="label">Priority order (strict, no exceptions)</div>
         <div class="tag-row">
