@@ -123,11 +123,14 @@ Each page uses case-study.css. "View Product →" link appears in header of each
 ---
 
 ## Status
-- **State:** v3 content-complete — main→v3 content gap bridged + 4 walkthrough fixes, pushed as `8f28082`, pending final Gaurav walkthrough before merge to main
-- **Last session:** 2026-06-10 (session 10) — ported main's content into v3 (14 work-project modals, cert modals w/ PDF+verify, doc chips, Homelab row, project pages relinked, gate skip, hybrid philosophy, skills tools); split experience into 14 individual cards; replaced all Material Symbols with inline SVG (icon font removed); contact canvas resized to match home
+
+> ⚠ **This CLAUDE.md is largely stale** — the Design / Navigation / File structure / Case studies / Tech-constraints sections above still describe the old **v2 "Blueprint to Bits"** design (Cormorant, navy/cream/terracotta, `app.js`, "no Tailwind"). The **live site is v3 "Kinetic Precision"**: Space Mono + DM Sans, dark `#0e0e12` + gold `#c9a84c`, **Tailwind via CDN** (runtime, no build step), all JS inline in `index.html` (no `app.js`), 8-panel SPA. For accurate current architecture, read `…/memory/project_session_state.md`. (Full doc refresh is a queued cleanup, not done this session to avoid entangling pre-existing uncommitted CLAUDE.md edits.)
+
+- **State:** live on Vercel as `b14d2fc`. Session 14 shipped: PM Pathfinder upgraded to a full case study; sticky Documentation/PRD-or-Write-up nav tabs across all case-study/project pages; AI vs Human Capital sim added as project #11; **Skills panel reframed into "The Build Record"** (capabilities-with-receipts + industries banner + Projects→Skills CTA); mobile header-clip CSS bug fixed.
+- **Last session:** 2026-06-30 (session 14) — see `memory/session-2026-06-30.md`. Commits `6a6f43b` (PMP case study + nav tabs + sim) and `b14d2fc` (The Build Record).
 - **Next session:**
-  1. Gaurav walkthrough of session-10 additions (14 cards/modals, cert modals, hybrid philosophy copy)
-  2. Address Issue 30 (build-log motif ×3) — design call needed
-  3. Merge v3 → main → Vercel auto-deploys
-- **Still open:** photo.jpg; Oracle VM HTTPS; Vitae GitHub rename; Notion Companies DB; Issue 30 design call; Google Analytics cert has no verify link/PDF
-- **Last updated:** 2026-06-10
+  1. As "Now Building" products go live (Personal Finance / RAS Prep-Assessment / learning-hub-L&D), graduate each chip from NOW BUILDING → SHIPPED ACROSS + add a project row/modal
+  2. Add `photo.jpg` headshot to repo (profile canvas wired, needs the file)
+  3. Refresh this CLAUDE.md to v3 reality; review pre-existing uncommitted CLAUDE.md edits
+- **Still open:** photo.jpg; CLAUDE.md v3 refresh; Oracle VM HTTPS; Vitae GitHub rename; Notion Companies DB; Google Analytics cert has no verify link/PDF
+- **Last updated:** 2026-06-30
