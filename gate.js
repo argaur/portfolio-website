@@ -11,6 +11,13 @@
     var errorEl = document.getElementById('gate-error');
     var btn = document.getElementById('gate-btn');
 
+    // GATE DISABLED (2026-07-13) — was blocking some visitors. Remove this
+    // block to re-enable the email gate.
+    if (gate) {
+        gate.remove();
+        return;
+    }
+
     // Recruiter bypass — ?r=1 skips gate and sets returning-visitor flag
     var params = new URLSearchParams(window.location.search);
     if (params.get('r') === '1') {
