@@ -365,7 +365,7 @@
       <div class="os-headline">Gaurav's AI Operating System</div>
       <div class="os-meta">
         <span><span class="dot-live"></span> Live</span>
-        <span>v3.1 · 2026-07-03</span>
+        <span>v3.2 · 2026-07-13</span>
         <span>6 systems documented</span>
       </div>
     </div>
@@ -826,6 +826,11 @@
           <li><code>/promote-to-portfolio</code> Manual, explicit only — pushes a project's <code>design-language.html</code> into its portfolio case-study page as a new "Design" tab. Idempotent, never commits/pushes on its own.</li>
         </ul>
 
+        <div class="label">Autonomous loops <span class="phase-new">new</span></div>
+        <ul class="cmd-list">
+          <li><code>/ralph-loop</code> Ralph pattern (Geoffrey Huntley) — fresh-context agent loop for overnight builds. Each iteration re-reads <code>PROMPT.md</code> + <code>specs/*.md</code> + <code>TODO.md</code> from disk (no conversation memory carried between iterations), implements one item, commits on a passing test. Runner: <code>scripts/ralph-loop.sh</code> — refuses to run on <code>main</code>/<code>master</code>, requires a <code>--test-cmd</code> stop-condition, caps iterations, stops after 3 consecutive test failures. Starter kit: <code>starters/ralph-loop/</code>.</li>
+        </ul>
+
         <div class="label">PM skills (phuryn/pm-skills)</div>
         <div class="tag-row">
           <span class="tag">/write-prd</span>
@@ -903,6 +908,7 @@
           <li><code>Memory</code> <code>C:\Users\Gaurav Gupta\.claude\projects\...\memory\</code></li>
           <li><code>Obsidian</code> <code>G:\My Drive\Obsidian Vault\</code> — Google Drive sync</li>
           <li><code>#idea</code> → Notion &nbsp;|&nbsp; <code>#capture</code> → Obsidian &nbsp;|&nbsp; Bot flows → check Telegram Bot Flow Ideas in Notion first</li>
+          <li><code>Memory writes</code> Surgical edits only, never full-file rewrites. Conflicting fact → flag it, don't silently overwrite <span class="phase-new">new</span></li>
         </ul>
 
       </div>
@@ -911,7 +917,7 @@
 
   <footer class="os-footer">
     <span>Gaurav Gupta · Claude OS</span>
-    <span>v3.1 · 2026-07-03</span>
+    <span>v3.2 · 2026-07-13</span>
   </footer>
 
 </div>
