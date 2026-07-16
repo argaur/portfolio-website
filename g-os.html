@@ -365,8 +365,8 @@
       <div class="os-headline">Gaurav's AI Operating System</div>
       <div class="os-meta">
         <span><span class="dot-live"></span> Live</span>
-        <span>v3.2 · 2026-07-13</span>
-        <span>6 systems documented</span>
+        <span>v3.3 · 2026-07-15</span>
+        <span>7 systems documented</span>
       </div>
     </div>
     <div class="mode-toggle" role="group" aria-label="View density">
@@ -915,9 +915,88 @@
     </div>
   </div>
 
+  <!-- SECTION 6: Terminal Workflow -->
+  <div class="section" id="s-terminal">
+    <button class="section-trigger" onclick="toggle('s-terminal')">
+      <div class="section-trigger-left">
+        <span class="section-num">06</span>
+        <span class="section-name">Terminal Workflow</span>
+        <span class="section-tag new">new · Windows, no admin required</span>
+      </div>
+      <span class="section-chevron">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="section-inner">
+        <p><strong>Moved development back into the raw terminal instead of an editor's integrated one</strong> — Windows Terminal + PowerShell only, no VS Code. Everything below is either a standalone binary dropped in a personal <code>bin</code> folder (no admin rights needed, just added to the user <code>PATH</code>) or a PowerShell Gallery module installed with <code>-Scope CurrentUser</code>. Nothing here touches system-wide installs.</p>
+
+        <div class="label">Shell foundation</div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">PowerShell 7, not 5.1</div>
+            <p>Windows Terminal's "PowerShell" entry silently launches the old <code>powershell.exe</code> (5.1) unless repointed. Fixed by changing <code>defaultProfile</code> in Terminal's <code>settings.json</code> to the <code>Windows.Terminal.PowershellCore</code> profile — the modern <code>pwsh.exe</code> that ships separately and was already installed, just not wired as default.</p>
+          </div>
+          <div class="card">
+            <div class="card-title">Nerd Font + Starship</div>
+            <p>CaskaydiaCove Nerd Font installed per-user (real Win32 <code>AddFontResourceW</code> call + registry entry, not just a .NET in-memory load — that distinction is what made the first install attempt silently fail). Starship replaces the default prompt: shows git branch/status and language-version badges (Node, Python) automatically, no config needed per-project.</p>
+          </div>
+        </div>
+
+        <div class="label">Navigation</div>
+        <ul class="cmd-list">
+          <li><code>proj</code> Arrow-key / fuzzy-filter picker over every folder in <code>Documents\Projects</code> (via <code>fzf</code>) — jumps straight there. For <em>browsing</em> when the name's forgotten.</li>
+          <li><code>z &lt;partial-name&gt;</code> zoxide — jumps to any directory already visited, ranked by frequency + recency ("frecency"). For the 4–5 repos touched daily. Complements <code>proj</code> rather than replacing it: one browses, one guesses.</li>
+        </ul>
+
+        <div class="label">File &amp; diff viewing</div>
+        <ul class="cmd-list">
+          <li><code>mdview plan.md</code> Renders Markdown properly in-terminal (via <code>glow</code>, paginated) — for the constant "let me verify this plan/PROGRESS file" moment mid-session, without leaving the terminal.</li>
+          <li><code>bat file.py</code> Syntax-highlighted, line-numbered viewer for anything that isn't Markdown — the <code>cat</code> equivalent for code/config/logs.</li>
+          <li><code>git log -p</code> / <code>git diff</code> Now rendered through <code>delta</code> globally (<code>core.pager</code>) — side-by-side, syntax-highlighted, line numbers. No new command to learn, existing git commands just look better.</li>
+        </ul>
+
+        <div class="label">Fuzzy search, wired into the shell itself</div>
+        <ul class="cmd-list">
+          <li><code>Ctrl+R</code> Fuzzy-searchable command history (PSFzf) — replaces PowerShell's default cycle-through-matches behavior.</li>
+          <li><code>Ctrl+T</code> Fuzzy-insert a file path at the cursor, from anywhere in the current directory tree.</li>
+        </ul>
+
+        <div class="label">Cross-window notifications <span class="phase-new">new</span></div>
+        <div class="rule">
+          <b>Why this exists</b>
+          Running several Claude Code sessions in parallel windows means missing the moment one goes idle waiting for a permission prompt or a reply — no signal short of alt-tabbing through every window to check.
+        </div>
+        <p>Solved with Claude Code's own <code>Notification</code> hook — an event that fires with <code>message</code>, <code>cwd</code>, and <code>notification_type</code> on stdin whenever the agent needs input. Registered globally in <code>~/.claude/settings.json</code> with matcher <code>permission_prompt|idle_prompt</code>, calling a small PowerShell script that fires a real Windows toast via the <strong>BurntToast</strong> module — title shows <code>Claude Code — &lt;project folder&gt;</code>, so it's clear which window to switch to without opening any of them.</p>
+
+        <div class="label">Quick access</div>
+        <ul class="cmd-list">
+          <li><code>Win + `</code> Windows Terminal "Quake mode" — drops a terminal down from any app, any time, via a global hotkey registered in Terminal's own <code>settings.json</code>. No window-hunting.</li>
+        </ul>
+
+        <div class="label">Known limitation — not solved, worth knowing</div>
+        <div class="rule">
+          <b>Ctrl+V image paste is genuinely broken on native Windows</b>
+          Claude Code documents clipboard-image paste (Win+Shift+S → Ctrl+V) as supported, but on native Windows (not WSL) it silently fails — confirmed via multiple open upstream GitHub issues, not a local config problem. No keybinding fix exists; it's inside Claude Code's own Windows clipboard-reading code. Workaround: save the screenshot to a file (Snipping Tool's "Save as" from the toast), then drag the file into the prompt or paste its path.
+        </div>
+
+        <div class="label">Claude Code CLI features worth using in any terminal session</div>
+        <ul class="cmd-list">
+          <li><code>Ctrl+O</code> Toggle the transcript view — see exactly which hooks fired, their exit codes, and stderr, without a debug flag.</li>
+          <li><code>--debug-file /tmp/claude.log</code> Full hook execution log (matched hooks, exit codes, stdout/stderr) — <code>tail -f</code> it in a second pane when a hook misbehaves.</li>
+          <li><code>/hooks</code> Read-only browser for every hook currently registered, grouped by event — the fastest way to confirm a settings.json edit actually took effect.</li>
+          <li>Plan mode Any 3+ step task — forces a written plan + explicit approval before a single file changes. Not optional for anything non-trivial (see Section 05).</li>
+          <li>Git worktrees / <code>isolation: "worktree"</code> Give a parallel task its own working copy instead of fighting over the same checkout — for running a second Claude Code session on the same repo without collision.</li>
+          <li>Subagents / forks A fork inherits the full conversation and shares the prompt cache — the right tool for offloading research or a big multi-step task without filling the main session's context with intermediate noise.</li>
+          <li><code>/tui fullscreen</code> Switches to a reserved alternate screen instead of appending to normal scrollback — fixes flicker/scroll-jump on long sessions, adds mouse-wheel scroll support.</li>
+          <li>Vim edit mode (<code>editorMode: "vim"</code>) <code>hjkl</code> navigation, <code>v</code>/<code>V</code> selection, <code>d</code>/<code>c</code>/<code>y</code> text objects in the prompt box itself.</li>
+          <li>Custom themes JSON files in <code>~/.claude/themes/</code>, hot-reloaded — override individual color tokens instead of picking only from the built-in preset list.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <footer class="os-footer">
     <span>Gaurav Gupta · Claude OS</span>
-    <span>v3.2 · 2026-07-13</span>
+    <span>v3.3 · 2026-07-15</span>
   </footer>
 
 </div>
