@@ -812,6 +812,11 @@
           <li><code>superpowers:debugging</code> Systematic debug — hypothesis → isolate → test → verify</li>
         </ul>
 
+        <div class="label">External plugins adopted <span class="phase-new">new</span></div>
+        <ul class="cmd-list">
+          <li><code>v60samurai/agent-skills</code> (<code>prompt-compile</code>) — deterministic bash <code>UserPromptSubmit</code> gate hook classifies every prompt into low/medium/high bands (no LLM self-grading), paired with a skill that compiles a 7-section task brief (task+non-goals, target, constraint sources, skill sequence, checkpoints, verify criteria, output contract) before medium/high-band work executes. High band waits for approval; medium band shows the brief and proceeds; bug reports and explicit escape hatches stay silent. Installed at user scope via <code>claude plugin marketplace add</code> + <code>claude plugin install</code> — no manual hook copying or settings.json edits.</li>
+        </ul>
+
         <div class="label">Global installer <span class="phase-new">new</span></div>
         <ul class="cmd-list">
           <li><code>scripts/install-global.sh</code> Push framework commands/hooks into <code>~/.claude/</code> — backs up first, idempotent</li>
