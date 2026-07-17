@@ -817,6 +817,14 @@
           <li><code>v60samurai/agent-skills</code> (<code>prompt-compile</code>) — deterministic bash <code>UserPromptSubmit</code> gate hook classifies every prompt into low/medium/high bands (no LLM self-grading), paired with a skill that compiles a 7-section task brief (task+non-goals, target, constraint sources, skill sequence, checkpoints, verify criteria, output contract) before medium/high-band work executes. High band waits for approval; medium band shows the brief and proceeds; bug reports and explicit escape hatches stay silent. Installed at user scope via <code>claude plugin marketplace add</code> + <code>claude plugin install</code> — no manual hook copying or settings.json edits.</li>
         </ul>
 
+        <div class="label">Model routing + autonomous execution <span class="phase-new">new</span></div>
+        <ul class="cmd-list">
+          <li><code>model-router</code> skill — self-triggering (fires under the standing "if a skill might apply, invoke it" rule, no hook needed). Tags every implementation-plan step inline right before approval: <code>[model: fable]</code> for embedded strategy/planning work, <code>[model: opus]</code> for deep analysis and high-stakes judgment, <code>[model: sonnet]</code> for token-heavy routine dev/scripting/testing/browsing (the default lane). Untagged steps fall back to <code>sonnet</code> with a stated reason, never left blank.</li>
+          <li><code>dev-manager</code> agent (<code>model: opus</code>, global) — takes an approved tagged plan and executes it autonomously: dispatches each step to its tagged model via the <code>Agent</code> tool, defaults to <code>isolation: worktree</code> for any parallel dispatch (not conditional on predicted file overlap), independently re-verifies every worker's claimed result before trusting it and moving to dependents. Escalates (inline pause + push notification) on exactly five triggers — the standing Non-Negotiables list, a new external dependency, auth/payments/secrets touched, the plan invalidated mid-flight, or anomalous cost/token burn on one step — and handles everything else solo, reporting only at slice/plan checkpoints.</li>
+          <li><code>/dev-start</code> — the explicit handoff gate. Verifies the plan is tagged and approved, then dispatches <code>dev-manager</code>. Plan approval alone never auto-starts execution — this is a deliberate second act.</li>
+          <li><code>/phase-3-plan</code> now runs <code>model-router</code> before its existing "Plan approved" gate, so Blueprint-framework plans get the same per-step model tags as any other plan.</li>
+        </ul>
+
         <div class="label">Global installer <span class="phase-new">new</span></div>
         <ul class="cmd-list">
           <li><code>scripts/install-global.sh</code> Push framework commands/hooks into <code>~/.claude/</code> — backs up first, idempotent</li>
