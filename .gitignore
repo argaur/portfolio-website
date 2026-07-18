@@ -1,2 +1,13 @@
-.claude/settings.local.json
 .superpowers/
+.vscode/
+
+# Agent config and memory. Vercel serves the whole tree, so anything
+# committed here is publicly fetchable — personal agent memory was found
+# being served this way on the SitelineCRM repo on 2026-07-18.
+.claude/
+.ai-docs/
+AGENTS.md
+GEMINI.md
+
+# Personal files that live in the working tree but must never ship
+Gaurav Gupta _ LinkedIn.txt
