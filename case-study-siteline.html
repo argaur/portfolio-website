@@ -3,520 +3,990 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Siteline | Gaurav Gupta</title>
+    <title>Case Study: SitelineCRM | Gaurav Gupta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="case-study.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg-portfolio.vercel.app/case-study-siteline.html">
-    <meta name="description" content="Case study: Siteline, a Telegram-native B2B sales CRM built for Stylework, an Indian coworking-space aggregator. Shipped solo in ~51 hours, live with a 93.5% extraction-accuracy eval harness.">
-    <meta property="og:title" content="Siteline: Capture Sales Data Where the Conversation Already Is | Gaurav Gupta">
+    <meta name="description" content="Case study: SitelineCRM, a Telegram-native B2B sales CRM built for Stylework, an Indian coworking-space aggregator. Shipped solo in ~51 hours, live with a 93.5% extraction-accuracy eval harness.">
+    <meta property="og:title" content="SitelineCRM: Capture Sales Data Where the Conversation Already Is | Gaurav Gupta">
     <meta property="og:description" content="Case study: a Telegram-native B2B sales CRM built for Stylework. Built and shipped live, with a documented eval harness.">
     <meta property="og:url" content="https://gauravg-portfolio.vercel.app/case-study-siteline.html">
     <meta property="og:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
-    <meta name="theme-color" content="#0e0e12">
+    <meta name="theme-color" content="#FFFFFF">
+
+<style>
+  /* ────────────────────────────────────────────────────────────────
+     Design system ported from the SitelineCRM landing page
+     (founder-crm/landing/index.html + DESIGN_BRIEF.md).
+     Light-only, Manrope, no accent hue — emphasis is weight + scale
+     + ink-vs-grey. Deliberately does NOT use case-study.css.
+     ──────────────────────────────────────────────────────────────── */
+
+  :root {
+    --bg: #FFFFFF;
+    --surface: #FAFAF9;
+    --surface-2: #F3F3F1;
+    --border: #EBEBE8;
+    --border-2: #DDDDD9;
+    --ink: #0A0A0A;
+    --text: #0A0A0A;
+    --text-2: #5C5C58;
+    --text-3: #9A9A96;
+    --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+    --measure: 640px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--ink); color: #fff; }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 5px; }
+
+  /* ── Shared type ─────────────────────────────────────────── */
+
+  .label {
+    display: inline-block;
+    font-size: 0.675rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .label-strong { font-weight: 700; color: var(--ink); }
+
+  h1, h2, h3, h4 { font-weight: 800; color: var(--ink); }
+
+  em { font-style: normal; color: var(--text-3); }
+
+  a { color: inherit; }
+
+  /* ── Nav ─────────────────────────────────────────────────── */
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .nav-back {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-2);
+    transition: color 0.14s ease;
+  }
+  .nav-back:hover { color: var(--ink); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--text-2);
+    transition: color 0.14s ease;
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-index {
+    font-size: 0.675rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  /* ── Layout ──────────────────────────────────────────────── */
+
+  .sec {
+    border-top: 1px solid var(--border);
+    padding: 112px 48px;
+  }
+  .sec-inner { max-width: 1280px; margin: 0 auto; }
+
+  /* Every run of prose is capped near 62ch. The landing page holds
+     column prose to 420–440px; this is the same discipline scaled
+     for long-form reading. */
+  .prose { max-width: var(--measure); }
+  .prose p { margin-bottom: 20px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-2);
+    max-width: var(--measure);
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.86em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--ink);
+  }
+
+  .sec-head { margin-bottom: 48px; }
+  .sec-head h2 {
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  /* Signature move from the landing page: the eyebrow sits BELOW
+     the heading, not above it. */
+  .sec-head .label { margin-top: 2px; }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .h3-spaced { margin-top: 48px; }
+
+  /* ── Hero ────────────────────────────────────────────────── */
+
+  .hero-wrap { border-bottom: 1px solid var(--border); }
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 148px 48px 96px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 4.6vw, 64px);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    margin: 20px 0 28px;
+    max-width: 900px;
+  }
+  .hero-sub {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 680px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 36px;
+  }
+  .meta-tag {
+    font-size: 0.675rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    background: var(--surface-2);
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+
+  /* ── Links in prose ──────────────────────────────────────── */
+
+  .lnk {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-2);
+    transition: border-color 0.14s ease;
+  }
+  .lnk:hover { border-bottom-color: var(--ink); }
+
+  /* ── Callouts ────────────────────────────────────────────── */
+
+  .callout {
+    border-left: 2px solid var(--ink);
+    padding: 4px 0 4px 24px;
+    margin: 28px 0;
+    max-width: var(--measure);
+  }
+  .callout p + p { margin-top: 14px; }
+
+  .callout-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    max-width: var(--measure);
+  }
+  .callout-box p + p { margin-top: 14px; }
+
+  /* ── Stats ───────────────────────────────────────────────── */
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 36px 0;
+  }
+  .stat { background: var(--bg); padding: 28px 24px; }
+  .stat-num {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 10px;
+  }
+  .stat-lbl {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: none;
+  }
+
+  /* ── Cards ───────────────────────────────────────────────── */
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .card:hover {
+    border-color: var(--border-2);
+    box-shadow: 0 12px 32px rgba(10,10,10,0.05);
+  }
+  .card p { font-size: 0.9375rem; line-height: 1.7; max-width: none; }
+  .card-icon {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border-2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  /* ── Tables ──────────────────────────────────────────────── */
+
+  .table-wrap {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 36px;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left;
+    font-size: 0.675rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--surface);
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-2);
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--ink); font-weight: 600; }
+
+  /* ── Two column ──────────────────────────────────────────── */
+
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 48px;
+    margin-top: 36px;
+  }
+  .two-col .callout { margin: 16px 0 0; max-width: none; }
+
+  /* ── Diagrams ────────────────────────────────────────────── */
+
+  .docs-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .docs-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-tab {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    background: var(--bg);
+    border: 1px solid var(--border-2);
+    border-radius: 8px;
+    padding: 9px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.14s ease;
+  }
+  .docs-tab:hover { border-color: var(--ink); color: var(--ink); }
+  .docs-tab--active { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .docs-panel {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .docs-panel--hidden { display: none; }
+  .docs-scroll { overflow-x: auto; }
+  .docs-scroll svg { min-width: 720px; }
+  .docs-note { padding: 32px; }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .foot-brand { font-size: 0.8125rem; color: var(--text-2); }
+
+  /* ── Responsive ──────────────────────────────────────────── */
+
+  @media (max-width: 960px) {
+    nav { padding: 0 24px; }
+    .nav-right { gap: 18px; }
+    .sec { padding: 72px 24px; }
+    .hero { padding: 108px 24px 64px; }
+    footer { padding: 28px 24px; }
+  }
+  @media (max-width: 580px) {
+    .nav-link { display: none; }
+    .two-col { gap: 32px; }
+    .card { padding: 28px 24px; }
+  }
+
+  @media print {
+    nav { position: static; }
+    .docs-panel--hidden { display: block; }
+    .sec { padding: 32px 0; break-inside: avoid; }
+  }
+</style>
 </head>
 <body>
-<script>if(localStorage.getItem('portfolio_theme')==='light')document.body.classList.add('cs-light');</script>
 
-    <!-- Back Nav -->
-    <nav class="cs-nav">
-        <div class="cs-nav-inner">
-            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
-            <div class="cs-nav-tabs">
-                <a class="cs-nav-tab" href="#documentation" onclick="csNavTo(event,'documentation')">Documentation</a>
-                <a class="cs-nav-tab" href="#case-study" onclick="csNavTo(event,'case-study')">PRD</a>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px">
-                <span class="cs-nav-title">Case Study 07</span>
-                <button type="button" id="cs-theme-toggle" class="cs-theme-btn" aria-label="Toggle theme">
-                    <svg class="cs-theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    <svg class="cs-theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <main class="cs-main">
-
-        <!-- Hero -->
-        <header class="cs-hero">
-            <span class="cs-label">Job-Application Artifact &middot; Built for Stylework &middot; July 2026 &middot; Shipped in ~51 hours</span>
-            <h1 class="cs-title">Siteline: Capture Sales Data Where the Conversation Already Is</h1>
-            <p class="cs-subtitle">A Telegram-native B2B sales CRM built for Stylework, an Indian coworking-space aggregator. A rep forwards a WhatsApp chat, sends a voice note, or shares a screenshot. No forms. The model extracts contact, company, seat count, city, space type, budget, move-in date, stage, and next action.</p>
-            <div class="cs-meta-row">
-                <span class="cs-meta-tag">B2B SaaS</span>
-                <span class="cs-meta-tag">AI / Extraction</span>
-                <span class="cs-meta-tag">Telegram Bot</span>
-                <span class="cs-meta-tag">Coworking / Real Estate</span>
-                <span class="cs-meta-tag">Solo Build</span>
-            </div>
-        </header>
-
-    <section class="cs-docs" id="documentation">
-      <div class="cs-docs-header">
-        <span class="cs-docs-label">Documentation</span>
-        <div class="cs-docs-tabs" role="tablist">
-          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">Capture Flow</button>
-          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
-          <button class="cs-docs-tab" data-doc="prd">PRD</button>
-          <a href="https://github.com/argaur/founder-crm" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
-          <a href="https://argaur.github.io/founder-crm/" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">Live Product &rarr;</a>
-        </div>
-      </div>
-
-      <!-- CAPTURE FLOW -->
-      <div class="cs-docs-panel" data-panel="flow">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" style="width:100%;display:block;">
-          <defs>
-            <marker id="sl-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
-            </marker>
-            <marker id="sl-arr-dash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee" opacity="0.6"/>
-            </marker>
-          </defs>
-          <rect width="900" height="340" fill="#0e0e12"/>
-          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" letter-spacing="1.5" opacity="0.7">THREE CAPTURE MODES &rarr; ONE SAVE PATH</text>
-
-          <!-- Three input nodes, y=70 -->
-          <rect x="20" y="60" width="150" height="42" fill="#f7f3ee" rx="0"/>
-          <text x="95" y="78" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">WhatsApp Forward</text>
-          <text x="95" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Raw text</text>
-
-          <rect x="195" y="60" width="150" height="42" fill="#f7f3ee" rx="0"/>
-          <text x="270" y="78" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Voice Note</text>
-          <text x="270" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Whisper transcription</text>
-
-          <rect x="370" y="60" width="150" height="42" fill="#f7f3ee" rx="0"/>
-          <text x="445" y="78" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Screenshot</text>
-          <text x="445" y="93" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Claude&#8209;style vision read</text>
-
-          <!-- Converge lines down to Telegram Bot node -->
-          <line x1="95" y1="102" x2="220" y2="150" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="270" y1="102" x2="220" y2="150" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="445" y1="102" x2="220" y2="150" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.6"/>
-
-          <!-- Telegram Bot handler node -->
-          <rect x="150" y="150" width="140" height="44" fill="#bf5c3a" rx="0"/>
-          <text x="220" y="169" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">Telegram Bot</text>
-          <text x="220" y="184" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">flows.py handlers</text>
-
-          <line x1="290" y1="172" x2="333" y2="172" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sl-arr)"/>
-
-          <!-- Extraction node -->
-          <rect x="337" y="150" width="150" height="44" fill="#f7f3ee" rx="0"/>
-          <text x="412" y="169" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">AI Extraction</text>
-          <text x="412" y="184" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">OpenAI gpt-4o-mini</text>
-
-          <line x1="487" y1="172" x2="530" y2="172" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sl-arr)"/>
-
-          <!-- Quality gate (text-only) -->
-          <rect x="534" y="150" width="150" height="44" fill="#f7f3ee" rx="0" opacity="0.9"/>
-          <text x="609" y="169" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Quality Gate</text>
-          <text x="609" y="184" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Text captures only</text>
-
-          <line x1="684" y1="172" x2="727" y2="172" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sl-arr)"/>
-
-          <!-- Save capture -->
-          <rect x="731" y="150" width="150" height="44" fill="#bf5c3a" rx="0"/>
-          <text x="806" y="169" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">_save_capture()</text>
-          <text x="806" y="184" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">Find/create + log</text>
-
-          <!-- Down to confirmation -->
-          <line x1="806" y1="194" x2="806" y2="255" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sl-arr-dash)" opacity="0.6"/>
-          <rect x="695" y="259" width="222" height="44" fill="#f7f3ee" rx="0" opacity="0.9"/>
-          <text x="806" y="278" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Confirmation Card</text>
-          <text x="806" y="293" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">&ldquo;Looks good&rdquo; / &ldquo;Edit stage&rdquo;</text>
-
-          <!-- Voice branch note -->
-          <line x1="270" y1="102" x2="270" y2="130" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
-          <text x="270" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.9">or: intent = &ldquo;recall&rdquo; &rarr; brief instead of capture</text>
-
-          <text x="450" y="325" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.8">Save path never regresses a lead&rsquo;s stage backwards from a vague recapture</text>
-        </svg>
-      </div>
-
-      <!-- ARCHITECTURE -->
-      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;">
-          <defs>
-            <marker id="sla-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
-            </marker>
-            <marker id="sla-arr-dash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee" opacity="0.6"/>
-            </marker>
-          </defs>
-          <rect width="900" height="360" fill="#0e0e12"/>
-          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee" letter-spacing="1.5" opacity="0.7">SYSTEM ARCHITECTURE: BOT + API + DASHBOARD</text>
-
-          <line x1="160" y1="40" x2="160" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-          <line x1="340" y1="40" x2="340" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-          <line x1="535" y1="40" x2="535" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-          <line x1="710" y1="40" x2="710" y2="330" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-
-          <text x="80" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">TELEGRAM</text>
-          <text x="250" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">BOT / RAILWAY</text>
-          <text x="437" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">AI</text>
-          <text x="622" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">NEON POSTGRES</text>
-          <text x="805" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#f7f3ee" letter-spacing="1.2" opacity="0.5">DASHBOARD</text>
-
-          <!-- Main path y=140 -->
-          <rect x="15" y="118" width="130" height="44" fill="#f7f3ee" rx="0"/>
-          <text x="80" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Rep&rsquo;s Chat</text>
-          <text x="80" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Forward/voice/image</text>
-
-          <line x1="145" y1="140" x2="167" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sla-arr)"/>
-
-          <rect x="175" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
-          <text x="250" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">FastAPI + PTB</text>
-          <text x="250" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Single asyncio process</text>
-
-          <line x1="325" y1="140" x2="354" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sla-arr)"/>
-
-          <rect x="362" y="118" width="150" height="44" fill="#bf5c3a" rx="0"/>
-          <text x="437" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">gpt-4o-mini</text>
-          <text x="437" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#f7f3ee" opacity="0.85">+ Whisper (voice)</text>
-
-          <line x1="512" y1="140" x2="544" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sla-arr)"/>
-
-          <rect x="547" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
-          <text x="622" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#bf5c3a">asyncpg</text>
-          <text x="622" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Fully async db.py</text>
-
-          <line x1="697" y1="140" x2="727" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sla-arr)"/>
-
-          <rect x="735" y="118" width="150" height="44" fill="#f7f3ee" rx="0"/>
-          <text x="810" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">/api/* Endpoints</text>
-          <text x="810" y="152" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">HMAC-signed tokens</text>
-
-          <!-- Secondary path y=260: dashboard on GitHub Pages calling API -->
-          <line x1="810" y1="162" x2="810" y2="238" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sla-arr-dash)" opacity="0.6"/>
-
-          <rect x="735" y="238" width="150" height="44" fill="#f7f3ee" rx="0" opacity="0.85"/>
-          <text x="810" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Dashboard SPA</text>
-          <text x="810" y="272" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">Static JS, GitHub Pages</text>
-
-          <path d="M735,260 L622,260 L622,162" fill="none" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#sla-arr)" opacity="0.7"/>
-
-          <rect x="357" y="238" width="160" height="44" fill="#f7f3ee" rx="0" opacity="0.85"/>
-          <text x="437" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0e0e12">Space Matching</text>
-          <text x="437" y="272" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" fill="#0e0e12" opacity="0.7">City/seats hard filter</text>
-
-          <line x1="437" y1="162" x2="437" y2="238" stroke="#f7f3ee" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sla-arr-dash)" opacity="0.6"/>
-          <line x1="357" y1="260" x2="330" y2="260" stroke="#f7f3ee" stroke-width="1" opacity="0"/>
-
-          <text x="450" y="325" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.8">Single OpenAI key for extraction, vision, and transcription. No separate provider accounts to manage</text>
-        </svg>
-      </div>
-
-      <!-- PRD -->
-      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="prd">
-        <p class="cs-docs-prd-note">This case study page is the build record for Siteline. It covers the data-capture problem, the extraction pipeline, the eval harness that measures it, and the honest state of what shipped versus what didn&rsquo;t.</p>
-        <button class="cs-docs-print-btn" onclick="window.print()">Save as PDF &rarr;</button>
-      </div>
-    </section>
-
-        <!-- Overview -->
-              <div class="cs-page is-active" id="case-study">
-<section class="cs-section">
-            <span class="cs-section-label">Overview</span>
-            <h2 class="cs-section-title">Project Overview</h2>
-            <div class="cs-callout cs-callout--highlight">
-                <p>Siteline was built solo as a job-application artifact for an <strong>&ldquo;AI Product Builder&rdquo; role</strong>, for Stylework, an Indian coworking-space aggregator. It is live. Landing at <a href="https://argaur.github.io/founder-crm/" target="_blank" rel="noopener" style="color: var(--accent-soft);">argaur.github.io/founder-crm</a>, dashboard at <a href="https://argaur.github.io/founder-crm/dashboard/" target="_blank" rel="noopener" style="color: var(--accent-soft);">/dashboard</a>, source at <a href="https://github.com/argaur/founder-crm" target="_blank" rel="noopener" style="color: var(--accent-soft);">github.com/argaur/founder-crm</a>.</p>
-            </div>
-
-            <div class="cs-stats-row">
-                <div class="cs-stat">
-                    <span class="cs-stat-number">~51 hrs</span>
-                    <span class="cs-stat-label">First commit to latest. Solo, no engineering team</span>
-                </div>
-                <div class="cs-stat">
-                    <span class="cs-stat-number">32</span>
-                    <span class="cs-stat-label">Commits</span>
-                </div>
-                <div class="cs-stat">
-                    <span class="cs-stat-number">93.5%</span>
-                    <span class="cs-stat-label">Field-level extraction accuracy (129/138), measured by an eval harness</span>
-                </div>
-                <div class="cs-stat">
-                    <span class="cs-stat-number">3</span>
-                    <span class="cs-stat-label">Capture modes: text forward, voice note, screenshot</span>
-                </div>
-            </div>
-
-            <h3>Built by</h3>
-            <p>Gaurav Gupta. Solo build, first commit 2026-07-16 13:20, latest 2026-07-18 16:16.</p>
-        </section>
-<section class="cs-section" id="problem">
-            <span class="cs-section-label">01 &middot; Problem</span>
-            <h2 class="cs-section-title">Deals Don&rsquo;t Die From Bad Selling. They Go Cold.</h2>
-
-            <div class="cs-callout">
-                <p>A 50-seat inquiry and a 10,000-seat managed-office RFP both start the same way. An unstructured conversation happens: WhatsApp, a call, a walk-in. A human then has to re-key it into a CRM, chase it, and remember to follow up. It&rsquo;s a data-capture problem. Today it&rsquo;s solved with headcount.</p>
-            </div>
-
-            <div class="cs-stats-row">
-                <div class="cs-stat">
-                    <span class="cs-stat-number">60-70%</span>
-                    <span class="cs-stat-label">CRM abandonment rate. Re-keying data is friction nobody sustains</span>
-                </div>
-            </div>
-
-            <h3>Where Deals Actually Die</h3>
-            <div class="cs-card-grid cs-card-grid--3">
-                <div class="cs-card" style="border-left: 3px solid #ff6b6b;">
-                    <h4>Re-keying is the tax</h4>
-                    <p>Every conversation a rep has has to be manually retyped into a CRM before it&rsquo;s usable pipeline data. That retyping is where the process breaks down first.</p>
-                </div>
-                <div class="cs-card" style="border-left: 3px solid #ffa94d;">
-                    <h4>The conversation is already structured, in someone&rsquo;s head</h4>
-                    <p>Seat count, budget, move-in date, next action: a rep already knows all of it after the call. The CRM asks them to say it twice.</p>
-                </div>
-                <div class="cs-card" style="border-left: 3px solid #a78bfa;">
-                    <h4>Nobody retyped it in time</h4>
-                    <p>Deals rarely die from a bad pitch. They go cold because the last conversation never made it into the system before the next one arrived.</p>
-                </div>
-            </div>
-        </section>
-<section class="cs-section" id="solution">
-            <span class="cs-section-label">02 &middot; Solution</span>
-            <h2 class="cs-section-title">Capture Stays Where the Conversation Already Is.</h2>
-
-            <p>No forms. A rep forwards a WhatsApp chat, sends a voice note, or shares a screenshot to a Telegram bot. The model extracts contact, company, seat count, city, space type, budget per seat, move-in date, stage, and next action from raw text, audio, or images.</p>
-
-            <div class="cs-card-grid cs-card-grid--3">
-                <div class="cs-card" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 12px;">&#128172;</div>
-                    <h4>Forwarded Text</h4>
-                    <p>Rep forwards the WhatsApp thread as-is. <code>ai.extract_from_text()</code> pulls the structured fields, then a quality gate checks the extraction before it saves.</p>
-                </div>
-                <div class="cs-card" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 12px;">&#127908;</div>
-                    <h4>Voice Note</h4>
-                    <p>Whisper transcribes, then intent classification routes it: &ldquo;capture&rdquo; extracts a new update, &ldquo;recall&rdquo; generates a spoken-style brief on the deal instead. There&rsquo;s no quality gate. Voice goes straight through.</p>
-                </div>
-                <div class="cs-card" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 12px;">&#128247;</div>
-                    <h4>Screenshot</h4>
-                    <p>Claude Vision-style image extraction reads a shared screenshot, whether it&rsquo;s a proposal PDF page, a WhatsApp screenshot, or a form, the same way it would read the text version.</p>
-                </div>
-            </div>
-        </section>
-      </div>
-      <div class="cs-page">
-<section class="cs-section" id="capabilities">
-            <span class="cs-section-label">03 &middot; Capabilities</span>
-            <h2 class="cs-section-title">What&rsquo;s Actually Built and Working</h2>
-
-            <div class="cs-two-col">
-                <div class="cs-col">
-                    <h3>Pipeline &amp; Heat</h3>
-                    <div class="cs-callout">
-                        <p><strong>7-stage pipeline:</strong> Inquiry &rarr; Qualified &rarr; Site Visit &rarr; Proposal &rarr; Negotiation &rarr; Closed-Won / Closed-Lost, self-updating from every capture.</p>
-                        <p><strong>Heat scoring</strong> is recomputed on every read, never stored: recency (60%), interaction count (15%), deal size (25%). A never-touched lead reads Cold by design. It cannot drift out of date, because it&rsquo;s never written.</p>
-                    </div>
-                </div>
-                <div class="cs-col">
-                    <h3>Nudges &amp; Matching</h3>
-                    <div class="cs-callout">
-                        <p><strong>Stalled-deal nudges:</strong> the bot DMs the assigned rep when a lead goes quiet past a threshold.</p>
-                        <p><strong>Space matching:</strong> city and available seats are hard filters. The 0-100 score is budget fit (45) + space type (30) + capacity right-sizing (25). A 50-seat lead into a 60-seat space outscores the same lead into a 500-seat space.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cs-two-col" style="margin-top: 16px;">
-                <div class="cs-col">
-                    <h3>Manager &amp; Dashboard</h3>
-                    <div class="cs-callout">
-                        <p><strong>Manager (&ldquo;Team&rdquo;) view:</strong> team funnel, rep leaderboard, stalled-deal list. It&rsquo;s role-gated server-side. Reps hitting these endpoints get HTTP 403.</p>
-                        <p><strong>Dashboard home:</strong> pipeline funnel, heat strip, site-visit radar with weather, inventory pressure, a &ldquo;Needs a Human Today&rdquo; panel, live activity feed, and city footprint.</p>
-                    </div>
-                </div>
-                <div class="cs-col">
-                    <h3>Demo Mode</h3>
-                    <div class="cs-callout">
-                        <p>A visitor who owns no leads reads the seeded pipeline behind a sample-data banner. The product demonstrates itself. It&rsquo;s read-only: cross-user writes still return 403, even in demo mode.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-<section class="cs-section" id="eval">
-            <span class="cs-section-label">04 &middot; Eval Harness</span>
-            <h2 class="cs-section-title">The Extraction Isn&rsquo;t Just Demoed. It&rsquo;s Measured.</h2>
-
-            <div class="cs-callout cs-callout--highlight">
-                <p><code>bot/eval/score_extraction.py</code> runs against <code>bot/eval/dataset.jsonl</code>: 23 hand-written labelled transcripts, including Hinglish and informal phrasing that matches real usage, not clean English.</p>
-            </div>
-
-            <div class="cs-stats-row">
-                <div class="cs-stat">
-                    <span class="cs-stat-number">93.5%</span>
-                    <span class="cs-stat-label">Field-level accuracy: 129/138</span>
-                </div>
-                <div class="cs-stat">
-                    <span class="cs-stat-number">6 &times; 23</span>
-                    <span class="cs-stat-label">= 138 scored fields (6 fields per transcript)</span>
-                </div>
-                <div class="cs-stat">
-                    <span class="cs-stat-number">9</span>
-                    <span class="cs-stat-label">Misses, all one failure mode</span>
-                </div>
-            </div>
-
-            <h3>What&rsquo;s Scored, and What&rsquo;s Deliberately Not</h3>
-            <p>Six fields per row are graded: <code>stage</code> (exact match against the 7-value enum) plus presence checks for <code>contact_name</code>, <code>company</code>, <code>budget_signal</code>, <code>seat_count</code>, <code>city</code>. Free-text fields, <code>summary</code> and <code>next_action</code>, are deliberately excluded. Grading prose needs a human or an LLM-judge, and that reintroduces the non-determinism the metric exists to avoid. A <code>--min-accuracy</code> flag makes the harness usable as a CI gate or a tuning-loop stop condition.</p>
-
-            <h3>A Documented Trust Boundary</h3>
-            <div class="cs-callout">
-                <p>When tuning extraction, only the prompt in <code>ai.py</code> may be edited. Never the dataset or the scorer. Editing either of those to make the number go up would be reward-hacking the eval instead of improving extraction.</p>
-            </div>
-
-            <h3>The Known Weakness</h3>
-            <p>The model under-reads <code>stage</code>, defaulting to <em>Inquiry</em> where <em>Qualified</em> or <em>unknown</em> is correct. This was found by the eval and confirmed three independent ways. All 9 misses are this one failure mode. It&rsquo;s a prompt fix, deliberately not attempted under deadline.</p>
-        </section>
-<section class="cs-section" id="tech-stack">
-            <span class="cs-section-label">05 &middot; Tech</span>
-            <h2 class="cs-section-title">No Framework, No Bundler, One Provider.</h2>
-
-            <div class="cs-table-wrap">
-                <table class="cs-table">
-                    <thead><tr><th>Layer</th><th>Technology</th><th>Details</th></tr></thead>
-                    <tbody>
-                        <tr><td>Bot backend</td><td>Python &middot; FastAPI &middot; python-telegram-bot</td><td>Single asyncio process, deploys to Railway. FastAPI lifespan wires bot polling + nudge JobQueue + <code>/api/*</code> together.</td></tr>
-                        <tr><td>Database</td><td>Neon Postgres &middot; asyncpg</td><td>Fully async. Every <code>db.*</code> call is awaited. Five tables: users, companies, leads, interactions, spaces.</td></tr>
-                        <tr><td>AI &middot; extraction &amp; vision</td><td>OpenAI <code>gpt-4o-mini</code></td><td>Text extraction, vision (screenshots), and reasoning. One provider, one key.</td></tr>
-                        <tr><td>AI &middot; transcription</td><td>OpenAI Whisper</td><td>Voice note transcription ahead of intent classification.</td></tr>
-                        <tr><td>Dashboard</td><td>Static HTML/JS &middot; no framework, no bundler</td><td>Deploys to GitHub Pages via Actions. Authenticates against the bot&rsquo;s <code>/api/*</code> endpoints via signed per-user HMAC tokens. No credentials shipped to the browser.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-      </div>
-      <div class="cs-page">
-<section class="cs-section" id="limitations">
-            <span class="cs-section-label">06 &middot; Limitations</span>
-            <h2 class="cs-section-title">What This Is, and What It Isn&rsquo;t.</h2>
-
-            <div class="cs-callout">
-                <p>This candour is deliberate. A build story that hides its limitations is less useful than one that names them.</p>
-            </div>
-
-            <div class="cs-card-grid">
-                <div class="cs-card" style="border-left: 3px solid #ffd43b;">
-                    <h4>Runs on seeded data</h4>
-                    <p>The pipeline runs on seeded sample data, labelled in-product as such. It&rsquo;s a working product, not a customer deployment. No revenue.</p>
-                </div>
-                <div class="cs-card" style="border-left: 3px solid #ffd43b;">
-                    <h4>Auth is demo-grade</h4>
-                    <p>Signed HMAC tokens with server-verified roles, but no expiry or revocation. This is a deliberate one-day-demo simplification, not production-grade auth.</p>
-                </div>
-                <div class="cs-card" style="border-left: 3px solid #ffd43b;">
-                    <h4>The eval dataset is synthetic</h4>
-                    <p>Hand-written rather than drawn from real bot traffic, so 93.5% is indicative of extraction quality, not field-proven against production usage.</p>
-                </div>
-            </div>
-        </section>
-<section class="cs-section" id="thesis">
-            <span class="cs-section-label">07 &middot; Where This Goes</span>
-            <h2 class="cs-section-title">Complexity the Product Earns, Not Imposes.</h2>
-
-            <p>Most CRMs fail because they impose enterprise process on a five-person sales team. Siteline is designed to earn its complexity as the org around it grows. The rep&rsquo;s own experience never gets heavier.</p>
-
-            <div class="cs-table-wrap">
-                <table class="cs-table">
-                    <thead><tr><th>Org shape</th><th>What unlocks</th></tr></thead>
-                    <tbody>
-                        <tr><td>Solo rep</td><td>The bot, and nothing else: capture, pipeline, heat score, nudges.</td></tr>
-                        <tr><td>Add reps</td><td>Assignment and a leaderboard.</td></tr>
-                        <tr><td>Add a manager</td><td>Team funnel and stalled-deal escalation, already built.</td></tr>
-                        <tr><td>Add a sales head over multiple managers</td><td>Region roll-ups, forecasting, quota tracking.</td></tr>
-                        <tr><td>CEO level</td><td>The revenue view.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="cs-callout cs-callout--highlight">
-                <p>Structure accretes above the rep, not on top of them. That&rsquo;s the thesis this build is arguing for.</p>
-            </div>
-        </section>
-      </div></main>
-
-
-    <footer class="cs-footer">
-        <p>Gaurav Gupta &middot; Built for Stylework &middot; July 2026</p>
-        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
-    </footer>
-
-  <!-- Pagination -->
-  <div class="cs-pagination">
-    <button class="cs-page-btn" id="cs-prev" disabled>&#8592; Prev</button>
-    <span class="cs-page-counter" id="cs-counter">Page 1 of 3</span>
-    <button class="cs-page-btn" id="cs-next">Next &#8594;</button>
+<nav>
+  <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
+  <div class="nav-right">
+    <a href="#documentation" class="nav-link">Documentation</a>
+    <a href="#problem" class="nav-link">Problem</a>
+    <a href="#eval" class="nav-link">Eval</a>
+    <a href="#thesis" class="nav-link">Thesis</a>
+    <span class="nav-index">Case Study 07</span>
   </div>
+</nav>
 
-  <script>
-  (function() {
-    var pages = document.querySelectorAll('.cs-page');
-    var counter = document.getElementById('cs-counter');
-    var prevBtn = document.getElementById('cs-prev');
-    var nextBtn = document.getElementById('cs-next');
-    var current = 0;
-    function show(n) {
-      pages[current].classList.remove('is-active');
-      current = Math.max(0, Math.min(n, pages.length - 1));
-      pages[current].classList.add('is-active');
-      counter.textContent = 'Page ' + (current + 1) + ' of ' + pages.length;
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === pages.length - 1;
-      window.scrollTo(0, 0);
-    }
-    window.__csShow = show;
-    prevBtn.addEventListener('click', function() { show(current - 1); });
-    nextBtn.addEventListener('click', function() { show(current + 1); });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight') show(current + 1);
-      if (e.key === 'ArrowLeft') show(current - 1);
-    });
-    show(0);
-  })();
-  </script>
-  <script>
-  (function() {
-    var tabs = document.querySelectorAll('.cs-docs-tab');
-    var panels = document.querySelectorAll('.cs-docs-panel');
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
-        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
-        tab.classList.add('cs-docs-tab--active');
-        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
-        if (panel) panel.classList.remove('cs-docs-panel--hidden');
-      });
-    });
-  })();
-  </script>
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<div class="hero-wrap">
+  <div class="hero">
+    <span class="label label-strong">Job-application artifact &middot; Built for Stylework &middot; July 2026 &middot; Shipped in ~51 hours</span>
+    <h1>SitelineCRM: capture sales data<br /><em>where the conversation already is.</em></h1>
+    <p class="hero-sub">
+      A Telegram-native B2B sales CRM built for Stylework, an Indian coworking-space
+      aggregator. A rep forwards a WhatsApp chat, sends a voice note, or shares a
+      screenshot. No forms. The model extracts contact, company, seat count, city,
+      space type, budget, move-in date, stage, and next action.
+    </p>
+    <div class="meta-row">
+      <span class="meta-tag">B2B SaaS</span>
+      <span class="meta-tag">AI / Extraction</span>
+      <span class="meta-tag">Telegram Bot</span>
+      <span class="meta-tag">Coworking / Real Estate</span>
+      <span class="meta-tag">Solo Build</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── DOCUMENTATION / DIAGRAMS ───────────────────────────── -->
+<div class="sec" id="documentation" style="border-top:none">
+  <div class="sec-inner">
+    <div class="docs-head">
+      <span class="label">Documentation</span>
+      <div class="docs-tabs">
+        <button class="docs-tab docs-tab--active" data-doc="flow">Capture Flow</button>
+        <button class="docs-tab" data-doc="arch">Architecture</button>
+        <button class="docs-tab" data-doc="prd">About this page</button>
+        <a href="https://github.com/argaur/siteline-crm" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
+        <a href="https://argaur.github.io/siteline-crm/" target="_blank" rel="noopener" class="docs-tab">Live Product &rarr;</a>
+      </div>
+    </div>
+
+    <!-- CAPTURE FLOW -->
+    <div class="docs-panel" data-panel="flow">
+      <div class="docs-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" style="width:100%;display:block;">
+        <defs>
+          <marker id="sl-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#9A9A96"/>
+          </marker>
+          <marker id="sl-arr-dash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#DDDDD9"/>
+          </marker>
+        </defs>
+        <rect width="900" height="340" fill="#FAFAF9"/>
+        <text x="450" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="#9A9A96" letter-spacing="1.6">THREE CAPTURE MODES &rarr; ONE SAVE PATH</text>
+
+        <!-- Three input nodes -->
+        <rect x="20" y="60" width="150" height="42" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="95" y="79" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">WhatsApp Forward</text>
+        <text x="95" y="93" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Raw text</text>
+
+        <rect x="195" y="60" width="150" height="42" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="270" y="79" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Voice Note</text>
+        <text x="270" y="93" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Whisper transcription</text>
+
+        <rect x="370" y="60" width="150" height="42" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="445" y="79" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Screenshot</text>
+        <text x="445" y="93" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">gpt&#8209;4o&#8209;mini vision</text>
+
+        <!-- Converge -->
+        <line x1="95" y1="102" x2="220" y2="150" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3"/>
+        <line x1="270" y1="102" x2="220" y2="150" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3"/>
+        <line x1="445" y1="102" x2="220" y2="150" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3"/>
+
+        <!-- Bot handler -->
+        <rect x="150" y="150" width="140" height="44" fill="#0A0A0A" rx="6"/>
+        <text x="220" y="170" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">Telegram Bot</text>
+        <text x="220" y="184" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#FFFFFF" opacity="0.75">flows.py handlers</text>
+
+        <line x1="290" y1="172" x2="333" y2="172" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+
+        <rect x="337" y="150" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="412" y="170" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">AI Extraction</text>
+        <text x="412" y="184" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">OpenAI gpt-4o-mini</text>
+
+        <line x1="487" y1="172" x2="530" y2="172" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+
+        <rect x="534" y="150" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="609" y="170" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Quality Gate</text>
+        <text x="609" y="184" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Text captures only</text>
+
+        <line x1="684" y1="172" x2="727" y2="172" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+
+        <rect x="731" y="150" width="150" height="44" fill="#0A0A0A" rx="6"/>
+        <text x="806" y="170" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">_save_capture()</text>
+        <text x="806" y="184" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#FFFFFF" opacity="0.75">Find/create + log</text>
+
+        <line x1="806" y1="194" x2="806" y2="255" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sl-arr-dash)"/>
+        <rect x="695" y="259" width="222" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="806" y="279" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Confirmation Card</text>
+        <text x="806" y="293" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">&ldquo;Looks good&rdquo; / &ldquo;Edit stage&rdquo;</text>
+
+        <line x1="270" y1="102" x2="270" y2="130" stroke="#DDDDD9" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="270" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#9A9A96">or: intent = &ldquo;recall&rdquo; &rarr; brief instead of capture</text>
+
+        <text x="450" y="325" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#9A9A96">Save path never regresses a lead&rsquo;s stage backwards from a vague recapture</text>
+      </svg>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div class="docs-panel docs-panel--hidden" data-panel="arch">
+      <div class="docs-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;">
+        <defs>
+          <marker id="sla-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#9A9A96"/>
+          </marker>
+          <marker id="sla-arr-dash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#DDDDD9"/>
+          </marker>
+        </defs>
+        <rect width="900" height="360" fill="#FAFAF9"/>
+        <text x="450" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="#9A9A96" letter-spacing="1.6">SYSTEM ARCHITECTURE: BOT + API + DASHBOARD</text>
+
+        <line x1="160" y1="40" x2="160" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="340" y1="40" x2="340" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="535" y1="40" x2="535" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="710" y1="40" x2="710" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <text x="80" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">TELEGRAM</text>
+        <text x="250" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">BOT / RAILWAY</text>
+        <text x="437" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">AI</text>
+        <text x="622" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">NEON POSTGRES</text>
+        <text x="805" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">DASHBOARD</text>
+
+        <rect x="15" y="118" width="130" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="80" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Rep&rsquo;s Chat</text>
+        <text x="80" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Forward/voice/image</text>
+
+        <line x1="145" y1="140" x2="167" y2="140" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sla-arr)"/>
+
+        <rect x="175" y="118" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="250" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">FastAPI + PTB</text>
+        <text x="250" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Single asyncio process</text>
+
+        <line x1="325" y1="140" x2="354" y2="140" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sla-arr)"/>
+
+        <rect x="362" y="118" width="150" height="44" fill="#0A0A0A" rx="6"/>
+        <text x="437" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">gpt-4o-mini</text>
+        <text x="437" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#FFFFFF" opacity="0.75">+ Whisper (voice)</text>
+
+        <line x1="512" y1="140" x2="544" y2="140" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sla-arr)"/>
+
+        <rect x="547" y="118" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="622" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">asyncpg</text>
+        <text x="622" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Fully async db.py</text>
+
+        <line x1="697" y1="140" x2="727" y2="140" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sla-arr)"/>
+
+        <rect x="735" y="118" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="810" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">/api/* Endpoints</text>
+        <text x="810" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">HMAC-signed tokens</text>
+
+        <line x1="810" y1="162" x2="810" y2="238" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sla-arr-dash)"/>
+
+        <rect x="735" y="238" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="810" y="258" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Dashboard SPA</text>
+        <text x="810" y="272" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Static JS, GitHub Pages</text>
+
+        <path d="M735,260 L622,260 L622,162" fill="none" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sla-arr)"/>
+
+        <rect x="357" y="238" width="160" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
+        <text x="437" y="258" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Space Matching</text>
+        <text x="437" y="272" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">City/seats hard filter</text>
+
+        <line x1="437" y1="162" x2="437" y2="238" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sla-arr-dash)"/>
+
+        <text x="450" y="325" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#9A9A96">Single OpenAI key for extraction, vision, and transcription. No separate provider accounts to manage</text>
+      </svg>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+      <div class="docs-note">
+        <p>This page is the build record for SitelineCRM. It covers the data-capture problem,
+        the extraction pipeline, the eval harness that measures it, and the honest state of
+        what shipped versus what didn&rsquo;t.</p>
+        <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── OVERVIEW ───────────────────────────────────────────── -->
+<div class="sec">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Project overview</h2>
+      <span class="label">Overview</span>
+    </div>
+
+    <div class="callout">
+      <p>SitelineCRM was built solo as a job-application artifact for an
+      <strong>&ldquo;AI Product Builder&rdquo; role</strong> at Stylework, an Indian
+      coworking-space aggregator. It is live. Landing at
+      <a href="https://argaur.github.io/siteline-crm/" target="_blank" rel="noopener" class="lnk">argaur.github.io/siteline-crm</a>,
+      dashboard at
+      <a href="https://argaur.github.io/siteline-crm/dashboard/" target="_blank" rel="noopener" class="lnk">/dashboard</a>,
+      source at
+      <a href="https://github.com/argaur/siteline-crm" target="_blank" rel="noopener" class="lnk">github.com/argaur/siteline-crm</a>.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">~51 hrs</span>
+        <span class="stat-lbl">First commit to latest. Solo, no engineering team</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">32</span>
+        <span class="stat-lbl">Commits</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">93.5%</span>
+        <span class="stat-lbl">Field-level extraction accuracy (129/138), measured by an eval harness</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-lbl">Capture modes: text forward, voice note, screenshot</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3 class="h3-spaced">Built by</h3>
+      <p>Gaurav Gupta. Solo build, first commit 2026-07-16 13:20, latest 2026-07-18 16:16.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 01 PROBLEM ─────────────────────────────────────────── -->
+<div class="sec" id="problem">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Deals don&rsquo;t die from bad selling.<br /><em>They go cold.</em></h2>
+      <span class="label">01 &middot; Problem</span>
+    </div>
+
+    <div class="callout">
+      <p>A 50-seat inquiry and a 10,000-seat managed-office RFP both start the same way.
+      An unstructured conversation happens: WhatsApp, a call, a walk-in.</p>
+      <p>A human then has to re-key it into a CRM, chase it, and remember to follow up.
+      It&rsquo;s a data-capture problem. Today it&rsquo;s solved with headcount.</p>
+    </div>
+
+    <div class="stats" style="grid-template-columns:minmax(200px,340px)">
+      <div class="stat">
+        <span class="stat-num">60-70%</span>
+        <span class="stat-lbl">CRM abandonment rate. Re-keying data is friction nobody sustains</span>
+      </div>
+    </div>
+
+    <h3 class="h3-spaced">Where deals actually die</h3>
+    <div class="cards">
+      <div class="card">
+        <h4>Re-keying is the tax</h4>
+        <p>Every conversation a rep has must be manually retyped into a CRM before it&rsquo;s
+        usable pipeline data. That retyping is where the process breaks down first.</p>
+      </div>
+      <div class="card">
+        <h4>The conversation is already structured, in someone&rsquo;s head</h4>
+        <p>Seat count, budget, move-in date, next action: a rep already knows all of it
+        after the call. The CRM asks them to say it twice.</p>
+      </div>
+      <div class="card">
+        <h4>Nobody retyped it in time</h4>
+        <p>Deals rarely die from a bad pitch. They go cold because the last conversation
+        never made it into the system before the next one arrived.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 02 SOLUTION ────────────────────────────────────────── -->
+<div class="sec" id="solution">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Capture stays where the<br /><em>conversation already is.</em></h2>
+      <span class="label">02 &middot; Solution</span>
+    </div>
+
+    <div class="prose">
+      <p>No forms. A rep forwards a WhatsApp chat, sends a voice note, or shares a
+      screenshot to a Telegram bot. The model extracts contact, company, seat count,
+      city, space type, budget per seat, move-in date, stage, and next action from raw
+      text, audio, or images.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h4>Forwarded text</h4>
+        <p>Rep forwards the WhatsApp thread as-is. <code>ai.extract_from_text()</code> pulls
+        the structured fields, then a quality gate checks the extraction before it saves.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+        </div>
+        <h4>Voice note</h4>
+        <p>Whisper transcribes, then intent classification routes it: &ldquo;capture&rdquo;
+        extracts a new update, &ldquo;recall&rdquo; generates a spoken-style brief on the deal
+        instead. There&rsquo;s no quality gate. Voice goes straight through.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <h4>Screenshot</h4>
+        <p><code>gpt-4o-mini</code> vision reads a shared screenshot, whether it&rsquo;s a
+        proposal PDF page, a WhatsApp screenshot, or a form, the same way it would read
+        the text version.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 03 CAPABILITIES ────────────────────────────────────── -->
+<div class="sec" id="capabilities">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>What&rsquo;s actually built<br /><em>and working.</em></h2>
+      <span class="label">03 &middot; Capabilities</span>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3>Pipeline &amp; heat</h3>
+        <div class="callout">
+          <p><strong>7-stage pipeline:</strong> Inquiry &rarr; Qualified &rarr; Site Visit
+          &rarr; Proposal &rarr; Negotiation &rarr; Closed-Won / Closed-Lost, self-updating
+          from every capture.</p>
+          <p><strong>Heat scoring</strong> is recomputed on every read, never stored:
+          recency (60%), interaction count (15%), deal size (25%). A never-touched lead
+          reads Cold by design. It cannot drift out of date, because it&rsquo;s never written.</p>
+        </div>
+      </div>
+      <div>
+        <h3>Nudges &amp; matching</h3>
+        <div class="callout">
+          <p><strong>Stalled-deal nudges:</strong> the bot DMs the assigned rep when a lead
+          goes quiet past a threshold.</p>
+          <p><strong>Space matching:</strong> city and available seats are hard filters. The
+          0-100 score is budget fit (45) + space type (30) + capacity right-sizing (25). A
+          50-seat lead into a 60-seat space outscores the same lead into a 500-seat space.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3>Manager &amp; dashboard</h3>
+        <div class="callout">
+          <p><strong>Manager (&ldquo;Team&rdquo;) view:</strong> team funnel, rep leaderboard,
+          stalled-deal list. It&rsquo;s role-gated server-side. Reps hitting these endpoints
+          get HTTP 403.</p>
+          <p><strong>Dashboard home:</strong> pipeline funnel, heat strip, site-visit radar
+          with weather, inventory pressure, a &ldquo;Needs a Human Today&rdquo; panel, live
+          activity feed, and city footprint.</p>
+        </div>
+      </div>
+      <div>
+        <h3>Demo mode</h3>
+        <div class="callout">
+          <p>A visitor who owns no leads reads the seeded pipeline behind a sample-data
+          banner. The product demonstrates itself.</p>
+          <p>It&rsquo;s read-only: cross-user writes still return 403, even in demo mode.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 04 EVAL ────────────────────────────────────────────── -->
+<div class="sec" id="eval">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>The extraction isn&rsquo;t just demoed.<br /><em>It&rsquo;s measured.</em></h2>
+      <span class="label">04 &middot; Eval Harness</span>
+    </div>
+
+    <div class="callout-box">
+      <p><code>bot/eval/score_extraction.py</code> runs against
+      <code>bot/eval/dataset.jsonl</code>: 23 hand-written labelled transcripts, including
+      Hinglish and informal phrasing that matches real usage, not clean English.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">93.5%</span>
+        <span class="stat-lbl">Field-level accuracy: 129/138</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">6 &times; 23</span>
+        <span class="stat-lbl">= 138 scored fields (6 fields per transcript)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">9</span>
+        <span class="stat-lbl">Misses, all one failure mode</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3 class="h3-spaced">What&rsquo;s scored, and what&rsquo;s deliberately not</h3>
+      <p>Six fields per row are graded: <code>stage</code> (exact match against the 7-value
+      enum) plus presence checks for <code>contact_name</code>, <code>company</code>,
+      <code>budget_signal</code>, <code>seat_count</code>, and <code>city</code>.</p>
+      <p>Free-text fields, <code>summary</code> and <code>next_action</code>, are
+      deliberately excluded. Grading prose needs a human or an LLM-judge, and that
+      reintroduces the non-determinism the metric exists to avoid.</p>
+      <p>A <code>--min-accuracy</code> flag makes the harness usable as a CI gate or a
+      tuning-loop stop condition.</p>
+    </div>
+
+    <h3 class="h3-spaced">A documented trust boundary</h3>
+    <div class="callout">
+      <p>When tuning extraction, only the prompt in <code>ai.py</code> may be edited. Never
+      the dataset or the scorer. Editing either of those to make the number go up would be
+      reward-hacking the eval instead of improving extraction.</p>
+    </div>
+
+    <div class="prose">
+      <h3 class="h3-spaced">The known weakness</h3>
+      <p>The model under-reads <code>stage</code>, defaulting to <em>Inquiry</em> where
+      <em>Qualified</em> or <em>unknown</em> is correct. This was found by the eval and
+      confirmed three independent ways.</p>
+      <p>All 9 misses are this one failure mode. It&rsquo;s a prompt fix, deliberately not
+      attempted under deadline.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 05 TECH ────────────────────────────────────────────── -->
+<div class="sec" id="tech-stack">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>No framework, no bundler,<br /><em>one provider.</em></h2>
+      <span class="label">05 &middot; Tech</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Layer</th><th>Technology</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Bot backend</td><td>Python &middot; FastAPI &middot; python-telegram-bot</td><td>Single asyncio process, deploys to Railway. FastAPI lifespan wires bot polling + nudge JobQueue + <code>/api/*</code> together.</td></tr>
+          <tr><td>Database</td><td>Neon Postgres &middot; asyncpg</td><td>Fully async. Every <code>db.*</code> call is awaited. Five tables: users, companies, leads, interactions, spaces.</td></tr>
+          <tr><td>AI &middot; extraction &amp; vision</td><td>OpenAI <code>gpt-4o-mini</code></td><td>Text extraction, vision (screenshots), and reasoning. One provider, one key.</td></tr>
+          <tr><td>AI &middot; transcription</td><td>OpenAI Whisper</td><td>Voice note transcription ahead of intent classification.</td></tr>
+          <tr><td>Dashboard</td><td>Static HTML/JS &middot; no framework, no bundler</td><td>Deploys to GitHub Pages via Actions. Authenticates against the bot&rsquo;s <code>/api/*</code> endpoints via signed per-user HMAC tokens. No credentials shipped to the browser.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── 06 LIMITATIONS ─────────────────────────────────────── -->
+<div class="sec" id="limitations">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>What this is,<br /><em>and what it isn&rsquo;t.</em></h2>
+      <span class="label">06 &middot; Limitations</span>
+    </div>
+
+    <div class="callout">
+      <p>This candour is deliberate. A build story that hides its limitations is less
+      useful than one that names them.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Runs on seeded data</h4>
+        <p>The pipeline runs on seeded sample data, labelled in-product as such. It&rsquo;s a
+        working product, not a customer deployment. No revenue.</p>
+      </div>
+      <div class="card">
+        <h4>Auth is demo-grade</h4>
+        <p>Signed HMAC tokens with server-verified roles, but no expiry or revocation. This
+        is a deliberate one-day-demo simplification, not production-grade auth.</p>
+      </div>
+      <div class="card">
+        <h4>The eval dataset is synthetic</h4>
+        <p>Hand-written rather than drawn from real bot traffic, so 93.5% is indicative of
+        extraction quality, not field-proven against production usage.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 07 THESIS ──────────────────────────────────────────── -->
+<div class="sec" id="thesis">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Complexity the product earns,<br /><em>not imposes.</em></h2>
+      <span class="label">07 &middot; Where This Goes</span>
+    </div>
+
+    <div class="prose">
+      <p>Most CRMs fail because they impose enterprise process on a five-person sales team.
+      SitelineCRM is designed to earn its complexity as the org around it grows. The
+      rep&rsquo;s own experience never gets heavier.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Org shape</th><th>What unlocks</th></tr></thead>
+        <tbody>
+          <tr><td>Solo rep</td><td>The bot, and nothing else: capture, pipeline, heat score, nudges.</td></tr>
+          <tr><td>Add reps</td><td>Assignment and a leaderboard.</td></tr>
+          <tr><td>Add a manager</td><td>Team funnel and stalled-deal escalation, already built.</td></tr>
+          <tr><td>Add a sales head over multiple managers</td><td>Region roll-ups, forecasting, quota tracking.</td></tr>
+          <tr><td>CEO level</td><td>The revenue view.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:36px">
+      <p>Structure accretes above the rep, not on top of them. That&rsquo;s the thesis this
+      build is arguing for.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-brand">Gaurav Gupta &middot; Built for Stylework &middot; July 2026</div>
+  <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
+</footer>
+
 <script>
-(function(){
-  var btn=document.getElementById('cs-theme-toggle');
-  if(btn){btn.addEventListener('click',function(){
-    var isLight=document.body.classList.toggle('cs-light');
-    localStorage.setItem('portfolio_theme',isLight?'light':'dark');
-  });}
+(function() {
+  var tabs = document.querySelectorAll('button.docs-tab');
+  var panels = document.querySelectorAll('.docs-panel');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
+      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+      tab.classList.add('docs-tab--active');
+      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
+      if (panel) panel.classList.remove('docs-panel--hidden');
+    });
+  });
 })();
-</script>
-<script>
-function csNavTo(e, id) {
-  if (e && e.preventDefault) e.preventDefault();
-  if (id === 'case-study' && window.__csShow) window.__csShow(0);
-  var el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 </script>
 </body>
 </html>
