@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claude OS — Gaurav Gupta</title>
   <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0e0e12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -28,27 +29,27 @@
       --font-m:   'Space Mono', 'Courier New', monospace;
     }
 
+    html { -webkit-text-size-adjust: 100%; }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-b);
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .page { max-width: 900px; margin: 0 auto; padding: 48px 24px 120px; }
+    ::selection { background: var(--accent); color: var(--bg); }
 
-    /* ── Header + mode toggle ─────────────────────────────────────── */
+    .page { max-width: 820px; margin: 0 auto; padding: 48px 24px 96px; }
+
+    /* ── Header ───────────────────────────────────────────────────── */
     .os-header {
       border-bottom: 1px solid var(--border);
       padding-bottom: 24px;
-      margin-bottom: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 24px;
-      flex-wrap: wrap;
+      margin-bottom: 28px;
     }
     .os-title {
       font-family: var(--font-m);
@@ -60,82 +61,53 @@
     }
     .os-headline {
       font-family: var(--font-b);
-      font-size: 28px;
+      font-size: clamp(22px, 5.5vw, 30px);
       font-weight: 300;
+      line-height: 1.2;
       color: var(--text);
       letter-spacing: -0.01em;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .os-lede {
+      font-size: 14px;
+      color: var(--text-2);
+      max-width: 60ch;
+      margin-bottom: 16px;
     }
     .os-meta {
       font-family: var(--font-m);
       font-size: 11px;
       color: var(--text-3);
       display: flex;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
     }
     .os-meta span { display: flex; align-items: center; gap: 6px; }
-    .dot-live { width: 6px; height: 6px; background: var(--green); display: inline-block; }
+    .dot-live { width: 6px; height: 6px; background: var(--green); display: inline-block; flex-shrink: 0; }
 
-    .mode-toggle {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-m);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-3);
-      background: var(--raised);
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      flex-shrink: 0;
-    }
-    .mode-toggle button {
-      font-family: var(--font-m);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-3);
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .mode-toggle button.active {
-      color: var(--bg);
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-    .mode-toggle button:not(.active):hover { color: var(--text); border-color: var(--border); }
-
-    /* Concise/detail visibility — default state is detailed */
-    body.mode-concise .detail-only { display: none !important; }
-    body.mode-detailed .concise-only { display: none !important; }
-    .concise-only {
-      font-size: 12px;
-      color: var(--text-2);
-      font-style: italic;
-    }
-
+    /* ── Sections (accordion) ─────────────────────────────────────── */
     .section { margin-bottom: 4px; }
 
     .section-trigger {
       width: 100%;
+      min-height: 52px;
       background: var(--raised);
       border: 1px solid var(--border);
-      padding: 16px 20px;
+      padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
       cursor: pointer;
       text-align: left;
       transition: background 0.15s;
+      color: inherit;
+      font-family: inherit;
     }
     .section-trigger:hover { background: var(--subtle); }
+    .section-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
-    .section-trigger-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .section-trigger-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; min-width: 0; }
     .section-num {
       font-family: var(--font-m);
       font-size: 10px;
@@ -145,30 +117,25 @@
     }
     .section-name {
       font-family: var(--font-b);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
       color: var(--text);
     }
     .section-tag {
       font-family: var(--font-m);
       font-size: 9px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(201, 168, 76, 0.08);
-      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: var(--text-3);
+      border: 1px solid var(--border);
       padding: 2px 7px;
-    }
-    .section-tag.new {
-      color: var(--green);
-      background: rgba(76, 175, 116, 0.08);
-      border-color: rgba(76, 175, 116, 0.25);
     }
     .section-chevron {
       font-family: var(--font-m);
       font-size: 10px;
       color: var(--text-3);
       transition: transform 0.2s;
+      flex-shrink: 0;
     }
     .section.open .section-chevron { transform: rotate(180deg); }
 
@@ -180,9 +147,21 @@
       max-height: 0;
       transition: max-height 0.35s ease;
     }
-    .section.open .section-body { max-height: 20000px; }
+    .section.open .section-body { max-height: 4000px; }
 
-    .section-inner { padding: 24px 20px 28px 56px; }
+    .section-inner { padding: 22px 20px 24px 52px; }
+
+    /* ── Purpose / Method blocks ──────────────────────────────────── */
+    .pm-label {
+      font-family: var(--font-m);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .purpose { font-size: 14px; color: var(--text); line-height: 1.6; margin-bottom: 20px; }
+    .method-label { margin-top: 0; }
 
     .label {
       font-family: var(--font-m);
@@ -190,131 +169,177 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-3);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       margin-top: 20px;
     }
-    .label:first-child { margin-top: 0; }
 
-    p { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 10px; }
+    p { font-size: 13.5px; color: var(--text-2); line-height: 1.65; margin-bottom: 10px; }
     p:last-child { margin-bottom: 0; }
     strong { color: var(--text); font-weight: 500; }
+    em { color: var(--text-2); }
     code {
       font-family: var(--font-m);
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--accent);
       background: rgba(201, 168, 76, 0.08);
       padding: 1px 5px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+    /* ── Step rows (the "method" primitive) ───────────────────────── */
+    .steps { display: flex; flex-direction: column; }
+    .step { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-id {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: var(--text-3);
+      width: 34px;
+      flex-shrink: 0;
+      padding-top: 3px;
+    }
+    .step-body { flex: 1; min-width: 0; }
+    .step-name { font-size: 13.5px; font-weight: 500; color: var(--text); }
+    .step-desc { font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
+    .step.gate { background: rgba(201, 168, 76, 0.04); }
+    .step.gate .step-id, .step.gate .step-name { color: var(--accent); }
 
-    .card { background: var(--raised); border: 1px solid var(--border); padding: 14px 16px; }
+    /* ── Small primitives ─────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card { background: var(--raised); border: 1px solid var(--border); padding: 12px 14px; }
     .card-title {
       font-family: var(--font-m);
       font-size: 10px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .card p { margin-bottom: 6px; font-size: 12px; }
-    .card p:last-child { margin-bottom: 0; }
+    .card p { margin-bottom: 0; font-size: 12.5px; }
 
-    .phase-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .phase-row:last-child { border-bottom: none; }
-    .phase-id { font-family: var(--font-m); font-size: 10px; color: var(--text-3); width: 28px; flex-shrink: 0; padding-top: 2px; }
-    .phase-content { flex: 1; }
-    .phase-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-    .phase-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
-    .phase-gate { font-family: var(--font-m); font-size: 10px; color: var(--accent); margin-top: 4px; }
-    .phase-new {
-      display: inline-block;
-      font-family: var(--font-m);
-      font-size: 8px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--green);
-      border: 1px solid rgba(76, 175, 116, 0.3);
-      padding: 1px 5px;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    /* Rule callouts — the non-negotiable behavior at each step */
     .rule {
-      font-size: 11px;
+      font-size: 12.5px;
       color: var(--text);
       border-left: 2px solid var(--accent);
       background: rgba(201, 168, 76, 0.05);
-      padding: 7px 12px;
-      margin-top: 6px;
+      padding: 8px 12px;
+      margin-bottom: 6px;
       line-height: 1.55;
     }
-    .rule b { font-family: var(--font-m); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 3px; }
+    .rule b {
+      font-family: var(--font-m);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 3px;
+    }
 
-    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .tag { font-family: var(--font-m); font-size: 10px; color: var(--text-3); border: 1px solid var(--border); padding: 3px 8px; }
+    .forbidden {
+      font-family: var(--font-m);
+      font-size: 11.5px;
+      color: var(--red);
+      border-left: 2px solid var(--red);
+      padding: 8px 12px;
+      background: rgba(224, 96, 96, 0.05);
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    .forbidden code { color: var(--red); background: rgba(224, 96, 96, 0.09); }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-family: var(--font-m); font-size: 10.5px; color: var(--text-3); border: 1px solid var(--border); padding: 3px 8px; }
     .tag.accent { color: var(--accent); border-color: rgba(201, 168, 76, 0.3); background: rgba(201, 168, 76, 0.06); }
 
-    .cmd-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .cmd-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 12px; color: var(--text-2); padding: 8px 12px; background: var(--raised); border: 1px solid var(--border); }
-    .cmd-list li code { flex-shrink: 0; }
+    .cmd-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .cmd-list li {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      font-size: 12.5px;
+      color: var(--text-2);
+      padding: 8px 12px;
+      background: var(--raised);
+      border: 1px solid var(--border);
+      line-height: 1.5;
+    }
 
-    .forbidden { font-family: var(--font-m); font-size: 11px; color: var(--red); border-left: 2px solid var(--red); padding: 8px 14px; background: rgba(224, 96, 96, 0.05); margin-bottom: 6px; line-height: 1.5; }
-
-    .stack-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    .stack-table th { font-family: var(--font-m); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
-    .stack-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
-    .stack-table td:first-child { color: var(--text); font-weight: 500; }
-    .stack-table tr:last-child td { border-bottom: none; }
-
-    /* Decision matrices (wireframe tool, prototype tool, PRD template) */
-    .matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 10px; }
-    .matrix-table th { font-family: var(--font-m); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02); }
-    .matrix-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: var(--text-2); }
-    .matrix-table tr:last-child td { border-bottom: none; }
-    .matrix-verdict { font-family: var(--font-m); font-size: 10px; color: var(--accent); margin-top: 4px; }
-
-    .gear-strip { display: flex; gap: 0; margin-bottom: 16px; }
-    .gear { flex: 1; font-family: var(--font-m); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; padding: 6px; }
-    .gear-expand { color: var(--blue); background: rgba(107, 174, 214, 0.08); border: 1px solid rgba(107, 174, 214, 0.2); }
-    .gear-hold   { color: var(--accent); background: rgba(201, 168, 76, 0.08); border: 1px solid rgba(201, 168, 76, 0.2); }
-    .gear-reduce { color: var(--green);  background: rgba(76, 175, 116, 0.08); border: 1px solid rgba(76, 175, 116, 0.2); }
-
-    /* Flow diagram (PRD Creation stage chain) */
-    .flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 16px; }
-    .flow-node { font-family: var(--font-m); font-size: 10px; color: var(--text); background: var(--raised); border: 1px solid var(--border); padding: 5px 10px; }
+    /* Flow chain */
+    .flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+    .flow-node { font-family: var(--font-m); font-size: 10px; color: var(--text); background: var(--raised); border: 1px solid var(--border); padding: 5px 9px; }
     .flow-node.gate { color: var(--accent); border-color: rgba(201, 168, 76, 0.3); }
     .flow-arrow { color: var(--text-3); font-size: 11px; }
 
-    /* Template picker + viewer modal */
-    .tpl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 8px; }
+    /* Gear strip — wraps instead of crushing */
+    .gear-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 4px; }
+    .gear { font-family: var(--font-m); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; padding: 8px 6px; line-height: 1.4; }
+    .gear-expand { color: var(--blue);   background: rgba(107, 174, 214, 0.08); border: 1px solid rgba(107, 174, 214, 0.2); }
+    .gear-hold   { color: var(--accent); background: rgba(201, 168, 76, 0.08);  border: 1px solid rgba(201, 168, 76, 0.2); }
+    .gear-reduce { color: var(--green);  background: rgba(76, 175, 116, 0.08);  border: 1px solid rgba(76, 175, 116, 0.2); }
+
+    /* Tables — always scrollable rather than overflowing the page */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); }
+    .matrix-table { width: 100%; min-width: 300px; border-collapse: collapse; font-size: 12.5px; }
+    .matrix-table th {
+      font-family: var(--font-m); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-3); text-align: left; padding: 8px 10px;
+      border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02); white-space: nowrap;
+    }
+    .matrix-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text-2); }
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table td.tpl-cell { color: var(--accent); cursor: pointer; font-family: var(--font-m); font-size: 11.5px; }
+    .matrix-table td.tpl-cell:hover { background: rgba(201, 168, 76, 0.07); }
+    .matrix-verdict { font-family: var(--font-m); font-size: 10.5px; color: var(--accent); margin-top: 6px; line-height: 1.5; }
+
+    /* Template picker */
+    .tpl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; }
     .tpl-card {
-      background: var(--raised);
-      border: 1px solid var(--border);
-      padding: 12px 14px;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-      text-align: left;
+      background: var(--raised); border: 1px solid var(--border); padding: 11px 13px;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s; text-align: left;
+      font-family: inherit; color: inherit;
     }
     .tpl-card:hover { border-color: var(--accent); background: var(--subtle); }
     .tpl-card-name { font-family: var(--font-m); font-size: 11px; color: var(--accent); margin-bottom: 4px; }
-    .tpl-card-desc { font-size: 11px; color: var(--text-2); line-height: 1.5; margin-bottom: 6px; }
+    .tpl-card-desc { font-size: 11.5px; color: var(--text-2); line-height: 1.45; margin-bottom: 5px; }
     .tpl-card-hint { font-family: var(--font-m); font-size: 9px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
 
+    /* ── "Full detail" button ─────────────────────────────────────── */
+    .detail-btn {
+      margin-top: 22px;
+      font-family: var(--font-m);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      padding: 9px 14px;
+      min-height: 40px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .detail-btn:hover { background: rgba(201, 168, 76, 0.1); border-color: var(--accent); }
+
+    /* Hidden long-form source for the modal */
+    .detail-store { display: none; }
+
+    /* ── Modal ────────────────────────────────────────────────────── */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(6, 6, 9, 0.82);
+      background: rgba(6, 6, 9, 0.85);
       z-index: 100;
       padding: 40px 20px;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .modal-overlay.open { display: block; }
     .modal-box {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
       background: #101017;
       border: 1px solid var(--border);
@@ -324,586 +349,360 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      gap: 12px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       background: #101017;
+      z-index: 1;
     }
-    .modal-title { font-family: var(--font-m); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; }
+    .modal-title { font-family: var(--font-m); font-size: 12px; color: var(--accent); letter-spacing: 0.04em; min-width: 0; overflow-wrap: anywhere; }
     .modal-close {
       font-family: var(--font-m);
       font-size: 11px;
       color: var(--text-3);
       background: transparent;
       border: 1px solid var(--border);
-      padding: 5px 10px;
+      padding: 8px 12px;
+      min-height: 40px;
       cursor: pointer;
+      flex-shrink: 0;
     }
     .modal-close:hover { color: var(--text); border-color: var(--text-3); }
-    .modal-body { padding: 20px; }
+    .modal-body { padding: 20px 18px 28px; }
+    .modal-body .label:first-child { margin-top: 0; }
     .modal-body pre {
       font-family: var(--font-m);
       font-size: 11.5px;
       line-height: 1.7;
       color: var(--text-2);
       white-space: pre-wrap;
-      word-wrap: break-word;
+      overflow-wrap: anywhere;
     }
-    .modal-loading { font-family: var(--font-m); font-size: 11px; color: var(--text-3); }
+    .modal-loading { font-family: var(--font-m); font-size: 11px; color: var(--text-3); line-height: 1.6; }
 
-    .os-footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--font-m); font-size: 10px; color: var(--text-3); flex-wrap: wrap; gap: 8px; }
+    .os-footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: var(--text-3);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .os-footer a { color: var(--text-3); text-decoration: none; }
+    .os-footer a:hover { color: var(--accent); }
+
+    /* ── Responsive ───────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      body { font-size: 14px; }
+      .page { padding: 32px 16px 72px; }
+      .section-inner { padding: 20px 16px 22px; }
+      .section-trigger { padding: 13px 14px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .modal-overlay { padding: 0; }
+      .modal-box { max-width: none; min-height: 100vh; border: none; }
+      .modal-body { padding: 18px 16px 32px; }
+      .os-header { padding-bottom: 20px; margin-bottom: 22px; }
+    }
+
+    @media (max-width: 480px) {
+      .section-num { width: 18px; }
+      .section-name { font-size: 14px; }
+      .step { gap: 10px; }
+      .step-id { width: 30px; }
+      .cmd-list li { padding: 8px 10px; }
+      .tpl-grid { grid-template-columns: 1fr; }
+      .os-meta { gap: 6px 16px; }
+      .matrix-table { min-width: 260px; font-size: 11.5px; }
+      .matrix-table th, .matrix-table td { padding: 7px 7px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
-<body class="mode-detailed">
+<body>
 
 <div class="page">
 
   <header class="os-header">
-    <div>
-      <div class="os-title">CLAUDE OS &nbsp;/&nbsp; INTERNAL</div>
-      <div class="os-headline">Gaurav's AI Operating System</div>
-      <div class="os-meta">
-        <span><span class="dot-live"></span> Live</span>
-        <span>v3.3 · 2026-07-15</span>
-        <span>7 systems documented</span>
-      </div>
-    </div>
-    <div class="mode-toggle" role="group" aria-label="View density">
-      <span>View</span>
-      <button id="btn-concise" onclick="setMode('concise')">Concise</button>
-      <button id="btn-detailed" onclick="setMode('detailed')">Detailed</button>
+    <div class="os-title">CLAUDE OS &nbsp;/&nbsp; INTERNAL</div>
+    <h1 class="os-headline">Gaurav's AI Operating System</h1>
+    <p class="os-lede">Seven systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. Each section states its purpose and its method; open <em>Full detail</em> for the mechanics.</p>
+    <div class="os-meta">
+      <span><span class="dot-live"></span> Live</span>
+      <span>v4.0 · 2026-07-18</span>
+      <span>7 systems</span>
     </div>
   </header>
 
-  <!-- SECTION 0: PRD Creation -->
+  <!-- ══ 00 · PRD Creation ══════════════════════════════════════════ -->
   <div class="section" id="s-prd">
-    <button class="section-trigger" onclick="toggle('s-prd')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-prd')" aria-expanded="false" aria-controls="b-prd">
+      <span class="section-trigger-left">
         <span class="section-num">00</span>
         <span class="section-name">PRD Creation</span>
-        <span class="section-tag new">new · runs before everything</span>
-      </div>
-      <span class="section-chevron">▼</span>
+        <span class="section-tag">6 stages · runs first</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-prd">
       <div class="section-inner">
-        <p><strong>Runs before <code>/rubric</code>, for every project — Blueprint and Builder OS both consume a <code>PRD.md</code>, so writing it can't live inside either framework.</strong> <code>/prd-create</code> is a 6-stage state machine that produces <code>PRD.md</code> with a Provenance block, which <code>/rubric</code> then requires and cites for each of its 5 answers.</p>
 
-        <div class="label">Ground rules (apply to every stage)</div>
-        <div class="rule"><b>Gaurav owns the problem</b>Claude never invents or assumes the idea, pain point, or problem statement — only surfaces, refines, and pressure-tests what Gaurav gives it.</div>
-        <div class="rule"><b>2–3 options, always</b>Every decision point offers real alternatives with tradeoffs. Never a single unilateral call.</div>
-        <div class="rule"><b>Research stays separate</b><code>PRIMARY_RESEARCH.md</code> and <code>SECONDARY_RESEARCH.md</code> are never merged, and never get folded into the PRD as first-draft prose — the PRD cites them.</div>
-        <div class="rule"><b>Broad before narrow, always</b>Never assume a problem statement and research backward to justify it. Divergence (Stage B) happens before any research question is written.</div>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">Turn a raw idea into a <code>PRD.md</code> that survives scrutiny — <strong>before</strong> a framework is chosen. Both Blueprint and Builder OS consume the PRD, so writing it can't live inside either one.</p>
 
-        <div class="label">The 6 stages</div>
-        <div class="flow-chain">
-          <span class="flow-node">A · Spark</span><span class="flow-arrow">→</span>
-          <span class="flow-node">B · Diverge</span><span class="flow-arrow">→</span>
+        <div class="pm-label method-label">Method</div>
+        <p>A 6-stage state machine (<code>/prd-create</code>). Divergence happens before any research question is written, and those questions are git-committed before narrowing is allowed — so the answer can't be reverse-engineered from the desired conclusion.</p>
+
+        <div class="flow-chain" style="margin:12px 0 16px;">
+          <span class="flow-node">A Spark</span><span class="flow-arrow">→</span>
+          <span class="flow-node">B Diverge</span><span class="flow-arrow">→</span>
           <span class="flow-node gate">◆ git-lock</span><span class="flow-arrow">→</span>
-          <span class="flow-node">C · Research</span><span class="flow-arrow">→</span>
-          <span class="flow-node">D · Narrow</span><span class="flow-arrow">→</span>
-          <span class="flow-node">E · Draft</span><span class="flow-arrow">→</span>
-          <span class="flow-node">F · Grill + Seal</span>
+          <span class="flow-node">C Research</span><span class="flow-arrow">→</span>
+          <span class="flow-node">D Narrow</span><span class="flow-arrow">→</span>
+          <span class="flow-node">E Draft</span><span class="flow-arrow">→</span>
+          <span class="flow-node">F Seal</span>
         </div>
 
-        <div class="phase-row">
-          <div class="phase-id">A</div>
-          <div class="phase-content">
-            <div class="phase-name">Spark</div>
-            <div class="concise-only">Gaurav's raw idea, captured verbatim — no reframing.</div>
-            <div class="phase-desc detail-only">Gaurav dumps the raw idea/pain point in whatever form it comes. Claude asks clarifying questions one at a time — never reframes or narrows. Captured near-verbatim into <code>SPARK.md</code>. Everything defaults to 🔵 hypothesis.</div>
-          </div>
+        <div class="steps">
+          <div class="step"><div class="step-id">A</div><div class="step-body"><div class="step-name">Spark</div><div class="step-desc">Gaurav's raw idea captured near-verbatim. No reframing, no narrowing.</div></div></div>
+          <div class="step"><div class="step-id">B</div><div class="step-body"><div class="step-name">Diverge</div><div class="step-desc">≥3 problem framings, one of them a mandatory anti-thesis: the version where this isn't worth solving.</div></div></div>
+          <div class="step"><div class="step-id">C</div><div class="step-body"><div class="step-name">Research</div><div class="step-desc">Primary and secondary, never merged. Each requires ≥3 entries of evidence <em>against</em>.</div></div></div>
+          <div class="step"><div class="step-id">D</div><div class="step-body"><div class="step-name">Narrow</div><div class="step-desc">2–3 candidate problem statements with evidence both ways. Gaurav picks and words it — Claude never authors the problem.</div></div></div>
+          <div class="step"><div class="step-id">E</div><div class="step-body"><div class="step-name">Draft</div><div class="step-desc">Template chosen by stakes × type. Every claim confidence-tagged and cited back to a research file.</div></div></div>
+          <div class="step"><div class="step-id">F</div><div class="step-body"><div class="step-name">Grill + seal</div><div class="step-desc">Interrogates the discovery chain — "which framing did research actually kill?" Seals into <code>PRD.md</code> with a Provenance block.</div></div></div>
         </div>
 
-        <div class="phase-row">
-          <div class="phase-id">B</div>
-          <div class="phase-content">
-            <div class="phase-name">Problem-space map (diverge)</div>
-            <div class="concise-only">≥3 framings incl. a mandatory anti-thesis — no picking yet.</div>
-            <div class="phase-desc detail-only">Produces ≥3 distinct problem framings, including one mandatory <strong>anti-thesis framing</strong> — the version where this isn't worth solving, or the pain is adjacent. Presented as options with tradeoffs. Gaurav does not pick yet — output is a research agenda, not a decision.</div>
-            <div class="phase-gate detail-only">◆ Gate: "Framings approved."</div>
-          </div>
+        <div class="label">Which template</div>
+        <div class="table-wrap">
+          <table class="matrix-table">
+            <thead><tr><th></th><th>Net-new product</th><th>Feature in existing product</th></tr></thead>
+            <tbody>
+              <tr><td><strong>High stakes</strong></td><td class="tpl-cell" data-tpl="full-prd.md">full-prd.md</td><td class="tpl-cell" data-tpl="feature-prd.md">feature-prd.md</td></tr>
+              <tr><td><strong>Low stakes</strong></td><td class="tpl-cell" data-tpl="lean-prd.md">lean-prd.md</td><td class="tpl-cell" data-tpl="experiment-brief.md">experiment-brief.md</td></tr>
+            </tbody>
+          </table>
         </div>
+        <div class="matrix-verdict">Tap any template name to read it raw.</div>
 
-        <div class="phase-row">
-          <div class="phase-id">C</div>
-          <div class="phase-content">
-            <div class="phase-name">Research <span class="phase-new">bias-lock</span></div>
-            <div class="concise-only">Questions frozen via git commit before narrowing is allowed.</div>
-            <div class="phase-desc detail-only">Research questions are derived from <em>all</em> Stage B framings and <strong>committed to git before any narrowing is allowed</strong> — this is the actual lock, not an honor system; questions can't be quietly rewritten once the desired answer is known. Two files, never merged: <code>PRIMARY_RESEARCH.md</code> (interview scripts + transcripts — no 🟢 tag anywhere without a quotable line here) and <code>SECONDARY_RESEARCH.md</code> (market/competitor/community scan, formatted as a Steal List). Both require an <strong>Evidence Against</strong> section with ≥3 entries, or an explicit "found nothing" log.</div>
-            <div class="rule detail-only"><b>Fast path</b><code>experiment-brief.md</code> gets a ~30-min secondary-only sweep instead of the full cycle. An all-🔵/🟡 experiment brief is the expected shape, not a failure.</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">D</div>
-          <div class="phase-content">
-            <div class="phase-name">Narrow (converge)</div>
-            <div class="concise-only">2–3 candidate statements with evidence for/against — Gaurav picks.</div>
-            <div class="phase-desc detail-only">Problem clustering → P1→P2→P3→core-failure chain → 2–3 candidate narrowed problem statements, each with supporting <em>and</em> contradicting evidence cited by file anchor, plus "what evidence would flip this." <strong>Gaurav picks and finalizes the wording — Claude never authors the problem statement</strong>, only the evidence dossier behind each candidate.</div>
-            <div class="phase-gate detail-only">◆ Gate: "Problem statement finalized."</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">E</div>
-          <div class="phase-content">
-            <div class="phase-name">Template select + draft</div>
-            <div class="concise-only">Pick from 4 templates by stakes × type, draft with cited claims.</div>
-            <div class="phase-desc detail-only">Template picked via the decision matrix below. Draft carries every claim with a confidence tag plus a reference into the research files — the PRD cites research, it doesn't restate it. Also produces (required): every success criterion rewritten into falsifiable form, and the Prior Art &amp; Steal List carried forward for Blueprint Phase 0.</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">F</div>
-          <div class="phase-content">
-            <div class="phase-name">Grill + seal</div>
-            <div class="concise-only">grill-me on the discovery chain; sealed into PRD.md with Provenance.</div>
-            <div class="phase-desc detail-only"><code>grill-me</code> targets the discovery chain specifically: "which Stage B framing did the research actually kill?" — if the answer is "none," that's surfaced as a smell, not silently passed. Survivors seal into root <code>PRD.md</code> with a Provenance block (template used, stakes classification, research file refs, grill date).</div>
-            <div class="phase-gate detail-only">◆ Gate: "PRD approved." → next: <code>/rubric</code>, now required to cite PRD.md.</div>
-          </div>
-        </div>
-
-        <div class="label">Template decision matrix</div>
-        <p class="detail-only">Four templates, selected by project type × stakes — not vibes. Shared library, framework-agnostic (both Blueprint and Builder OS draw from it).</p>
-        <table class="matrix-table">
-          <thead><tr><th></th><th>Net-new product</th><th>Feature in existing product</th></tr></thead>
-          <tbody>
-            <tr><td><strong>High stakes</strong></td><td id="tpl-btn-full">full-prd.md</td><td id="tpl-btn-feature">feature-prd.md</td></tr>
-            <tr><td><strong>Low stakes</strong></td><td id="tpl-btn-lean">lean-prd.md</td><td id="tpl-btn-experiment">experiment-brief.md</td></tr>
-          </tbody>
-        </table>
-
-        <div class="label">View a template</div>
-        <div class="tpl-grid">
-          <button class="tpl-card" onclick="openTemplate('full-prd', 'full-prd.md')">
-            <div class="tpl-card-name">full-prd.md</div>
-            <div class="tpl-card-desc">Net-new product, high stakes — real users, fundraising, hiring rides on it. Primary + secondary research, multiple personas, full competitive matrices, roadmap to phase 4+.</div>
-            <div class="tpl-card-hint">~1100 lines · view raw</div>
-          </button>
-          <button class="tpl-card" onclick="openTemplate('lean-prd', 'lean-prd.md')">
-            <div class="tpl-card-name">lean-prd.md</div>
-            <div class="tpl-card-desc">Net-new product, low stakes — cohort submission, 1–2 week sprint, MVP scoping. Every section compressed to its smallest defensible form.</div>
-            <div class="tpl-card-hint">~500 lines · view raw</div>
-          </button>
-          <button class="tpl-card" onclick="openTemplate('feature-prd', 'feature-prd.md')">
-            <div class="tpl-card-name">feature-prd.md</div>
-            <div class="tpl-card-desc">Feature inside an existing product, high stakes. Assumes surrounding product context; jumps to incremental evidence, options considered, regression risk, metric delta, rollout.</div>
-            <div class="tpl-card-hint">new · view raw</div>
-          </button>
-          <button class="tpl-card" onclick="openTemplate('experiment-brief', 'experiment-brief.md')">
-            <div class="tpl-card-name">experiment-brief.md</div>
-            <div class="tpl-card-desc">Fast, low-stakes validation spike — hypothesis, smallest test, kill criterion, what graduates it. Mostly 🔵/🟡 tagged by design.</div>
-            <div class="tpl-card-hint">new · view raw</div>
-          </button>
-        </div>
+        <button class="detail-btn" onclick="openDetail('prd')">Full detail →</button>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 1: Blueprint -->
+  <!-- ══ 01 · Blueprint ═════════════════════════════════════════════ -->
   <div class="section" id="s-blueprint">
-    <button class="section-trigger" onclick="toggle('s-blueprint')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-blueprint')" aria-expanded="false" aria-controls="b-blueprint">
+      <span class="section-trigger-left">
         <span class="section-num">01</span>
         <span class="section-name">Blueprint Framework</span>
-        <span class="section-tag">7 phases</span>
-      </div>
-      <span class="section-chevron">▼</span>
+        <span class="section-tag">7 gated phases</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-blueprint">
       <div class="section-inner">
-        <p>For complex products: auth, payments, 3+ entities, real users, portfolio-grade builds. 2+ rubric questions = Blueprint, no override. <span class="detail-only">Rubric now requires <code>PRD.md</code> to exist (via <code>/prd-create</code>) and cites it for every answer — refuses to run on a vacuum idea.</span></p>
 
-        <div class="gear-strip">
-          <div class="gear gear-expand">SCOPE EXPAND → Phase 1</div>
-          <div class="gear gear-hold">SCOPE HOLD → Phases 2–3</div>
-          <div class="gear gear-reduce">SCOPE REDUCE → Phase 4</div>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">The rigorous track, for anything with real consequences — auth, payments, 3+ entities, real users, portfolio-grade builds.</p>
+
+        <div class="pm-label method-label">Method</div>
+        <p>Seven phases, each ending in an explicit gate. <strong>No auto-advance</strong> — Gaurav approves every transition. Selected by <code>/rubric</code>: 2+ yes answers means Blueprint, no override.</p>
+
+        <div class="gear-strip" style="margin:14px 0 16px;">
+          <div class="gear gear-expand">Expand → P1</div>
+          <div class="gear gear-hold">Hold → P2–P3</div>
+          <div class="gear gear-reduce">Reduce → P4</div>
         </div>
 
-        <div class="label">Phases</div>
-
-        <div class="phase-row">
-          <div class="phase-id">P0</div>
-          <div class="phase-content">
-            <div class="phase-name">PRD Intake <span class="phase-new">Provenance short-circuit</span></div>
-            <div class="phase-desc">Read PRD → 5-bullet read-back → falsifiable success criteria → ambiguity list → Prior Art steal list.<br class="detail-only">
-            <strong>Steelman Gate:</strong> state the polarizing claim → sharpest counter (2 sentences) → defense (2 sentences). If defense doesn't hold, revisit scope before Phase 1.</div>
-            <div class="rule detail-only"><b>Provenance short-circuit</b>If <code>PRD.md</code> already carries a Provenance block (written by <code>/prd-create</code>), steps 2–5 are read directly from the PRD instead of freshly generated — Phase 0 becomes a confirmation gate, not a repeat of the work.</div>
-            <div class="phase-gate">◆ Gate: "Read-back approved."</div>
-          </div>
+        <div class="steps">
+          <div class="step"><div class="step-id">P0</div><div class="step-body"><div class="step-name">PRD Intake</div><div class="step-desc">Read-back, falsifiable success criteria, ambiguity list. Steelman gate: state the claim, argue against it, defend it.</div></div></div>
+          <div class="step"><div class="step-id">P1</div><div class="step-body"><div class="step-name">Solution</div><div class="step-desc">One interview, max 10 questions, 8 topics in order — journey, MVP, non-goals, tech shape, services, metrics, signal, risk.</div></div></div>
+          <div class="step"><div class="step-id">P2</div><div class="step-body"><div class="step-name">Design</div><div class="step-desc">Hands off to the 7-stage Design Framework (§03). Required output: a Named Reader.</div></div></div>
+          <div class="step"><div class="step-id">P3</div><div class="step-body"><div class="step-name">Plan</div><div class="step-desc">Slice 0 is a walking skeleton. Remaining slices ordered by risk, each carrying tests + analytics + docs.</div></div></div>
+          <div class="step"><div class="step-id">P4</div><div class="step-body"><div class="step-name">Development</div><div class="step-desc">Per slice: Red → Green → Refactor → Instrument → Document → Review → Smoke → Commit. Failing test first is mandatory.</div></div></div>
+          <div class="step"><div class="step-id">P5</div><div class="step-body"><div class="step-name">Testing</div><div class="step-desc">Four layers: security pass, unit/integration/E2E, 8-category edge cases, acceptance criteria.</div></div></div>
+          <div class="step"><div class="step-id">P6</div><div class="step-body"><div class="step-name">Deployment</div><div class="step-desc">13-item checklist, then a live smoke test. Ships only on the 7-condition Definition of Shipped.</div></div></div>
         </div>
 
-        <div class="phase-row">
-          <div class="phase-id">P1</div>
-          <div class="phase-content">
-            <div class="phase-name">Solution Stage</div>
-            <div class="phase-desc">POT-format interview (Proposal → Options → Tell me). 8 topics in order: core journey, MVP features, non-goals, tech shape, 3rd-party services, metrics, recruiter signal, risk register. One session, max 10 questions.</div>
-            <div class="phase-gate">◆ Gate: "Solution approved."</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">P2</div>
-          <div class="phase-content">
-            <div class="phase-name">Design <span class="phase-new">Named Reader added</span></div>
-            <div class="phase-desc">7-stage Design Framework (see Section 03). Required artifact from Stage 1: <strong>Named Reader</strong> — one specific real person this product must land for. Stored in <code>brand-guide.md</code>.</div>
-            <div class="phase-gate">◆ Gate: "Spec approved."</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">P3</div>
-          <div class="phase-content">
-            <div class="phase-name">Implementation Plan</div>
-            <div class="phase-desc">Slice 0: walking skeleton (frontend shell + /health + DB + PostHog + Sentry + /docs stub). Slices ordered by risk. Each slice: one capability + tests + analytics + HOW_TO_USE.md section.</div>
-            <div class="phase-gate">◆ Gate: "Plan approved."</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">P4</div>
-          <div class="phase-content">
-            <div class="phase-name">Development</div>
-            <div class="phase-desc">Per-slice: Red (failing tests, mandatory — no skipping to Green) → Green → Refactor → Instrument → Document → Review → Smoke-run → Commit. Between slices: 5-line PROGRESS.md + /compact.</div>
-            <div class="phase-gate">◆ Gate: All tests green. HOW_TO_USE.md complete.</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">P5</div>
-          <div class="phase-content">
-            <div class="phase-name">Testing</div>
-            <div class="phase-desc">Layer 0: Security pass (IDOR, authz, input sanitization). Layer 1: Unit + Integration + E2E. Layer 2: 8-category edge case checklist. Layer 3: Acceptance criteria.</div>
-            <div class="phase-gate">◆ Gate: CI green · zero P0/P1 bugs · acceptance criteria walked.</div>
-          </div>
-        </div>
-
-        <div class="phase-row">
-          <div class="phase-id">P6</div>
-          <div class="phase-content">
-            <div class="phase-name">Deployment</div>
-            <div class="phase-desc">13-item checklist: env vars, secrets, /health, DB migrations, PostHog, Sentry, HTTPS, CORS, rate limits, backups, CI green, README, CASE_STUDY.md. Post-deploy: Playwright smoke test against the live URL — light/dark/mobile screenshots, zero console errors, zero failed requests <span class="phase-new">new</span>.</div>
-            <div class="phase-gate">◆ Gate: Definition of Shipped — 7 conditions confirmed.</div>
-          </div>
-        </div>
-
-        <div class="label detail-only">Reclassification triggers</div>
-        <p class="detail-only">Auth / payments / 3+ entities / real users appear → promote to Blueprint.<br>
-        Kill criterion fires or 2+ weeks stalled → demote to Builder OS.<br>
-        Both require Gaurav confirmation + CLAUDE.md update.</p>
+        <button class="detail-btn" onclick="openDetail('blueprint')">Full detail →</button>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 2: Builder OS -->
+  <!-- ══ 02 · Builder OS ════════════════════════════════════════════ -->
   <div class="section" id="s-builderos">
-    <button class="section-trigger" onclick="toggle('s-builderos')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-builderos')" aria-expanded="false" aria-controls="b-builderos">
+      <span class="section-trigger-left">
         <span class="section-num">02</span>
         <span class="section-name">Builder OS</span>
         <span class="section-tag">14 sessions</span>
-      </div>
-      <span class="section-chevron">▼</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-builderos">
       <div class="section-inner">
-        <p>For solo MVPs: 0–1 rubric questions. Speed is the non-negotiable. <span class="detail-only"><code>PRD.md</code> now arrives pre-made via <code>/prd-create</code> with a Provenance block — don't hand-fill a blank template. <code>USER_FLOWS.md</code> is extracted verbatim from the PRD's Product Flows section during bootstrap, not written separately.</span></p>
 
-        <div class="label">Pre-Flight additions</div>
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title">Named Reader <span class="phase-new">new</span></div>
-            <p>From <code>BRAND_GUIDE.md</code>. One real person this product must land for. Confirmed before Session 1. Aesthetic anchor for all design decisions.</p>
-          </div>
-          <div class="card">
-            <div class="card-title">Red Tag Rule <span class="phase-new">new</span></div>
-            <p>PRD assumption tagged 🔴 (tested wrong): <strong>reduce surface, don't kill the feature.</strong> Depth unchanged, scope narrowed to the smallest version that tests the next hypothesis.</p>
-          </div>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">The speed track, for solo MVPs where shipping beats rigor — 0–1 yes answers on the rubric.</p>
+
+        <div class="pm-label method-label">Method</div>
+        <p>Fourteen fixed sessions in four blocks. Checkpoints are the gates; there is no phase ceremony. Speed is the non-negotiable, so anything optional is explicitly marked <strong>not a gate</strong>.</p>
+
+        <div class="steps" style="margin-top:14px;">
+          <div class="step"><div class="step-id">1–2</div><div class="step-body"><div class="step-name">Foundation</div><div class="step-desc">Schema, landing page, schema verification.</div></div></div>
+          <div class="step"><div class="step-id">3–5</div><div class="step-body"><div class="step-name">Backend + auth</div><div class="step-desc">Skeleton, core feature pipeline (the hardest session), auth UI and onboarding.</div></div></div>
+          <div class="step"><div class="step-id">6–9</div><div class="step-body"><div class="step-name">Dashboard + features</div><div class="step-desc">Shell and realtime, all screens, settings and billing, background jobs.</div></div></div>
+          <div class="step"><div class="step-id">10–13</div><div class="step-body"><div class="step-name">Polish + quality</div><div class="step-desc">Responsive, edge cases and error states, delight layer, analytics and monitoring.</div></div></div>
+          <div class="step gate"><div class="step-id">OPT</div><div class="step-body"><div class="step-name">Confidant pass — not a gate</div><div class="step-desc">30 minutes, one trusted person, one question. Fix anything under 2h. Ship regardless.</div></div></div>
+          <div class="step gate"><div class="step-id">14</div><div class="step-body"><div class="step-name">Launch prep</div><div class="step-desc">Blocker audit first: real gap → fix or note; perfectionism → ship anyway. Then domain, OG, legal, seed data, rehearsal.</div></div></div>
         </div>
 
-        <div class="label">Confidence tags</div>
+        <div class="label">Confidence tags carried from the PRD</div>
         <div class="tag-row">
-          <span class="tag" style="color:#4caf74;border-color:rgba(76,175,116,0.3)">🟢 Primary research</span>
-          <span class="tag" style="color:#c9a84c;border-color:rgba(201,168,76,0.3)">🟡 Secondary research</span>
+          <span class="tag" style="color:#4caf74;border-color:rgba(76,175,116,0.3)">🟢 Primary</span>
+          <span class="tag" style="color:#c9a84c;border-color:rgba(201,168,76,0.3)">🟡 Secondary</span>
           <span class="tag" style="color:#6baed6;border-color:rgba(107,174,214,0.3)">🔵 Hypothesis</span>
-          <span class="tag" style="color:#e06060;border-color:rgba(224,96,96,0.3)">🔴 Tested wrong → reduce surface</span>
+          <span class="tag" style="color:#e06060;border-color:rgba(224,96,96,0.3)">🔴 Tested wrong</span>
         </div>
 
-        <div class="label">Sessions</div>
-        <div class="phase-row">
-          <div class="phase-id">S1–2</div>
-          <div class="phase-content"><div class="phase-name">Foundation</div><div class="phase-desc detail-only">S1: Database schema (Supabase, RLS, realtime, auth trigger). S2: Landing page (brand applied, waitlist). S2.5: Schema verification.</div></div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S3–5</div>
-          <div class="phase-content"><div class="phase-name">Backend + Auth</div><div class="phase-desc detail-only">S3: Backend skeleton + auth middleware. S4: Core feature pipeline (hardest session). S5: Auth UI + onboarding.</div></div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S6–9</div>
-          <div class="phase-content"><div class="phase-name">Dashboard + Features</div><div class="phase-desc detail-only">S6: Dashboard shell + realtime. S7: All dashboard screens. S8: Settings + billing + Stripe. S9: Background jobs + emails.</div></div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S10–13</div>
-          <div class="phase-content"><div class="phase-name">Polish + Quality</div><div class="phase-desc detail-only">S10: PWA + responsive. S11: Edge cases + error states. S12: Delight layer. S13: Analytics audit + monitoring.</div></div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">OPT</div>
-          <div class="phase-content">
-            <div class="phase-name">Confidant Pass <span class="phase-new">new</span></div>
-            <div class="phase-desc"><strong>Optional. 30 min. NOT a gate.</strong> Show to one trusted person (Named Reader ideal). One question: "Anything here that makes you not take this seriously?" Fix under 2h items. Ship regardless.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S14</div>
-          <div class="phase-content">
-            <div class="phase-name">Launch Prep</div>
-            <div class="phase-desc"><strong>Step 1 — Launch blocker audit <span class="phase-new">new</span>:</strong> "Is there anything not good enough to publish?" Real gap → fix (under 2h) or note. Perfectionist filter → ship anyway.<br class="detail-only"><br class="detail-only">
-            <span class="detail-only">Steps 2–7: Custom domain → OG image → Legal pages → Seed data → Kill shot rehearsal (3× real phone) → Final checklist.</span></div>
-            <div class="phase-gate">◆ Ship it.</div>
-          </div>
-        </div>
+        <button class="detail-btn" onclick="openDetail('builderos')">Full detail →</button>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 3: Design Framework -->
+  <!-- ══ 03 · Design Framework ══════════════════════════════════════ -->
   <div class="section" id="s-design">
-    <button class="section-trigger" onclick="toggle('s-design')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-design')" aria-expanded="false" aria-controls="b-design">
+      <span class="section-trigger-left">
         <span class="section-num">03</span>
         <span class="section-name">Design Framework</span>
         <span class="section-tag">7 stages</span>
-      </div>
-      <span class="section-chevron">▼</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-design">
       <div class="section-inner">
-        <p><strong>Form follows function.</strong> Purpose before aesthetics. Inevitability test: "If this design language could be placed on a different product without feeling wrong — it was imposed, not derived."</p>
-        <p class="detail-only"><strong>Critical rule:</strong> Never carry over design tokens from a previous project. Stage 2 interview is the only source of truth for visual direction.</p>
 
-        <div class="label">Stages</div>
-        <div class="phase-row">
-          <div class="phase-id">S0</div>
-          <div class="phase-content">
-            <div class="phase-name">Data Model</div>
-            <div class="phase-desc">All entities, relationships, every state (empty / loading / error / populated). Mandatory before any visual work. Output: <code>DATA_MODEL.md</code>.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S1</div>
-          <div class="phase-content">
-            <div class="phase-name">Brainstorm <span class="phase-new">Named Reader added</span></div>
-            <div class="phase-desc detail-only">1. Load context. 2. Fetch 2–3 live reference UIs. 3. Name 3 design risks (→ Stage 5 checklist).<br>
-            <strong>4. Named Reader</strong> — one specific real person this product must land for. Name + role + context + sophistication in one sentence. Stored in Brand Guide.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S2</div>
-          <div class="phase-content">
-            <div class="phase-name">Interview <span class="phase-new">motion touchpoint 1/3</span></div>
-            <div class="phase-desc detail-only">One question at a time. Step 0: Purpose Statement. Track A: design language derived from purpose (visual feel, references, fonts, negative constraint "what would make this look AI-generated?"). Track B: per-panel intent with real copy + <strong>2–3 auto-suggested animations/micro-interactions per panel</strong>, confirmed or edited — never an afterthought.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S3</div>
-          <div class="phase-content">
-            <div class="phase-name">Wireframes <span class="phase-new">now a decision, not a fixed tool</span></div>
-            <div class="concise-only">Excalidraw (default) or Figma — decided by a 3-question matrix.</div>
-            <div class="phase-desc detail-only">Layout only. Component map + key screens + unhappy states (empty/error) + end-to-end flow + friction annotation (one word per transition: confusion / hesitation / exit / scroll / load / skip).</div>
-            <table class="matrix-table detail-only">
-              <thead><tr><th>#</th><th>Question</th><th>Yes →</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td>Will a third party open the file itself as a deliverable?</td><td>Figma</td></tr>
-                <tr><td>2</td><td>Does the build pull pixel-precise redlines from the design?</td><td>Figma</td></tr>
-                <tr><td>3</td><td>Is a Figma MCP actually connected right now?</td><td>Gates Figma</td></tr>
-              </tbody>
-            </table>
-            <div class="matrix-verdict detail-only">(1 or 2) AND 3 → Figma. Otherwise → Excalidraw (default). No Figma MCP is connected as of this writing.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S4</div>
-          <div class="phase-content">
-            <div class="phase-name">Design System <span class="phase-new">motion touchpoint 2/3</span></div>
-            <div class="concise-only">Claude Design (default) or Stitch — decided by a 4-question matrix.</div>
-            <div class="phase-desc detail-only">Every token carries a value + usage rule. Component showcase — states default/hover/focus/disabled/error + <strong>motion</strong> (live-triggerable, not just described). Saved at fixed path <code>Documentation/design/design-language.html</code> — doubles as the project's design-language artifact. Inevitability test on the full set. Output: <code>tailwind.config</code> + CSS vars + <code>components.json</code> + <code>brand-guide.md</code>.</div>
-            <table class="matrix-table detail-only">
-              <thead><tr><th>#</th><th>Question</th><th>Yes →</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td>Is code the final medium (shadcn/Tailwind)?</td><td>Claude Design</td></tr>
-                <tr><td>2</td><td>Does the design language fit Stitch's font enum?</td><td>No → Claude Design (forced)</td></tr>
-                <tr><td>3</td><td>Need 2+ divergent visual directions before committing?</td><td>Stitch</td></tr>
-                <tr><td>4</td><td>Will a non-technical reviewer judge screens-as-images before code exists?</td><td>Stitch</td></tr>
-              </tbody>
-            </table>
-            <div class="matrix-verdict detail-only">(3 or 4) AND 2 → Stitch first, then still emit tokens as code. Otherwise → Claude Design (default). Stitch isn't a safer bet against generic output — the anti-slop guards apply to both paths equally.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S5</div>
-          <div class="phase-content">
-            <div class="phase-name">Spec Doc <span class="phase-new">motion touchpoint 3/3</span></div>
-            <div class="phase-desc detail-only">What changed this session and why. Required: Analytics Surface · Constraints Contract · Implementation cost flags (<strong>motion complexity</strong> flagged here — spring physics/scroll-linked/staggered → fallback noted) · Design risk resolution (all 3 from S1) · Visual changelog with thumbnails.</div>
-          </div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-id">S6</div>
-          <div class="phase-content">
-            <div class="phase-name">Handoff → Blueprint Phase 3</div>
-            <div class="phase-desc detail-only">Design ends at spec sign-off. Packet: tailwind.config + CSS vars + components.json + shadcn install list + component showcase + signed SPEC.md.</div>
-          </div>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">Derive a design language <em>from</em> what the product must prove, rather than applying an aesthetic on top of it. The test: if the design language could be moved to a different product without feeling wrong, it was imposed, not derived.</p>
+
+        <div class="pm-label method-label">Method</div>
+        <p>Seven stages, data before pixels. Tool choices are settled by decision matrices, not preference — and design tokens are <strong>never</strong> carried over from a previous project.</p>
+
+        <div class="steps" style="margin-top:14px;">
+          <div class="step"><div class="step-id">S0</div><div class="step-body"><div class="step-name">Data model</div><div class="step-desc">Every entity and every state — empty, loading, error, populated. Mandatory before any visual work.</div></div></div>
+          <div class="step"><div class="step-id">S1</div><div class="step-body"><div class="step-name">Brainstorm</div><div class="step-desc">Live reference UIs, three named design risks, and a Named Reader: one real person this must land for.</div></div></div>
+          <div class="step"><div class="step-id">S2</div><div class="step-body"><div class="step-name">Interview</div><div class="step-desc">Purpose statement first, then design language and per-panel intent — including motion, suggested up front rather than bolted on.</div></div></div>
+          <div class="step"><div class="step-id">S3</div><div class="step-body"><div class="step-name">Wireframes</div><div class="step-desc">Layout only, including unhappy states and friction annotations. Excalidraw by default; Figma only if a 3-question matrix says so.</div></div></div>
+          <div class="step"><div class="step-id">S4</div><div class="step-body"><div class="step-name">Design system</div><div class="step-desc">Every token carries a usage rule. Component showcase with live-triggerable states and motion. Claude Design by default; Stitch by matrix.</div></div></div>
+          <div class="step"><div class="step-id">S5</div><div class="step-body"><div class="step-name">Spec doc</div><div class="step-desc">What changed and why, plus analytics surface, constraints contract, cost flags, and resolution of all three S1 risks.</div></div></div>
+          <div class="step"><div class="step-id">S6</div><div class="step-body"><div class="step-name">Handoff</div><div class="step-desc">Design ends at spec sign-off. Packet goes to Blueprint P3.</div></div></div>
         </div>
 
-        <div class="label detail-only">Design-language artifact — publish gating <span class="phase-new">new</span></div>
-        <p class="detail-only">Stage 4's component showcase (<code>Documentation/design/design-language.html</code>) is private-staged by default — sign-off never auto-publishes it. Promotion is a separate, explicit <code>/promote-to-portfolio</code> command (never a CI/deploy hook) that pushes it into the project's portfolio case-study page as a top-level "Design" nav tab, embedded via iframe. No automation watches for changes; the command never commits or pushes on its own.</p>
+        <button class="detail-btn" onclick="openDetail('design')">Full detail →</button>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 4: Skills & Commands -->
+  <!-- ══ 04 · Skills & Commands ═════════════════════════════════════ -->
   <div class="section" id="s-skills">
-    <button class="section-trigger" onclick="toggle('s-skills')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-skills')" aria-expanded="false" aria-controls="b-skills">
+      <span class="section-trigger-left">
         <span class="section-num">04</span>
         <span class="section-name">Skills &amp; Commands</span>
-        <span class="section-tag">slash commands + plugins</span>
-      </div>
-      <span class="section-chevron">▼</span>
+        <span class="section-tag">the control surface</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-skills">
       <div class="section-inner">
 
-        <div class="label">Session commands</div>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">The actual control surface — what's installed, what fires automatically, and what requires a deliberate command.</p>
+
+        <div class="pm-label method-label">Method</div>
+        <p>Four groups. Anything that changes the world is a command Gaurav types; anything that only <em>checks</em> is a hook that fires on its own.</p>
+
+        <div class="label">Session + kickoff</div>
         <ul class="cmd-list">
-          <li><code>/continues</code> Reload project context on demand — also auto-fires at session start via <code>init-project-context.sh</code> (Status/Last session/Blocked on/Next up printed automatically)</li>
-          <li><code>/end-session</code> Sync memory + Obsidian — journal + mistakes + decisions + Obsidian page overwrite</li>
-          <li><code>/compact</code> Compress context at ~30 turns — preserve modified files, failing output, current task state</li>
+          <li><code>/continues</code> reload project context — also auto-fires at session start</li>
+          <li><code>/end-session</code> sync memory, journal, decisions, Obsidian</li>
+          <li><code>/prd-create</code> → <code>/rubric</code> → <code>/project-start</code> the fixed kickoff order</li>
         </ul>
 
-        <div class="label">Framework selection + kickoff</div>
+        <div class="label">Build loop</div>
         <ul class="cmd-list">
-          <li><code>/prd-create</code> <span class="phase-new">new</span> 6-stage PRD state machine — runs before rubric, every project</li>
-          <li><code>/rubric</code> 5-question rubric — cites PRD.md, scores Blueprint vs Builder OS (2+ yes = Blueprint, locked)</li>
-          <li><code>/project-start</code> One-shot kickoff — PRD → rubric → bootstrap → Notion page → hand off</li>
+          <li><code>/phase-0…6</code> Blueprint gates · <code>/slice</code> per-slice dev loop · <code>/ship-check</code> deploy gate</li>
+          <li><code>/grill-me</code> relentless one-at-a-time interrogation of a plan</li>
+          <li><code>superpowers:*</code> brainstorming, writing-plans, TDD, simplify, code-review, debugging</li>
         </ul>
 
-        <div class="label">Blueprint phase gates</div>
+        <div class="label">Autonomy</div>
         <ul class="cmd-list">
-          <li><code>/phase-0-intake</code> · <code>/phase-1-solution</code> · <code>/phase-2-design</code> · <code>/phase-3-plan</code></li>
-          <li><code>/phase-5-testing</code> · <code>/slice</code> (per-slice dev loop) · <code>/ship-check</code> (deployment gate)</li>
+          <li><code>model-router</code> tags every plan step with the model that should run it — fable, opus, or sonnet</li>
+          <li><code>dev-manager</code> executes a tagged plan on its own, verifying each result before trusting it. Escalates on exactly five triggers.</li>
+          <li><code>/dev-start</code> the deliberate second act — plan approval alone never starts execution</li>
+          <li><code>/ralph-loop</code> fresh-context overnight loop; refuses to run on <code>main</code>, needs a stop condition</li>
         </ul>
 
-        <div class="label">Design + research</div>
+        <div class="label">Guardrails (hooks — fire without being called)</div>
         <ul class="cmd-list">
-          <li><code>/grill-me</code> Live interview — relentless one-at-a-time questions with recommended answers</li>
-          <li><code>superpowers:brainstorming</code> Full design spec workflow — context load → approaches → design → spec → writing-plans</li>
-          <li><code>superpowers:writing-plans</code> Implementation plan — invoked after brainstorming approval</li>
-          <li><code>superpowers:frontend-design</code> Creative/marketing UI with visual references</li>
-          <li><code>superpowers:tool-design</code> Functional app UI — shadcn + Tailwind, WCAG AA, 4 states mandatory</li>
+          <li><code>pre-tool-use-guard</code> blocks force-push, <code>--no-verify</code>, home-dir deletes, secret echoing</li>
+          <li><code>deploy-preflight-guard</code> blocks deploys unless the project records a deploy target</li>
+          <li><code>framework-state-check</code> flags an unlocked framework or a stalled PRD run at boot</li>
+          <li><code>prompt-compile</code> classifies each prompt and compiles a task brief before medium/high-stakes work</li>
         </ul>
 
-        <div class="label">Development</div>
-        <ul class="cmd-list">
-          <li><code>superpowers:test-driven-development</code> TDD — failing tests first, enforced per slice</li>
-          <li><code>superpowers:simplify</code> Complexity reduction — run before every commit</li>
-          <li><code>superpowers:requesting-code-review</code> Two-pass review — CRITICAL first, INFORMATIONAL second</li>
-          <li><code>superpowers:debugging</code> Systematic debug — hypothesis → isolate → test → verify</li>
-        </ul>
-
-        <div class="label">External plugins adopted <span class="phase-new">new</span></div>
-        <ul class="cmd-list">
-          <li><code>v60samurai/agent-skills</code> (<code>prompt-compile</code>) — deterministic bash <code>UserPromptSubmit</code> gate hook classifies every prompt into low/medium/high bands (no LLM self-grading), paired with a skill that compiles a 7-section task brief (task+non-goals, target, constraint sources, skill sequence, checkpoints, verify criteria, output contract) before medium/high-band work executes. High band waits for approval; medium band shows the brief and proceeds; bug reports and explicit escape hatches stay silent. Installed at user scope via <code>claude plugin marketplace add</code> + <code>claude plugin install</code> — no manual hook copying or settings.json edits.</li>
-        </ul>
-
-        <div class="label">Model routing + autonomous execution <span class="phase-new">new</span></div>
-        <ul class="cmd-list">
-          <li><code>model-router</code> skill — self-triggering (fires under the standing "if a skill might apply, invoke it" rule, no hook needed). Tags every implementation-plan step inline right before approval: <code>[model: fable]</code> for embedded strategy/planning work, <code>[model: opus]</code> for deep analysis and high-stakes judgment, <code>[model: sonnet]</code> for token-heavy routine dev/scripting/testing/browsing (the default lane). Untagged steps fall back to <code>sonnet</code> with a stated reason, never left blank.</li>
-          <li><code>dev-manager</code> agent (<code>model: opus</code>, global) — takes an approved tagged plan and executes it autonomously: dispatches each step to its tagged model via the <code>Agent</code> tool, defaults to <code>isolation: worktree</code> for any parallel dispatch (not conditional on predicted file overlap), independently re-verifies every worker's claimed result before trusting it and moving to dependents. Escalates (inline pause + push notification) on exactly five triggers — the standing Non-Negotiables list, a new external dependency, auth/payments/secrets touched, the plan invalidated mid-flight, or anomalous cost/token burn on one step — and handles everything else solo, reporting only at slice/plan checkpoints.</li>
-          <li><code>/dev-start</code> — the explicit handoff gate. Verifies the plan is tagged and approved, then dispatches <code>dev-manager</code>. Plan approval alone never auto-starts execution — this is a deliberate second act.</li>
-          <li><code>/phase-3-plan</code> now runs <code>model-router</code> before its existing "Plan approved" gate, so Blueprint-framework plans get the same per-step model tags as any other plan.</li>
-        </ul>
-
-        <div class="label">Global installer <span class="phase-new">new</span></div>
-        <ul class="cmd-list">
-          <li><code>scripts/install-global.sh</code> Push framework commands/hooks into <code>~/.claude/</code> — backs up first, idempotent</li>
-          <li><code>scripts/pull-global.sh</code> Snapshot live <code>~/.claude/</code> config back into the repo for audit (<code>global-audit/</code>, gitignored)</li>
-          <li><code>pre-tool-use-guard.sh</code> Hook — blocks <code>git push --force</code>, <code>--no-verify</code>, home-dir <code>rm -rf</code>, reset+push chains, echoing secret-shaped vars to output, <code>python3</code> where only <code>python</code> exists, and quoted Windows paths with a trailing-backslash-before-quote bug that breaks bash parsing</li>
-          <li><code>deploy-preflight-guard.sh</code> Hook <span class="phase-new">new</span> — blocks <code>vercel --prod/deploy</code> and <code>railway up/deploy</code> unless the target project's CLAUDE.md has a recorded <code>Deploy target:</code> line (prevents deploying to the wrong account by construction)</li>
-          <li><code>framework-state-check.sh</code> Hook — flags an unlocked framework or a stalled <code>/prd-create</code> run at session boot</li>
-        </ul>
-
-        <div class="label">Publishing <span class="phase-new">new</span></div>
-        <ul class="cmd-list">
-          <li><code>/promote-to-portfolio</code> Manual, explicit only — pushes a project's <code>design-language.html</code> into its portfolio case-study page as a new "Design" tab. Idempotent, never commits/pushes on its own.</li>
-        </ul>
-
-        <div class="label">Autonomous loops <span class="phase-new">new</span></div>
-        <ul class="cmd-list">
-          <li><code>/ralph-loop</code> Ralph pattern (Geoffrey Huntley) — fresh-context agent loop for overnight builds. Each iteration re-reads <code>PROMPT.md</code> + <code>specs/*.md</code> + <code>TODO.md</code> from disk (no conversation memory carried between iterations), implements one item, commits on a passing test. Runner: <code>scripts/ralph-loop.sh</code> — refuses to run on <code>main</code>/<code>master</code>, requires a <code>--test-cmd</code> stop-condition, caps iterations, stops after 3 consecutive test failures. Starter kit: <code>starters/ralph-loop/</code>.</li>
-        </ul>
-
-        <div class="label">PM skills (phuryn/pm-skills)</div>
-        <div class="tag-row">
-          <span class="tag">/write-prd</span>
-          <span class="tag">/plan-okrs</span>
-          <span class="tag">/strategy</span>
-          <span class="tag">/write-stories</span>
-          <span class="tag">/research-users</span>
-          <span class="tag">/competitive-analysis</span>
-          <span class="tag">/write-query</span>
-          <span class="tag">/battlecard</span>
-          <span class="tag">/plan-launch</span>
-          <span class="tag">/proofread</span>
-        </div>
-
-        <div class="label">Codex delegation</div>
-        <ul class="cmd-list">
-          <li><code>codex exec --full-auto --model gpt-4o-mini</code> Inline review — pipe to <code>~/.claude/codex-last.md</code></li>
-          <li><code>codex exec -a on-request -s workspace-write</code> Risky/sandbox — explicit approval per action</li>
-        </ul>
-
+        <button class="detail-btn" onclick="openDetail('skills')">Full detail →</button>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 5: CLAUDE.md Principles -->
+  <!-- ══ 05 · Principles ════════════════════════════════════════════ -->
   <div class="section" id="s-principles">
-    <button class="section-trigger" onclick="toggle('s-principles')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-principles')" aria-expanded="false" aria-controls="b-principles">
+      <span class="section-trigger-left">
         <span class="section-num">05</span>
-        <span class="section-name">CLAUDE.md Principles</span>
-        <span class="section-tag">operating rules</span>
-      </div>
-      <span class="section-chevron">▼</span>
+        <span class="section-name">Operating Principles</span>
+        <span class="section-tag">CLAUDE.md</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-principles">
       <div class="section-inner">
 
-        <div class="label">Stack <span class="phase-new">changed</span></div>
-        <p class="detail-only">Stack is project-specific, not a global default — it's recorded in each project's own CLAUDE.md "Framework state" block. A new project checks sibling <code>memory/project.md</code> files for a precedent stack before picking one from scratch; Gaurav confirms, it locks for that project. One gotcha stays global regardless of stack: <code>pyairtable</code> / <code>anthropic</code> SDKs are sync — never <code>await</code>.</p>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">The standing rules that hold regardless of framework, project, or stack — the things that don't get re-decided per session.</p>
 
-        <div class="label">Forbidden patterns</div>
-        <div class="forbidden"><code>await</code> on sync libraries (pyairtable, anthropic SDK)</div>
-        <div class="forbidden">Silent <code>except Exception: pass</code> — always surface errors</div>
-        <div class="forbidden"><code>git push --force</code> / <code>--no-verify</code> / auto-commits without explicit request — <span class="detail-only">now enforced by <code>pre-tool-use-guard.sh</code>, not just convention</span></div>
-        <div class="forbidden">Placeholder scaffolds: <code># TODO</code>, <code>pass</code>, stub functions left behind</div>
-        <div class="forbidden">Debug logging in prod · Secrets in code <em>or command output</em> — env vars only, never <code>echo</code>/<code>print</code>/<code>cat</code> a value <span class="phase-new">changed</span></div>
-        <div class="forbidden">Guessing IDs/API details/config against live systems — locate ground truth first <span class="phase-new">new</span></div>
+        <div class="pm-label method-label">Method</div>
+        <p><strong>Gaurav decides what. Claude decides how and holds the bar.</strong> Three gears, never blended, plus a hard list of things that are simply not done.</p>
 
-        <div class="label">Non-negotiables — confirm before</div>
-        <p>Delete · overwrite · force-push · deploy/redeploy · Oracle VM changes · anything destructive.</p>
-
-        <div class="label">Think → Build → Prove</div>
-        <div class="gear-strip">
-          <div class="gear gear-expand">SCOPE EXPAND — vision, 10x, challenge the ask</div>
-          <div class="gear gear-hold">SCOPE HOLD — plan + build, bulletproof rigor</div>
-          <div class="gear gear-reduce">SCOPE REDUCE — cut to MVP, ship</div>
+        <div class="gear-strip" style="margin:14px 0 18px;">
+          <div class="gear gear-expand">Scope expand — vision, challenge the ask</div>
+          <div class="gear gear-hold">Scope hold — plan + build, rigor</div>
+          <div class="gear gear-reduce">Scope reduce — cut to MVP, ship</div>
         </div>
-        <p class="detail-only"><strong>Plan</strong> — lock the plan, flip to auto-accept, execute in one pass: stop hand-holding mid-build. Non-trivial feature/bugfix work → write a failing test first (mandatory, trivial-task carve-out exempts TDD too) <span class="phase-new">new</span>. <strong>Prove</strong> — self-check gate before claiming done: did I run it? did I verify against real output/file:line/screenshot, not a plausible-looking guess? am I being agreeable instead of honest? No "done" without evidence.</p>
 
-        <div class="label">Priority order (strict, no exceptions)</div>
+        <div class="label">Forbidden</div>
+        <div class="forbidden"><code>await</code> on sync SDKs (pyairtable, anthropic)</div>
+        <div class="forbidden">Silent <code>except: pass</code> — always surface errors</div>
+        <div class="forbidden">Force-push, <code>--no-verify</code>, or auto-commits without an explicit request</div>
+        <div class="forbidden">Placeholder scaffolds left behind — TODOs, stubs, bare <code>pass</code></div>
+        <div class="forbidden">Secrets in code <em>or</em> command output — env vars only, never printed</div>
+        <div class="forbidden">Guessing IDs or config against live systems — find ground truth first</div>
+
+        <div class="label">Confirm before</div>
+        <p>Delete · overwrite · force-push · deploy · Oracle VM changes · anything destructive.</p>
+
+        <div class="label">Priority order — strict, no exceptions</div>
         <div class="tag-row">
           <span class="tag accent">Correct</span>
           <span class="tag">Simple</span>
@@ -912,156 +711,423 @@
           <span class="tag">Elegant</span>
         </div>
 
-        <div class="label">Relationship dynamic</div>
-        <p><strong>Gaurav decides what. Claude decides how and holds the bar.</strong><br class="detail-only">
-        <span class="detail-only">Push back with data, not opinion. One issue per question — recommendation + tradeoffs first. Honesty over agreement. One question saves hours.</span></p>
+        <div class="label">The proof gate</div>
+        <div class="rule"><b>No "done" without evidence</b>Did I run it? Did I verify against real output, a file:line, or a screenshot — not a plausible-looking guess? Am I being agreeable instead of honest?</div>
 
-        <div class="label detail-only">Knowledge system</div>
-        <ul class="cmd-list detail-only">
-          <li><code>Memory</code> <code>C:\Users\Gaurav Gupta\.claude\projects\...\memory\</code></li>
-          <li><code>Obsidian</code> <code>G:\My Drive\Obsidian Vault\</code> — Google Drive sync</li>
-          <li><code>#idea</code> → Notion &nbsp;|&nbsp; <code>#capture</code> → Obsidian &nbsp;|&nbsp; Bot flows → check Telegram Bot Flow Ideas in Notion first</li>
-          <li><code>Memory writes</code> Surgical edits only, never full-file rewrites. Conflicting fact → flag it, don't silently overwrite <span class="phase-new">new</span></li>
-        </ul>
-
+        <button class="detail-btn" onclick="openDetail('principles')">Full detail →</button>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 6: Terminal Workflow -->
+  <!-- ══ 06 · Terminal ══════════════════════════════════════════════ -->
   <div class="section" id="s-terminal">
-    <button class="section-trigger" onclick="toggle('s-terminal')">
-      <div class="section-trigger-left">
+    <button class="section-trigger" onclick="toggle('s-terminal')" aria-expanded="false" aria-controls="b-terminal">
+      <span class="section-trigger-left">
         <span class="section-num">06</span>
         <span class="section-name">Terminal Workflow</span>
-        <span class="section-tag new">new · Windows, no admin required</span>
-      </div>
-      <span class="section-chevron">▼</span>
+        <span class="section-tag">Windows, no admin</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="section-body">
+    <div class="section-body" id="b-terminal">
       <div class="section-inner">
-        <p><strong>Moved development back into the raw terminal instead of an editor's integrated one</strong> — Windows Terminal + PowerShell only, no VS Code. Everything below is either a standalone binary dropped in a personal <code>bin</code> folder (no admin rights needed, just added to the user <code>PATH</code>) or a PowerShell Gallery module installed with <code>-Scope CurrentUser</code>. Nothing here touches system-wide installs.</p>
 
-        <div class="label">Shell foundation</div>
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title">PowerShell 7, not 5.1</div>
-            <p>Windows Terminal's "PowerShell" entry silently launches the old <code>powershell.exe</code> (5.1) unless repointed. Fixed by changing <code>defaultProfile</code> in Terminal's <code>settings.json</code> to the <code>Windows.Terminal.PowershellCore</code> profile — the modern <code>pwsh.exe</code> that ships separately and was already installed, just not wired as default.</p>
-          </div>
-          <div class="card">
-            <div class="card-title">Nerd Font + Starship</div>
-            <p>CaskaydiaCove Nerd Font installed per-user (real Win32 <code>AddFontResourceW</code> call + registry entry, not just a .NET in-memory load — that distinction is what made the first install attempt silently fail). Starship replaces the default prompt: shows git branch/status and language-version badges (Node, Python) automatically, no config needed per-project.</p>
-          </div>
-        </div>
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">Development moved out of an editor's integrated terminal and back into a raw one — Windows Terminal + PowerShell 7, nothing else.</p>
 
-        <div class="label">Navigation</div>
+        <div class="pm-label method-label">Method</div>
+        <p>Every piece is either a standalone binary in a personal <code>bin</code> folder or a module installed <code>-Scope CurrentUser</code>. <strong>Nothing requires admin rights or touches a system-wide install.</strong></p>
+
+        <div class="label">What's wired in</div>
         <ul class="cmd-list">
-          <li><code>proj</code> Arrow-key / fuzzy-filter picker over every folder in <code>Documents\Projects</code> (via <code>fzf</code>) — jumps straight there. For <em>browsing</em> when the name's forgotten.</li>
-          <li><code>z &lt;partial-name&gt;</code> zoxide — jumps to any directory already visited, ranked by frequency + recency ("frecency"). For the 4–5 repos touched daily. Complements <code>proj</code> rather than replacing it: one browses, one guesses.</li>
+          <li><code>proj</code> / <code>z</code> fuzzy project picker for browsing; frecency jump for the daily repos</li>
+          <li><code>mdview</code> / <code>bat</code> readable Markdown and syntax-highlighted files, in-terminal</li>
+          <li><code>delta</code> every <code>git diff</code> and <code>git log -p</code> rendered side-by-side — no new commands to learn</li>
+          <li><code>Ctrl+R</code> / <code>Ctrl+T</code> fuzzy history search and fuzzy path insertion, wired into the shell itself</li>
+          <li><code>Win + `</code> quake-mode terminal drops down over any app</li>
+          <li>Starship + Nerd Font git status and language versions in the prompt, no per-project config</li>
         </ul>
 
-        <div class="label">File &amp; diff viewing</div>
-        <ul class="cmd-list">
-          <li><code>mdview plan.md</code> Renders Markdown properly in-terminal (via <code>glow</code>, paginated) — for the constant "let me verify this plan/PROGRESS file" moment mid-session, without leaving the terminal.</li>
-          <li><code>bat file.py</code> Syntax-highlighted, line-numbered viewer for anything that isn't Markdown — the <code>cat</code> equivalent for code/config/logs.</li>
-          <li><code>git log -p</code> / <code>git diff</code> Now rendered through <code>delta</code> globally (<code>core.pager</code>) — side-by-side, syntax-highlighted, line numbers. No new command to learn, existing git commands just look better.</li>
-        </ul>
+        <div class="label">Cross-window notifications</div>
+        <p>Running several Claude Code sessions in parallel means missing the one that's gone idle waiting for input. Claude Code's <code>Notification</code> hook fires a real Windows toast titled with the project folder — so it's obvious which window to switch to.</p>
 
-        <div class="label">Fuzzy search, wired into the shell itself</div>
-        <ul class="cmd-list">
-          <li><code>Ctrl+R</code> Fuzzy-searchable command history (PSFzf) — replaces PowerShell's default cycle-through-matches behavior.</li>
-          <li><code>Ctrl+T</code> Fuzzy-insert a file path at the cursor, from anywhere in the current directory tree.</li>
-        </ul>
+        <div class="label">Known limitation</div>
+        <div class="rule"><b>Ctrl+V image paste is broken on native Windows</b>Documented as supported, but silently fails outside WSL — an upstream bug, not local config. Workaround: save the screenshot, then drag the file in.</div>
 
-        <div class="label">Cross-window notifications <span class="phase-new">new</span></div>
-        <div class="rule">
-          <b>Why this exists</b>
-          Running several Claude Code sessions in parallel windows means missing the moment one goes idle waiting for a permission prompt or a reply — no signal short of alt-tabbing through every window to check.
-        </div>
-        <p>Solved with Claude Code's own <code>Notification</code> hook — an event that fires with <code>message</code>, <code>cwd</code>, and <code>notification_type</code> on stdin whenever the agent needs input. Registered globally in <code>~/.claude/settings.json</code> with matcher <code>permission_prompt|idle_prompt</code>, calling a small PowerShell script that fires a real Windows toast via the <strong>BurntToast</strong> module — title shows <code>Claude Code — &lt;project folder&gt;</code>, so it's clear which window to switch to without opening any of them.</p>
-
-        <div class="label">Quick access</div>
-        <ul class="cmd-list">
-          <li><code>Win + `</code> Windows Terminal "Quake mode" — drops a terminal down from any app, any time, via a global hotkey registered in Terminal's own <code>settings.json</code>. No window-hunting.</li>
-        </ul>
-
-        <div class="label">Known limitation — not solved, worth knowing</div>
-        <div class="rule">
-          <b>Ctrl+V image paste is genuinely broken on native Windows</b>
-          Claude Code documents clipboard-image paste (Win+Shift+S → Ctrl+V) as supported, but on native Windows (not WSL) it silently fails — confirmed via multiple open upstream GitHub issues, not a local config problem. No keybinding fix exists; it's inside Claude Code's own Windows clipboard-reading code. Workaround: save the screenshot to a file (Snipping Tool's "Save as" from the toast), then drag the file into the prompt or paste its path.
-        </div>
-
-        <div class="label">Claude Code CLI features worth using in any terminal session</div>
-        <ul class="cmd-list">
-          <li><code>Ctrl+O</code> Toggle the transcript view — see exactly which hooks fired, their exit codes, and stderr, without a debug flag.</li>
-          <li><code>--debug-file /tmp/claude.log</code> Full hook execution log (matched hooks, exit codes, stdout/stderr) — <code>tail -f</code> it in a second pane when a hook misbehaves.</li>
-          <li><code>/hooks</code> Read-only browser for every hook currently registered, grouped by event — the fastest way to confirm a settings.json edit actually took effect.</li>
-          <li>Plan mode Any 3+ step task — forces a written plan + explicit approval before a single file changes. Not optional for anything non-trivial (see Section 05).</li>
-          <li>Git worktrees / <code>isolation: "worktree"</code> Give a parallel task its own working copy instead of fighting over the same checkout — for running a second Claude Code session on the same repo without collision.</li>
-          <li>Subagents / forks A fork inherits the full conversation and shares the prompt cache — the right tool for offloading research or a big multi-step task without filling the main session's context with intermediate noise.</li>
-          <li><code>/tui fullscreen</code> Switches to a reserved alternate screen instead of appending to normal scrollback — fixes flicker/scroll-jump on long sessions, adds mouse-wheel scroll support.</li>
-          <li>Vim edit mode (<code>editorMode: "vim"</code>) <code>hjkl</code> navigation, <code>v</code>/<code>V</code> selection, <code>d</code>/<code>c</code>/<code>y</code> text objects in the prompt box itself.</li>
-          <li>Custom themes JSON files in <code>~/.claude/themes/</code>, hot-reloaded — override individual color tokens instead of picking only from the built-in preset list.</li>
-        </ul>
+        <button class="detail-btn" onclick="openDetail('terminal')">Full detail →</button>
       </div>
     </div>
   </div>
 
   <footer class="os-footer">
     <span>Gaurav Gupta · Claude OS</span>
-    <span>v3.3 · 2026-07-15</span>
+    <span><a href="index.html">← Portfolio</a></span>
   </footer>
 
 </div>
 
-<!-- Template viewer modal -->
-<div class="modal-overlay" id="tpl-modal" onclick="if(event.target===this) closeTemplate()">
-  <div class="modal-box">
+<!-- ══════════════════════════════════════════════════════════════════
+     Long-form detail — hidden source, rendered into the modal.
+     ══════════════════════════════════════════════════════════════ -->
+
+<div class="detail-store" id="d-prd" data-title="00 · PRD Creation">
+  <p><code>/prd-create</code> is a 6-stage state machine that produces <code>PRD.md</code> with a Provenance block, which <code>/rubric</code> then requires and cites for each of its 5 answers.</p>
+
+  <div class="label">Ground rules — apply to every stage</div>
+  <div class="rule"><b>Gaurav owns the problem</b>Claude never invents or assumes the idea, pain point, or problem statement — only surfaces, refines, and pressure-tests what Gaurav gives it.</div>
+  <div class="rule"><b>2–3 options, always</b>Every decision point offers real alternatives with tradeoffs. Never a single unilateral call.</div>
+  <div class="rule"><b>Research stays separate</b><code>PRIMARY_RESEARCH.md</code> and <code>SECONDARY_RESEARCH.md</code> are never merged, and never folded into the PRD as first-draft prose — the PRD cites them.</div>
+  <div class="rule"><b>Broad before narrow</b>Never assume a problem statement and research backward to justify it. Divergence happens before any research question is written.</div>
+
+  <div class="label">Stage detail</div>
+  <div class="steps">
+    <div class="step"><div class="step-id">A</div><div class="step-body"><div class="step-name">Spark</div><div class="step-desc">Gaurav dumps the raw idea in whatever form it comes. Claude asks clarifying questions one at a time — never reframes or narrows. Captured near-verbatim into <code>SPARK.md</code>. Everything defaults to 🔵 hypothesis.</div></div></div>
+    <div class="step"><div class="step-id">B</div><div class="step-body"><div class="step-name">Problem-space map</div><div class="step-desc">≥3 distinct framings, including one mandatory <strong>anti-thesis framing</strong> — the version where this isn't worth solving, or the pain is adjacent. Gaurav does not pick yet; the output is a research agenda, not a decision. Gate: "Framings approved."</div></div></div>
+    <div class="step"><div class="step-id">C</div><div class="step-body"><div class="step-name">Research — bias lock</div><div class="step-desc">Questions are derived from <em>all</em> Stage B framings and <strong>committed to git before any narrowing is allowed</strong> — the actual lock, not an honor system. <code>PRIMARY_RESEARCH.md</code> holds interview scripts and transcripts (no 🟢 tag anywhere without a quotable line here); <code>SECONDARY_RESEARCH.md</code> holds the market scan as a Steal List. Both require an <strong>Evidence Against</strong> section with ≥3 entries, or an explicit "found nothing" log. Fast path: <code>experiment-brief.md</code> gets a ~30-min secondary-only sweep — an all-🔵/🟡 brief is the expected shape, not a failure.</div></div></div>
+    <div class="step"><div class="step-id">D</div><div class="step-body"><div class="step-name">Narrow</div><div class="step-desc">Problem clustering → P1→P2→P3→core-failure chain → 2–3 candidate statements, each with supporting <em>and</em> contradicting evidence cited by file anchor, plus "what evidence would flip this." <strong>Gaurav finalizes the wording</strong>; Claude only builds the evidence dossier. Gate: "Problem statement finalized."</div></div></div>
+    <div class="step"><div class="step-id">E</div><div class="step-body"><div class="step-name">Template select + draft</div><div class="step-desc">Every claim carries a confidence tag plus a reference into the research files — the PRD cites research, it doesn't restate it. Also required: every success criterion rewritten into falsifiable form, and the Prior Art &amp; Steal List carried forward to Blueprint P0.</div></div></div>
+    <div class="step"><div class="step-id">F</div><div class="step-body"><div class="step-name">Grill + seal</div><div class="step-desc"><code>grill-me</code> targets the discovery chain specifically: "which Stage B framing did the research actually kill?" If the answer is "none," that's surfaced as a smell, not silently passed. Survivors seal into <code>PRD.md</code> with a Provenance block — template used, stakes classification, research refs, grill date. Gate: "PRD approved" → <code>/rubric</code>.</div></div></div>
+  </div>
+
+  <div class="label">The four templates</div>
+  <div class="tpl-grid">
+    <button class="tpl-card" data-tpl="full-prd.md">
+      <div class="tpl-card-name">full-prd.md</div>
+      <div class="tpl-card-desc">Net-new, high stakes — real users, fundraising, hiring rides on it. Primary + secondary research, multiple personas, competitive matrices, roadmap to phase 4+.</div>
+      <div class="tpl-card-hint">~1100 lines · view raw</div>
+    </button>
+    <button class="tpl-card" data-tpl="lean-prd.md">
+      <div class="tpl-card-name">lean-prd.md</div>
+      <div class="tpl-card-desc">Net-new, low stakes — cohort submission, 1–2 week sprint, MVP scoping. Every section compressed to its smallest defensible form.</div>
+      <div class="tpl-card-hint">~500 lines · view raw</div>
+    </button>
+    <button class="tpl-card" data-tpl="feature-prd.md">
+      <div class="tpl-card-name">feature-prd.md</div>
+      <div class="tpl-card-desc">Feature inside an existing product, high stakes. Assumes surrounding context; jumps to incremental evidence, options considered, regression risk, metric delta, rollout.</div>
+      <div class="tpl-card-hint">view raw</div>
+    </button>
+    <button class="tpl-card" data-tpl="experiment-brief.md">
+      <div class="tpl-card-name">experiment-brief.md</div>
+      <div class="tpl-card-desc">Fast, low-stakes validation spike — hypothesis, smallest test, kill criterion, what graduates it. Mostly 🔵/🟡 by design.</div>
+      <div class="tpl-card-hint">view raw</div>
+    </button>
+  </div>
+</div>
+
+<div class="detail-store" id="d-blueprint" data-title="01 · Blueprint Framework">
+  <p>Rubric requires <code>PRD.md</code> to exist and cites it for every answer — it refuses to run on a vacuum idea.</p>
+
+  <div class="label">Phase detail</div>
+  <div class="steps">
+    <div class="step"><div class="step-id">P0</div><div class="step-body"><div class="step-name">PRD Intake</div><div class="step-desc">Read PRD → 5-bullet read-back → falsifiable success criteria → ambiguity list → Prior Art steal list. <strong>Steelman gate:</strong> state the polarizing claim, give the sharpest counter in two sentences, defend in two. If the defense doesn't hold, revisit scope before P1. <em>Provenance short-circuit:</em> if the PRD already carries a Provenance block, steps 2–5 are read from it rather than regenerated — P0 becomes a confirmation gate, not a repeat. Gate: "Read-back approved."</div></div></div>
+    <div class="step"><div class="step-id">P1</div><div class="step-body"><div class="step-name">Solution Stage</div><div class="step-desc">POT-format interview (Proposal → Options → Tell me). Eight topics in order: core journey, MVP features, non-goals, tech shape, third-party services, metrics, recruiter signal, risk register. One session, max 10 questions. Gate: "Solution approved."</div></div></div>
+    <div class="step"><div class="step-id">P2</div><div class="step-body"><div class="step-name">Design</div><div class="step-desc">Runs the 7-stage Design Framework. Required artifact from Stage 1: <strong>Named Reader</strong> — one specific real person this product must land for, stored in <code>brand-guide.md</code>. Gate: "Spec approved."</div></div></div>
+    <div class="step"><div class="step-id">P3</div><div class="step-body"><div class="step-name">Implementation Plan</div><div class="step-desc">Slice 0 is the walking skeleton: frontend shell + <code>/health</code> + DB + PostHog + Sentry + docs stub. Remaining slices ordered by risk; each is one capability plus tests, analytics, and a HOW_TO_USE section. <code>model-router</code> runs before the gate, so every step carries a model tag. Gate: "Plan approved."</div></div></div>
+    <div class="step"><div class="step-id">P4</div><div class="step-body"><div class="step-name">Development</div><div class="step-desc">Per slice: Red (failing tests, mandatory — no skipping to Green) → Green → Refactor → Instrument → Document → Review → Smoke-run → Commit. Between slices: a 5-line PROGRESS.md update and <code>/compact</code>. Gate: all tests green, HOW_TO_USE complete.</div></div></div>
+    <div class="step"><div class="step-id">P5</div><div class="step-body"><div class="step-name">Testing</div><div class="step-desc">Layer 0 security (IDOR, authz, input sanitization) · Layer 1 unit + integration + E2E · Layer 2 the 8-category edge-case checklist · Layer 3 acceptance criteria. Gate: CI green, zero P0/P1 bugs, acceptance criteria walked.</div></div></div>
+    <div class="step"><div class="step-id">P6</div><div class="step-body"><div class="step-name">Deployment</div><div class="step-desc">13 items: env vars, secrets, /health, migrations, PostHog, Sentry, HTTPS, CORS, rate limits, backups, CI, README, CASE_STUDY.md. Post-deploy: a Playwright smoke test against the live URL — light/dark/mobile screenshots, zero console errors, zero failed requests. Gate: Definition of Shipped, 7 conditions confirmed.</div></div></div>
+  </div>
+
+  <div class="label">Reclassification triggers</div>
+  <p>Auth, payments, 3+ entities, or real users appear → promote to Blueprint.<br>
+  Kill criterion fires, or 2+ weeks stalled → demote to Builder OS.<br>
+  Both require Gaurav's confirmation and a CLAUDE.md update.</p>
+</div>
+
+<div class="detail-store" id="d-builderos" data-title="02 · Builder OS">
+  <p><code>PRD.md</code> arrives pre-made from <code>/prd-create</code> with a Provenance block — never hand-filled from a blank template. <code>USER_FLOWS.md</code> is extracted verbatim from the PRD's Product Flows section during bootstrap, not written separately.</p>
+
+  <div class="label">Pre-flight</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Named Reader</div>
+      <p>From <code>BRAND_GUIDE.md</code>. One real person this product must land for. Confirmed before Session 1, and the aesthetic anchor for every design decision after it.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Red Tag Rule</div>
+      <p>When a PRD assumption is tagged 🔴 (tested wrong): <strong>reduce surface, don't kill the feature.</strong> Depth stays; scope narrows to the smallest version that tests the next hypothesis.</p>
+    </div>
+  </div>
+
+  <div class="label">Session detail</div>
+  <div class="steps">
+    <div class="step"><div class="step-id">1–2</div><div class="step-body"><div class="step-name">Foundation</div><div class="step-desc">S1 database schema — Supabase, RLS, realtime, auth trigger. S2 landing page with brand applied and waitlist. S2.5 schema verification.</div></div></div>
+    <div class="step"><div class="step-id">3–5</div><div class="step-body"><div class="step-name">Backend + auth</div><div class="step-desc">S3 backend skeleton and auth middleware. S4 core feature pipeline — the hardest session. S5 auth UI and onboarding.</div></div></div>
+    <div class="step"><div class="step-id">6–9</div><div class="step-body"><div class="step-name">Dashboard + features</div><div class="step-desc">S6 dashboard shell and realtime. S7 all dashboard screens. S8 settings, billing, Stripe. S9 background jobs and emails.</div></div></div>
+    <div class="step"><div class="step-id">10–13</div><div class="step-body"><div class="step-name">Polish + quality</div><div class="step-desc">S10 PWA and responsive. S11 edge cases and error states. S12 delight layer. S13 analytics audit and monitoring.</div></div></div>
+    <div class="step"><div class="step-id">OPT</div><div class="step-body"><div class="step-name">Confidant pass</div><div class="step-desc"><strong>Optional. 30 minutes. Not a gate.</strong> Show it to one trusted person, ideally the Named Reader. One question: "Anything here that makes you not take this seriously?" Fix what's under 2h. Ship regardless.</div></div></div>
+    <div class="step"><div class="step-id">14</div><div class="step-body"><div class="step-name">Launch prep</div><div class="step-desc">Step 1 is the launch-blocker audit: "Is there anything not good enough to publish?" A real gap gets fixed if under 2h, or noted. A perfectionist filter gets overridden — ship anyway. Steps 2–7: custom domain, OG image, legal pages, seed data, kill-shot rehearsal on a real phone three times, final checklist.</div></div></div>
+  </div>
+</div>
+
+<div class="detail-store" id="d-design" data-title="03 · Design Framework">
+  <p><strong>Critical rule:</strong> never carry design tokens over from a previous project. The Stage 2 interview is the only source of truth for visual direction.</p>
+
+  <div class="label">Stage detail</div>
+  <div class="steps">
+    <div class="step"><div class="step-id">S0</div><div class="step-body"><div class="step-name">Data Model</div><div class="step-desc">All entities, relationships, and every state — empty, loading, error, populated. Mandatory before any visual work. Output: <code>DATA_MODEL.md</code>.</div></div></div>
+    <div class="step"><div class="step-id">S1</div><div class="step-body"><div class="step-name">Brainstorm</div><div class="step-desc">Load context, fetch 2–3 live reference UIs, name three design risks (which become the Stage 5 checklist), and define the <strong>Named Reader</strong> — name, role, context, sophistication, in one sentence.</div></div></div>
+    <div class="step"><div class="step-id">S2</div><div class="step-body"><div class="step-name">Interview</div><div class="step-desc">One question at a time. Step 0 is a Purpose Statement. Track A derives the design language from that purpose — visual feel, references, fonts, and a negative constraint ("what would make this look AI-generated?"). Track B covers per-panel intent with real copy plus <strong>2–3 auto-suggested animations per panel</strong>, confirmed or edited — motion is never an afterthought.</div></div></div>
+    <div class="step"><div class="step-id">S3</div><div class="step-body"><div class="step-name">Wireframes</div><div class="step-desc">Layout only: component map, key screens, unhappy states, end-to-end flow, and a one-word friction annotation per transition (confusion / hesitation / exit / scroll / load / skip).</div></div></div>
+    <div class="step"><div class="step-id">S4</div><div class="step-body"><div class="step-name">Design System</div><div class="step-desc">Every token carries a value plus a usage rule. Component showcase covers default/hover/focus/disabled/error <em>and</em> motion, live-triggerable rather than described. Saved at <code>Documentation/design/design-language.html</code>. Inevitability test runs on the full set. Output: <code>tailwind.config</code>, CSS vars, <code>components.json</code>, <code>brand-guide.md</code>.</div></div></div>
+    <div class="step"><div class="step-id">S5</div><div class="step-body"><div class="step-name">Spec Doc</div><div class="step-desc">What changed this session and why. Required: analytics surface, constraints contract, implementation cost flags (motion complexity flagged here — spring physics, scroll-linked, staggered — with a fallback noted), resolution of all three S1 risks, and a visual changelog with thumbnails.</div></div></div>
+    <div class="step"><div class="step-id">S6</div><div class="step-body"><div class="step-name">Handoff</div><div class="step-desc">Design ends at spec sign-off. Packet: tailwind.config + CSS vars + components.json + shadcn install list + component showcase + signed SPEC.md.</div></div></div>
+  </div>
+
+  <div class="label">Wireframe tool — decision matrix</div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>#</th><th>Question</th><th>Yes →</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Will a third party open the file itself as a deliverable?</td><td>Figma</td></tr>
+        <tr><td>2</td><td>Does the build pull pixel-precise redlines from the design?</td><td>Figma</td></tr>
+        <tr><td>3</td><td>Is a Figma MCP actually connected right now?</td><td>Gates Figma</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="matrix-verdict">(1 or 2) AND 3 → Figma. Otherwise Excalidraw, the default. No Figma MCP is connected as of this writing.</div>
+
+  <div class="label">Design system tool — decision matrix</div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>#</th><th>Question</th><th>Yes →</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Is code the final medium (shadcn / Tailwind)?</td><td>Claude Design</td></tr>
+        <tr><td>2</td><td>Does the design language fit Stitch's font enum?</td><td>No → Claude Design, forced</td></tr>
+        <tr><td>3</td><td>Need 2+ divergent visual directions before committing?</td><td>Stitch</td></tr>
+        <tr><td>4</td><td>Will a non-technical reviewer judge screens-as-images before code exists?</td><td>Stitch</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="matrix-verdict">(3 or 4) AND 2 → Stitch first, then still emit tokens as code. Otherwise Claude Design, the default. Stitch is not a safer bet against generic output — the anti-slop guards apply equally to both paths.</div>
+
+  <div class="label">Publish gating</div>
+  <p>Stage 4's component showcase is private-staged by default; sign-off never auto-publishes it. Promotion is a separate explicit <code>/promote-to-portfolio</code> command — never a CI or deploy hook — which pushes it into the project's case-study page as a top-level "Design" tab, embedded via iframe. No automation watches for changes, and the command never commits or pushes on its own.</p>
+</div>
+
+<div class="detail-store" id="d-skills" data-title="04 · Skills &amp; Commands">
+  <div class="label">Session commands</div>
+  <ul class="cmd-list">
+    <li><code>/continues</code> Reload project context on demand — also auto-fires at session start via <code>init-project-context.sh</code>, printing Status, Last session, Blocked on, Next up.</li>
+    <li><code>/end-session</code> Sync memory and Obsidian — journal, mistakes, decisions, project page.</li>
+    <li><code>/compact</code> Compress context around 30 turns, preserving modified files, failing output, and current task state.</li>
+  </ul>
+
+  <div class="label">Framework selection + kickoff</div>
+  <ul class="cmd-list">
+    <li><code>/prd-create</code> The 6-stage PRD state machine — runs before rubric, on every project.</li>
+    <li><code>/rubric</code> Five questions, citing PRD.md, scoring Blueprint vs Builder OS. 2+ yes = Blueprint, locked for the project.</li>
+    <li><code>/project-start</code> One-shot kickoff: PRD → rubric → bootstrap → Notion page → handoff.</li>
+  </ul>
+
+  <div class="label">Blueprint gates</div>
+  <ul class="cmd-list">
+    <li><code>/phase-0-intake</code> · <code>/phase-1-solution</code> · <code>/phase-2-design</code> · <code>/phase-3-plan</code></li>
+    <li><code>/phase-5-testing</code> · <code>/slice</code> per-slice dev loop · <code>/ship-check</code> deployment gate</li>
+  </ul>
+
+  <div class="label">Design + research</div>
+  <ul class="cmd-list">
+    <li><code>/grill-me</code> Live interview — relentless, one question at a time, each with a recommended answer.</li>
+    <li><code>superpowers:brainstorming</code> Full design spec workflow: context load → approaches → design → spec → writing-plans.</li>
+    <li><code>superpowers:frontend-design</code> Creative and marketing UI, driven by visual references.</li>
+    <li><code>superpowers:tool-design</code> Functional app UI — shadcn + Tailwind, WCAG AA, four states mandatory.</li>
+  </ul>
+
+  <div class="label">Development</div>
+  <ul class="cmd-list">
+    <li><code>superpowers:test-driven-development</code> Failing tests first, enforced per slice.</li>
+    <li><code>superpowers:simplify</code> Complexity reduction — run before every commit.</li>
+    <li><code>superpowers:requesting-code-review</code> Two-pass review: CRITICAL first, INFORMATIONAL second.</li>
+    <li><code>superpowers:debugging</code> Systematic: hypothesis → isolate → test → verify.</li>
+  </ul>
+
+  <div class="label">Model routing + autonomous execution</div>
+  <ul class="cmd-list">
+    <li><code>model-router</code> Self-triggering skill — fires under the standing "if a skill might apply, invoke it" rule, no hook needed. Tags every plan step inline right before approval: <code>[model: fable]</code> for embedded strategy and planning, <code>[model: opus]</code> for deep analysis and high-stakes judgment, <code>[model: sonnet]</code> for token-heavy routine dev, scripting, testing, and browsing — the default lane. Untagged steps fall back to sonnet with a stated reason, never left blank.</li>
+    <li><code>dev-manager</code> An opus-model agent that takes an approved tagged plan and executes it autonomously: dispatches each step to its tagged model, defaults to worktree isolation for any parallel dispatch (not conditional on predicted file overlap), and independently re-verifies every worker's claimed result before trusting it. Escalates on exactly five triggers — the Non-Negotiables list, a new external dependency, auth/payments/secrets touched, the plan invalidated mid-flight, or anomalous token burn on one step — and handles everything else solo, reporting at checkpoints.</li>
+    <li><code>/dev-start</code> The explicit handoff gate. Verifies the plan is tagged and approved, then dispatches dev-manager. Plan approval alone never auto-starts execution — this is a deliberate second act.</li>
+  </ul>
+
+  <div class="label">Autonomous loops</div>
+  <ul class="cmd-list">
+    <li><code>/ralph-loop</code> The Ralph pattern (Geoffrey Huntley) — a fresh-context agent loop for overnight builds. Each iteration re-reads <code>PROMPT.md</code>, <code>specs/*.md</code>, and <code>TODO.md</code> from disk with no conversation memory carried between iterations, implements one item, and commits on a passing test. The runner refuses to run on main or master, requires a <code>--test-cmd</code> stop condition, caps iterations, and stops after three consecutive test failures.</li>
+  </ul>
+
+  <div class="label">Guardrail hooks</div>
+  <ul class="cmd-list">
+    <li><code>pre-tool-use-guard.sh</code> Blocks <code>git push --force</code>, <code>--no-verify</code>, home-directory <code>rm -rf</code>, reset-and-push chains, echoing secret-shaped vars to output, <code>python3</code> where only <code>python</code> exists, and quoted Windows paths with the trailing-backslash bug that breaks bash parsing.</li>
+    <li><code>deploy-preflight-guard.sh</code> Blocks <code>vercel --prod</code> and <code>railway up</code> unless the target project's CLAUDE.md records a <code>Deploy target:</code> line — preventing a deploy to the wrong account by construction.</li>
+    <li><code>framework-state-check.sh</code> Flags an unlocked framework or a stalled <code>/prd-create</code> run at session boot.</li>
+    <li><code>prompt-compile</code> (v60samurai/agent-skills) A deterministic bash <code>UserPromptSubmit</code> hook that classifies every prompt into low/medium/high bands — no LLM self-grading — paired with a skill that compiles a 7-section task brief before medium and high band work executes. High band waits for approval; medium shows the brief and proceeds; bug reports and explicit escape hatches stay silent.</li>
+  </ul>
+
+  <div class="label">Global installer</div>
+  <ul class="cmd-list">
+    <li><code>scripts/install-global.sh</code> Pushes framework commands and hooks into <code>~/.claude/</code> — backs up first, idempotent.</li>
+    <li><code>scripts/pull-global.sh</code> Snapshots the live config back into the repo for audit.</li>
+  </ul>
+
+  <div class="label">Publishing</div>
+  <ul class="cmd-list">
+    <li><code>/promote-to-portfolio</code> Manual and explicit only — pushes a project's design-language.html into its case-study page as a new "Design" tab. Idempotent, never commits or pushes on its own.</li>
+  </ul>
+
+  <div class="label">PM skills (phuryn/pm-skills)</div>
+  <div class="tag-row">
+    <span class="tag">/write-prd</span><span class="tag">/plan-okrs</span><span class="tag">/strategy</span>
+    <span class="tag">/write-stories</span><span class="tag">/research-users</span><span class="tag">/competitive-analysis</span>
+    <span class="tag">/write-query</span><span class="tag">/battlecard</span><span class="tag">/plan-launch</span><span class="tag">/proofread</span>
+  </div>
+
+  <div class="label">Codex delegation</div>
+  <ul class="cmd-list">
+    <li><code>codex exec --full-auto</code> Inline review, piped to <code>~/.claude/codex-last.md</code>.</li>
+    <li><code>codex exec -a on-request -s workspace-write</code> Risky or sandboxed work — explicit approval per action.</li>
+  </ul>
+</div>
+
+<div class="detail-store" id="d-principles" data-title="05 · Operating Principles">
+  <div class="label">Stack</div>
+  <p>Stack is project-specific, not a global default — recorded in each project's own CLAUDE.md "Framework state" block. A new project checks sibling <code>memory/project.md</code> files for a precedent before picking one from scratch; Gaurav confirms, and it locks for that project. One gotcha stays global regardless of stack: <code>pyairtable</code> and <code>anthropic</code> SDKs are sync — never <code>await</code> them.</p>
+
+  <div class="label">Think → Build → Prove</div>
+  <p><strong>Load context</strong> — memory folder, project CLAUDE.md. What was tried before? What failed?<br>
+  <strong>Challenge the ask</strong> — right problem, right solution, right time? "Will we regret this in 3 months?"<br>
+  <strong>Map the system</strong> — boundaries, data flows, failure modes. Integration seams are where bugs live.<br>
+  <strong>Plan</strong> — 3+ steps means plan mode. Lock the plan, flip to auto-accept, execute in one pass; stop hand-holding mid-build. Non-trivial work writes a failing test first.<br>
+  <strong>Build in stages</strong> — parallel subagents for independent work; a git worktree when concurrent sessions share a repo. If prediction and reality diverge, investigate immediately.<br>
+  <strong>Prove</strong> — the self-check gate, then record what surprised you and what pattern prevents this class of problem.</p>
+
+  <div class="label">Relationship dynamic</div>
+  <p><strong>Gaurav decides what. Claude decides how and holds the bar.</strong> Push back with data, not opinion. One issue per question — lead with a recommendation plus tradeoffs. Honesty over agreement. One question saves hours, so ask it. Gaurav optimizes for speed; resist this. Do less, verify more.</p>
+
+  <div class="label">Tripwires</div>
+  <p>Broken approach → stop and re-plan. Unclear → ask. Production system → warn first. Bug → root cause, fix, test, then record in Past Mistakes.</p>
+
+  <div class="label">Quality bar</div>
+  <p><strong>Code</strong> — handle every state: loading, empty, error, success. Validate at boundaries. Batch DB queries.<br>
+  <strong>Architecture</strong> — extract at 3+ duplicates. Decompose files over 500 lines. Refactor by Create → Verify → Swap → Delete.<br>
+  <strong>Security</strong> — sanitize inputs, admin server-side only, rate-limit auth and paid operations.<br>
+  <strong>UX</strong> — mobile-first, 44px touch targets, confirm destructive actions, toast feedback, under 2s load.<br>
+  <strong>Ship check</strong> — does it break at scale? at zero? with malice? Can we undo this? Will it read in 6 months?</p>
+
+  <div class="label">Knowledge system</div>
+  <ul class="cmd-list">
+    <li><code>Memory</code> per-project folders under <code>~/.claude/projects/</code></li>
+    <li><code>Obsidian</code> vault on Google Drive sync</li>
+    <li><code>#idea</code> → Notion · <code>#capture</code> → Obsidian</li>
+    <li><code>Memory writes</code> Surgical edits only, never full-file rewrites. A conflicting fact gets flagged, not silently overwritten.</li>
+  </ul>
+</div>
+
+<div class="detail-store" id="d-terminal" data-title="06 · Terminal Workflow">
+  <div class="label">Shell foundation</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">PowerShell 7, not 5.1</div>
+      <p>Windows Terminal's "PowerShell" entry silently launches the old <code>powershell.exe</code> (5.1) unless repointed. Fixed by changing <code>defaultProfile</code> in Terminal's settings to the PowershellCore profile — the modern <code>pwsh.exe</code>, which ships separately and was already installed, just not wired as default.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Nerd Font + Starship</div>
+      <p>CaskaydiaCove Nerd Font installed per-user via a real Win32 <code>AddFontResourceW</code> call plus a registry entry — not a .NET in-memory load, which is what made the first attempt silently fail. Starship replaces the prompt, showing git branch and status plus language-version badges with no per-project config.</p>
+    </div>
+  </div>
+
+  <div class="label">Navigation</div>
+  <ul class="cmd-list">
+    <li><code>proj</code> Arrow-key / fuzzy picker over every folder in the Projects directory, via fzf. For <em>browsing</em>, when the name's forgotten.</li>
+    <li><code>z &lt;partial&gt;</code> zoxide — jumps to any directory already visited, ranked by frequency and recency. For the 4–5 repos touched daily. It complements <code>proj</code> rather than replacing it: one browses, one guesses.</li>
+  </ul>
+
+  <div class="label">File + diff viewing</div>
+  <ul class="cmd-list">
+    <li><code>mdview plan.md</code> Renders Markdown properly in-terminal via glow, paginated — for the constant mid-session "let me verify this plan" moment, without leaving the terminal.</li>
+    <li><code>bat file.py</code> Syntax-highlighted, line-numbered viewer for anything that isn't Markdown.</li>
+    <li><code>delta</code> Wired in as <code>core.pager</code>, so <code>git diff</code> and <code>git log -p</code> render side-by-side and syntax-highlighted. No new command to learn.</li>
+  </ul>
+
+  <div class="label">Fuzzy search, wired into the shell</div>
+  <ul class="cmd-list">
+    <li><code>Ctrl+R</code> Fuzzy-searchable command history via PSFzf, replacing PowerShell's cycle-through-matches default.</li>
+    <li><code>Ctrl+T</code> Fuzzy-insert a file path at the cursor, from anywhere in the current tree.</li>
+    <li><code>Win + `</code> Windows Terminal quake mode — drops a terminal down over any app via a global hotkey.</li>
+  </ul>
+
+  <div class="label">Cross-window notifications</div>
+  <div class="rule"><b>Why this exists</b>Running several Claude Code sessions in parallel windows means missing the moment one goes idle waiting for a permission prompt — no signal short of alt-tabbing through every window.</div>
+  <p>Solved with Claude Code's own <code>Notification</code> hook, which fires with message, cwd, and notification type on stdin whenever the agent needs input. Registered globally with matcher <code>permission_prompt|idle_prompt</code>, calling a small PowerShell script that fires a real Windows toast via BurntToast. The title shows <code>Claude Code — &lt;project folder&gt;</code>, so it's clear which window to switch to without opening any of them.</p>
+
+  <div class="label">Known limitation — not solved</div>
+  <div class="rule"><b>Ctrl+V image paste is genuinely broken on native Windows</b>Claude Code documents clipboard-image paste as supported, but on native Windows (not WSL) it silently fails — confirmed via multiple open upstream issues, not a local config problem. No keybinding fix exists; it's inside Claude Code's own Windows clipboard-reading code. Workaround: save the screenshot to a file, then drag it into the prompt or paste its path.</div>
+
+  <div class="label">CLI features worth using anywhere</div>
+  <ul class="cmd-list">
+    <li><code>Ctrl+O</code> Toggle the transcript view — see exactly which hooks fired, their exit codes, and stderr, without a debug flag.</li>
+    <li><code>--debug-file</code> Full hook execution log — tail it in a second pane when a hook misbehaves.</li>
+    <li><code>/hooks</code> Read-only browser for every registered hook, grouped by event. The fastest way to confirm a settings edit took effect.</li>
+    <li><code>/tui fullscreen</code> Reserved alternate screen instead of appending to scrollback — fixes flicker and scroll-jump on long sessions, adds mouse-wheel scroll.</li>
+    <li>Git worktrees Give a parallel task its own working copy instead of fighting over one checkout.</li>
+    <li>Subagents / forks A fork inherits the full conversation and shares the prompt cache — right for offloading research without filling the main session with intermediate noise.</li>
+    <li>Vim edit mode <code>hjkl</code> navigation, <code>v</code>/<code>V</code> selection, and <code>d</code>/<code>c</code>/<code>y</code> text objects in the prompt box itself.</li>
+  </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this) closeModal()">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-header">
-      <span class="modal-title" id="tpl-modal-title">template</span>
-      <button class="modal-close" onclick="closeTemplate()">✕ Close</button>
+      <span class="modal-title" id="modal-title"></span>
+      <button class="modal-close" onclick="closeModal()">✕ Close</button>
     </div>
-    <div class="modal-body" id="tpl-modal-body">
-      <div class="modal-loading">Loading…</div>
-    </div>
+    <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
 <script>
+  // ── Accordion ───────────────────────────────────────────────────
   function toggle(id) {
-    document.getElementById(id).classList.toggle('open');
+    var section = document.getElementById(id);
+    var open = section.classList.toggle('open');
+    section.querySelector('.section-trigger').setAttribute('aria-expanded', open);
   }
 
-  function setMode(mode) {
-    document.body.classList.remove('mode-concise', 'mode-detailed');
-    document.body.classList.add('mode-' + mode);
-    document.getElementById('btn-concise').classList.toggle('active', mode === 'concise');
-    document.getElementById('btn-detailed').classList.toggle('active', mode === 'detailed');
-    try { localStorage.setItem('g-os-mode', mode); } catch (e) {}
-  }
+  // ── Modal ───────────────────────────────────────────────────────
+  var modal = document.getElementById('modal');
+  var modalTitle = document.getElementById('modal-title');
+  var modalBody = document.getElementById('modal-body');
 
-  (function initMode() {
-    var saved = 'detailed';
-    try { saved = localStorage.getItem('g-os-mode') || 'detailed'; } catch (e) {}
-    setMode(saved);
-  })();
-
-  var tplCache = {};
-  function openTemplate(name, file) {
-    var modal = document.getElementById('tpl-modal');
-    var title = document.getElementById('tpl-modal-title');
-    var body = document.getElementById('tpl-modal-body');
-    title.textContent = file;
+  function openModal(title, html) {
+    modalTitle.innerHTML = title;
+    modalBody.innerHTML = html;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+    wireTemplateButtons(modalBody);
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function openDetail(key) {
+    var src = document.getElementById('d-' + key);
+    if (!src) return;
+    openModal(src.dataset.title, src.innerHTML);
+  }
+
+  // ── PRD template viewer ─────────────────────────────────────────
+  var tplCache = {};
+
+  function openTemplate(file) {
+    openModal(file, '<div class="modal-loading">Loading ' + file + '…</div>');
 
     if (tplCache[file]) {
-      body.innerHTML = '<pre></pre>';
-      body.querySelector('pre').textContent = tplCache[file];
+      renderTemplate(tplCache[file]);
       return;
     }
 
-    body.innerHTML = '<div class="modal-loading">Loading ' + file + '…</div>';
     fetch('prd-templates/' + file)
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1069,38 +1135,31 @@
       })
       .then(function (text) {
         tplCache[file] = text;
-        body.innerHTML = '<pre></pre>';
-        body.querySelector('pre').textContent = text;
+        renderTemplate(text);
       })
       .catch(function (err) {
-        body.innerHTML = '<div class="modal-loading">Could not load ' + file + ' (' + err.message + '). ' +
-          'Templates live in <code>builder-os/prd/</code> in the framework repo — this viewer expects a same-origin ' +
-          'copy at <code>prd-templates/' + file + '</code>.</div>';
+        modalBody.innerHTML = '<div class="modal-loading">Could not load ' + file +
+          ' (' + err.message + '). Templates live in <code>builder-os/prd/</code> in the framework repo — ' +
+          'this viewer expects a same-origin copy at <code>prd-templates/' + file + '</code>.</div>';
       });
   }
 
-  function closeTemplate() {
-    document.getElementById('tpl-modal').classList.remove('open');
-    document.body.style.overflow = '';
+  function renderTemplate(text) {
+    modalBody.innerHTML = '<pre></pre>';
+    modalBody.querySelector('pre').textContent = text;
   }
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeTemplate();
-  });
+  // Any element carrying data-tpl opens that template
+  function wireTemplateButtons(root) {
+    root.querySelectorAll('[data-tpl]').forEach(function (el) {
+      el.onclick = function () { openTemplate(el.dataset.tpl); };
+    });
+  }
+  wireTemplateButtons(document);
 
-  // Wire the matrix table cells to the same template viewer
-  document.getElementById('tpl-btn-full').style.cursor = 'pointer';
-  document.getElementById('tpl-btn-full').style.color = 'var(--accent)';
-  document.getElementById('tpl-btn-full').onclick = function () { openTemplate('full-prd', 'full-prd.md'); };
-  document.getElementById('tpl-btn-lean').style.cursor = 'pointer';
-  document.getElementById('tpl-btn-lean').style.color = 'var(--accent)';
-  document.getElementById('tpl-btn-lean').onclick = function () { openTemplate('lean-prd', 'lean-prd.md'); };
-  document.getElementById('tpl-btn-feature').style.cursor = 'pointer';
-  document.getElementById('tpl-btn-feature').style.color = 'var(--accent)';
-  document.getElementById('tpl-btn-feature').onclick = function () { openTemplate('feature-prd', 'feature-prd.md'); };
-  document.getElementById('tpl-btn-experiment').style.cursor = 'pointer';
-  document.getElementById('tpl-btn-experiment').style.color = 'var(--accent)';
-  document.getElementById('tpl-btn-experiment').onclick = function () { openTemplate('experiment-brief', 'experiment-brief.md'); };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
 </script>
 
 </body>
