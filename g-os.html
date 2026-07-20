@@ -397,6 +397,102 @@
     .os-footer a { color: var(--text-3); text-decoration: none; }
     .os-footer a:hover { color: var(--accent); }
 
+    /* ── Tabs ─────────────────────────────────────────────────────── */
+    .os-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 26px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .os-tabs::-webkit-scrollbar { display: none; }
+    .os-tab {
+      font-family: var(--font-m);
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 12px 18px;
+      min-height: 44px;
+      margin-bottom: -1px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .os-tab:hover { color: var(--text-2); }
+    .os-tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+    .os-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .os-tab-count { color: var(--text-3); margin-left: 7px; font-size: 9px; }
+    .os-tab[aria-selected="true"] .os-tab-count { color: var(--accent-d); }
+
+    .tab-panel { display: none; }
+    .tab-panel.is-active { display: block; }
+    .panel-lede { font-size: 14px; color: var(--text-2); max-width: 62ch; margin-bottom: 24px; }
+
+    /* ── Playbook primitives ──────────────────────────────────────── */
+    .prompt-box {
+      font-family: var(--font-m);
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--text);
+      background: #13131a;
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      padding: 11px 14px;
+      margin-bottom: 18px;
+      overflow-wrap: anywhere;
+    }
+    .prompt-box::before {
+      content: 'YOU TYPE';
+      display: block;
+      font-family: var(--font-m);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .prompt-box.auto::before { content: 'FIRES ON ITS OWN'; }
+
+    /* What each step plugs in — the mechanism name */
+    .plug {
+      font-family: var(--font-m);
+      font-size: 10.5px;
+      color: var(--accent);
+      overflow-wrap: anywhere;
+    }
+    .plug.auto { color: var(--green); }
+    .plug.manual { color: var(--blue); }
+
+    .step-how {
+      font-family: var(--font-m);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-top: 3px;
+    }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 20px; }
+    .legend span {
+      font-family: var(--font-m);
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend i { width: 8px; height: 8px; display: inline-block; flex-shrink: 0; font-style: normal; }
+    .legend i.auto { background: var(--green); }
+    .legend i.manual { background: var(--blue); }
+    .legend i.gate { background: var(--accent); }
+
     /* ── Responsive ───────────────────────────────────────────────── */
     @media (max-width: 768px) {
       body { font-size: 14px; }
@@ -420,6 +516,8 @@
       .os-meta { gap: 6px 16px; }
       .matrix-table { min-width: 260px; font-size: 11.5px; }
       .matrix-table th, .matrix-table td { padding: 7px 7px; }
+      .os-tab { padding: 12px 13px; font-size: 10px; }
+      .prompt-box { font-size: 11.5px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -434,13 +532,31 @@
   <header class="os-header">
     <div class="os-title">CLAUDE OS &nbsp;/&nbsp; INTERNAL</div>
     <h1 class="os-headline">Gaurav's AI Operating System</h1>
-    <p class="os-lede">Seven systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. Each section states its purpose and its method; open <em>Full detail</em> for the mechanics.</p>
+    <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order.</p>
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
-      <span>v4.0 · 2026-07-18</span>
-      <span>7 systems</span>
+      <span>v5.0 · 2026-07-20</span>
+      <span>7 systems · 5 workflows</span>
     </div>
   </header>
+
+  <nav class="os-tabs" role="tablist" aria-label="Sections">
+    <button class="os-tab" role="tab" data-tab="setup" aria-selected="true"
+            aria-controls="tab-setup" id="tabbtn-setup" onclick="switchTab('setup')">
+      Setup<span class="os-tab-count">7</span>
+    </button>
+    <button class="os-tab" role="tab" data-tab="playbook" aria-selected="false"
+            aria-controls="tab-playbook" id="tabbtn-playbook" onclick="switchTab('playbook')">
+      Playbook<span class="os-tab-count">5</span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- TAB · SETUP — the inventory                                    -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="tab-panel is-active" id="tab-setup" role="tabpanel" aria-labelledby="tabbtn-setup">
+
+  <p class="panel-lede">Seven systems, each stating its purpose and its method. Open <em>Full detail</em> for the mechanics. This tab answers <em>what exists</em>; the Playbook tab answers <em>when each piece fires</em>.</p>
 
   <!-- ══ 00 · PRD Creation ══════════════════════════════════════════ -->
   <div class="section" id="s-prd">
@@ -758,6 +874,481 @@
       </div>
     </div>
   </div>
+
+  </div><!-- /tab-setup -->
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- TAB · PLAYBOOK — the same machinery, in firing order           -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-playbook" role="tabpanel" aria-labelledby="tabbtn-playbook">
+
+  <p class="panel-lede">Five real scenarios. Each starts with a prompt you'd actually type, then shows every part of the setup that plugs in — in order, with the gates that stop it. The point is sequence: most of this only works because something else ran first.</p>
+
+  <div class="legend">
+    <span><i class="auto"></i> Fires automatically</span>
+    <span><i class="manual"></i> You invoke it</span>
+    <span><i class="gate"></i> Hard stop — needs your word</span>
+  </div>
+
+  <!-- ══ P0 · New product ═══════════════════════════════════════════ -->
+  <div class="section" id="s-p0">
+    <button class="section-trigger" onclick="toggle('s-p0')" aria-expanded="false" aria-controls="b-p0">
+      <span class="section-trigger-left">
+        <span class="section-num">P0</span>
+        <span class="section-name">A new product, zero to shipped</span>
+        <span class="section-tag">12 steps · 4 gates</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-p0">
+      <div class="section-inner">
+
+        <div class="prompt-box">I want to build a Telegram bot that logs my expenses into Airtable.</div>
+
+        <div class="flow-chain">
+          <span class="flow-node">/rubric</span><span class="flow-arrow">→</span>
+          <span class="flow-node gate">framework locks</span><span class="flow-arrow">→</span>
+          <span class="flow-node">/prd-create</span><span class="flow-arrow">→</span>
+          <span class="flow-node">phases 0–3</span><span class="flow-arrow">→</span>
+          <span class="flow-node gate">plan approved</span><span class="flow-arrow">→</span>
+          <span class="flow-node">/dev-start</span><span class="flow-arrow">→</span>
+          <span class="flow-node gate">/ship-check</span>
+        </div>
+
+        <div class="label">Firing order</div>
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-id">01</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">SessionStart hook</span></div>
+              <div class="step-desc">Prints Status / Last session / Blocked on / Next up before you type anything. You never start cold.</div>
+              <div class="step-how">init-project-context.sh · automatic</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">02</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/rubric</span></div>
+              <div class="step-desc">Five scored questions. 2+ yes → Blueprint. 0–1 → Builder OS. Never a vibe-check — the scored table gets shown.</div>
+              <div class="step-how">FRAMEWORK.md</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">GATE</div>
+            <div class="step-body">
+              <div class="step-name">You confirm the verdict</div>
+              <div class="step-desc">Your confirmation locks the framework for the whole project. It gets written into the CLAUDE.md Framework state block so no future session re-asks.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">03</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">scripts/new-project.sh</span></div>
+              <div class="step-desc">Bootstraps <code>Documentation/</code>, the templates, and the Framework state block. Non-destructive on existing folders.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">04</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/prd-create</span></div>
+              <div class="step-desc">Runs <em>before</em> any framework phase. Produces the PRD the rest of the pipeline consumes.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">05</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/phase-0-intake → /phase-1-solution</span></div>
+              <div class="step-desc">SOLUTION_BRIEF and METRICS_PLAN. Decides what success is measured by before anything is built.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">06</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/phase-2-design</span></div>
+              <div class="step-desc">Hands off to the six-stage Design Framework. Dark mode is verified by rendering it, not by finding it in the CSS.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">07</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/phase-3-plan</span> <span class="plug auto">+ model-router</span></div>
+              <div class="step-desc">The plan gets written, then every step is tagged inline <code>[model: fable|opus|sonnet]</code> so execution knows what to dispatch without re-deriving the call.</div>
+              <div class="step-how">model-router runs before the approval gate</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">GATE</div>
+            <div class="step-body">
+              <div class="step-name">"Plan approved"</div>
+              <div class="step-desc">Approving a tagged plan is <em>not</em> a go-ahead to start building. That is a separate act — deliberately.</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">GATE</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/dev-start</span></div>
+              <div class="step-desc">The explicit handoff. Dispatches <strong>dev-manager</strong> (Opus), which runs each step on its tagged model, worktree-isolates anything parallel, and independently re-verifies each worker's claimed result before trusting it. Escalates on five named triggers only.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">08</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/slice</span></div>
+              <div class="step-desc">One slice at a time. The Red step is mandatory — a failing test exists before implementation, no skipping to Green.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">09</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/phase-5-testing</span></div>
+              <div class="step-desc">Four layers, in order. Not a single pass labelled "tested".</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">GATE</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/ship-check</span></div>
+              <div class="step-desc">Seven-item Definition of Shipped, including a post-deploy smoke test that drives the live URL in light, dark, and mobile contexts and fails the gate on console errors.</div>
+              <div class="step-how">scripts/postdeploy-smoke.mjs</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">10</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/end-session</span></div>
+              <div class="step-desc">Session journal, past-mistakes entry if there was a lesson, decision note if there was an architecture call, Obsidian page, then the git push and this page's sync — proposed as line items, never silent.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ P1 · Feature in an existing project ════════════════════════ -->
+  <div class="section" id="s-p1">
+    <button class="section-trigger" onclick="toggle('s-p1')" aria-expanded="false" aria-controls="b-p1">
+      <span class="section-trigger-left">
+        <span class="section-num">P1</span>
+        <span class="section-name">A feature in a project that already exists</span>
+        <span class="section-tag">the common case</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-p1">
+      <div class="section-inner">
+
+        <div class="prompt-box">Add CSV export to the founder-crm dashboard.</div>
+
+        <div class="label">Firing order</div>
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-id">01</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">SessionStart</span> <span class="plug manual">+ /continues</span></div>
+              <div class="step-desc">Reads the project's memory folder and surfaces exactly where the last session stopped, plus any open blockers.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">02</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">prompt-compile gate</span></div>
+              <div class="step-desc">A bash hook classifies the prompt into low / medium / high before the model sees it. This one lands medium — a concrete surface plus a build verb — so a seven-section task brief gets compiled, non-blocking. Classification is deliberately dumb bash: a model grading its own effort level is the easiest rationalisation there is.</div>
+              <div class="step-how">UserPromptSubmit · silent on bug reports and on "just do X"</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">03</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">superpowers:brainstorming</span></div>
+              <div class="step-desc">Runs before plan mode, not after. Intent and requirements get settled while changing them is still free.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">04</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">Plan mode → superpowers:writing-plans</span></div>
+              <div class="step-desc">Three or more steps means plan mode. A simple, reversible, single-command change skips it — that carve-out is explicit so the process doesn't tax trivial work.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">05</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">model-router</span></div>
+              <div class="step-desc">Tags each step with the model that should execute it before the plan is presented.</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">GATE</div>
+            <div class="step-body">
+              <div class="step-name">Plan approved → <span class="plug manual">/dev-start</span></div>
+              <div class="step-desc">Or execute inline for something this size. The gate exists either way.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">06</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">superpowers:test-driven-development</span></div>
+              <div class="step-desc">A failing test comes first for any non-trivial feature or bugfix. The only exemption is the same trivial-task carve-out from step 04.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">07</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">isolation: worktree</span></div>
+              <div class="step-desc">The moment two or more independent subagent tasks touch the same repo. Infra is ready; using it is the habit. After any multi-subagent dispatch, <code>git status</code> in the <em>main</em> checkout — a worker's edits can land there unnoticed.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">08</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">verification-before-completion</span></div>
+              <div class="step-desc">Did I run it? Did I check real output, a file:line, a screenshot — rather than something plausible-looking? No "done" without evidence.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">09</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">commit-message</span></div>
+              <div class="step-desc">Drafts a Conventional Commits message from the staged diff, matched to the repo's existing idiom. It never runs commit or push — that stays your explicit act.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ P2 · A bug ═════════════════════════════════════════════════ -->
+  <div class="section" id="s-p2">
+    <button class="section-trigger" onclick="toggle('s-p2')" aria-expanded="false" aria-controls="b-p2">
+      <span class="section-trigger-left">
+        <span class="section-num">P2</span>
+        <span class="section-name">Something is broken</span>
+        <span class="section-tag">different path entirely</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-p2">
+      <div class="section-inner">
+
+        <div class="prompt-box">The invoice date is showing a day early for users in IST.</div>
+
+        <p>Worth knowing: the prompt-compile gate <strong>deliberately stays silent</strong> here. Words like <em>bug</em>, <em>broken</em>, <em>failing</em>, or <em>crash</em> are a carve-out — the debugging workflow owns this path, and briefing it twice would just add noise.</p>
+
+        <div class="label">Firing order</div>
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-id">01</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">superpowers:systematic-debugging</span></div>
+              <div class="step-desc">Invoked before any fix is proposed. The failure mode this prevents is fixing the first plausible cause rather than the real one.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">02</div>
+            <div class="step-body">
+              <div class="step-name">Reproduce, then find root cause</div>
+              <div class="step-desc">The standing tripwire is a fixed sequence: root cause → fix → test → Past Mistakes. Skipping straight to the fix is the thing being guarded against.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">03</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">Failing test first</span></div>
+              <div class="step-desc">The test reproduces the bug and fails for the right reason before anything is changed. Otherwise you cannot tell a fix from a coincidence.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">04</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">pre-tool-use-guard</span></div>
+              <div class="step-desc">Sitting underneath all of it: a PreToolUse hook that deterministically denies the Forbidden Patterns at the Bash boundary — force-push, <code>--no-verify</code>, auto-commits, secrets in command output.</div>
+              <div class="step-how">Deterministic, not a judgement call</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">05</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">memory/past-mistakes.md</span></div>
+              <div class="step-desc">Record the <em>class</em> of error, not the instance. A note that only prevents this exact bug recurring is worth very little; one that prevents the category is worth keeping.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ P3 · Design work ═══════════════════════════════════════════ -->
+  <div class="section" id="s-p3">
+    <button class="section-trigger" onclick="toggle('s-p3')" aria-expanded="false" aria-controls="b-p3">
+      <span class="section-trigger-left">
+        <span class="section-num">P3</span>
+        <span class="section-name">A design or UI task</span>
+        <span class="section-tag">vocabulary matters</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-p3">
+      <div class="section-inner">
+
+        <div class="prompt-box">Make the pricing page feel more premium.</div>
+
+        <div class="label">Firing order</div>
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-id">01</div>
+            <div class="step-body">
+              <div class="step-name">Translate the vocabulary</div>
+              <div class="step-desc">"Premium" means contrast and whitespace — not a new colour. The glossary is fixed so the same word doesn't get reinterpreted each time: <em>breathing room</em> = padding · <em>too boxy</em> = remove borders, use spacing · <em>feels flat</em> = gradients and shadows · <em>AI slop</em> = make a bolder, more specific choice.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">02</div>
+            <div class="step-body">
+              <div class="step-name">Purpose before aesthetics</div>
+              <div class="step-desc">Establish what the artifact must prove by existing, before any visual choice. Aesthetic is a by-product of planning, not a layer applied afterwards.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">03</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">Design Framework · Stage 2, Track A</span></div>
+              <div class="step-desc">You name the references and drop the screenshots. This is a human lane on purpose — the good reference libraries are auth-walled or JS-rendered and cannot be fetched by an agent, and naming vendors inside a framework stage was explicitly rejected as turning a decision into a default.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">04</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">frontend-design</span></div>
+              <div class="step-desc">Carries the aesthetic direction once the process skills have set the approach.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">05</div>
+            <div class="step-body">
+              <div class="step-name">Stage 4 · component showcase</div>
+              <div class="step-desc">Every state handled — loading, empty, error, success. Light <em>and</em> dark verified by rendering both, never by confirming the CSS exists.</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">TEST</div>
+            <div class="step-body">
+              <div class="step-name">The inevitability test</div>
+              <div class="step-desc">If the design language could be transplanted onto a different product without feeling wrong, it was imposed rather than derived. That is a fail, and it is the last check before the work is called done.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ P4 · The spine ═════════════════════════════════════════════ -->
+  <div class="section" id="s-p4">
+    <button class="section-trigger" onclick="toggle('s-p4')" aria-expanded="false" aria-controls="b-p4">
+      <span class="section-trigger-left">
+        <span class="section-num">P4</span>
+        <span class="section-name">The spine — what wraps every session</span>
+        <span class="section-tag">always on</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-p4">
+      <div class="section-inner">
+
+        <div class="prompt-box auto">Nothing. This layer runs whether or not you ask for it.</div>
+
+        <div class="label">Every session, in order</div>
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-id">IN</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">init-project-context.sh · framework-state-check.sh</span></div>
+              <div class="step-desc">Status, last session, blockers and next action are on screen before the first prompt. An older project with no Framework state block gets flagged here rather than silently skipping the rubric.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">MID</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug auto">The guardrail layer</span></div>
+              <div class="step-desc">Running underneath everything: the Forbidden-Patterns guard on Bash, a deploy preflight that blocks Vercel and Railway unless the project has recorded a deploy target, the writing-style guard, the prompt-compile band gate, and a Windows toast when something needs you.</div>
+              <div class="step-how">5 hooks · deterministic, not model judgement</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">STOP</div>
+            <div class="step-body">
+              <div class="step-name">Non-negotiables</div>
+              <div class="step-desc">Delete, overwrite, force-push, deploy or redeploy, any Oracle VM change, anything destructive — confirmed before it happens, every time. Approval in one context never carries to the next.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">~30</div>
+            <div class="step-body">
+              <div class="step-name">/compact</div>
+              <div class="step-desc">Past roughly thirty turns. Modified files, failing output and current task state survive the compaction.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-id">OUT</div>
+            <div class="step-body">
+              <div class="step-name"><span class="plug manual">/end-session</span></div>
+              <div class="step-desc">Session journal, a past-mistakes entry if there was a lesson, a decision note if there was an architecture call, the Obsidian project page, then the git push and the sync into this page. Memory writes are surgical edits — a conflicting fact gets flagged, never silently overwritten.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="label">Why this page exists</div>
+        <p>This is disaster-recovery material. If the setup has to be rebuilt on another machine or another account, the git repo plus this page is what makes that possible — which is why the sync is a standing rule rather than a nice-to-have, and why no credential ever appears here.</p>
+
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /tab-playbook -->
 
   <footer class="os-footer">
     <span>Gaurav Gupta · Claude OS</span>
@@ -1091,6 +1682,30 @@
     var open = section.classList.toggle('open');
     section.querySelector('.section-trigger').setAttribute('aria-expanded', open);
   }
+
+  // ── Tabs ────────────────────────────────────────────────────────
+  var TABS = ['setup', 'playbook'];
+
+  function switchTab(name) {
+    if (TABS.indexOf(name) === -1) return;
+    TABS.forEach(function (t) {
+      var panel = document.getElementById('tab-' + t);
+      var btn = document.getElementById('tabbtn-' + t);
+      if (!panel || !btn) return;
+      var on = (t === name);
+      panel.classList.toggle('is-active', on);
+      btn.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    if (window.history && history.replaceState) {
+      history.replaceState(null, '', '#' + name);
+    }
+  }
+
+  // Deep link: /g-os.html#playbook opens straight to the Playbook tab.
+  (function () {
+    var h = (window.location.hash || '').replace('#', '');
+    if (TABS.indexOf(h) !== -1) switchTab(h);
+  })();
 
   // ── Modal ───────────────────────────────────────────────────────
   var modal = document.getElementById('modal');
