@@ -2,135 +2,94 @@
 
 ## Why This Exists
 
-Public portfolio for Gaurav Gupta — demonstrates PM + AI strategy work to recruiters and collaborators. Email gate captures leads before revealing content.
+Public portfolio for Gaurav Gupta — demonstrates PM + AI strategy work to recruiters and collaborators.
 
-**Success metric:** Visitor lands, submits email (captured to Supabase), and can navigate all 4 tabs with no broken states.
+**Success metric:** Visitor lands, navigates all 8 panels + every case-study / project page with no broken states, and each build-record page reads as a polished, credible artifact.
+
+> The email gate exists in code (`gate.js`) but is **disabled site-wide** (session 15) — it was blocking visitors. Do not re-enable without an explicit ask.
 
 ## Out of Scope (do not build unless explicitly asked)
 
-- Any framework, npm package, or build step — plain HTML only
+- Any npm package, bundler, or build step — the site ships by opening files in a browser
 - Blog or writing section
 - Contact form (social links are sufficient)
-- Analytics beyond Supabase email capture
+- Analytics beyond the (currently disabled) Supabase email capture
 - RAG chatbot (separate project, not part of this repo)
 
 ## What this is
-A personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript only. No frameworks, no React, no Tailwind, no build tools.
+A personal portfolio website — plain HTML + CSS + vanilla JavaScript, no build step. **Tailwind is loaded via CDN at runtime** (`cdn.tailwindcss.com`, config inline in `index.html`) — new markup may use Tailwind utilities alongside the custom tokens. "No build step / opens in a browser" still holds; "no framework runtime" does **not**.
 
-## Design
-- "Blueprint to Bits" theme — cream/navy/white palette, terracotta accent
-- Design tokens: `--navy: #0b1628`, `--cream: #f7f3ee`, `--terra: #bf5c3a`, `--blue: #2d5da1`, `--forest: #3d5c3a`
-- Fonts: Cormorant Garamond (headings/display) + DM Sans (body/UI)
-- Blueprint grid background on hero, skills, contact panels (CSS linear-gradient trick)
-- No `border-radius` anywhere (architectural principle)
-- No photo in body — hero is text + stats only
-- No light/dark toggle — single theme
+## Design — "Kinetic Precision" (v3, current)
+- Dark theme, single mode (no light/dark toggle on the main site)
+- Design tokens: `--bg-base: #0e0e12`, tonal surfaces `#0c0d11 / #16161e / #1a1a22 / #242432`, `--border: #2a2a38`, text `#ece8e2` / `#9896a0` / `#56546e`, accent gold `--accent: #c9a84c` (`--accent-dim #8a6f2e`), `--green-signal: #4caf74` (verified/live dots only)
+- Fonts: **Space Mono** (display / mono uppercase micro-labels) + **DM Sans** (body/UI). Google Fonts loads Space Mono + DM Sans.
+- `--radius: 0px` — **no `border-radius` anywhere** (architectural principle)
+- Strict 8px spacing grid; gold used sparingly as the single accent
+- `body.theme-light` variant exists in `styles.css` (cream `#f2ede8`) but the toggle is not exposed on the main site
+- (The retired **v2 "Blueprint to Bits"** system — Cormorant, navy/cream/terracotta `#0b1628 / #f7f3ee / #bf5c3a` — is fully gone from the live site. If you see it referenced anywhere, it's stale.)
 
 ## Navigation structure
-- **Panel-based SPA** — body has `overflow: hidden`; each section is a fixed-height panel switched by nav clicks
-- Nav links use `data-panel="panel-X"` attributes; `app.js` calls `activatePanel()` on click
-- Hash routing on load: `#experience` → `panel-experience`, etc.
-- Nav is solid `#0b1628` — no backdrop-filter, no border (matches hero exactly)
-- **Mobile nav**: hamburger button (`.nav-hamburger`) → full-screen overlay (`#nav-overlay`) with numbered Cormorant links, left-aligned with `padding-left: 10vw`; ESC or panel link closes it
-- 8 panels in order:
-  - **Home** (`panel-home`) — hero split (text left + animated systems-map canvas right), stats strip, blueprint grid. New headline: "Designing systems across architecture, enterprise software, and AI."
-  - **Experience** (`panel-experience`) — career arc bar + 4 accordion rows (entire row clickable)
-  - **Work** (`panel-work`) — 4 company groups, 9 total project cards; first card per company is `.proj-card--lead` (full-width, terra left border); click → project detail modal. JindalX cards 0–5 open wide modal (760px) with 7-part narrative.
-  - **Projects** (`panel-projects`) — two sections: "Case Studies" (5 rows) + "Personal Projects" (4 rows, JS-rendered); click → modal (problem + insight + stats + links + optional GitHub button)
-  - **Skills** (`panel-skills`) — navy + blueprint grid, 6 skill groups; top 3 per group highlighted (`.skill-top`); oversized group numbers (`.skill-group-num`)
-  - **Philosophy** (`panel-philosophy`) — navy + blueprint grid, 7 product principles in 4-col grid; principle 07 has terracotta accent background
-  - **Credentials** (`panel-credentials`) — split panel (navy edu left / cream certs right), 11 cert rows with `.cert-year-sep` dividers
-  - **Contact** (`panel-contact`) — navy + blueprint grid, split layout (text left / 4-node canvas right), email + LinkedIn, footer bar
-- URL hash routing: `#home`, `#experience`, `#work`, `#projects`, `#skills`, `#philosophy`, `#credentials`, `#contact`
+- **Panel-based SPA** — `body` has `overflow: hidden`; each section is a fixed-height panel switched by nav clicks. Nav is solid `#0e0e12`.
+- `activatePanel(panelId, updateHash)` is global; a delegated listener wires **every** `[data-panel="panel-X"]` element at `DOMContentLoaded`, so any in-page button with that attribute switches panels. `.nav-link` drives the active-underline state. Hash routing on load (`#work` → `panel-work`, etc.).
+- **Mobile nav**: hamburger (`.nav-hamburger`) → full-screen overlay (`#nav-overlay`) with numbered links; ESC or a panel link closes it.
+- 8 panels: **Home · Experience · Work · Projects · Skills · Philosophy · Credentials · Contact** (hashes `#home #experience #work #projects #skills #philosophy #credentials #contact`).
+- ⚠ `#panel-skills` and `#panel-philosophy` share the `.skill-block delay-N` class pattern — always scope edits by `#panel-*`, never by class alone.
 
 ## Tech constraints
-- Plain HTML + CSS + vanilla JavaScript ONLY
-- No frameworks, no libraries (except Supabase JS client via CDN)
-- No npm, no build steps, no bundlers
-- The site must work by simply opening index.html in a browser
+- Plain HTML + CSS + vanilla JavaScript. External runtime deps: **Tailwind CDN** + **Supabase JS client** (both via CDN). No npm, no bundler, no build.
+- The site must work by opening `index.html` in a browser.
 
 ## File structure
-- `index.html` — 8 panels + modal overlay + mobile nav overlay. No tabs, no scroll nav.
-- `styles.css` — Blueprint to Bits design system (~2,100 lines). Panel layout, hero split, philosophy grid, modal narrative, progressive reveal, canvas utilities, mobile responsive.
-- `tabs.js` — empty stub (replaced by panel nav in app.js)
-- `gate.js` — email gate logic (Supabase insert + localStorage bypass). Do not edit.
-- `app.js` — panel switching + `panel:activate` CustomEvent, progressive reveal, mobile overlay nav, experience accordion, `initSystemsCanvas()` (12-node hero canvas), `initContactCanvas()` (4-node contact canvas), work project modal with 7-part narrative for JindalX projects, unified item modal (5 case studies + 4 personal projects); `personalProjects` array rendered into `#personal-projects-table`
-- `case-study.css` — Blueprint to Bits styles for all 5 case study pages; floating pagination pill
-- `favicon.svg` — geometric GG monogram (navy bg, white letterforms, terracotta crossbars)
+- `index.html` — 8-panel SPA + modal overlay + mobile nav overlay. **All JS is inline** here (there is no `<script src="app.js">`). Contains: panel switching, progressive reveal, mobile overlay nav, experience accordion, `initSystemsCanvas()` (hero canvas), `initContactCanvas()`, work project modal (7-part narrative for JindalX), unified item modal, and the `V3_PROJECTS` object keyed `cs-N` / `pp-N`.
+- `styles.css` — the "Kinetic Precision" design system (panel layout, hero, philosophy grid, modal narrative, progressive reveal, canvas utilities, responsive). Applies to `index.html` only.
+- `app.js` — **dead file, not referenced** by `index.html` (JS went inline). Safe to ignore/remove.
+- `tabs.js` — empty stub.
+- `gate.js` — email-gate logic (Supabase insert + localStorage bypass). **Loaded but short-circuited (disabled).** Do not edit without an ask.
+- `favicon.svg` — geometric GG monogram.
+- **`case-study.css` was deleted (session 17).** Every case-study and project page is now fully **self-contained** (own inline `<style>`, own font links). Nothing references it.
 
-## Email gate
-- Full-screen overlay shown to first-time visitors before the portfolio
-- Collects email address, saves to Supabase, then reveals the portfolio
-- Returning visitors (localStorage flag `portfolio_gate_passed`) skip the gate automatically
-- Graceful degradation: if Supabase is unreachable or email is a duplicate, visitor still gets through
+## Case-study & project pages — per-product design skins (v3.1, session 17)
+Every case-study and project page follows the **`case-study-siteline.html` pattern**: one continuous scroll page with a fixed top nav whose `.nav-link` anchors jump to sections (scrollspy-highlighted), **not** the old paginated `.cs-page` model. Each page **drops the shared stylesheet and wears its own product's design language** (self-contained `:root` tokens + fonts).
+
+Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav-index`) → `.hero-wrap>.hero` (two-tone `<h1>` with muted `<em>`) → `#documentation .sec` (`.docs-tabs` + inline SVG `.docs-panel[data-panel]` + external links) → Overview → N id'd `.sec` blocks → `footer`. Component classes: `.label`, `.sec`/`.sec-head`, `.prose`, `.callout`/`.callout-box`, `.stats`/`.stat`, `.cards`/`.card`, `.table-wrap`+`table`, `.two-col`, `.lnk`, `.meta-row`/`.meta-tag`, docs-tabs/panel. Enhancements over the raw reference: IntersectionObserver scrollspy (`.nav-link--active`), `scroll-margin-top`, and a mobile horizontal nav strip (`.nav-right` scrolls under 580px instead of hiding). Single-theme per page — no toggle. Verify with the pattern in `memory/project_session_state.md` (Playwright, `python -m http.server`, overflow at 320/390/768, `page.on('pageerror')`).
+
+**7 case studies** (self-contained, numbered via `.nav-index`):
+
+| # | Product | Page | Skin | Live / source |
+|---|---------|------|------|---------------|
+| 01 | Founder / Rethink CRM | case-study-founder-crm.html | dark amber · Cormorant + Outfit + DM Mono | argaur.github.io/founder-crm-landing · gh argaur/founder-crm-bot |
+| 02 | Blinkit Command Hub | case-study-blinkit.html | dark ops-room · Mulish · yellow+green | blinkit-command-hub.vercel.app · picker-blinkit-app.lovable.app |
+| 03 | YouTube 2.0 (concept) | case-study-youtube.html | dark · Roboto · red for CTA/active | 3 Lovable prototypes + Claude artifacts (in Solution sections) |
+| 04 | Trivo (group travel) | case-study-group-travel.html | light cream · Fraunces · pink/coral/lilac · navy nav | frontend-argaurs-projects.vercel.app · gh argaur/group-travel-pwa |
+| 05 | Vitae | case-study-vitae.html | light · Plus Jakarta · clinical blue-white (template) | vitae-health.vercel.app · gh aashikvilla/health-assistant |
+| 06 | Personal AI Assistant | case-study-personal-ai-assistant.html | dark terminal · JetBrains Mono · green | gh argaur/personal-ai-assistant |
+| 07 | Siteline CRM | case-study-siteline.html | light · Manrope · no-accent (the reference) | argaur.github.io/siteline-crm · gh argaur/siteline-crm |
+
+**5 project pages** (same pattern): `project-pm-pathfinder.html` (dark indigo · Space Grotesk · soft-cornered), `project-ai-humancap-sim.html` (light warm · Source Serif · ochre/sage), `project-homelab.html` (dark · JetBrains Mono · terminal), `project-portfolio.html` (dark · Space Mono · sharp 0px · gold), `project-gws-cli.html` (dark terminal · Roboto Mono · Google 4-color).
+
+`case-study-vitae.html` is the **golden template** — when rebuilding or adding a page, copy its scaffold + enhancement code and swap only the `:root` + fonts.
 
 ## Supabase integration
-- Client loaded via CDN: `https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2`
-- Project URL: `https://nvwjekhguijinfuylytl.supabase.co`
-- Anon key is embedded in gate.js (public/read-insert only -- safe for client-side)
-- Table: `subscribers` with column `email` (text)
-- RLS should be configured in Supabase to allow anonymous inserts only
-
-## Case studies
-5 complete case studies — all have dedicated HTML pages and appear as carousel cards on the Work tab.
-
-| # | Title | Page | Product Link |
-|---|-------|------|-------------|
-| 01 | Founder's CRM — Conversation-First Sales Tool | case-study-founder-crm.html | placeholder `#` |
-| 02 | Peak-Hour Decision Support for Blinkit Dark Stores | case-study-blinkit.html | https://blinkit-command-hub.vercel.app/ |
-| 03 | YouTube 2.0 — Fixing Long-Form Discovery | case-study-youtube.html | placeholder `#` |
-| 04 | Group Travel Planning Platform | case-study-group-travel.html | placeholder `#` |
-| 05 | Vitae — Health Records, Finally Understood | case-study-vitae.html | https://vitae-health.vercel.app/ |
-
-Each page uses case-study.css. "View Product →" link appears in header of each page.
+- Client loaded via CDN (`@supabase/supabase-js@2`); project `nvwjekhguijinfuylytl.supabase.co`; table `subscribers(email text)`; anon key embedded in `gate.js` (public read/insert only). RLS allows anonymous inserts only. (Gate flow is disabled — see above.)
 
 ## About me
-- Name: Gaurav Gupta
-- Role: Senior Product Manager & AI Strategist, Jaipur, India
-- Focus: Building at the intersection of product and AI
+- Gaurav Gupta — Senior Product Manager & AI Strategist, Jaipur, India. Building at the intersection of product and AI.
 
 ---
 
-## AI Session Protocol — Read This First
-
-> Instructions for Claude. Follow these steps at the start of every session.
-
-### Step 1: Orient (before touching any code)
-- Read this file fully
-- Run `git log --oneline -10` to see recent history
-- Check "Status" section below → tell Gaurav: current state, what was last done, what's next
-
-### Step 2: Explore → Gemini (not Claude tokens)
-- Reading all HTML/CSS/JS files, understanding layout structure → Gemini terminal tab
-- Gemini has 1M context and is free — don't burn Claude tokens on reads
-
-### Step 3: Plan → Claude Plan Mode
-- Any task with 3+ steps → enter Plan Mode before writing code
-
-### Step 4: Build → Split by task type
-
-| Task | Tool |
-|---|---|
-| Repetitive HTML sections, CSS utilities | Codex background mode |
-| Gate logic, Supabase integration, routing JS | Claude |
-| Inline completions, simple copy edits | Copilot |
-
-### Step 5: End of Session (do not skip)
-1. Update "Status" section below
-2. Run `/compact` in Claude
-3. Update Obsidian project page
+## AI Session Protocol
+> Follow at the start of every session.
+1. **Orient** — read this file, `git log --oneline -10`, and the Status block below. Deep reads of HTML/CSS/JS can go to a Gemini tab (1M context, free) to save Claude tokens.
+2. **Plan** — any 3+-step task → Plan Mode before writing code.
+3. **Build** — for a page rebuild/add, copy the Vitae template. Parallelizable page work fans out cleanly (each page is self-contained → no file conflicts).
+4. **End of session** — update the Status block, sync memory (`/end-session`), update the Obsidian project page.
 
 ---
 
 ## Status
 
-> ⚠ **This CLAUDE.md is largely stale** — the Design / Navigation / File structure / Case studies / Tech-constraints sections above still describe the old **v2 "Blueprint to Bits"** design (Cormorant, navy/cream/terracotta, `app.js`, "no Tailwind"). The **live site is v3 "Kinetic Precision"**: Space Mono + DM Sans, dark `#0e0e12` + gold `#c9a84c`, **Tailwind via CDN** (runtime, no build step), all JS inline in `index.html` (no `app.js`), 8-panel SPA. For accurate current architecture, read `…/memory/project_session_state.md`. (Full doc refresh is a queued cleanup, not done this session to avoid entangling pre-existing uncommitted CLAUDE.md edits.)
-
-- **State:** live on Vercel as `b14d2fc`. Session 14 shipped: PM Pathfinder upgraded to a full case study; sticky Documentation/PRD-or-Write-up nav tabs across all case-study/project pages; AI vs Human Capital sim added as project #11; **Skills panel reframed into "The Build Record"** (capabilities-with-receipts + industries banner + Projects→Skills CTA); mobile header-clip CSS bug fixed.
-- **Last session:** 2026-06-30 (session 14) — see `memory/session-2026-06-30.md`. Commits `6a6f43b` (PMP case study + nav tabs + sim) and `b14d2fc` (The Build Record).
-- **Next session:**
-  1. As "Now Building" products go live (Personal Finance / RAS Prep-Assessment / learning-hub-L&D), graduate each chip from NOW BUILDING → SHIPPED ACROSS + add a project row/modal
-  2. Add `photo.jpg` headshot to repo (profile canvas wired, needs the file)
-  3. Refresh this CLAUDE.md to v3 reality; review pre-existing uncommitted CLAUDE.md edits
-- **Still open:** photo.jpg; CLAUDE.md v3 refresh; Oracle VM HTTPS; Vitae GitHub rename; Notion Companies DB; Google Analytics cert has no verify link/PDF
-- **Last updated:** 2026-06-30
+- **State:** live on Vercel. `main` carries the per-product-skin rebuild (merge `044bbd7` + polish). All 7 case studies + 5 project pages are self-contained single-scroll pages, each in its product's design language.
+- **This session — 2026-07-23 (session 17):** rebuilt all 11 case-study/project pages onto the Siteline single-scroll + section-jump-nav pattern with per-product skins (built Vitae as the golden template by hand, fanned the other 10 out via a parallel workflow); added scrollspy + mobile nav strip; recolored every inline SVG to its palette (two dark→light flips). Deleted the now-dead `case-study.css`. Restored YouTube's 7 prototype/diagram links. Recolored Blinkit's SVG danger states red→Blinkit-yellow (`--red`→`--alert`). Refreshed this CLAUDE.md to v3 reality.
+- **Previous:** 2026-07-18 (session 16) — restructured unlisted `g-os.html` (`9e0f4e4`). 2026-07-13 (session 15) — email gate disabled, Resume 404 fixed, internal docs moved out of repo.
+- **Still open:** add `photo.jpg` headshot (profile canvas wired, needs the file); decide if `g-os.html` detail modals earn their keep; graduate "Now Building" chips (Personal Finance / RAS Prep / learning-hub) to shipped as they go live; Oracle VM HTTPS; Vitae GitHub rename (`aashikvilla/health-assistant`→`vitae-health`); Notion Companies DB; Google Analytics cert has no verify link.
+- **Last updated:** 2026-07-23

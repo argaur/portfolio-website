@@ -424,6 +424,20 @@
   }
   .foot-brand { font-size: 0.8125rem; color: var(--text-2); }
 
+  /* ── External link buttons (prototypes / diagrams) ───────── */
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .link-btn {
+    font-family: var(--sans);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink); background: var(--surface-2);
+    border: 1px solid var(--border-2); border-radius: 8px;
+    padding: 10px 16px; transition: all 0.14s ease;
+  }
+  .link-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+  .link-btn--secondary { background: transparent; color: var(--text-2); }
+  .link-btn--secondary:hover { background: transparent; border-color: var(--ink); color: var(--ink); }
+
   /* ── Responsive ──────────────────────────────────────────── */
 
   @media (max-width: 960px) {
@@ -818,6 +832,10 @@
       <li><strong>Cold start for new creators:</strong> A new creator has almost no chance of a
       long video getting recommended without subscriber data. Shorts offer a much easier path.</li>
     </ul>
+
+    <div class="link-row">
+      <a href="https://claude.ai/public/artifacts/f73d7c25-0068-4925-b3e9-5a6ae5914ee7" target="_blank" rel="noopener noreferrer" class="link-btn link-btn--secondary">Full Recommendation Flow Diagram &rarr;</a>
+    </div>
   </div>
 </div>
 
@@ -1042,6 +1060,10 @@
       quality signal. For long-form, these frequently conflict, and every existing surface
       optimises for the wrong one.</p>
     </div>
+    <div class="link-row">
+      <a href="https://curious-kernel.lovable.app/" target="_blank" rel="noopener noreferrer" class="link-btn">Live Preview &rarr;</a>
+      <a href="https://claude.ai/public/artifacts/1f8b3962-5f05-4494-864a-1c4f488ccdbe" target="_blank" rel="noopener noreferrer" class="link-btn link-btn--secondary">User Flow Diagram &rarr;</a>
+    </div>
 
     <h3 class="h3-spaced">Solution 2 &mdash; Long-Form Viewing Streak</h3>
     <p><em>Lateral solution &mdash; addresses P1 through behaviour change, not a new surface.</em></p>
@@ -1057,6 +1079,9 @@
       <p><strong>Key innovation:</strong> Three opt-in notifications only, each firing with the
       specific recommended video or playlist attached &mdash; the user never opens YouTube from a
       streak notification and has to decide what to watch. The pathway is always pre-loaded.</p>
+    </div>
+    <div class="link-row">
+      <a href="https://claude.ai/public/artifacts/47d1977b-2b20-466f-904f-a709bd822e25" target="_blank" rel="noopener noreferrer" class="link-btn link-btn--secondary">Wireframe &rarr;</a>
     </div>
 
     <h3 class="h3-spaced">Solution 3 &mdash; Shorts-to-Long-Form Contextual Bridge</h3>
@@ -1078,6 +1103,10 @@
       <p><strong>Key innovation:</strong> Not a same-creator link &mdash; every existing bridge
       mechanism is creator-dependent. This one is <strong>system-level, cross-creator, and
       behaviour-triggered.</strong> The surface is intent-matched, not subscription-matched.</p>
+    </div>
+    <div class="link-row">
+      <a href="https://bridge-to-depth.lovable.app/" target="_blank" rel="noopener noreferrer" class="link-btn">Live Preview &rarr;</a>
+      <a href="https://claude.ai/public/artifacts/b0af1dca-07fb-41cc-8120-c16df7710001" target="_blank" rel="noopener noreferrer" class="link-btn link-btn--secondary">User Flow Diagram &rarr;</a>
     </div>
 
     <h3 class="h3-spaced">Solution 4 &mdash; Creator Success Suite</h3>
@@ -1104,6 +1133,9 @@
       <strong>pre-publish intervention</strong> &mdash; the only point in the workflow where the
       platform can influence quality before it damages viewer trust. Every other mechanism responds
       after the fact; this acts before the video goes live.</p>
+    </div>
+    <div class="link-row">
+      <a href="https://youtube-studio-boost.lovable.app/" target="_blank" rel="noopener noreferrer" class="link-btn">Live Preview &rarr;</a>
     </div>
   </div>
 </div>
