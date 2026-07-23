@@ -6,8 +6,7 @@
     <title>Project: GWS CLI | Gaurav Gupta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="case-study.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg-portfolio.vercel.app/project-gws-cli.html">
     <meta name="description" content="Project: GWS CLI — a Python command-line tool for Gmail and Google Calendar APIs. Built by Gaurav Gupta.">
     <meta property="og:title" content="GWS CLI — Google Workspace CLI Tool | Gaurav Gupta">
@@ -17,260 +16,751 @@
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://gauravg-portfolio.vercel.app/photo.jpg">
-    <meta name="theme-color" content="#0b1628">
+    <meta name="theme-color" content="#1e1e1e">
+
+<style>
+  /* ────────────────────────────────────────────────────────────────
+     Design system for GWS CLI — a Google Workspace command-line tool.
+     No GUI, so the "product's own design language" is a dark terminal
+     frame, with Google's four brand colors playing the role of ANSI
+     syntax colors. Roboto Mono (commands/headings) + Roboto (prose).
+     Deliberately does NOT use case-study.css.
+     ──────────────────────────────────────────────────────────────── */
+
+  :root {
+    --bg: #1e1e1e;
+    --surface: #252526;
+    --surface-2: #2d2d2e;
+    --border: #3c3c3c;
+    --border-2: #4d4d4d;
+    --ink: #d4d4d4;
+    --text: #d4d4d4;
+    --text-2: #9a9a9a;
+    --text-3: #808080;
+    --blue: #4285f4;
+    --red: #ea4335;
+    --yellow: #fbbc04;
+    --green: #34a853;
+    --mono: 'Roboto Mono', monospace;
+    --sans: 'Roboto', system-ui, sans-serif;
+    --measure: 640px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--blue); color: #fff; }
+
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 5px; }
+
+  /* ── Shared type ─────────────────────────────────────────── */
+
+  .label {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .label-strong { font-weight: 700; color: var(--blue); }
+
+  h1, h2, h3, h4 { font-family: var(--mono); font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+
+  em { font-style: normal; color: var(--text-3); }
+
+  a { color: inherit; }
+
+  code, .cmd {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--green);
+    border: 1px solid var(--border);
+  }
+
+  /* Google four-dot divider */
+  .dots { display: inline-flex; gap: 5px; margin: 0 2px; vertical-align: middle; }
+  .dots span { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .dots span:nth-child(1) { background: var(--blue); }
+  .dots span:nth-child(2) { background: var(--red); }
+  .dots span:nth-child(3) { background: var(--yellow); }
+  .dots span:nth-child(4) { background: var(--green); }
+
+  /* ── Nav ─────────────────────────────────────────────────── */
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(30,30,30,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .nav-back {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--text-2);
+    transition: color 0.14s ease;
+    flex-shrink: 0;
+  }
+  .nav-back:hover { color: var(--blue); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    position: relative;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--text-2);
+    padding: 4px 0;
+    white-space: nowrap;
+    transition: color 0.14s ease;
+  }
+  .nav-link:hover { color: var(--blue); }
+  .nav-link--active { color: var(--ink); }
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--blue);
+  }
+  .nav-index {
+    font-family: var(--mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    flex-shrink: 0;
+  }
+
+  /* ── Layout ──────────────────────────────────────────────── */
+
+  .sec {
+    border-top: 1px solid var(--border);
+    padding: 112px 48px;
+    scroll-margin-top: 80px;
+  }
+  .sec-inner { max-width: 1280px; margin: 0 auto; }
+
+  .prose { max-width: var(--measure); }
+  .prose p { margin-bottom: 20px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-2);
+    max-width: var(--measure);
+  }
+
+  .sec-head { margin-bottom: 48px; }
+  .sec-head h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .sec-head .label { margin-top: 2px; }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .h3-spaced { margin-top: 48px; }
+
+  /* ── Hero ────────────────────────────────────────────────── */
+
+  .hero-wrap { border-bottom: 1px solid var(--border); }
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 148px 48px 96px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 20px 0 28px;
+    max-width: 900px;
+  }
+  .hero-sub {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 680px;
+  }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
+  .meta-tag {
+    font-family: var(--mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--blue);
+    background: rgba(66,133,244,0.1);
+    border: 1px solid rgba(66,133,244,0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+  .meta-tag::before { content: '--'; opacity: 0.6; }
+
+  /* ── Links in prose ──────────────────────────────────────── */
+
+  .lnk {
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(66,133,244,0.35);
+    transition: border-color 0.14s ease;
+  }
+  .lnk:hover { border-bottom-color: var(--blue); }
+
+  /* ── Callouts ────────────────────────────────────────────── */
+
+  .callout {
+    border-left: 2px solid var(--blue);
+    padding: 4px 0 4px 24px;
+    margin: 28px 0;
+    max-width: var(--measure);
+  }
+  .callout p + p { margin-top: 14px; }
+
+  .callout-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    max-width: var(--measure);
+  }
+  .callout-box p + p { margin-top: 14px; }
+
+  /* ── Stats ───────────────────────────────────────────────── */
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 36px 0;
+  }
+  .stat { background: var(--surface); padding: 28px 24px; }
+  .stat-num {
+    display: block;
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--green);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 10px;
+  }
+  .stat-lbl {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: none;
+  }
+
+  /* ── Cards ───────────────────────────────────────────────── */
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 28px;
+    transition: border-color 0.18s ease;
+  }
+  .card:hover { border-color: var(--border-2); }
+  .card p { font-size: 0.9375rem; line-height: 1.7; max-width: none; margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+  .card ul { margin: 0; padding-left: 18px; }
+  .card li { font-size: 0.9375rem; line-height: 1.6; color: var(--text-2); margin-bottom: 8px; }
+  .card li:last-child { margin-bottom: 0; }
+  .card-icon {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border-2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  /* ── Two column ──────────────────────────────────────────── */
+
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 48px;
+    margin-top: 36px;
+  }
+  .two-col .callout { margin: 16px 0 0; max-width: none; }
+
+  /* ── Diagrams / docs ─────────────────────────────────────── */
+
+  .docs-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .docs-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-tab {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-2);
+    background: var(--surface);
+    border: 1px solid var(--border-2);
+    border-radius: 4px;
+    padding: 9px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.14s ease;
+  }
+  .docs-tab:hover { border-color: var(--blue); color: var(--blue); }
+  .docs-tab--active { background: var(--blue); border-color: var(--blue); color: #0b0b0c; }
+  .docs-panel {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .docs-panel--hidden { display: none; }
+  .docs-scroll { overflow-x: auto; }
+  .docs-scroll svg { min-width: 720px; }
+  .docs-note { padding: 32px; }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .foot-brand { font-family: var(--mono); font-size: 0.8125rem; color: var(--text-2); }
+
+  /* ── Responsive ──────────────────────────────────────────── */
+
+  @media (max-width: 960px) {
+    nav { padding: 0 24px; }
+    .nav-right { gap: 18px; }
+    .sec { padding: 72px 24px; }
+    .hero { padding: 108px 24px 64px; }
+    footer { padding: 28px 24px; }
+  }
+  @media (max-width: 580px) {
+    nav { padding: 0 16px; gap: 14px; }
+    .nav-index { display: none; }
+    .nav-right {
+      gap: 18px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nav-right::-webkit-scrollbar { display: none; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .cards { grid-template-columns: 1fr; }
+    .card { padding: 28px 24px; }
+  }
+
+  @media print {
+    nav { position: static; }
+    .docs-panel--hidden { display: block; }
+    .sec { padding: 32px 0; break-inside: avoid; }
+  }
+</style>
 </head>
 <body>
 
-    <nav class="cs-nav">
-        <div class="cs-nav-inner">
-            <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
-            <div class="cs-nav-tabs">
-                <a class="cs-nav-tab" href="#documentation" onclick="csNavTo(event,'documentation')">Documentation</a>
-                <a class="cs-nav-tab" href="#case-study" onclick="csNavTo(event,'case-study')">Write-up</a>
-            </div>
-            <span class="cs-nav-title">Personal Project</span>
-        </div>
-    </nav>
+<nav>
+  <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
+  <div class="nav-right">
+    <a href="#documentation" class="nav-link">Documentation</a>
+    <a href="#overview" class="nav-link">Overview</a>
+    <a href="#capabilities" class="nav-link">Capabilities</a>
+    <a href="#roadmap" class="nav-link">Roadmap</a>
+    <a href="#stack" class="nav-link">Stack</a>
+    <span class="nav-index">Project &middot; CLI</span>
+  </div>
+</nav>
 
-    <main class="cs-main">
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<div class="hero-wrap">
+  <div class="hero">
+    <span class="label label-strong">Personal Project <span class="dots"><span></span><span></span><span></span><span></span></span> Python CLI</span>
+    <h1>Google Workspace,<br /><em>from the terminal.</em></h1>
+    <p class="hero-sub">
+      A Python command-line tool for Gmail and Google Calendar &mdash; search, draft, and
+      schedule without opening a browser. Telegram trigger integration in progress.
+    </p>
+    <div class="meta-row">
+      <span class="meta-tag">python</span>
+      <span class="meta-tag">gmail-api</span>
+      <span class="meta-tag">calendar-api</span>
+      <span class="meta-tag">cli</span>
+    </div>
+  </div>
+</div>
 
-        <header class="cs-hero">
-            <span class="cs-label">Personal Project</span>
-            <h1 class="cs-title">GWS CLI</h1>
-            <p class="cs-subtitle">A Python command-line tool for Gmail and Google Calendar &mdash; search, draft, and schedule without opening a browser. Telegram trigger integration in progress.</p>
-            <div class="cs-meta-row">
-                <span class="cs-meta-tag">Python</span>
-                <span class="cs-meta-tag">Gmail API</span>
-                <span class="cs-meta-tag">Google Calendar API</span>
-                <span class="cs-meta-tag">CLI</span>
-            </div>
-        </header>
-
-    <section class="cs-docs" id="documentation">
-      <div class="cs-docs-header">
-        <span class="cs-docs-label">Documentation</span>
-        <div class="cs-docs-tabs" role="tablist">
-          <button class="cs-docs-tab cs-docs-tab--active" data-doc="flow">User Flow</button>
-          <button class="cs-docs-tab" data-doc="arch">Architecture</button>
-          <a href="https://github.com/argaur/personal-ai-assistant/tree/main/gws-cli" target="_blank" rel="noopener" class="cs-docs-tab cs-docs-tab--link">GitHub &rarr;</a>
-        </div>
+<!-- ── DOCUMENTATION / DIAGRAMS ───────────────────────────── -->
+<div class="sec" id="documentation" style="border-top:none">
+  <div class="sec-inner">
+    <div class="docs-head">
+      <span class="label">Documentation</span>
+      <div class="docs-tabs">
+        <button class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
+        <button class="docs-tab" data-doc="arch">Architecture</button>
+        <button class="docs-tab" data-doc="about">About this page</button>
+        <a href="https://github.com/argaur/personal-ai-assistant/tree/main/gws-cli" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
       </div>
-      <div class="cs-docs-panel" data-panel="flow">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" width="100%" aria-label="CLI Command Flow — GWS CLI">
-          <defs>
-            <marker id="gf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
-            </marker>
-          </defs>
-          <rect width="900" height="310" fill="#0b1628"/>
-          <!-- Title -->
-          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">CLI COMMAND FLOW — GWS CLI</text>
-          <!-- Node 1: gws cmd -->
-          <rect x="80" y="100" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="150" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">gws &lt;cmd&gt;</text>
-          <text x="150" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">User runs CLI</text>
-          <!-- Arrow 1->2 -->
-          <line x1="222" y1="122" x2="258" y2="122" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#gf-arr)" opacity="0.7"/>
-          <!-- Node 2: Arg Parser -->
-          <rect x="260" y="100" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="330" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Arg Parser</text>
-          <text x="330" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Click / argparse</text>
-          <!-- Arrow 2->3 -->
-          <line x1="402" y1="122" x2="448" y2="122" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#gf-arr)" opacity="0.7"/>
-          <!-- Node 3: OAuth2 (terracotta) -->
-          <rect x="450" y="100" width="140" height="44" fill="#bf5c3a"/>
-          <text x="520" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">OAuth2</text>
-          <text x="520" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">Token refresh</text>
-          <!-- Token note -->
-          <text x="520" y="162" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1">token.json cached · refresh if expired</text>
-          <!-- Arrow 3->4 -->
-          <line x1="592" y1="122" x2="638" y2="122" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#gf-arr)" opacity="0.7"/>
-          <!-- Node 4: API Call -->
-          <rect x="640" y="100" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="710" y="119" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">API Call</text>
-          <text x="710" y="135" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Gmail / Calendar</text>
-          <!-- Branch down from API Call -->
-          <path d="M710,144 L710,200 L540,200 L540,228" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)" opacity="0.7"/>
-          <path d="M710,144 L710,200 L840,200 L840,228" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)" opacity="0.7"/>
-          <!-- Output 1: Gmail API -->
-          <rect x="460" y="228" width="160" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="540" y="247" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Gmail API</text>
-          <text x="540" y="263" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">search, draft, send</text>
-          <!-- Output 2: Calendar API -->
-          <rect x="750" y="228" width="130" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="815" y="247" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Calendar API</text>
-          <text x="815" y="263" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">list, create, update</text>
-        </svg>
+    </div>
+
+    <!-- USER FLOW -->
+    <div class="docs-panel" data-panel="flow">
+      <div class="docs-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;" aria-label="CLI Command Flow — GWS CLI">
+        <defs>
+          <marker id="gf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#808080"/>
+          </marker>
+        </defs>
+        <rect width="900" height="310" fill="#1e1e1e"/>
+        <text x="450" y="26" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="10" font-weight="700" letter-spacing="2" fill="#9a9a9a">CLI COMMAND FLOW &mdash; GWS CLI</text>
+
+        <rect x="80" y="100" width="140" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="150" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">gws &lt;cmd&gt;</text>
+        <text x="150" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">User runs CLI</text>
+
+        <line x1="222" y1="122" x2="258" y2="122" stroke="#808080" stroke-width="1.5" marker-end="url(#gf-arr)"/>
+
+        <rect x="260" y="100" width="140" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="330" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">Arg Parser</text>
+        <text x="330" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Click / argparse</text>
+
+        <line x1="402" y1="122" x2="448" y2="122" stroke="#808080" stroke-width="1.5" marker-end="url(#gf-arr)"/>
+
+        <rect x="450" y="100" width="140" height="44" fill="#4285f4"/>
+        <text x="520" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#ffffff">OAuth2</text>
+        <text x="520" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#ffffff" opacity="0.85">Token refresh</text>
+
+        <text x="520" y="162" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" fill="#fbbc04">token.json cached &middot; refresh if expired</text>
+
+        <line x1="592" y1="122" x2="638" y2="122" stroke="#808080" stroke-width="1.5" marker-end="url(#gf-arr)"/>
+
+        <rect x="640" y="100" width="140" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="710" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">API Call</text>
+        <text x="710" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Gmail / Calendar</text>
+
+        <path d="M710,144 L710,200 L540,200 L540,228" stroke="#808080" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)"/>
+        <path d="M710,144 L710,200 L840,200 L840,228" stroke="#808080" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)"/>
+
+        <rect x="460" y="228" width="160" height="44" fill="#2d2d2e" stroke="#ea4335"/>
+        <text x="540" y="247" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#ea4335">Gmail API</text>
+        <text x="540" y="263" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">search, draft, send</text>
+
+        <rect x="750" y="228" width="130" height="44" fill="#2d2d2e" stroke="#34a853"/>
+        <text x="815" y="247" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#34a853">Calendar API</text>
+        <text x="815" y="263" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">list, create, update</text>
+      </svg>
       </div>
-      <div class="cs-docs-panel cs-docs-panel--hidden" data-panel="arch">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="100%" aria-label="System Architecture — GWS CLI">
-          <defs>
-            <marker id="ga-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="#f7f3ee"/>
-            </marker>
-          </defs>
-          <rect width="900" height="360" fill="#0b1628"/>
-          <!-- Title -->
-          <text x="450" y="26" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#f7f3ee" opacity="0.5">SYSTEM ARCHITECTURE — GWS CLI</text>
-          <!-- Zone dividers -->
-          <line x1="200" y1="42" x2="200" y2="318" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <line x1="400" y1="42" x2="400" y2="318" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <line x1="620" y1="42" x2="620" y2="318" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <!-- Zone labels -->
-          <text x="100" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">CLI LAYER</text>
-          <text x="300" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">COMMAND MODULES</text>
-          <text x="510" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">AUTH</text>
-          <text x="760" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" letter-spacing="1" fill="#f7f3ee" opacity="0.4">GOOGLE APIS</text>
-          <!-- Node 1: CLI Entrypoint -->
-          <rect x="22" y="118" width="155" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="100" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">CLI Entrypoint</text>
-          <text x="100" y="153" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Click / argparse</text>
-          <!-- Arrow CLI -> modules -->
-          <line x1="178" y1="140" x2="214" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ga-arr)" opacity="0.7"/>
-          <!-- Node 2: Command modules -->
-          <rect x="216" y="118" width="168" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="300" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">gmail.py + calendar.py</text>
-          <text x="300" y="153" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Command modules</text>
-          <!-- Arrow modules -> auth -->
-          <line x1="386" y1="140" x2="428" y2="140" stroke="#f7f3ee" stroke-width="1.5" marker-end="url(#ga-arr)" opacity="0.7"/>
-          <!-- Node 3: google-auth (terracotta) -->
-          <rect x="430" y="118" width="160" height="44" fill="#bf5c3a"/>
-          <text x="510" y="137" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#f7f3ee">google-auth</text>
-          <text x="510" y="153" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#f7f3ee" opacity="0.8">OAuth2 client</text>
-          <!-- Arrow auth -> Gmail REST API -->
-          <path d="M592,130 L680,130 L680,132 L718,132" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#ga-arr)" opacity="0.7"/>
-          <!-- Arrow auth -> Calendar REST API -->
-          <path d="M592,152 L680,152 L680,197 L718,197" stroke="#f7f3ee" stroke-width="1.5" fill="none" marker-end="url(#ga-arr)" opacity="0.7"/>
-          <!-- Node 4a: Gmail REST API -->
-          <rect x="720" y="110" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="790" y="129" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Gmail REST API</text>
-          <text x="790" y="145" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">search · draft · send</text>
-          <!-- Node 4b: Calendar REST API -->
-          <rect x="720" y="175" width="140" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="790" y="194" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">Calendar REST API</text>
-          <text x="790" y="210" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">list · create · update</text>
-          <!-- Auth secondary: token.json -->
-          <rect x="445" y="238" width="130" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="510" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">token.json</text>
-          <text x="510" y="273" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">Cached token</text>
-          <!-- Dashed arrow auth down to token.json -->
-          <line x1="510" y1="162" x2="510" y2="236" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr)" opacity="0.5"/>
-          <!-- credentials.json -->
-          <rect x="225" y="238" width="150" height="44" fill="#f7f3ee" opacity="0.92"/>
-          <text x="300" y="257" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" fill="#0b1628">credentials.json</text>
-          <text x="300" y="273" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#0b1628" opacity="0.7">OAuth2 config</text>
-          <!-- Arrow credentials -> token.json -->
-          <line x1="376" y1="260" x2="443" y2="260" stroke="#f7f3ee" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr)" opacity="0.5"/>
-          <!-- Note -->
-          <text x="450" y="330" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#2d5da1" opacity="0.8">OAuth2 token cached locally; refreshed automatically on expiry using google-auth library</text>
-        </svg>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div class="docs-panel docs-panel--hidden" data-panel="arch">
+      <div class="docs-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;" aria-label="System Architecture — GWS CLI">
+        <defs>
+          <marker id="ga-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#808080"/>
+          </marker>
+          <marker id="ga-arr-dash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#4d4d4d"/>
+          </marker>
+        </defs>
+        <rect width="900" height="360" fill="#1e1e1e"/>
+        <text x="450" y="26" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="10" font-weight="700" letter-spacing="2" fill="#9a9a9a">SYSTEM ARCHITECTURE &mdash; GWS CLI</text>
+
+        <line x1="200" y1="42" x2="200" y2="318" stroke="#3c3c3c" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="400" y1="42" x2="400" y2="318" stroke="#3c3c3c" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="620" y1="42" x2="620" y2="318" stroke="#3c3c3c" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <text x="100" y="55" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#808080">CLI LAYER</text>
+        <text x="300" y="55" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#808080">COMMAND MODULES</text>
+        <text x="510" y="55" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#808080">AUTH</text>
+        <text x="760" y="55" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#808080">GOOGLE APIS</text>
+
+        <rect x="22" y="118" width="155" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="100" y="137" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">CLI Entrypoint</text>
+        <text x="100" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Click / argparse</text>
+
+        <line x1="178" y1="140" x2="214" y2="140" stroke="#808080" stroke-width="1.5" marker-end="url(#ga-arr)"/>
+
+        <rect x="216" y="118" width="168" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="300" y="137" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">gmail.py + calendar.py</text>
+        <text x="300" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Command modules</text>
+
+        <line x1="386" y1="140" x2="428" y2="140" stroke="#808080" stroke-width="1.5" marker-end="url(#ga-arr)"/>
+
+        <rect x="430" y="118" width="160" height="44" fill="#4285f4"/>
+        <text x="510" y="137" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#ffffff">google-auth</text>
+        <text x="510" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#ffffff" opacity="0.85">OAuth2 client</text>
+
+        <path d="M592,130 L680,130 L680,132 L718,132" stroke="#808080" stroke-width="1.5" fill="none" marker-end="url(#ga-arr)"/>
+        <path d="M592,152 L680,152 L680,197 L718,197" stroke="#808080" stroke-width="1.5" fill="none" marker-end="url(#ga-arr)"/>
+
+        <rect x="720" y="110" width="140" height="44" fill="#2d2d2e" stroke="#ea4335"/>
+        <text x="790" y="129" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#ea4335">Gmail REST API</text>
+        <text x="790" y="145" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">search &middot; draft &middot; send</text>
+
+        <rect x="720" y="175" width="140" height="44" fill="#2d2d2e" stroke="#34a853"/>
+        <text x="790" y="194" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#34a853">Calendar REST API</text>
+        <text x="790" y="210" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">list &middot; create &middot; update</text>
+
+        <rect x="445" y="238" width="130" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="510" y="257" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">token.json</text>
+        <text x="510" y="273" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Cached token</text>
+
+        <line x1="510" y1="162" x2="510" y2="236" stroke="#4d4d4d" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr-dash)"/>
+
+        <rect x="225" y="238" width="150" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
+        <text x="300" y="257" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">credentials.json</text>
+        <text x="300" y="273" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">OAuth2 config</text>
+
+        <line x1="376" y1="260" x2="443" y2="260" stroke="#4d4d4d" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr-dash)"/>
+
+        <text x="450" y="330" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" fill="#fbbc04">OAuth2 token cached locally; refreshed automatically on expiry using google-auth library</text>
+      </svg>
       </div>
-    </section>
+    </div>
 
-        <div class="cs-page is-active" id="case-study">
+    <!-- ABOUT -->
+    <div class="docs-panel docs-panel--hidden" data-panel="about">
+      <div class="docs-note">
+        <p>This page is the build record for GWS CLI &mdash; a Python command-line tool that
+        wraps the Gmail and Google Calendar APIs so common tasks never require opening a
+        browser tab.</p>
+        <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <section class="cs-section">
-                <span class="cs-section-label">What It Is</span>
-                <h2 class="cs-section-title">Google Workspace from the Terminal</h2>
-                <p>GWS CLI (Google Workspace CLI) is a Python tool that wraps the Gmail and Google Calendar APIs with a command-line interface. The goal: handle the most common Gmail and Calendar tasks without switching to a browser, without navigating a UI, and without context-switching out of the terminal.</p>
+<!-- ── OVERVIEW ───────────────────────────────────────────── -->
+<div class="sec" id="overview">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Google Workspace,<br /><em>from the terminal.</em></h2>
+      <span class="label">What It Is</span>
+    </div>
 
-                <div class="cs-callout">
-                    <p>The interface is intentionally thin &mdash; thin wrappers over the Google APIs with clean output. No heavy abstraction, no config files required beyond OAuth credentials.</p>
-                </div>
-            </section>
+    <div class="prose">
+      <p>GWS CLI (Google Workspace CLI) is a Python tool that wraps the Gmail and Google
+      Calendar APIs with a command-line interface. The goal: handle the most common Gmail
+      and Calendar tasks without switching to a browser, without navigating a UI, and
+      without context-switching out of the terminal.</p>
+    </div>
 
-            <section class="cs-section">
-                <span class="cs-section-label">Capabilities</span>
-                <h2 class="cs-section-title">What It Can Do</h2>
+    <div class="callout-box">
+      <p><span class="cmd">$ gws mail search "invoice from:accounts@vendor.com"</span></p>
+      <p>The interface is intentionally thin &mdash; thin wrappers over the Google APIs with
+      clean output. No heavy abstraction, no config files required beyond OAuth credentials.</p>
+    </div>
+  </div>
+</div>
 
-                <div class="cs-card-grid">
-                    <div class="cs-card">
-                        <h4>Gmail</h4>
-                        <p>Search threads, read messages, create drafts, and manage labels from the command line.</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Google Calendar</h4>
-                        <p>List upcoming events, create events, and check availability &mdash; without opening a browser tab.</p>
-                    </div>
-                </div>
-            </section>
+<!-- ── CAPABILITIES ───────────────────────────────────────── -->
+<div class="sec" id="capabilities">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Two APIs,<br /><em>one interface.</em></h2>
+      <span class="label">Capabilities</span>
+    </div>
 
-            <section class="cs-section">
-                <span class="cs-section-label">Status</span>
-                <h2 class="cs-section-title">Current State &amp; Roadmap</h2>
+    <div class="cards">
+      <div class="card" style="border-left: 3px solid var(--red);">
+        <div class="card-icon" style="color:var(--red)">M</div>
+        <h4 style="color:var(--red)">Gmail</h4>
+        <p>Search threads, read messages, create drafts, and manage labels from the command
+        line.</p>
+        <p><span class="cmd">$ gws mail draft --to jane@co.com --subject "Re: Q3"</span></p>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--green);">
+        <div class="card-icon" style="color:var(--green)">C</div>
+        <h4 style="color:var(--green)">Google Calendar</h4>
+        <p>List upcoming events, create events, and check availability &mdash; without
+        opening a browser tab.</p>
+        <p><span class="cmd">$ gws cal list --tomorrow</span></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-                <div class="cs-stats-row">
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">Complete</span>
-                        <span class="cs-stat-label">Core Gmail + Calendar CLI</span>
-                    </div>
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">Pending</span>
-                        <span class="cs-stat-label">Telegram trigger integration</span>
-                    </div>
-                    <div class="cs-stat">
-                        <span class="cs-stat-number">Pending</span>
-                        <span class="cs-stat-label">rclone integration</span>
-                    </div>
-                </div>
+<!-- ── ROADMAP ────────────────────────────────────────────── -->
+<div class="sec" id="roadmap">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>Core shipped.<br /><em>Two integrations pending.</em></h2>
+      <span class="label">Status &amp; Roadmap</span>
+    </div>
 
-                <h3>Next: Telegram Trigger</h3>
-                <p>The planned next step is connecting GWS CLI to the Telegram Personal Assistant Bot. This would allow triggering Gmail and Calendar operations via a Telegram message &mdash; the same single-interface pattern used for other automation tasks. For example: <em>checking tomorrow's calendar without unlocking a laptop</em>.</p>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num" style="color:var(--green)">Complete</span>
+        <span class="stat-lbl">Core Gmail + Calendar CLI</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" style="color:var(--yellow)">Pending</span>
+        <span class="stat-lbl">Telegram trigger integration</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" style="color:var(--yellow)">Pending</span>
+        <span class="stat-lbl">rclone integration</span>
+      </div>
+    </div>
 
-                <h3>Next: rclone Integration</h3>
-                <p>rclone integration is planned to enable syncing and managing Google Drive files from the same CLI, extending GWS CLI from a communication tool to a broader workspace tool.</p>
-            </section>
+    <h3 class="h3-spaced">Next: Telegram Trigger</h3>
+    <div class="prose">
+      <p>The planned next step is connecting GWS CLI to the Telegram Personal Assistant Bot.
+      This would allow triggering Gmail and Calendar operations via a Telegram message &mdash;
+      the same single-interface pattern used for other automation tasks. For example:
+      <em>checking tomorrow's calendar without unlocking a laptop</em>.</p>
+    </div>
 
-            <section class="cs-section">
-                <span class="cs-section-label">Stack</span>
-                <h2 class="cs-section-title">Tech Stack</h2>
-                <div class="cs-card-grid">
-                    <div class="cs-card">
-                        <h4>Language</h4>
-                        <p>Python &middot; synchronous (no async required for Google API calls)</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>APIs</h4>
-                        <p>Gmail API &middot; Google Calendar API &middot; OAuth 2.0 for authentication</p>
-                    </div>
-                    <div class="cs-card">
-                        <h4>Planned Integrations</h4>
-                        <p>Telegram Bot API (trigger) &middot; rclone (Google Drive sync)</p>
-                    </div>
-                </div>
-            </section>
+    <h3 class="h3-spaced">Next: rclone Integration</h3>
+    <div class="prose">
+      <p>rclone integration is planned to enable syncing and managing Google Drive files from
+      the same CLI, extending GWS CLI from a communication tool to a broader workspace tool.</p>
+    </div>
+  </div>
+</div>
 
-        </div>
+<!-- ── STACK ──────────────────────────────────────────────── -->
+<div class="sec" id="stack">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>No async needed.<br /><em>Just clean wrappers.</em></h2>
+      <span class="label">Tech Stack</span>
+    </div>
 
-    </main>
+    <div class="cards">
+      <div class="card">
+        <h4>Language</h4>
+        <p>Python &middot; synchronous (no async required for Google API calls)</p>
+      </div>
+      <div class="card">
+        <h4>APIs</h4>
+        <p>Gmail API &middot; Google Calendar API &middot; OAuth 2.0 for authentication</p>
+      </div>
+      <div class="card">
+        <h4>Planned Integrations</h4>
+        <p>Telegram Bot API (trigger) &middot; rclone (Google Drive sync)</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <footer class="cs-footer">
-        <a href="index.html#projects" class="cs-back-link">&larr; Back to Portfolio</a>
-        <p>Gaurav Gupta &mdash; Personal Project</p>
-    </footer>
+<footer>
+  <div class="foot-brand">Gaurav Gupta &middot; Personal Project</div>
+  <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
+</footer>
 
-  <script>
-  (function() {
-    var tabs = document.querySelectorAll('.cs-docs-tab');
-    var panels = document.querySelectorAll('.cs-docs-panel');
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        tabs.forEach(function(t) { t.classList.remove('cs-docs-tab--active'); });
-        panels.forEach(function(p) { p.classList.add('cs-docs-panel--hidden'); });
-        tab.classList.add('cs-docs-tab--active');
-        var panel = document.querySelector('.cs-docs-panel[data-panel="' + tab.dataset.doc + '"]');
-        if (panel) panel.classList.remove('cs-docs-panel--hidden');
-      });
+<script>
+// Docs-tab panel switcher
+(function() {
+  var tabs = document.querySelectorAll('button.docs-tab');
+  var panels = document.querySelectorAll('.docs-panel');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
+      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+      tab.classList.add('docs-tab--active');
+      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
+      if (panel) panel.classList.remove('docs-panel--hidden');
     });
-  })();
-  </script>
-  <script>
-  function csNavTo(e, id) {
-    if (e && e.preventDefault) e.preventDefault();
-    if (id === 'case-study' && window.__csShow) window.__csShow(0);
-    var el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  </script>
+  });
+})();
+
+// Scrollspy — highlight the nav link for the section in view
+(function() {
+  var links = document.querySelectorAll('.nav-link');
+  var map = {};
+  links.forEach(function(l) {
+    var id = l.getAttribute('href').slice(1);
+    var sec = document.getElementById(id);
+    if (sec) map[id] = l;
+  });
+  if (!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting) {
+        links.forEach(function(l) { l.classList.remove('nav-link--active'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('nav-link--active');
+      }
+    });
+  }, { rootMargin: '-64px 0px -70% 0px', threshold: 0 });
+  Object.keys(map).forEach(function(id) { obs.observe(document.getElementById(id)); });
+})();
+</script>
 </body>
 </html>
