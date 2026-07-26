@@ -13,7 +13,7 @@ Public portfolio for Gaurav Gupta — demonstrates PM + AI strategy work to recr
 - Any npm package, bundler, or build step — the site ships by opening files in a browser
 - Blog or writing section
 - Contact form (social links are sufficient)
-- Analytics beyond the (currently disabled) Supabase email capture
+- Analytics **beyond anonymous pageviews** — `analytics.js` (PostHog, pageviews only) is in scope as of session 18; custom events, `identify()`, autocapture, and session replay are not. Depth changes need an explicit ask.
 - RAG chatbot (separate project, not part of this repo)
 
 ## What this is
@@ -45,6 +45,7 @@ A personal portfolio website — plain HTML + CSS + vanilla JavaScript, no build
 - `app.js` — **dead file, not referenced** by `index.html` (JS went inline). Safe to ignore/remove.
 - `tabs.js` — empty stub.
 - `gate.js` — email-gate logic (Supabase insert + localStorage bypass). **Loaded but short-circuited (disabled).** Do not edit without an ask.
+- `analytics.js` — PostHog loader, **pageviews only**. Loaded by all 14 public pages (`index` + 7 `case-study-*` + 5 `project-*` + `g-os`). Reports into the shared "Web Fleet" PostHog project with a registered super-property `project: 'portfolio-website'` — that slug, not `$host`, is how the fleet dashboard separates sites. Skips localhost/`file://`. `autocapture: false`, no `identify()`, so the data stays anonymous and needs no consent banner. The `phc_` token is a public-by-design client ingest key; it is meant to ship in the page.
 - `favicon.svg` — geometric GG monogram.
 - **`case-study.css` was deleted (session 17).** Every case-study and project page is now fully **self-contained** (own inline `<style>`, own font links). Nothing references it.
 
