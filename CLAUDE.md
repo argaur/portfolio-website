@@ -87,10 +87,16 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 
 ---
 
+## Deploy
+
+**Deploy target:** Vercel — account/project `argaurs-projects/portfolio-website`, project ID `prj_rc841Ix97qlakTS5D6kmgLifE7mX`, org `team_3VVVuqz6VHXjBQCANdWIY7OF`. Runtime: **static** (`framework: null`, no build step — Vercel serves the repo as-is; there are no serverless functions). Deploys automatically on push to `main`. Live URL: `gauravg-portfolio.vercel.app` (no custom domain configured).
+
 ## Status
 
-- **State:** live on Vercel. `main` carries the per-product-skin rebuild (merge `044bbd7` + polish). All 7 case studies + 5 project pages are self-contained single-scroll pages, each in its product's design language.
-- **This session — 2026-07-23 (session 17):** rebuilt all 11 case-study/project pages onto the Siteline single-scroll + section-jump-nav pattern with per-product skins (built Vitae as the golden template by hand, fanned the other 10 out via a parallel workflow); added scrollspy + mobile nav strip; recolored every inline SVG to its palette (two dark→light flips). Deleted the now-dead `case-study.css`. Restored YouTube's 7 prototype/diagram links. Recolored Blinkit's SVG danger states red→Blinkit-yellow (`--red`→`--alert`). Refreshed this CLAUDE.md to v3 reality.
+- **State:** live on Vercel. `main` carries the per-product-skin rebuild (merge `044bbd7` + polish) plus fleet analytics (`5c159f9`). All 7 case studies + 5 project pages are self-contained single-scroll pages, each in its product's design language.
+- **This session — 2026-07-26 (session 18):** added `analytics.js` to all 14 public pages — the site had **no analytics of any kind** and Vercel Web Analytics had never been enabled, so all traffic since launch is unrecoverable. Reports anonymous pageviews into the shared "Web Fleet" PostHog project with `project: 'portfolio-website'`; one dashboard now covers 13 of Gaurav's projects. Amended Out of Scope (deliberate reversal) and added the Deploy block above. This is now a global standard in `~/.claude/CLAUDE.md` — every future project ships analytics by default.
+- **Previous — 2026-07-23 (session 17):** rebuilt all 11 case-study/project pages onto the Siteline single-scroll + section-jump-nav pattern with per-product skins (built Vitae as the golden template by hand, fanned the other 10 out via a parallel workflow); added scrollspy + mobile nav strip; recolored every inline SVG to its palette (two dark→light flips). Deleted the now-dead `case-study.css`. Restored YouTube's 7 prototype/diagram links. Recolored Blinkit's SVG danger states red→Blinkit-yellow (`--red`→`--alert`). Refreshed this CLAUDE.md to v3 reality.
 - **Previous:** 2026-07-18 (session 16) — restructured unlisted `g-os.html` (`9e0f4e4`). 2026-07-13 (session 15) — email gate disabled, Resume 404 fixed, internal docs moved out of repo.
-- **Still open:** add `photo.jpg` headshot (profile canvas wired, needs the file); decide if `g-os.html` detail modals earn their keep; graduate "Now Building" chips (Personal Finance / RAS Prep / learning-hub) to shipped as they go live; Oracle VM HTTPS; Vitae GitHub rename (`aashikvilla/health-assistant`→`vitae-health`); Notion Companies DB; Google Analytics cert has no verify link.
-- **Last updated:** 2026-07-23
+- **Still open:** add `photo.jpg` headshot (profile canvas wired, needs the file); decide if `g-os.html` detail modals earn their keep; graduate "Now Building" chips (Personal Finance / RAS Prep / learning-hub) to shipped as they go live; Oracle VM HTTPS; Notion Companies DB; Google Analytics cert has no verify link. **`g-os.html` is now slightly stale** — the global CLAUDE.md gained an analytics rule in session 18; sync it from a Claude Optimisation session.
+- **Resolved differently:** the "Vitae GitHub rename" item is closed — rather than renaming the cohort repo, Vitae was forked to `github.com/argaur/vitae` with its own Supabase + Vercel (session 18).
+- **Last updated:** 2026-07-26
