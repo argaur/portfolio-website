@@ -761,6 +761,8 @@
           <li><code>superpowers:*</code> brainstorming, writing-plans, TDD, simplify, code-review, debugging</li>
           <li><code>commit-message</code> drafts a Conventional Commits message from the staged diff, matched to the repo's own idiom — never commits or pushes</li>
           <li><code>document-skills</code> authoring and editing for <code>.docx</code>, <code>.xlsx</code>, <code>.pptx</code>, <code>.pdf</code></li>
+          <li><code>session-report</code> mines local transcripts to show where tokens actually go — by project, skill, and subagent type</li>
+          <li><code>skill-creator</code> an eval loop for authoring skills; its description-trigger optimiser targets the usual failure mode</li>
         </ul>
 
         <div class="label">Autonomy</div>
@@ -768,8 +770,8 @@
           <li><code>model-router</code> tags every plan step with the model that should run it — fable, opus, or sonnet</li>
           <li><code>dev-manager</code> executes a tagged plan on its own, verifying each result before trusting it. Escalates on exactly five triggers.</li>
           <li><code>/dev-start</code> the deliberate second act — plan approval alone never starts execution</li>
-          <li><code>/ralph-loop</code> fresh-context overnight loop; refuses to run on <code>main</code>, needs a stop condition</li>
         </ul>
+        <p class="purpose">A fresh-context overnight loop was evaluated and <strong>declined</strong>. The available implementation needs a hand-patch to its own cached config that any update silently wipes, never varies its prompt between iterations, and its completion signal is a single exact-string match — so it cannot express "finished" versus "blocked."</p>
 
         <div class="label">Guardrails (hooks — fire without being called)</div>
         <ul class="cmd-list">
@@ -777,6 +779,8 @@
           <li><code>deploy-preflight-guard</code> blocks deploys unless the project records a deploy target</li>
           <li><code>framework-state-check</code> flags an unlocked framework or a stalled PRD run at boot</li>
           <li><code>prompt-compile</code> classifies each prompt and compiles a task brief before medium/high-stakes work</li>
+          <li><code>security-guidance</code> pattern warnings on every edit (regex, no model call); the diff review on stop is off, the agentic reviewer on <code>git commit</code> is on</li>
+          <li><code>claude-security</code> deep scan, on demand only — pairs with a history scanner, since a working-tree scan cannot see a credential that was committed and later deleted</li>
         </ul>
 
         <button class="detail-btn" onclick="openDetail('skills')">Full detail →</button>
@@ -1553,6 +1557,8 @@
     <li><code>deploy-preflight-guard.sh</code> Blocks <code>vercel --prod</code> and <code>railway up</code> unless the target project's CLAUDE.md records a <code>Deploy target:</code> line — preventing a deploy to the wrong account by construction.</li>
     <li><code>framework-state-check.sh</code> Flags an unlocked framework or a stalled <code>/prd-create</code> run at session boot.</li>
     <li><code>prompt-compile</code> (v60samurai/agent-skills) A deterministic bash <code>UserPromptSubmit</code> hook that classifies every prompt into low/medium/high bands — no LLM self-grading — paired with a skill that compiles a 7-section task brief before medium and high band work executes. High band waits for approval; medium shows the brief and proceeds; bug reports and explicit escape hatches stay silent.</li>
+    <li><code>security-guidance</code> Runs at <strong>commit-only posture</strong>, which is a deliberate configuration rather than the default. Three layers ship: regex pattern warnings on every edit (no model call, no cost), an LLM diff review on session stop, and an agentic reviewer on <code>git commit</code>. The stop review is <strong>disabled</strong> — it is the expensive layer and the one most likely to fire on work that was never going to be committed. The other two keep their own independent gates and stay on. Worth knowing when rebuilding: the flag is read at module import and injected at session start, so it takes effect from the <em>next</em> session, not the one that sets it.</li>
+    <li><code>claude-security</code> A multi-agent scan invoked on demand, never automatically. It scans the <strong>working tree</strong>, which leaves a real gap: a credential committed and later deleted stays in history and remains readable in any public repo. Pair it with a dedicated history scanner run in redacting mode, so the report carries rule, file, commit, and line but never the value itself — safe by construction rather than by intent.</li>
   </ul>
 
   <div class="label">Global installer</div>
