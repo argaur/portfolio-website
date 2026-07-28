@@ -533,10 +533,10 @@
   <header class="os-header">
     <div class="os-title">CLAUDE OS &nbsp;/&nbsp; INTERNAL</div>
     <h1 class="os-headline">Gaurav's AI Operating System</h1>
-    <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order.</p>
+    <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order. <strong>Versions</strong> is how it got here, and where it is currently inconsistent.</p>
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
-      <span>v5.0 · 2026-07-20</span>
+      <span>v2.0 · 2026-07-28</span>
       <span>7 systems · 5 workflows</span>
     </div>
   </header>
@@ -549,6 +549,10 @@
     <button class="os-tab" role="tab" data-tab="playbook" aria-selected="false"
             aria-controls="tab-playbook" id="tabbtn-playbook" onclick="switchTab('playbook')">
       Playbook<span class="os-tab-count">5</span>
+    </button>
+    <button class="os-tab" role="tab" data-tab="versions" aria-selected="false"
+            aria-controls="tab-versions" id="tabbtn-versions" onclick="switchTab('versions')">
+      Versions<span class="os-tab-count">2</span>
     </button>
   </nav>
 
@@ -1358,6 +1362,102 @@
 
   </div><!-- /tab-playbook -->
 
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- TAB · VERSIONS — the trajectory                                -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-versions" role="tabpanel" aria-labelledby="tabbtn-versions">
+
+  <p class="panel-lede">The setup is versioned, because a setup is a system and systems drift. A version is a point-in-time inventory of <em>both</em> halves — this framework repo and the global <code>~/.claude/</code> config — so any past state can be described, compared, and restored. Setup and Playbook answer <em>what</em> and <em>when</em>. This tab answers <em>how it got here</em>, including where it is currently inconsistent.</p>
+
+  <div class="rule"><b>Why version a config at all</b>Session journals record changes and <code>git log</code> records one repo. Neither answers "what did my whole setup look like on this date" — and only one of the two halves is under git. A version is cut when the <em>shape</em> changes (a framework, hook, skill, agent, command, plugin, or vendored release), not on every edit.</div>
+
+  <!-- ══ v2 ═════════════════════════════════════════════════════════ -->
+  <div class="section" id="s-v2">
+    <button class="section-trigger" onclick="toggle('s-v2')" aria-expanded="false" aria-controls="b-v2">
+      <span class="section-trigger-left">
+        <span class="section-num">v2</span>
+        <span class="section-name">Builder OS jumps four releases</span>
+        <span class="section-tag">2026-07-28 · current</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-v2">
+      <div class="section-inner">
+
+        <div class="pm-label">What changed</div>
+        <p>The vendored light framework moved <code>v0.1.0 → v0.4.0</code> and was adopted <strong>as-is</strong>, deliberately without reshaping anything around it. Upstream had consolidated four PRD templates into one, added an engineering spec stage, a discovery stage, a postmortem, and seven skills.</p>
+
+        <div class="table-wrap">
+          <table class="matrix-table">
+            <thead><tr><th>&nbsp;</th><th>v1</th><th>v2</th></tr></thead>
+            <tbody>
+              <tr><td>Vendored release</td><td>v0.1.0</td><td>v0.4.0</td></tr>
+              <tr><td>Light-framework stages</td><td>PRD → brand → sessions</td><td>discovery → PRD → ERD → sessions → postmortem</td></tr>
+              <tr><td>PRD templates</td><td>4</td><td>1 (rest archived)</td></tr>
+              <tr><td>Build playbook</td><td>14-session linear</td><td>mode-aware: greenfield / extends-existing</td></tr>
+              <tr><td>Vendor skills on disk</td><td>0</td><td>7 (unregistered, inert)</td></tr>
+              <tr><td>Reference catalogue</td><td>15 entries</td><td>19 entries</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pm-label method-label">The honest part</div>
+        <div class="rule"><b>v2 is a deliberately inconsistent state</b>The framework docs still describe the version that no longer exists. Rather than half-merge two systems, both were left internally coherent and the disagreement was written down as nine numbered gaps. Every new project routes to the heavy framework until those are decided — a temporary hold, not a demotion. v2 exists precisely to be the checkpoint v3 gets compared against.</div>
+
+        <div class="pm-label method-label">Preserved before overwriting</div>
+        <p>The vendored folder had quietly diverged: six modified files and two locally authored templates that never existed upstream, tracked by no repo and no remote. Adopting upstream meant a hard reset, so the divergence was committed first as a patch — verified to apply cleanly against the old base <em>before</em> anything was destroyed — and one bootstrap script path was repaired, since the file it copied had moved and the script would otherwise abort.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ v1 ═════════════════════════════════════════════════════════ -->
+  <div class="section" id="s-v1">
+    <button class="section-trigger" onclick="toggle('s-v1')" aria-expanded="false" aria-controls="b-v1">
+      <span class="section-trigger-left">
+        <span class="section-num">v1</span>
+        <span class="section-name">The baseline — ten weeks of accumulation</span>
+        <span class="section-tag">2026-07-26 · superseded</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-v1">
+      <div class="section-inner">
+
+        <div class="pm-label">What v1 is</div>
+        <p>Not a starting point — an accumulation. Two frameworks, a six-stage PRD state machine, 43 commands, 11 hook registrations, 18 plugins, and a git-tracked memory system, built over roughly ten weeks. The milestones below are what v1 <em>consists of</em>.</p>
+
+        <div class="table-wrap">
+          <table class="matrix-table">
+            <thead><tr><th>Date</th><th>Milestone</th></tr></thead>
+            <tbody>
+              <tr><td>05-17</td><td>Repo becomes the framework home; light framework vendored</td></tr>
+              <tr><td>06-03</td><td>Heavy framework reaches full form — Phases 0–6, selection rubric</td></tr>
+              <tr><td>06-18</td><td>Design sub-process, 6 stages</td></tr>
+              <tr><td>07-02</td><td>PRD state machine with the research bias-lock</td></tr>
+              <tr><td>07-03</td><td>Publish gating; self-check gate adopted into the operating manual</td></tr>
+              <tr><td>07-11</td><td>Manual rewritten; first fail-open hook bug found and fixed</td></tr>
+              <tr><td>07-12</td><td>Mandatory test-first and post-deploy smoke test land</td></tr>
+              <tr><td>07-15</td><td>Cross-window notifications</td></tr>
+              <tr><td>07-17</td><td>Per-step model routing and autonomous plan execution</td></tr>
+              <tr><td>07-18</td><td>Memory drift found and root-caused; history unified under git</td></tr>
+              <tr><td>07-20</td><td>Buildable backlog closed; this page gains its Playbook tab</td></tr>
+              <tr><td>07-26</td><td>Security sweep across 16 repos; hook audit; analytics becomes a global rule</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pm-label method-label">Recorded honestly</div>
+        <div class="rule"><b>v1 is reconstructed, not captured</b>The versioning system did not exist while v1 was being built, so v1 was assembled after the fact from memory files, git history, and the live machine. Hook and plugin inventories are reliable; anything that could not be verified is marked as such in the record rather than asserted.</div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="rule" style="margin-top:20px;"><b>A retired numbering</b>This page previously carried its own version string, running v2.1 through v5.0 between June and July. Those were page revisions that happened to track setup changes — never backed by an inventory. They were retired on 2026-07-28 in favour of the scheme above, which is the single source of truth. The work they represented is not lost; it is what v1 is made of.</div>
+
+  </div><!-- /tab-versions -->
+
   <footer class="os-footer">
     <span>Gaurav Gupta · Claude OS</span>
     <span><a href="index.html">← Portfolio</a></span>
@@ -1696,7 +1796,7 @@
   }
 
   // ── Tabs ────────────────────────────────────────────────────────
-  var TABS = ['setup', 'playbook'];
+  var TABS = ['setup', 'playbook', 'versions'];
 
   function switchTab(name) {
     if (TABS.indexOf(name) === -1) return;
