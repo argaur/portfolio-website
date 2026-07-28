@@ -1534,7 +1534,19 @@
 </div>
 
 <div class="detail-store" id="d-builderos" data-title="02 · Builder OS">
+  <div class="rule"><b>Currently on hold — read this first</b>The vendored light framework was updated four upstream releases (v0.1.0 → v0.4.0) and adopted <strong>as-is</strong>, without reshaping the docs around it. Upstream consolidated four PRD templates into one, added an engineering-spec stage and a postmortem, and replaced the linear 14-session arc below with a <strong>mode-aware</strong> one that branches greenfield vs feature-in-an-existing-repo. <strong>Until that is reconciled, every new project uses Blueprint regardless of rubric score.</strong> A temporary hold, not a demotion — the bootstrap path works and is tested; the documentation around it is what is stale. See the Versions tab.</div>
+
   <p><code>PRD.md</code> arrives pre-made from <code>/prd-create</code> with a Provenance block — never hand-filled from a blank template. <code>USER_FLOWS.md</code> is extracted verbatim from the PRD's Product Flows section during bootstrap, not written separately.</p>
+
+  <div class="label">What v0.4.0 added, not yet wired in</div>
+  <ul class="cmd-list">
+    <li><code>ERD</code> An engineering spec between PRD and build: schema, API contract, and a chunk map with boundary contracts. Its core discipline is <strong>one starred structural decision, reviewed first</strong> — the single call that forces a rewrite if wrong, stated and evidenced before any code. The judged-most-valuable piece of the whole update.</li>
+    <li><code>postmortem</code> Scores results against the PRD's original success criteria, states one lesson as a rule, and forces an explicit Iterate / Scale / Retire call. Fills a real hole: the criteria were being authored and never scored.</li>
+    <li><code>sessions</code> Mode-aware. The extends-existing arc skips scaffold, landing and auth setup, and builds chunk-by-chunk against the ERD — which the old linear arc handled badly, and which is what most real work actually looks like.</li>
+    <li><code>discovery</code> Overlaps <code>/prd-create</code>, which is stricter. Likely to stay unused.</li>
+  </ul>
+
+  <div class="label">The 14-session arc below is v0.1.0 and is being replaced</div>
 
   <div class="label">Pre-flight</div>
   <div class="grid-2">
