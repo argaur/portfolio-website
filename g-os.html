@@ -1283,7 +1283,15 @@
             <div class="step-id">TEST</div>
             <div class="step-body">
               <div class="step-name">The inevitability test</div>
-              <div class="step-desc">If the design language could be transplanted onto a different product without feeling wrong, it was imposed rather than derived. That is a fail, and it is the last check before the work is called done.</div>
+              <div class="step-desc">If the design language could be transplanted onto a different product without feeling wrong, it was imposed rather than derived. That is a fail. It judges whether the design was <em>derived</em>; it says nothing about whether the artifact is sound, which is what the next gate is for.</div>
+            </div>
+          </div>
+
+          <div class="step gate">
+            <div class="step-id">GATE</div>
+            <div class="step-body">
+              <div class="step-name">Pre-delivery gate · six mechanical checks</div>
+              <div class="step-desc">Verified by rendering or inspecting the artifact, never asserted. Contrast ≥4.5:1 measured against the real background in <em>both</em> modes, since a token pair that passes in light often fails in dark. A visible focus state on every interactive element, reachable by Tab. <code>prefers-reduced-motion</code> honoured, or the confirmed micro-interactions become an accessibility failure. No emoji as icons — SVG only. <code>cursor: pointer</code> on every click target, including non-button ones. Renders at 375 / 768 / 1024 / 1440, the named checkpoints, not "it's responsive". A fail here blocks sign-off.</div>
             </div>
           </div>
 
