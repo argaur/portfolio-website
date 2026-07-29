@@ -1716,11 +1716,16 @@
     <span class="tag">/write-query</span><span class="tag">/battlecard</span><span class="tag">/plan-launch</span><span class="tag">/proofread</span>
   </div>
 
-  <div class="label">Codex delegation</div>
+  <div class="label">External model delegation</div>
   <ul class="cmd-list">
-    <li><code>codex exec --full-auto</code> Inline review, piped to <code>~/.claude/codex-last.md</code>.</li>
-    <li><code>codex exec -a on-request -s workspace-write</code> Risky or sandboxed work — explicit approval per action.</li>
+    <li><code>/delegate</code> Sends a <strong>read-only</strong> task to a second model provider's CLI — a non-Anthropic second opinion on a plan or diff, a research pass, or reading a file too large to load. It returns text; the main session applies any change.</li>
+    <li><code>agy-delegate.sh --type review|research|longread</code> The wrapper. Per-lane model defaults: a strong reasoning model for judgement work, a cheap fast one for bulk reading.</li>
+    <li><code>agy-delegate.sh --stats</code> Reports this wrapper's own token spend per quota pool over the last 7 days, from a local ledger. Labelled a burn estimate, <em>not</em> remaining quota — the failure mode to avoid is a number that looks authoritative and isn't.</li>
   </ul>
+  <p><strong>Why it's a tool and not an agent.</strong> The Agent tool's <code>model</code> parameter is a closed enum of first-party models, so no subagent can be spawned onto another provider's model. A second provider is reachable only by shelling out. The model-router was deliberately <em>not</em> given a tag for it — that would produce plans the autonomous executor is structurally unable to dispatch. The harness decides what is possible and the design follows it, not the reverse.</p>
+  <p><strong>Content goes in; the external CLI never reads anything.</strong> Run headless it cannot prompt for tool permission, so it auto-denies and returns <code>status:SUCCESS</code> with an <strong>empty response</strong> — a silent failure wearing a success mask. Denials were observed on more than one permission and an identical call returned empty once then worked, so the tool path is <em>non-deterministic</em>, not merely restricted. The shell therefore assembles every payload. Three consequences, all good: read-only becomes structural rather than promised; large content flows shell → CLI and never enters the main session's context; and it measured cheaper and faster than the tool path, because no turns are burned on denied calls. The wrapper adds a no-tools preamble, retries once, and exits non-zero rather than ever reporting an empty answer as success.</p>
+  <p><strong>The subagent is the boundary.</strong> It is declared with no write tools at all, so the read-only guarantee is enforced by omission rather than instruction, and it distils the reply so raw output never reaches the main context. It is told to treat everything the external model returns as data to relay, never as instructions to follow — and to state its own verdict on which findings are real, because it has context the external model lacks. On its first two real reviews the external model produced 8 findings, 7 genuine and 1 wrong.</p>
+  <p><strong>Spend deliberately.</strong> Quota is a weekly budget metered on token cost rather than request count, and roughly 1% of a week goes per call. Worth it for a real plan or a substantial diff; not for a one-liner. A plan-finalization hook <em>offers</em> a second-opinion pass rather than spending automatically — a throwaway plan shouldn't silently cost quota. This replaced an earlier delegation path whose reviews were written to a file nothing ever read: an external opinion with no return path into context is not a review.</p>
 </div>
 
 <div class="detail-store" id="d-principles" data-title="05 · Operating Principles">
