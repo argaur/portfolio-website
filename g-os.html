@@ -782,13 +782,15 @@
         <div class="label">Guardrails (hooks — fire without being called)</div>
         <ul class="cmd-list">
           <li><code>pre-tool-use-guard</code> blocks force-push, <code>--no-verify</code>, home-dir deletes, secret echoing</li>
-          <li><code>deploy-preflight-guard</code> blocks deploys unless the project records a deploy target</li>
-          <li><code>hook-canary</code> smoke-tests every registered hook at session start, and checks that hooks, commands, skills and agents all still match their copies in the repo — silent when green, shouts when a gate is failing open or has drifted</li>
+          <li><code>deploy-preflight-guard</code> blocks deploys unless the project records a deploy target — and recognises the wrapper forms (<code>npx</code>, <code>pnpm dlx</code>, pinned versions), which is the shape actually typed. Anchoring on the bare binary name meant the rule was enforced only against the command nobody uses</li>
+          <li><code>hook-canary</code> smoke-tests every registered hook at session start, checks that hooks, commands, skills and agents still match their copies in the repo, and reconciles 18 live files against a dated hash manifest — silent when green, shouts when a gate is failing open or has drifted</li>
+          <li><code>init-project-context</code> reports a canary that has not run. The staleness check sits in a <em>different</em> hook on purpose: a canary that never launched is byte-identical to a healthy one, because green is silent, and a hook that did not run cannot check itself. Its marker is written last, so a canary killed by the session-start timeout is caught too</li>
           <li><code>memory-index-check</code> compares the session journals on disk against the index that makes them readable, in both memory locations — silent when they agree</li>
           <li><code>file-io-guard</code> denies a write that would shrink a memory file past a threshold, and denies reading a credentials or key file. The first gate on the write and read tools at all</li>
           <li><code>session-end</code> runs the Obsidian backup and leaves a marker only on genuine success</li>
           <li><code>plan-finalized-nudge</code> reminds, the moment a plan is approved or written, to offer the autonomous-execution pipeline</li>
-          <li><code>framework-state-check</code> flags an unlocked framework or a stalled PRD run at boot</li>
+          <li><code>framework-state-check</code> flags an unlocked framework or a stalled PRD run at boot — and no longer accepts retired vocabulary, which had been certifying projects as compliant precisely <em>because</em> they were out of date</li>
+          <li><strong>A deny list in config</strong> backs the file gate up for credentials and key material. Deliberately no environment-file glob: permission patterns have no negation, so it would also block the example templates the hook allows on purpose. It covers read, write and edit but not shell commands, so it is a backstop with a known hole rather than a second wall</li>
           <li><code>prompt-compile</code> classifies each prompt and compiles a task brief before medium/high-stakes work</li>
           <li><code>security-guidance</code> pattern warnings on every edit (regex, no model call); the diff review on stop is off, the agentic reviewer on <code>git commit</code> is on</li>
           <li><code>claude-security</code> deep scan, on demand only — pairs with a history scanner, since a working-tree scan cannot see a credential that was committed and later deleted</li>
