@@ -783,14 +783,16 @@
         <ul class="cmd-list">
           <li><code>pre-tool-use-guard</code> blocks force-push, <code>--no-verify</code>, home-dir deletes, secret echoing</li>
           <li><code>deploy-preflight-guard</code> blocks deploys unless the project records a deploy target — and recognises the wrapper forms (<code>npx</code>, <code>pnpm dlx</code>, pinned versions), which is the shape actually typed. Anchoring on the bare binary name meant the rule was enforced only against the command nobody uses</li>
-          <li><code>hook-canary</code> smoke-tests every registered hook at session start, checks that hooks, commands, skills and agents still match their copies in the repo, and reconciles 18 live files against a dated hash manifest — silent when green, shouts when a gate is failing open or has drifted</li>
-          <li><code>init-project-context</code> reports a canary that has not run. The staleness check sits in a <em>different</em> hook on purpose: a canary that never launched is byte-identical to a healthy one, because green is silent, and a hook that did not run cannot check itself. Its marker is written last, so a canary killed by the session-start timeout is caught too</li>
+          <li><code>hook-canary</code> smoke-tests every registered hook at session start, checks that hooks, commands, skills and agents still match their copies in the repo, and reconciles 19 live files against a dated hash manifest — silent when green, shouts when a gate is failing open or has drifted</li>
+          <li><strong>The manifest check now asserts its own coverage.</strong> On the verify path the list of files to compare came from the manifest itself, so a snapshot interrupted mid-write left a short manifest — and a short manifest verifies <em>clean</em>. Two of nineteen files checked, zero drift, exit zero, "live matches the mirror". The tool used to decide whether the enforcement layer can be trusted had, about itself, the exact defect it exists to catch. It now refuses to run against a manifest that covers less than the known floor</li>
+          <li><code>init-project-context</code> reports a canary that has not run. The staleness check sits in a <em>different</em> hook on purpose: a canary that never launched is byte-identical to a healthy one, because green is silent, and a hook that did not run cannot check itself. Its marker is written last, so a canary killed by the session-start timeout is caught too. It also delivers <strong>dated reminders that expire by themselves</strong> — a file named for a day is printed on that day, in every project, and is invisible the next, because a reminder that needs a human to retire it becomes noise the moment they forget</li>
+          <li><strong>It no longer writes handoff files.</strong> It used to drop an <code>AGENTS.md</code> and a <code>GEMINI.md</code> stub into every project it detected — 40 files across ~25 repos, each an untracked change in someone's working tree, for two tools that have since been retired, from a template nothing ever filled in. A session-start hook should read the project, not edit it</li>
           <li><code>memory-index-check</code> compares the session journals on disk against the index that makes them readable, in both memory locations — silent when they agree</li>
           <li><code>file-io-guard</code> denies a write that would shrink a memory file past a threshold, and denies reading a credentials or key file. The first gate on the write and read tools at all</li>
           <li><code>session-end</code> runs the Obsidian backup and leaves a marker only on genuine success</li>
           <li><code>plan-finalized-nudge</code> reminds, the moment a plan is approved or written, to offer the autonomous-execution pipeline</li>
           <li><code>framework-state-check</code> flags an unlocked framework or a stalled PRD run at boot — and no longer accepts retired vocabulary, which had been certifying projects as compliant precisely <em>because</em> they were out of date</li>
-          <li><strong>A deny list in config</strong> backs the file gate up for credentials and key material. Deliberately no environment-file glob: permission patterns have no negation, so it would also block the example templates the hook allows on purpose. It covers read, write and edit but not shell commands, so it is a backstop with a known hole rather than a second wall</li>
+          <li><strong>A deny list in config</strong> backs the file gate up for credentials and key material. Deliberately no environment-file glob: permission patterns have no negation, so it would also block the example templates the hook allows on purpose. It covers read, write and edit but not shell commands, so it is a backstop with a known hole rather than a second wall. One correction learned the hard way: a <code>Write(path)</code> deny rule parses and is then <em>never evaluated</em> — only <code>Edit(path)</code> globs gate file-writing tools, and they cover write, edit and notebook-edit alike. Five such rules shipped in the batch whose whole purpose was enforcement, and enforced nothing for a few hours. The test suite now asserts they stay <em>absent</em>, because the next person hardening that list will reach for the same word</li>
           <li><code>prompt-compile</code> classifies each prompt and compiles a task brief before medium/high-stakes work</li>
           <li><code>security-guidance</code> pattern warnings on every edit (regex, no model call); the diff review on stop is off, the agentic reviewer on <code>git commit</code> is on</li>
           <li><code>claude-security</code> deep scan, on demand only — pairs with a history scanner, since a working-tree scan cannot see a credential that was committed and later deleted</li>
@@ -827,7 +829,7 @@
         </div>
 
         <div class="label">Forbidden</div>
-        <div class="forbidden"><code>await</code> on sync SDKs (pyairtable, anthropic)</div>
+        <div class="forbidden"><code>await</code> on the sync <code>anthropic</code> client</div>
         <div class="forbidden">Silent <code>except: pass</code> — always surface errors</div>
         <div class="forbidden">Force-push, <code>--no-verify</code>, or auto-commits without an explicit request</div>
         <div class="forbidden">Placeholder scaffolds left behind — TODOs, stubs, bare <code>pass</code></div>
@@ -922,7 +924,7 @@
     <div class="section-body" id="b-p0">
       <div class="section-inner">
 
-        <div class="prompt-box">I want to build a Telegram bot that logs my expenses into Airtable.</div>
+        <div class="prompt-box">I want to build a Telegram bot that logs my expenses into Notion.</div>
 
         <div class="flow-chain">
           <span class="flow-node">/rubric</span><span class="flow-arrow">→</span>
@@ -1677,7 +1679,7 @@
 
   <div class="label">Autonomous loops</div>
   <ul class="cmd-list">
-    <li><code>/ralph-loop</code> The Ralph pattern (Geoffrey Huntley) — a fresh-context agent loop for overnight builds. Each iteration re-reads <code>PROMPT.md</code>, <code>specs/*.md</code>, and <code>TODO.md</code> from disk with no conversation memory carried between iterations, implements one item, and commits on a passing test. The runner refuses to run on main or master, requires a <code>--test-cmd</code> stop condition, caps iterations, and stops after three consecutive test failures.</li>
+    <li><strong>Removed.</strong> <code>/ralph-loop</code> implemented the Ralph pattern (Geoffrey Huntley) — a fresh-context agent loop for overnight builds, re-reading <code>PROMPT.md</code>, <code>specs/*.md</code> and <code>TODO.md</code> from disk each iteration with no conversation memory carried between them, committing on a passing test. It was evaluated and <em>decided against</em>: its prompt never varies across iterations, and its completion signal cannot distinguish "finished" from "blocked". The decision was recorded — and then the command sat installed and resolvable for weeks anyway. Deleted 2026-08-04, once a usage check confirmed nothing had ever invoked it. <strong>A decision that does not reach the filesystem has not been made.</strong></li>
   </ul>
 
   <div class="label">Guardrail hooks</div>
@@ -1742,7 +1744,7 @@
 
 <div class="detail-store" id="d-principles" data-title="05 · Operating Principles">
   <div class="label">Stack</div>
-  <p>Stack is project-specific, not a global default — recorded in each project's own CLAUDE.md "Framework state" block. A new project checks sibling <code>memory/project.md</code> files for a precedent before picking one from scratch; Gaurav confirms, and it locks for that project. One gotcha stays global regardless of stack: <code>pyairtable</code> and <code>anthropic</code> SDKs are sync — never <code>await</code> them.</p>
+  <p>Stack is project-specific, not a global default — recorded in each project's own CLAUDE.md "Framework state" block. A new project checks sibling <code>memory/project.md</code> files for a precedent before picking one from scratch; Gaurav confirms, and it locks for that project. One gotcha stays global regardless of stack: the <code>anthropic</code> SDK's default client is sync — never <code>await</code> it; use <code>AsyncAnthropic</code> if you need async.</p>
   <p><strong>Analytics is the one global exception.</strong> Every deployed web project reports into a single shared analytics project and must register a <code>project: &lt;folder-name&gt;</code> super-property — that property, never the hostname, is how one dashboard separates every site (hostnames fragment across preview URLs, custom domains and IP hosts). Default depth is anonymous pageviews only: no autocapture, no <code>identify()</code> on public sites, so no consent banner. Shipped as a drop-in <code>analytics.js</code> — one file, one script tag, <strong>no npm dependency</strong> — because the alternative was ten bespoke SDK integrations across three frameworks, each touching a lockfile. It cannot break a build and behaves identically on static HTML, Next.js and Vite. Added after an audit found four different analytics states across ~20 projects and no unified view; the failure was the absence of a default, not the tooling.</p>
 
   <div class="label">Think → Build → Prove</div>
