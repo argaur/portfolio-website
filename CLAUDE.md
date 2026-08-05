@@ -100,3 +100,13 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 - **Still open:** add `photo.jpg` headshot (profile canvas wired, needs the file); decide if `g-os.html` detail modals earn their keep; graduate "Now Building" chips (Personal Finance / RAS Prep / learning-hub) to shipped as they go live; Oracle VM HTTPS; Notion Companies DB; Google Analytics cert has no verify link. **`g-os.html` is now slightly stale** — the global CLAUDE.md gained an analytics rule in session 18; sync it from a Claude Optimisation session.
 - **Resolved differently:** the "Vitae GitHub rename" item is closed — rather than renaming the cohort repo, Vitae was forked to `github.com/argaur/vitae` with its own Supabase + Vercel (session 18).
 - **Last updated:** 2026-07-26
+
+## Model notes
+**This section expires. Review it at every model launch and every Claude Code version bump.**
+Current as of 2026-08-05: Opus 5 / Sonnet 5 / Fable 5, Claude Code 2.1.222. Checked by
+`Claude Optimisation/scripts/claude-md-eval.sh`, which found nothing stale in this file.
+- Delegation is not automatic. Claude Code 2.1.219 and later suppress subagents on Opus 5 unless
+  the user asks for one, so name the agent when you want it.
+- Do not add verification, anti-laziness or hedging instructions. These models self-verify, are
+  direct by default, and obey a hedge literally by reporting less.
+- Reasoning: `Claude Optimisation/docs/setup-versions/artifacts/2026-08-05-model5-migration/`.
