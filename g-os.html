@@ -536,7 +536,7 @@
     <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order. <strong>Versions</strong> is how it got here, and where it is currently inconsistent.</p>
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
-      <span>v2.0 · updated 2026-08-05</span>
+      <span>v3.0 · updated 2026-08-05</span>
       <span>7 systems · 5 workflows</span>
     </div>
   </header>
@@ -552,7 +552,7 @@
     </button>
     <button class="os-tab" role="tab" data-tab="versions" aria-selected="false"
             aria-controls="tab-versions" id="tabbtn-versions" onclick="switchTab('versions')">
-      Versions<span class="os-tab-count">2</span>
+      Versions<span class="os-tab-count">3</span>
     </button>
   </nav>
 
@@ -849,8 +849,9 @@
           <span class="tag">Elegant</span>
         </div>
 
-        <div class="label">The proof gate</div>
-        <div class="rule"><b>No "done" without evidence</b>Did I run it? Did I verify against real output, a file:line, or a screenshot — not a plausible-looking guess? Am I being agreeable instead of honest?</div>
+        <div class="label">The section that expires</div>
+        <div class="rule"><b>Retired 2026-08-05: the proof gate</b>The manual used to end with a self-check &mdash; did I run it, did I verify against real output, am I being agreeable instead of honest. All three were removed for the Claude 5 generation. These models self-verify and are direct by default, and the vendor guidance states plainly that such instructions cause over-verification and cost tokens without improving results. What replaced it is structural: everything written to compensate for a model weakness now lives in one dated block, reviewed at each model launch, while the rest of the file is durable fact.</div>
+        <div class="rule"><b>The forbidden list above is enforced by guards, not by this text</b>Each entry names a rule that a pre-tool-use hook denies at the command boundary. An enforcement register pairs every claimed rule with the exact file that enforces it, and a check fails if any of those files goes missing. The manual keeps only the remainder that no script can catch, because keeping both a guard and its paragraph is how the manual doubled in size.</div>
 
         <button class="detail-btn" onclick="openDetail('principles')">Full detail →</button>
       </div>
@@ -1390,12 +1391,63 @@
   <div class="rule"><b>Why version a config at all</b>Session journals record changes and <code>git log</code> records one repo. Neither answers "what did my whole setup look like on this date" — and only one of the two halves is under git. A version is cut when the <em>shape</em> changes (a framework, hook, skill, agent, command, plugin, or vendored release), not on every edit.</div>
 
   <!-- ══ v2 ═════════════════════════════════════════════════════════ -->
+  <div class="section" id="s-v3">
+    <button class="section-trigger" onclick="toggle('s-v3')" aria-expanded="false" aria-controls="b-v3">
+      <span class="section-trigger-left">
+        <span class="section-num">v3</span>
+        <span class="section-name">Both manuals rewritten for the Claude 5 models</span>
+        <span class="section-tag">2026-08-05 &middot; current</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">&#9660;</span>
+    </button>
+    <div class="section-body" id="b-v3">
+      <div class="section-inner">
+
+        <div class="pm-label">What changed</div>
+        <p>Both operating manuals were rewritten from scratch, and the audit that justified the rewrite was compiled into a script so it does not have to be repeated by hand at the next model launch. The trigger was the Claude 5 generation: Anthropic&rsquo;s own prompting guides now say to remove verification instructions, anti-laziness pressure and hedging language, all three of which this setup carried, and Anthropic deleted more than 80 percent of Claude Code&rsquo;s own system prompt for the same reason. <strong>The files had not changed. The models had.</strong></p>
+
+        <div class="table-wrap">
+        <table class="matrix-table">
+          <thead><tr><th></th><th>v2</th><th>v3</th></tr></thead>
+          <tbody>
+            <tr><td>Global manual</td><td>14,571 bytes, 100 lines</td><td><strong>9,894 bytes, 90 lines</strong></td></tr>
+            <tr><td>Project manual</td><td>10,471 bytes, 95 lines</td><td><strong>5,019 bytes, 70 lines</strong></td></tr>
+            <tr><td>Organised by</td><td>topic</td><td><strong>expiry</strong></td></tr>
+            <tr><td>Enforced rules</td><td>35</td><td><strong>36</strong></td></tr>
+            <tr><td>Size rule</td><td>line cap only</td><td><strong>line cap and a self-declared byte cap</strong></td></tr>
+            <tr><td>Test cases</td><td>436</td><td><strong>458</strong></td></tr>
+            <tr><td>Project files with a review anchor</td><td>0 of 22</td><td><strong>22 of 22</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="pm-label method-label">The rule that defines this version</div>
+        <div class="rule"><b>A section that expires</b>Both manuals now carry a dated block holding everything written to compensate for a model weakness, stamped with the model and CLI version it was written against. Everything else in the file is durable fact. At the next model launch only that section is reviewed. The previous shape had no such boundary, so a migration meant re-reading and re-arguing the whole file, which is a review that does not happen.</div>
+
+        <div class="pm-label">What was removed, and why each</div>
+        <p>Instructions to verify more and to re-check finished work, because these models self-verify and the guidance states that removing such instructions reduces wasted tokens with no loss in quality. Standing anti-agreeableness pressure, because these models are direct by default and the instruction turned pushback into a ritual. A design vocabulary lookup table, because current models read design feedback natively. Manual compaction guidance, because the harness compacts on its own. And the prose copies of every rule a guard already enforces, which the manual&rsquo;s own first lines had said belonged in hooks.</p>
+
+        <div class="pm-label">Two contradictions closed</div>
+        <p>The two manuals were 85 percent identical and had drifted into disagreeing with each other while both loaded at once: one claimed a phase count that was one short of the phases that exist, and pointed memory at a folder the other forbade. The project manual is no longer a copy of the global one, so that class of drift cannot recur the same way.</p>
+
+        <div class="pm-label method-label">The new check, and the run that corrected it</div>
+        <div class="rule"><b>A linter that fires on every use of a word is the same as one that fires on none</b>The new evaluator lints any manual against the current model generation, with every rule citing the documented behaviour change it defends against. Its first real run across the fleet reported two stale findings and <em>both were wrong</em>: one was product prose about a dashboard being untrustworthy, the other a domain rule about checking codebase conventions. A published audit of 74 real manuals found the same thing, that none of its 45 mentions of verification were the kind the guidance targets. The rules were narrowed to match only instructions aimed at the model&rsquo;s own output, the four false positives became test cases, and findings across the fleet fell from 37 to 3. <strong>Acting on the first run would have deleted load-bearing lines from two projects.</strong></div>
+
+        <div class="pm-label method-label">Recorded honestly</div>
+        <div class="rule"><b>Known and unfixed at v3</b>The seed file used to install onto a fresh machine is verified by nothing, and had drifted <em>ahead</em> of the running copy, so a new machine would have received a better manual than the live one. A required command-line tool is missing from the shell path, and five of the nine suites abort until it is exported by hand. Three project manuals still exceed the documented length guidance, and the review anchor pushed each about ten lines further. And the evaluator reads text, not behaviour: a file can pass it and still steer a session badly, so the behavioural half does not exist yet.</div>
+
+        <div class="rule"><b>The harness now overrides the manual, silently</b>From CLI 2.1.219 the tool injects a hidden instruction that suppresses delegating to subagents unless the user asks, with no setting and no opt-out, and system prompts are not written to session transcripts. A standing delegation policy in any manual no longer fires. Naming the agent explicitly still works. The wider lesson outranks the bug: the harness changes underneath the setup between model launches, without a changelog, so anything built to survive that has to test the harness and the model together.</div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="section" id="s-v2">
     <button class="section-trigger" onclick="toggle('s-v2')" aria-expanded="false" aria-controls="b-v2">
       <span class="section-trigger-left">
         <span class="section-num">v2</span>
         <span class="section-name">Builder OS jumps four releases</span>
-        <span class="section-tag">2026-07-28 · current</span>
+        <span class="section-tag">2026-07-28 · superseded</span>
       </span>
       <span class="section-chevron" aria-hidden="true">▼</span>
     </button>
@@ -1626,7 +1678,7 @@
   <ul class="cmd-list">
     <li><code>/continues</code> Reload project context on demand — also auto-fires at session start via <code>init-project-context.sh</code>, printing Status, Last session, Blocked on, Next up.</li>
     <li><code>/end-session</code> Sync memory and Obsidian — journal, mistakes, decisions, project page.</li>
-    <li><code>/compact</code> Compress context around 30 turns, preserving modified files, failing output, and current task state.</li>
+    <li><code>/compact</code> A built-in that compresses the running context. The manual used to instruct when to call it and what to preserve; that guidance was retired on 2026-08-05 because the harness now compacts on its own and manages what survives.</li>
   </ul>
 
   <div class="label">Framework selection + kickoff</div>
@@ -1755,7 +1807,7 @@
   <strong>Prove</strong> — the self-check gate, then record what surprised you and what pattern prevents this class of problem.</p>
 
   <div class="label">Relationship dynamic</div>
-  <p><strong>Gaurav decides what. Claude decides how and holds the bar.</strong> Push back with data, not opinion. One issue per question — lead with a recommendation plus tradeoffs. Honesty over agreement. One question saves hours, so ask it. Gaurav optimizes for speed; resist this. Do less, verify more.</p>
+  <p><strong>Gaurav decides what. Claude decides how and holds the bar.</strong> Push back with data, not opinion. One issue per question — lead with a recommendation plus tradeoffs. One question saves hours, so ask it. <em>Two lines were retired here on 2026-08-05 &mdash; &ldquo;honesty over agreement&rdquo; and &ldquo;resist his speed, do less and verify more&rdquo; &mdash; because the Claude 5 models are direct by default and the second was measurably causing over-verification rather than preventing haste.</em></p>
 
   <div class="label">Tripwires</div>
   <p>Broken approach → stop and re-plan. Unclear → ask. Production system → warn first. Bug → root cause, fix, test, then record in Past Mistakes.</p>
