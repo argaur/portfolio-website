@@ -536,7 +536,7 @@
     <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order. <strong>Versions</strong> is how it got here, and where it is currently inconsistent.</p>
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
-      <span>v3.0 · updated 2026-08-05</span>
+      <span>v3.0 · updated 2026-08-06</span>
       <span>7 systems · 5 workflows</span>
     </div>
   </header>
@@ -820,8 +820,16 @@
         <div class="pm-label">Purpose</div>
         <p class="purpose">The standing rules that hold regardless of framework, project, or stack — the things that don't get re-decided per session.</p>
 
+        <div class="pm-label method-label">File layout (split 2026-08-06)</div>
+        <p>The manual is no longer one file. <code>~/.claude/CLAUDE.md</code> holds <em>how Claude works</em>: the gears, the priority order, the tripwires, output style, the quality thresholds, and a dated <code>Model notes</code> block that expires at every model launch. <em>What Gaurav owns</em> lives in three files under <code>~/.claude/context/</code>: <code>estate.md</code> (hosts, domain, VM, analytics), <code>knowledge.md</code> (memory locations, Obsidian, Notion, capture routing) and <code>tooling.md</code> (framework contract, skill precedence, delegation, the enforcement register). They are pulled back in with bare <code>@path</code> import lines.</p>
+        <p><strong>The split axis is "how Claude works" versus "what Gaurav owns", not topic and not change frequency.</strong> Frequency is the symptom: the manual changes a few times a year, the estate changes whenever a service is added or retired. Putting them in one file meant every new service edited the operating manual, and a manual that reads like an inventory stops being read. The axis also settles where a <em>new</em> subsystem's facts go on day one, which a topic split does not.</p>
+        <p><strong>Imports, not links, and the two are not interchangeable.</strong> A bare <code>@path</code> line is read into context automatically at load, recursively, to 5 hops. A markdown link or a bare path is never read unless the model chooses to open it. The requirement was that routed content is always present, so only an import satisfies it. <strong>This buys zero tokens.</strong> Cost is unchanged, and the win is purely that the small files are edited often while the manual stays put. That trade was made explicitly. Each import is paired with a one-line trigger naming the moment its content is load-bearing: the import handles presence, the trigger handles attention.</p>
+        <p><strong>Proven before it was built.</strong> Nothing in the setup had ever used an import, so the whole design rested on an untested assumption. A probe file with a unique token was imported and returned in a fresh session; with the import line removed and <em>the file still on disk</em> it returned nothing, which is the control that actually proves the import is doing the work; and the same path inside backticks also returned nothing. A broken import is <em>silent</em> at load time. No error, the content simply is not there. That is why the three paths are tracked in the mirror manifest and why the installer seeds them per-file.</p>
+        <p><strong>Two caps, both self-declared in the file's own header and read from it rather than hardcoded.</strong> The manual has its own byte cap. The gate, though, is the <em>total</em> across the manual and everything it imports, because splitting with imports moves bytes out of the file without moving them out of the load. The per-file cap went green at 5.5&nbsp;KB while the real cost stayed near 11&nbsp;KB. A cap that reports green on a world that no longer exists is a check that always passes, which is treated here as identical to a check that always fails.</p>
+
         <div class="pm-label method-label">Method</div>
         <p><strong>Gaurav decides what. Claude decides how and holds the bar.</strong> Three gears, never blended, plus a hard list of things that are simply not done.</p>
+        <p><strong>Output style is a standing rule, chat included.</strong> Lead with the answer, bullets over paragraphs, no preamble and no recap of what the tool calls already show. Gaurav's writing style always applies: zero em-dashes, short common words, one idea per sentence, calm tone, no hype. Its persona and channel-specific rules apply only to content shipped as him. Tool calls, code and file content stay at full quality. The rule governs prose, not craft.</p>
 
         <div class="gear-strip" style="margin:14px 0 18px;">
           <div class="gear gear-expand">Scope expand — vision, challenge the ask</div>
