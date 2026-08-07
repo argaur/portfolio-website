@@ -78,12 +78,8 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 
 ---
 
-## AI Session Protocol
-> Follow at the start of every session.
-1. **Orient** — read this file, `git log --oneline -10`, and the Status block below. Deep reads of HTML/CSS/JS can go to a Gemini tab (1M context, free) to save Claude tokens.
-2. **Plan** — any 3+-step task → Plan Mode before writing code.
-3. **Build** — for a page rebuild/add, copy the Vitae template. Parallelizable page work fans out cleanly (each page is self-contained → no file conflicts).
-4. **End of session** — update the Status block, sync memory (`/end-session`), update the Obsidian project page.
+## Project conventions
+- For a page rebuild or a new page, copy the Vitae template. Each page is self-contained, so page work does not conflict across files.
 
 ---
 
@@ -103,8 +99,9 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 
 ## Model notes
 **This section expires. Review it at every model launch and every Claude Code version bump.**
-Current as of 2026-08-05: Opus 5 / Sonnet 5 / Fable 5, Claude Code 2.1.222. Checked by
-`Claude Optimisation/scripts/claude-md-eval.sh`, which found nothing stale in this file.
+Current as of 2026-08-05: Opus 5 / Sonnet 5 / Fable 5, Claude Code 2.1.222.
+Re-checked 2026-08-07 by `Claude Optimisation/scripts/claude-md-eval.sh`, after five
+contract-drift rules were added to it. Clean on that run.
 - Delegation is not automatic. Claude Code 2.1.219 and later suppress subagents on Opus 5 unless
   the user asks for one, so name the agent when you want it.
 - Do not add verification, anti-laziness or hedging instructions. These models self-verify, are
