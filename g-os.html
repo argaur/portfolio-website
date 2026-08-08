@@ -537,7 +537,7 @@
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
       <span>v3.0 · updated 2026-08-07</span>
-      <span>7 systems · 5 workflows</span>
+      <span>8 systems · 5 workflows</span>
     </div>
   </header>
 
@@ -561,7 +561,7 @@
   <!-- ══════════════════════════════════════════════════════════════ -->
   <div class="tab-panel is-active" id="tab-setup" role="tabpanel" aria-labelledby="tabbtn-setup">
 
-  <p class="panel-lede">Seven systems, each stating its purpose and its method. Open <em>Full detail</em> for the mechanics. This tab answers <em>what exists</em>; the Playbook tab answers <em>when each piece fires</em>.</p>
+  <p class="panel-lede">Eight systems, each stating its purpose and its method. Open <em>Full detail</em> for the mechanics. This tab answers <em>what exists</em>; the Playbook tab answers <em>when each piece fires</em>.</p>
 
   <!-- ══ 00 · PRD Creation ══════════════════════════════════════════ -->
   <div class="section" id="s-prd">
@@ -904,6 +904,43 @@
         <div class="rule"><b>Ctrl+V image paste is broken on native Windows</b>Documented as supported, but silently fails outside WSL — an upstream bug, not local config. Workaround: save the screenshot, then drag the file in.</div>
 
         <button class="detail-btn" onclick="openDetail('terminal')">Full detail →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s-secrets">
+    <button class="section-trigger" onclick="toggle('s-secrets')" aria-expanded="false" aria-controls="b-secrets">
+      <span class="section-trigger-left">
+        <span class="section-num">07</span>
+        <span class="section-name">Secret Store</span>
+        <span class="section-tag">local, encrypted, git-versioned</span>
+      </span>
+      <span class="section-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="section-body" id="b-secrets">
+      <div class="section-inner">
+
+        <div class="pm-label">Purpose</div>
+        <p class="purpose">The problem was never security posture. It was that keys got copied by hand with no single place to put one, so time went into hunting for a key already owned — and sometimes a new one got issued instead. So the tools were judged on <strong>capture and search first, sync second</strong>, and that reordering eliminated the option that had been leading.</p>
+
+        <div class="pm-label method-label">Method</div>
+        <p>A local GPG-encrypted store, versioned as a git repository, with a bare remote on a synced cloud drive as the off-machine copy. <strong>Every secret is encrypted to two recipients</strong> — a daily key on the laptop and a backup key whose private half does not live on it — because one key is one disk failure away from losing everything. Free, local-first, and no vendor holding the plaintext.</p>
+
+        <div class="label">Four gates, in order, none skippable</div>
+        <ul class="cmd-list">
+          <li><b>Two recipients</b> before the first real secret. One recipient would encrypt everything to a single key and report nothing.</li>
+          <li><b>A canary secret and a search wrapper.</b> The tool prints "no matches, no errors" when every decryption has failed, and exits 0 either way. A false not-found is precisely what causes a duplicate key to be issued.</li>
+          <li><b>One crypto binary across both shells.</b> Two were installed with separate keyrings, so a store readable in one shell and not the other is the same silent class as the gate above.</li>
+          <li><b>A remote, plus a restore proved with the backup key alone.</b> Until that runs, two-recipient encryption is a claim.</li>
+        </ul>
+
+        <div class="label">Why the search wrapper exists at all</div>
+        <div class="rule"><b>A dependency can lie in both directions</b>The store's own search reported zero errors while every decryption failed, and separately reported zero matches in the same output as a line naming a match. So the wrapper ignores the tool's summary entirely and reads the per-item lines. Nothing believes a "no results" until a known sentinel finds itself first.</div>
+
+        <div class="label">What does not go in</div>
+        <div class="rule"><b>Dead credentials are skipped, not filed</b>A revoked key in the store answers "you already have one" about something that authenticates nothing — the store's own purpose inverted. The test for whether skipping is safe is whether losing it could cost anything. A retired <em>service</em> is not a revoked <em>credential</em>, and that distinction saved a token that would otherwise have been reissued.</div>
+
+        <button class="detail-btn" onclick="openDetail('secrets')">Full detail →</button>
       </div>
     </div>
   </div>
@@ -1890,6 +1927,44 @@
     <li>Subagents / forks A fork inherits the full conversation and shares the prompt cache — right for offloading research without filling the main session with intermediate noise.</li>
     <li>Vim edit mode <code>hjkl</code> navigation, <code>v</code>/<code>V</code> selection, and <code>d</code>/<code>c</code>/<code>y</code> text objects in the prompt box itself.</li>
   </ul>
+</div>
+
+<div class="detail-store" id="d-secrets" data-title="07 · Secret Store">
+  <div class="label">The reversal that cost nothing</div>
+  <p>A secret manager was chosen, and reversed two days later. Nothing had to be undone because nothing had been built yet — the first check was whether the setup had actually happened, and it had not. <strong>No new fact about the rejected tool was needed.</strong> The original decision had itself written the rule "capture and search first, sync second", and then picked the tool that loses on it. Applying that entry's own rule was enough. The superseded decision now carries a banner at its own heading, because the recorded failure mode here is a plan proposing what a decision already refused, purely because nothing pointed at it.</p>
+
+  <div class="label">Proved before it was recorded</div>
+  <p>The chosen tool's homepage claimed parity on this platform; its own FAQ said nothing about it and a third party denied it. So it was tested rather than believed: an official installer, both shells passing, and <strong>an accidental overwrite recovered by decrypting the pre-overwrite value back out of git history and hash-matching it</strong> — the exact scenario the rejected tool's free tier calls unrecoverable.</p>
+
+  <div class="label">The finding worth more than the store</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">The restore proof passed and the backup was still broken</div>
+      <p>A real secret was decrypted from a clone of the remote using only the backup key, hash-identical to the primary-key decrypt, with an empty keyring as a control that correctly failed. Every secret was recoverable and the gate would have been signed off on that. <strong>Then the clone was diffed against the live copy and the recipient list came back with the wrong line endings</strong> — and the crypto tool rejects a fingerprint with a stray carriage return, measured, non-zero exit against zero. So the ciphertext restored perfectly while the restored store could not have encrypted the <em>next</em> secret, and the tool ignores an unusable recipient quietly.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Why it was caught</div>
+      <p><strong>Proving you can read a backup is not proving you can use the system it restores.</strong> The part that broke only matters after a disaster, which is the part nobody exercises. It surfaced only because the plan said to verify the remote by cloning it back and diffing, rather than by reading the push output — and a push that reports success says nothing about whether a checkout of it works. Fourth instance of this line-ending class here; every previous fix was scoped to the files in front of it, so the standing question is now whether the global setting should change rather than be patched a fifth time.</p>
+    </div>
+  </div>
+
+  <div class="label">A documented path was corrupted by the tool that wrote it</div>
+  <p>The setup sheet carried a raw control character inside a path, sitting in the block explicitly labelled <em>do not re-derive</em> — the highest-trust prose in the repo, written specifically to stop the next session checking for itself. <strong>It was not a typo.</strong> A stream editor's replacement text interprets backslash escapes, so writing a Windows path through a substitution turns the folder separator plus certain letters into control characters, silently. Three attempts to fix it failed in three different ways that all looked identical from outside — one language reported the write as successful and changed nothing on disk, two others never matched the pattern at all and exited zero. <strong>What generalises: read the value back as bytes, or you are checking the renderer and not the file.</strong></p>
+
+  <div class="label">The migration tool, and the two rules it is built on</div>
+  <ul class="cmd-list">
+    <li><b>It never prints a value.</b> Not on success, not in an error, not in a preview. Errors name the key and the line number. A migrator that echoes a credential into a terminal scrollback has defeated the store it fills.</li>
+    <li><b>It refuses rather than guesses.</b> The whole file is parsed and every conflict checked before the first write, so a bad line late in a file cannot leave the earlier ones migrated. A partially migrated project is worse than an untouched one, because it looks done.</li>
+    <li>An ambiguous value that a conventional parser would silently truncate is refused instead, because truncating a secret is a corruption with no tell.</li>
+    <li>An empty result is a refusal, not a success. "Zero migrated, exit 0" is the self-reported-success shape this setup has been burned by three separate times.</li>
+    <li>A skip instruction naming something not present is refused, because a rotted skip and a deliberate one look identical from outside.</li>
+  </ul>
+
+  <div class="label">Verified, not assumed</div>
+  <p>Its suite was <strong>falsified with two deliberately broken stand-ins before being trusted</strong> — one that always succeeds and one that always refuses, producing 27 and 36 failures respectively against zero for the real thing. Every refusal case additionally asserts that nothing was written, not merely that the exit code was right. The suite was registered with the whole-suite runner and the runner's discovery floor raised in the same change, because adding a member to a checked set is part of the change, not follow-up work.</p>
+
+  <div class="label">A measurement that changes how it gets used</div>
+  <div class="rule"><b>Name search is instant; content search is not</b>Searching secret <em>names</em> returns in about a tenth of a second. Searching decrypted <em>contents</em> takes almost forty, because it decrypts everything, and that cost grows linearly with the store. The question the store exists to answer — "did I already make one of these?" — is a name question. Worth knowing before the store doubles.</div>
 </div>
 
 <!-- Modal -->
