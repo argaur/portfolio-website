@@ -770,6 +770,7 @@
           <li><code>document-skills</code> authoring and editing for <code>.docx</code>, <code>.xlsx</code>, <code>.pptx</code>, <code>.pdf</code></li>
           <li><code>session-report</code> mines local transcripts to show where tokens actually go — by project, skill, and subagent type</li>
           <li><code>skill-creator</code> an eval loop for authoring skills; its description-trigger optimiser targets the usual failure mode</li>
+          <li><code>stay-awake</code> manual, opt-in override that keeps the laptop from sleeping, hibernating, or sleeping on lid close during a long autonomous run — including on battery — without touching the default power scheme</li>
         </ul>
 
         <div class="label">Autonomy</div>
@@ -1757,6 +1758,11 @@
     <li><code>superpowers:simplify</code> Complexity reduction — run before every commit.</li>
     <li><code>superpowers:requesting-code-review</code> Two-pass review: CRITICAL first, INFORMATIONAL second.</li>
     <li><code>superpowers:debugging</code> Systematic: hypothesis → isolate → test → verify.</li>
+  </ul>
+
+  <div class="label">Personal utility skills</div>
+  <ul class="cmd-list">
+    <li><code>stay-awake</code> A manual, opt-in skill that keeps this laptop from sleeping, hibernating on idle, or sleeping on lid close during a long autonomous run — including on battery — without changing the default power scheme. On this machine idle sleep and idle hibernate were already set to Never on both AC and battery; the one real gap was lid close on battery, which still triggered Sleep. The usual "keep awake" API (<code>SetThreadExecutionState</code>) cannot fix that by itself — Windows explicitly terminates it on a user-initiated sleep such as a lid close, per Microsoft's own documentation. The only real fix is writing the lid-close-action setting to "do nothing" for both AC and battery, and the only way to do that without touching the real default scheme is a disposable duplicate: enable duplicates the active scheme, edits the duplicate only, activates it, and holds the execution-state request as a secondary layer for the display transition; disable reverses all of it and deletes the duplicate. That lid-close setting is also hidden from <code>powercfg</code> by default, so the write briefly unhides it, writes both AC and battery, then re-hides it — confirmed working fully unelevated, no admin prompt. A default 8-hour auto-expiry, a heartbeat file, and a scheduled watchdog task together mean a forgotten enable or a crashed process reverts on its own rather than running indefinitely. Building it surfaced several real bugs only live testing against actual Windows power state caught: the lid-close setting sits under a different settings subgroup than assumed, two flag-casting bugs silently killed the background process holding the execution-state request, and a timestamp round-trip through JSON was corrupting day and month until timestamps were stored as plain numbers instead of date strings. One edge case came from an interrupted test run on this exact machine: a hard-killed process can leave the temporary scheme active with no state file to say what the real original was, so enable now recognises that specific orphaned state by name and recovers to a known-safe default rather than trusting it.</li>
   </ul>
 
   <div class="label">Model routing + autonomous execution</div>
