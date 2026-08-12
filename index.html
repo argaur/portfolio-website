@@ -790,9 +790,21 @@
           <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Live</div>
           <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
         </div>
+        <!-- 13 Vittam -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-6')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">13</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Vittam: See Your Family&rsquo;s Money on One Page</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Personal Finance</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">PWA</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Live</div>
+          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
+        </div>
         <!-- Projects → Skills bridge -->
         <div class="mt-12 pt-10 border-t border-outline-variant">
-          <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">Twelve builds, nine domains. Look across them and the same capabilities keep recurring &mdash; retrieval systems, self-deployed infra, simulation engines, agentic automation.</p>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">Thirteen builds, nine domains. Look across them and the same capabilities keep recurring &mdash; retrieval systems, self-deployed infra, simulation engines, agentic automation.</p>
           <button type="button" class="nav-link font-label-md text-label-md text-primary-fixed-dim border border-primary-fixed-dim/40 px-6 py-3 hover:bg-primary-fixed-dim/10 transition-colors uppercase tracking-widest" data-panel="panel-skills">See the capability map &rarr;</button>
         </div>
       </div>
@@ -2013,6 +2025,19 @@ var V3_PROJECTS = {
     githubUrl: 'https://github.com/argaur/siteline-crm',
     protoUrl: 'https://argaur.github.io/siteline-crm/',
     pageUrl: 'case-study-siteline.html',
+    pageLabel: 'Read Full Case Study'
+  },
+  'cs-6': {
+    tag: 'Personal Finance &middot; PWA &middot; Solo Build &middot; Live',
+    title: 'Vittam: See Your Family&rsquo;s Money on One Page',
+    problem: 'An Indian household keeps its money in many apps at once. No single screen shows what the family owns together, so the gaps stay invisible and advice arrives without knowing what is already held.',
+    insight: 'A household-level planning PWA. Three onboarding steps, then one page showing where the money lives, five completeness checks, and a single next step. It never tells you to buy anything, and the data is encrypted in the browser so the server cannot read it.',
+    stats: ['310/310 tests passing', '0 axe violations', '6 weeks to live'],
+    stage: 'Shipped &middot; Live',
+    docs: ['flow', 'wireframe', 'arch', 'prd'],
+    githubUrl: 'https://github.com/argaur/household-financial-pwa',
+    protoUrl: 'https://finance.gauravg.dev',
+    pageUrl: 'case-study-vittam.html',
     pageLabel: 'Read Full Case Study'
   },
   'pp-0': {
