@@ -62,7 +62,7 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 | 02 | Blinkit Command Hub | case-study-blinkit.html | dark ops-room · Mulish · yellow+green | blinkit-command-hub.vercel.app · picker-blinkit-app.lovable.app |
 | 03 | YouTube 2.0 (concept) | case-study-youtube.html | dark · Roboto · red for CTA/active | 3 Lovable prototypes + Claude artifacts (in Solution sections) |
 | 04 | Trivo (group travel) | case-study-group-travel.html | light cream · Fraunces · pink/coral/lilac · navy nav | frontend-argaurs-projects.vercel.app · gh argaur/group-travel-pwa |
-| 05 | Vitae | case-study-vitae.html | light · Plus Jakarta · clinical blue-white (template) | vitae-health.vercel.app · gh aashikvilla/health-assistant |
+| 05 | Vitae | case-study-vitae.html | light · Plus Jakarta · clinical blue-white (template) | vitaehealth.vercel.app · gh buildingvitae/health-assistant |
 | 06 | Personal AI Assistant | case-study-personal-ai-assistant.html | dark terminal · JetBrains Mono · green | gh argaur/personal-ai-assistant |
 | 07 | Siteline CRM | case-study-siteline.html | light · Manrope · no-accent (the reference) | argaur.github.io/siteline-crm · gh argaur/siteline-crm |
 
