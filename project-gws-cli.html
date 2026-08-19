@@ -453,7 +453,8 @@
     <h1>Google Workspace,<br /><em>from the terminal.</em></h1>
     <p class="hero-sub">
       A Python command-line tool for Gmail and Google Calendar &mdash; search, draft, and
-      schedule without opening a browser. Telegram trigger integration in progress.
+      schedule without opening a browser. The CLI core works; the scheduled-automation layer
+      around it never did, and is currently paused.
     </p>
     <div class="meta-row">
       <span class="meta-tag">python</span>
@@ -590,7 +591,7 @@
 
         <line x1="376" y1="260" x2="443" y2="260" stroke="#4d4d4d" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ga-arr-dash)"/>
 
-        <text x="450" y="330" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" fill="#fbbc04">OAuth2 token cached locally; refreshed automatically on expiry using google-auth library</text>
+        <text x="450" y="330" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="8" fill="#fbbc04">OAuth2 token cached locally; currently expired, needs a manual re-auth run</text>
       </svg>
       </div>
     </div>
@@ -661,37 +662,39 @@
 <div class="sec" id="roadmap">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Core shipped.<br /><em>Two integrations pending.</em></h2>
+      <h2>Core built.<br /><em>Automation layer paused.</em></h2>
       <span class="label">Status &amp; Roadmap</span>
     </div>
 
     <div class="stats">
       <div class="stat">
-        <span class="stat-num" style="color:var(--green)">Complete</span>
-        <span class="stat-lbl">Core Gmail + Calendar CLI</span>
+        <span class="stat-num" style="color:var(--green)">Built</span>
+        <span class="stat-lbl">Core Gmail + Calendar CLI, manual use</span>
       </div>
       <div class="stat">
-        <span class="stat-num" style="color:var(--yellow)">Pending</span>
-        <span class="stat-lbl">Telegram trigger integration</span>
+        <span class="stat-num" style="color:var(--yellow)">Paused</span>
+        <span class="stat-lbl">Scheduled automation layer</span>
       </div>
       <div class="stat">
-        <span class="stat-num" style="color:var(--yellow)">Pending</span>
-        <span class="stat-lbl">rclone integration</span>
+        <span class="stat-num" style="color:var(--yellow)">Not started</span>
+        <span class="stat-lbl">Telegram trigger + rclone integration</span>
       </div>
     </div>
 
-    <h3 class="h3-spaced">Next: Telegram Trigger</h3>
+    <h3 class="h3-spaced">Why the automation layer is paused</h3>
     <div class="prose">
-      <p>The planned next step is connecting GWS CLI to the Telegram Personal Assistant Bot.
-      This would allow triggering Gmail and Calendar operations via a Telegram message &mdash;
-      the same single-interface pattern used for other automation tasks. For example:
-      <em>checking tomorrow's calendar without unlocking a laptop</em>.</p>
+      <p>The CLI commands work when run by hand. The scheduled-automation layer built around
+      them &mdash; unattended newsletter digests, idea mining into Obsidian &mdash; never
+      completed a single successful run and was dismantled. Reviving it means fixing the
+      scheduling setup and re-authenticating before any of it runs unattended again.</p>
     </div>
 
-    <h3 class="h3-spaced">Next: rclone Integration</h3>
+    <h3 class="h3-spaced">Possible next steps</h3>
     <div class="prose">
-      <p>rclone integration is planned to enable syncing and managing Google Drive files from
-      the same CLI, extending GWS CLI from a communication tool to a broader workspace tool.</p>
+      <p>If revived, the automation would more likely move to the always-on Telegram bot this
+      project already integrates with, rather than a machine that isn't always running.
+      rclone integration for Google Drive sync remains a possible extension of the CLI itself,
+      independent of the automation question.</p>
     </div>
   </div>
 </div>
