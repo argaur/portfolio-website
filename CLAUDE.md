@@ -61,7 +61,7 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 | 01 | Founder / Rethink CRM | case-study-founder-crm.html | dark amber · Cormorant + Outfit + DM Mono | argaur.github.io/founder-crm-landing · gh argaur/founder-crm-bot |
 | 02 | Blinkit Command Hub | case-study-blinkit.html | dark ops-room · Mulish · yellow+green | blinkit-command-hub.vercel.app · picker-blinkit-app.lovable.app |
 | 03 | YouTube 2.0 (concept) | case-study-youtube.html | dark · Roboto · red for CTA/active | 3 Lovable prototypes + Claude artifacts (in Solution sections) |
-| 04 | Trivo (group travel) | case-study-group-travel.html | light cream · Fraunces · pink/coral/lilac · navy nav | frontend-argaurs-projects.vercel.app · gh argaur/group-travel-pwa |
+| 04 | Trivo (group travel) | case-study-group-travel.html | light cream · Fraunces · pink/coral/lilac · navy nav | trivo.gauravg.dev · gh argaur/group-travel-pwa |
 | 05 | Vitae | case-study-vitae.html | light · Plus Jakarta · clinical blue-white (template) | vitaehealth.vercel.app · gh buildingvitae/health-assistant |
 | 06 | Personal AI Assistant | case-study-personal-ai-assistant.html | dark terminal · JetBrains Mono · green | gh argaur/personal-ai-assistant |
 | 07 | Siteline CRM | case-study-siteline.html | light · Manrope · no-accent (the reference) | argaur.github.io/siteline-crm · gh argaur/siteline-crm |
@@ -85,7 +85,7 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 
 ## Deploy
 
-**Deploy target:** Vercel — account/project `argaurs-projects/portfolio-website`, project ID `prj_rc841Ix97qlakTS5D6kmgLifE7mX`, org `team_3VVVuqz6VHXjBQCANdWIY7OF`. Runtime: **static** (`framework: null`, no build step — Vercel serves the repo as-is; there are no serverless functions). Deploys automatically on push to `main`. Live URL: `gauravg-portfolio.vercel.app` (no custom domain configured).
+**Deploy target:** Vercel — account/project `argaurs-projects/portfolio-website`, project ID `prj_rc841Ix97qlakTS5D6kmgLifE7mX`, org `team_3VVVuqz6VHXjBQCANdWIY7OF`. Runtime: **static** (`framework: null`, no build step — Vercel serves the repo as-is; there are no serverless functions). Deploys automatically on push to `main`. Live URL: `gauravg.dev` — custom domain attached to this same Vercel project (2026-09-10, Phase 3 of the gauravg.dev migration). The old `gauravg-portfolio.vercel.app` assigned domain still serves the same deployment.
 
 ## Status
 

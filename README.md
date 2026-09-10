@@ -1,4 +1,4 @@
-# Portfolio Website — gauravg-portfolio.vercel.app
+# Portfolio Website — gauravg.dev
 
 > A zero-dependency SPA built with plain HTML, CSS, and vanilla JavaScript. No framework, no npm, no build step.
 
@@ -48,9 +48,9 @@ case-study-*.html — 5 case study pages
 
 ## Links
 
-- **Live site:** https://gauravg-portfolio.vercel.app
-- **Recruiter view:** https://gauravg-portfolio.vercel.app/?r=1
-- **Portfolio:** https://gauravg-portfolio.vercel.app
+- **Live site:** https://gauravg.dev
+- **Recruiter view:** https://gauravg.dev/?r=1
+- **Portfolio:** https://gauravg.dev
 
 ---
 
