@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/case-study-vittam.html">
-    <meta name="description" content="Case study: Vittam, a household-level financial planning PWA for Indian families. Built solo, shipped in 6 weeks, live and unmarketed.">
+    <meta name="description" content="Case study: Vittam, a household finance PWA built solo for my own family. A closed-circle build, not a market bid. Client-side encryption, an AI counsel layer, and a full test suite, shipped in 6 weeks and still growing.">
     <meta property="og:title" content="Vittam - See Your Family's Money on One Page | Gaurav Gupta">
-    <meta property="og:description" content="Case study: a household-level financial planning PWA for Indian families, built solo and shipped in 6 weeks.">
+    <meta property="og:description" content="Case study: a household finance PWA built solo for my own family, to prove out an architecture and a build process, not to win a market.">
     <meta property="og:url" content="https://gauravg.dev/case-study-vittam.html">
     <meta property="og:image" content="https://gauravg.dev/photo.jpg">
     <meta property="og:type" content="article">
@@ -475,17 +475,24 @@
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
-    <span class="label label-strong">Solo build &middot; May to September 2026 &middot; Live, unmarketed</span>
+    <span class="label label-strong">Solo build &middot; May to September 2026 &middot; Built for my own household</span>
     <h1>See your family&rsquo;s money<br /><em>on one page.</em></h1>
     <p class="hero-sub">
-      Vittam is a household-level financial planning app for Indian families. Not one
-      account per person. One page for the whole household. Record what everyone holds,
+      Vittam is a financial planning app I built for my own household. Not one
+      account per person. One page for the whole family. Record what everyone holds,
       see the gaps in the plan, laid out the way a financial planner would.
     </p>
+    <p class="hero-sub" style="margin-top:16px">
+      I did not build this to reach a market. I have no infrastructure budget or
+      compliance setup to serve real households at scale, and I say that plainly
+      rather than let the design imply otherwise. This is a closed-circle build: a
+      real system, built end to end, to show how I think and how I build, not a
+      product I am pitching.
+    </p>
     <div class="meta-row">
-      <span class="meta-tag">Fintech</span>
+      <span class="meta-tag">Personal Build</span>
       <span class="meta-tag">PWA</span>
-      <span class="meta-tag">Household Finance</span>
+      <span class="meta-tag">Closed Circle</span>
       <span class="meta-tag">Solo Build</span>
       <span class="meta-tag">React + Hono</span>
     </div>
@@ -705,7 +712,9 @@
 
     <div class="callout-box">
       <p>These are the numbers I have evidence for today. I do not have usage numbers,
-      and I am not reporting any.</p>
+      and I am not reporting any. Vittam has one real user: me, and my own household.
+      That is by design, not a gap I am waiting to close. I built this to prove out an
+      architecture and a build process, not to win a market.</p>
     </div>
   </div>
 </div>
@@ -714,40 +723,41 @@
 <div class="sec" id="problem">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Your money is scattered.<br /><em>No one sees the whole family.</em></h2>
+      <h2>My money was scattered.<br /><em>No app showed the whole family.</em></h2>
       <span class="label">01 &middot; Problem</span>
     </div>
 
     <div class="prose">
-      <p>An Indian household usually holds money in many places. A savings account here.
-      A mutual fund there. Gold in a locker. A policy nobody has read in years.</p>
-      <p>Each app shows one slice. No app shows the household. The person doing the
-      planning has to hold the whole picture in their head, or on a spreadsheet that
-      goes stale the day they stop updating it.</p>
+      <p>My own household holds money in many places. A savings account here. A
+      mutual fund there. Gold in a locker. A policy nobody had read in years.</p>
+      <p>Each app showed one slice. No app showed the household. I had to hold the
+      whole picture in my head, or on a spreadsheet that went stale the day I
+      stopped updating it.</p>
     </div>
 
     <h3 class="h3-spaced">Three problems, not one</h3>
     <div class="cards">
       <div class="card" style="border-left: 3px solid var(--equity);">
-        <h4>Your money is scattered</h4>
-        <p>Bank apps, broker apps, insurance portals, a folder of paper. Nothing talks
+        <h4>My money was scattered</h4>
+        <p>Bank apps, broker apps, insurance portals, a folder of paper. Nothing talked
         to anything else.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--debt);">
         <h4>No household view</h4>
-        <p>Every app is built for one person. A family plans as a unit. Most tools do
-        not have a concept of a household at all.</p>
+        <p>Every app I used is built for one person. My family plans as a unit. None of
+        those tools have a concept of a household at all.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--gold);">
         <h4>Advice that ignores what you own</h4>
-        <p>Generic advice does not know your family already has two term plans and no
-        emergency fund. It repeats the same tips regardless of what is already in place.</p>
+        <p>Generic advice did not know my family already had two term plans and no
+        emergency fund. It repeated the same tips regardless of what was already in place.</p>
       </div>
     </div>
 
     <div class="callout">
-      <p>Vittam is built for Indian households making a long term plan. It is not built
-      for day traders watching charts.</p>
+      <p>Vittam is built for my own household making a long term plan. It is not a
+      product I am pitching to the wider market, and it is not built for day traders
+      watching charts.</p>
     </div>
   </div>
 </div>
@@ -756,20 +766,22 @@
 <div class="sec" id="context">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Fragmented finances<br /><em>are the normal case.</em></h2>
+      <h2>Fragmented finances<br /><em>are my normal case.</em></h2>
       <span class="label">02 &middot; Context</span>
     </div>
 
     <div class="prose">
-      <p>A typical Indian household is not one person with one portfolio. It is a
-      parent with a pension account, a spouse with a separate set of mutual funds, a
-      child with a Sukanya Samriddhi account, and maybe a grandparent&rsquo;s fixed
-      deposit that nobody has moved in a decade.</p>
-      <p>Each of those sits in a different app or a different paper file. Nobody adds
+      <p>My household is not one person with one portfolio. It is a parent with a
+      pension account, a spouse with a separate set of mutual funds, a daughter with a
+      Sukanya Samriddhi account, and a grandparent&rsquo;s fixed deposit that nobody had
+      moved in a decade.</p>
+      <p>Each of those sat in a different app or a different paper file. Nobody added
       them up. So questions that sound simple, like &ldquo;are we covered if something
-      happens to the main earner,&rdquo; do not have a clear answer.</p>
+      happens to the main earner,&rdquo; did not have a clear answer.</p>
       <p>Vittam starts from the household, not the individual. One page. Every member.
-      Every holding they have told you about.</p>
+      Every holding they have told it about. I built it this way because that is how
+      my own family&rsquo;s money actually sits, not because I researched how other
+      households sit.</p>
     </div>
   </div>
 </div>
@@ -778,19 +790,22 @@
 <div class="sec" id="users">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Indian households<br /><em>making a long term plan.</em></h2>
+      <h2>Built for my own household.<br /><em>A closed circle, not a market.</em></h2>
       <span class="label">03 &middot; Users</span>
     </div>
 
     <div class="prose">
-      <p>Vittam is built for Indian households making a long term plan. There was no
-      user research and no interviews behind this. I did not build a persona deck. I
-      built it from the situation itself: money spread across apps, no single view of
-      the family, and generic advice that does not account for what the family already
-      holds.</p>
-      <p>The people this is for are the ones who already keep a mental map of the
-      family&rsquo;s money and are tired of redrawing it every time someone asks a
-      question.</p>
+      <p>Vittam is built for my own household, and I am stating that plainly rather
+      than letting the design imply a bigger market. There was no user research and
+      no interviews behind this, because there were no other users to interview. I did
+      not build a persona deck. I built it from my own situation: money spread across
+      apps, no single view of the family, and generic advice that did not account for
+      what we already held.</p>
+      <p>I also have no infrastructure budget or compliance setup to serve real
+      households at scale, and that is not an accident. Manual data entry, client-side
+      encryption, and a bring-your-own-passphrase recovery model are the right choices
+      for a closed circle who trusts me directly. They would be the wrong choices for a
+      product trying to onboard strangers, and I am not trying to.</p>
     </div>
   </div>
 </div>
