@@ -466,6 +466,7 @@
     <a href="#documentation" class="nav-link">Documentation</a>
     <a href="#problem" class="nav-link">Problem</a>
     <a href="#solution" class="nav-link">Solution</a>
+    <a href="#since-launch" class="nav-link">Since Launch</a>
     <a href="#decisions" class="nav-link">Decisions</a>
     <span class="nav-index">Case Study 08</span>
   </div>
@@ -474,7 +475,7 @@
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
-    <span class="label label-strong">Solo build &middot; May to July 2026 &middot; Live, unmarketed</span>
+    <span class="label label-strong">Solo build &middot; May to September 2026 &middot; Live, unmarketed</span>
     <h1>See your family&rsquo;s money<br /><em>on one page.</em></h1>
     <p class="hero-sub">
       Vittam is a household-level financial planning app for Indian families. Not one
@@ -658,9 +659,9 @@
     <div class="docs-panel docs-panel--hidden" data-panel="prd">
       <div class="docs-note">
         <p>This page is the build record for Vittam. It covers the household finance
-        problem, the onboarding and dashboard, the three decisions that shaped the
-        architecture, and the honest state of a product that is live but has not yet
-        had a single real user.</p>
+        problem, the onboarding and dashboard, three features added after the first
+        ship, the four decisions that shaped the architecture, and the honest state of
+        a product that is live but has not yet had a single real user.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
       </div>
     </div>
@@ -685,12 +686,12 @@
 
     <div class="stats">
       <div class="stat">
-        <span class="stat-num">310 / 310</span>
+        <span class="stat-num">2,114 / 2,114</span>
         <span class="stat-lbl">Tests passing</span>
       </div>
       <div class="stat">
         <span class="stat-num">0</span>
-        <span class="stat-lbl">Axe violations across all 5 screens in production</span>
+        <span class="stat-lbl">Axe violations across production screens</span>
       </div>
       <div class="stat">
         <span class="stat-num">&#8377;0</span>
@@ -698,7 +699,7 @@
       </div>
       <div class="stat">
         <span class="stat-num">6 weeks</span>
-        <span class="stat-lbl">Empty repo to live product</span>
+        <span class="stat-lbl">Empty repo to first live version</span>
       </div>
     </div>
 
@@ -877,12 +878,68 @@
   </div>
 </div>
 
-<!-- ── 05 DECISIONS ───────────────────────────────────────── -->
+<!-- ── 05 SINCE LAUNCH ────────────────────────────────────── -->
+<div class="sec" id="since-launch">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>The core loop shipped in 6 weeks.<br /><em>Three more features came after.</em></h2>
+      <span class="label">05 &middot; Since Launch</span>
+    </div>
+
+    <div class="prose">
+      <p>The onboarding-to-dashboard loop above is the v1 product. It has kept
+      growing since. Three features shipped after that first ship gate:
+      strategy ledgers, an AI counsel layer, and bulk holdings import from
+      Excel. All three are live at
+      <a href="https://finance.gauravg.dev" target="_blank" rel="noopener" class="lnk">finance.gauravg.dev</a>
+      today.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">&#128203;</div>
+        <h4>Strategy ledgers</h4>
+        <p>A household can hold up to four what-if plans alongside Current, each
+        one a full encrypted snapshot. Editing Current later does not change a
+        saved ledger. A three-number strip shows the delta against Current:
+        total value, equity share, monthly SIP.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#10024;</div>
+        <h4>AI counsel, on demand</h4>
+        <p>Claude Sonnet 5 reviews a ledger and suggests a different asset mix,
+        through a thin server proxy that forwards the request and writes
+        nothing to the database or the logs. Apply creates a new ledger
+        carrying the suggestion. Dismiss changes nothing. A monthly cap keeps
+        the cost near zero.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128194;</div>
+        <h4>Bulk import from Excel</h4>
+        <p>Download a template pre-filled with the household&rsquo;s member
+        names. Fill it in and upload it back. A review screen sorts every row
+        into Ready, Needs attention, Possible duplicate, or Skipped, and only
+        the Ready rows get committed.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>The AI layer needed one narrow exception to the encryption model.
+      Decrypted plaintext has to reach Anthropic for the suggestion to be
+      generated. The browser still decrypts and re-encrypts, the database
+      still never sees plaintext, and the exception is stated on
+      <code>/privacy</code>, not folded quietly into the existing claim. See
+      D-017 below.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 06 DECISIONS ───────────────────────────────────────── -->
 <div class="sec" id="decisions">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Three decisions<br /><em>that shaped the product.</em></h2>
-      <span class="label">05 &middot; Decisions</span>
+      <h2>Four decisions<br /><em>that shaped the product.</em></h2>
+      <span class="label">06 &middot; Decisions</span>
     </div>
 
     <div class="prose">
@@ -932,6 +989,26 @@
       actually pointed to, instead of forcing everything to look like an instrument.</p>
     </div>
 
+    <div class="prose h3-spaced">
+      <h3>D-017: A narrow, disclosed exception to &ldquo;encrypted in the browser&rdquo;</h3>
+      <p>The AI counsel feature needed the household&rsquo;s decrypted holdings to
+      ask Claude for a suggestion. That is a direct conflict with D-014, which
+      says the server never reads plaintext.</p>
+      <p>I did not soften the encryption claim to make room for the feature. The
+      browser decrypts, sends plaintext over TLS to a thin server route, that
+      route forwards it to Anthropic and relays the answer back, and writes
+      nothing to the database and nothing to the logs. The server sees
+      plaintext in flight for one request, never at rest.</p>
+      <p>I also corrected my own earlier wording. An early version of this
+      decision said the server sees plaintext &ldquo;never at rest.&rdquo; That is
+      true of Vittam&rsquo;s own infrastructure and false end to end as worded,
+      because Anthropic&rsquo;s standard API retains inputs for up to 30 days
+      absent a zero-retention agreement. The corrected claim, stated on both
+      <code>/why</code> and <code>/privacy</code>: Vittam&rsquo;s database does not
+      store AI-request plaintext. The AI provider may retain it under its own
+      policy.</p>
+    </div>
+
     <div class="callout-box">
       <p><strong>The bug that taught the most, B-001.</strong> The single dashboard
       nudge, which is the whole point of the &ldquo;close the loop&rdquo; feature,
@@ -948,12 +1025,12 @@
   </div>
 </div>
 
-<!-- ── 06 TECH ────────────────────────────────────────────── -->
+<!-- ── 07 TECH ────────────────────────────────────────────── -->
 <div class="sec" id="tech">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Eleven slices,<br /><em>six weeks, one person.</em></h2>
-      <span class="label">06 &middot; Tech</span>
+      <h2>Eleven slices to start.<br /><em>Kept shipping after that.</em></h2>
+      <span class="label">07 &middot; Tech</span>
     </div>
 
     <div class="table-wrap">
@@ -964,7 +1041,8 @@
           <tr><td>Frontend</td><td>Vite &middot; React 18 &middot; TypeScript</td><td>Tailwind CSS + shadcn components, Recharts for the allocation donut, React Router, an installable PWA with a service worker.</td></tr>
           <tr><td>API</td><td>Hono on Vercel Functions</td><td>Verifies a Clerk JWT against Clerk&rsquo;s JWKS on every request. Resolves <code>household_id</code> from the session, not from a request parameter.</td></tr>
           <tr><td>Auth</td><td>Clerk</td><td>Handles sign-up and login, including Google sign-in, which is why the encryption key is derived from a separate passphrase.</td></tr>
-          <tr><td>Data</td><td>Drizzle ORM &middot; Neon Postgres</td><td>8 tables. Multi-tenancy is enforced in the app layer, not with Postgres row-level security.</td></tr>
+          <tr><td>Data</td><td>Drizzle ORM &middot; Neon Postgres</td><td>12 tables. Multi-tenancy is enforced in the app layer, not with Postgres row-level security.</td></tr>
+          <tr><td>AI</td><td>Claude Sonnet 5</td><td>Structured outputs through a thin Hono proxy. No prompt caching, a fixed monthly call cap, and no plaintext written to Vittam&rsquo;s own database or logs.</td></tr>
           <tr><td>Observability</td><td>PostHog &middot; Sentry</td><td>Product analytics and error tracking, both instrumented before launch, both still waiting on real traffic.</td></tr>
         </tbody>
       </table>
@@ -975,7 +1053,7 @@
     <div class="stats">
       <div class="stat">
         <span class="stat-num">11</span>
-        <span class="stat-lbl">Vertical slices, each one a working feature end to end</span>
+        <span class="stat-lbl">Vertical slices to reach the v1 core loop</span>
       </div>
       <div class="stat">
         <span class="stat-num">13 days</span>
@@ -983,7 +1061,7 @@
       </div>
       <div class="stat">
         <span class="stat-num">6 weeks</span>
-        <span class="stat-lbl">Empty repo to feature-complete, 2026-07-21</span>
+        <span class="stat-lbl">Empty repo to feature-complete v1, 2026-07-21</span>
       </div>
       <div class="stat">
         <span class="stat-num">&#8377;0 / mo</span>
@@ -993,14 +1071,15 @@
 
     <div class="callout">
       <p>First deploy landed 2026-07-10, 13 days into a 30-day rule I set for myself: if
-      the core loop was not live by day 30, I would stop. It shipped early. The product
-      went feature-complete on 2026-07-21.</p>
+      the core loop was not live by day 30, I would stop. It shipped early. The v1
+      product went feature-complete on 2026-07-21, then kept growing through
+      September with the features in the Since Launch section above.</p>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="foot-brand">Gaurav Gupta &middot; Vittam &middot; Solo build, May to July 2026</div>
+  <div class="foot-brand">Gaurav Gupta &middot; Vittam &middot; Solo build, May to September 2026</div>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
 </footer>
 
