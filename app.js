@@ -471,12 +471,12 @@
       problem: "1–2 people absorb 80%+ of planning load in a $168.7B market. Budget misalignments and preference conflicts surface mid-trip, not during planning.",
       insight: "An AI-powered coordination layer that distributes planning tasks, surfaces conflicts early, and keeps the whole group aligned without a group chat.",
       stats: ['6 user interviews', '$168.7B market', 'Full PRD'],
-      stage: 'PRD · Prototype',
-      stageTags: 'prd,prototype',
+      stage: 'PRD · Shipped · Live',
+      stageTags: 'prd,live',
       industryTags: ['AI', 'Consumer', 'Platform'],
       retrospective: '',
       githubUrl: 'https://github.com/argaur/group-travel-pwa',
-      protoUrl: 'https://frontend-argaurs-projects.vercel.app',
+      protoUrl: 'https://trivo.gauravg.dev',
       pageUrl: 'case-study-group-travel.html'
     },
     {
@@ -1110,7 +1110,7 @@
     { rank: '02', type: 'personal',   name: 'Telegram PM Bot — Workflow Automation',            sub: 'Deployed · AI / Automation · Claude + Airtable + Notion integration',        links: [{ label: 'GitHub →', href: '#' }], itemRef: function(){ return personalProjects[0]; } },
     { rank: '03', type: 'case-study', name: 'Blinkit Command Hub — Peak-Hour Decision Support', sub: 'Live prototype · Ops / Quick Commerce · Real-time dark store dashboard',      links: [{ label: 'View →', href: 'https://blinkit-command-hub.vercel.app/' }], itemRef: function(){ return caseStudies[1]; } },
     { rank: '04', type: 'case-study', name: "Founder's CRM — Conversation-First Sales Tool",   sub: 'Concept · SaaS / Sales · CRM built around the founder sales motion',          links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[0]; } },
-    { rank: '05', type: 'case-study', name: 'Group Travel Planning Platform',                   sub: 'Concept · Consumer · Collaborative trip planning for friend groups',          links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[3]; } },
+    { rank: '05', type: 'case-study', name: 'Group Travel Planning Platform',                   sub: 'Live · Consumer · Collaborative trip planning for friend groups (trivo.gauravg.dev)', links: [{ label: 'View →', href: 'https://trivo.gauravg.dev' }], itemRef: function(){ return caseStudies[3]; } },
     { rank: '06', type: 'case-study', name: 'YouTube 2.0 — Fixing Long-Form Discovery',        sub: 'Concept · Consumer / Media · Rethinking recommendation for depth-seeking users', links: [{ label: 'View →', href: '#' }], itemRef: function(){ return caseStudies[2]; } },
     { rank: '07', type: 'personal',   name: 'Portfolio Website — This Site',                    sub: 'Live · Plain HTML/CSS/JS · 7-panel SPA with canvas and email gate',           links: [], itemRef: null },
     { rank: '08', type: 'personal',   name: 'GWS CLI — Google Workspace Terminal Tool',         sub: 'Open source · Dev tooling · CLI for managing GWS from terminal',              links: [{ label: 'GitHub →', href: '#' }], itemRef: null }
