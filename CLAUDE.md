@@ -20,12 +20,12 @@ Public portfolio for Gaurav Gupta — demonstrates PM + AI strategy work to recr
 A personal portfolio website — plain HTML + CSS + vanilla JavaScript, no build step. **Tailwind is loaded via CDN at runtime** (`cdn.tailwindcss.com`, config inline in `index.html`) — new markup may use Tailwind utilities alongside the custom tokens. "No build step / opens in a browser" still holds; "no framework runtime" does **not**.
 
 ## Design — "Kinetic Precision" (v3, current)
-- Dark theme, single mode (no light/dark toggle on the main site)
+- Dark theme by default, with a light-mode toggle exposed on desktop (`#theme-toggle`, ≥768px) — reversing the earlier "single mode, no toggle" decision (session 19, 2026-09-27, design-audit finding F2)
 - Design tokens: `--bg-base: #0e0e12`, tonal surfaces `#0c0d11 / #16161e / #1a1a22 / #242432`, `--border: #2a2a38`, text `#ece8e2` / `#9896a0` / `#56546e`, accent gold `--accent: #c9a84c` (`--accent-dim #8a6f2e`), `--green-signal: #4caf74` (verified/live dots only)
 - Fonts: **Space Mono** (display / mono uppercase micro-labels) + **DM Sans** (body/UI). Google Fonts loads Space Mono + DM Sans.
 - `--radius: 0px` — **no `border-radius` anywhere** (architectural principle)
 - Strict 8px spacing grid; gold used sparingly as the single accent
-- `body.theme-light` variant exists in `styles.css` (cream `#f2ede8`) but the toggle is not exposed on the main site
+- `body.theme-light` variant lives in `styles.css` and mirrored overrides in `index.html`'s embedded `<style>`; light-mode accent text/borders use a darkened gold `#6e5824` (not the dark-mode `#c9a84c`/`--light-accent`), since the brighter gold fails WCAG AA contrast on cream surfaces
 - (The retired **v2 "Blueprint to Bits"** system — Cormorant, navy/cream/terracotta `#0b1628 / #f7f3ee / #bf5c3a` — is fully gone from the live site. If you see it referenced anywhere, it's stale.)
 
 ## Navigation structure
@@ -90,12 +90,13 @@ Shared scaffold per page: fixed `nav` (`.nav-back` / `.nav-link` anchors / `.nav
 ## Status
 
 - **State:** live on Vercel. `main` carries the per-product-skin rebuild (merge `044bbd7` + polish) plus fleet analytics (`5c159f9`). All 7 case studies + 5 project pages are self-contained single-scroll pages, each in its product's design language.
-- **This session — 2026-07-26 (session 18):** added `analytics.js` to all 14 public pages — the site had **no analytics of any kind** and Vercel Web Analytics had never been enabled, so all traffic since launch is unrecoverable. Reports anonymous pageviews into the shared "Web Fleet" PostHog project with `project: 'portfolio-website'`; one dashboard now covers 13 of Gaurav's projects. Amended Out of Scope (deliberate reversal) and added the Deploy block above. This is now a global standard in `~/.claude/CLAUDE.md` — every future project ships analytics by default.
+- **This session — 2026-09-27 (session 19):** ran `design-audit` against the live site. Fixed: theme-toggle sun icon was invisible in light mode (inline `style="display:none"` beat the CSS override — removed it); light-mode gold accent text/borders failed WCAG AA contrast on cream (~2:1) — darkened to `#6e5824` in both `styles.css`'s `--light-accent` and index.html's Tailwind-class overrides; Credentials panel had two simultaneous `<h1>`s (Academic Foundations / Technical Protocol Proficiency) — demoted the second to `<h2>`; added a missing `<main>` landmark around `.panels-wrap`; converted top-nav and mobile-nav panel-switchers from `<button data-panel>` to `<a href="#hash" data-panel>` (JS already called `preventDefault()`, so no behavior change) for proper link semantics and open-in-new-tab support. Also resolved a doc/code drift: the light/dark toggle was live and wired despite CLAUDE.md saying it wasn't exposed (session-15 decision) — Gaurav chose to keep the toggle and fix it rather than remove it; this doc now reflects that. Not yet deployed — local edits only pending review.
+- **Previous — 2026-07-26 (session 18):** added `analytics.js` to all 14 public pages — the site had **no analytics of any kind** and Vercel Web Analytics had never been enabled, so all traffic since launch is unrecoverable. Reports anonymous pageviews into the shared "Web Fleet" PostHog project with `project: 'portfolio-website'`; one dashboard now covers 13 of Gaurav's projects. Amended Out of Scope (deliberate reversal) and added the Deploy block above. This is now a global standard in `~/.claude/CLAUDE.md` — every future project ships analytics by default.
 - **Previous — 2026-07-23 (session 17):** rebuilt all 11 case-study/project pages onto the Siteline single-scroll + section-jump-nav pattern with per-product skins (built Vitae as the golden template by hand, fanned the other 10 out via a parallel workflow); added scrollspy + mobile nav strip; recolored every inline SVG to its palette (two dark→light flips). Deleted the now-dead `case-study.css`. Restored YouTube's 7 prototype/diagram links. Recolored Blinkit's SVG danger states red→Blinkit-yellow (`--red`→`--alert`). Refreshed this CLAUDE.md to v3 reality.
 - **Previous:** 2026-07-18 (session 16) — restructured unlisted `g-os.html` (`9e0f4e4`). 2026-07-13 (session 15) — email gate disabled, Resume 404 fixed, internal docs moved out of repo.
 - **Still open:** add `photo.jpg` headshot (profile canvas wired, needs the file); decide if `g-os.html` detail modals earn their keep; graduate "Now Building" chips (Personal Finance / RAS Prep / learning-hub) to shipped as they go live; Oracle VM HTTPS; Notion Companies DB; Google Analytics cert has no verify link. **`g-os.html` is now slightly stale** — the global CLAUDE.md gained an analytics rule in session 18; sync it from a Claude Optimisation session.
 - **Resolved differently:** the "Vitae GitHub rename" item is closed — rather than renaming the cohort repo, Vitae was forked to `github.com/argaur/vitae` with its own Supabase + Vercel (session 18).
-- **Last updated:** 2026-07-26
+- **Last updated:** 2026-09-27
 
 ## Model notes
 **This section expires. Review it at every model launch and every Claude Code version bump.**

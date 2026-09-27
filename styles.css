@@ -24,7 +24,7 @@
   --light-text-primary:   #0e0e12;
   --light-text-secondary: #5c5870;
   --light-text-muted:     #7a768a;
-  --light-accent: #b8922a;
+  --light-accent: #6e5824; /* darkened from #b8922a — b8922a on --light-bg-base is ~2.5:1, fails WCAG AA; 6e5824 is ~5.8:1 */
   --light-border: #d8d3ce;
 
   /* Active theme aliases — dark by default */
