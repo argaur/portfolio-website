@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>life-os: A Phone Window onto My Own Data | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://gauravg.dev/project-life-os.html">
+    <meta property="og:title" content="life-os: A Phone Window onto My Own Data | Gaurav Gupta">
+    <meta property="og:description" content="life-os is a single-user phone app on top of my own notes and records. Capture files new items in one tap. Pulse shows what needs me now. In build.">
+    <meta property="og:url" content="https://gauravg.dev/project-life-os.html">
+    <meta property="og:type" content="article">
+    <meta name="description" content="life-os is a single-user phone app on top of my own notes and records. Capture files new items in one tap. Pulse shows what needs me now. In build.">
+    <meta name="theme-color" content="#0f1216">
+<style>
+:root{--bg:#0f1216;--surface:#161b21;--surface2:#1d242c;--border:#28313a;--text:#e8ecef;--text2:#b5bec6;--muted:#8a95a0;--accent:#6fcfb0;--accent-text:#6fcfb0;--accent-bg:rgba(111,207,176,.1);--warn:#d9a441;--r:4px;--nav-bg:#0f1216;--display:"DM Sans",sans-serif;--body:"DM Sans",sans-serif;--mono:"JetBrains Mono",monospace}
+
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-text)}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface2);padding:1px 6px;border:1px solid var(--border);border-radius:var(--r)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;background:var(--nav-bg);border-bottom:1px solid var(--border)}
+.nav-back{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.04em;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.nav-back:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-right::-webkit-scrollbar{display:none}
+.nav-link{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:0 10px;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-link:hover{color:var(--text)}
+.nav-link--active{color:var(--accent-text);border-bottom-color:var(--accent)}
+.nav-index{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;padding-left:8px}
+.hero-wrap{padding:112px 16px 56px;border-bottom:1px solid var(--border)}
+.hero,.sec-inner{max-width:920px;margin:0 auto}
+.label{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label-strong{color:var(--accent-text)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 20px}
+h1 em{font-style:normal;color:var(--muted)}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,38px);line-height:1.15;letter-spacing:-.005em}
+h2 em{font-style:normal;color:var(--muted)}
+h3{font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:8px}
+.hero-sub{max-width:640px;font-size:clamp(17px,2vw,20px);color:var(--text2)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.meta-tag{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border);color:var(--muted);border-radius:var(--r)}
+.hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.lnk{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--accent);color:var(--accent-text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-radius:var(--r)}
+.lnk:hover{background:var(--accent-bg)}
+.sec{padding:72px 16px;border-top:1px solid var(--border);scroll-margin-top:56px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:32px}
+.prose p{max-width:680px;margin-bottom:18px;color:var(--text2)}
+.prose p strong{color:var(--text)}
+.callout{border-left:3px solid var(--accent);background:var(--surface);padding:20px 24px;margin:28px 0;max-width:760px;border-radius:0 var(--r) var(--r) 0}
+.callout p{color:var(--text2);margin:0}
+.callout p strong{color:var(--text)}
+.callout.warn{border-left-color:var(--warn)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:32px 0;border-radius:var(--r);overflow:hidden}
+.stat{background:var(--surface);padding:22px 20px}
+.stat-num{display:block;font-family:var(--display);font-weight:700;font-size:34px;line-height:1.1;color:var(--accent-text);font-variant-numeric:tabular-nums}
+.stat-lbl{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.45}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);padding:24px;border-radius:var(--r)}
+.card p{color:var(--text2);font-size:15px}
+.card .label{margin-bottom:10px}
+ol.steps{list-style:none;counter-reset:s;max-width:720px;margin:24px 0}
+ol.steps li{counter-increment:s;position:relative;padding:14px 0 14px 48px;border-bottom:1px solid var(--border);color:var(--text2)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--accent-text);border:1px solid var(--accent);border-radius:var(--r)}
+ol.steps li strong{color:var(--text)}
+.table-wrap{overflow-x:auto;margin:24px 0;border:1px solid var(--border);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
+td{color:var(--text2)}
+td.num{font-variant-numeric:tabular-nums;color:var(--text)}
+tr:last-child td{border-bottom:none}
+footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;max-width:952px;margin:0 auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.banner{position:sticky;top:56px;z-index:40;background:var(--warn-bg);color:var(--warn-text);border-bottom:1px solid var(--warn);padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-align:center}
+@media(max-width:580px){.nav-index{display:none}.sec{padding:56px 16px}.hero-wrap{padding-top:96px}}
+
+</style>
+  <script src="analytics.js" defer></script>
+</head>
+<body>
+<nav>
+  <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
+  <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#problem" class="nav-link">Problem</a><a href="#how" class="nav-link">How it works</a><a href="#cuts" class="nav-link">What I cut</a><a href="#status" class="nav-link">Status</a><span class="nav-index">Project &middot; Personal</span></div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <span class="label label-strong">Personal Project &middot; PWA &middot; In build</span>
+    <h1>life-os:<br /><em>a phone window onto my own data.</em></h1>
+    <p class="hero-sub">A single-user app on my phone that files new items into my records and tells me what needs me now. It started as a Telegram bot and grew into its own product.</p>
+    <div class="meta-row"><span class="meta-tag">PWA</span><span class="meta-tag">Claude API</span><span class="meta-tag">Single user</span><span class="meta-tag">Android</span></div>
+    
+  </div>
+</div>
+
+<div class="sec" id="overview"><div class="sec-inner">
+<div class="sec-head"><h2>What it is</h2><span class="label">Overview</span></div>
+<div class="callout"><p>life-os is built for one user, me. It sits on top of the notes and records I already keep, and adds two things: <strong>Capture</strong> to file something new, and <strong>Pulse</strong> to see what needs me today.</p></div><div class="stats"><div class="stat"><span class="stat-num">1</span><span class="stat-lbl">user, by design</span></div><div class="stat"><span class="stat-num">3</span><span class="stat-lbl">tabs: Today, Everything, Profile</span></div><div class="stat"><span class="stat-num">8</span><span class="stat-lbl">record areas Capture can file into</span></div><div class="stat"><span class="stat-num">3</span><span class="stat-lbl">cards at most on Pulse</span></div></div>
+</div></div>
+<div class="sec" id="problem"><div class="sec-inner">
+<div class="sec-head"><h2>The desk was<br /><em>the bottleneck.</em></h2><span class="label">01 &middot; Problem</span></div>
+<div class="prose"><p>My notes, records and to-dos live in one vault on my laptop. Filing something new, or checking what needs me today, meant sitting down at a desk.</p><p>Before this, I built a Telegram assistant with 28+ commands to reach the same data from my phone. It worked, but a chat box is a poor way to file a record or scan a day. I retired it, and it became the brief for life-os.</p></div>
+</div></div>
+<div class="sec" id="how"><div class="sec-inner">
+<div class="sec-head"><h2>Two flows,<br /><em>one router.</em></h2><span class="label">02 &middot; How it works</span></div>
+<div class="cards"><div class="card"><span class="label">Capture</span><h3>File it in one tap</h3><p>The Android share sheet or one text box, typed or dictated. One router picks which of eight record areas it belongs to and shows its guess. If the guess is wrong, one tap moves the record. It never adds a second copy. If the router is unsure, it files nothing and asks.</p></div><div class="card"><span class="label">Pulse</span><h3>What needs me now</h3><p>On open, it shows at most three cards. Each card has actions that change the records. It is not a browsable list and not a search box.</p></div></div>
+</div></div>
+<div class="sec" id="cuts"><div class="sec-inner">
+<div class="sec-head"><h2>What I chose<br /><em>not to build.</em></h2><span class="label">03 &middot; Decisions</span></div>
+<div class="prose"><p>A browsable list and a search box on the first screen were both rejected after use. Pulse limits itself to three cards so it can answer one question: what needs me now.</p><p>Corrections move a record instead of adding one. Undecided items file nothing. Both rules exist so the records stay clean without a cleanup pass.</p></div>
+</div></div>
+<div class="sec" id="status"><div class="sec-inner">
+<div class="sec-head"><h2>Where it<br /><em>stands.</em></h2><span class="label">04 &middot; Status</span></div>
+<div class="callout warn"><p><strong>In build, and private.</strong> It is installed on my own phone. It is not open to other users, and there is no public demo or repository. I will say so plainly rather than link to something you cannot open.</p></div><div class="prose"><p>Capture and Pulse both work on a real phone. Work continues on the ongoing-projects view and on the first load after the server sleeps.</p></div>
+</div></div>
+<footer><span>Gaurav Gupta &middot; Personal Project &middot; In build</span><a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a></footer>
+<script>
+(function(){
+  var links=document.querySelectorAll('.nav-link');var map={};
+  links.forEach(function(l){var id=l.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]=l;});
+  if(!('IntersectionObserver' in window))return;
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('nav-link--active');});if(map[e.target.id])map[e.target.id].classList.add('nav-link--active');}});},{rootMargin:'-64px 0px -70% 0px',threshold:0});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+})();
+</script>
+</body>
+</html>

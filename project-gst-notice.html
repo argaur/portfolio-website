@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice, Explained: The Evidence Behind a GST Notice | Gaurav Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://gauravg.dev/project-gst-notice.html">
+    <meta property="og:title" content="Notice, Explained: The Evidence Behind a GST Notice | Gaurav Gupta">
+    <meta property="og:description" content="A prototype for Build What Moves India. It traces a GST DRC-01C mismatch row by row, so a taxpayer sees the evidence before writing a reply. Top 250, rank 64.">
+    <meta property="og:url" content="https://gauravg.dev/project-gst-notice.html">
+    <meta property="og:type" content="article">
+    <meta name="description" content="A prototype for Build What Moves India. It traces a GST DRC-01C mismatch row by row, so a taxpayer sees the evidence before writing a reply. Top 250, rank 64.">
+    <meta name="theme-color" content="#faf8f3">
+<style>
+:root{--bg:#faf8f3;--surface:#ffffff;--surface2:#f1ede4;--border:#ddd6c6;--text:#1c2430;--text2:#3d4756;--muted:#5c6675;--accent:#1f3a5f;--accent-text:#1f3a5f;--accent-bg:rgba(31,58,95,.07);--warn:#8a5a00;--r:2px;--nav-bg:#faf8f3;--display:"Source Serif 4",Georgia,serif;--body:"Public Sans",sans-serif;--mono:"IBM Plex Mono",monospace}
+
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-text)}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface2);padding:1px 6px;border:1px solid var(--border);border-radius:var(--r)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;background:var(--nav-bg);border-bottom:1px solid var(--border)}
+.nav-back{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.04em;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.nav-back:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-right::-webkit-scrollbar{display:none}
+.nav-link{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:0 10px;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-link:hover{color:var(--text)}
+.nav-link--active{color:var(--accent-text);border-bottom-color:var(--accent)}
+.nav-index{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;padding-left:8px}
+.hero-wrap{padding:112px 16px 56px;border-bottom:1px solid var(--border)}
+.hero,.sec-inner{max-width:920px;margin:0 auto}
+.label{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label-strong{color:var(--accent-text)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 20px}
+h1 em{font-style:normal;color:var(--muted)}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,38px);line-height:1.15;letter-spacing:-.005em}
+h2 em{font-style:normal;color:var(--muted)}
+h3{font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:8px}
+.hero-sub{max-width:640px;font-size:clamp(17px,2vw,20px);color:var(--text2)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.meta-tag{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border);color:var(--muted);border-radius:var(--r)}
+.hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.lnk{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--accent);color:var(--accent-text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-radius:var(--r)}
+.lnk:hover{background:var(--accent-bg)}
+.sec{padding:72px 16px;border-top:1px solid var(--border);scroll-margin-top:56px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:32px}
+.prose p{max-width:680px;margin-bottom:18px;color:var(--text2)}
+.prose p strong{color:var(--text)}
+.callout{border-left:3px solid var(--accent);background:var(--surface);padding:20px 24px;margin:28px 0;max-width:760px;border-radius:0 var(--r) var(--r) 0}
+.callout p{color:var(--text2);margin:0}
+.callout p strong{color:var(--text)}
+.callout.warn{border-left-color:var(--warn)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:32px 0;border-radius:var(--r);overflow:hidden}
+.stat{background:var(--surface);padding:22px 20px}
+.stat-num{display:block;font-family:var(--display);font-weight:700;font-size:34px;line-height:1.1;color:var(--accent-text);font-variant-numeric:tabular-nums}
+.stat-lbl{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.45}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);padding:24px;border-radius:var(--r)}
+.card p{color:var(--text2);font-size:15px}
+.card .label{margin-bottom:10px}
+ol.steps{list-style:none;counter-reset:s;max-width:720px;margin:24px 0}
+ol.steps li{counter-increment:s;position:relative;padding:14px 0 14px 48px;border-bottom:1px solid var(--border);color:var(--text2)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--accent-text);border:1px solid var(--accent);border-radius:var(--r)}
+ol.steps li strong{color:var(--text)}
+.table-wrap{overflow-x:auto;margin:24px 0;border:1px solid var(--border);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
+td{color:var(--text2)}
+td.num{font-variant-numeric:tabular-nums;color:var(--text)}
+tr:last-child td{border-bottom:none}
+footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;max-width:952px;margin:0 auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.banner{position:sticky;top:56px;z-index:40;background:var(--warn-bg);color:var(--warn-text);border-bottom:1px solid var(--warn);padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-align:center}
+@media(max-width:580px){.nav-index{display:none}.sec{padding:56px 16px}.hero-wrap{padding-top:96px}}
+
+</style>
+  <script src="analytics.js" defer></script>
+</head>
+<body>
+<nav>
+  <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
+  <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#problem" class="nav-link">Problem</a><a href="#flow" class="nav-link">Flow</a><a href="#real" class="nav-link">Real vs synthetic</a><a href="#result" class="nav-link">Result</a><span class="nav-index">Project &middot; Hackathon</span></div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <span class="label label-strong">Hackathon &middot; Govtech &middot; Prototype</span>
+    <h1>Notice, Explained:<br /><em>the evidence behind the number.</em></h1>
+    <p class="hero-sub">A GST notice tells a taxpayer that their credit does not match. It does not say why. This prototype shows which rows caused the gap, before the taxpayer writes a reply.</p>
+    <div class="meta-row"><span class="meta-tag">React 19</span><span class="meta-tag">TypeScript</span><span class="meta-tag">OpenAI</span><span class="meta-tag">Vercel</span><span class="meta-tag">Synthetic data</span></div>
+    <div class="hero-links"><a class="lnk" href="https://prototype-blue-three.vercel.app" target="_blank" rel="noopener">Live prototype &nearr;</a><a class="lnk" href="https://github.com/argaur/gst-itc-mismatch-explained" target="_blank" rel="noopener">Source &nearr;</a></div>
+  </div>
+</div>
+
+<div class="sec" id="overview"><div class="sec-inner">
+<div class="sec-head"><h2>What I built</h2><span class="label">Overview</span></div>
+<div class="callout"><p>Built with a teammate for <strong>Build What Moves India</strong>, a hackathon by Varun Mayya backed by OpenAI. We placed in the Top 250 (rank 64) of about 13,700 applicants.</p></div><div class="stats"><div class="stat"><span class="stat-num">64</span><span class="stat-lbl">rank, of about 13,700 applicants</span></div><div class="stat"><span class="stat-num">80</span><span class="stat-lbl">tests on logic, validators and the API layer</span></div><div class="stat"><span class="stat-num">4</span><span class="stat-lbl">steps in the citizen flow</span></div><div class="stat"><span class="stat-num">0</span><span class="stat-lbl">real GST records used</span></div></div>
+</div></div>
+<div class="sec" id="problem"><div class="sec-inner">
+<div class="sec-head"><h2>One number,<br /><em>no reason.</em></h2><span class="label">01 &middot; Problem</span></div>
+<div class="prose"><p>A GST DRC-01C notice shows the gap between the input tax credit a taxpayer claimed and what their suppliers reported. The portal gives the gap and a form to reply. It does not show which invoice or supplier record caused it.</p><p>Most recipients have no accountant or reconciliation tool on hand when the notice arrives. The reply window is fixed, and a wrong reply can block a later filing.</p></div>
+</div></div>
+<div class="sec" id="flow"><div class="sec-inner">
+<div class="sec-head"><h2>Between the notice<br /><em>and the reply.</em></h2><span class="label">02 &middot; Flow</span></div>
+<ol class="steps"><li><strong>Show the notice</strong> and the total difference.</li><li><strong>Reconcile row by row</strong> in plain code. Each row is labelled: exact match, missing in 2B, possible duplicate, or later-period match.</li><li><strong>Explain the findings.</strong> The model only explains what the code has already checked, and cites the rows.</li><li><strong>Draft a review-only reply</strong> the taxpayer can copy, print or discard.</li></ol><div class="prose"><p>A second round added a risk screen for supplier-filed bills the taxpayer must act on, and a question box in Hindi or English that answers by citing real row IDs.</p></div>
+</div></div>
+<div class="sec" id="real"><div class="sec-inner">
+<div class="sec-head"><h2>What is real,<br /><em>what is synthetic.</em></h2><span class="label">03 &middot; Honesty</span></div>
+<div class="table-wrap"><table><thead><tr><th>Real</th><th>Synthetic</th></tr></thead><tbody><tr><td>Reconciliation logic and schema checks</td><td>The notice and the taxpayer</td></tr><tr><td>The OpenAI call, run server-side with a strict output schema</td><td>Source records, amounts and IDs</td></tr><tr><td>Error handling and the deployed app</td><td>Everything a citizen would enter</td></tr></tbody></table></div><div class="callout warn"><p><strong>Not GSTN. Not tax advice.</strong> No live GST system, API, PAN, Aadhaar, OTP or payment data is used. The app says this on every screen.</p></div>
+</div></div>
+<div class="sec" id="result"><div class="sec-inner">
+<div class="sec-head"><h2>What came<br /><em>of it.</em></h2><span class="label">04 &middot; Result</span></div>
+<div class="prose"><p>The prototype shipped and is live. It placed in the Top 250. It runs on synthetic data. No real taxpayer has used it, and I make no claim about accuracy on real notices.</p><p>The design choice I would keep: code decides, the model explains. That kept the numbers checkable and kept the model away from anything it could invent.</p></div>
+</div></div>
+<footer><span>Gaurav Gupta &middot; Hackathon Project &middot; Build What Moves India</span><a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a></footer>
+<script>
+(function(){
+  var links=document.querySelectorAll('.nav-link');var map={};
+  links.forEach(function(l){var id=l.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]=l;});
+  if(!('IntersectionObserver' in window))return;
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('nav-link--active');});if(map[e.target.id])map[e.target.id].classList.add('nav-link--active');}});},{rootMargin:'-64px 0px -70% 0px',threshold:0});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+})();
+</script>
+</body>
+</html>
