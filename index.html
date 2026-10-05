@@ -865,6 +865,18 @@
           <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Prototype</div>
           <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
         </div>
+        <!-- 16 RuleCard -->
+        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-8')">
+          <div class="w-10 font-label-md text-label-md text-on-surface-variant">16</div>
+          <div class="flex-grow font-headline-md text-headline-md text-on-surface">RuleCard: Turn an Agent's Written Rules into Tests</div>
+          <div class="flex flex-wrap gap-2 md:w-1/4">
+            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI Evals</span>
+            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Claude API</span>
+          </div>
+          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">In Build</div>
+          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
+        </div>
         <!-- Projects → Skills bridge -->
         <div class="mt-12 pt-10 border-t border-outline-variant">
           <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">Look across these builds and the same capabilities keep recurring: retrieval systems, self-deployed infra, simulation engines, agentic automation.</p>
@@ -2207,6 +2219,19 @@ var V3_PROJECTS = {
     githubUrl: 'https://github.com/argaur/gst-itc-mismatch-explained',
     protoUrl: 'https://prototype-blue-three.vercel.app',
     pageUrl: 'project-gst-notice.html',
+    pageLabel: 'Read Full Project Details'
+  },
+  'pp-8': {
+    tag: 'Personal Build · AI Evaluation · Claude API · In Build',
+    title: "RuleCard: Turn an Agent's Written Rules into Tests",
+    problem: 'Most agent tests are written after watching what the agent does. That checks the agent against itself, so a gap in the rules never shows up as a gap in the tests.',
+    insight: 'RuleCard writes tests from the rules the owner wrote down. Every test keeps its rule number, and the report starts with the rules that have no test. One recorded run on a hiring-screen agent covered 44 rules and 135 scenarios, and I read it with its caveats.',
+    stats: ['44 rules, 135 scenarios', 'Hosted, sign-in, no billing', 'No public demo yet'],
+    stage: 'In build',
+    docs: [],
+    githubUrl: null,
+    protoUrl: null,
+    pageUrl: 'project-rulecard.html',
     pageLabel: 'Read Full Project Details'
   }
 };
