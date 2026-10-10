@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-gst-notice.html">
     <meta property="og:title" content="Notice, Explained: The Evidence Behind a GST Notice | Gaurav Gupta">
-    <meta property="og:description" content="A prototype for Build What Moves India. It traces a GST DRC-01C mismatch row by row, so a taxpayer sees the evidence before writing a reply. Top 250, rank 64.">
+    <meta property="og:description" content="A prototype for Build What Moves India. It traces a GST DRC-01C mismatch row by row, so a taxpayer sees the evidence before writing a reply. Built in five days. Top 250, rank 64 of about 13,700.">
     <meta property="og:url" content="https://gauravg.dev/project-gst-notice.html">
     <meta property="og:type" content="article">
-    <meta name="description" content="A prototype for Build What Moves India. It traces a GST DRC-01C mismatch row by row, so a taxpayer sees the evidence before writing a reply. Top 250, rank 64.">
+    <meta name="description" content="A prototype for Build What Moves India. It traces a GST DRC-01C mismatch row by row, so a taxpayer sees the evidence before writing a reply. Built in five days. Top 250, rank 64 of about 13,700.">
     <meta name="theme-color" content="#faf8f3">
 <style>
 :root{--bg:#faf8f3;--surface:#ffffff;--surface2:#f1ede4;--border:#ddd6c6;--text:#1c2430;--text2:#3d4756;--muted:#5c6675;--accent:#1f3a5f;--accent-text:#1f3a5f;--accent-bg:rgba(31,58,95,.07);--warn:#8a5a00;--r:2px;--nav-bg:#faf8f3;--display:"Source Serif 4",Georgia,serif;--body:"Public Sans",sans-serif;--mono:"IBM Plex Mono",monospace}
@@ -84,12 +84,12 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
 <body>
 <nav>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
-  <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#problem" class="nav-link">Problem</a><a href="#flow" class="nav-link">Flow</a><a href="#real" class="nav-link">Real vs synthetic</a><a href="#result" class="nav-link">Result</a><span class="nav-index">Project &middot; Hackathon</span></div>
+  <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#problem" class="nav-link">Problem</a><a href="#flow" class="nav-link">Flow</a><a href="#real" class="nav-link">Real vs synthetic</a><a href="#timeline" class="nav-link">Timeline</a><a href="#result" class="nav-link">Result</a><span class="nav-index">Project &middot; Hackathon</span></div>
 </nav>
 
 <div class="hero-wrap">
   <div class="hero">
-    <span class="label label-strong">Hackathon &middot; Govtech &middot; Prototype</span>
+    <span class="label label-strong">Hackathon &middot; Government Portals &middot; Prototype</span>
     <h1>Notice, Explained:<br /><em>the evidence behind the number.</em></h1>
     <p class="hero-sub">A GST notice tells a taxpayer that their credit does not match. It does not say why. This prototype shows which rows caused the gap, before the taxpayer writes a reply.</p>
     <div class="meta-row"><span class="meta-tag">React 19</span><span class="meta-tag">TypeScript</span><span class="meta-tag">OpenAI</span><span class="meta-tag">Vercel</span><span class="meta-tag">Synthetic data</span></div>
@@ -99,7 +99,7 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
 
 <div class="sec" id="overview"><div class="sec-inner">
 <div class="sec-head"><h2>What I built</h2><span class="label">Overview</span></div>
-<div class="callout"><p>Built with a teammate for <strong>Build What Moves India</strong>, a hackathon by Varun Mayya backed by OpenAI. We placed in the Top 250 (rank 64) of about 13,700 applicants.</p></div><div class="stats"><div class="stat"><span class="stat-num">64</span><span class="stat-lbl">rank, of about 13,700 applicants</span></div><div class="stat"><span class="stat-num">80</span><span class="stat-lbl">tests on logic, validators and the API layer</span></div><div class="stat"><span class="stat-num">4</span><span class="stat-lbl">steps in the citizen flow</span></div><div class="stat"><span class="stat-num">0</span><span class="stat-lbl">real GST records used</span></div></div>
+<div class="callout"><p>Built with Kriti Kandhari Kapoor, from my cohort, for <strong>Build What Moves India</strong>, a hackathon by Varun Mayya backed by OpenAI. We shared every role. We built it in five days and placed in the Top 250: rank 64 of about 13,700 applicants.</p></div><div class="stats"><div class="stat"><span class="stat-num">5 days</span><span class="stat-lbl">from the narrowed brief to a live prototype</span></div><div class="stat"><span class="stat-num">64</span><span class="stat-lbl">rank, of about 13,700 applicants</span></div><div class="stat"><span class="stat-num">80</span><span class="stat-lbl">tests on logic, validators and the API layer</span></div><div class="stat"><span class="stat-num">4</span><span class="stat-lbl">steps in the citizen flow</span></div><div class="stat"><span class="stat-num">0</span><span class="stat-lbl">real GST records used</span></div></div>
 </div></div>
 <div class="sec" id="problem"><div class="sec-inner">
 <div class="sec-head"><h2>One number,<br /><em>no reason.</em></h2><span class="label">01 &middot; Problem</span></div>
@@ -113,8 +113,13 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
 <div class="sec-head"><h2>What is real,<br /><em>what is synthetic.</em></h2><span class="label">03 &middot; Honesty</span></div>
 <div class="table-wrap"><table><thead><tr><th>Real</th><th>Synthetic</th></tr></thead><tbody><tr><td>Reconciliation logic and schema checks</td><td>The notice and the taxpayer</td></tr><tr><td>The OpenAI call, run server-side with a strict output schema</td><td>Source records, amounts and IDs</td></tr><tr><td>Error handling and the deployed app</td><td>Everything a citizen would enter</td></tr></tbody></table></div><div class="callout warn"><p><strong>Not GSTN. Not tax advice.</strong> No live GST system, API, PAN, Aadhaar, OTP or payment data is used. The app says this on every screen.</p></div>
 </div></div>
+<div class="sec" id="timeline"><div class="sec-inner">
+<div class="sec-head"><h2>Five days,<br /><em>ten portals.</em></h2><span class="label">04 &middot; Timeline</span></div>
+<ol class="steps"><li><strong>Aug 24.</strong> The brief narrowed to 10 government platforms. We researched all ten.</li><li><strong>Aug 25.</strong> We picked the Cyber Crime portal and CPGRAMS.</li><li><strong>Aug 27.</strong> We switched to the GST DRC-01C notice and locked the problem.</li><li><strong>Aug 28.</strong> We approved the final flow, built it, deployed it and submitted. That is five days from the narrowed brief to a live prototype.</li><li><strong>Round 2.</strong> The Top 250 got a week of mentorship. We added the risk screen and the question box, and resubmitted.</li></ol>
+<div class="prose"><p>Kriti Kandhari Kapoor and I shared every role, from research to build. The submission window ran to Aug 29. We shipped on Aug 28.</p></div>
+</div></div>
 <div class="sec" id="result"><div class="sec-inner">
-<div class="sec-head"><h2>What came<br /><em>of it.</em></h2><span class="label">04 &middot; Result</span></div>
+<div class="sec-head"><h2>What came<br /><em>of it.</em></h2><span class="label">05 &middot; Result</span></div>
 <div class="prose"><p>The prototype shipped and is live. It placed in the Top 250. It runs on synthetic data. No real taxpayer has used it, and I make no claim about accuracy on real notices.</p><p>The design choice I would keep: code decides, the model explains. That kept the numbers checkable and kept the model away from anything it could invent.</p></div>
 </div></div>
 <footer><span>Gaurav Gupta &middot; Hackathon Project &middot; Build What Moves India</span><a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a></footer>
