@@ -97,6 +97,18 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
   </div>
 </div>
 
+<!-- Trailer: give this section data-src="assets/trailers/life-os.mp4" (plus data-poster) or data-embed="https://..." to show it. -->
+<div class="sec" id="showcase" style="display:none" data-slug="life-os" data-title="life-os trailer" data-src="" data-embed="" data-poster="" data-captions="">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>See it in<br /><em>60 seconds.</em></h2>
+      <span class="label">Trailer</span>
+    </div>
+    <div class="trailer-frame"></div>
+    <p class="trailer-note">What it is, who it is for and what shipped. The full case study follows below.</p>
+  </div>
+</div>
+
 <div class="sec" id="overview"><div class="sec-inner">
 <div class="sec-head"><h2>What it is</h2><span class="label">Overview</span></div>
 <div class="callout"><p>life-os is built for one user, me. It sits on top of the notes and records I already keep, and adds two things: <strong>Capture</strong> to file something new, and <strong>Pulse</strong> to see what needs me today.</p></div><div class="stats"><div class="stat"><span class="stat-num">1</span><span class="stat-lbl">user, by design</span></div><div class="stat"><span class="stat-num">3</span><span class="stat-lbl">tabs: Today, Everything, Profile</span></div><div class="stat"><span class="stat-num">8</span><span class="stat-lbl">record areas Capture can file into</span></div><div class="stat"><span class="stat-num">3</span><span class="stat-lbl">cards at most on Pulse</span></div></div>
@@ -127,5 +139,6 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
   Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
 })();
 </script>
+<script src="trailer.js" defer></script>
 </body>
 </html>
