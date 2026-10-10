@@ -10,7 +10,7 @@
     <link rel="canonical" href="https://gauravg.dev/project-pm-pathfinder.html">
     <meta name="description" content="Case study: PM Pathfinder, a career navigation platform for India's stuck PMs. Diagnoses a PM archetype, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in a self-deployed Supabase pgvector database.">
     <meta property="og:title" content="PM Pathfinder, Career Navigation for India's Stuck PMs | Gaurav Gupta">
-    <meta property="og:description" content="From 9 user interviews to a shipped product: an archetype diagnostic, a personalised roadmap, and a RAG chatbot grounded in a vector database I deployed and own end-to-end.">
+    <meta property="og:description" content="From 9 user interviews to a working prototype: an archetype diagnostic, a personalised roadmap, and a RAG chatbot grounded in a vector database I deployed and own end-to-end.">
     <meta property="og:url" content="https://gauravg.dev/project-pm-pathfinder.html">
     <meta property="og:image" content="https://gauravg.dev/photo.jpg">
     <meta property="og:type" content="article">
@@ -481,7 +481,7 @@
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
-    <span class="label label-strong">Rethink AI MPM Cohort 7 &middot; March 2026 &middot; Shipped &amp; Live</span>
+    <span class="label label-strong">Rethink AI MPM Cohort 7 &middot; March 2026 &middot; Public demo &middot; Free tool</span>
     <h1>PM Pathfinder: career navigation<br /><em>for India&rsquo;s stuck PMs.</em></h1>
     <p class="hero-sub">
       From 9 user interviews to a shipped product. An AI-native platform that diagnoses a PM
@@ -500,6 +500,18 @@
 </div>
 
 <!-- ── DOCUMENTATION / DIAGRAMS ───────────────────────────── -->
+<!-- Trailer: give this section data-src="assets/trailers/pm-pathfinder.mp4" (plus data-poster) or data-embed="https://..." to show it. -->
+<div class="sec" id="showcase" style="display:none" data-slug="pm-pathfinder" data-title="PM Pathfinder trailer" data-src="" data-embed="" data-poster="" data-captions="">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>See it in<br /><em>60 seconds.</em></h2>
+      <span class="label">Trailer</span>
+    </div>
+    <div class="trailer-frame"></div>
+    <p class="trailer-note">What it is, who it is for and what shipped. The full case study follows below.</p>
+  </div>
+</div>
+
 <div class="sec" id="documentation" style="border-top:none">
   <div class="sec-inner">
     <div class="docs-head">
@@ -828,8 +840,7 @@
       </div>
       <div class="card" style="border-left: 3px solid var(--periwinkle);">
         <h4>The bet</h4>
-        <p>Turn studying into practice, give honest feedback, show a believable readiness score,
-        and price it at &#8377;2,999/month, a point nobody else occupies.</p>
+        <p>Turn studying into practice, give honest feedback, and show a believable readiness score.</p>
       </div>
     </div>
   </div>
@@ -952,19 +963,18 @@
 <div class="sec" id="business">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Free shows you what&rsquo;s wrong.<br /><em>Paid helps you fix it.</em></h2>
+      <h2>Free today.<br /><em>Pricing is a hypothesis.</em></h2>
       <span class="label">07&ndash;08 &middot; Business Model &amp; Key Decisions</span>
     </div>
 
     <div class="prose">
-      <p>The free tier is the hook, not the product. Users get enough to feel understood and to
-      see themselves improve before the paywall, which is framed around their specific
-      gaps, not a generic upsell.</p>
+      <p>Pathfinder is a free tool and a working prototype. Every feature is open to everyone.
+      The two tiers below are the pricing idea I worked through on paper. I did not launch it.</p>
     </div>
 
     <div class="two-col">
       <div>
-        <h3>Free, forever</h3>
+        <h3>Free tier, as planned</h3>
         <ul>
           <li>Career-type quiz + radar + skill translations</li>
           <li>2 AI-graded practice sessions</li>
@@ -972,7 +982,7 @@
         </ul>
       </div>
       <div>
-        <h3>Paid: &#8377;2,999/mo or &#8377;24,999/yr</h3>
+        <h3>Paid tier, as hypothesised: &#8377;2,999/mo or &#8377;24,999/yr</h3>
         <ul>
           <li>Unlimited practice with live readiness updates</li>
           <li>Full dashboard, progress, streaks, roadmap</li>
@@ -982,18 +992,16 @@
     </div>
 
     <div class="callout-box">
-      <p><strong>Note on current state:</strong> as a cohort case-study product, Pro-gating is
-      intentionally disabled platform-wide, every feature is unlocked for all users while
-      payments (Razorpay) are pending. The gating logic exists and works; it is simply not called
-      yet.</p>
+      <p><strong>Current state:</strong> there is no paid tier. Every feature is open to every
+      user. The pricing above is a hypothesis, not a product.</p>
     </div>
 
     <h3 class="h3-spaced">Three bets a skeptic would challenge</h3>
     <div class="cards">
       <div class="card">
         <h4>AI-only feedback in V1</h4>
-        <p>Upraised charges &#8377;2.5L for human mentors. At &#8377;2,999/mo, even one human
-        review per week per user erases the margin. The bet: AI feedback tuned to real PM
+        <p>Upraised charges &#8377;2.5L for human mentors. If a paid tier ever launched at
+        &#8377;2,999/mo, even one human review per week per user would erase the margin. The bet: AI feedback tuned to real PM
         interview standards closes 70&ndash;80% of the gap at ~5% of the cost.</p>
       </div>
       <div class="card">
@@ -1023,9 +1031,7 @@
       <div class="card" style="border-left: 3px solid var(--teal);">
         <h4 style="color: var(--teal);">Now</h4>
         <ul>
-          <li>Razorpay payments + re-enable Pro-gating</li>
           <li>Remove cohort submission banner for public launch</li>
-          <li>Real topic content (frameworks, videos)</li>
         </ul>
       </div>
       <div class="card" style="border-left: 3px solid var(--periwinkle);">
@@ -1100,5 +1106,6 @@
   Object.keys(map).forEach(function(id) { obs.observe(document.getElementById(id)); });
 })();
 </script>
+<script src="trailer.js" defer></script>
 </body>
 </html>
