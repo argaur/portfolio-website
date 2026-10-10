@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-homelab.html">
-    <meta name="description" content="Project: Personal Homelab — 10+ Docker services, Vault, Prometheus, Grafana running on a self-hosted Linux server. Built by Gaurav Gupta.">
-    <meta property="og:title" content="Personal Homelab — Self-Hosted Infrastructure | Gaurav Gupta">
+    <meta name="description" content="Project: Personal Homelab, 10+ Docker services, Vault, Prometheus, Grafana running on a self-hosted Linux server. Built by Gaurav Gupta.">
+    <meta property="og:title" content="Personal Homelab, Self-Hosted Infrastructure | Gaurav Gupta">
     <meta property="og:description" content="10+ Docker services, HashiCorp Vault, Prometheus + Grafana, self-hosted on a Linux Mint server. Zero cloud costs, full control.">
     <meta property="og:url" content="https://gauravg.dev/project-homelab.html">
     <meta property="og:image" content="https://gauravg.dev/photo.jpg">
@@ -20,7 +20,7 @@
 
 <style>
   /* ────────────────────────────────────────────────────────────────
-     Design system ported from the Homelab product itself — dark
+     Design system ported from the Homelab product itself, dark
      terminal / rack / monitoring aesthetic. JetBrains Mono (mono-
      first, headings included) + IBM Plex Sans for longer prose.
      Deliberately does NOT use case-study.css.
@@ -480,7 +480,7 @@
     <span class="label label-strong">[ OK ] Personal Project &middot; Uptime since provisioning</span>
     <h1>Personal Homelab<br /><em>server, self-hosted.</em></h1>
     <p class="hero-sub">
-      10+ containerised services running on a dedicated Linux Mint server &mdash; monitoring,
+      10+ containerised services running on a dedicated Linux Mint server, monitoring,
       automation, secrets management, DNS filtering, and more. Zero cloud costs, full control.
     </p>
     <div class="meta-row">
@@ -535,7 +535,7 @@
         <rect width="900" height="400" fill="#0d1117"/>
 
         <!-- Title -->
-        <text x="450" y="26" text-anchor="middle" fill="#c9d1d9" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.12em" opacity="0.9">SYSTEM ARCHITECTURE &mdash; PERSONAL HOMELAB</text>
+        <text x="450" y="26" text-anchor="middle" fill="#c9d1d9" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.12em" opacity="0.9">SYSTEM ARCHITECTURE, PERSONAL HOMELAB</text>
 
         <!-- Host label -->
         <text x="450" y="50" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.08em">HOST: Linux Mint &middot; Bare Metal</text>
@@ -665,15 +665,15 @@
 
     <div class="prose">
       <p>Cloud services charge per service, per seat, per API call. For a builder running
-      multiple personal tools &mdash; automation pipelines, monitoring dashboards, DNS filtering,
-      workflow engines &mdash; the costs compound fast. More importantly, cloud services mean
+      multiple personal tools, automation pipelines, monitoring dashboards, DNS filtering,
+      workflow engines, the costs compound fast. More importantly, cloud services mean
       vendor lock-in and data leaving your control.</p>
       <p>The homelab solves this: a dedicated Linux Mint laptop running 24/7 as a local server,
       managed as code, with every service containerised and reproducible from scratch.</p>
     </div>
 
     <div class="callout">
-      <p><code>$ git clone homelab && ansible-playbook site.yml</code> &mdash; the entire server
+      <p><code>$ git clone homelab && ansible-playbook site.yml</code>, the entire server
       rebuilds from two commands. State lives in git, not in the OS.</p>
     </div>
   </div>
@@ -689,7 +689,7 @@
 
     <div class="prose">
       <p>Each service lives in its own <code>/stacks/</code> directory with a dedicated
-      <code>docker-compose.yml</code>. Services are grouped by function &mdash; infrastructure
+      <code>docker-compose.yml</code>. Services are grouped by function, infrastructure
       layer, monitoring layer, automation layer. Nginx Proxy Manager handles routing; AdGuard
       Home handles DNS at the network level.</p>
     </div>
@@ -698,26 +698,26 @@
       <div class="card">
         <h4>Infrastructure Layer</h4>
         <ul>
-          <li><strong>Portainer</strong> &mdash; Docker container management UI, visual overview of all running stacks</li>
-          <li><strong>Nginx Proxy Manager</strong> &mdash; reverse proxy with SSL termination for local services</li>
-          <li><strong>Homepage</strong> &mdash; unified dashboard (port 3333) showing all services at a glance</li>
-          <li><strong>AdGuard Home</strong> &mdash; network-wide DNS filtering, local DNS resolver</li>
-          <li><strong>HashiCorp Vault</strong> &mdash; secrets management; all credentials injected at runtime, none stored in files</li>
+          <li><strong>Portainer</strong>, Docker container management UI, visual overview of all running stacks</li>
+          <li><strong>Nginx Proxy Manager</strong>, reverse proxy with SSL termination for local services</li>
+          <li><strong>Homepage</strong>, unified dashboard (port 3333) showing all services at a glance</li>
+          <li><strong>AdGuard Home</strong>, network-wide DNS filtering, local DNS resolver</li>
+          <li><strong>HashiCorp Vault</strong>, secrets management; all credentials injected at runtime, none stored in files</li>
         </ul>
       </div>
       <div class="card">
         <h4>Observability Layer</h4>
         <ul>
-          <li><strong>Prometheus</strong> &mdash; metrics scraping from all services</li>
-          <li><strong>Grafana</strong> &mdash; dashboards for system health, service uptime, resource usage</li>
-          <li><strong>Uptime Kuma</strong> &mdash; service status monitoring with alerting</li>
+          <li><strong>Prometheus</strong>, metrics scraping from all services</li>
+          <li><strong>Grafana</strong>, dashboards for system health, service uptime, resource usage</li>
+          <li><strong>Uptime Kuma</strong>, service status monitoring with alerting</li>
         </ul>
       </div>
       <div class="card">
         <h4>Automation Layer</h4>
         <ul>
-          <li><strong>n8n</strong> &mdash; self-hosted workflow automation, integrations without API key exposure</li>
-          <li><strong>Ansible Semaphore</strong> &mdash; web UI for running Ansible playbooks; used for provisioning and updates</li>
+          <li><strong>n8n</strong>, self-hosted workflow automation, integrations without API key exposure</li>
+          <li><strong>Ansible Semaphore</strong>, web UI for running Ansible playbooks; used for provisioning and updates</li>
         </ul>
       </div>
     </div>
@@ -735,13 +735,13 @@
     <div class="callout">
       <p><strong>Why Docker over bare-metal installs?</strong> Each service is isolated,
       versioned, and replaceable. Rolling back a broken upgrade means pulling the previous
-      image. Full server restore from scratch uses the same compose files &mdash; the state
+      image. Full server restore from scratch uses the same compose files, the state
       lives in git, not in the OS.</p>
     </div>
 
     <div class="callout">
       <p><strong>Why HashiCorp Vault for a personal homelab?</strong> Because the habit of
-      zero plaintext secrets &mdash; everywhere, always &mdash; is worth building at home.
+      zero plaintext secrets, everywhere, always, is worth building at home.
       Credentials are injected at container startup via Vault agent. No <code>.env</code>
       files with real secrets committed anywhere.</p>
     </div>
@@ -749,7 +749,7 @@
     <div class="callout">
       <p><strong>Why Ansible Semaphore?</strong> Ansible playbooks handle provisioning and
       service updates. Semaphore gives a UI to run them without needing to SSH in each time
-      &mdash; and creates an audit trail of what ran when.</p>
+, and creates an audit trail of what ran when.</p>
     </div>
   </div>
 </div>

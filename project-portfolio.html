@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-portfolio.html">
-    <meta name="description" content="Project: This portfolio website — built as a product, documented as a case study. Plain HTML, Tailwind via CDN, 7-panel SPA by Gaurav Gupta.">
+    <meta name="description" content="Project: This portfolio website, built as a product, documented as a case study. Plain HTML, Tailwind via CDN, 7-panel SPA by Gaurav Gupta.">
     <meta property="og:title" content="This Portfolio Website | Gaurav Gupta">
     <meta property="og:description" content="Built as a product, documented as a case study. Plain HTML, Tailwind CDN, 7-panel SPA.">
     <meta property="og:url" content="https://gauravg.dev/project-portfolio.html">
@@ -521,7 +521,7 @@
         <rect width="900" height="360" fill="#0e0e12"/>
 
         <!-- Title -->
-        <text x="450" y="26" text-anchor="middle" fill="#9896a0" font-family="Space Mono, monospace" font-size="10" letter-spacing="0.12em" opacity="0.9">SYSTEM ARCHITECTURE &mdash; PORTFOLIO WEBSITE</text>
+        <text x="450" y="26" text-anchor="middle" fill="#9896a0" font-family="Space Mono, monospace" font-size="10" letter-spacing="0.12em" opacity="0.9">SYSTEM ARCHITECTURE, PORTFOLIO WEBSITE</text>
 
         <!-- Zone dividers -->
         <line x1="160" y1="40" x2="160" y2="310" stroke="#2a2a38" stroke-dasharray="4 4" stroke-width="1"/>
@@ -593,7 +593,7 @@
     <!-- ABOUT -->
     <div class="docs-panel docs-panel--hidden" data-panel="prd">
       <div class="docs-note">
-        <p>This page is the build record for the portfolio itself &mdash; a "meta" project.
+        <p>This page is the build record for the portfolio itself, a "meta" project.
         It covers the no-framework constraint, the current "Kinetic Precision" design
         system, the 7-panel single-file architecture, and the email gate I retired.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
@@ -649,7 +649,7 @@
       <p>The constraint was intentional: no React, no build step, no bundler. The site must
       work by opening <code>index.html</code> in a browser. This was both a technical
       demonstration (can you ship a polished product with nothing but platform primitives
-      and a CDN?) and a practical choice &mdash; no dependency rot, no build failures, instant
+      and a CDN?) and a practical choice, no dependency rot, no build failures, instant
       iteration.</p>
     </div>
 
@@ -670,10 +670,10 @@
     </div>
 
     <div class="prose">
-      <p>The current design system is called <strong>Kinetic Precision</strong> &mdash; a
+      <p>The current design system is called <strong>Kinetic Precision</strong>, a
       dark, technical palette built around Space Mono for display type and DM Sans for body
       copy. Gold is the single accent, used sparingly: active nav underlines, tab highlights,
-      links, and card icons. Every corner on the site is square &mdash; <code>border-radius</code>
+      links, and card icons. Every corner on the site is square, <code>border-radius</code>
       is zero, everywhere, as an explicit architectural principle.</p>
     </div>
 
@@ -681,26 +681,26 @@
     <div class="cards">
       <div class="card">
         <h4 style="color: #ece8e2; background: #0e0e12; padding: 8px; margin: -16px -16px 12px; border: 1px solid #2a2a38;">#0e0e12</h4>
-        <p><code>--bg</code> &mdash; Primary dark background across the entire site.</p>
+        <p><code>--bg</code>, Primary dark background across the entire site.</p>
       </div>
       <div class="card">
         <h4 style="color: #0e0e12; background: #c9a84c; padding: 8px; margin: -16px -16px 12px;">#c9a84c</h4>
-        <p><code>--gold</code> &mdash; Sole accent. Active states, links, highlighted nodes.</p>
+        <p><code>--gold</code>, Sole accent. Active states, links, highlighted nodes.</p>
       </div>
       <div class="card">
         <h4 style="color: #ece8e2; background: #4caf74; padding: 8px; margin: -16px -16px 12px;">#4caf74</h4>
-        <p><code>--green</code> &mdash; Reserved for "verified / live" status dots only.</p>
+        <p><code>--green</code>, Reserved for "verified / live" status dots only.</p>
       </div>
     </div>
 
     <h3 class="h3-spaced">Typography</h3>
     <ul>
-      <li><strong>Space Mono</strong> &mdash; display headings, eyebrows, labels, stat numbers (technical, exact, monospace precision)</li>
-      <li><strong>DM Sans</strong> &mdash; body text, UI labels, navigation (clean, geometric, legible at small sizes)</li>
+      <li><strong>Space Mono</strong>, display headings, eyebrows, labels, stat numbers (technical, exact, monospace precision)</li>
+      <li><strong>DM Sans</strong>, body text, UI labels, navigation (clean, geometric, legible at small sizes)</li>
     </ul>
 
     <h3 class="h3-spaced">No Border-Radius</h3>
-    <p>Every element is square-cornered &mdash; cards, tables, tags, buttons, panels. This is
+    <p>Every element is square-cornered, cards, tables, tags, buttons, panels. This is
     an explicit architectural principle carried over from the site's earlier "Blueprint to
     Bits" identity: softness comes from spacing and type weight, never corner radius.</p>
   </div>
@@ -716,20 +716,20 @@
 
     <div class="prose">
       <p>The site is a single HTML file with 7 full-viewport panels. Only one panel is
-      visible at a time &mdash; <code>overflow: hidden</code> on <code>&lt;body&gt;</code>,
+      visible at a time, <code>overflow: hidden</code> on <code>&lt;body&gt;</code>,
       panel switching toggles an active class, and all the switching logic lives inline in
       <code>index.html</code> itself rather than a separate <code>app.js</code>.</p>
     </div>
 
     <h3 class="h3-spaced">7 Panels</h3>
     <ul>
-      <li><strong>Home</strong> &mdash; hero split (text + animated canvas), stats strip, blueprint grid</li>
-      <li><strong>Experience</strong> &mdash; career arc bar and accordion rows, including the enterprise work</li>
-      <li><strong>Projects</strong> &mdash; case studies + personal projects, unified modal</li>
-      <li><strong>Skills</strong> &mdash; dark panel, 6 skill groups, top performers highlighted</li>
-      <li><strong>Philosophy</strong> &mdash; 7 product principles in a 4-column grid</li>
-      <li><strong>Credentials</strong> &mdash; split panel (education left / certifications right)</li>
-      <li><strong>Contact</strong> &mdash; dark + blueprint grid, animated node canvas, email + LinkedIn</li>
+      <li><strong>Home</strong>, hero split (text + animated canvas), stats strip, blueprint grid</li>
+      <li><strong>Experience</strong>, career arc bar and accordion rows, including the enterprise work</li>
+      <li><strong>Projects</strong>, case studies + personal projects, unified modal</li>
+      <li><strong>Skills</strong>, dark panel, 6 skill groups, top performers highlighted</li>
+      <li><strong>Philosophy</strong>, 7 product principles in a 4-column grid</li>
+      <li><strong>Credentials</strong>, split panel (education left / certifications right)</li>
+      <li><strong>Contact</strong>, dark + blueprint grid, animated node canvas, email + LinkedIn</li>
     </ul>
 
     <h3 class="h3-spaced">Hash Routing</h3>
