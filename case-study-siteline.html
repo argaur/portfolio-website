@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/case-study-siteline.html">
-    <meta name="description" content="Case study: SitelineCRM, a Telegram-native B2B sales CRM built for Stylework, an Indian coworking-space aggregator. Shipped solo in ~51 hours, live with a 93.5% extraction-accuracy eval harness.">
+    <meta name="description" content="Case study: SitelineCRM, a Telegram-native B2B sales CRM built for Stylework, an Indian coworking-space aggregator. Shipped solo in ~51 hours, live with an eval harness that scores 93.5% of fields on 23 synthetic transcripts.">
     <meta property="og:title" content="SitelineCRM: Capture Sales Data Where the Conversation Already Is | Gaurav Gupta">
     <meta property="og:description" content="Case study: a Telegram-native B2B sales CRM built for Stylework. Built and shipped live, with a documented eval harness.">
     <meta property="og:url" content="https://gauravg.dev/case-study-siteline.html">
@@ -660,7 +660,7 @@
       </div>
       <div class="stat">
         <span class="stat-num">93.5%</span>
-        <span class="stat-lbl">Field-level extraction accuracy (129/138), measured by an eval harness</span>
+        <span class="stat-lbl">Field-level accuracy (129/138) on 23 synthetic transcripts. Stage alone: 14/23, 60.9%</span>
       </div>
       <div class="stat">
         <span class="stat-num">3</span>
@@ -859,6 +859,15 @@
       reintroduces the non-determinism the metric exists to avoid.</p>
       <p>A <code>--min-accuracy</code> flag makes the harness usable as a CI gate or a
       tuning-loop stop condition.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Read the 93.5% with its scope.</strong> <code>stage</code> is the only exact-match
+      field, and it scored 14 of 23, or 60.9%. The five presence-only fields scored 115 of 115,
+      but a presence check confirms a value exists, not that it is correct. The pooled number
+      hides the weakest field, and that is the field that decides where a deal sits in the
+      pipeline. The set is 23 text transcripts, with no separate held-out set and no voice or
+      screenshot cases.</p>
     </div>
 
     <h3 class="h3-spaced">A documented trust boundary</h3>
