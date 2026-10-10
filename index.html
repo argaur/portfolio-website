@@ -151,6 +151,15 @@
     .p2p-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;}
     body.theme-light .p2p-stage{border-color:#cfc7b5;background:#f7f3ea;}
 
+    /* Contrast: dimmed labels stay readable, light-mode skill text is dark */
+    .font-label-sm.opacity-50,.font-label-sm.opacity-60,.font-label-sm.opacity-70{opacity:.9;}
+    #panel-home .home-stats .opacity-70{opacity:.9;}
+    body.theme-light .skill-block .text-on-surface{color:#1a1a22;}
+    body.theme-light .skill-block .text-on-surface-variant{color:#5a5668;}
+    body.theme-light .skill-lit{color:#6e5824!important;}
+    body.theme-light #panel-credentials .text-primary-fixed-dim{color:#5c4a1c!important;}
+    body.theme-light #panel-credentials .text-on-surface-variant,body.theme-light #panel-credentials span:not([class]){color:#4a4658;}
+
     /* Projects: domain tiles */
     .proj-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
     .proj-chip{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9896a0;background:transparent;border:1px solid #2a2a38;padding:10px 14px;min-height:44px;cursor:pointer;transition:color .15s,border-color .15s;}
