@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gaurav Gupta: Senior PM &amp; AI Strategist</title>
-  <meta name="description" content="Senior PM with 7+ years in product (10+ total), building systems, 7 B2B SaaS products, 16 enterprise clients, 5,000+ users. Based in Jaipur, India.">
+  <title>Gaurav Gupta: Senior Product Manager and AI Builder</title>
+  <meta name="description" content="Senior product manager and builder. I turn product ideas into working specs and prototypes. 7+ years in product, 7 B2B SaaS products, 16 enterprise clients. Based in Jaipur, India.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
@@ -131,6 +131,26 @@
     .tonal-card{transition:all 0.2s cubic-bezier(0.4,0,0.2,1);}
     .tonal-card:hover{background-color:#1a1a22;border-color:#c9a84c;}
 
+    /* Home hero: two doors */
+    .door{display:flex;flex-direction:column;gap:8px;padding:24px;background:#16161e;border:1px solid #2a2a38;color:#ece8e2;text-decoration:none;transition:border-color .2s,background-color .2s;}
+    .door:hover{border-color:#c9a84c;background:#1a1a22;}
+    .door:focus-visible{outline:2px solid #c9a84c;outline-offset:-2px;}
+    .door--lead{background:#1a1a22;box-shadow:inset 0 2px 0 0 #c9a84c;}
+    .door-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9896a0;}
+    .door--lead .door-label{color:#c9a84c;}
+    .door-title{font-family:'Space Mono',monospace;font-size:17px;font-weight:700;line-height:1.3;}
+    .door-text{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:#9896a0;}
+    .door-cta{margin-top:auto;padding-top:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#c9a84c;}
+    body.theme-light .door{background:#ffffff;border-color:#cfc7b5;color:#1a1a22;}
+    body.theme-light .door:hover{border-color:#6e5824;background:#f7f3ea;}
+    body.theme-light .door--lead{background:#f7f3ea;box-shadow:inset 0 2px 0 0 #6e5824;}
+    body.theme-light .door-label,body.theme-light .door-text{color:#5a5668;}
+    body.theme-light .door--lead .door-label,body.theme-light .door-cta{color:#6e5824;}
+    /* Plan to Product stage */
+    .p2p-stage{position:relative;width:100%;aspect-ratio:100/70;border:1px solid #2a2a38;background:#0c0d11;}
+    .p2p-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;}
+    body.theme-light .p2p-stage{border-color:#cfc7b5;background:#f7f3ea;}
+
     /* Projects: domain tiles */
     .proj-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
     .proj-chip{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9896a0;background:transparent;border:1px solid #2a2a38;padding:10px 14px;min-height:44px;cursor:pointer;transition:color .15s,border-color .15s;}
@@ -237,9 +257,6 @@
 
     /* ANIM #9 — Philosophy Canvas */
     #philosophy-canvas{display:block;}
-
-    /* PROFILE PICTURE */
-    #profile-block canvas{display:block;}
 
     /* V3 Modal */
     #v3-modal{position:fixed;inset:0;z-index:150;display:none;}
@@ -390,6 +407,7 @@
     }
   </style>
   <script src="analytics.js" defer></script>
+  <script src="plan-to-product.js" defer></script>
 </head>
 <body class="bg-background text-on-background">
 
@@ -443,7 +461,7 @@
   <div class="flex justify-between items-center w-full h-full px-margin-side max-w-container-max mx-auto">
     <a href="#home" class="flex flex-col text-left" data-panel="panel-home">
       <span class="font-headline-md text-headline-md font-semibold text-on-surface leading-none">Gaurav Gupta</span>
-      <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-0.5">Senior PM &amp; AI Strategist</span>
+      <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-0.5">Senior PM &middot; Builder</span>
     </a>
     <nav class="hidden md:flex items-center gap-5 lg:gap-7">
       <a href="#home" class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" data-panel="panel-home">Home</a>
@@ -473,15 +491,26 @@
     <div class="max-w-container-max w-full px-margin-side mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-stack-gap items-center py-20 min-h-full">
       <!-- Left -->
       <div class="flex flex-col justify-center z-10">
-        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-6">GG / PORTFOLIO &middot; SENIOR PM &amp; AI STRATEGIST</p>
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-6">Senior Product Manager &middot; Builder &middot; Ex-Founder</p>
         <h1 class="font-display text-[36px] md:text-[48px] leading-[1.05] text-on-surface mb-6 max-w-2xl">
-          Designing systems across architecture, enterprise software, and AI.
+          I turn product ideas into working specs and prototypes.
         </h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">Building at the intersection of product thinking and machine intelligence. From B.Arch to AI strategy, every layer deliberate.</p>
-        <div class="flex gap-4 mb-14">
-          <button type="button" class="nav-link px-8 py-3 bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary-fixed transition-all uppercase tracking-widest" data-panel="panel-experience">View Experience</button>
-          <button type="button" class="nav-link px-8 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-all uppercase tracking-widest" data-panel="panel-contact">Contact</button>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">7+ years in product, from enterprise platforms to my own builds in health, commerce, travel, finance and government portals.</p>
+        <div class="doors grid grid-cols-1 sm:grid-cols-2 gap-0 mb-5 max-w-2xl">
+          <a href="#contact" data-panel="panel-contact" class="door door--lead">
+            <span class="door-label">For founders and teams</span>
+            <span class="door-title">PRD-led product sprints</span>
+            <span class="door-text">A clear spec and a working prototype, in a short sprint.</span>
+            <span class="door-cta">Work with me &rarr;</span>
+          </a>
+          <a href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener" class="door">
+            <span class="door-label">For hiring</span>
+            <span class="door-title">Senior PM, remote</span>
+            <span class="door-text">7+ years in product. 7 B2B SaaS products for 16 enterprise clients.</span>
+            <span class="door-cta">Resume &darr;</span>
+          </a>
         </div>
+        <a href="#projects" data-panel="panel-projects" class="inline-block self-start mb-14 py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">Selected work &rarr;</a>
         <div class="home-stats flex flex-wrap items-center gap-8 border-t border-outline-variant pt-8">
           <div class="flex flex-col"><span class="relative inline-block"><span id="stat-years" class="font-headline-lg text-headline-lg text-primary-fixed-dim">7+</span><span class="stat-underline" id="ul-years"></span></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Years in product</span></div>
           <div class="w-px h-10 bg-outline-variant hidden sm:block"></div>
@@ -492,27 +521,9 @@
           <div class="flex flex-col"><span class="relative inline-block"><span id="stat-initiatives" class="font-headline-lg text-headline-lg text-primary-fixed-dim">30+</span><span class="stat-underline" id="ul-initiatives"></span></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-70">Initiatives delivered</span></div>
         </div>
       </div>
-      <!-- Right: profile + stack canvas -->
-      <div class="hidden md:flex flex-col gap-0">
-        <!-- PROFILE PICTURE BLOCK — bio overlays inside, never below -->
-        <div id="profile-block" class="relative cursor-pointer overflow-hidden border border-outline-variant" style="height:220px">
-          <canvas id="profile-canvas" style="width:100%;height:100%;display:block" aria-label="Profile photo"></canvas>
-          <div id="profile-bio" style="display:none;position:absolute;inset:0;background:rgba(11,22,40,0.94);padding:24px 28px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.8;color:rgba(247,243,238,0.88);z-index:10;overflow-y:auto;">
-            <button id="profile-bio-close" style="position:absolute;top:10px;right:14px;background:none;border:none;color:rgba(232,184,75,0.7);font-size:20px;cursor:pointer;font-family:'Space Mono',monospace;line-height:1;" aria-label="Close bio">×</button>
-            <div id="profile-bio-text" style="margin-top:6px;"></div>
-          </div>
-        </div>
-        <!-- Amber label separator -->
-        <div style="border-top:1px solid rgba(232,184,75,0.25);border-left:1px solid rgba(232,184,75,0.25);border-right:1px solid rgba(232,184,75,0.25);padding:4px 10px;display:flex;justify-content:space-between;align-items:center;background:rgba(232,184,75,0.04);">
-          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(232,184,75,0.5);text-transform:uppercase;">Career Architecture</span>
-          <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(232,184,75,0.3);">2014 → PRESENT</span>
-        </div>
-        <div class="border border-outline-variant border-t-0 bg-surface-container-lowest h-[340px] lg:h-[400px] relative">
-          <canvas id="stack-diagram" class="w-full h-full block" style="display:block" aria-label="Career architecture stack"></canvas>
-        </div>
-        <div class="flex justify-end pt-2">
-          <button type="button" id="stack-replay" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">&#8635; Replay</button>
-        </div>
+      <!-- Right: Plan to Product motion -->
+      <div class="flex flex-col gap-0 mt-10 md:mt-0 w-full">
+        <div class="p2p-stage"><canvas id="p2p-home" role="img" aria-label="Animation: a floor plan redraws itself as a wireframe, then as a working prototype. It shows an idea becoming a product."></canvas></div>
       </div>
     </div>
   </section>
@@ -1045,9 +1056,9 @@
   <section id="panel-contact" class="v3-panel grid-bg bg-background">
     <div class="max-w-container-max w-full px-margin-side mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-stack-gap items-center py-20 min-h-full">
         <div class="flex flex-col justify-center z-10 space-y-stack-gap">
-          <div class="inline-flex items-center gap-2"><div class="w-2 h-2 bg-primary-container"></div><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Available for Senior PM / AI Strategy Roles</span></div>
+          <div class="inline-flex items-center gap-2"><div class="w-2 h-2 bg-primary-container"></div><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Open to freelance product work and remote roles</span></div>
           <h1 class="font-display text-display text-on-surface leading-tight">Get in Touch</h1>
-          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">If you're building something ambitious at the intersection of product and AI, or want to talk systems thinking, architecture, or PM strategy, I'd like to hear from you.</p>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Have a product idea that needs a clear spec and a working prototype? Or are you hiring for a senior product role? Write to me and I will reply.</p>
           <div class="pt-6 space-y-6">
             <div><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2 uppercase tracking-widest">Direct Channel</span><a class="font-headline-lg text-headline-lg text-primary-fixed-dim weight-shift-hover transition-all duration-200" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com</a></div>
             <div class="flex gap-6">
@@ -1055,27 +1066,12 @@
               <a class="inline-flex items-center gap-2 group" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Resume PDF</span><svg class="text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
             </div>
           </div>
-          <p class="font-label-sm text-label-sm text-on-surface-variant pt-4 uppercase tracking-wider">Jaipur, India, Open to Relocation and Remote roles</p>
-          <p class="font-label-sm text-label-sm text-on-surface-variant opacity-50 uppercase tracking-wider">Domains: Enterprise SaaS / Edtech / Fintech / Quick Commerce</p>
+          <p class="font-label-sm text-label-sm text-on-surface-variant pt-4 uppercase tracking-wider">Remote, based in Jaipur, India</p>
+          <p class="font-label-sm text-label-sm text-on-surface-variant opacity-50 uppercase tracking-wider">Worked across health, commerce, travel, finance, government portals and enterprise software</p>
         </div>
-        <div class="hidden md:flex flex-col gap-0">
-          <div id="contact-profile-block" class="relative cursor-pointer overflow-hidden border border-outline-variant" style="height:220px">
-            <canvas id="contact-profile-canvas" style="width:100%;height:100%;display:block" aria-label="Profile photo"></canvas>
-            <div id="contact-profile-bio" style="display:none;position:absolute;inset:0;background:rgba(11,22,40,0.94);padding:24px 28px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.8;color:rgba(247,243,238,0.88);z-index:10;overflow-y:auto;">
-              <button id="contact-profile-bio-close" style="position:absolute;top:10px;right:14px;background:none;border:none;color:rgba(232,184,75,0.7);font-size:20px;cursor:pointer;font-family:'Space Mono',monospace;line-height:1;" aria-label="Close bio">×</button>
-              <div id="contact-profile-bio-text" style="margin-top:6px;"></div>
-            </div>
-          </div>
-          <div style="border-top:1px solid rgba(232,184,75,0.25);border-left:1px solid rgba(232,184,75,0.25);border-right:1px solid rgba(232,184,75,0.25);padding:4px 10px;display:flex;justify-content:space-between;align-items:center;background:rgba(232,184,75,0.04);">
-            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(232,184,75,0.5);text-transform:uppercase;">Availability Status</span>
-            <span style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(232,184,75,0.3);">OPEN — SEP 2026</span>
-          </div>
-          <div class="border border-outline-variant border-t-0 bg-surface-container-lowest h-[340px] lg:h-[400px] relative">
-            <canvas id="contact-stack-canvas" style="display:block;width:100%;height:100%;" aria-label="Contact stack diagram"></canvas>
-          </div>
-          <div class="flex justify-end pt-2">
-            <button type="button" id="contact-replay" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors uppercase tracking-widest">&#8635; Replay</button>
-          </div>
+        <div class="flex flex-col gap-0 mt-10 md:mt-0 w-full">
+          <div class="p2p-stage"><canvas id="p2p-contact" role="img" aria-label="Interactive animation: move or drag across the frame to take a floor plan to a wireframe to a working prototype."></canvas></div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant pt-3 uppercase tracking-wider">Move across the frame to take an idea to a prototype.</p>
         </div>
     </div>
   </section>
@@ -1198,485 +1194,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ── Experience Accordion ─────────────────────────────────────────────────────
-// ── Contact Stack Canvas ─────────────────────────────────────────────────────
-function initContactStack() {
-  var canvas = document.getElementById('contact-stack-canvas');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var dpr = window.devicePixelRatio || 1;
-  var hasAnimated = false;
-  var rafId = null;
-
-  function colors() {
-    var light = document.body.classList.contains('theme-light');
-    return light ? {
-      amber:'#b8922a',amberR:'184,146,42',greenR:'20,110,20',
-      grid:'rgba(0,0,0,0.05)',shell:'rgba(0,0,0,0.10)',hdr:'rgba(0,0,0,0.28)',
-      bracket:function(a){return 'rgba(0,0,0,'+a*0.28+')';},
-      year:function(a){return 'rgba(0,0,0,'+a*0.35+')';}
-    } : {
-      amber:'#e8b84b',amberR:'232,184,75',greenR:'106,191,105',
-      grid:'rgba(255,255,255,0.028)',shell:'rgba(255,255,255,0.07)',hdr:'rgba(255,255,255,0.18)',
-      bracket:function(a){return 'rgba(255,255,255,'+a*0.22+')';},
-      year:function(a){return 'rgba(255,255,255,'+a*0.32+')';}
-    };
-  }
-
-  var FLOORS = [
-    {label:'AVAILABILITY',  years:'OPEN — SEP 2026',   log1:'> status: open_to_work.confirmed', log2:'> role: senior_pm.or_above'},
-    {label:'TARGET DOMAIN', years:'HORIZONTAL SAAS',   log1:'> fit: builder_pm.workflow',       log2:'> tier: plg|ai_native|indian_saas'},
-    {label:'LOCATION',      years:'JAIPUR, INDIA',     log1:'> remote: available.globally',     log2:'> relocation: open.worldwide'},
-    {label:'CONTACT',       years:'ACTIVE',            log1:'> ar.gaurav20@gmail.com',          log2:'> linkedin.com/in/ar-gaurav'}
-  ];
-  var BASE_H=[55,65,72,80];
-  var TOTAL_BASE_H=BASE_H.reduce(function(s,h){return s+h;},0);
-  var W,H,bX,bY,bW,bH,rects;
-
-  function layout(){
-    var rect=canvas.getBoundingClientRect();
-    W=(rect.width||canvas.offsetWidth||440); H=(rect.height||canvas.offsetHeight||320);
-    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
-    canvas.style.width=W+'px'; canvas.style.height=H+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    bX=54; bY=38; bW=W-66; bH=H-58;
-    var scale=bH/TOTAL_BASE_H; rects=[]; var y=bY+bH;
-    for(var i=0;i<4;i++){var fh=Math.round(BASE_H[i]*scale);y-=fh;rects.push({x:bX,y:y,w:bW,h:fh});}
-  }
-
-  var PHASE=680,GAP=260,LOG1_AT=300,LOG2_AT=820,CHAR_MS=20;
-  var log1T=['','','',''],log2T=['','','',''],t0=null;
-
-  function fp(i,el){return Math.max(0,Math.min((el-i*(PHASE+GAP))/PHASE,1));}
-  function ease(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
-
-  function drawGrid(){
-    var C=colors(); ctx.save(); ctx.strokeStyle=C.grid; ctx.lineWidth=1;
-    for(var x=0.5;x<W;x+=28){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-    for(var y=0.5;y<H;y+=28){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-    ctx.restore();
-  }
-  function drawHeader(){
-    var C=colors(); ctx.save(); ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.hdr;
-    ctx.fillText('BUILD LOG',bX,bY-14); ctx.textAlign='right';
-    ctx.fillText('CONTACT STACK',bX+bW,bY-14); ctx.textAlign='left'; ctx.restore();
-  }
-  function drawShell(){
-    var C=colors(); var colW=10; ctx.save();
-    ctx.save(); ctx.beginPath(); ctx.rect(bX,bY,colW,bH); ctx.clip();
-    ctx.strokeStyle='rgba('+C.amberR+',0.10)'; ctx.lineWidth=0.5;
-    ctx.beginPath();
-    for(var hy=bY-colW;hy<bY+bH+colW;hy+=4){ctx.moveTo(bX,hy+colW);ctx.lineTo(bX+colW,hy);}
-    ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.beginPath(); ctx.rect(bX+bW-colW,bY,colW,bH); ctx.clip();
-    ctx.strokeStyle='rgba('+C.amberR+',0.10)'; ctx.lineWidth=0.5;
-    ctx.beginPath();
-    for(var hy2=bY-colW;hy2<bY+bH+colW;hy2+=4){ctx.moveTo(bX+bW-colW,hy2+colW);ctx.lineTo(bX+bW,hy2);}
-    ctx.stroke(); ctx.restore();
-    ctx.strokeStyle=C.shell; ctx.lineWidth=1; ctx.setLineDash([]);
-    ctx.beginPath();
-    ctx.moveTo(bX,bY); ctx.lineTo(bX,bY+bH);
-    ctx.moveTo(bX+bW,bY); ctx.lineTo(bX+bW,bY+bH);
-    ctx.stroke();
-    ctx.lineWidth=1.5;
-    ctx.beginPath(); ctx.moveTo(bX-5,bY); ctx.lineTo(bX+bW+5,bY); ctx.stroke();
-    ctx.lineWidth=2;
-    ctx.beginPath(); ctx.moveTo(bX-8,bY+bH); ctx.lineTo(bX+bW+8,bY+bH); ctx.stroke();
-    ctx.lineWidth=0.75; ctx.strokeStyle='rgba('+C.amberR+',0.20)'; ctx.setLineDash([3,5]);
-    ctx.beginPath(); ctx.moveTo(bX-6,bY+bH+5); ctx.lineTo(bX+bW+6,bY+bH+5); ctx.stroke();
-    ctx.setLineDash([]); ctx.restore();
-  }
-  function drawFloor(i,p,elapsed){
-    var C=colors(),r=rects[i],ep=ease(p);
-    var sweepH=Math.round(r.h*ep),sweepTop=r.y+r.h-sweepH;
-    if(sweepH>0){
-      ctx.save(); ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')';
-      ctx.fillRect(r.x+1,sweepTop,r.w-2,sweepH);
-      if(p<1){var band=Math.min(18,sweepH);var g=ctx.createLinearGradient(0,sweepTop,0,sweepTop+band);
-        g.addColorStop(0,'rgba('+C.amberR+',0.32)');g.addColorStop(1,'rgba('+C.amberR+',0)');
-        ctx.fillStyle=g;ctx.fillRect(r.x+1,sweepTop,r.w-2,band);}
-      ctx.restore();
-    }
-    if(p>0&&p<1&&Math.floor(elapsed/240)%2===0){
-      ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=2; ctx.setLineDash([5,5]);
-      ctx.beginPath();ctx.moveTo(r.x+6,sweepTop);ctx.lineTo(r.x+r.w-6,sweepTop);
-      ctx.stroke(); ctx.setLineDash([]); ctx.restore();
-    }
-    if(p>=0.6){
-      var lp=Math.min((p-0.6)/0.35,1); ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=2.5;
-      ctx.globalAlpha=lp; ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w*lp,r.y);
-      ctx.stroke();
-      ctx.lineWidth=1; ctx.fillStyle=C.amber;
-      ctx.fillRect(r.x-3,r.y-3,7,6);
-      if(lp>=1) ctx.fillRect(r.x+r.w-4,r.y-3,7,6);
-      ctx.restore();
-    }
-    var bAlpha=p>=0.68?Math.min((p-0.68)/0.28,1):0.18;
-    var bkx=r.x-20;
-    ctx.save(); ctx.strokeStyle=C.bracket(bAlpha); ctx.lineWidth=1;
-    ctx.beginPath();
-    ctx.moveTo(bkx-3,r.y+3);ctx.lineTo(bkx,r.y+3);
-    ctx.moveTo(bkx,r.y+3);ctx.lineTo(bkx,r.y+r.h-3);
-    ctx.moveTo(bkx,r.y+r.h-3);ctx.lineTo(bkx-3,r.y+r.h-3);
-    ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.font='700 8px "Space Mono",monospace';
-    ctx.fillStyle='rgba('+C.amberR+','+(bAlpha*0.65)+')';
-    ctx.textAlign='right'; ctx.fillText('F'+(i+1),r.x-6,r.y+r.h/2+3); ctx.textAlign='left'; ctx.restore();
-    if(p>=0.68){
-      var fa=Math.min((p-0.68)/0.28,1),fl=FLOORS[i];
-      ctx.save(); ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle='rgba('+C.amberR+','+fa+')';
-      ctx.fillText(fl.label,r.x+8,r.y+13); ctx.restore();
-      ctx.save(); ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(fa);
-      ctx.textAlign='right'; ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left'; ctx.restore();
-    }
-    var midY=r.y+Math.round(r.h*0.54);
-    if(log1T[i]){ctx.save();ctx.font='400 10px "Space Mono",monospace';ctx.fillStyle='rgba('+C.greenR+',0.85)';ctx.fillText(log1T[i],r.x+8,midY);ctx.restore();}
-    if(log2T[i]){ctx.save();ctx.font='400 10px "Space Mono",monospace';ctx.fillStyle='rgba('+C.greenR+',0.55)';ctx.fillText(log2T[i],r.x+8,midY+16);ctx.restore();}
-  }
-  function updateTyping(elapsed){
-    for(var i=0;i<4;i++){
-      var base=i*(PHASE+GAP);
-      var e1=elapsed-(base+LOG1_AT),e2=elapsed-(base+LOG2_AT);
-      if(e1>0)log1T[i]=FLOORS[i].log1.slice(0,Math.min(Math.floor(e1/CHAR_MS),FLOORS[i].log1.length));
-      if(e2>0)log2T[i]=FLOORS[i].log2.slice(0,Math.min(Math.floor(e2/CHAR_MS),FLOORS[i].log2.length));
-    }
-  }
-  function renderStatic(){
-    var C=colors(); ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
-    for(var i=0;i<4;i++){
-      var r=rects[i],fl=FLOORS[i];
-      ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')'; ctx.fillRect(r.x+1,r.y,r.w-2,r.h);
-      ctx.strokeStyle=C.amber; ctx.lineWidth=2.5;
-      ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w,r.y); ctx.stroke();
-      ctx.lineWidth=1; ctx.fillStyle=C.amber; ctx.fillRect(r.x-3,r.y-3,7,6); ctx.fillRect(r.x+r.w-4,r.y-3,7,6);
-      var bkx=r.x-20;
-      ctx.strokeStyle=C.bracket(1); ctx.lineWidth=1;
-      ctx.beginPath();
-      ctx.moveTo(bkx-3,r.y+3);ctx.lineTo(bkx,r.y+3);
-      ctx.moveTo(bkx,r.y+3);ctx.lineTo(bkx,r.y+r.h-3);
-      ctx.moveTo(bkx,r.y+r.h-3);ctx.lineTo(bkx-3,r.y+r.h-3);
-      ctx.stroke();
-      ctx.font='700 8px "Space Mono",monospace'; ctx.fillStyle='rgba('+C.amberR+',0.65)';
-      ctx.textAlign='right'; ctx.fillText('F'+(i+1),r.x-6,r.y+r.h/2+3); ctx.textAlign='left';
-      ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.amber; ctx.fillText(fl.label,r.x+8,r.y+13);
-      ctx.textAlign='right'; ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(1);
-      ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left';
-      var midY=r.y+Math.round(r.h*0.54);
-      ctx.font='400 10px "Space Mono",monospace';
-      ctx.fillStyle='rgba('+C.greenR+',0.85)'; ctx.fillText(fl.log1,r.x+8,midY);
-      ctx.fillStyle='rgba('+C.greenR+',0.55)'; ctx.fillText(fl.log2,r.x+8,midY+16);
-    }
-  }
-  var themeObserver=new MutationObserver(function(){if(hasAnimated&&!rafId){layout();renderStatic();}});
-  themeObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
-
-  var surveyTimer=null;
-  function startSurveyLoop(){
-    var delay=9000;
-    function doSweep(){
-      var sweepStart=null,sweepDur=1800,highlighted=-1;
-      function sweepFrame(ts){
-        if(!sweepStart)sweepStart=ts;
-        var prog=Math.min((ts-sweepStart)/sweepDur,1);
-        var beamX=bX+prog*bW;
-        renderStatic();
-        var C=colors();
-        ctx.save();
-        ctx.strokeStyle='rgba(232,184,75,0.35)';ctx.lineWidth=1.5;ctx.setLineDash([]);
-        ctx.beginPath();ctx.moveTo(beamX,bY-10);ctx.lineTo(beamX,bY+bH+10);ctx.stroke();
-        for(var i=0;i<4;i++){
-          var r=rects[i];
-          if(beamX>=r.x&&beamX<=r.x+r.w){
-            if(highlighted!==i){highlighted=i;}
-            ctx.globalAlpha=0.9;ctx.fillStyle=C.amber;
-            ctx.font='bold 11px "Space Mono",monospace';ctx.textAlign='left';
-            ctx.fillText(FLOORS[i].label,r.x+16,r.y+r.h/2-8);ctx.globalAlpha=1;
-          }
-        }
-        ctx.restore();
-        if(prog<1){requestAnimationFrame(sweepFrame);}
-        else{renderStatic();surveyTimer=setTimeout(doSweep,delay);}
-      }
-      requestAnimationFrame(sweepFrame);
-      if(window.__profileInstances&&window.__profileInstances.contact)window.__profileInstances.contact.startScan();
-    }
-    surveyTimer=setTimeout(doSweep,delay);
-  }
-
-  function frame(ts){
-    if(!t0)t0=ts; var el=ts-t0;
-    ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
-    for(var i=0;i<4;i++) drawFloor(i,fp(i,el),el);
-    updateTyping(el);
-    if(el<3*(PHASE+GAP)+PHASE+1600){ rafId=requestAnimationFrame(frame); }
-    else { rafId=null; renderStatic(); startSurveyLoop(); }
-  }
-  function animate(){
-    if(hasAnimated)return; hasAnimated=true; layout(); t0=null; rafId=requestAnimationFrame(frame);
-  }
-  var replayBtn=document.getElementById('contact-replay');
-  if(replayBtn){
-    replayBtn.addEventListener('click',function(){
-      if(rafId)cancelAnimationFrame(rafId);
-      if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}
-      hasAnimated=false; log1T=['','','',''];log2T=['','','',''];animate();
-    });
-  }
-  document.addEventListener('panel:activate',function(e){
-    if(e.detail.panelId==='panel-contact'){animate();}
-    else{if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}}
-  });
-  if(document.getElementById('panel-contact')&&document.getElementById('panel-contact').classList.contains('is-active')){
-    animate();
-  }
-}
-
-function initStackDiagram() {
-  var canvas = document.getElementById('stack-diagram');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var dpr = window.devicePixelRatio || 1;
-  var hasAnimated = false;
-  var rafId = null;
-
-  function colors() {
-    var light = document.body.classList.contains('theme-light');
-    return light ? {
-      amber:'#b8922a',amberR:'184,146,42',greenR:'20,110,20',
-      grid:'rgba(0,0,0,0.05)',shell:'rgba(0,0,0,0.10)',hdr:'rgba(0,0,0,0.28)',
-      bracket:function(a){return 'rgba(0,0,0,'+a*0.28+')';},
-      year:function(a){return 'rgba(0,0,0,'+a*0.35+')';}
-    } : {
-      amber:'#e8b84b',amberR:'232,184,75',greenR:'106,191,105',
-      grid:'rgba(255,255,255,0.028)',shell:'rgba(255,255,255,0.07)',hdr:'rgba(255,255,255,0.18)',
-      bracket:function(a){return 'rgba(255,255,255,'+a*0.22+')';},
-      year:function(a){return 'rgba(255,255,255,'+a*0.32+')';}
-    };
-  }
-
-  var FLOORS = [
-    {label:'ARCHITECTURE',      years:'2014—2017',    log1:'> INIT b.arch @ MNIT, Jaipur',               log2:'> MANAGE 40+ projects @ RSP'},
-    {label:'PRODUCT 0→1',       years:'2017—2020',    log1:'> COFOUND taccomacco @ COO',                 log2:'> SHIP reading.app → ios+android'},
-    {label:'PLATFORM PRODUCT',  years:'2020—2025',    log1:'> OWN passport.os @ OneValley + JindalX',   log2:'> DEPLOY 7.products → 5000 users × 16'},
-    {label:'AI STRATEGY',       years:'2025—PRESENT', log1:'> BUILD ai.pm.stack → solo.founder.mode',    log2:'> SHIP 5 case.studies + live.prototypes'}
-  ];
-  var BASE_H=[65,75,82,92];
-  var TOTAL_BASE_H=BASE_H.reduce(function(s,h){return s+h;},0);
-  var W,H,bX,bY,bW,bH,rects;
-
-  function layout(){
-    var rect=canvas.getBoundingClientRect();
-    W=(rect.width||canvas.offsetWidth||440); H=(rect.height||canvas.offsetHeight||320);
-    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
-    canvas.style.width=W+'px'; canvas.style.height=H+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    bX=54; bY=38; bW=W-66; bH=H-58;
-    var scale=bH/TOTAL_BASE_H; rects=[]; var y=bY+bH;
-    for(var i=0;i<4;i++){var fh=Math.round(BASE_H[i]*scale);y-=fh;rects.push({x:bX,y:y,w:bW,h:fh});}
-  }
-
-  var PHASE=680,GAP=260,LOG1_AT=300,LOG2_AT=820,CHAR_MS=20;
-  var log1T=['','','',''],log2T=['','','',''],t0=null;
-
-  function fp(i,el){return Math.max(0,Math.min((el-i*(PHASE+GAP))/PHASE,1));}
-  function ease(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
-
-  function drawGrid(){
-    var C=colors(); ctx.save(); ctx.strokeStyle=C.grid; ctx.lineWidth=1;
-    for(var x=0.5;x<W;x+=28){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-    for(var y=0.5;y<H;y+=28){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-    ctx.restore();
-  }
-  function drawHeader(){
-    var C=colors(); ctx.save(); ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.hdr;
-    ctx.fillText('BUILD LOG',bX,bY-14); ctx.textAlign='right';
-    ctx.fillText('CAREER ARCHITECTURE',bX+bW,bY-14); ctx.textAlign='left'; ctx.restore();
-  }
-  function drawShell(){
-    var C=colors(); var colW=10; ctx.save();
-    ctx.save(); ctx.beginPath(); ctx.rect(bX,bY,colW,bH); ctx.clip();
-    ctx.strokeStyle='rgba('+C.amberR+',0.10)'; ctx.lineWidth=0.5;
-    ctx.beginPath();
-    for(var hy=bY-colW;hy<bY+bH+colW;hy+=4){ctx.moveTo(bX,hy+colW);ctx.lineTo(bX+colW,hy);}
-    ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.beginPath(); ctx.rect(bX+bW-colW,bY,colW,bH); ctx.clip();
-    ctx.strokeStyle='rgba('+C.amberR+',0.10)'; ctx.lineWidth=0.5;
-    ctx.beginPath();
-    for(var hy2=bY-colW;hy2<bY+bH+colW;hy2+=4){ctx.moveTo(bX+bW-colW,hy2+colW);ctx.lineTo(bX+bW,hy2);}
-    ctx.stroke(); ctx.restore();
-    ctx.strokeStyle=C.shell; ctx.lineWidth=1; ctx.setLineDash([]);
-    ctx.beginPath();
-    ctx.moveTo(bX,bY); ctx.lineTo(bX,bY+bH);
-    ctx.moveTo(bX+bW,bY); ctx.lineTo(bX+bW,bY+bH);
-    ctx.stroke();
-    ctx.lineWidth=1.5;
-    ctx.beginPath(); ctx.moveTo(bX-5,bY); ctx.lineTo(bX+bW+5,bY); ctx.stroke();
-    ctx.lineWidth=2;
-    ctx.beginPath(); ctx.moveTo(bX-8,bY+bH); ctx.lineTo(bX+bW+8,bY+bH); ctx.stroke();
-    ctx.lineWidth=0.75; ctx.strokeStyle='rgba('+C.amberR+',0.20)'; ctx.setLineDash([3,5]);
-    ctx.beginPath(); ctx.moveTo(bX-6,bY+bH+5); ctx.lineTo(bX+bW+6,bY+bH+5); ctx.stroke();
-    ctx.setLineDash([]); ctx.restore();
-  }
-  function drawFloor(i,p,elapsed){
-    var C=colors(),r=rects[i],ep=ease(p);
-    var sweepH=Math.round(r.h*ep),sweepTop=r.y+r.h-sweepH;
-    if(sweepH>0){
-      ctx.save(); ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')';
-      ctx.fillRect(r.x+1,sweepTop,r.w-2,sweepH);
-      if(p<1){var band=Math.min(18,sweepH);var g=ctx.createLinearGradient(0,sweepTop,0,sweepTop+band);
-        g.addColorStop(0,'rgba('+C.amberR+',0.32)');g.addColorStop(1,'rgba('+C.amberR+',0)');
-        ctx.fillStyle=g;ctx.fillRect(r.x+1,sweepTop,r.w-2,band);}
-      ctx.restore();
-    }
-    if(p>0&&p<1&&Math.floor(elapsed/240)%2===0){
-      ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=2; ctx.setLineDash([5,5]);
-      ctx.beginPath();ctx.moveTo(r.x+6,sweepTop);ctx.lineTo(r.x+r.w-6,sweepTop);
-      ctx.stroke(); ctx.setLineDash([]); ctx.restore();
-    }
-    if(p>=0.6){
-      var lp=Math.min((p-0.6)/0.35,1); ctx.save(); ctx.strokeStyle=C.amber; ctx.lineWidth=2.5;
-      ctx.globalAlpha=lp; ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w*lp,r.y);
-      ctx.stroke();
-      ctx.lineWidth=1; ctx.fillStyle=C.amber;
-      ctx.fillRect(r.x-3,r.y-3,7,6);
-      if(lp>=1) ctx.fillRect(r.x+r.w-4,r.y-3,7,6);
-      ctx.restore();
-    }
-    var bAlpha=p>=0.68?Math.min((p-0.68)/0.28,1):0.18;
-    var bkx=r.x-20;
-    ctx.save(); ctx.strokeStyle=C.bracket(bAlpha); ctx.lineWidth=1;
-    ctx.beginPath();
-    ctx.moveTo(bkx-3,r.y+3);ctx.lineTo(bkx,r.y+3);
-    ctx.moveTo(bkx,r.y+3);ctx.lineTo(bkx,r.y+r.h-3);
-    ctx.moveTo(bkx,r.y+r.h-3);ctx.lineTo(bkx-3,r.y+r.h-3);
-    ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.font='700 8px "Space Mono",monospace';
-    ctx.fillStyle='rgba('+C.amberR+','+(bAlpha*0.65)+')';
-    ctx.textAlign='right'; ctx.fillText('F'+(i+1),r.x-6,r.y+r.h/2+3); ctx.textAlign='left'; ctx.restore();
-    if(p>=0.68){
-      var fa=Math.min((p-0.68)/0.28,1),fl=FLOORS[i];
-      ctx.save(); ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle='rgba('+C.amberR+','+fa+')';
-      ctx.fillText(fl.label,r.x+8,r.y+13); ctx.restore();
-      ctx.save(); ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(fa);
-      ctx.textAlign='right'; ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left'; ctx.restore();
-    }
-    var midY=r.y+Math.round(r.h*0.54);
-    if(log1T[i]){ctx.save();ctx.font='400 10px "Space Mono",monospace';ctx.fillStyle='rgba('+C.greenR+',0.85)';ctx.fillText(log1T[i],r.x+8,midY);ctx.restore();}
-    if(log2T[i]){ctx.save();ctx.font='400 10px "Space Mono",monospace';ctx.fillStyle='rgba('+C.greenR+',0.55)';ctx.fillText(log2T[i],r.x+8,midY+16);ctx.restore();}
-  }
-  function updateTyping(elapsed){
-    for(var i=0;i<4;i++){
-      var base=i*(PHASE+GAP);
-      var e1=elapsed-(base+LOG1_AT),e2=elapsed-(base+LOG2_AT);
-      if(e1>0)log1T[i]=FLOORS[i].log1.slice(0,Math.min(Math.floor(e1/CHAR_MS),FLOORS[i].log1.length));
-      if(e2>0)log2T[i]=FLOORS[i].log2.slice(0,Math.min(Math.floor(e2/CHAR_MS),FLOORS[i].log2.length));
-    }
-  }
-  function renderStatic(){
-    var C=colors(); ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
-    for(var i=0;i<4;i++){
-      var r=rects[i],fl=FLOORS[i];
-      ctx.fillStyle='rgba('+C.amberR+','+(0.06+i*0.025)+')'; ctx.fillRect(r.x+1,r.y,r.w-2,r.h);
-      ctx.strokeStyle=C.amber; ctx.lineWidth=2.5;
-      ctx.beginPath(); ctx.moveTo(r.x,r.y); ctx.lineTo(r.x+r.w,r.y); ctx.stroke();
-      ctx.lineWidth=1; ctx.fillStyle=C.amber; ctx.fillRect(r.x-3,r.y-3,7,6); ctx.fillRect(r.x+r.w-4,r.y-3,7,6);
-      var bkx=r.x-20;
-      ctx.strokeStyle=C.bracket(1); ctx.lineWidth=1;
-      ctx.beginPath();
-      ctx.moveTo(bkx-3,r.y+3);ctx.lineTo(bkx,r.y+3);
-      ctx.moveTo(bkx,r.y+3);ctx.lineTo(bkx,r.y+r.h-3);
-      ctx.moveTo(bkx,r.y+r.h-3);ctx.lineTo(bkx-3,r.y+r.h-3);
-      ctx.stroke();
-      ctx.font='700 8px "Space Mono",monospace'; ctx.fillStyle='rgba('+C.amberR+',0.65)';
-      ctx.textAlign='right'; ctx.fillText('F'+(i+1),r.x-6,r.y+r.h/2+3); ctx.textAlign='left';
-      ctx.font='700 9px "Space Mono",monospace'; ctx.fillStyle=C.amber; ctx.fillText(fl.label,r.x+8,r.y+13);
-      ctx.textAlign='right'; ctx.font='400 9px "Space Mono",monospace'; ctx.fillStyle=C.year(1);
-      ctx.fillText(fl.years,r.x+r.w-8,r.y+13); ctx.textAlign='left';
-      var midY=r.y+Math.round(r.h*0.54);
-      ctx.font='400 10px "Space Mono",monospace';
-      ctx.fillStyle='rgba('+C.greenR+',0.85)'; ctx.fillText(fl.log1,r.x+8,midY);
-      ctx.fillStyle='rgba('+C.greenR+',0.55)'; ctx.fillText(fl.log2,r.x+8,midY+16);
-    }
-  }
-  var themeObserver=new MutationObserver(function(){if(hasAnimated&&!rafId){layout();renderStatic();}});
-  themeObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
-
-  // ANIM #2 — Cursor Beam Survey
-  var surveyTimer = null;
-  function startSurveyLoop() {
-    var delay = 9000;
-    function doSweep() {
-      var sweepStart = null;
-      var sweepDur = 1800;
-      var highlighted = -1;
-      function sweepFrame(ts) {
-        if (!sweepStart) sweepStart = ts;
-        var prog = Math.min((ts - sweepStart) / sweepDur, 1);
-        var beamX = bX + prog * bW;
-        renderStatic();
-        var C = colors();
-        ctx.save();
-        ctx.strokeStyle = 'rgba(232,184,75,0.35)';
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([]);
-        ctx.beginPath(); ctx.moveTo(beamX, bY - 10); ctx.lineTo(beamX, bY + bH + 10); ctx.stroke();
-        for (var i = 0; i < 4; i++) {
-          var r = rects[i];
-          if (beamX >= r.x && beamX <= r.x + r.w) {
-            if (highlighted !== i) { highlighted = i; }
-            ctx.globalAlpha = 0.9;
-            ctx.fillStyle = C.amber;
-            ctx.font = 'bold 11px "Space Mono", monospace';
-            ctx.textAlign = 'left';
-            ctx.fillText(FLOORS[i].label, r.x + 16, r.y + r.h / 2 - 8);
-            ctx.globalAlpha = 1;
-          }
-        }
-        ctx.restore();
-        if (prog < 1) { requestAnimationFrame(sweepFrame); }
-        else { renderStatic(); surveyTimer = setTimeout(doSweep, delay); }
-      }
-      requestAnimationFrame(sweepFrame);
-      if (window.__profileInstances) {
-        if (window.__profileInstances.home) window.__profileInstances.home.startScan();
-        if (window.__profileInstances.contact) window.__profileInstances.contact.startScan();
-      }
-    }
-    surveyTimer = setTimeout(doSweep, delay);
-  }
-
-  function frame(ts){
-    if(!t0)t0=ts; var el=ts-t0;
-    ctx.clearRect(0,0,W,H); drawGrid(); drawHeader(); drawShell();
-    for(var i=0;i<4;i++) drawFloor(i,fp(i,el),el);
-    updateTyping(el);
-    if(el<3*(PHASE+GAP)+PHASE+1600){ rafId=requestAnimationFrame(frame); }
-    else { rafId=null; renderStatic(); startSurveyLoop(); }
-  }
-  function animate(){
-    if(hasAnimated)return; hasAnimated=true; layout(); t0=null; rafId=requestAnimationFrame(frame);
-  }
-  var replayBtn=document.getElementById('stack-replay');
-  if(replayBtn){
-    replayBtn.addEventListener('click',function(){
-      if(rafId)cancelAnimationFrame(rafId);
-      if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}
-      hasAnimated=false; log1T=['','','',''];log2T=['','','',''];animate();
-    });
-  }
-  document.addEventListener('panel:activate',function(e){
-    if(e.detail.panelId==='panel-home'){animate();}
-    else{if(surveyTimer){clearTimeout(surveyTimer);surveyTimer=null;}}
-  });
-  if(document.getElementById('panel-home')&&document.getElementById('panel-home').classList.contains('is-active')){
-    animate();
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  initContactStack();
-  initStackDiagram();
-});
-
 function toggleExpAccordion(index) {
   var rows = document.querySelectorAll('.accordion-row');
   var dots = document.querySelectorAll('.timeline-dot');
@@ -2482,216 +1999,7 @@ function animateModalMetrics() {
 
 // ANIM #9 removed
 
-// PROFILE PICTURE — Blueprint Reveal
-(function() {
-  var dpr = window.devicePixelRatio || 1;
 
-  var BIO_TEXT =
-    'GAURAV GUPTA\n' +
-    'Senior PM · AI Strategist · Jaipur\n\n' +
-    '8 yr · 7 B2B SaaS products\n' +
-    '16 enterprise clients · 5,000+ users\n' +
-    'Co-founded Taccomacco (iOS & Android)\n\n' +
-    '→ Open: Senior PM at PLG / AI-native';
-
-  function coverCrop(img, w, h) {
-    var iw = img.naturalWidth || w, ih = img.naturalHeight || h;
-    var scale = Math.max(w / iw, h / ih);
-    var sw = w / scale, sh = h / scale;
-    return { sx: (iw - sw) / 2, sy: (ih - sh) / 2, sw: sw, sh: sh };
-  }
-
-  // Render blueprint image with circular colour-reveal lens at (mx, my)
-  function drawBlueprintLens(ctx, img, w, h, mx, my) {
-    var c = coverCrop(img, w, h);
-    var lr = 65;
-    ctx.fillStyle = '#0b1628';
-    ctx.fillRect(0, 0, w, h);
-    // Blueprint outside lens
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(0, 0, w, h);
-    ctx.arc(mx, my, lr, 0, Math.PI * 2, true);
-    ctx.clip('evenodd');
-    ctx.filter = 'grayscale(1) contrast(1.2) brightness(0.8)';
-    ctx.drawImage(img, c.sx, c.sy, c.sw, c.sh, 0, 0, w, h);
-    ctx.filter = 'none';
-    ctx.fillStyle = 'rgba(20,55,160,0.45)';
-    ctx.fillRect(0, 0, w, h);
-    ctx.restore();
-    // Full colour inside lens
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(mx, my, lr, 0, Math.PI * 2);
-    ctx.clip();
-    ctx.drawImage(img, c.sx, c.sy, c.sw, c.sh, 0, 0, w, h);
-    ctx.restore();
-    // Amber dashed ring
-    ctx.save();
-    ctx.strokeStyle = 'rgba(232,184,75,0.85)';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([4, 5]);
-    ctx.beginPath();
-    ctx.arc(mx, my, lr, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.restore();
-  }
-
-  // Render blueprint image with optional vertical scan line at lineX
-  function drawBlueprint(ctx, img, w, h, lineX) {
-    var c = coverCrop(img, w, h);
-    ctx.fillStyle = '#0b1628';
-    ctx.fillRect(0, 0, w, h);
-    ctx.save();
-    ctx.filter = 'grayscale(1) contrast(1.2) brightness(0.8)';
-    ctx.drawImage(img, c.sx, c.sy, c.sw, c.sh, 0, 0, w, h);
-    ctx.filter = 'none';
-    ctx.fillStyle = 'rgba(20,55,160,0.45)';
-    ctx.fillRect(0, 0, w, h);
-    ctx.restore();
-    if (lineX !== null) {
-      // Glow halo
-      ctx.save();
-      ctx.strokeStyle = 'rgba(232,184,75,0.15)';
-      ctx.lineWidth = 8;
-      ctx.beginPath(); ctx.moveTo(lineX, 0); ctx.lineTo(lineX, h); ctx.stroke();
-      // Sharp beam line
-      ctx.strokeStyle = 'rgba(232,184,75,0.7)';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.moveTo(lineX, 0); ctx.lineTo(lineX, h); ctx.stroke();
-      ctx.restore();
-    }
-  }
-
-  function makeInstance(blockId, canvasId, bioId, closeBtnId, bioTextId) {
-    var initialized = false;
-    var img = null, canvasEl = null, ctx = null, W = 0, H = 0;
-    var idleTimer = null, scanActive = false, scanStart = null, scanRaf = null;
-    var mouseMoveRaf = null;
-
-    function layout() {
-      var block = document.getElementById(blockId);
-      if (!block || !canvasEl) return;
-      var rect = block.getBoundingClientRect();
-      W = rect.width || 300; H = rect.height || 220;
-      canvasEl.width = Math.round(W * dpr); canvasEl.height = Math.round(H * dpr);
-      canvasEl.style.width = W + 'px'; canvasEl.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function startScan() {
-      if (scanActive || !img) return;
-      scanActive = true; scanStart = null;
-      var dur = 1800;
-      function frame(ts) {
-        if (!scanActive) return;
-        if (!scanStart) scanStart = ts;
-        var prog = Math.min((ts - scanStart) / dur, 1);
-        drawBlueprint(ctx, img, W, H, prog * W);
-        if (prog < 1) { scanRaf = requestAnimationFrame(frame); }
-        else { scanActive = false; drawBlueprint(ctx, img, W, H, null); }
-      }
-      scanRaf = requestAnimationFrame(frame);
-    }
-
-    function stopScan() {
-      scanActive = false;
-      if (scanRaf) { cancelAnimationFrame(scanRaf); scanRaf = null; }
-    }
-
-    function init() {
-      if (initialized || window.innerWidth < 768) return;
-      initialized = true;
-      canvasEl = document.getElementById(canvasId);
-      if (!canvasEl) return;
-      ctx = canvasEl.getContext('2d');
-      img = new Image();
-      img.onload = function() {
-        layout();
-        drawBlueprint(ctx, img, W, H, null);
-        idleTimer = setTimeout(startScan, 3000);
-      };
-      img.onerror = function() {
-        layout();
-        ctx.fillStyle = '#0b1628'; ctx.fillRect(0, 0, W, H);
-        ctx.font = '10px "Space Mono",monospace';
-        ctx.fillStyle = 'rgba(232,184,75,0.35)'; ctx.textAlign = 'center';
-        ctx.fillText('[ photo.jpg ]', W/2, H/2); ctx.textAlign = 'left';
-      };
-      img.src = 'photo.jpg';
-
-      var block = document.getElementById(blockId);
-      if (!block) return;
-
-      block.addEventListener('mousemove', function(ev) {
-        if (!img || !img.complete || !img.naturalWidth) return;
-        var rect = block.getBoundingClientRect();
-        var mx = ev.clientX - rect.left, my = ev.clientY - rect.top;
-        if (mouseMoveRaf) return;
-        mouseMoveRaf = requestAnimationFrame(function() {
-          mouseMoveRaf = null;
-          stopScan(); clearTimeout(idleTimer);
-          drawBlueprintLens(ctx, img, W, H, mx, my);
-          idleTimer = setTimeout(startScan, 3000);
-        });
-      });
-
-      block.addEventListener('mouseleave', function() {
-        if (!img || !img.complete || !img.naturalWidth) return;
-        stopScan(); clearTimeout(idleTimer);
-        drawBlueprint(ctx, img, W, H, null);
-        idleTimer = setTimeout(startScan, 3000);
-      });
-
-      block.addEventListener('click', function() {
-        if (window.innerWidth < 768) return;
-        var bio = document.getElementById(bioId);
-        var bioText = document.getElementById(bioTextId);
-        if (!bio || !bioText) return;
-        if (bio.style.display === 'block') return;
-        bio.style.display = 'block';
-        bioText.textContent = '';
-        var chars = BIO_TEXT.split(''), i = 0;
-        function typeNext() {
-          if (i >= chars.length) return;
-          var ch = chars[i++];
-          if (ch === '\n') { bioText.appendChild(document.createElement('br')); }
-          else { bioText.appendChild(document.createTextNode(ch)); }
-          setTimeout(typeNext, 16);
-        }
-        typeNext();
-      });
-
-      var closeBtn = document.getElementById(closeBtnId);
-      if (closeBtn) {
-        closeBtn.addEventListener('click', function(ev) {
-          ev.stopPropagation();
-          var bio = document.getElementById(bioId);
-          var bioText = document.getElementById(bioTextId);
-          if (bio) bio.style.display = 'none';
-          if (bioText) bioText.textContent = '';
-        });
-      }
-    }
-
-    return { init: init, startScan: startScan, stopScan: stopScan };
-  }
-
-  var homeInst = makeInstance('profile-block','profile-canvas','profile-bio','profile-bio-close','profile-bio-text');
-  var contactInst = makeInstance('contact-profile-block','contact-profile-canvas','contact-profile-bio','contact-profile-bio-close','contact-profile-bio-text');
-  window.__profileInstances = { home: homeInst, contact: contactInst };
-
-  document.addEventListener('panel:activate', function(e) {
-    if (e.detail.panelId === 'panel-home') homeInst.init();
-    if (e.detail.panelId === 'panel-contact') contactInst.init();
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var active = document.querySelector('.v3-panel.is-active');
-    if (active && active.id === 'panel-home') setTimeout(homeInst.init, 100);
-  });
-})();
 </script>
 <div id="wipe-line" style="position:fixed;top:0;left:-2px;width:2px;height:100vh;background:rgba(232,184,75,0.7);z-index:9997;pointer-events:none;display:none;will-change:transform"></div>
 <script>
