@@ -131,6 +131,47 @@
     .tonal-card{transition:all 0.2s cubic-bezier(0.4,0,0.2,1);}
     .tonal-card:hover{background-color:#1a1a22;border-color:#c9a84c;}
 
+    /* Projects: domain tiles */
+    .proj-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
+    .proj-chip{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9896a0;background:transparent;border:1px solid #2a2a38;padding:10px 14px;min-height:44px;cursor:pointer;transition:color .15s,border-color .15s;}
+    .proj-chip:hover{color:#ece8e2;border-color:#56546e;}
+    .proj-chip[aria-pressed="true"]{color:#c9a84c;border-color:#c9a84c;}
+    .proj-chip:focus-visible,.proj-tile:focus-visible{outline:2px solid #c9a84c;outline-offset:-2px;}
+    .proj-tile{position:relative;display:flex;flex-direction:column;overflow:hidden;min-height:272px;padding:32px 32px 76px;background:#16161e;border-right:1px solid #2a2a38;border-bottom:1px solid #2a2a38;color:#ece8e2;text-decoration:none;transition:background-color .2s,box-shadow .2s;}
+    .proj-tile[hidden]{display:none;}
+    .proj-tile:hover{background:#1a1a22;box-shadow:inset 0 0 0 1px #c9a84c;}
+    .proj-tile--feat{background:#1a1a22;box-shadow:inset 0 2px 0 0 #c9a84c;}
+    .proj-top{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+    .proj-arrow{margin-left:auto;color:#9896a0;transition:transform .2s,color .2s;}
+    .proj-tile:hover .proj-arrow{transform:translateX(4px);color:#c9a84c;}
+    .proj-status,.proj-badge{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:1px solid #2a2a38;color:#9896a0;}
+    .proj-status--gold{color:#c9a84c;border-color:rgba(201,168,76,.4);}
+    .proj-status--dash{border-style:dashed;}
+    .proj-badge{color:#0e0e12;background:#c9a84c;border-color:#c9a84c;font-weight:700;}
+    .proj-kicker{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#c9a84c;margin:0 0 6px;}
+    .proj-title{font-family:'Space Mono',monospace;font-size:18px;line-height:1.3;font-weight:700;color:#ece8e2;margin:0 0 10px;}
+    .proj-tile--feat .proj-title{font-size:22px;}
+    .proj-line{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.55;color:#9896a0;margin:0 0 16px;max-width:52ch;}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .proj-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9896a0;padding:2px 6px;border:1px solid #2a2a38;}
+    .proj-domain{position:absolute;right:20px;bottom:14px;max-width:88%;text-align:right;font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;font-size:clamp(20px,2.4vw,32px);line-height:1.05;color:rgba(236,232,226,.08);pointer-events:none;user-select:none;}
+    body.theme-light .proj-chip{color:#5a5668;border-color:#cfc7b5;}
+    body.theme-light .proj-chip:hover{color:#1a1a22;border-color:#8c8470;}
+    body.theme-light .proj-chip[aria-pressed="true"]{color:#6e5824;border-color:#6e5824;}
+    body.theme-light .proj-tile{background:#ffffff;border-color:#cfc7b5;color:#1a1a22;}
+    body.theme-light .proj-tile:hover{background:#f7f3ea;box-shadow:inset 0 0 0 1px #6e5824;}
+    body.theme-light .proj-tile--feat{background:#f7f3ea;box-shadow:inset 0 2px 0 0 #6e5824;}
+    body.theme-light .proj-title{color:#1a1a22;}
+    body.theme-light .proj-line,body.theme-light .proj-arrow,body.theme-light .proj-tag,body.theme-light .proj-status{color:#5a5668;border-color:#cfc7b5;}
+    body.theme-light .proj-status--gold,body.theme-light .proj-kicker{color:#6e5824;border-color:rgba(110,88,36,.45);}
+    body.theme-light .proj-badge{background:#6e5824;border-color:#6e5824;color:#f4f0e8;}
+    body.theme-light .proj-domain{color:rgba(26,26,34,.09);}
+    @media(max-width:767px){
+      .proj-tile{padding:24px 20px 64px;min-height:220px;}
+      .proj-filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;}
+      .proj-chip{flex:0 0 auto;white-space:nowrap;}
+    }
+
 
     /* Skills */
     @keyframes fadeInStagger{to{opacity:1;transform:translateY(0)}}
@@ -392,7 +433,7 @@
     <a href="#contact" class="nav-link flex items-center gap-4 w-full p-4 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors text-left" data-panel="panel-contact"><span class="font-label-sm text-label-sm opacity-60 w-6">07</span><span class="font-label-md text-label-md">Contact</span></a>
   </nav>
   <div class="px-3 py-4 border-t border-outline-variant grid grid-cols-2 gap-2">
-    <a href="https://linkedin.com/in/argaur" target="_blank" rel="noopener" class="flex items-center justify-center py-3 border border-outline-variant hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">LinkedIn</a>
+    <a href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener" class="flex items-center justify-center py-3 border border-outline-variant hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">LinkedIn</a>
     <a href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener" class="flex items-center justify-center py-3 border border-outline-variant hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">Resume</a>
   </div>
 </aside>
@@ -493,7 +534,7 @@
               <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between">
                 <div class="flex flex-col gap-1">
                   <span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Rethink Systems</span>
-                  <h4 class="font-headline-md text-headline-md text-on-surface">Product Consultant &amp; AI Building Mentor</h4>
+                  <h4 class="font-headline-md text-headline-md text-on-surface">AI Building Mentor</h4>
                 </div>
                 <div class="flex items-center gap-6 mt-4 md:mt-0">
                   <div class="flex flex-col items-end gap-1">
@@ -506,7 +547,6 @@
             </div>
             <div class="accordion-content">
               <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
-                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-4">Product Consultant: work on 0-to-1 products across the full lifecycle, from problem framing and requirements through development, deployment, and iteration.</p>
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Mentor, AI Building, Cohort 8 (Jul 2026 to Sep 2026): coached practicing Product Managers on using Claude and AI tooling to move from an idea to a shipped, working product. Returned as a mentor after completing Mastering AI Product Management, Cohort 7.</p>
               </div>
             </div>
@@ -678,199 +718,157 @@
     <div class="pt-12 pb-24 max-w-container-max mx-auto w-full px-margin-side">
       <header class="mb-12 border-l-2 border-primary-container pl-6">
         <h1 class="font-display text-display text-on-surface">Projects</h1>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Case studies and personal builds — product thinking applied.</p>
+        <p id="proj-summary" class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">16 projects across 11 domains: 11 live or demoed, 2 in progress, 2 concepts, 1 archived. Plus enterprise and architecture work.</p>
       </header>
+      <div id="proj-filters" class="proj-filters" role="group" aria-label="Filter projects by domain"></div>
+      <p id="proj-count" class="sr-only" aria-live="polite"></p>
+      <div id="proj-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-outline-variant">
+        <a class="proj-tile proj-tile--feat md:col-span-2" href="#experience" data-panel="panel-experience" data-domain="Enterprise / BPO" data-status="enterprise" data-kind="career">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Enterprise production</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">JindalX: 7 B2B products for 16 enterprise clients</h2>
+          <p class="proj-line">Led product on enterprise platforms used by 5,000+ people. A full case study is in progress.</p>
+          <div class="proj-tags"><span class="proj-tag">B2B SaaS</span><span class="proj-tag">Enterprise</span></div>
+          <span class="sr-only">Domain: Enterprise / BPO</span>
+          <span class="proj-domain" aria-hidden="true">Enterprise / BPO</span>
+        </a>
+        <a class="proj-tile proj-tile--feat" href="case-study-siteline.html" data-domain="B2B SaaS" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">SitelineCRM: capture sales data where the conversation already is</h2>
+          <p class="proj-line">A Telegram-native sales CRM for a coworking aggregator. Solo build in about 51 hours, with an eval harness.</p>
+          <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Telegram</span><span class="proj-tag">Eval harness</span></div>
+          <span class="sr-only">Domain: B2B SaaS</span>
+          <span class="proj-domain" aria-hidden="true">B2B SaaS</span>
+        </a>
+        <a class="proj-tile proj-tile--feat md:col-span-2" href="project-pm-pathfinder.html" data-domain="EdTech / Careers" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">PM Pathfinder: a RAG chatbot on a vector database I deployed</h2>
+          <p class="proj-line">A 10-question career diagnostic with a retrieval chatbot grounded in real PM frameworks.</p>
+          <div class="proj-tags"><span class="proj-tag">RAG</span><span class="proj-tag">Next.js</span><span class="proj-tag">pgvector</span></div>
+          <span class="sr-only">Domain: EdTech / Careers</span>
+          <span class="proj-domain" aria-hidden="true">EdTech / Careers</span>
+        </a>
+        <a class="proj-tile" href="project-gst-notice.html" data-domain="Government Portals" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-badge">Rank 64 of ~13,000 across India</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <p class="proj-kicker">Build What Moves India</p><h2 class="proj-title">Notice, Explained</h2>
+          <p class="proj-line">Traces a GST notice mismatch row by row, so a taxpayer sees the evidence before writing a reply.</p>
+          <div class="proj-tags"><span class="proj-tag">GST</span><span class="proj-tag">OpenAI</span><span class="proj-tag">Team of 2</span><span class="proj-tag">Shared ownership</span></div>
+          <span class="sr-only">Domain: Government Portals</span>
+          <span class="proj-domain" aria-hidden="true">Government Portals</span>
+        </a>
+        <a class="proj-tile" href="case-study-vittam.html" data-domain="Personal Finance" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Vittam: see your family&#x27;s money on one page</h2>
+          <p class="proj-line">A household finance PWA, built solo for my own family. Encrypted in the browser.</p>
+          <div class="proj-tags"><span class="proj-tag">PWA</span><span class="proj-tag">Solo build</span></div>
+          <span class="sr-only">Domain: Personal Finance</span>
+          <span class="proj-domain" aria-hidden="true">Personal Finance</span>
+        </a>
+        <a class="proj-tile" href="case-study-vitae.html" data-domain="Health Tech" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Vitae: health records, finally understood</h2>
+          <p class="proj-line">Prescriptions a family can read. Built by a team of six who all owned every part of the work.</p>
+          <div class="proj-tags"><span class="proj-tag">Team of 6</span><span class="proj-tag">Shared ownership</span><span class="proj-tag">OCR</span></div>
+          <span class="sr-only">Domain: Health Tech</span>
+          <span class="proj-domain" aria-hidden="true">Health Tech</span>
+        </a>
+        <a class="proj-tile" href="case-study-blinkit.html" data-domain="Quick Commerce" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Blinkit Command Hub: peak-hour decision support</h2>
+          <p class="proj-line">An independent prototype that ranks the exceptions a dark store manager must act on first.</p>
+          <div class="proj-tags"><span class="proj-tag">Ops</span><span class="proj-tag">Prototype</span></div>
+          <span class="sr-only">Domain: Quick Commerce</span>
+          <span class="proj-domain" aria-hidden="true">Quick Commerce</span>
+        </a>
+        <a class="proj-tile" href="case-study-group-travel.html" data-domain="Travel" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Trivo: group trip planning in one place</h2>
+          <p class="proj-line">A group travel planning platform, from pain points to a working PWA.</p>
+          <div class="proj-tags"><span class="proj-tag">PWA</span><span class="proj-tag">Consumer</span></div>
+          <span class="sr-only">Domain: Travel</span>
+          <span class="proj-domain" aria-hidden="true">Travel</span>
+        </a>
+        <a class="proj-tile" href="case-study-founder-crm.html" data-domain="B2B SaaS" data-status="concept" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--dash">Research concept</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Rethink CRM: a conversation-first sales tool</h2>
+          <p class="proj-line">A concept for founders who sell in chat, not in forms.</p>
+          <div class="proj-tags"><span class="proj-tag">Concept</span><span class="proj-tag">Telegram</span></div>
+          <span class="sr-only">Domain: B2B SaaS</span>
+          <span class="proj-domain" aria-hidden="true">B2B SaaS</span>
+        </a>
+        <a class="proj-tile" href="case-study-youtube.html" data-domain="Consumer Media" data-status="concept" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--dash">Research concept</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">YouTube 2.0: fixing long-form discovery</h2>
+          <p class="proj-line">A concept with three prototypes for finding deep content, not just popular content.</p>
+          <div class="proj-tags"><span class="proj-tag">Concept</span><span class="proj-tag">Prototypes</span></div>
+          <span class="sr-only">Domain: Consumer Media</span>
+          <span class="proj-domain" aria-hidden="true">Consumer Media</span>
+        </a>
+        <a class="proj-tile" href="project-ai-humancap-sim.html" data-domain="Econ Research" data-status="demo" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Public demo</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">AI vs Human Capital: an ROI counterfactual simulation</h2>
+          <p class="proj-line">A simulation with cited coefficients that shows where the confidence in a result runs out.</p>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Simulation</span></div>
+          <span class="sr-only">Domain: Econ Research</span>
+          <span class="proj-domain" aria-hidden="true">Econ Research</span>
+        </a>
+        <a class="proj-tile" href="project-rulecard.html" data-domain="Infra / Dev Tools" data-status="progress" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--dash">In progress</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">RuleCard: turn an agent&#x27;s written rules into tests</h2>
+          <p class="proj-line">Checks whether an AI agent actually follows the rules written for it.</p>
+          <div class="proj-tags"><span class="proj-tag">AI evals</span><span class="proj-tag">Claude API</span></div>
+          <span class="sr-only">Domain: Infra / Dev Tools</span>
+          <span class="proj-domain" aria-hidden="true">Infra / Dev Tools</span>
+        </a>
+        <a class="proj-tile" href="project-life-os.html" data-domain="Personal Ops" data-status="progress" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--dash">In progress</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">life-os: a phone window onto my own data</h2>
+          <p class="proj-line">A personal PWA, in build. No public link yet.</p>
+          <div class="proj-tags"><span class="proj-tag">PWA</span><span class="proj-tag">Claude API</span></div>
+          <span class="sr-only">Domain: Personal Ops</span>
+          <span class="proj-domain" aria-hidden="true">Personal Ops</span>
+        </a>
+        <a class="proj-tile" href="case-study-personal-ai-assistant.html" data-domain="Personal Ops" data-status="archived" data-kind="build">
+          <div class="proj-top"><span class="proj-status">Archived</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Personal AI Assistant: a personal AI OS</h2>
+          <p class="proj-line">A Telegram assistant with 28+ commands. The bot is retired and the repo is open.</p>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Telegram</span></div>
+          <span class="sr-only">Domain: Personal Ops</span>
+          <span class="proj-domain" aria-hidden="true">Personal Ops</span>
+        </a>
+        <a class="proj-tile" href="project-gws-cli.html" data-domain="Infra / Dev Tools" data-status="oss" data-kind="build">
+          <div class="proj-top"><span class="proj-status">Open source</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">GWS CLI: Google Workspace from the terminal</h2>
+          <p class="proj-line">Five Google APIs behind one OAuth flow.</p>
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">CLI</span></div>
+          <span class="sr-only">Domain: Infra / Dev Tools</span>
+          <span class="proj-domain" aria-hidden="true">Infra / Dev Tools</span>
+        </a>
+        <a class="proj-tile" href="project-homelab.html" data-domain="Infra / Dev Tools" data-status="active" data-kind="build">
+          <div class="proj-top"><span class="proj-status">Active</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Homelab: self-hosted infrastructure as code</h2>
+          <p class="proj-line">A home server run with Docker, Vault, Ansible and Prometheus.</p>
+          <div class="proj-tags"><span class="proj-tag">Docker</span><span class="proj-tag">DevOps</span></div>
+          <span class="sr-only">Domain: Infra / Dev Tools</span>
+          <span class="proj-domain" aria-hidden="true">Infra / Dev Tools</span>
+        </a>
+        <a class="proj-tile" href="project-portfolio.html" data-domain="Infra / Dev Tools" data-status="live" data-kind="build">
+          <div class="proj-top"><span class="proj-status proj-status--gold">Live site</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">This site, documented as a product</h2>
+          <p class="proj-line">Plain HTML, CSS and JavaScript. No build step, no framework.</p>
+          <div class="proj-tags"><span class="proj-tag">Vanilla JS</span><span class="proj-tag">Meta</span></div>
+          <span class="sr-only">Domain: Infra / Dev Tools</span>
+          <span class="proj-domain" aria-hidden="true">Infra / Dev Tools</span>
+        </a>
+        <a class="proj-tile" href="#experience" data-panel="panel-experience" data-domain="Architecture / AEC" data-status="background" data-kind="career">
+          <div class="proj-top"><span class="proj-status">Background</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
+          <h2 class="proj-title">Architecture portfolio</h2>
+          <p class="proj-line">Five years of site, brief and constraint before software. Where my systems thinking started.</p>
+          <div class="proj-tags"><span class="proj-tag">B.Arch</span><span class="proj-tag">AEC</span></div>
+          <span class="sr-only">Domain: Architecture / AEC</span>
+          <span class="proj-domain" aria-hidden="true">Architecture / AEC</span>
+        </a>
+      </div>
       <div>
-        <!-- 01 Vittam -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-6')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">01</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Vittam: See Your Family&rsquo;s Money on One Page</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Personal Build</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">PWA</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 02 SitelineCRM -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-5')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">02</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">SitelineCRM — Capture Sales Data Where the Conversation Already Is</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">B2B SaaS</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 03 Vitae -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-4')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">03</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Vitae — Health Records, Finally Understood</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Health Tech</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 04 Telegram PM Bot -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-0')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">04</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Personal AI Assistant — A Personal AI OS</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Archived</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Archived</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 05 Blinkit -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-1')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">05</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Blinkit Command Hub — Peak-Hour Decision Support</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Quick Commerce</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 06 Rethink CRM -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-0')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">06</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Rethink CRM — Conversation-First Sales Tool</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">B2B SaaS</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Research concept</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 07 Group Travel -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-3')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">07</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Group Travel Planning Platform<span class="block font-label-sm text-label-sm text-on-surface-variant normal-case tracking-normal mt-1">trivo.gauravg.dev</span></div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 08 YouTube 2.0 -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('cs-2')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">08</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">YouTube 2.0 — Fixing Long-Form Discovery</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Consumer</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Media</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Research concept</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 09 Portfolio Website -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-1')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">09</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Portfolio Website — This Site</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Infra</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">JS</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Live site</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 10 GWS CLI -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-3')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">10</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">GWS CLI — Google Workspace Terminal Tool</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Dev Tooling</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Open Source</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 11 Homelab -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-2')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">11</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Personal Homelab Server — Self-Hosted Infrastructure</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">DevOps</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Infra</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Active</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 12 PM Pathfinder -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-4')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">12</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">PM Pathfinder — RAG Chatbot on a Self-Deployed Vector DB</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-primary-fixed-dim/30 font-label-sm text-label-sm text-primary-fixed-dim uppercase">Case Study</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">RAG</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-primary-fixed-dim text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 13 AI vs Human Capital Simulation -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-5')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">13</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">AI vs Human Capital — ROI Counterfactual Simulation</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Data</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Python</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 14 life-os -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-6')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">14</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">life-os — A Phone Window onto My Own Data</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">PWA</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">In progress</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 15 GST Notice Explained -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-7')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">15</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">Notice, Explained — The Evidence Behind a GST Notice</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Govtech</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">Public demo</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
-        <!-- 16 RuleCard -->
-        <div class="project-row group flex flex-col md:flex-row items-start md:items-center py-6 border-b border-outline-variant gap-4" onclick="openV3Modal('pp-8')">
-          <div class="w-10 font-label-md text-label-md text-on-surface-variant">16</div>
-          <div class="flex-grow font-headline-md text-headline-md text-on-surface">RuleCard: Turn an Agent's Written Rules into Tests</div>
-          <div class="flex flex-wrap gap-2 md:w-1/4">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase">Personal</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">AI Evals</span>
-            <span class="px-2 py-0.5 border border-outline font-label-sm text-label-sm text-on-surface-variant uppercase">Claude API</span>
-          </div>
-          <div class="md:w-1/6 font-label-md text-label-md text-on-surface-variant text-right">In progress</div>
-          <div class="w-8 flex justify-end"><span class="arrow-icon transition-transform duration-200 text-on-surface-variant font-headline-md text-headline-md" aria-hidden="true">&rarr;</span></div>
-        </div>
         <!-- Projects → Skills bridge -->
         <div class="mt-12 pt-10 border-t border-outline-variant">
           <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">Look across these builds and the same capabilities keep recurring: retrieval systems, self-deployed infra, simulation engines, agentic automation.</p>
@@ -1053,7 +1051,7 @@
           <div class="pt-6 space-y-6">
             <div><span class="font-label-sm text-label-sm text-on-surface-variant block mb-2 uppercase tracking-widest">Direct Channel</span><a class="font-headline-lg text-headline-lg text-primary-fixed-dim weight-shift-hover transition-all duration-200" href="mailto:ar.gaurav20@gmail.com">ar.gaurav20@gmail.com</a></div>
             <div class="flex gap-6">
-              <a class="inline-flex items-center gap-2 group" href="https://linkedin.com/in/argaur" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">LinkedIn</span><span class="text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" aria-hidden="true">&nearr;</span></a>
+              <a class="inline-flex items-center gap-2 group" href="https://linkedin.com/in/ar-gaurav" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">LinkedIn</span><span class="text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" aria-hidden="true">&nearr;</span></a>
               <a class="inline-flex items-center gap-2 group" href="/GauravGupta_Resume_2026.pdf" target="_blank" rel="noopener"><span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Resume PDF</span><svg class="text-on-surface-variant group-hover:text-primary-fixed-dim transition-colors" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
             </div>
           </div>
@@ -1228,7 +1226,7 @@ function initContactStack() {
     {label:'AVAILABILITY',  years:'OPEN — SEP 2026',   log1:'> status: open_to_work.confirmed', log2:'> role: senior_pm.or_above'},
     {label:'TARGET DOMAIN', years:'HORIZONTAL SAAS',   log1:'> fit: builder_pm.workflow',       log2:'> tier: plg|ai_native|indian_saas'},
     {label:'LOCATION',      years:'JAIPUR, INDIA',     log1:'> remote: available.globally',     log2:'> relocation: open.worldwide'},
-    {label:'CONTACT',       years:'ACTIVE',            log1:'> ar.gaurav20@gmail.com',          log2:'> linkedin.com/in/argaur'}
+    {label:'CONTACT',       years:'ACTIVE',            log1:'> ar.gaurav20@gmail.com',          log2:'> linkedin.com/in/ar-gaurav'}
   ];
   var BASE_H=[55,65,72,80];
   var TOTAL_BASE_H=BASE_H.reduce(function(s,h){return s+h;},0);
@@ -2696,5 +2694,43 @@ function animateModalMetrics() {
 })();
 </script>
 <div id="wipe-line" style="position:fixed;top:0;left:-2px;width:2px;height:100vh;background:rgba(232,184,75,0.7);z-index:9997;pointer-events:none;display:none;will-change:transform"></div>
+<script>
+(function () {
+  var grid = document.getElementById('proj-grid'), box = document.getElementById('proj-filters');
+  if (!grid || !box) return;
+  var tiles = Array.prototype.slice.call(grid.querySelectorAll('.proj-tile'));
+  var count = document.getElementById('proj-count'), summary = document.getElementById('proj-summary');
+  var builds = tiles.filter(function (t) { return t.getAttribute('data-kind') === 'build'; });
+  var doms = {};
+  builds.forEach(function (t) { doms[t.getAttribute('data-domain')] = 1; });
+  var n = function (keys) { return builds.filter(function (t) { return keys.indexOf(t.getAttribute('data-status')) > -1; }).length; };
+  var live = n(['demo', 'live', 'oss', 'active']), prog = n(['progress']), conc = n(['concept']), arch = n(['archived']);
+  var parts = [live + ' live or demoed'];
+  if (prog) parts.push(prog + ' in progress');
+  if (conc) parts.push(conc + (conc === 1 ? ' concept' : ' concepts'));
+  if (arch) parts.push(arch + ' archived');
+  if (summary) summary.textContent = builds.length + ' projects across ' + Object.keys(doms).length + ' domains: ' + parts.join(', ') + '. Plus enterprise and architecture work.';
+  var order = [];
+  tiles.forEach(function (t) { var d = t.getAttribute('data-domain'); if (order.indexOf(d) < 0) order.push(d); });
+  function chip(label, value) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'proj-chip'; b.textContent = label; b.setAttribute('data-value', value);
+    b.setAttribute('aria-pressed', value === '' ? 'true' : 'false');
+    b.addEventListener('click', function () { apply(value); });
+    box.appendChild(b);
+  }
+  chip('All', '');
+  order.forEach(function (d) { chip(d, d); });
+  function apply(value) {
+    var shown = 0;
+    tiles.forEach(function (t) {
+      var ok = value === '' || t.getAttribute('data-domain') === value;
+      t.hidden = !ok; if (ok) shown++;
+    });
+    Array.prototype.forEach.call(box.children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-value') === value ? 'true' : 'false'); });
+    if (count) count.textContent = 'Showing ' + shown + ' of ' + tiles.length + (value ? ' in ' + value : '');
+  }
+})();
+</script>
 </body>
 </html>
