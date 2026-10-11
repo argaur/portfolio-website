@@ -148,7 +148,7 @@
     body.theme-light .door--lead .door-label,body.theme-light .door-cta{color:#6e5824;}
     /* Plan to Product stage */
     .p2p-stage{position:relative;width:100%;aspect-ratio:100/70;border:1px solid #2a2a38;background:#0c0d11;}
-    .p2p-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;}
+    .p2p-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
     body.theme-light .p2p-stage{border-color:#cfc7b5;background:#f7f3ea;}
 
     /* Contrast: dimmed labels stay readable, light-mode skill text is dark */
@@ -383,7 +383,6 @@
 
       #panel-contact .md\:col-span-7 { grid-column: 1 / -1; }
       #panel-contact .md\:col-span-5 { grid-column: 1 / -1; display: flex; justify-content: center; }
-      #panel-contact canvas { width: 200px !important; height: 200px !important; }
 
       .project-row { flex-direction: column; gap: 8px; padding: 16px 0; }
       .project-row .md\:w-1\/4 { width: 100%; }
@@ -416,12 +415,12 @@
     }
   </style>
   <script src="analytics.js" defer></script>
-  <script src="plan-to-product.js" defer></script>
+  <script src="hero-motion.js" defer></script>
 </head>
 <body class="bg-background text-on-background">
 
 <!-- EMAIL GATE -->
-<div id="gate">
+<div id="gate" class="gate-hidden" aria-hidden="true">
   <div class="gate-content max-w-sm w-full mx-4 p-10 border border-outline-variant bg-surface-container-lowest">
     <div class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest mb-8">GG / PORTFOLIO &middot; V3</div>
     <h1 class="font-headline-lg text-headline-lg text-on-surface mb-4 leading-tight">Product thinking meets<br>AI strategy.</h1>
@@ -532,7 +531,7 @@
       </div>
       <!-- Right: Plan to Product motion -->
       <div class="flex flex-col gap-0 mt-10 md:mt-0 w-full">
-        <div class="p2p-stage"><canvas id="p2p-home" role="img" aria-label="Animation: a floor plan redraws itself as a wireframe, then as a working prototype. It shows an idea becoming a product."></canvas></div>
+        <div class="p2p-stage"><canvas id="p2p-home" role="img" aria-label="Animation: a rough sketch full of questions is ruled into a clean plan. The plan is built part by part into a working app, which then goes live and gets used."></canvas></div>
       </div>
     </div>
   </section>
@@ -592,7 +591,7 @@
             </div>
             <div class="accordion-content">
               <div class="px-6 pt-6 pb-16 border-x border-b border-outline-variant/30 bg-surface-container-lowest">
-                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">16 projects across 11 domains, from live products to research concepts. The Projects panel lists each one with its status. Part of a 6-person team that placed 3rd at the Rethink AI-First Buildathon, shipping Vitae, an AI health-records PWA, in a 10-day sprint. With a teammate, placed in the Top 250 (rank 64) of about 13,700 applicants at Build What Moves India (Varun Mayya x OpenAI), shipping a working GST-notice prototype. Built a Telegram AI assistant (28+ commands) on Claude API and Python. It is now retired, and it became the brief for life-os, a personal operating-system app in build.</p>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-6">15 projects across 11 domains, from live products to research concepts. The Projects panel lists each one with its status. Part of a 6-person team that placed 3rd at the Rethink AI-First Buildathon, shipping Vitae, an AI health-records PWA, in a 10-day sprint. With a teammate, placed in the Top 250 (rank 64) of about 13,700 applicants at Build What Moves India (Varun Mayya x OpenAI), shipping a working GST-notice prototype. Built a Telegram AI assistant (28+ commands) on Claude API and Python. It is now retired, and it became the brief for life-os, a personal operating-system app in build.</p>
                 <div class="inline-flex">
                   <button type="button" class="nav-link font-label-sm text-label-sm text-primary-fixed-dim border border-primary-fixed-dim/40 px-4 py-2 hover:bg-primary-fixed-dim/10 transition-colors uppercase tracking-wider" data-panel="panel-projects">Output in Projects panel →</button>
                 </div>
@@ -738,14 +737,14 @@
     <div class="pt-12 pb-24 max-w-container-max mx-auto w-full px-margin-side">
       <header class="mb-12 border-l-2 border-primary-container pl-6">
         <h1 class="font-display text-display text-on-surface">Projects</h1>
-        <p id="proj-summary" class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">16 projects across 11 domains: 11 live or demoed, 2 in progress, 2 concepts, 1 archived. Plus enterprise and architecture work.</p>
+        <p id="proj-summary" class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">15 projects across 11 domains: 11 live or demoed, 2 in progress, 1 concept, 1 archived. Plus enterprise and architecture work.</p>
       </header>
       <div id="proj-filters" class="proj-filters" role="group" aria-label="Filter projects by domain"></div>
       <p id="proj-count" class="sr-only" aria-live="polite"></p>
       <div id="proj-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-outline-variant">
         <a class="proj-tile proj-tile--feat md:col-span-2" href="case-study-jindalx-talent.html" data-domain="Enterprise / BPO" data-status="enterprise" data-kind="career">
           <div class="proj-top"><span class="proj-status proj-status--gold">Enterprise production</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
-          <h2 class="proj-title">JindalX: 7 B2B products for 16 enterprise clients</h2>
+          <p class="proj-kicker">JindalX</p><h2 class="proj-title">Talent Management Suite</h2>
           <p class="proj-line">Hiring moved from Excel and paper to one system: six linked specs, written and built by me, and a 50% drop in hiring time. Read the full case.</p>
           <div class="proj-tags"><span class="proj-tag">B2B SaaS</span><span class="proj-tag">Enterprise</span></div>
           <span class="sr-only">Domain: Enterprise / BPO</span>
@@ -806,14 +805,6 @@
           <div class="proj-tags"><span class="proj-tag">PWA</span><span class="proj-tag">Consumer</span></div>
           <span class="sr-only">Domain: Travel</span>
           <span class="proj-domain" aria-hidden="true">Travel</span>
-        </a>
-        <a class="proj-tile" href="case-study-founder-crm.html" data-domain="B2B SaaS" data-status="concept" data-kind="build">
-          <div class="proj-top"><span class="proj-status proj-status--dash">Research concept</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
-          <h2 class="proj-title">Rethink CRM: a conversation-first sales tool</h2>
-          <p class="proj-line">A concept for founders who sell in chat, not in forms.</p>
-          <div class="proj-tags"><span class="proj-tag">Concept</span><span class="proj-tag">Telegram</span></div>
-          <span class="sr-only">Domain: B2B SaaS</span>
-          <span class="proj-domain" aria-hidden="true">B2B SaaS</span>
         </a>
         <a class="proj-tile" href="case-study-youtube.html" data-domain="Consumer Media" data-status="concept" data-kind="build">
           <div class="proj-top"><span class="proj-status proj-status--dash">Research concept</span><span class="proj-arrow" aria-hidden="true">&rarr;</span></div>
@@ -933,7 +924,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-outline-variant">
         <div class="skill-block delay-1 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px] lg:col-span-2"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">01</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>AI &amp; Retrieval</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Self-deployed pgvector DB, IVFFlat index, hand-written match_chunks()</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Manual SSE streaming over raw REST</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">3072-dim embeddings &middot; archetype-filtered retrieval</li><li class="font-body-md text-body-md text-on-surface-variant py-1">RAG pipeline design</li><li class="font-body-md text-body-md text-on-surface-variant py-1">AI evaluation</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Prompt engineering</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Claude / Gemini APIs</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-x-1.5 gap-y-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proven in:</span><a href="project-pm-pathfinder.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">PM Pathfinder</a></div></div></div>
-        <div class="skill-block delay-2 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">02</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>Applied AI Pipelines</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">OCR &rarr; structured-record pipeline (Gemma multimodal &rarr; Claude)</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Confidence-scored field extraction</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Conversation-first AI CRM</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Plain-language generation</li><li class="font-body-md text-body-md text-on-surface-variant py-1">429 fallback model pools</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-x-1.5 gap-y-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proven in:</span><a href="case-study-vitae.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Vitae</a> <span class="text-on-surface-variant">&middot;</span> <a href="case-study-founder-crm.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Founder&rsquo;s CRM</a> <span class="text-on-surface-variant">&middot;</span> <a href="case-study-siteline.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">SitelineCRM</a></div></div></div>
+        <div class="skill-block delay-2 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">02</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>Applied AI Pipelines</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">OCR &rarr; structured-record pipeline (Gemma multimodal &rarr; Claude)</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Confidence-scored field extraction</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Conversation-first AI CRM</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Plain-language generation</li><li class="font-body-md text-body-md text-on-surface-variant py-1">429 fallback model pools</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-x-1.5 gap-y-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proven in:</span><a href="case-study-vitae.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Vitae</a> <span class="text-on-surface-variant">&middot;</span> <a href="case-study-siteline.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">SitelineCRM</a></div></div></div>
         <div class="skill-block delay-3 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">03</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>Agentic Automation</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Telegram keyword-router + Claude freetext (28+ commands, since retired)</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">10 system integrations &middot; 5 daily automations</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Gmail / Calendar CLI tooling</li><li class="font-body-md text-body-md text-on-surface-variant py-1">n8n workflows</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Webhook routing &middot; cron jobs</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-x-1.5 gap-y-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proven in:</span><a href="case-study-personal-ai-assistant.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Personal AI Assistant</a> <span class="text-on-surface-variant">&middot;</span> <a href="project-gws-cli.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">GWS CLI</a> <span class="text-on-surface-variant">&middot;</span> <a href="project-homelab.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Homelab</a></div></div></div>
         <div class="skill-block delay-4 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">04</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Data &amp; Simulation</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Cited-coefficient simulation engine</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Confidence-floor propagation through effect chains</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Python pure-function core + contract-tested TS port</li><li class="font-body-md text-body-md text-on-surface-variant py-1">SQL &amp; analytics &middot; funnel / cohort</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Real-time ops decision support</li><li class="font-body-md text-body-md text-on-surface-variant py-1">PostHog &middot; Looker Studio &middot; Power BI</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-x-1.5 gap-y-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proven in:</span><a href="project-ai-humancap-sim.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">AI vs Human Capital</a><span class="font-label-sm text-label-sm text-on-surface-variant">&middot;</span><a href="case-study-blinkit.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Blinkit</a></div></div></div>
         <div class="skill-block delay-5 relative overflow-hidden p-8 border-r border-b border-outline-variant bg-surface-container-low min-h-[320px]"><div class="number-bg absolute -bottom-8 -right-4 font-display text-[140px] text-surface-bright/30 font-bold">05</div><div class="relative z-10"><h2 class="font-headline-md text-headline-md text-primary-fixed-dim mb-6 uppercase flex items-center gap-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Infra &amp; Product Eng</h2><ul class="space-y-3"><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">IaC homelab, Docker / Vault / Ansible / Prometheus</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">Supabase Auth + Row-Level Security</li><li class="font-body-md text-body-md font-medium text-on-surface border-b border-outline-variant/30 pb-2">PWA service workers &middot; zero-dependency panel SPA</li><li class="font-body-md text-body-md text-on-surface-variant py-1">Reverse proxy / DNS</li><li class="font-body-md text-body-md text-on-surface-variant py-1">CI-less static deploys &middot; observability</li></ul><div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-x-1.5 gap-y-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proven in:</span><a href="project-homelab.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Homelab</a><span class="font-label-sm text-label-sm text-on-surface-variant">&middot;</span><a href="case-study-vitae.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">Vitae</a><span class="font-label-sm text-label-sm text-on-surface-variant">&middot;</span><a href="project-portfolio.html" class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline">This site</a></div></div></div>
@@ -1079,8 +1070,8 @@
           <p class="font-label-sm text-label-sm text-on-surface-variant opacity-50 uppercase tracking-wider">Worked across health, commerce, travel, finance, government portals and enterprise software</p>
         </div>
         <div class="flex flex-col gap-0 mt-10 md:mt-0 w-full">
-          <div class="p2p-stage"><canvas id="p2p-contact" role="img" aria-label="Interactive animation: move or drag across the frame to take a floor plan to a wireframe to a working prototype."></canvas></div>
-          <p class="font-label-sm text-label-sm text-on-surface-variant pt-3 uppercase tracking-wider">Move across the frame to take an idea to a prototype.</p>
+          <div class="p2p-stage"><canvas id="p2p-contact" role="img" aria-label="Animation: a rough sketch full of questions is ruled into a clean plan. The plan is built part by part into a working app, which then goes live and gets used."></canvas></div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant pt-3 uppercase tracking-wider">Rough brief, clear plan, live product.</p>
         </div>
     </div>
   </section>
@@ -1544,19 +1535,6 @@ function openCertModal(key) {
 
 // ── Project modal data ───────────────────────────────────────────────────────
 var V3_PROJECTS = {
-  'cs-0': {
-    tag: 'B2B SaaS · AI · Telegram Bot',
-    title: 'Rethink CRM: Conversation-First Sales Tool',
-    problem: '60–70% of founders abandon CRM within 4 weeks. The real insight: founders already manage relationships in WhatsApp. The tool had to meet them there.',
-    insight: 'WhatsApp forwards become structured deal data through a Telegram bot interface, zero context-switching, no new app to learn.',
-    stats: ['39-page PRD', '16 tools analysed', '10 founder interviews'],
-    stage: 'PRD · Prototype',
-    docs: ['flow', 'wireframe', 'arch', 'prd'],
-    githubUrl: 'https://github.com/argaur/founder-crm-bot',
-    protoUrl: 'https://argaur.github.io/founder-crm-landing/',
-    pageUrl: 'case-study-founder-crm.html',
-    pageLabel: 'Read Full Case Study'
-  },
   'cs-1': {
     tag: 'Quick Commerce · Operations',
     title: 'Blinkit Dark Store Command Hub: Peak-Hour Decision Support',

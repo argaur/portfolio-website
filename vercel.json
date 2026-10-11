@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/case-study-founder-crm.html", "destination": "/case-study-siteline.html#origin", "permanent": true },
+    { "source": "/case-study-founder-crm", "destination": "/case-study-siteline.html#origin", "permanent": true }
+  ]
+}
