@@ -1,0 +1,12 @@
+# Internal files: kept in git, never deployed to gauravg.dev.
+/CLAUDE.md
+/PORTFOLIO_PLAN.md
+/README.md
+/NEEDS-YOU.md
+/app.js
+/tabs.js
+/playwright-audit.js
+/.archive
+/collab-runs
+/_tmp
+/.gitignore
