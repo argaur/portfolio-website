@@ -499,10 +499,19 @@
 <div class="sec" id="showcase" style="display:none" data-slug="homelab" data-title="Homelab trailer" data-src="" data-embed="" data-poster="" data-captions="">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>See it in<br /><em>60 seconds.</em></h2>
+      <h2>See it in<br /><em>under a minute.</em></h2>
       <span class="label">Trailer</span>
     </div>
     <div class="trailer-frame"></div>
+    <ol class="trailer-slides">
+      <li data-kicker="What it is"><b>A self-hosted homelab server.</b><span>10+ containerised services on a dedicated Linux Mint laptop, running 24/7 as a local server.</span></li>
+      <li data-kicker="Why self-host"><b>Cloud rents you a service. Self-hosting owns it.</b><span>Cloud charges per service, per seat, per API call. The costs compound, and your data leaves your control.</span></li>
+      <li data-kicker="The cost" data-stat="~$0/mo"><b>Versus $50+/mo for the SaaS equivalent.</b><span>Zero cloud costs, full control.</span></li>
+      <li data-kicker="What runs on it"><b>Three layers of services.</b><span>Infrastructure: Portainer, Nginx Proxy Manager, Homepage, AdGuard Home, Vault. Observability: Prometheus, Grafana, Uptime Kuma. Automation: n8n, Ansible Semaphore.</span></li>
+      <li data-kicker="Secrets" data-stat="0"><b>Plaintext secrets on disk.</b><span>HashiCorp Vault injects credentials at container startup. No .env files with real secrets committed anywhere.</span></li>
+      <li data-kicker="Rebuild"><b>Two commands rebuild the whole server.</b><span>git clone homelab, then ansible-playbook site.yml. State lives in git, not in the OS.</span></li>
+      <li data-kicker="Why Docker"><b>Each service is isolated and replaceable.</b><span>Rolling back a broken upgrade means pulling the previous image.</span></li>
+    </ol>
     <p class="trailer-note">What it is, who it is for and what shipped. The full case study follows below.</p>
   </div>
 </div>

@@ -6,7 +6,8 @@
         that have no public live platform to film
      4. ?trailer=preview shows an empty frame, for layout review
    With none of these the section stays hidden. No autoplay for video. The slide reel advances
-   by itself only when in view and motion is allowed, and every control is a real button.
+   by itself only when in view, and every control is a real button. Reduced motion keeps the
+   autoplay (Windows "Animation effects: off" sets it) but swaps slides with no transition.
    No analytics events. Colors and radius come from the page, so each skin is kept. */
 (function () {
   'use strict';
@@ -219,7 +220,7 @@
     });
     paint();
     setPlaying(false);
-    if ('IntersectionObserver' in window && !reduced) {
+    if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) {
         var was = inView;
         inView = en[0].isIntersecting && en[0].intersectionRatio > 0.5;
