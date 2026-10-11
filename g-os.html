@@ -516,7 +516,7 @@
     <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order. <strong>Versions</strong> is how it got here, and where it is currently inconsistent.</p>
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
-      <span>v3.0 · updated 2026-10-06</span>
+      <span>v3.0 · updated 2026-10-11</span>
       <span>8 systems · 5 workflows</span>
     </div>
   </header>
@@ -1162,6 +1162,15 @@
 
         <div class="label">A measurement that changes how it gets used</div>
         <div class="rule"><b>Name search is instant; content search is not</b>Searching secret <em>names</em> returns in about a tenth of a second. Searching decrypted <em>contents</em> takes almost forty, because it decrypts everything, and that cost grows linearly with the store. The question the store exists to answer — "did I already make one of these?" — is a name question. Worth knowing before the store doubles.</div>
+
+        <div class="label"><code>starters/gopass/gopass-to-env.sh</code>: the only road from the store to a project</div>
+        <ul class="cmd-list">
+          <li><b>It pipes, it never shows.</b> It takes a store path, a variable name and an env file, and writes the value straight from the store into the file. Nothing is printed, so the value never lands in a chat or a terminal scrollback. Hosted platforms get the same pipe on stdin.</li>
+          <li><b>It refuses rather than guesses.</b> An empty read, a missing entry, or a variable already set twice in the file each stop with their own exit code, and nothing is written. 17 test cases, each refusal checked for an untouched file.</li>
+        </ul>
+
+        <div class="label">LLM calls in projects: one default, set 2026-10-11</div>
+        <div class="rule"><b>Spend the credit you already have before adding a router</b>The Max plan comes with a monthly Claude API credit on a linked Console org. It refreshes each month, does not roll over, has no card behind it, and stops requests at zero, so a runaway loop cannot bill. Every project that calls a model defaults to it: one Console workspace per project, each with its own spend cap, and the key kept in the store and piped in. An external router now needs a written reason in that project's decisions. The credit does not cover Claude Code itself, so the key is never set for Claude Code, or the session would move off the plan.</div>
       </div>
     </div>
   </div>
