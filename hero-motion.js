@@ -102,7 +102,7 @@
   };
 
   HeroMotion.prototype.sync = function () {
-    var go = this.visible && !document.hidden, self = this;
+    var go = this.visible && !document.hidden && !this.paused, self = this;
     if (go && !this.running) {
       this.running = true; this.last = performance.now();
       this.raf = requestAnimationFrame(function tick(now) {
@@ -460,7 +460,21 @@
     var stages = [];
     ['p2p-home', 'p2p-contact'].forEach(function (id) {
       var c = document.getElementById(id);
-      if (c) stages.push(new HeroMotion(c));
+      if (!c) return;
+      var st = new HeroMotion(c);
+      stages.push(st);
+      // Pause control (WCAG 2.2.2): the loop never stops on its own, so the visitor can stop it.
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'p2p-pause';
+      btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Pause animation');
+      btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect class="p2p-i-pause" x="2" y="1" width="3" height="10"/><rect class="p2p-i-pause" x="7" y="1" width="3" height="10"/><path class="p2p-i-play" d="M3 1 L11 6 L3 11 Z"/></svg>';
+      btn.addEventListener('click', function () {
+        st.paused = !st.paused;
+        btn.setAttribute('aria-pressed', st.paused ? 'true' : 'false');
+        btn.setAttribute('aria-label', st.paused ? 'Play animation' : 'Pause animation');
+        st.sync();
+      });
+      c.parentNode.appendChild(btn);
     });
     if (!stages.length) return;
     new MutationObserver(function () { stages.forEach(function (st) { st.render(); }); })

@@ -12,10 +12,12 @@
     <meta property="og:title" content="SitelineCRM: Capture Sales Data Where the Conversation Already Is | Gaurav Gupta">
     <meta property="og:description" content="Case study: a Telegram-native B2B sales CRM built for Stylework. Built and shipped live, with a documented eval harness.">
     <meta property="og:url" content="https://gauravg.dev/case-study-siteline.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#FFFFFF">
 
 <style>
@@ -35,7 +37,7 @@
     --ink: #0A0A0A;
     --text: #0A0A0A;
     --text-2: #5C5C58;
-    --text-3: #9A9A96;
+    --text-3: #6B6B67; /* was #9A9A96 (2.82:1). Now 5.35:1 on #fff, 4.82:1 on surface-2 */
     --sans: 'Manrope', system-ui, -apple-system, sans-serif;
     --measure: 640px;
   }
@@ -185,7 +187,7 @@
 
   .hero-wrap { border-bottom: 1px solid var(--border); }
   .hero {
-    max-width: 1280px;
+    max-width: 1376px; /* 1280 + 2x48 padding: matches the .sec content edge */
     margin: 0 auto;
     padding: 148px 48px 96px;
   }
@@ -415,7 +417,18 @@
     footer { padding: 28px 24px; }
   }
   @media (max-width: 580px) {
-    .nav-link { display: none; }
+    nav { padding: 0 16px; gap: 14px; }
+    .nav-back { flex-shrink: 0; }
+    .nav-index { display: none; }
+    .nav-link { white-space: nowrap; }
+    .nav-right {
+      gap: 18px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nav-right::-webkit-scrollbar { display: none; }
     .two-col { gap: 32px; }
     .card { padding: 28px 24px; }
   }
@@ -425,6 +438,19 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility layer (2026-10-12) */
+  .nav-back { position: relative; }
+  .nav-back::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .nav-link { padding-top: 14px; padding-bottom: 14px; }
+  .nav-link--active::after { bottom: 9px; }
+  .docs-tablist { display: contents; }
+  .docs-tabs { row-gap: 10px; } /* keeps wrapped rows' 44px hit areas from overlapping */
+  .docs-tab { position: relative; }
+  .docs-tab::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .table-scroll { overflow-x: auto; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+  h3.hx4 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -438,9 +464,11 @@
     <a href="#eval" class="nav-link">Eval</a>
     <a href="#thesis" class="nav-link">Thesis</a>
     <a href="#origin" class="nav-link">Origin</a>
-    <span class="nav-index">Case Study 07</span>
+    <span class="nav-index">Case Study</span>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
@@ -470,7 +498,7 @@
       <h2>The short<br /><em>version.</em></h2>
       <span class="label">At a glance</span>
     </div>
-    <div class="table-wrap"><table><tbody><tr><td><strong>Role</strong></td><td>Solo PM and builder. No engineering team.</td></tr><tr><td><strong>When</strong></td><td>July 2026. About 51 hours from first commit to latest.</td></tr><tr><td><strong>Built for</strong></td><td>Stylework, an Indian coworking aggregator. A job-application artifact.</td></tr><tr><td><strong>What shipped</strong></td><td>A Telegram-native sales CRM. A rep forwards a chat, sends a voice note or shares a screenshot, and the model fills the record. A dashboard and an eval harness came with it.</td></tr><tr><td><strong>Result</strong></td><td>93.5% field accuracy (129/138) on 23 synthetic transcripts. Stage alone scored 14/23, or 60.9%.</td></tr><tr><td><strong>Limit</strong></td><td>Synthetic data, demo-grade auth, no customers.</td></tr><tr><td><strong>See it</strong></td><td><a class="lnk" href="https://argaur.github.io/siteline-crm/" target="_blank" rel="noopener">Live product &nearr;</a> &nbsp; <a class="lnk" href="https://github.com/argaur/siteline-crm" target="_blank" rel="noopener">GitHub &nearr;</a></td></tr></tbody></table></div>
+    <div class="table-wrap"><div class="table-scroll" tabindex="0" role="region" aria-label="The short version (table)"><table><tbody><tr><td><strong>Role</strong></td><td>Solo PM and builder. No engineering team.</td></tr><tr><td><strong>When</strong></td><td>July 2026. About 51 hours from first commit to latest.</td></tr><tr><td><strong>Built for</strong></td><td>Stylework, an Indian coworking aggregator. A job-application artifact.</td></tr><tr><td><strong>What shipped</strong></td><td>A Telegram-native sales CRM. A rep forwards a chat, sends a voice note or shares a screenshot, and the model fills the record. A dashboard and an eval harness came with it.</td></tr><tr><td><strong>Result</strong></td><td>93.5% field accuracy (129/138) on 23 synthetic transcripts. Stage alone scored 14/23, or 60.9%.</td></tr><tr><td><strong>Limit</strong></td><td>Synthetic data, demo-grade auth, no customers.</td></tr><tr><td><strong>See it</strong></td><td><a class="lnk" href="https://siteline.gauravg.dev" target="_blank" rel="noopener">Live product &nearr;</a> &nbsp; <a class="lnk" href="https://github.com/argaur/siteline-crm" target="_blank" rel="noopener">GitHub &nearr;</a></td></tr></tbody></table></div></div>
   </div>
 </div>
 
@@ -491,17 +519,19 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">Capture Flow</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Documentation views">
+          <button type="button" class="docs-tab docs-tab--active" data-doc="flow" role="tab" id="doctab-flow" aria-selected="true" aria-controls="docpanel-flow" tabindex="0">Capture Flow</button>
+          <button type="button" class="docs-tab" data-doc="arch" role="tab" id="doctab-arch" aria-selected="false" aria-controls="docpanel-arch" tabindex="-1">Architecture</button>
+          <button type="button" class="docs-tab" data-doc="prd" role="tab" id="doctab-prd" aria-selected="false" aria-controls="docpanel-prd" tabindex="-1">About this page</button>
+        </div>
         <a href="https://github.com/argaur/siteline-crm" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
-        <a href="https://argaur.github.io/siteline-crm/" target="_blank" rel="noopener" class="docs-tab">Live Product &rarr;</a>
+        <a href="https://siteline.gauravg.dev" target="_blank" rel="noopener" class="docs-tab">Live Product &rarr;</a>
       </div>
     </div>
 
     <!-- CAPTURE FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="flow" id="docpanel-flow" role="tabpanel" aria-labelledby="doctab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Capture Flow diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" style="width:100%;display:block;">
         <defs>
           <marker id="sl-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -512,7 +542,7 @@
           </marker>
         </defs>
         <rect width="900" height="340" fill="#FAFAF9"/>
-        <text x="450" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="#9A9A96" letter-spacing="1.6">THREE CAPTURE MODES &rarr; ONE SAVE PATH</text>
+        <text x="450" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="#6B6B67" letter-spacing="1.6">THREE CAPTURE MODES &rarr; ONE SAVE PATH</text>
 
         <!-- Three input nodes -->
         <rect x="20" y="60" width="150" height="42" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
@@ -561,16 +591,16 @@
         <text x="806" y="293" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">&ldquo;Looks good&rdquo; / &ldquo;Edit stage&rdquo;</text>
 
         <line x1="270" y1="102" x2="270" y2="130" stroke="#DDDDD9" stroke-width="1" stroke-dasharray="3 3"/>
-        <text x="270" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#9A9A96">or: intent = &ldquo;recall&rdquo; &rarr; brief instead of capture</text>
+        <text x="270" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#6B6B67">or: intent = &ldquo;recall&rdquo; &rarr; brief instead of capture</text>
 
-        <text x="450" y="325" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#9A9A96">Save path never regresses a lead&rsquo;s stage backwards from a vague recapture</text>
+        <text x="450" y="325" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#6B6B67">Save path never regresses a lead&rsquo;s stage backwards from a vague recapture</text>
       </svg>
       </div>
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="docpanel-arch" role="tabpanel" aria-labelledby="doctab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;">
         <defs>
           <marker id="sla-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -581,18 +611,18 @@
           </marker>
         </defs>
         <rect width="900" height="360" fill="#FAFAF9"/>
-        <text x="450" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="#9A9A96" letter-spacing="1.6">SYSTEM ARCHITECTURE: BOT + API + DASHBOARD</text>
+        <text x="450" y="28" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" font-weight="700" fill="#6B6B67" letter-spacing="1.6">SYSTEM ARCHITECTURE: BOT + API + DASHBOARD</text>
 
         <line x1="160" y1="40" x2="160" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
         <line x1="340" y1="40" x2="340" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
         <line x1="535" y1="40" x2="535" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
         <line x1="710" y1="40" x2="710" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
 
-        <text x="80" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">TELEGRAM</text>
-        <text x="250" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">BOT / RAILWAY</text>
-        <text x="437" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">AI</text>
-        <text x="622" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">NEON POSTGRES</text>
-        <text x="805" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#9A9A96" letter-spacing="1.2">DASHBOARD</text>
+        <text x="80" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">TELEGRAM</text>
+        <text x="250" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">BOT / RAILWAY</text>
+        <text x="437" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">AI</text>
+        <text x="622" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">NEON POSTGRES</text>
+        <text x="805" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">DASHBOARD</text>
 
         <rect x="15" y="118" width="130" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
         <text x="80" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Rep&rsquo;s Chat</text>
@@ -636,13 +666,13 @@
 
         <line x1="437" y1="162" x2="437" y2="238" stroke="#DDDDD9" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#sla-arr-dash)"/>
 
-        <text x="450" y="325" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#9A9A96">Single OpenAI key for extraction, vision, and transcription. No separate provider accounts to manage</text>
+        <text x="450" y="325" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" fill="#6B6B67">Single OpenAI key for extraction, vision, and transcription. No separate provider accounts to manage</text>
       </svg>
       </div>
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="docpanel-prd" role="tabpanel" aria-labelledby="doctab-prd">
       <div class="docs-note">
         <p>This page is the build record for SitelineCRM. It covers the data-capture problem,
         the extraction pipeline, the eval harness that measures it, and the honest state of
@@ -665,9 +695,9 @@
       <p>SitelineCRM was built solo as a job-application artifact for an
       <strong>&ldquo;AI Product Builder&rdquo; role</strong> at Stylework, an Indian
       coworking-space aggregator. It is live. Landing at
-      <a href="https://argaur.github.io/siteline-crm/" target="_blank" rel="noopener" class="lnk">argaur.github.io/siteline-crm</a>,
+      <a href="https://siteline.gauravg.dev" target="_blank" rel="noopener" class="lnk">siteline.gauravg.dev</a>,
       dashboard at
-      <a href="https://argaur.github.io/siteline-crm/dashboard/" target="_blank" rel="noopener" class="lnk">/dashboard</a>,
+      <a href="https://siteline.gauravg.dev/dashboard/" target="_blank" rel="noopener" class="lnk">/dashboard</a>,
       source at
       <a href="https://github.com/argaur/siteline-crm" target="_blank" rel="noopener" class="lnk">github.com/argaur/siteline-crm</a>.</p>
     </div>
@@ -761,7 +791,7 @@
         <div class="card-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </div>
-        <h4>Forwarded text</h4>
+        <h3 class="hx4">Forwarded text</h3>
         <p>Rep forwards the WhatsApp thread as-is. <code>ai.extract_from_text()</code> pulls
         the structured fields, then a quality gate checks the extraction before it saves.</p>
       </div>
@@ -769,7 +799,7 @@
         <div class="card-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
         </div>
-        <h4>Voice note</h4>
+        <h3 class="hx4">Voice note</h3>
         <p>Whisper transcribes, then intent classification routes it: &ldquo;capture&rdquo;
         extracts a new update, &ldquo;recall&rdquo; generates a spoken-style brief on the deal
         instead. There&rsquo;s no quality gate. Voice goes straight through.</p>
@@ -778,7 +808,7 @@
         <div class="card-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         </div>
-        <h4>Screenshot</h4>
+        <h3 class="hx4">Screenshot</h3>
         <p><code>gpt-4o-mini</code> vision reads a shared screenshot, whether it&rsquo;s a
         proposal PDF page, a WhatsApp screenshot, or a form, the same way it would read
         the text version.</p>
@@ -920,7 +950,7 @@
     </div>
 
     <div class="table-wrap">
-      <table>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="No framework, no bundler, one provider (table)"><table>
         <thead><tr><th>Layer</th><th>Technology</th><th>Details</th></tr></thead>
         <tbody>
           <tr><td>Bot backend</td><td>Python &middot; FastAPI &middot; python-telegram-bot</td><td>Single asyncio process, deploys to Railway. FastAPI lifespan wires bot polling + nudge JobQueue + <code>/api/*</code> together.</td></tr>
@@ -929,7 +959,7 @@
           <tr><td>AI &middot; transcription</td><td>OpenAI Whisper</td><td>Voice note transcription ahead of intent classification.</td></tr>
           <tr><td>Dashboard</td><td>Static HTML/JS &middot; no framework, no bundler</td><td>Deploys to GitHub Pages via Actions. Authenticates against the bot&rsquo;s <code>/api/*</code> endpoints via signed per-user HMAC tokens. No credentials shipped to the browser.</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 </div>
@@ -949,17 +979,17 @@
 
     <div class="cards">
       <div class="card">
-        <h4>Runs on seeded data</h4>
+        <h3 class="hx4">Runs on seeded data</h3>
         <p>The pipeline runs on seeded sample data, labelled in-product as such. It&rsquo;s a
         working product, not a customer deployment. No revenue.</p>
       </div>
       <div class="card">
-        <h4>Auth is demo-grade</h4>
+        <h3 class="hx4">Auth is demo-grade</h3>
         <p>Signed HMAC tokens with server-verified roles, but no expiry or revocation. This
         is a deliberate one-day-demo simplification, not production-grade auth.</p>
       </div>
       <div class="card">
-        <h4>The eval dataset is synthetic</h4>
+        <h3 class="hx4">The eval dataset is synthetic</h3>
         <p>Hand-written rather than drawn from real bot traffic, so 93.5% is indicative of
         extraction quality, not field-proven against production usage.</p>
       </div>
@@ -982,7 +1012,7 @@
     </div>
 
     <div class="table-wrap">
-      <table>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Complexity the product earns, not imposes (table)"><table>
         <thead><tr><th>Org shape</th><th>What unlocks</th></tr></thead>
         <tbody>
           <tr><td>Solo rep</td><td>The bot, and nothing else: capture, pipeline, heat score, nudges.</td></tr>
@@ -991,7 +1021,7 @@
           <tr><td>Add a sales head over multiple managers</td><td>Region roll-ups, forecasting, quota tracking.</td></tr>
           <tr><td>CEO level</td><td>The revenue view.</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <div class="callout" style="margin-top:36px">
@@ -1018,7 +1048,7 @@
     </div>
 
     <div class="table-wrap">
-      <table>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Where it started: Rethink CRM (table)"><table>
         <thead><tr><th></th><th>Rethink CRM (v0)</th><th>SitelineCRM (v1)</th></tr></thead>
         <tbody>
           <tr><td>User</td><td>A solo founder who sells</td><td>A sales team at Stylework, with reps and a manager</td></tr>
@@ -1026,7 +1056,7 @@
           <tr><td>Proof</td><td>Founder interviews</td><td>An eval harness that scores field extraction</td></tr>
           <tr><td>Kept</td><td colspan="2">The core bet: capture sales data where the conversation already is.</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <div class="meta-row" style="margin-top:28px">
@@ -1036,6 +1066,8 @@
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Built for Stylework &middot; July 2026</div>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
@@ -1043,15 +1075,31 @@
 
 <script>
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') n = 0;
+      else if (e.key === 'End') n = tabs.length - 1;
+      if (n === null) return;
+      e.preventDefault();
+      select(tabs[n], true);
     });
   });
 })();

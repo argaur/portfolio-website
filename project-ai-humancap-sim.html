@@ -12,10 +12,12 @@
     <meta property="og:title" content="AI vs Human Capital, An ROI Counterfactual Simulation | Gaurav Gupta">
     <meta property="og:description" content="Every projected dollar traces to a source; confidence propagates as a floor through each effect chain; an Impact Translator turns the GDP delta into schools, vaccinations, and budgets.">
     <meta property="og:url" content="https://gauravg.dev/project-ai-humancap-sim.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#f0eee6">
 
 <style>
@@ -190,7 +192,7 @@
     letter-spacing: -0.005em;
     margin-bottom: 12px;
   }
-  h4 {
+  h4, h3.h4 {
     font-family: var(--sans);
     font-size: 1rem;
     font-weight: 700;
@@ -459,6 +461,28 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility: tabs, scroll regions, hit areas, alignment ── */
+  .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible, .scroll-region:focus-visible {
+    outline: 2px solid var(--ochre);
+    outline-offset: -2px;
+  }
+  .nav-back, .docs-tab { position: relative; }
+  .nav-back::before, .docs-tab::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: -6px; right: -6px;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+  .docs-tab::before { left: 0; right: 0; }
+  .hero { max-width: 1376px; }
+  #glance table { min-width: 0; }
+  @media (max-width: 580px) {
+    .nav-link { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
+    .nav-link--active::after { bottom: 7px; }
+  }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -476,6 +500,8 @@
   </div>
 </nav>
 
+<main id="main">
+
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
@@ -484,7 +510,7 @@
     <p class="hero-sub">
       The world is pouring record capital into AI. This tool asks the counterfactual nobody
       actually models: what would the same money have returned if directed at human capital
-, education, health, and skills, instead? Built with public-grade sourcing
+      (education, health, and skills) instead? Built with public-grade sourcing
       discipline from day one, so every projected dollar traces to a citation.
     </p>
     <div class="meta-row">
@@ -515,15 +541,17 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="AI vs Human Capital documentation">
+          <button type="button" role="tab" id="tab-arch" aria-controls="panel-arch" aria-selected="true" tabindex="0" class="docs-tab docs-tab--active" data-doc="arch">Architecture</button>
+          <button type="button" role="tab" id="tab-prd" aria-controls="panel-prd" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="prd">About this page</button>
+        </div>
         <a href="https://ai-vs-humancap-sim.netlify.app" target="_blank" rel="noopener" class="docs-tab">Live Tool &rarr;</a>
       </div>
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="arch" id="panel-arch" role="tabpanel" aria-labelledby="tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram">
       <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
         <defs>
           <marker id="hc-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
@@ -587,7 +615,7 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="panel-prd" role="tabpanel" aria-labelledby="tab-prd">
       <div class="docs-note">
         <p>This page is the build record for the AI vs Human Capital simulation. It covers the
         counterfactual question the tool models, the sourcing discipline behind every
@@ -657,17 +685,17 @@
 
     <div class="cards">
       <div class="card" style="border-left: 3px solid var(--ochre);">
-        <h4>Track A: AI investment</h4>
+        <h3 class="h4">Track A: AI investment</h3>
         <p>Global AI capex modeled forward from historical base year to 2035, resolved to
         cumulative GDP contribution.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--sage);">
-        <h4>Track B: Human capital</h4>
+        <h3 class="h4">Track B: Human capital</h3>
         <p>The same dollars reallocated to education, health, and skills, each with its
         own cited return coefficient.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--dusty);">
-        <h4>Where they meet</h4>
+        <h3 class="h4">Where they meet</h3>
         <p>Both tracks resolve to the same unit, cumulative GDP, so the
         counterfactual is a real comparison, not two incommensurate numbers.</p>
       </div>
@@ -690,17 +718,17 @@
 
     <div class="cards">
       <div class="card">
-        <h4>Published research coefficients</h4>
+        <h3 class="h4">Published research coefficients</h3>
         <p>Returns-to-schooling literature, WHO / World Bank health-ROI ratios. Every value
         traces to a citable source (e.g. Psacharopoulos &amp; Patrinos, 2018).</p>
       </div>
       <div class="card">
-        <h4>Historical ROI multipliers</h4>
+        <h3 class="h4">Historical ROI multipliers</h3>
         <p>Coarser &ldquo;dollar in &rarr; outcome out&rdquo; ratios for broader coverage
         where rigorous published coefficients don&rsquo;t exist.</p>
       </div>
       <div class="card">
-        <h4>Tunable hybrid sliders</h4>
+        <h3 class="h4">Tunable hybrid sliders</h3>
         <p>User-adjustable assumptions for the sandbox&rsquo;s &ldquo;play with it&rdquo; mode.</p>
       </div>
     </div>
@@ -746,8 +774,8 @@
       carries the value, the coefficients that fed it, and an aggregate confidence (the floor
       of its inputs), making the full effect chain auditable end to end.</p>
       <p>A build step exports the ledger and contract fixtures to JSON. The
-      <strong>frontend</strong> is a static Next.js export, no backend at runtime
-, with a client-side TypeScript port of the engine&rsquo;s closed-form math.
+      <strong>frontend</strong> is a static Next.js export, no backend at runtime,
+      with a client-side TypeScript port of the engine&rsquo;s closed-form math.
       Python stays the single source of truth; the TS port is <em>contract-tested</em>
       against the Python fixtures, so the two can never silently drift.</p>
     </div>
@@ -827,7 +855,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Tech stack table">
       <table>
         <thead><tr><th>Layer</th><th>Technology</th><th>Details</th></tr></thead>
         <tbody>
@@ -844,23 +872,39 @@
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Personal Project</div>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: ARIA tablist with click, Left/Right/Home/End and roving tabindex
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

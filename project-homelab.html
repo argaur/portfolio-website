@@ -12,10 +12,12 @@
     <meta property="og:title" content="Personal Homelab, Self-Hosted Infrastructure | Gaurav Gupta">
     <meta property="og:description" content="10+ Docker services, HashiCorp Vault, Prometheus + Grafana, self-hosted on a Linux Mint server. Zero cloud costs, full control.">
     <meta property="og:url" content="https://gauravg.dev/project-homelab.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#0d1117">
 
 <style>
@@ -207,7 +209,7 @@
     letter-spacing: -0.01em;
     margin-bottom: 12px;
   }
-  h4 {
+  h4, h3.h4 {
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -457,6 +459,28 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility: tabs, scroll regions, hit areas, alignment ── */
+  .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible, .scroll-region:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: -2px;
+  }
+  .nav-back, .docs-tab { position: relative; }
+  .nav-back::before, .docs-tab::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: -6px; right: -6px;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+  .docs-tab::before { left: 0; right: 0; }
+  .hero { max-width: 1376px; }
+  #glance table { min-width: 0; }
+  @media (max-width: 580px) {
+    .nav-link { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
+    .nav-link--active::after { bottom: 7px; }
+  }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -473,6 +497,8 @@
     <span class="nav-index">Project &middot; Infra</span>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
@@ -507,7 +533,7 @@
       <li data-kicker="What it is"><b>A self-hosted homelab server.</b><span>10+ containerised services on a dedicated Linux Mint laptop, running 24/7 as a local server.</span></li>
       <li data-kicker="Why self-host"><b>Cloud rents you a service. Self-hosting owns it.</b><span>Cloud charges per service, per seat, per API call. The costs compound, and your data leaves your control.</span></li>
       <li data-kicker="The cost" data-stat="~$0/mo"><b>Versus $50+/mo for the SaaS equivalent.</b><span>Zero cloud costs, full control.</span></li>
-      <li data-kicker="What runs on it"><b>Three layers of services.</b><span>Infrastructure: Portainer, Nginx Proxy Manager, Homepage, AdGuard Home, Vault. Observability: Prometheus, Grafana, Uptime Kuma. Automation: n8n, Ansible Semaphore.</span></li>
+      <li data-kicker="What runs on it"><b>Three layers of services.</b><span>Infrastructure: Portainer, Nginx Proxy Manager, Homepage, AdGuard Home, Tailscale, Vault. Observability: Prometheus, Grafana, Uptime Kuma. Automation: n8n, Ansible Semaphore.</span></li>
       <li data-kicker="Secrets" data-stat="0"><b>Plaintext secrets on disk.</b><span>HashiCorp Vault injects credentials at container startup. No .env files with real secrets committed anywhere.</span></li>
       <li data-kicker="Rebuild"><b>Two commands rebuild the whole server.</b><span>git clone homelab, then ansible-playbook site.yml. State lives in git, not in the OS.</span></li>
       <li data-kicker="Why Docker"><b>Each service is isolated and replaceable.</b><span>Rolling back a broken upgrade means pulling the previous image.</span></li>
@@ -521,16 +547,18 @@
     <div class="docs-head">
       <span class="label">$ ls documentation/</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="about">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Homelab documentation">
+          <button type="button" role="tab" id="tab-arch" aria-controls="panel-arch" aria-selected="true" tabindex="0" class="docs-tab docs-tab--active" data-doc="arch">Architecture</button>
+          <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="about">About this page</button>
+        </div>
         <a href="https://github.com/argaur/homelab-v2" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
       </div>
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel" data-panel="arch">
-      <div class="docs-scroll">
-      <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+    <div class="docs-panel" data-panel="arch" id="panel-arch" role="tabpanel" aria-labelledby="tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Homelab architecture diagram">
+      <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" role="img" aria-label="Homelab system architecture: AdGuard Home, Nginx Proxy Manager and Tailscale in front of n8n, Prometheus and Grafana, Vault and Portainer, provisioned by Ansible">
         <defs>
           <marker id="hl-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
             <path d="M0,0 L8,3.5 L0,7 Z" fill="#6e7681"/>
@@ -555,12 +583,12 @@
         <!-- ── NETWORKING layer (y=100 top) ── -->
         <text x="370" y="82" text-anchor="middle" fill="#6e7681" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.08em">NETWORKING</text>
 
-        <!-- Pi-hole -->
+        <!-- AdGuard Home -->
         <rect x="85" y="100" width="130" height="44" fill="#1c2128" stroke="#30363d" stroke-width="1"/>
-        <text x="150" y="118" text-anchor="middle" fill="#c9d1d9" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">Pi-hole</text>
+        <text x="150" y="118" text-anchor="middle" fill="#c9d1d9" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">AdGuard Home</text>
         <text x="150" y="134" text-anchor="middle" fill="#8b949e" font-family="IBM Plex Sans, sans-serif" font-size="8" opacity="0.8">DNS filtering</text>
 
-        <!-- Arrow Pi-hole → Nginx -->
+        <!-- Arrow AdGuard Home → Nginx -->
         <line x1="215" y1="122" x2="288" y2="122" stroke="#6e7681" stroke-width="1" marker-end="url(#hl-arr)"/>
 
         <!-- Nginx Proxy -->
@@ -621,7 +649,7 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="about">
+    <div class="docs-panel docs-panel--hidden" data-panel="about" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
       <div class="docs-note">
         <p>This page is the build record for the homelab. It covers why a builder self-hosts
         in the first place, exactly what runs on the box today, the reasoning behind the
@@ -700,22 +728,23 @@
       <p>Each service lives in its own <code>/stacks/</code> directory with a dedicated
       <code>docker-compose.yml</code>. Services are grouped by function, infrastructure
       layer, monitoring layer, automation layer. Nginx Proxy Manager handles routing; AdGuard
-      Home handles DNS at the network level.</p>
+      Home handles DNS at the network level; Tailscale gives remote access without opening ports.</p>
     </div>
 
     <div class="cards">
       <div class="card">
-        <h4>Infrastructure Layer</h4>
+        <h3 class="h4">Infrastructure Layer</h3>
         <ul>
           <li><strong>Portainer</strong>, Docker container management UI, visual overview of all running stacks</li>
           <li><strong>Nginx Proxy Manager</strong>, reverse proxy with SSL termination for local services</li>
           <li><strong>Homepage</strong>, unified dashboard (port 3333) showing all services at a glance</li>
           <li><strong>AdGuard Home</strong>, network-wide DNS filtering, local DNS resolver</li>
+          <li><strong>Tailscale</strong>, VPN mesh for secure remote access from my other devices</li>
           <li><strong>HashiCorp Vault</strong>, secrets management; all credentials injected at runtime, none stored in files</li>
         </ul>
       </div>
       <div class="card">
-        <h4>Observability Layer</h4>
+        <h3 class="h4">Observability Layer</h3>
         <ul>
           <li><strong>Prometheus</strong>, metrics scraping from all services</li>
           <li><strong>Grafana</strong>, dashboards for system health, service uptime, resource usage</li>
@@ -723,7 +752,7 @@
         </ul>
       </div>
       <div class="card">
-        <h4>Automation Layer</h4>
+        <h3 class="h4">Automation Layer</h3>
         <ul>
           <li><strong>n8n</strong>, self-hosted workflow automation, integrations without API key exposure</li>
           <li><strong>Ansible Semaphore</strong>, web UI for running Ansible playbooks; used for provisioning and updates</li>
@@ -757,8 +786,8 @@
 
     <div class="callout">
       <p><strong>Why Ansible Semaphore?</strong> Ansible playbooks handle provisioning and
-      service updates. Semaphore gives a UI to run them without needing to SSH in each time
-, and creates an audit trail of what ran when.</p>
+      service updates. Semaphore gives a UI to run them without needing to SSH in each time,
+      and creates an audit trail of what ran when.</p>
     </div>
   </div>
 </div>
@@ -773,32 +802,34 @@
 
     <div class="cards">
       <div class="card">
-        <h4>Hardware</h4>
+        <h3 class="h4">Hardware</h3>
         <p>Dedicated Linux Mint laptop as server &middot; Windows 11 workstation (remote management via WSL2)</p>
       </div>
       <div class="card">
-        <h4>Containerisation</h4>
+        <h3 class="h4">Containerisation</h3>
         <p>Docker &middot; Docker Compose stacks &middot; Portainer for management</p>
       </div>
       <div class="card">
-        <h4>Security</h4>
+        <h3 class="h4">Security</h3>
         <p>HashiCorp Vault &middot; Nginx Proxy Manager (SSL) &middot; AdGuard Home (DNS)</p>
       </div>
       <div class="card">
-        <h4>Observability</h4>
+        <h3 class="h4">Observability</h3>
         <p>Prometheus &middot; Grafana &middot; Uptime Kuma</p>
       </div>
       <div class="card">
-        <h4>Automation</h4>
+        <h3 class="h4">Automation</h3>
         <p>n8n workflows &middot; Ansible Semaphore &middot; Git-driven IaC</p>
       </div>
       <div class="card">
-        <h4>Access</h4>
-        <p>Homepage dashboard &middot; SSH key auth &middot; Reverse proxy routing</p>
+        <h3 class="h4">Access</h3>
+        <p>Homepage dashboard &middot; Tailscale VPN mesh &middot; SSH key auth &middot; Reverse proxy routing</p>
       </div>
     </div>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Personal Project</div>
@@ -806,17 +837,31 @@
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: ARIA tablist with click, Left/Right/Home/End and roving tabindex
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

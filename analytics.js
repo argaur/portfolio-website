@@ -27,7 +27,8 @@
     api_host: 'https://us.i.posthog.com',
     defaults: '2026-05-30',        // captures history-change pageviews (the panel SPA)
     person_profiles: 'identified_only',
-    autocapture: false             // pageviews only
+    autocapture: false,            // pageviews only
+    disable_surveys: true          // no surveys.js download
   });
 
   // Every event carries which site it came from. This is the canonical fleet key —

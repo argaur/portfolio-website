@@ -12,10 +12,12 @@
     <meta property="og:title" content="JindalX Talent Management: hiring from Excel and paper to one system | Gaurav Gupta">
     <meta property="og:description" content="Six linked specs, one hiring system, and a 50% drop in hiring time.">
     <meta property="og:url" content="https://gauravg.dev/case-study-jindalx-talent.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#f5f3ee">
 
 <style>
@@ -198,7 +200,7 @@
 
   .hero-wrap { border-bottom: 1px solid var(--border); }
   .hero {
-    max-width: 1280px;
+    max-width: 1376px; /* 1280 + 2x48 padding: matches the .sec content edge */
     margin: 0 auto;
     padding: 148px 48px 96px;
   }
@@ -467,6 +469,18 @@
     table.rules tr { display: block; padding: 14px 16px; border-bottom: 1px solid var(--border); }
     table.rules td { display: block; padding: 2px 0; border: 0; white-space: normal; min-width: 0; width: auto; }
   }
+
+  /* ── Accessibility layer (2026-10-12) */
+  .nav-back { position: relative; }
+  .nav-back::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .nav-link { padding-top: 14px; padding-bottom: 14px; }
+  .nav-link--active::after { bottom: 9px; }
+  .docs-tablist { display: contents; }
+  .docs-tab { position: relative; }
+  .docs-tab::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .table-scroll { overflow-x: auto; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+  h3.hx4 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -485,6 +499,8 @@
     <span class="nav-index">Case Study &middot; Enterprise</span>
   </div>
 </nav>
+
+<main id="main">
 
 <div class="hero-wrap">
   <div class="hero">
@@ -511,7 +527,7 @@
       <h2>The short<br /><em>version.</em></h2>
       <span class="label">At a glance</span>
     </div>
-    <div class="table-wrap"><table><tbody><tr><td><strong>Role</strong></td><td>On the digital transformation team. I owned automating hiring end to end. I wrote each PRD and built each system.</td></tr><tr><td><strong>Scope</strong></td><td>About six linked sub-projects over 5 to 6 months.</td></tr><tr><td><strong>What shipped</strong></td><td>A requisition form, a candidate sourcing site, screening and interview rounds, a feedback and rating form, an automatic offer letter and onboarding forms, all in one system.</td></tr><tr><td><strong>Result</strong></td><td>Hiring time fell 50%, measured on the talent acquisition team scorecard.</td></tr><tr><td><strong>Limit</strong></td><td>The AI was one basic OpenAI call at screening. I have no exact accuracy figure, and other changes in that period may also have helped the 50%.</td></tr></tbody></table></div>
+    <div class="table-wrap"><div class="table-scroll" tabindex="0" role="region" aria-label="The short version (table)"><table><tbody><tr><td><strong>Role</strong></td><td>On the digital transformation team. I owned automating hiring end to end. I wrote each PRD and built each system.</td></tr><tr><td><strong>Scope</strong></td><td>About six linked sub-projects over 5 to 6 months.</td></tr><tr><td><strong>What shipped</strong></td><td>A requisition form, a candidate sourcing site, screening and interview rounds, a feedback and rating form, an automatic offer letter and onboarding forms, all in one system.</td></tr><tr><td><strong>Result</strong></td><td>Hiring time fell 50%, measured on the talent acquisition team scorecard.</td></tr><tr><td><strong>Limit</strong></td><td>The AI was one basic OpenAI call at screening. I have no exact accuracy figure, and other changes in that period may also have helped the 50%.</td></tr></tbody></table></div></div>
   </div>
 </div>
 
@@ -579,12 +595,12 @@
       <span class="label">02 &middot; The chain</span>
     </div>
     <div class="cards">
-      <div class="card"><h4>1 &middot; Manpower requisition form</h4><p>Captures salary band, department, years of experience and city. Every field is mandatory.</p></div>
-      <div class="card"><h4>2 &middot; Candidate sourcing site</h4><p>Part of the same chain, on the same strict data structure.</p></div>
-      <div class="card"><h4>3 &middot; Screening and interview rounds</h4><p>The only AI step lives here: a skill match against the requisition.</p></div>
-      <div class="card"><h4>4 &middot; Feedback and rating form</h4><p>Managers file round feedback through an automated form sent by email.</p></div>
-      <div class="card"><h4>5 &middot; Automatic offer letter</h4><p>The hiring team picks band, salary structure, department and role. The system builds the letter and emails it.</p></div>
-      <div class="card"><h4>6 &middot; Onboarding forms</h4><p>On acceptance, forms go out by email. The hiring team is told when they are complete.</p></div>
+      <div class="card"><h3 class="hx4">1 &middot; Manpower requisition form</h3><p>Captures salary band, department, years of experience and city. Every field is mandatory.</p></div>
+      <div class="card"><h3 class="hx4">2 &middot; Candidate sourcing site</h3><p>Part of the same chain, on the same strict data structure.</p></div>
+      <div class="card"><h3 class="hx4">3 &middot; Screening and interview rounds</h3><p>The only AI step lives here: a skill match against the requisition.</p></div>
+      <div class="card"><h3 class="hx4">4 &middot; Feedback and rating form</h3><p>Managers file round feedback through an automated form sent by email.</p></div>
+      <div class="card"><h3 class="hx4">5 &middot; Automatic offer letter</h3><p>The hiring team picks band, salary structure, department and role. The system builds the letter and emails it.</p></div>
+      <div class="card"><h3 class="hx4">6 &middot; Onboarding forms</h3><p>On acceptance, forms go out by email. The hiring team is told when they are complete.</p></div>
     </div>
     <h3 class="h3-spaced">One product, two views</h3>
     <div class="two-col">
@@ -604,7 +620,7 @@
       <p>I chose the offer letter for the deep dive. A wrong letter is a wrong salary in a signed
       document. It had the most rules and the most edge cases of the six.</p>
     </div>
-    <div class="table-wrap"><div class="table-scroll"><table class="rules">
+    <div class="table-wrap"><div class="table-scroll" tabindex="0" role="region" aria-label="The offer letter. Where a wrong rule costs money (table)"><table class="rules">
       <thead><tr><th>Rule</th><th>What it did</th></tr></thead>
       <tbody><tr><td><strong>Band sets the default</strong></td><td>Band comes from role and hierarchy, and it sets the default salary structure.</td></tr><tr><td><strong>Low pay adds components</strong></td><td>Government minimum pay rules added salary components for low BPO pay.</td></tr><tr><td><strong>City changes the structure</strong></td><td>JindalX hired in many cities. A component added for one city had to be removed for another. Leave policy also differed by city.</td></tr><tr><td><strong>Client pay beats the band</strong></td><td>If the client approved Rs 20,000 for an agent and the band said Rs 25,000, the 20,000 won.</td></tr><tr><td><strong>Manager override, by design</strong></td><td>Some cases were too tricky to write as rules. Only manager-level users could pick a different band. Individual TAs could not.</td></tr></tbody>
     </table></div></div>
@@ -663,11 +679,11 @@
       <span class="label">05 &middot; Review chain</span>
     </div>
     <div class="cards">
-      <div class="card"><h4>1 &middot; Author</h4><p>Me.</p></div>
-      <div class="card"><h4>2 &middot; My boss</h4><p>The AGM of the digital transformation team.</p></div>
-      <div class="card"><h4>3 &middot; Business head</h4><p>The head of the talent acquisition department.</p></div>
-      <div class="card"><h4>4 &middot; People team</h4><p>The C-suite head of the HR function.</p></div>
-      <div class="card"><h4>In parallel &middot; Growth</h4><p>The Chief Growth Officer, who sat level with the CEO and COO and led the digital transformation team directly.</p></div>
+      <div class="card"><h3 class="hx4">1 &middot; Author</h3><p>Me.</p></div>
+      <div class="card"><h3 class="hx4">2 &middot; My boss</h3><p>The AGM of the digital transformation team.</p></div>
+      <div class="card"><h3 class="hx4">3 &middot; Business head</h3><p>The head of the talent acquisition department.</p></div>
+      <div class="card"><h3 class="hx4">4 &middot; People team</h3><p>The C-suite head of the HR function.</p></div>
+      <div class="card"><h3 class="hx4">In parallel &middot; Growth</h3><p>The Chief Growth Officer, who sat level with the CEO and COO and led the digital transformation team directly.</p></div>
     </div>
   </div>
 </div>
@@ -718,6 +734,8 @@
     </div>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Enterprise case study &middot; JindalX</div>

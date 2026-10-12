@@ -8,14 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-gws-cli.html">
-    <meta name="description" content="Project: GWS CLI, a Python command-line tool for Gmail and Google Calendar APIs. Built by Gaurav Gupta.">
+    <meta name="description" content="Project: GWS CLI, a Python command-line tool that reads Gmail, Google Calendar, Drive, Tasks and Contacts. Built by Gaurav Gupta.">
     <meta property="og:title" content="GWS CLI, Google Workspace CLI Tool | Gaurav Gupta">
-    <meta property="og:description" content="A Python CLI for Gmail and Google Calendar APIs. Faster than switching browser tabs.">
+    <meta property="og:description" content="A Python CLI that reads five Google Workspace APIs from the terminal. Read-only today.">
     <meta property="og:url" content="https://gauravg.dev/project-gws-cli.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#1e1e1e">
 
 <style>
@@ -128,6 +130,9 @@
     color: var(--text-2);
     transition: color 0.14s ease;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
   .nav-back:hover { color: var(--blue); }
   .nav-right { display: flex; align-items: center; gap: 28px; }
@@ -203,13 +208,14 @@
     letter-spacing: -0.01em;
     margin-bottom: 10px;
   }
+  .card h3 { font-size: 0.95rem; letter-spacing: -0.01em; margin-bottom: 10px; }
   .h3-spaced { margin-top: 48px; }
 
   /* ── Hero ────────────────────────────────────────────────── */
 
   .hero-wrap { border-bottom: 1px solid var(--border); }
   .hero {
-    max-width: 1280px;
+    max-width: 1376px; /* 1280 content + 2 x 48px padding, matches .sec-inner */
     margin: 0 auto;
     padding: 148px 48px 96px;
   }
@@ -338,6 +344,35 @@
     color: var(--blue);
   }
 
+  /* ── Tables ──────────────────────────────────────────────── */
+
+  .table-wrap { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-top: 24px; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.675rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--surface-2);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-2);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    background: var(--surface);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--ink); font-family: var(--mono); font-weight: 700; }
+
   /* ── Two column ──────────────────────────────────────────── */
 
   .two-col {
@@ -358,7 +393,7 @@
     gap: 16px;
     margin-bottom: 28px;
   }
-  .docs-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-tabs, .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
   .docs-tab {
     font-family: var(--mono);
     font-size: 0.72rem;
@@ -372,7 +407,10 @@
     cursor: pointer;
     text-decoration: none;
     transition: all 0.14s ease;
+    position: relative;
   }
+  /* 44px hit area without changing the drawn size */
+  .docs-tab::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }
   .docs-tab:hover { border-color: var(--blue); color: var(--blue); }
   .docs-tab--active { background: var(--blue); border-color: var(--blue); color: #0b0b0c; }
   .docs-panel {
@@ -383,6 +421,7 @@
   }
   .docs-panel--hidden { display: none; }
   .docs-scroll { overflow-x: auto; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
   .docs-scroll svg { min-width: 720px; }
   .docs-note { padding: 32px; }
 
@@ -419,6 +458,8 @@
       -ms-overflow-style: none;
     }
     .nav-right::-webkit-scrollbar { display: none; }
+    .nav-link { display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link--active::after { bottom: 8px; }
     .two-col { grid-template-columns: 1fr; gap: 32px; }
     .cards { grid-template-columns: 1fr; }
     .card { padding: 28px 24px; }
@@ -446,20 +487,22 @@
   </div>
 </nav>
 
+<main id="main">
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
     <span class="label label-strong">Personal Project <span class="dots"><span></span><span></span><span></span><span></span></span> Python CLI</span>
     <h1>Google Workspace,<br /><em>from the terminal.</em></h1>
     <p class="hero-sub">
-      A Python command-line tool for Gmail and Google Calendar, search, draft, and
-      schedule without opening a browser. The CLI core works; the scheduled-automation layer
-      around it never did, and is currently paused.
+      A Python command-line tool that reads Gmail, Calendar, Drive, Tasks and Contacts
+      without opening a browser. It is read-only today. The CLI core works. The
+      scheduled-automation layer around it never did, and is paused.
     </p>
     <div class="meta-row">
       <span class="meta-tag">python</span>
       <span class="meta-tag">gmail-api</span>
       <span class="meta-tag">calendar-api</span>
+      <span class="meta-tag">read-only</span>
       <span class="meta-tag">cli</span>
     </div>
   </div>
@@ -475,12 +518,12 @@
     </div>
     <div class="trailer-frame"></div>
     <ol class="trailer-slides">
-      <li data-kicker="What it is"><b>Google Workspace, from the terminal.</b><span>A Python command-line tool for Gmail and Google Calendar. Search, draft and schedule without opening a browser.</span></li>
-      <li data-kicker="Gmail"><b>Search, read, draft and label.</b><span>gws mail search "invoice from:accounts@vendor.com"</span></li>
-      <li data-kicker="Calendar"><b>List, create and check availability.</b><span>gws cal list --tomorrow</span></li>
+      <li data-kicker="What it is"><b>Google Workspace, from the terminal.</b><span>A Python command-line tool that reads five Google APIs: Gmail, Calendar, Drive, Tasks and Contacts.</span></li>
+      <li data-kicker="Gmail"><b>Search, read and digest.</b><span>python cli.py gmail search "invoice from:accounts@vendor.com"</span></li>
+      <li data-kicker="Calendar"><b>Today and the days ahead.</b><span>python cli.py cal upcoming --days 7</span></li>
       <li data-kicker="The design"><b>Thin wrappers, clean output.</b><span>No heavy abstraction. No config files beyond OAuth credentials. Plain synchronous Python.</span></li>
       <li data-kicker="Status"><b>The core works. Automation is paused.</b><span>The scheduled-automation layer never completed a successful run and was dismantled.</span></li>
-      <li data-kicker="If revived"><b>Automation moves to the always-on Telegram bot.</b><span>rclone for Google Drive sync stays a possible extension of the CLI itself.</span></li>
+      <li data-kicker="Not built"><b>Write actions stay a plan.</b><span>Drafts, sending and event creation were planned. The code holds read-only scopes only.</span></li>
     </ol>
     <p class="trailer-note">What it is, who it is for and what shipped. The full case study follows below.</p>
   </div>
@@ -491,17 +534,19 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="about">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Documentation views">
+          <button type="button" class="docs-tab docs-tab--active" data-doc="flow" role="tab" id="doc-tab-flow" aria-controls="doc-panel-flow" aria-selected="true" tabindex="0">User Flow</button>
+          <button type="button" class="docs-tab" data-doc="arch" role="tab" id="doc-tab-arch" aria-controls="doc-panel-arch" aria-selected="false" tabindex="-1">Architecture</button>
+          <button type="button" class="docs-tab" data-doc="about" role="tab" id="doc-tab-about" aria-controls="doc-panel-about" aria-selected="false" tabindex="-1">About this page</button>
+        </div>
         <a href="https://github.com/argaur/personal-ai-assistant/tree/main/gws-cli" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
       </div>
     </div>
 
     <!-- USER FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;" aria-label="CLI Command Flow, GWS CLI">
+    <div class="docs-panel" data-panel="flow" id="doc-panel-flow" role="tabpanel" aria-labelledby="doc-tab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="User flow diagram, scrolls sideways">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;" aria-label="CLI Command Flow, GWS CLI">
         <defs>
           <marker id="gf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
             <path d="M0,0 L0,6 L8,3 z" fill="#808080"/>
@@ -511,14 +556,14 @@
         <text x="450" y="26" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="10" font-weight="700" letter-spacing="2" fill="#9a9a9a">CLI COMMAND FLOW, GWS CLI</text>
 
         <rect x="80" y="100" width="140" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
-        <text x="150" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">gws &lt;cmd&gt;</text>
+        <text x="150" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">cli.py &lt;cmd&gt;</text>
         <text x="150" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">User runs CLI</text>
 
         <line x1="222" y1="122" x2="258" y2="122" stroke="#808080" stroke-width="1.5" marker-end="url(#gf-arr)"/>
 
         <rect x="260" y="100" width="140" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
         <text x="330" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">Arg Parser</text>
-        <text x="330" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Click / argparse</text>
+        <text x="330" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Click</text>
 
         <line x1="402" y1="122" x2="448" y2="122" stroke="#808080" stroke-width="1.5" marker-end="url(#gf-arr)"/>
 
@@ -532,26 +577,27 @@
 
         <rect x="640" y="100" width="140" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
         <text x="710" y="119" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">API Call</text>
-        <text x="710" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Gmail / Calendar</text>
+        <text x="710" y="135" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">5 read-only APIs</text>
 
         <path d="M710,144 L710,200 L540,200 L540,228" stroke="#808080" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)"/>
         <path d="M710,144 L710,200 L840,200 L840,228" stroke="#808080" stroke-width="1.5" fill="none" marker-end="url(#gf-arr)"/>
 
         <rect x="460" y="228" width="160" height="44" fill="#2d2d2e" stroke="#ea4335"/>
         <text x="540" y="247" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#ea4335">Gmail API</text>
-        <text x="540" y="263" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">search, draft, send</text>
+        <text x="540" y="263" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">search, read, digest</text>
 
         <rect x="750" y="228" width="130" height="44" fill="#2d2d2e" stroke="#34a853"/>
         <text x="815" y="247" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#34a853">Calendar API</text>
-        <text x="815" y="263" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">list, create, update</text>
+        <text x="815" y="263" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">today, upcoming</text>
+        <text x="670" y="296" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Also: Drive, Tasks and People (Contacts) APIs, read-only</text>
       </svg>
       </div>
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;" aria-label="System Architecture, GWS CLI">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="doc-panel-arch" role="tabpanel" aria-labelledby="doc-tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram, scrolls sideways">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;" aria-label="System Architecture, GWS CLI">
         <defs>
           <marker id="ga-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
             <path d="M0,0 L0,6 L8,3 z" fill="#808080"/>
@@ -574,13 +620,13 @@
 
         <rect x="22" y="118" width="155" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
         <text x="100" y="137" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">CLI Entrypoint</text>
-        <text x="100" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Click / argparse</text>
+        <text x="100" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Click</text>
 
         <line x1="178" y1="140" x2="214" y2="140" stroke="#808080" stroke-width="1.5" marker-end="url(#ga-arr)"/>
 
         <rect x="216" y="118" width="168" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
-        <text x="300" y="137" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">gmail.py + calendar.py</text>
-        <text x="300" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">Command modules</text>
+        <text x="300" y="137" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">gws/*.py</text>
+        <text x="300" y="153" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">5 API modules</text>
 
         <line x1="386" y1="140" x2="428" y2="140" stroke="#808080" stroke-width="1.5" marker-end="url(#ga-arr)"/>
 
@@ -593,11 +639,14 @@
 
         <rect x="720" y="110" width="140" height="44" fill="#2d2d2e" stroke="#ea4335"/>
         <text x="790" y="129" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#ea4335">Gmail REST API</text>
-        <text x="790" y="145" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">search &middot; draft &middot; send</text>
+        <text x="790" y="145" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">search &middot; read &middot; digest</text>
 
         <rect x="720" y="175" width="140" height="44" fill="#2d2d2e" stroke="#34a853"/>
         <text x="790" y="194" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#34a853">Calendar REST API</text>
-        <text x="790" y="210" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">list &middot; create &middot; update</text>
+        <text x="790" y="210" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">today &middot; upcoming</text>
+
+        <text x="790" y="244" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="10" fill="#d4d4d4">+ Drive, Tasks, People</text>
+        <text x="790" y="260" text-anchor="middle" font-family="Roboto, sans-serif" font-size="10" fill="#9a9a9a">all read-only scopes</text>
 
         <rect x="445" y="238" width="130" height="44" fill="#2d2d2e" stroke="#3c3c3c"/>
         <text x="510" y="257" text-anchor="middle" font-family="Roboto Mono, monospace" font-size="11" font-weight="700" fill="#d4d4d4">token.json</text>
@@ -617,11 +666,11 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="about">
+    <div class="docs-panel docs-panel--hidden" data-panel="about" id="doc-panel-about" role="tabpanel" aria-labelledby="doc-tab-about">
       <div class="docs-note">
         <p>This page is the build record for GWS CLI, a Python command-line tool that
-        wraps the Gmail and Google Calendar APIs so common tasks never require opening a
-        browser tab.</p>
+        reads five Google Workspace APIs (Gmail, Calendar, Drive, Tasks and Contacts), so
+        common lookups never require opening a browser tab.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
       </div>
     </div>
@@ -637,16 +686,16 @@
     </div>
 
     <div class="prose">
-      <p>GWS CLI (Google Workspace CLI) is a Python tool that wraps the Gmail and Google
-      Calendar APIs with a command-line interface. The goal: handle the most common Gmail
-      and Calendar tasks without switching to a browser, without navigating a UI, and
-      without context-switching out of the terminal.</p>
+      <p>GWS CLI (Google Workspace CLI) is a Python tool that puts five Google Workspace
+      APIs behind one command-line interface. The goal: handle the most common lookups
+      without switching to a browser, without navigating a UI, and without leaving the
+      terminal.</p>
     </div>
 
     <div class="callout-box">
-      <p><span class="cmd">$ gws mail search "invoice from:accounts@vendor.com"</span></p>
-      <p>The interface is intentionally thin, thin wrappers over the Google APIs with
-      clean output. No heavy abstraction, no config files required beyond OAuth credentials.</p>
+      <p><span class="cmd">$ python cli.py gmail search "invoice from:accounts@vendor.com"</span></p>
+      <p>The interface is intentionally thin: small wrappers over the Google APIs with
+      clean output. No heavy abstraction. No config files beyond OAuth credentials.</p>
     </div>
   </div>
 </div>
@@ -655,24 +704,51 @@
 <div class="sec" id="capabilities">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Two APIs,<br /><em>one interface.</em></h2>
+      <h2>Five APIs,<br /><em>all read-only today.</em></h2>
       <span class="label">Capabilities</span>
+    </div>
+
+    <div class="prose">
+      <p>Every scope the tool asks for is read-only. It reads and reports. It does not
+      write to any Google account.</p>
     </div>
 
     <div class="cards">
       <div class="card" style="border-left: 3px solid var(--red);">
         <div class="card-icon" style="color:var(--red)">M</div>
-        <h4 style="color:var(--red)">Gmail</h4>
-        <p>Search threads, read messages, create drafts, and manage labels from the command
-        line.</p>
-        <p><span class="cmd">$ gws mail draft --to jane@co.com --subject "Re: Q3"</span></p>
+        <h3 style="color:var(--red)">Gmail</h3>
+        <p>Search messages and read one in full. A digest command scans newsletters and
+        uses the Claude API to keep only what is relevant.</p>
+        <p><span class="cmd">$ python cli.py gmail digest --days 2</span></p>
       </div>
       <div class="card" style="border-left: 3px solid var(--green);">
         <div class="card-icon" style="color:var(--green)">C</div>
-        <h4 style="color:var(--green)">Google Calendar</h4>
-        <p>List upcoming events, create events, and check availability, without
-        opening a browser tab.</p>
-        <p><span class="cmd">$ gws cal list --tomorrow</span></p>
+        <h3 style="color:var(--green)">Google Calendar</h3>
+        <p>List today's events, look a few days ahead, and list calendars.</p>
+        <p><span class="cmd">$ python cli.py cal upcoming --days 7</span></p>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--blue);">
+        <div class="card-icon" style="color:var(--blue)">D</div>
+        <h3 style="color:var(--blue)">Drive, Tasks, Contacts</h3>
+        <p>Search Drive by file name or list recent files. List open tasks. Look up a
+        contact by email through the People API.</p>
+        <p><span class="cmd">$ python cli.py drive recent</span></p>
+      </div>
+    </div>
+
+    <h3 class="h3-spaced">Built versus planned</h3>
+    <div class="table-wrap">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Built versus planned API scope">
+        <table>
+          <thead><tr><th>API</th><th>In the code today</th><th>Planned, not built</th></tr></thead>
+          <tbody>
+            <tr><td>Gmail</td><td>search, read, newsletter scan, digest</td><td>drafts, sending, labels</td></tr>
+            <tr><td>Calendar</td><td>today, upcoming, list calendars</td><td>creating or updating events</td></tr>
+            <tr><td>Drive</td><td>search by name, recent files</td><td>none</td></tr>
+            <tr><td>Tasks</td><td>list tasks</td><td>none</td></tr>
+            <tr><td>People (Contacts)</td><td>look up by email</td><td>none</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -689,7 +765,7 @@
     <div class="stats">
       <div class="stat">
         <span class="stat-num" style="color:var(--green)">Built</span>
-        <span class="stat-lbl">Core Gmail + Calendar CLI, manual use</span>
+        <span class="stat-lbl">Read-only CLI over 5 Google APIs, manual use</span>
       </div>
       <div class="stat">
         <span class="stat-num" style="color:var(--yellow)">Paused</span>
@@ -697,24 +773,23 @@
       </div>
       <div class="stat">
         <span class="stat-num" style="color:var(--yellow)">Not started</span>
-        <span class="stat-lbl">Telegram trigger + rclone integration</span>
+        <span class="stat-lbl">Write actions: drafts, sending, events</span>
       </div>
     </div>
 
     <h3 class="h3-spaced">Why the automation layer is paused</h3>
     <div class="prose">
       <p>The CLI commands work when run by hand. The scheduled-automation layer built around
-      them, unattended newsletter digests, idea mining into Obsidian, never
+      them (unattended newsletter digests, idea mining into Obsidian) never
       completed a single successful run and was dismantled. Reviving it means fixing the
       scheduling setup and re-authenticating before any of it runs unattended again.</p>
     </div>
 
     <h3 class="h3-spaced">Possible next steps</h3>
     <div class="prose">
-      <p>If revived, the automation would more likely move to the always-on Telegram bot this
-      project already integrates with, rather than a machine that isn't always running.
-      rclone integration for Google Drive sync remains a possible extension of the CLI itself,
-      independent of the automation question.</p>
+      <p>Nothing is scheduled. If the tool comes back, the first step is write scopes for
+      drafts and calendar events, behind a confirm step. rclone for Google Drive sync is a
+      possible extension of the CLI itself, apart from the automation question.</p>
     </div>
   </div>
 </div>
@@ -729,20 +804,22 @@
 
     <div class="cards">
       <div class="card">
-        <h4>Language</h4>
+        <h3>Language</h3>
         <p>Python &middot; synchronous (no async required for Google API calls)</p>
       </div>
       <div class="card">
-        <h4>APIs</h4>
-        <p>Gmail API &middot; Google Calendar API &middot; OAuth 2.0 for authentication</p>
+        <h3>APIs in use</h3>
+        <p>Gmail &middot; Calendar &middot; Drive &middot; Tasks &middot; People, all read-only &middot; OAuth 2.0 &middot; Claude API for the digest</p>
       </div>
       <div class="card">
-        <h4>Planned Integrations</h4>
-        <p>Telegram Bot API (trigger) &middot; rclone (Google Drive sync)</p>
+        <h3>Planned, not built</h3>
+        <p>Write scopes for Gmail drafts and Calendar events &middot; rclone (Google Drive sync)</p>
       </div>
     </div>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Personal Project</div>
@@ -750,17 +827,31 @@
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: click or Left/Right/Home/End, roving tabindex, aria-selected kept in sync
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
-  var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  var list = document.querySelector('.docs-tablist[role="tablist"]');
+  if (!list) return;
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var p = document.getElementById(t.getAttribute('aria-controls'));
+      if (p) p.classList.toggle('docs-panel--hidden', !on);
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

@@ -8,14 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/case-study-personal-ai-assistant.html">
-    <meta name="description" content="Case study: Personal AI Assistant, an open-source personal AI operating system. A Telegram bot (28 commands, tiered Claude Haiku/Sonnet orchestration), a custom Google Workspace CLI, and a parallel Hermes agent. Built by Gaurav Gupta.">
+    <meta name="description" content="Case study: Personal AI Assistant, an always-on personal assistant I built and ran, now retired. A Telegram bot (28 commands, tiered Claude Haiku/Sonnet orchestration), a custom Google Workspace CLI, and a parallel Hermes agent. Built by Gaurav Gupta.">
     <meta property="og:title" content="Personal AI Assistant, A Personal AI Operating System | Gaurav Gupta">
-    <meta property="og:description" content="Open source. A Telegram bot with 28 commands and tiered Claude orchestration, a custom Google Workspace CLI, and a parallel Hermes agent, running 24/7 on a $5 VM.">
+    <meta property="og:description" content="Open source. A Telegram bot with 28 commands and tiered Claude orchestration, a custom Google Workspace CLI, and a parallel Hermes agent. It ran on a $5 VM and is now retired.">
     <meta property="og:url" content="https://gauravg.dev/case-study-personal-ai-assistant.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#0D1117">
 
 <style>
@@ -177,7 +179,7 @@
     letter-spacing: -0.01em;
     margin-bottom: 12px;
   }
-  h4 {
+  h4, h3.h4 {
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -251,6 +253,9 @@
     background: var(--green);
     box-shadow: 0 0 0 3px rgba(63,185,80,0.18);
   }
+  /* Retired: grey dot, so the chip never reads as a live service. */
+  .chip-retired { color: var(--text-2); }
+  .chip-retired::before { background: var(--text-3); box-shadow: 0 0 0 3px rgba(110,118,129,0.2); }
 
   /* ── Links in prose ──────────────────────────────────────── */
 
@@ -470,6 +475,28 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility: tabs, scroll regions, hit areas, alignment ── */
+  .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible, .scroll-region:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: -2px;
+  }
+  .nav-back, .docs-tab { position: relative; }
+  .nav-back::before, .docs-tab::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: -6px; right: -6px;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+  .docs-tab::before { left: 0; right: 0; }
+  .hero { max-width: 1376px; }
+  #glance table { min-width: 0; }
+  @media (max-width: 580px) {
+    .nav-link { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
+    .nav-link--active::after { bottom: 7px; }
+  }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -483,9 +510,11 @@
     <a href="#agents" class="nav-link">Agents</a>
     <a href="#automations" class="nav-link">Automations</a>
     <a href="#status" class="nav-link">Status</a>
-    <span class="nav-index">Case Study 06</span>
+    <span class="nav-index">Case Study</span>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
@@ -493,9 +522,10 @@
     <span class="label label-strong">$ open-source project &middot; built &amp; run in production, since retired</span>
     <h1>Personal AI Assistant: <em>no GUI, just commands.</em></h1>
     <p class="hero-sub">
-      A personal AI operating system I designed, built, and run 24/7 on a single $5 VM. One
-      Telegram bot with 28 commands and tiered Claude orchestration, a custom Google Workspace
-      CLI behind one OAuth flow, and a parallel Hermes agent, consolidated into one public,
+      An always-on personal assistant I built and ran, now retired. This case records the
+      architecture, workflows and lessons from that version: one Telegram bot with 28 commands
+      and tiered Claude orchestration, a custom Google Workspace CLI behind one OAuth flow, and
+      a parallel Hermes agent, all on a single $5 VM. The code lives on as one public,
       recruiter-readable repo.
     </p>
     <div class="meta-row">
@@ -525,10 +555,10 @@
     <div class="trailer-frame"></div>
     <ol class="trailer-slides">
       <li data-kicker="The problem"><b>Context-switching was the tax.</b><span>Six-plus apps just to save an idea, log a thought or check a calendar. I wanted one interface that reached all of them.</span></li>
-      <li data-kicker="What I built"><b>One bot. 28 commands.</b><span>A Telegram bot on a single $5 VM, a custom Google Workspace CLI behind one OAuth flow, and a parallel Hermes agent.</span></li>
-      <li data-kicker="Architecture"><b>One entry point, any system.</b><span>A keyword router sends matched commands to typed handlers. Everything else falls through to Claude Haiku.</span></li>
-      <li data-kicker="Models"><b>Tiered. Spend where it counts.</b><span>Most calls run on Claude Haiku, cheap and fast enough to feel instant over chat.</span></li>
-      <li data-kicker="Scale" data-stat="5"><b>Daily automations on one VM.</b><span>Ten integrated services and an always-on server for $5 a month.</span></li>
+      <li data-kicker="What I built"><b>One bot. 28 commands.</b><span>A Telegram bot that ran on a single $5 VM, a custom Google Workspace CLI behind one OAuth flow, and a parallel Hermes agent.</span></li>
+      <li data-kicker="Architecture"><b>One entry point, any system.</b><span>A keyword router sent matched commands to typed handlers. Everything else fell through to Claude Haiku.</span></li>
+      <li data-kicker="Models"><b>Tiered. Spend where it counts.</b><span>Most calls ran on Claude Haiku, cheap and fast enough to feel instant over chat.</span></li>
+      <li data-kicker="Scale" data-stat="5"><b>Daily automations on one VM.</b><span>Ten integrated services on an always-on server that cost $5 a month.</span></li>
       <li data-kicker="Where it stands"><b>Built, run and retired.</b><span>It ran in production. The bot is retired, and the code lives on as an open-source repo.</span></li>
     </ol>
     <p class="trailer-note">What it is, who it is for and what shipped. The full case study follows below.</p>
@@ -540,17 +570,19 @@
     <div class="docs-head">
       <span class="label">$ documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">Command Flow</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="llm">LLM Orchestration</button>
-        <button class="docs-tab" data-doc="about">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Personal AI Assistant documentation">
+          <button type="button" role="tab" id="tab-flow" aria-controls="panel-flow" aria-selected="true" tabindex="0" class="docs-tab docs-tab--active" data-doc="flow">Command Flow</button>
+          <button type="button" role="tab" id="tab-arch" aria-controls="panel-arch" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="arch">Architecture</button>
+          <button type="button" role="tab" id="tab-llm" aria-controls="panel-llm" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="llm">LLM Orchestration</button>
+          <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="about">About this page</button>
+        </div>
         <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
       </div>
     </div>
 
     <!-- COMMAND FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="flow" id="panel-flow" role="tabpanel" aria-labelledby="tab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Command routing flow diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;" aria-label="Command Routing Flow">
         <defs>
           <marker id="tb-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -591,14 +623,14 @@
         <text x="738" y="239" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0D1117">Claude Haiku</text>
         <text x="738" y="255" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#0D1117" opacity="0.75">freetext catch-all</text>
 
-        <text x="450" y="295" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#D29922">&#x2192; No keyword match falls through to Claude Haiku, Tavily-grounded for factual queries</text>
+        <text x="450" y="295" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#D29922">&#x2192; No keyword match fell through to Claude Haiku, Tavily-grounded for factual queries</text>
       </svg>
       </div>
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="panel-arch" role="tabpanel" aria-labelledby="tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="System architecture diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;" aria-label="System Architecture">
         <defs>
           <marker id="tb-arch-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -648,14 +680,14 @@
         <text x="800" y="308" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#0D1117" opacity="0.75">Haiku + Sonnet</text>
         <path d="M527,150 L628,150 L628,295 L728,295" stroke="#6E7681" stroke-width="1" stroke-dasharray="4,3" fill="none" marker-end="url(#tb-arch-arr)"/>
 
-        <text x="450" y="345" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#D29922">A hand-built keyword router and a parallel Hermes agent run side by side on the same VM</text>
+        <text x="450" y="345" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#D29922">A hand-built keyword router and a parallel Hermes agent ran side by side on the same VM</text>
       </svg>
       </div>
     </div>
 
     <!-- LLM ORCHESTRATION -->
-    <div class="docs-panel docs-panel--hidden" data-panel="llm">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="llm" id="panel-llm" role="tabpanel" aria-labelledby="tab-llm">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="LLM orchestration diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" style="width:100%;display:block;" aria-label="LLM Orchestration, tiered models and the two-call apply flow">
         <defs>
           <marker id="tb-llm-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -704,12 +736,12 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="about">
+    <div class="docs-panel docs-panel--hidden" data-panel="about" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
       <div class="docs-note">
         <p>This page is the build record for Personal AI Assistant. It covers the context-switching
-        problem, the router + tiered-model architecture, the two agents running side by side, the
-        command surface, the daily cron automations, and the honest state of what's shipped and
-        running in production.</p>
+        problem, the router + tiered-model architecture, the two agents that ran side by side, the
+        command surface, the daily cron automations, and the honest state of the project: it ran
+        in production and is now retired.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
       </div>
     </div>
@@ -760,26 +792,27 @@
     </div>
 
     <div class="prose">
-      <p>A single bot listener runs on an Oracle Cloud free-tier VM (systemd, always-on). Every
-      Telegram message goes through a keyword router in <code>bot/router.py</code>. Matched
-      commands dispatch to typed handlers; unmatched messages fall through to Claude Haiku
-, Tavily-grounded for factual queries. Adding a new command is one import and one list
+      <p>A single bot listener ran on an Oracle Cloud free-tier VM (systemd, always-on). Every
+      Telegram message went through a keyword router in <code>bot/router.py</code>. Matched
+      commands dispatched to typed handlers; unmatched messages fell through to Claude Haiku,
+      Tavily-grounded for factual queries. Adding a new command is one import and one list
       entry, and the <code>/help</code> text is generated from the same registry so docs never
       drift from code.</p>
     </div>
 
     <div class="callout-box">
       <strong style="font-family:var(--mono);color:var(--ink);">Layered design:</strong>
-      <pre style="margin:12px 0 0;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--text-2);overflow-x:auto;">bot/handlers/  &rarr; thin: parse input, call a pipeline, format reply
+      <pre class="scroll-region" tabindex="0" role="region" aria-label="Layered code structure" style="margin:12px 0 0;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--text-2);overflow-x:auto;">bot/handlers/  &rarr; thin: parse input, call a pipeline, format reply
 pipelines/     &rarr; multi-step LLM flows; model selection lives here
 integrations/  &rarr; one adapter per service; the only layer doing I/O
 prompts/       &rarr; prompt engineering, isolated from control flow</pre>
     </div>
 
     <div class="prose">
-      <p>Google Workspace operations (Gmail, Calendar, Drive, Tasks, Contacts) run through
-      <strong>gws-cli</strong> as a subprocess using system Python, keeping Google's client
-      libraries out of the bot's async virtualenv. All async Telegram handlers wrap sync I/O with
+      <p>Google Workspace operations ran through <strong>gws-cli</strong> as a subprocess using
+      system Python, keeping Google's client libraries out of the bot's async virtualenv. It
+      called five Google APIs: Gmail and Calendar from the first version in April 2026, then
+      Drive, Contacts and Tasks, added in May 2026. All async Telegram handlers wrap sync I/O with
       <code>asyncio.to_thread()</code>. Local state is tracked in a small SQLite &ldquo;Memory
       OS&rdquo; with atomic writes.</p>
     </div>
@@ -795,24 +828,24 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
     </div>
 
     <div class="prose">
-      <p>The system is deliberately model-tiered. The vast majority of calls, intent
-      routing, extraction, classification, fit scoring, run on <strong>Claude Haiku</strong>:
-      cheap and fast enough to feel synchronous over chat. <strong>Claude Sonnet</strong> is
+      <p>The system was deliberately model-tiered. The vast majority of calls (intent
+      routing, extraction, classification, fit scoring) ran on <strong>Claude Haiku</strong>:
+      cheap and fast enough to feel synchronous over chat. <strong>Claude Sonnet</strong> was
       reserved for the one class of artifact whose quality actually changes an outcome: a
       generated application document or a published post.</p>
     </div>
 
     <div class="callout-box">
-      <p><strong>The <code>#apply</code> two-call pattern.</strong> Paste a job description and
-      <code>score_fit</code> runs on Haiku, returning a JSON fit score with strengths and gaps.
-      Only if I choose to proceed does <code>generate_doc</code> spend a Sonnet call to write the
-      email, cover letter, or r&eacute;sum&eacute; bullets. The split is simultaneously a cost
-      control and a human-in-the-loop gate, a premium call is never burned on a role I
-      wasn't going to pursue.</p>
+      <p><strong>The <code>#apply</code> two-call pattern.</strong> Pasting a job description ran
+      <code>score_fit</code> on Haiku, returning a JSON fit score with strengths and gaps.
+      Only if I chose to proceed did <code>generate_doc</code> spend a Sonnet call to write the
+      email, cover letter, or r&eacute;sum&eacute; bullets. The split was both a cost control and
+      a human-in-the-loop gate: a premium call was never burned on a role I wasn't going to
+      pursue.</p>
     </div>
 
     <div class="prose">
-      <p>Prompt engineering is treated as a first-class concern in <code>prompts/</code>:
+      <p>Prompt engineering was treated as a first-class concern in <code>prompts/</code>:
       content-type-aware post generation, a forbidden-phrase list that strips the tell-tale
       &ldquo;AI voice,&rdquo; JSON-only extraction contracts, and a profile-grounded application
       writer.</p>
@@ -829,21 +862,22 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
     </div>
 
     <div class="prose">
-      <p>The primary bot is a deterministic keyword router: fast, predictable, cheap, and
-      debuggable, when a command misbehaves I can read exactly one handler. But &ldquo;should
+      <p>The primary bot was a deterministic keyword router: fast, predictable, cheap, and
+      debuggable. When a command misbehaved I could read exactly one handler. But &ldquo;should
       this be an agent framework instead?&rdquo; is a real build-vs-adopt question a PM should
       answer with evidence, not a slide.</p>
-      <p>So I run <strong>Hermes</strong>, the open-source agent from Nous Research, 
-      as a <em>second, parallel agent</em> on the same VM. The repo contains only my
+      <p>So I ran <strong>Hermes</strong>, the open-source agent from Nous Research,
+      as a <em>second, parallel agent</em> on the same VM. Both are now retired. The repo
+      contains only my
       customizations on top of it: a custom <code>#think</code> skill (structured Problem &rarr;
       Options &rarr; Recommendation output, ported from the bot), a memory template, and the
-      systemd unit that runs the gateway. Running both lets me compare an agentic runtime against
-      hand-written handlers on the same tasks, and see per-task where the agent actually wins.</p>
+      systemd unit that ran the gateway. Running both let me compare an agentic runtime against
+      hand-written handlers on the same tasks, and see per task where the agent actually won.</p>
     </div>
 
     <div class="callout">
       <p><strong>Why this matters:</strong> the interesting part of this project isn't that it
-      works, it's the product judgment underneath. What to route where, which model to
+      worked. It's the product judgment underneath. What to route where, which model to
       spend on, where to keep a human in the loop, and what to <em>not</em> build.</p>
     </div>
   </div>
@@ -853,7 +887,7 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
 <div class="sec" id="commands">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>What it does.</h2>
+      <h2>What it did.</h2>
       <span class="label">$ commands</span>
     </div>
 
@@ -904,11 +938,11 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
     </div>
 
     <div class="prose">
-      <p>Beyond on-demand commands, five scheduled jobs run automatically every day on the VM.</p>
+      <p>Beyond on-demand commands, five scheduled jobs ran automatically every day on the VM until the bot was retired.</p>
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Daily cron jobs table">
       <table>
         <thead><tr><th>Time (IST)</th><th>Job</th><th>Output</th></tr></thead>
         <tbody>
@@ -935,27 +969,28 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
     <div class="cards">
       <div class="card">
         <div class="card-icon">01</div>
-        <h4>Keyword router over an agent framework</h4>
-        <p>The primary bot is deterministic and cheap by design; the agentic approach runs in
-        parallel as Hermes so the tradeoff is measured, not assumed.</p>
+        <h3 class="h4">Keyword router over an agent framework</h3>
+        <p>The primary bot was deterministic and cheap by design; the agentic approach ran in
+        parallel as Hermes so the tradeoff was measured, not assumed.</p>
       </div>
       <div class="card">
         <div class="card-icon">02</div>
-        <h4>Tiered models, gated spend</h4>
+        <h3 class="h4">Tiered models, gated spend</h3>
         <p>Haiku for volume, Sonnet only for the artifact that changes an outcome, and
         never before a cheap fit score and an explicit human GO.</p>
       </div>
       <div class="card">
         <div class="card-icon">03</div>
-        <h4>GWS CLI as a subprocess, not a library</h4>
-        <p>One OAuth flow covers five Google APIs, keeping auth complexity fully contained and
-        Google's client libraries out of the bot's async process.</p>
+        <h3 class="h4">GWS CLI as a subprocess, not a library</h3>
+        <p>One OAuth flow covered five Google APIs (Gmail, Calendar, Drive, Contacts, Tasks),
+        keeping auth complexity fully contained and Google's client libraries out of the bot's
+        async process.</p>
       </div>
       <div class="card">
         <div class="card-icon">04</div>
-        <h4>Anthropic SDK is sync: never await it</h4>
+        <h3 class="h4">Anthropic SDK is sync: never await it</h3>
         <p>Async handlers wrap Claude calls in <code>asyncio.to_thread()</code>. This was a silent
-        failure mode early on; the rule is now enforced throughout.</p>
+        failure mode early on; after that the rule was enforced throughout.</p>
       </div>
     </div>
   </div>
@@ -969,17 +1004,19 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
       <span class="label">$ status</span>
     </div>
 
-    <p class="chip-live">retired (source public)</p>
+    <p class="chip-live chip-retired">retired (source public)</p>
 
     <div class="prose" style="margin-top:20px;">
       <p>All 28 commands and the 5 cron automations ran unattended on the Oracle VM. The bot is now
       retired, and it became the brief for life-os, a personal operating-system app in build. The consolidated, sanitized template is public at
-      <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" class="lnk">github.com/argaur/personal-ai-assistant</a>
-, secrets and personal data are git-ignored, example profiles ship instead, and the
-      test suite passes from a clean clone. </p>
+      <a href="https://github.com/argaur/personal-ai-assistant" target="_blank" rel="noopener" class="lnk">github.com/argaur/personal-ai-assistant</a>.
+      Secrets and personal data are git-ignored, example profiles ship instead, and the
+      test suite passes from a clean clone.</p>
     </div>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Open-Source Project</div>
@@ -987,17 +1024,31 @@ prompts/       &rarr; prompt engineering, isolated from control flow</pre>
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: ARIA tablist with click, Left/Right/Home/End and roving tabindex
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

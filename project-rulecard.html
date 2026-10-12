@@ -6,93 +6,106 @@
     <title>RuleCard: Turn Written Rules into Tests | Gaurav Gupta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-rulecard.html">
     <meta property="og:title" content="RuleCard: Turn Written Rules into Tests | Gaurav Gupta">
     <meta property="og:description" content="RuleCard turns an agent's written rules into tests that keep their rule numbers, and reports the rules with no test first.">
     <meta property="og:url" content="https://gauravg.dev/project-rulecard.html">
     <meta property="og:type" content="article">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="description" content="RuleCard turns an agent's written rules into tests that keep their rule numbers, and reports the rules with no test first.">
-    <meta name="theme-color" content="#f7f8f6">
+    <meta name="theme-color" content="#f4eee3">
 <style>
-:root{--bg:#f7f8f6;--surface:#ffffff;--surface2:#eef0ee;--border:#dde1e0;--text:#16181b;--text2:#3a3f44;--muted:#60666d;--accent:#24406b;--accent-text:#24406b;--accent-bg:rgba(36,64,107,.07);--warn:#a6790a;--warn-bg:#f7efdb;--warn-text:#86620a;--r:6px;--nav-bg:#f7f8f6;--display:"IBM Plex Sans",sans-serif;--body:"Public Sans",sans-serif;--mono:"IBM Plex Mono",monospace}
-:root:not([data-theme="light"]){color-scheme:dark}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14171a;--surface:#1b1e22;--surface2:#22262a;--border:#2b2f33;--text:#e9ebe8;--text2:#c2c7c9;--muted:#9ca3a8;--accent:#7ea0d6;--accent-text:#9cb7e2;--accent-bg:rgba(126,160,214,.12);--warn:#e0b95f;--warn-bg:#2b2413;--warn-text:#e0b95f;--nav-bg:#14171a}}
-:root[data-theme="dark"]{--bg:#14171a;--surface:#1b1e22;--surface2:#22262a;--border:#2b2f33;--text:#e9ebe8;--text2:#c2c7c9;--muted:#9ca3a8;--accent:#7ea0d6;--accent-text:#9cb7e2;--accent-bg:rgba(126,160,214,.12);--warn:#e0b95f;--warn-bg:#2b2413;--warn-text:#e0b95f;--nav-bg:#14171a}
+/* Skin: the live Rulecard product (rulecard.gauravg.dev). Cream paper, ink, marigold
+   bands, a night band, cobalt links, vermilion for misses. Archivo (variable width,
+   condensed black for display) with Instrument Serif for the lede and accents. */
+:root{--cream:#f4eee3;--cream-2:#fff8ec;--ink:#15120e;--marigold:#ffc21a;--night:#15120e;--fixed-ink:#15120e;--fixed-cream:#fff8ec;
+--bg:var(--cream);--surface:var(--cream-2);--surface2:#ebe3d4;--border:rgba(21,18,14,.18);--line-strong:var(--ink);--text:var(--ink);--text2:#4a433a;--muted:#5e564b;
+--accent:var(--ink);--accent-text:var(--ink);--accent-bg:rgba(21,18,14,.06);--link:#1b34e0;--focus:#1b34e0;--warn:#f2401b;--warn-text:#b8290b;--warn-bg:#fbe3da;
+--r:4px;--nav-bg:var(--cream);--display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;--body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16130f;--surface:#221e18;--surface2:#2b261f;--border:rgba(242,235,223,.2);--line-strong:#f2ebdf;--text:#f2ebdf;--text2:#b8ae9e;--muted:#a89e8e;--accent:#f2ebdf;--accent-text:#f2ebdf;--accent-bg:rgba(242,235,223,.08);--link:#9aa7ff;--focus:#9aa7ff;--warn:#ff6e4a;--warn-text:#ff6e4a;--warn-bg:#2e2119;--nav-bg:#16130f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16130f;--surface:#221e18;--surface2:#2b261f;--border:rgba(242,235,223,.2);--line-strong:#f2ebdf;--text:#f2ebdf;--text2:#b8ae9e;--muted:#a89e8e;--accent:#f2ebdf;--accent-text:#f2ebdf;--accent-bg:rgba(242,235,223,.08);--link:#9aa7ff;--focus:#9aa7ff;--warn:#ff6e4a;--warn-text:#ff6e4a;--warn-bg:#2e2119;--nav-bg:#16130f;color-scheme:dark}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:var(--accent-text)}
-code{font-family:var(--mono);font-size:.88em;background:var(--surface2);padding:1px 6px;border:1px solid var(--border);border-radius:var(--r)}
-nav{position:fixed;top:0;left:0;right:0;z-index:50;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;background:var(--nav-bg);border-bottom:1px solid var(--border)}
-.nav-back{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.04em;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
-.nav-back:hover{color:var(--text)}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-variation-settings:"wdth" 100;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:2px}
+code{font-family:var(--mono);font-size:.86em;background:var(--surface2);padding:1px 6px;border:1px solid var(--border);border-radius:var(--r)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;background:var(--nav-bg);border-bottom:2px solid var(--line-strong)}
+.nav-back{color:var(--text);text-decoration:none;font-size:14px;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.nav-back:hover{text-decoration:underline}
 .nav-right{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none}
 .nav-right::-webkit-scrollbar{display:none}
-.nav-link{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:0 10px;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-link{color:var(--text2);text-decoration:none;font-size:14px;font-weight:700;padding:0 10px;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:3px solid transparent}
 .nav-link:hover{color:var(--text)}
-.nav-link--active{color:var(--accent-text);border-bottom-color:var(--accent)}
-.nav-index{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;padding-left:8px}
-.hero-wrap{padding:112px 16px 56px;border-bottom:1px solid var(--border)}
+.nav-link--active{color:var(--text);border-bottom-color:var(--marigold)}
+.nav-index{font-size:12px;font-weight:800;font-variation-settings:"wdth" 110;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding-left:8px}
+.hero-wrap{padding:120px 16px 72px;background:var(--marigold);color:var(--fixed-ink);border-bottom:2px solid var(--fixed-ink)}
 .hero,.sec-inner{max-width:920px;margin:0 auto}
-.label{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.label-strong{color:var(--accent-text)}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 20px}
-h1 em{font-style:normal;color:var(--muted)}
-h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,38px);line-height:1.15;letter-spacing:-.005em}
-h2 em{font-style:normal;color:var(--muted)}
-h3{font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:8px}
-.hero-sub{max-width:640px;font-size:clamp(17px,2vw,20px);color:var(--text2)}
+.label{display:inline-block;font-size:13px;font-weight:800;font-variation-settings:"wdth" 110;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.label-strong{color:var(--warn-text)}
+.hero .label,.hero .label-strong{color:var(--fixed-ink)}
+h1{font-family:var(--display);font-weight:900;font-variation-settings:"wdth" 70;font-size:clamp(46px,9vw,96px);line-height:.92;letter-spacing:-.03em;margin:20px 0 24px}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:400;font-variation-settings:normal;letter-spacing:-.01em;line-height:1}
+h2{font-family:var(--display);font-weight:900;font-variation-settings:"wdth" 72;font-size:clamp(34px,5.4vw,56px);line-height:.95;letter-spacing:-.03em}
+h2 em{font-family:var(--serif);font-style:italic;font-weight:400;font-variation-settings:normal;letter-spacing:-.01em;color:var(--text2)}
+h3{font-family:var(--display);font-weight:800;font-size:20px;margin-bottom:8px}
+.hero-sub{max-width:640px;font-family:var(--serif);font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.01em;color:var(--fixed-ink)}
 .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.meta-tag{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border);color:var(--muted);border-radius:var(--r)}
+.meta-tag{display:inline-flex;align-items:center;min-height:26px;font-size:13px;font-weight:700;padding:2px 12px;border:1.5px solid rgba(21,18,14,.4);color:var(--fixed-ink);border-radius:999px}
 .hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.lnk{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--accent);color:var(--accent-text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-radius:var(--r)}
+.lnk{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border:2px solid var(--text);color:var(--text);text-decoration:none;font-size:15px;font-weight:800;border-radius:999px}
 .lnk:hover{background:var(--accent-bg)}
-.sec{padding:72px 16px;border-top:1px solid var(--border);scroll-margin-top:56px}
-.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:32px}
-.prose p{max-width:680px;margin-bottom:18px;color:var(--text2)}
+.hero .lnk{background:var(--fixed-ink);border-color:var(--fixed-ink);color:var(--fixed-cream)}
+.hero .lnk:hover{background:#2b261f}
+.sec{padding:96px 16px;border-top:2px solid var(--line-strong);scroll-margin-top:56px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:36px}
+.prose p{max-width:68ch;margin-bottom:18px;color:var(--text2)}
 .prose p strong{color:var(--text)}
-.callout{border-left:3px solid var(--accent);background:var(--surface);padding:20px 24px;margin:28px 0;max-width:760px;border-radius:0 var(--r) var(--r) 0}
+.callout{border-left:3px solid var(--line-strong);background:var(--surface);padding:20px 24px;margin:28px 0;max-width:760px;border-radius:0 var(--r) var(--r) 0}
 .callout p{color:var(--text2);margin:0}
 .callout p strong{color:var(--text)}
 .callout.warn{border-left-color:var(--warn)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:32px 0;border-radius:var(--r);overflow:hidden}
-.stat{background:var(--surface);padding:22px 20px}
-.stat-num{display:block;font-family:var(--display);font-weight:700;font-size:34px;line-height:1.1;color:var(--accent-text);font-variant-numeric:tabular-nums}
-.stat-lbl{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.45}
+.callout.warn p strong{color:var(--warn-text)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--line-strong);border:2px solid var(--line-strong);margin:32px 0;border-radius:var(--r);overflow:hidden}
+.stat{background:var(--surface);padding:24px 20px}
+.stat-num{display:block;font-family:var(--display);font-weight:900;font-variation-settings:"wdth" 70;font-size:48px;line-height:1;letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums}
+.stat-lbl{display:block;margin-top:8px;font-size:15px;color:var(--text2);line-height:1.4}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:28px 0}
 .card{background:var(--surface);border:1px solid var(--border);padding:24px;border-radius:var(--r)}
 .card p{color:var(--text2);font-size:15px}
 .card .label{margin-bottom:10px}
-ol.steps{list-style:none;counter-reset:s;max-width:720px;margin:24px 0}
-ol.steps li{counter-increment:s;position:relative;padding:14px 0 14px 48px;border-bottom:1px solid var(--border);color:var(--text2)}
-ol.steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--accent-text);border:1px solid var(--accent);border-radius:var(--r)}
-ol.steps li strong{color:var(--text)}
-.table-wrap{overflow-x:auto;margin:24px 0;border:1px solid var(--border);border-radius:var(--r)}
-table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.table-wrap{overflow-x:auto;margin:24px 0;border:2px solid var(--line-strong);border-radius:var(--r);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:520px}
 th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
-th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
+th{font-size:12px;font-weight:800;font-variation-settings:"wdth" 110;letter-spacing:.12em;text-transform:uppercase;color:var(--text);background:var(--surface2)}
 td{color:var(--text2)}
-td.num{font-variant-numeric:tabular-nums;color:var(--text)}
+td.num{font-weight:900;font-variation-settings:"wdth" 75;font-size:19px;font-variant-numeric:tabular-nums;color:var(--text);white-space:nowrap}
 tr:last-child td{border-bottom:none}
-footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;max-width:952px;margin:0 auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
-.banner{position:sticky;top:56px;z-index:40;background:var(--warn-bg);color:var(--warn-text);border-bottom:1px solid var(--warn);padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-align:center}
-@media(max-width:580px){.nav-index{display:none}.sec{padding:56px 16px}.hero-wrap{padding-top:96px}}
+.band-night{--bg:var(--night);--surface:#221e18;--surface2:#2b261f;--border:rgba(255,248,236,.2);--line-strong:var(--fixed-cream);--text:var(--fixed-cream);--text2:#c9bfae;--muted:#c9bfae;--link:#9aa7ff;--focus:#9aa7ff;--warn-text:#ff6e4a;background:var(--bg);color:var(--text)}
+footer{padding:32px 16px;border-top:2px solid var(--line-strong);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;max-width:952px;margin:0 auto;font-size:14px;color:var(--muted)}
+@media(max-width:580px){.nav-index{display:none}.sec{padding:64px 16px}.hero-wrap{padding-top:96px}}
 
 </style>
 </head>
 <body>
 <nav>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
-  <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#idea" class="nav-link">The idea</a><a href="#run" class="nav-link">Example run</a><a href="#status" class="nav-link">Status</a><span class="nav-index">Project &middot; 16</span></div>
+  <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#idea" class="nav-link">The idea</a><a href="#run" class="nav-link">Example run</a><a href="#status" class="nav-link">Status</a><span class="nav-index">Project</span></div>
 </nav>
+<main id="main">
 <div class="hero-wrap">
   <div class="hero">
     <span class="label label-strong">Project &middot; AI Evaluation &middot; In build</span>
     <h1>Your agent has rules.<br /><em>Which ones have no test?</em></h1>
     <p class="hero-sub">RuleCard turns an agent's written rules into tests. Every test keeps its rule number. The report starts with the rules nobody checks.</p>
     <div class="meta-row"><span class="meta-tag">Next.js 16</span><span class="meta-tag">TypeScript</span><span class="meta-tag">Claude API</span><span class="meta-tag">Postgres</span><span class="meta-tag">Vercel</span></div>
+    <div class="hero-links"><a class="lnk" href="https://rulecard.gauravg.dev" target="_blank" rel="noopener">Live product &nearr;</a></div>
     
   </div>
 </div>
@@ -111,7 +124,7 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
 
 <div class="sec" id="overview"><div class="sec-inner">
 <div class="sec-head"><h2>What it is</h2><span class="label">Overview</span></div>
-<div class="callout"><p>A spec compiler with a scorecard attached. You give it the rules an agent should follow. It writes a test suite from those rules. The scorecard reports <strong>spec coverage</strong> and <strong>spec conformance</strong>, not a pass rate.</p></div><div class="prose"><p>The code name is <code>agent-proving-ground</code>. RuleCard is the public name. It is hosted with sign-in and has no billing. There is no public demo yet.</p></div>
+<div class="callout"><p>A spec compiler with a scorecard attached. You give it the rules an agent should follow. It writes a test suite from those rules. The scorecard reports <strong>spec coverage</strong> and <strong>spec conformance</strong>, not a pass rate.</p></div><div class="prose"><p>The code name is <code>agent-proving-ground</code>. RuleCard is the public name. It is hosted with sign-in and has no billing. The public page at <a href="https://rulecard.gauravg.dev" target="_blank" rel="noopener">rulecard.gauravg.dev</a> walks through one example run, with no sign-in.</p></div>
 </div></div>
 <div class="sec" id="idea"><div class="sec-inner">
 <div class="sec-head"><h2>Tests from intent,<br /><em>not from behaviour.</em></h2><span class="label">01 &middot; The idea</span></div>
@@ -119,12 +132,13 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
 </div></div>
 <div class="sec" id="run"><div class="sec-inner">
 <div class="sec-head"><h2>One recorded run,<br /><em>read with its caveats.</em></h2><span class="label">02 &middot; Example run</span></div>
-<div class="prose"><p>The run below used a hiring-screen agent's own written rules: 44 rules, 135 scenarios, 5 samples each, run on 2026-09-26. The agent under test was Jev, a rule-choice model standing in for the real executor, which is not wired. Read every number with the note beside it.</p></div><div class="table-wrap"><table><thead><tr><th>Measure</th><th>Result</th><th>Read it with this</th></tr></thead><tbody><tr><td>Rules with no test</td><td class="num">0 of 44</td><td>Self-reported. A spec can raise this by writing easy rules.</td></tr><tr><td>Rules checked on their own terms</td><td class="num">9 of 44</td><td>The other 35 were only checked for wrong escalation.</td></tr><tr><td>Should hand off: did it?</td><td class="num">7 of 9</td><td>Missed 2. Small sample of 12 scenarios.</td></tr><tr><td>Should not hand off: did it?</td><td class="num">3 of 3</td><td>No false alarms.</td></tr><tr><td>Judged checks</td><td class="num">Refused</td><td>The judge and the agent share a model family. On the two control agents they ran.</td></tr></tbody></table></div><div class="callout"><p>The judgment log has 68 entries across 3 runs: one main run and two control agents. It does not prove the agent is safe. Nothing is proven yet.</p></div>
+<div class="prose"><p>The run below used a hiring-screen agent's own written rules: 44 rules, 135 scenarios, 5 samples each, run on 2026-09-26. The agent under test was Jev, a rule-choice model standing in for the real executor, which is not wired. Read every number with the note beside it.</p></div><div class="table-wrap" tabindex="0" role="region" aria-label="Example run results"><table><thead><tr><th>Measure</th><th>Result</th><th>Read it with this</th></tr></thead><tbody><tr><td>Rules with no test</td><td class="num">0 of 44</td><td>Self-reported. A spec can raise this by writing easy rules.</td></tr><tr><td>Rules checked on their own terms</td><td class="num">9 of 44</td><td>The other 35 were only checked for wrong escalation.</td></tr><tr><td>Should hand off: did it?</td><td class="num">7 of 9</td><td>Missed 2. Small sample of 12 scenarios.</td></tr><tr><td>Should not hand off: did it?</td><td class="num">3 of 3</td><td>No false alarms.</td></tr><tr><td>Judged checks</td><td class="num">Refused</td><td>The judge and the agent share a model family. On the two control agents they ran.</td></tr></tbody></table></div><div class="callout"><p>The judgment log has 68 entries across 3 runs: one main run and two control agents. It does not prove the agent is safe. Nothing is proven yet.</p></div>
 </div></div>
-<div class="sec" id="status"><div class="sec-inner">
+<div class="sec band-night" id="status"><div class="sec-inner">
 <div class="sec-head"><h2>Where it<br /><em>stands.</em></h2><span class="label">03 &middot; Status</span></div>
-<div class="stats"><div class="stat"><span class="stat-num">Live</span><span class="stat-lbl">hosted app with sign-in, no billing</span></div><div class="stat"><span class="stat-num">Off</span><span class="stat-lbl">paid model runs, until the out-of-credit flow ships</span></div><div class="stat"><span class="stat-num">Not yet</span><span class="stat-lbl">public read-only demo</span></div></div><div class="prose"><p>The kill rule is set in advance. If the tests catch nothing that a ten-minute manual review would not, or if handoff decisions need labelling after the fact, I publish what I learned and stop.</p></div>
+<div class="stats"><div class="stat"><span class="stat-num">Live</span><span class="stat-lbl">hosted app with sign-in, no billing</span></div><div class="stat"><span class="stat-num">Off</span><span class="stat-lbl">paid model runs, until the out-of-credit flow ships</span></div><div class="stat"><span class="stat-num">Public</span><span class="stat-lbl">one example run at rulecard.gauravg.dev, no sign-in</span></div></div><div class="prose"><p>The kill rule is set in advance. If the tests catch nothing that a ten-minute manual review would not, or if handoff decisions need labelling after the fact, I publish what I learned and stop.</p></div>
 </div></div>
+</main>
 <footer><span>Gaurav Gupta &middot; Project &middot; In build</span><a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a></footer>
 <script>
 (function(){

@@ -12,10 +12,12 @@
     <meta property="og:title" content="Vittam - See Your Family's Money on One Page | Gaurav Gupta">
     <meta property="og:description" content="Case study: a household finance PWA built solo for my own family, to prove out an architecture and a build process, not to win a market.">
     <meta property="og:url" content="https://gauravg.dev/case-study-vittam.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#F7F5F1">
 
 <style>
@@ -190,7 +192,7 @@
     letter-spacing: -0.01em;
     margin-bottom: 12px;
   }
-  h4 {
+  h4, h3.h4 {
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -455,6 +457,28 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility: tabs, scroll regions, hit areas, alignment ── */
+  .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible, .scroll-region:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+  }
+  .nav-back, .docs-tab { position: relative; }
+  .nav-back::before, .docs-tab::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: -6px; right: -6px;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+  .docs-tab::before { left: 0; right: 0; }
+  .hero { max-width: 1376px; }
+  #glance table { min-width: 0; }
+  @media (max-width: 580px) {
+    .nav-link { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
+    .nav-link--active::after { bottom: 7px; }
+  }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -468,9 +492,11 @@
     <a href="#solution" class="nav-link">Solution</a>
     <a href="#since-launch" class="nav-link">Since Launch</a>
     <a href="#decisions" class="nav-link">Decisions</a>
-    <span class="nav-index">Case Study 08</span>
+    <span class="nav-index">Case Study</span>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
@@ -527,18 +553,20 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
-        <button class="docs-tab" data-doc="wireframe">Wireframe</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Vittam documentation">
+          <button type="button" role="tab" id="tab-flow" aria-controls="panel-flow" aria-selected="true" tabindex="0" class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
+          <button type="button" role="tab" id="tab-wireframe" aria-controls="panel-wireframe" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="wireframe">Wireframe</button>
+          <button type="button" role="tab" id="tab-arch" aria-controls="panel-arch" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="arch">Architecture</button>
+          <button type="button" role="tab" id="tab-prd" aria-controls="panel-prd" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="prd">About this page</button>
+        </div>
         <a href="https://github.com/argaur/household-financial-pwa" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
         <a href="https://finance.gauravg.dev" target="_blank" rel="noopener" class="docs-tab">Live Product &rarr;</a>
       </div>
     </div>
 
     <!-- USER FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="flow" id="panel-flow" role="tabpanel" aria-labelledby="tab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="User flow diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" style="width:100%;display:block;">
         <defs>
           <marker id="vt-flow-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -586,14 +614,14 @@
     </div>
 
     <!-- WIREFRAME -->
-    <div class="docs-panel docs-panel--hidden" data-panel="wireframe">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="wireframe" id="panel-wireframe" role="tabpanel" aria-labelledby="tab-wireframe">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Wireframe diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" style="width:100%;display:block;">
         <rect width="900" height="460" fill="#FDFCFA"/>
         <text x="450" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#6B6660" letter-spacing="1.6">WIREFRAME: DASHBOARD LAYOUT</text>
 
         <rect x="60" y="46" width="780" height="380" fill="#F7F5F1" stroke="#E8E5E0" stroke-width="1.5" rx="10"/>
-        <text x="86" y="78" font-family="Inter, sans-serif" font-size="9" fill="#96908A">GUPTA FAMILY</text>
+        <text x="86" y="78" font-family="Inter, sans-serif" font-size="9" fill="#96908A">YOUR HOUSEHOLD</text>
         <text x="86" y="100" font-family="DM Serif Display, serif" font-size="20" fill="#1A1814">Your plan</text>
 
         <!-- Health card, full width -->
@@ -635,8 +663,8 @@
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="panel-arch" role="tabpanel" aria-labelledby="tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" style="width:100%;display:block;">
         <defs>
           <marker id="vt-arch-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -685,7 +713,7 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="panel-prd" role="tabpanel" aria-labelledby="tab-prd">
       <div class="docs-note">
         <p>This page is the build record for Vittam. It covers the household finance
         problem, the onboarding and dashboard, three features added after the first
@@ -771,8 +799,8 @@
       </div>
       <div class="card" style="border-left: 3px solid var(--gold);">
         <h4>Advice that ignores what you own</h4>
-        <p>Generic advice did not know my family already had two term plans and no
-        emergency fund. It repeated the same tips regardless of what was already in place.</p>
+        <p>Generic advice did not know which family insurance policies were already in
+        place. It repeated the same tips regardless of what we already held.</p>
       </div>
     </div>
 
@@ -793,10 +821,9 @@
     </div>
 
     <div class="prose">
-      <p>My household is not one person with one portfolio. It is a parent with a
-      pension account, a spouse with a separate set of mutual funds, a daughter with a
-      Sukanya Samriddhi account, and a grandparent&rsquo;s fixed deposit that nobody had
-      moved in a decade.</p>
+      <p>My household is not one person with one portfolio. It is several people, each
+      with their own accounts: a pension, a separate set of mutual funds, a child&rsquo;s
+      long-term savings scheme, and a fixed deposit that nobody had moved in a decade.</p>
       <p>Each of those sat in a different app or a different paper file. Nobody added
       them up. So questions that sound simple, like &ldquo;are we covered if something
       happens to the main earner,&rdquo; did not have a clear answer.</p>
@@ -849,19 +876,19 @@
     <div class="cards">
       <div class="card">
         <div class="card-icon">1</div>
-        <h4>Name the household</h4>
+        <h3 class="h4">Name the household</h3>
         <p>One field. &ldquo;Let&rsquo;s start with your family.&rdquo; A household
-        name, like &ldquo;Gupta Family.&rdquo;</p>
+        name, like &ldquo;The Sharma Household.&rdquo;</p>
       </div>
       <div class="card">
         <div class="card-icon">2</div>
-        <h4>Add each member</h4>
+        <h3 class="h4">Add each member</h3>
         <p>Name, relationship (self, spouse, child, parent, other), date of birth for
         age-based milestones, and an optional risk appetite.</p>
       </div>
       <div class="card">
         <div class="card-icon">3</div>
-        <h4>Record what you hold</h4>
+        <h3 class="h4">Record what you hold</h3>
         <p>Member, instrument from a 30-instrument library, invested amount, current
         value. Everything else stays hidden until you ask for it.</p>
       </div>
@@ -875,7 +902,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Dashboard health checks table">
       <table>
         <thead><tr><th>#</th><th>Check</th><th>What it looks for</th></tr></thead>
         <tbody>
@@ -935,7 +962,7 @@
     <div class="cards">
       <div class="card">
         <div class="card-icon">&#128203;</div>
-        <h4>Strategy ledgers</h4>
+        <h3 class="h4">Strategy ledgers</h3>
         <p>A household can hold up to four what-if plans alongside Current, each
         one a full encrypted snapshot. Editing Current later does not change a
         saved ledger. A three-number strip shows the delta against Current:
@@ -943,7 +970,7 @@
       </div>
       <div class="card">
         <div class="card-icon">&#10024;</div>
-        <h4>AI counsel, on demand</h4>
+        <h3 class="h4">AI counsel, on demand</h3>
         <p>Claude Sonnet 5 reviews a ledger and suggests a different asset mix,
         through a thin server proxy that forwards the request and writes
         nothing to the database or the logs. Apply creates a new ledger
@@ -952,7 +979,7 @@
       </div>
       <div class="card">
         <div class="card-icon">&#128194;</div>
-        <h4>Bulk import from Excel</h4>
+        <h3 class="h4">Bulk import from Excel</h3>
         <p>Download a template pre-filled with the household&rsquo;s member
         names. Fill it in and upload it back. A review screen sorts every row
         into Ready, Needs attention, Possible duplicate, or Skipped, and only
@@ -1071,7 +1098,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Build slices table">
       <table>
         <thead><tr><th>Layer</th><th>Technology</th><th>Details</th></tr></thead>
         <tbody>
@@ -1115,23 +1142,39 @@
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Vittam &middot; Solo build, May to September 2026</div>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: ARIA tablist with click, Left/Right/Home/End and roving tabindex
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

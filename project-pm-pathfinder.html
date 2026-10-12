@@ -12,16 +12,18 @@
     <meta property="og:title" content="PM Pathfinder, Career Navigation for India's Stuck PMs | Gaurav Gupta">
     <meta property="og:description" content="From 9 user interviews to a working prototype: an archetype diagnostic, a personalised roadmap, and a RAG chatbot grounded in a vector database I deployed and own end-to-end.">
     <meta property="og:url" content="https://gauravg.dev/project-pm-pathfinder.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#0b1326">
 
 <style>
   /* ────────────────────────────────────────────────────────────────
-     Design system ported from PM Pathfinder's actual shipped dashboard
-, deep-space indigo, soft-cornered, Space Grotesk headings, teal +
+     Design system ported from PM Pathfinder's actual shipped dashboard:
+     deep-space indigo, soft-cornered, Space Grotesk headings, teal +
      periwinkle signal accents. Deliberately does NOT use case-study.css.
      ──────────────────────────────────────────────────────────────── */
 
@@ -187,7 +189,7 @@
     letter-spacing: -0.01em;
     margin-bottom: 12px;
   }
-  h4 {
+  h4, h3.h4 {
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -461,6 +463,28 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility: tabs, scroll regions, hit areas, alignment ── */
+  .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible, .scroll-region:focus-visible {
+    outline: 2px solid var(--periwinkle);
+    outline-offset: -2px;
+  }
+  .nav-back, .docs-tab { position: relative; }
+  .nav-back::before, .docs-tab::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: -6px; right: -6px;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+  .docs-tab::before { left: 0; right: 0; }
+  .hero { max-width: 1376px; }
+  #glance table { min-width: 0; }
+  @media (max-width: 580px) {
+    .nav-link { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
+    .nav-link--active::after { bottom: 7px; }
+  }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -478,10 +502,12 @@
   </div>
 </nav>
 
+<main id="main">
+
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
-    <span class="label label-strong">Rethink AI MPM Cohort 7 &middot; March 2026 &middot; Public demo &middot; Free tool</span>
+    <span class="label label-strong">Mastering AI Product Management, Cohort 7 (Rethink Systems) &middot; March 2026 &middot; Public demo &middot; Free tool</span>
     <h1>PM Pathfinder: career navigation<br /><em>for India&rsquo;s stuck PMs.</em></h1>
     <p class="hero-sub">
       From 9 user interviews to a working product. An AI-native platform that diagnoses a PM
@@ -506,7 +532,7 @@
       <h2>The short<br /><em>version.</em></h2>
       <span class="label">At a glance</span>
     </div>
-    <div class="table-wrap"><table><tbody><tr><td><strong>Role</strong></td><td>Solo PM and builder.</td></tr><tr><td><strong>When</strong></td><td>March 2026, for Rethink AI MPM Cohort 7.</td></tr><tr><td><strong>Evidence behind it</strong></td><td>9 user interviews and a prioritisation chain, written up as a PRD.</td></tr><tr><td><strong>What shipped</strong></td><td>A 10-question career diagnostic that maps to 6 archetypes, a personal roadmap, and a chatbot that answers from real PM frameworks. The chatbot runs on a vector database I deployed and own.</td></tr><tr><td><strong>Result</strong></td><td>A working product, live and free to use. I report no usage numbers.</td></tr><tr><td><strong>Limit</strong></td><td>A free tool and a prototype. There is no paid tier.</td></tr><tr><td><strong>See it</strong></td><td><a class="lnk" href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener">Live product &nearr;</a> &nbsp; <a class="lnk" href="https://github.com/argaur/pm-pathfinder" target="_blank" rel="noopener">GitHub &nearr;</a></td></tr></tbody></table></div>
+    <div class="table-wrap"><table><tbody><tr><td><strong>Role</strong></td><td>Solo PM and builder.</td></tr><tr><td><strong>When</strong></td><td>March 2026, for Mastering AI Product Management, Cohort 7 (Rethink Systems).</td></tr><tr><td><strong>Evidence behind it</strong></td><td>9 user interviews and a prioritisation chain, written up as a PRD.</td></tr><tr><td><strong>What shipped</strong></td><td>A 10-question career diagnostic that maps to 6 archetypes, a personal roadmap, and a chatbot that answers from real PM frameworks. The chatbot runs on a vector database I deployed and own.</td></tr><tr><td><strong>Result</strong></td><td>A working product, live and free to use. I report no usage numbers.</td></tr><tr><td><strong>Limit</strong></td><td>A free tool and a prototype. There is no paid tier.</td></tr><tr><td><strong>See it</strong></td><td><a class="lnk" href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener">Live product &nearr;</a> &nbsp; <a class="lnk" href="https://github.com/argaur/pm-pathfinder" target="_blank" rel="noopener">GitHub &nearr;</a></td></tr></tbody></table></div>
   </div>
 </div>
 
@@ -527,17 +553,19 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="PM Pathfinder documentation">
+          <button type="button" role="tab" id="tab-flow" aria-controls="panel-flow" aria-selected="true" tabindex="0" class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
+          <button type="button" role="tab" id="tab-arch" aria-controls="panel-arch" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="arch">Architecture</button>
+          <button type="button" role="tab" id="tab-prd" aria-controls="panel-prd" aria-selected="false" tabindex="-1" class="docs-tab" data-doc="prd">About this page</button>
+        </div>
         <a href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener" class="docs-tab">Live Product &rarr;</a>
         <a href="https://github.com/argaur/pm-pathfinder" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
       </div>
     </div>
 
     <!-- USER FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="flow" id="panel-flow" role="tabpanel" aria-labelledby="tab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="User flow diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" style="width:100%;display:block;">
         <defs>
           <marker id="pf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -602,8 +630,8 @@
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="panel-arch" role="tabpanel" aria-labelledby="tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram">
       <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
         <defs>
           <marker id="pmp-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
@@ -681,11 +709,11 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="panel-prd" role="tabpanel" aria-labelledby="tab-prd">
       <div class="docs-note">
-        <p>This case study is the product write-up. The original Product Requirements Document
-, the &ldquo;PM Career Navigation Platform for India&rdquo; PRD submitted to Rethink
-        AI&rsquo;s MPM Cohort 7 (March 2026), is the discovery foundation referenced
+        <p>This case study is the product write-up. The original Product Requirements
+        Document, &ldquo;PM Career Navigation Platform for India,&rdquo; was submitted to
+        Mastering AI Product Management, Cohort 7 (Rethink Systems) in March 2026. It is the discovery foundation referenced
         throughout: 9 interviews, five user segments, and a problem-prioritisation chain. The
         Solution and Architecture sections below describe what was actually built and shipped.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
@@ -703,10 +731,10 @@
     </div>
 
     <div class="callout">
-      <p>PM Pathfinder began as a PRD for Rethink AI&rsquo;s Managed PM Cohort 7 and became a real,
+      <p>PM Pathfinder began as a PRD for Mastering AI Product Management, Cohort 7 (Rethink Systems) and became a real,
       live product. It is live at
-      <a href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener" class="lnk">pm-pathfinder.gauravg.dev</a>
-, quiz, archetype reveal, dashboard, roadmap, and a grounded RAG chatbot, all working.</p>
+      <a href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener" class="lnk">pm-pathfinder.gauravg.dev</a>:
+      quiz, archetype reveal, dashboard, roadmap, and a grounded RAG chatbot, all working.</p>
     </div>
 
     <div class="stats">
@@ -796,7 +824,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="User segments table">
       <table>
         <thead><tr><th>Segment</th><th>Who They Are</th><th>What We Saw</th></tr></thead>
         <tbody>
@@ -844,8 +872,8 @@
       </div>
       <div class="card">
         <h4>5 &middot; Feedback arrives too late</h4>
-        <p>The only time anyone learns they aren&rsquo;t ready is when they fail a real interview
-, the worst possible moment. Feedback has to be embedded into every practice
+        <p>The only time anyone learns they aren&rsquo;t ready is when they fail a real interview,
+        the worst possible moment. Feedback has to be embedded into every practice
         session.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--periwinkle);">
@@ -871,7 +899,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Product surfaces table">
       <table>
         <thead><tr><th>#</th><th>Surface</th><th>What Happens</th><th>Design Principle</th></tr></thead>
         <tbody>
@@ -951,7 +979,7 @@
       the app that bypasses RLS.</p>
     </div>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Database schema table">
       <table>
         <thead><tr><th>Table</th><th>Purpose</th></tr></thead>
         <tbody>
@@ -1039,13 +1067,13 @@
 
     <div class="cards">
       <div class="card" style="border-left: 3px solid var(--teal);">
-        <h4 style="color: var(--teal);">Now</h4>
+        <h3 class="h4" style="color: var(--teal);">Now</h3>
         <ul>
           <li>Remove cohort submission banner for public launch</li>
         </ul>
       </div>
       <div class="card" style="border-left: 3px solid var(--periwinkle);">
-        <h4 style="color: var(--periwinkle);">Next: the core loop</h4>
+        <h3 class="h4" style="color: var(--periwinkle);">Next: the core loop</h3>
         <ul>
           <li>Practice-problem engine (15&ndash;20 scenarios, picks weakest area)</li>
           <li>AI feedback grader: Framing, Rigor, Solution, Communication</li>
@@ -1053,7 +1081,7 @@
         </ul>
       </div>
       <div class="card" style="border-left: 3px solid var(--text-3);">
-        <h4 style="color: var(--text-2);">Later</h4>
+        <h3 class="h4" style="color: var(--text-2);">Later</h3>
         <ul>
           <li>Resume upload + AI parsing into the diagnostic</li>
           <li>Practice groups, matched peers, anonymous comparison</li>
@@ -1074,23 +1102,39 @@
   </div>
 </div>
 
+</main>
+
 <footer>
-  <div class="foot-brand">Gaurav Gupta &middot; Rethink AI MPM Cohort 7 &middot; March 2026</div>
+  <div class="foot-brand">Gaurav Gupta &middot; Mastering AI Product Management, Cohort 7 (Rethink Systems) &middot; March 2026</div>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: ARIA tablist with click, Left/Right/Home/End and roving tabindex
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

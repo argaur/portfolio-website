@@ -12,10 +12,12 @@
     <meta property="og:title" content="Trivo, Group Travel Planning Platform | Gaurav Gupta">
     <meta property="og:description" content="Case study: Trivo, AI-powered group travel planning platform. Live at trivo.gauravg.dev.">
     <meta property="og:url" content="https://gauravg.dev/case-study-group-travel.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#f2ebdb">
 
 <style>
@@ -242,7 +244,7 @@
   .hero {
     position: relative;
     z-index: 1;
-    max-width: 1280px;
+    max-width: 1376px; /* 1280 + 2x48 padding: matches the .sec content edge */
     margin: 0 auto;
     padding: 148px 48px 96px;
   }
@@ -552,6 +554,19 @@
     .sec { padding: 32px 0; break-inside: avoid; }
     .card, .callout-box, .docs-panel { box-shadow: none; }
   }
+
+  /* ── Accessibility layer (2026-10-12) */
+  .nav-back { position: relative; }
+  .nav-back::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .nav-link { padding-top: 14px; padding-bottom: 14px; }
+  .nav-link--active::after { bottom: 9px; }
+  .docs-tablist { display: contents; }
+  .docs-tabs { row-gap: 10px; } /* keeps wrapped rows' 44px hit areas from overlapping */
+  .docs-tab { position: relative; }
+  .docs-tab::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .table-scroll { overflow-x: auto; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  h3.hx4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -565,14 +580,16 @@
     <a href="#research" class="nav-link">Research</a>
     <a href="#solution" class="nav-link">Solution</a>
     <a href="#metrics" class="nav-link">Metrics</a>
-    <span class="nav-index">Case Study 04</span>
+    <span class="nav-index">Case Study</span>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
-    <span class="label label-strong">Product Requirements Document &middot; Rethink AI MPM Cohort 7 &middot; Week 7 &middot; March 2026</span>
+    <span class="label label-strong">Product Requirements Document &middot; Mastering AI Product Management, Cohort 7 (Rethink Systems) &middot; Week 7 &middot; March 2026</span>
     <h1>Trivo: group travel,<br /><em>finally coordinated.</em></h1>
     <p class="hero-sub">
       An AI-native group trip coordination platform that solves the silent coordination
@@ -606,18 +623,20 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
-        <button class="docs-tab" data-doc="wireframe">Wireframe</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Documentation views">
+          <button type="button" class="docs-tab docs-tab--active" data-doc="flow" role="tab" id="doctab-flow" aria-selected="true" aria-controls="docpanel-flow" tabindex="0">User Flow</button>
+          <button type="button" class="docs-tab" data-doc="wireframe" role="tab" id="doctab-wireframe" aria-selected="false" aria-controls="docpanel-wireframe" tabindex="-1">Wireframe</button>
+          <button type="button" class="docs-tab" data-doc="arch" role="tab" id="doctab-arch" aria-selected="false" aria-controls="docpanel-arch" tabindex="-1">Architecture</button>
+          <button type="button" class="docs-tab" data-doc="prd" role="tab" id="doctab-prd" aria-selected="false" aria-controls="docpanel-prd" tabindex="-1">About this page</button>
+        </div>
         <a href="https://github.com/argaur/group-travel-pwa" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
         <a href="https://trivo.gauravg.dev" target="_blank" rel="noopener" class="docs-tab">Live App &rarr;</a>
       </div>
     </div>
 
     <!-- USER FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="flow" id="docpanel-flow" role="tabpanel" aria-labelledby="doctab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="User Flow diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;">
         <defs>
           <marker id="tf-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
@@ -687,8 +706,8 @@
     </div>
 
     <!-- WIREFRAME -->
-    <div class="docs-panel docs-panel--hidden" data-panel="wireframe">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="wireframe" id="docpanel-wireframe" role="tabpanel" aria-labelledby="doctab-wireframe">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Wireframe diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" style="width:100%;display:block;">
         <rect width="900" height="400" fill="#f2ebdb"/>
         <text x="450" y="26" fill="rgba(29,37,49,0.62)" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" letter-spacing="2" text-anchor="middle" opacity="0.85">WIREFRAME, TRIP PLANNING SCREENS</text>
@@ -724,18 +743,18 @@
         <text x="470" y="108" fill="#5a5f6b" font-family="IBM Plex Mono, monospace" font-size="8" text-anchor="middle">Hotel</text>
         <text x="530" y="108" fill="#5a5f6b" font-family="IBM Plex Mono, monospace" font-size="8" text-anchor="middle">Activities</text>
 
-        <text x="338" y="134" fill="#1d2531" font-family="IBM Plex Mono, monospace" font-size="8">Rahul</text>
+        <text x="338" y="134" fill="#1d2531" font-family="IBM Plex Mono, monospace" font-size="8">Member A</text>
         <rect x="388" y="120" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
         <rect x="448" y="120" width="44" height="26" fill="#cf3b16"/>
         <text x="470" y="136" fill="#f2ebdb" font-family="IBM Plex Mono, monospace" font-size="6" text-anchor="middle">Budget clash</text>
         <rect x="508" y="120" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
 
-        <text x="338" y="168" fill="#1d2531" font-family="IBM Plex Mono, monospace" font-size="8">Meera</text>
+        <text x="338" y="168" fill="#1d2531" font-family="IBM Plex Mono, monospace" font-size="8">Member B</text>
         <rect x="388" y="154" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
         <rect x="448" y="154" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
         <rect x="508" y="154" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
 
-        <text x="338" y="202" fill="#1d2531" font-family="IBM Plex Mono, monospace" font-size="8">Dev</text>
+        <text x="338" y="202" fill="#1d2531" font-family="IBM Plex Mono, monospace" font-size="8">Member C</text>
         <rect x="388" y="188" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
         <rect x="448" y="188" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
         <rect x="508" y="188" width="44" height="26" fill="#f2ebdb" stroke="rgba(29,37,49,0.25)"/>
@@ -771,8 +790,8 @@
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="docpanel-arch" role="tabpanel" aria-labelledby="doctab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;">
         <defs>
           <marker id="ta-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
@@ -839,11 +858,11 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="docpanel-prd" role="tabpanel" aria-labelledby="doctab-prd">
       <div class="docs-note">
         <p>This page is the full Product Requirements Document for Trivo, covering the
         group travel coordination problem, primary user research, the AI conflict-detection
-        layer, and the MVP scope shipped for the Rethink AI MPM Cohort 7 program.</p>
+        layer, and the MVP scope shipped for Mastering AI Product Management, Cohort 7 (Rethink Systems).</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
       </div>
     </div>
@@ -906,7 +925,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Built for logistics. Not for people (table)">
       <table>
         <thead><tr><th>Metric</th><th>Value</th></tr></thead>
         <tbody>
@@ -946,7 +965,7 @@
 
     <h3 class="h3-spaced">The typical group trip failure journey</h3>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="The typical group trip failure journey (table)">
       <table>
         <thead><tr><th>Stage</th><th>What happens</th></tr></thead>
         <tbody>
@@ -998,17 +1017,17 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Six trips, one pattern (table)">
       <table>
         <thead><tr><th>Parameter</th><th>Details</th></tr></thead>
         <tbody>
           <tr><td>Method</td><td>Semi-structured user interviews (video call, transcribed via Otter.ai)</td></tr>
           <tr><td>Total Interviews</td><td>6 core interviews (cross-validated across two research phases)</td></tr>
           <tr><td>Interview Period</td><td>March 28&ndash;30, 2026</td></tr>
-          <tr><td>Geographic Coverage</td><td>1 US-based (Seattle), 5 India-based (Bangalore, Rajasthan, Kerala)</td></tr>
+          <tr><td>Geographic Coverage</td><td>1 US-based, 5 India-based, across metro and non-metro cities</td></tr>
           <tr><td>Group Types</td><td>Multi-family (2), Office colleagues (2), Friend groups (2)</td></tr>
           <tr><td>Trip Types</td><td>Domestic leisure, international, mountain treks, beach, family vacation</td></tr>
-          <tr><td>Cross-Validation</td><td>2 interviews independently describe the same Bir Billing trip</td></tr>
+          <tr><td>Cross-Validation</td><td>2 interviews independently describe the same mountain trip</td></tr>
         </tbody>
       </table>
       </div>
@@ -1019,27 +1038,27 @@
       <blockquote>
         &ldquo;No one was kind of upfront&hellip; through the selection of places, people were
         exposing their budgetary preferences in a way.&rdquo;
-        <cite>, Sabya, Senior PM, Seattle</cite>
+        <cite>Senior PM, US-based group traveller</cite>
       </blockquote>
       <blockquote>
         &ldquo;I want all the organiser&rsquo;s responsibility to go away.&rdquo;
-        <cite>, Aashik Villa, Kerala Group Trip</cite>
+        <cite>Group trip participant, India</cite>
       </blockquote>
       <blockquote>
         &ldquo;People tend to avoid talking about their budget or dietary restrictions upfront.
         If there was some way to make those people comfortable in saying those things early
         on&hellip; it would have been really nice.&rdquo;
-        <cite>, Gaurav Gupta, Researcher &amp; Product Manager</cite>
+        <cite>Group traveller, India</cite>
       </blockquote>
       <blockquote>
         &ldquo;Multiple sub cuts, and then it was a mess, Splitwise me or challenge,
         because you have to enter it manually every time.&rdquo;
-        <cite>, Rahul Kumar, Kerala Trip</cite>
+        <cite>Multi-day trip participant, India</cite>
       </blockquote>
       <blockquote>
         &ldquo;Since we had paid for like three days in advance, so now you are stuck. You have
         paid a hefty price, and you are stuck.&rdquo;
-        <cite>, Rahul Kumar, Kerala Trip</cite>
+        <cite>Multi-day trip participant, India</cite>
       </blockquote>
     </div>
 
@@ -1088,7 +1107,7 @@
 
     <h3 class="h3-spaced">Pain points ranked by severity</h3>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Pain points ranked by severity (table)">
       <table>
         <thead><tr><th>Pain Point</th><th>Severity</th></tr></thead>
         <tbody>
@@ -1112,7 +1131,7 @@
       forced to stitch together 4&ndash;5 tools.</p>
     </div>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Competitive landscape (table)">
       <table>
         <thead><tr><th>Tool</th><th>Core Strength</th><th>Key Gap</th></tr></thead>
         <tbody>
@@ -1164,25 +1183,25 @@
 
     <div class="cards">
       <div class="card">
-        <h4>The Delegator Approver</h4>
+        <h3 class="hx4">The Delegator Approver</h3>
         <p>Takes no active lead; participates in validation. Waits for 2&ndash;3 options to
         be shortlisted, then picks one. Voices dissatisfaction after the fact if not
         consulted before final booking.</p>
       </div>
       <div class="card">
-        <h4>The Reluctant Organiser</h4>
+        <h3 class="hx4">The Reluctant Organiser</h3>
         <p>Becomes de-facto planner by default, due to local knowledge, seniority, or
         history. Books accommodation, manages expenses, drives the car. Bears
         disproportionate cognitive load.</p>
       </div>
       <div class="card">
-        <h4>The Budget Whisperer</h4>
+        <h3 class="hx4">The Budget Whisperer</h3>
         <p>Acutely aware of group financial dynamics. Silently calibrates preferences to
         implied budget. Uses Airbnb price selection as an indirect budget signal. No socially
         safe mechanism to communicate limits.</p>
       </div>
       <div class="card">
-        <h4>The Experience-First Traveller with Constraints</h4>
+        <h3 class="hx4">The Experience-First Traveller with Constraints</h3>
         <p>Wants a rich trip but constrained by family needs, young kids, dietary
         restrictions, physical limitations. Filters heavily for kitchen access,
         stroller-friendliness, kid-friendly itineraries.</p>
@@ -1198,7 +1217,7 @@
       Bangalore / Jaipur</p>
     </div>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Primary persona: Aarav Sharma (table)">
       <table>
         <tbody>
           <tr><td>Life Stage</td><td>Recently married or young parent (child 0&ndash;5 years). Transitioning from spontaneous to planned, constraint-driven group travel.</td></tr>
@@ -1224,7 +1243,7 @@
 
     <h3>Value proposition</h3>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Value proposition (table)">
       <table>
         <thead><tr><th>Customer Job</th><th>Current Pain</th><th>Our Solution</th></tr></thead>
         <tbody>
@@ -1240,7 +1259,7 @@
 
     <h3 class="h3-spaced">Core user loop</h3>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Core user loop (table)">
       <table>
         <thead><tr><th>Step</th><th>Action</th><th>System Response</th><th>Outcome</th></tr></thead>
         <tbody>
@@ -1319,7 +1338,7 @@
 
     <h3 class="h3-spaced">Tech stack</h3>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Tech stack (table)">
       <table>
         <thead><tr><th>Layer</th><th>Technology</th><th>Why</th></tr></thead>
         <tbody>
@@ -1372,7 +1391,7 @@
 
     <h3 class="h3-spaced">Phased implementation plan</h3>
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Phased implementation plan (table)">
       <table>
         <thead><tr><th>Phase</th><th>Deliverable</th><th>Duration</th><th>Test Gate</th></tr></thead>
         <tbody>
@@ -1401,23 +1420,41 @@
   </div>
 </div>
 
+</main>
+
 <footer>
-  <div class="foot-brand">Gaurav Gupta &middot; Rethink AI MPM Cohort 7 &middot; March 2026</div>
+  <div class="foot-brand">Gaurav Gupta &middot; Mastering AI Product Management, Cohort 7 (Rethink Systems) &middot; March 2026</div>
   <a href="index.html#projects" class="nav-back" style="color:var(--text-2)">&larr; Back to Portfolio</a>
 </footer>
 
 <script>
 // Docs-tab panel switcher
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') n = 0;
+      else if (e.key === 'End') n = tabs.length - 1;
+      if (n === null) return;
+      e.preventDefault();
+      select(tabs[n], true);
     });
   });
 })();

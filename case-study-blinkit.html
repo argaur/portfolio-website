@@ -12,10 +12,12 @@
     <meta property="og:title" content="Blinkit Dark Store Command Hub | Gaurav Gupta">
     <meta property="og:description" content="Case study: Peak-hour decision support for dark store ops managers. Live prototype included.">
     <meta property="og:url" content="https://gauravg.dev/case-study-blinkit.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#101410">
 
 <style>
@@ -204,7 +206,7 @@
 
   .hero-wrap { border-bottom: 1px solid var(--border); }
   .hero {
-    max-width: 1280px;
+    max-width: 1376px; /* 1280 + 2x48 padding: matches the .sec content edge */
     margin: 0 auto;
     padding: 148px 48px 96px;
   }
@@ -255,6 +257,17 @@
   .callout p + p { margin-top: 14px; }
   .callout--alert { border-left-color: var(--alert); }
   .callout--green { border-left-color: var(--green); }
+
+  .hero-note {
+    margin-top: 24px;
+    max-width: 680px;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--text-2);
+    border-left: 2px solid var(--yellow);
+    padding-left: 16px;
+  }
+  .hero-note strong { color: var(--ink); font-weight: 700; }
 
   .callout-box {
     background: var(--surface);
@@ -449,6 +462,19 @@
     .docs-panel--hidden { display: block; }
     .sec { padding: 32px 0; break-inside: avoid; }
   }
+
+  /* ── Accessibility layer (2026-10-12) */
+  .nav-back { position: relative; }
+  .nav-back::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .nav-link { padding-top: 14px; padding-bottom: 14px; }
+  .nav-link--active::after { bottom: 9px; }
+  .docs-tablist { display: contents; }
+  .docs-tabs { row-gap: 10px; } /* keeps wrapped rows' 44px hit areas from overlapping */
+  .docs-tab { position: relative; }
+  .docs-tab::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; min-height: 100%; transform: translateY(-50%); }
+  .table-scroll { overflow-x: auto; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible { outline: 2px solid var(--yellow); outline-offset: -2px; }
+  h3.hx4 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; color: var(--ink); }
 </style>
   <script src="analytics.js" defer></script>
 </head>
@@ -462,9 +488,11 @@
     <a href="#research" class="nav-link">Research</a>
     <a href="#solution" class="nav-link">Solution</a>
     <a href="#metrics" class="nav-link">Metrics</a>
-    <span class="nav-index">Case Study 02</span>
+    <span class="nav-index">Case Study</span>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
@@ -475,6 +503,11 @@
       A mobile-first command layer for Blinkit dark store managers, giving real-time
       picker visibility and exception management during the critical 6&ndash;10 PM peak window.
     </p>
+    <p class="hero-note"><strong>Independent product exploration, not commissioned by or affiliated
+      with Blinkit.</strong> What exists: a PRD, field and ops research (dark store visits and
+      conversations with 2 to 3 ops professionals), and a working prototype of the manager
+      dashboard and the picker app. It is not a shipped Blinkit feature, and the success
+      metrics on this page are proposals, not results.</p>
     <div class="meta-row">
       <span class="meta-tag">Quick Commerce</span>
       <span class="meta-tag">Operations</span>
@@ -502,18 +535,20 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="flow">User Flow</button>
-        <button class="docs-tab" data-doc="wireframe">Wireframe</button>
-        <button class="docs-tab" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Documentation views">
+          <button type="button" class="docs-tab docs-tab--active" data-doc="flow" role="tab" id="doctab-flow" aria-selected="true" aria-controls="docpanel-flow" tabindex="0">User Flow</button>
+          <button type="button" class="docs-tab" data-doc="wireframe" role="tab" id="doctab-wireframe" aria-selected="false" aria-controls="docpanel-wireframe" tabindex="-1">Wireframe</button>
+          <button type="button" class="docs-tab" data-doc="arch" role="tab" id="doctab-arch" aria-selected="false" aria-controls="docpanel-arch" tabindex="-1">Architecture</button>
+          <button type="button" class="docs-tab" data-doc="prd" role="tab" id="doctab-prd" aria-selected="false" aria-controls="docpanel-prd" tabindex="-1">About this page</button>
+        </div>
         <a href="https://blinkit-command-hub.vercel.app/" target="_blank" rel="noopener" class="docs-tab">DSM Dashboard &rarr;</a>
         <a href="https://picker-blinkit-app.lovable.app/picking" target="_blank" rel="noopener" class="docs-tab">Picker Side &rarr;</a>
       </div>
     </div>
 
     <!-- USER FLOW -->
-    <div class="docs-panel" data-panel="flow">
-      <div class="docs-scroll">
+    <div class="docs-panel" data-panel="flow" id="docpanel-flow" role="tabpanel" aria-labelledby="doctab-flow">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="User Flow diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 310" style="width:100%;display:block;">
         <defs>
           <marker id="bf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -567,8 +602,8 @@
     </div>
 
     <!-- WIREFRAME -->
-    <div class="docs-panel docs-panel--hidden" data-panel="wireframe">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="wireframe" id="docpanel-wireframe" role="tabpanel" aria-labelledby="doctab-wireframe">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Wireframe diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" style="width:100%;display:block;">
         <rect width="900" height="420" fill="#101410"/>
         <text x="450" y="26" text-anchor="middle" fill="#8A948A" font-family="Mulish, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em">WIREFRAME, COMMAND HUB DASHBOARD</text>
@@ -662,8 +697,8 @@
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel docs-panel--hidden" data-panel="arch">
-      <div class="docs-scroll">
+    <div class="docs-panel docs-panel--hidden" data-panel="arch" id="docpanel-arch" role="tabpanel" aria-labelledby="doctab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="width:100%;display:block;">
         <defs>
           <marker id="ba-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -724,7 +759,7 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="docpanel-prd" role="tabpanel" aria-labelledby="doctab-prd">
       <div class="docs-note">
         <p>This page is the full Product Requirements Document for the Blinkit Dark Store
         Command Hub, covering problem framing, primary and secondary research,
@@ -960,12 +995,12 @@
 
     <div class="cards">
       <div class="card">
-        <h4>Dark Store Manager (DSM): Primary user</h4>
+        <h3 class="hx4">Dark Store Manager (DSM): Primary user</h3>
         <p>Owns store P&amp;L and operations end to end: hiring, scheduling, inventory
         accuracy, layout hygiene, and the primary point of contact for escalations.</p>
       </div>
       <div class="card">
-        <h4>Picker: Secondary user</h4>
+        <h3 class="hx4">Picker: Secondary user</h3>
         <p>Interacts via a simplified companion screen. Doesn't manage orders, 
         executes them. Two jobs: shift check-in and exception reporting (alert or SOS).</p>
       </div>
@@ -1061,8 +1096,8 @@
       <p>The Hub as built responds to what's happening now. The moonshot, 
       <strong>Predictive Breach Prevention via Cart Signal Intelligence</strong>, shifts
       it to predicting what happens next, before an order is even placed. Blinkit's consumer
-      app already sees cart behaviour (items added/removed, session duration, time-to-checkout)
-, real-time leading indicators of orders about to arrive at the store in the next
+      app already sees cart behaviour (items added/removed, session duration, time-to-checkout):
+      real-time leading indicators of orders about to arrive at the store in the next
       5&ndash;10 minutes.</p>
     </div>
 
@@ -1098,7 +1133,7 @@
     </div>
 
     <div class="table-wrap">
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What proves it worked, and what it deliberately doesn&#x27;t fix (table)">
       <table>
         <thead><tr><th>Dimension</th><th>What it proves</th></tr></thead>
         <tbody>
@@ -1163,6 +1198,8 @@
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Product Requirements Document</div>
   <a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a>
@@ -1171,15 +1208,31 @@
 <script>
 // Docs-tab panel switcher
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('button.docs-tab[role="tab"]'));
   var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
+    var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
+    if (panel) panel.classList.remove('docs-panel--hidden');
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') n = 0;
+      else if (e.key === 'End') n = tabs.length - 1;
+      if (n === null) return;
+      e.preventDefault();
+      select(tabs[n], true);
     });
   });
 })();

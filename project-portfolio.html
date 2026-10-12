@@ -12,10 +12,12 @@
     <meta property="og:title" content="This Portfolio Website | Gaurav Gupta">
     <meta property="og:description" content="Built as a product, documented as a case study. Plain HTML, Tailwind CDN, 7-panel SPA.">
     <meta property="og:url" content="https://gauravg.dev/project-portfolio.html">
-    <meta property="og:image" content="https://gauravg.dev/photo.jpg">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://gauravg.dev/photo.jpg">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="theme-color" content="#0e0e12">
 
 <style>
@@ -108,6 +110,9 @@
     color: var(--text-2);
     transition: color 0.14s ease;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
   .nav-back:hover { color: var(--gold); }
   .nav-right { display: flex; align-items: center; gap: 28px; }
@@ -191,6 +196,7 @@
     letter-spacing: -0.01em;
     margin-bottom: 10px;
   }
+  .card h3 { font-size: 1rem; letter-spacing: -0.01em; margin-bottom: 10px; }
   .h3-spaced { margin-top: 48px; }
 
   ul { padding-left: 18px; }
@@ -200,7 +206,7 @@
 
   .hero-wrap { border-bottom: 1px solid var(--border); }
   .hero {
-    max-width: 1280px;
+    max-width: 1376px; /* 1280 content + 2 x 48px padding, matches .sec-inner */
     margin: 0 auto;
     padding: 148px 48px 96px;
   }
@@ -377,7 +383,7 @@
     gap: 16px;
     margin-bottom: 28px;
   }
-  .docs-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .docs-tabs, .docs-tablist { display: flex; flex-wrap: wrap; gap: 8px; }
   .docs-tab {
     font-family: var(--mono);
     font-size: 0.72rem;
@@ -391,7 +397,10 @@
     cursor: pointer;
     text-decoration: none;
     transition: all 0.14s ease;
+    position: relative;
   }
+  /* 44px hit area without changing the drawn size */
+  .docs-tab::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }
   .docs-tab:hover { border-color: var(--gold); color: var(--gold); }
   .docs-tab--active { background: var(--gold); border-color: var(--gold); color: #0e0e12; }
   .docs-panel {
@@ -401,6 +410,7 @@
   }
   .docs-panel--hidden { display: none; }
   .docs-scroll { overflow-x: auto; }
+  .docs-scroll:focus-visible, .table-scroll:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
   .docs-scroll svg { min-width: 720px; }
   .docs-note { padding: 32px; }
 
@@ -437,6 +447,8 @@
       -ms-overflow-style: none;
     }
     .nav-right::-webkit-scrollbar { display: none; }
+    .nav-link { display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link--active::after { bottom: 8px; }
     .two-col { grid-template-columns: 1fr; gap: 32px; }
     .cards { grid-template-columns: 1fr; }
     .card { padding: 28px 24px; }
@@ -464,15 +476,15 @@
   </div>
 </nav>
 
+<main id="main">
 <!-- ── HERO ───────────────────────────────────────────────── -->
 <div class="hero-wrap">
   <div class="hero">
     <span class="label label-strong">Personal Project &middot; Meta &middot; Ongoing</span>
     <h1>This portfolio website:<br /><em>built as a product.</em></h1>
     <p class="hero-sub">
-      A single-file portfolio with its own design system, "Kinetic Precision." Zero npm
-      dependencies. Ships by opening a file in a browser and works. It once had an email
-      gate. I turned it off because it blocked visitors.
+      A single-page portfolio with its own design system, "Kinetic Precision." Zero npm
+      dependencies and no build step. It ships by opening a file in a browser.
     </p>
     <div class="meta-row">
       <span class="meta-tag">HTML</span>
@@ -501,16 +513,18 @@
     <div class="docs-head">
       <span class="label">Documentation</span>
       <div class="docs-tabs">
-        <button class="docs-tab docs-tab--active" data-doc="arch">Architecture</button>
-        <button class="docs-tab" data-doc="prd">About this page</button>
+        <div class="docs-tablist" role="tablist" aria-label="Documentation views">
+          <button type="button" class="docs-tab docs-tab--active" data-doc="arch" role="tab" id="doc-tab-arch" aria-controls="doc-panel-arch" aria-selected="true" tabindex="0">Architecture</button>
+          <button type="button" class="docs-tab" data-doc="prd" role="tab" id="doc-tab-prd" aria-controls="doc-panel-prd" aria-selected="false" tabindex="-1">About this page</button>
+        </div>
         <a href="https://github.com/argaur/portfolio-website" target="_blank" rel="noopener" class="docs-tab">GitHub &rarr;</a>
       </div>
     </div>
 
     <!-- ARCHITECTURE -->
-    <div class="docs-panel" data-panel="arch">
-      <div class="docs-scroll">
-      <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+    <div class="docs-panel" data-panel="arch" id="doc-panel-arch" role="tabpanel" aria-labelledby="doc-tab-arch">
+      <div class="docs-scroll" tabindex="0" role="region" aria-label="Architecture diagram, scrolls sideways">
+      <svg role="img" aria-label="System architecture of this portfolio website" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
         <defs>
           <marker id="pf-arr" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
             <path d="M0,0 L8,3.5 L0,7 Z" fill="#56546e" opacity="0.9"/>
@@ -533,8 +547,8 @@
         <text x="80" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">VISITOR</text>
         <text x="270" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">CDN / HOSTING</text>
         <text x="480" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">APPLICATION</text>
-        <text x="660" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">SERVICES</text>
-        <text x="820" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">PERSISTENCE</text>
+        <text x="660" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">MOTION</text>
+        <text x="820" y="55" text-anchor="middle" fill="#c9a84c" font-family="Space Mono, monospace" font-size="8" letter-spacing="0.1em">ANALYTICS</text>
 
         <!-- Node 1: Browser -->
         <rect x="10" y="118" width="140" height="44" fill="#1a1a22" stroke="#2a2a38" stroke-width="1"/>
@@ -555,29 +569,29 @@
         <!-- Node 3: index.html inline JS (highlight) -->
         <rect x="400" y="118" width="160" height="44" fill="#c9a84c"/>
         <text x="480" y="136" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">Inline JS</text>
-        <text x="480" y="152" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">7-panel SPA + modals</text>
+        <text x="480" y="152" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">Panels + hash routing</text>
 
         <!-- Arrow 3→4 -->
         <line x1="560" y1="140" x2="588" y2="140" stroke="#56546e" stroke-width="1" marker-end="url(#pf-arr)"/>
 
         <!-- Node 4: gate.js (highlight) -->
         <rect x="590" y="118" width="140" height="44" fill="#c9a84c"/>
-        <text x="660" y="136" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">gate.js</text>
-        <text x="660" y="152" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">Gate, disabled</text>
+        <text x="660" y="136" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">hero-motion.js</text>
+        <text x="660" y="152" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">Plan to Product canvas</text>
 
         <!-- Arrow 4→5 -->
         <line x1="730" y1="140" x2="748" y2="140" stroke="#56546e" stroke-width="1" marker-end="url(#pf-arr)"/>
 
         <!-- Node 5: Supabase DB (highlight) -->
         <rect x="750" y="118" width="140" height="44" fill="#c9a84c"/>
-        <text x="820" y="136" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">Supabase DB</text>
-        <text x="820" y="152" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">No longer called</text>
+        <text x="820" y="136" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">PostHog</text>
+        <text x="820" y="152" text-anchor="middle" fill="#0e0e12" font-family="DM Sans, sans-serif" font-size="8" opacity="0.85">Pageviews only</text>
 
         <!-- Secondary nodes (y=238 top) -->
         <line x1="270" y1="162" x2="270" y2="236" stroke="#56546e" stroke-dasharray="4 3" stroke-width="1" marker-end="url(#pf-arr)"/>
         <rect x="185" y="238" width="170" height="44" fill="#16161e" stroke="#2a2a38" stroke-width="1"/>
-        <text x="270" y="256" text-anchor="middle" fill="#ece8e2" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">styles.css</text>
-        <text x="270" y="272" text-anchor="middle" fill="#9896a0" font-family="DM Sans, sans-serif" font-size="8">Kinetic Precision system</text>
+        <text x="270" y="256" text-anchor="middle" fill="#ece8e2" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Inline styles</text>
+        <text x="270" y="272" text-anchor="middle" fill="#9896a0" font-family="DM Sans, sans-serif" font-size="8">Kinetic Precision tokens</text>
 
         <line x1="480" y1="162" x2="480" y2="236" stroke="#56546e" stroke-dasharray="4 3" stroke-width="1" marker-end="url(#pf-arr)"/>
         <rect x="400" y="238" width="160" height="44" fill="#16161e" stroke="#2a2a38" stroke-width="1"/>
@@ -585,17 +599,17 @@
         <text x="480" y="272" text-anchor="middle" fill="#9896a0" font-family="DM Sans, sans-serif" font-size="8">Runtime, no build step</text>
 
         <!-- Footer note -->
-        <text x="450" y="330" text-anchor="middle" fill="#c9a84c" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.9">Zero npm dependencies &middot; plain HTML + CSS + JS &middot; Tailwind + Supabase via CDN &middot; auto-deployed via Vercel</text>
+        <text x="450" y="330" text-anchor="middle" fill="#c9a84c" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.9">Zero npm dependencies &middot; plain HTML + CSS + JS &middot; Tailwind via CDN &middot; auto-deployed via Vercel</text>
       </svg>
       </div>
     </div>
 
     <!-- ABOUT -->
-    <div class="docs-panel docs-panel--hidden" data-panel="prd">
+    <div class="docs-panel docs-panel--hidden" data-panel="prd" id="doc-panel-prd" role="tabpanel" aria-labelledby="doc-tab-prd">
       <div class="docs-note">
         <p>This page is the build record for the portfolio itself, a "meta" project.
-        It covers the no-framework constraint, the current "Kinetic Precision" design
-        system, the 7-panel single-file architecture, and the email gate I retired.</p>
+        It covers the no-framework constraint, the "Kinetic Precision" design system,
+        how the site is put together today, and the email gate I retired.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
       </div>
     </div>
@@ -623,7 +637,7 @@
       </div>
       <div class="stat">
         <span class="stat-num">7</span>
-        <span class="stat-lbl">Panels in one continuous-scroll SPA</span>
+        <span class="stat-lbl">Panels in one single-page site, one visible at a time</span>
       </div>
       <div class="stat">
         <span class="stat-num">1 file</span>
@@ -631,7 +645,7 @@
       </div>
       <div class="stat">
         <span class="stat-num">CDN</span>
-        <span class="stat-lbl">Tailwind + Supabase, both runtime-loaded</span>
+        <span class="stat-lbl">Tailwind, loaded at runtime</span>
       </div>
     </div>
   </div>
@@ -710,37 +724,50 @@
 <div class="sec" id="architecture">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>7 panels.<br /><em>One HTML file.</em></h2>
+      <h2>7 panels.<br /><em>One visible at a time.</em></h2>
       <span class="label">03 &middot; Architecture</span>
     </div>
 
     <div class="prose">
-      <p>The site is a single HTML file with 7 full-viewport panels. Only one panel is
-      visible at a time, <code>overflow: hidden</code> on <code>&lt;body&gt;</code>,
-      panel switching toggles an active class, and all the switching logic lives inline in
-      <code>index.html</code> itself rather than a separate <code>app.js</code>.</p>
+      <p>A single-page portfolio with section navigation. One main panel is visible at a
+      time. The page itself does not scroll: <code>&lt;body&gt;</code> has
+      <code>overflow: hidden</code>, and the nav switches panels. The switching logic lives
+      inline in <code>index.html</code>.</p>
     </div>
 
     <h3 class="h3-spaced">7 Panels</h3>
     <ul>
-      <li><strong>Home</strong>, hero split (text + animated canvas), stats strip, blueprint grid</li>
-      <li><strong>Experience</strong>, career arc bar and accordion rows, including the enterprise work</li>
-      <li><strong>Projects</strong>, case studies + personal projects, unified modal</li>
-      <li><strong>Skills</strong>, dark panel, 6 skill groups, top performers highlighted</li>
-      <li><strong>Philosophy</strong>, 7 product principles in a 4-column grid</li>
-      <li><strong>Credentials</strong>, split panel (education left / certifications right)</li>
-      <li><strong>Contact</strong>, dark + blueprint grid, animated node canvas, email + LinkedIn</li>
+      <li><strong>Home</strong>, two doors (founders and teams, or hiring), a stats row and the Plan to Product canvas</li>
+      <li><strong>Experience</strong>, career rows in an accordion, including the enterprise work</li>
+      <li><strong>Projects</strong>, a tile grid by domain with filter chips, each tile opening a detail view</li>
+      <li><strong>Skills</strong>, how I build, from brief to shipped product</li>
+      <li><strong>Philosophy</strong>, the product principles I work by</li>
+      <li><strong>Credentials</strong>, education and certifications</li>
+      <li><strong>Contact</strong>, the same canvas story replayed, plus email and LinkedIn</li>
     </ul>
 
     <h3 class="h3-spaced">Hash Routing</h3>
-    <p>On page load, the panel router reads <code>window.location.hash</code> and activates
-    the matching panel. Every panel has a shareable direct URL:
-    <code>#experience</code>, <code>#projects</code>, and so on.</p>
+    <p>Every panel has its own hash, such as <code>#experience</code> or
+    <code>#projects</code>. On load, the router reads the hash and opens that panel, so
+    each panel has a shareable URL. Any link marked with a panel attribute switches panels,
+    not only the nav.</p>
+
+    <h3 class="h3-spaced">Motion</h3>
+    <p><code>hero-motion.js</code> draws Plan to Product on a canvas on Home and Contact. A
+    sketch becomes a plan, the plan is built floor by floor, and it ends at SHIP and LIVE.
+    It pauses when off-screen or in a background tab. It has no reduced-motion skip: that
+    skip froze the hero twice, so the gentle motion always plays.</p>
+
+    <h3 class="h3-spaced">Case Pages and Trailers</h3>
+    <p>Each case study and project page is its own file and wears its own product's design
+    language: its own colors, fonts and corners. <code>trailer.js</code> fills each page's
+    trailer section with a recording of the live product, or a slide reel when there is no
+    public product to film.</p>
 
     <h3 class="h3-spaced">Mobile Nav</h3>
-    <p>The desktop nav collapses into a hamburger button on mobile. Tapping it opens a
-    full-screen overlay with numbered links, left-aligned with generous padding. ESC or
-    selecting a panel closes it.</p>
+    <p>On mobile, the nav collapses into a menu button that opens a full-screen overlay.
+    ESC or choosing a panel closes it. On case pages, <code>nav-hint.js</code> fades the
+    edge of the section strip while more links sit off-screen.</p>
   </div>
 </div>
 
@@ -790,35 +817,53 @@
 
     <div class="cards">
       <div class="card">
-        <h4>index.html</h4>
-        <p>All 7 panels, modal overlay, mobile nav overlay, and all panel-switching /
-        canvas / modal JavaScript inline. Single file, no partials, no templating.</p>
+        <h3>index.html</h3>
+        <p>All 7 panels, the detail view and the mobile nav overlay. Panel switching, hash
+        routing, the project tiles and their filters run inline. No partials, no templating.</p>
       </div>
       <div class="card">
-        <h4>styles.css</h4>
-        <p>Kinetic Precision design system. Panel layout, hero split,
-        philosophy grid, modal narrative, canvas utilities, mobile responsive.</p>
+        <h3>Inline styles</h3>
+        <p>The Kinetic Precision tokens and components sit in one style block inside
+        index.html, with Tailwind loaded from a CDN at runtime alongside it.</p>
       </div>
       <div class="card">
-        <h4>gate.js</h4>
-        <p>Retired email gate. Loaded but short-circuited, so it does nothing.</p>
+        <h3>hero-motion.js</h3>
+        <p>The Plan to Product canvas on Home and Contact. Pauses off-screen and in
+        background tabs.</p>
       </div>
       <div class="card">
-        <h4>tabs.js</h4>
-        <p>Empty stub, superseded by the panel-nav logic now inlined in <code>index.html</code>.</p>
+        <h3>trailer.js</h3>
+        <p>Fills the trailer section on each case and project page: a live-product clip, an
+        embed, or a slide reel.</p>
       </div>
       <div class="card">
-        <h4>case-study-*.html, project-*.html</h4>
+        <h3>nav-hint.js</h3>
+        <p>Fades the edge of the case-page nav on mobile while more links are off-screen.</p>
+      </div>
+      <div class="card">
+        <h3>analytics.js</h3>
+        <p>PostHog, anonymous pageviews only. No custom events, no identify, no autocapture.
+        Skips localhost and local file opens.</p>
+      </div>
+      <div class="card">
+        <h3>case-study-*.html, project-*.html</h3>
         <p>Every case study and project page is self-contained: its own inline styles and
         fonts, wearing the design language of the product it describes.</p>
       </div>
       <div class="card">
-        <h4>favicon.svg</h4>
+        <h3>vercel.json, .vercelignore</h3>
+        <p>Redirects only, so a published URL never breaks. The ignore file keeps internal
+        notes and working files out of the deploy.</p>
+      </div>
+      <div class="card">
+        <h3>favicon.svg</h3>
         <p>Geometric GG monogram, pure SVG, no raster asset.</p>
       </div>
     </div>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="foot-brand">Gaurav Gupta &middot; Personal Project &middot; Ongoing</div>
@@ -826,17 +871,31 @@
 </footer>
 
 <script>
-// Docs-tab panel switcher
+// Docs tabs: click or Left/Right/Home/End, roving tabindex, aria-selected kept in sync
 (function() {
-  var tabs = document.querySelectorAll('button.docs-tab');
-  var panels = document.querySelectorAll('.docs-panel');
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('docs-tab--active'); });
-      panels.forEach(function(p) { p.classList.add('docs-panel--hidden'); });
-      tab.classList.add('docs-tab--active');
-      var panel = document.querySelector('.docs-panel[data-panel="' + tab.dataset.doc + '"]');
-      if (panel) panel.classList.remove('docs-panel--hidden');
+  var list = document.querySelector('.docs-tablist[role="tablist"]');
+  if (!list) return;
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function(t) {
+      var on = t === tab;
+      t.classList.toggle('docs-tab--active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var p = document.getElementById(t.getAttribute('aria-controls'));
+      if (p) p.classList.toggle('docs-panel--hidden', !on);
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() { select(tab, false); });
+    tab.addEventListener('keydown', function(e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
     });
   });
 })();

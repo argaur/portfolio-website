@@ -12,6 +12,11 @@
     <meta property="og:description" content="life-os is a single-user phone app on top of my own notes and records. Capture files new items in one tap. Pulse shows what needs me now. In build.">
     <meta property="og:url" content="https://gauravg.dev/project-life-os.html">
     <meta property="og:type" content="article">
+    <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
     <meta name="description" content="life-os is a single-user phone app on top of my own notes and records. Capture files new items in one tap. Pulse shows what needs me now. In build.">
     <meta name="theme-color" content="#0f1216">
 <style>
@@ -74,6 +79,7 @@ th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:up
 td{color:var(--text2)}
 td.num{font-variant-numeric:tabular-nums;color:var(--text)}
 tr:last-child td{border-bottom:none}
+.table-wrap:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;max-width:952px;margin:0 auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
 .banner{position:sticky;top:56px;z-index:40;background:var(--warn-bg);color:var(--warn-text);border-bottom:1px solid var(--warn);padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-align:center}
 @media(max-width:580px){.nav-index{display:none}.sec{padding:56px 16px}.hero-wrap{padding-top:96px}}
@@ -87,6 +93,7 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
   <div class="nav-right"><a href="#overview" class="nav-link">Overview</a><a href="#problem" class="nav-link">Problem</a><a href="#how" class="nav-link">How it works</a><a href="#cuts" class="nav-link">What I cut</a><a href="#status" class="nav-link">Status</a><span class="nav-index">Project &middot; Personal</span></div>
 </nav>
 
+<main id="main">
 <div class="hero-wrap">
   <div class="hero">
     <span class="label label-strong">Personal Project &middot; PWA &middot; In build</span>
@@ -137,6 +144,7 @@ footer{padding:32px 16px;border-top:1px solid var(--border);display:flex;flex-wr
 <div class="sec-head"><h2>Where it<br /><em>stands.</em></h2><span class="label">04 &middot; Status</span></div>
 <div class="callout warn"><p><strong>In build, and private.</strong> It is installed on my own phone. It is not open to other users, and there is no public demo or repository. I will say so plainly rather than link to something you cannot open.</p></div><div class="prose"><p>Capture and Pulse both work on a real phone. Work continues on the ongoing-projects view and on the first load after the server sleeps.</p></div>
 </div></div>
+</main>
 <footer><span>Gaurav Gupta &middot; Personal Project &middot; In build</span><a href="index.html#projects" class="nav-back">&larr; Back to Portfolio</a></footer>
 <script>
 (function(){
