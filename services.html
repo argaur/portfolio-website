@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services: Gaurav Gupta</title>
+  <meta name="description" content="Workflow sprints and AI product sprints for founders and small B2B teams. Remote, from Jaipur.">
+  <!-- Services page (board packets P02, P03). Approved by Gaurav 2026-10-12. No prices on the page; AI track entry is a free call plus written scope. -->
+  <link rel="canonical" href="https://gauravg.dev/services.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Services: Gaurav Gupta">
+  <meta property="og:description" content="Test one product idea or fix one messy workflow.">
+  <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e0e12; --s0:#0c0d11; --s1:#16161e; --s2:#1a1a22; --s3:#242432;
+      --border:#2a2a38; --text:#ece8e2; --muted:#9896a0; --faint:#56546e;
+      --accent:#c9a84c; --accent-dim:#8a6f2e; --radius:0px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;border-radius:var(--radius);}
+    html{scroll-behavior:smooth;}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;
+      background-image:linear-gradient(rgba(42,42,56,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(42,42,56,.3) 1px,transparent 1px);background-size:40px 40px;}
+    a{color:inherit;}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+    nav{position:sticky;top:0;z-index:10;background:rgba(14,14,18,.94);border-bottom:1px solid var(--border);}
+    .nav-in{max-width:1080px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .nav-back{display:inline-flex;align-items:center;min-height:44px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted);}
+    .nav-back:hover{color:var(--accent);}
+    .nav-cta{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+    .nav-cta:hover{background:#d4b356;}
+
+    main{max-width:1080px;margin:0 auto;padding:0 24px;}
+    .label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+    .hero{padding:96px 0 72px;border-left:2px solid var(--accent);padding-left:32px;margin-top:48px;}
+    h1{font-family:'Space Mono',monospace;font-size:clamp(30px,5.5vw,52px);line-height:1.08;max-width:18ch;margin-bottom:28px;}
+    .lede{font-size:clamp(17px,2vw,19px);color:var(--muted);max-width:62ch;margin-bottom:16px;}
+
+    section{padding:72px 0;border-top:1px solid var(--border);}
+    h2{font-family:'Space Mono',monospace;font-size:clamp(22px,3vw,30px);line-height:1.2;margin-bottom:12px;max-width:28ch;}
+    .for{color:var(--muted);margin-bottom:32px;max-width:62ch;}
+    .offer{display:grid;grid-template-columns:1.4fr 1fr;gap:0;border:1px solid var(--border);background:var(--s1);}
+    .offer > div{padding:32px;}
+    .offer .side{border-left:1px solid var(--border);background:var(--s2);display:flex;flex-direction:column;gap:20px;}
+    .offer p{margin-bottom:16px;max-width:60ch;}
+    .offer p:last-child{margin-bottom:0;}
+    .tracks{margin-top:24px;font-size:15px;color:var(--muted);}
+    .tracks a{color:var(--accent);display:inline-flex;align-items:center;min-height:44px;}
+    ul.list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+    ul.list li{position:relative;padding-left:20px;color:var(--muted);}
+    ul.list li::before{content:'';position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--accent);}
+    .small{font-size:14px;color:var(--muted);}
+    .note{border-left:2px solid var(--border);padding-left:16px;}
+
+
+    ol.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);counter-reset:s;}
+    ol.steps li{counter-increment:s;padding:24px;border-right:1px solid var(--border);background:var(--s1);}
+    ol.steps li:last-child{border-right:0;}
+    ol.steps li::before{content:'0' counter(s);display:block;font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:12px;}
+
+    .lnk{display:inline-flex;align-items:center;min-height:44px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+    .lnk:hover{text-decoration:underline;text-underline-offset:4px;}
+
+    .close{padding:88px 0 104px;}
+    .close p{color:var(--muted);max-width:62ch;margin-bottom:32px;}
+    .btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;}
+    .btn:hover{background:#d4b356;}
+
+    footer{border-top:1px solid var(--border);}
+    .foot{max-width:1080px;margin:0 auto;padding:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:12px;color:var(--faint);}
+
+    @media (max-width:860px){
+      .offer{grid-template-columns:1fr;}
+      .offer .side{border-left:0;border-top:1px solid var(--border);}
+      ol.steps{grid-template-columns:1fr 1fr;}
+      ol.steps li:nth-child(2){border-right:0;}
+      ol.steps li:nth-child(-n+2){border-bottom:1px solid var(--border);}
+    }
+    @media (max-width:560px){
+      .nav-in,main{padding-left:16px;padding-right:16px;}
+      .hero{padding:64px 0 48px 20px;margin-top:32px;}
+      section{padding:56px 0;}
+      .offer > div{padding:24px 20px;}
+      ol.steps{grid-template-columns:1fr;}
+      ol.steps li{border-right:0;border-bottom:1px solid var(--border);}
+      ol.steps li:last-child{border-bottom:0;}
+      .nav-cta{padding:0 12px;}
+    }
+  </style>
+  <script src="analytics.js" defer></script>
+</head>
+<body>
+  <nav aria-label="Page">
+    <div class="nav-in">
+      <a class="nav-back" href="/">&larr; Portfolio</a>
+      <a class="nav-cta" href="/#contact">Discuss your project</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="hero">
+      <p class="label">Services</p>
+      <h1>Test one product idea or fix one messy workflow.</h1>
+      <p class="lede">I help founders and small B2B teams test one product idea or fix one messy workflow. You get a working prototype or system, with clear limits and a handover your team can own.</p>
+      <p class="lede">I start with the process, not the software. Together, we identify what is worth fixing, agree on a small scope and build something your team can understand and own. AI is an option when it solves a real problem, not a requirement.</p>
+      <p class="tracks">Two ways to start: <a href="#diagnostic">Workflow automation</a> <span aria-hidden="true">&middot;</span> <a href="#ai-sprint">AI product sprint</a></p>
+    </header>
+
+    <section id="diagnostic" aria-labelledby="diag-h">
+      <p class="label">Start with a workflow diagnostic</p>
+      <h2 id="diag-h">Know what to automate before paying to build it.</h2>
+      <p class="for">For teams that know a process is slow or unreliable, but are not sure where to start.</p>
+      <div class="offer">
+        <div>
+          <p>Over 3 to 5 working days, I review one workflow, the tools it touches and the handoffs that cause delays. You get:</p>
+          <ul class="list">
+            <li>A current-process map and the main failure points.</li>
+            <li>A prioritised set of changes, including what should stay manual.</li>
+            <li>A proposed workflow, tool choices and acceptance criteria.</li>
+            <li>A written implementation scope with an indicative cost and timeline.</li>
+            <li>A walkthrough so you can decide what to do next.</li>
+          </ul>
+        </div>
+        <div class="side">
+          <p class="small">Final scope, timeline and price are agreed before work starts.</p>
+          <p class="small note">The diagnostic is a paid, standalone engagement. It does not include production changes, and you do not have to hire me for the build.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sprint" aria-labelledby="sprint-h">
+      <p class="label">One workflow sprint</p>
+      <h2 id="sprint-h">Build the first useful workflow, without taking on a full transformation project.</h2>
+      <p class="for">For teams with a clear process and an owner who can review the work.</p>
+      <div class="offer">
+        <div>
+          <p>In roughly two weeks, I build one agreed workflow using Airtable and Make across up to 2 or 3 systems. Examples include enquiry-to-CRM intake, client onboarding, approval tracking, or an internal operations tracker.</p>
+          <p>The sprint includes:</p>
+          <ul class="list">
+            <li>A scoped workflow and agreed acceptance criteria.</li>
+            <li>Airtable setup and Make automations needed for that workflow.</li>
+            <li>Testing of the agreed happy path and error cases.</li>
+            <li>Up to two review rounds.</li>
+            <li>Documentation and a handover walkthrough.</li>
+            <li>14 days of defect support for the delivered scope after acceptance.</li>
+          </ul>
+        </div>
+        <div class="side">
+          <p class="small">Final scope, timeline and price are agreed before work starts.</p>
+          <p class="small note">Your software subscriptions, API usage and other third-party costs are separate. Large data migrations, custom hosting, security certification, extra workflows and ongoing or 24/7 support are not included. Changes outside the agreed scope are quoted separately.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- P03 track: AI Product Sprint. -->
+    <section id="ai-sprint" aria-labelledby="ai-h">
+      <p class="label">AI product sprint</p>
+      <h2 id="ai-h">Test one product idea with a working prototype.</h2>
+      <p class="for">For founders and small B2B teams with one product question that a working demo can answer.</p>
+      <div class="offer">
+        <div>
+          <p>In about three weeks, I run discovery, write a short PRD and build one core user path. I test it against an agreed set of cases and tell you what failed. You get the demo, the test results, a known-limits note, the code and a handover walkthrough.</p>
+          <p>The first step is a free short call. I then send a written scope, and no work starts until you agree to it.</p>
+        </div>
+        <div class="side">
+          <p class="small">Scope and price are agreed in writing before work starts.</p>
+          <p class="small note">A prototype is not a production launch. Production hardening, security review and hosting at scale are a separate quote. Your API, hosting and subscription costs are separate.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" aria-labelledby="how-h">
+      <p class="label">How we work</p>
+      <h2 id="how-h" class="sr-h">Four steps, agreed up front.</h2>
+      <ol class="steps">
+        <li>Describe the workflow and where it breaks.</li>
+        <li>Start with a diagnostic for a workflow, or a short call and a written scope for a prototype.</li>
+        <li>Review working progress and test against agreed criteria.</li>
+        <li>Take ownership with documentation, a walkthrough and defined support.</li>
+      </ol>
+      <p class="for" style="margin-top:24px;margin-bottom:0">I work remotely from Jaipur. We agree on meeting overlap and review dates before starting.</p>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <p class="label">Tools and proof</p>
+      <h2 id="work-h">See what I have built.</h2>
+      <p class="for" style="margin-top:16px">The Projects page shows everything I built in the last year, plus the key JindalX work.</p>
+      <a class="btn" href="/#projects">View projects</a>
+    </section>
+
+    <section class="close" aria-labelledby="close-h">
+      <p class="label">Get in touch</p>
+      <h2 id="close-h">Have a workflow or product idea in mind?</h2>
+      <p>Tell me what you want to fix or test, which tools you use and where things break. I'll help you pick the right starting point.</p>
+      <a class="btn" href="/#contact">Discuss your project</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot"><span>Gaurav Gupta &middot; Jaipur, India</span><a href="/" style="color:inherit;display:inline-flex;align-items:center;min-height:44px">gauravg.dev</a></div>
+  </footer>
+</body>
+</html>
