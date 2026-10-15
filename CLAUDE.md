@@ -25,7 +25,7 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build s
 - Fonts: **Space Mono** (display, mono uppercase micro-labels) and **DM Sans** (body and UI).
 - `--radius: 0px`. **No `border-radius` anywhere** on the main site.
 - Strict 8px spacing grid. Gold is the single accent, used sparingly.
-- `body.theme-light` lives in `styles.css`, mirrored in `index.html`'s embedded `<style>`. Light-mode accent text and borders use darkened gold `#6e5824`, because `#c9a84c` fails WCAG AA on cream.
+- `body.theme-light` lives in `index.html`'s embedded `<style>`. Light-mode accent text and borders use darkened gold `#6e5824`, because `#c9a84c` fails WCAG AA on cream.
 - The retired v2 "Blueprint to Bits" system (Cormorant, navy/cream/terracotta) is gone. Any reference to it is stale.
 
 ## Navigation structure
@@ -52,16 +52,18 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build s
 ## File structure
 - `index.html`: the 7-panel SPA, modal overlay and mobile nav overlay. Most JS is inline: panel switching, progressive reveal, experience accordion, project tiles and filters, unified item modal, `V3_PROJECTS`.
 - `hero-motion.js`: the Home and Contact canvas (see above). Replaced `plan-to-product.js`, which is deleted.
-- `styles.css`: the Kinetic Precision design system. Applies to `index.html` only.
+- `styles.css`: **dead file**. No page loads it since the v3 rebuild. It is in `.vercelignore`.
+- `services.html`: the Services page, two equal tracks (workflow automation, AI product sprint), **no prices**. Linked from the founders door on Home. Self-contained, Kinetic Precision tokens.
+- `404.html`, `sitemap.xml`, `robots.txt`, `assets/og.jpg` (1200x630 share image, used by every page's `og:image`).
 - `trailer.js`: renders each page's `#showcase` (see Trailers).
 - `nav-hint.js`: fades the right edge of the case-page mobile nav strip while more links are off-screen. Loaded by all 16 case and project pages.
 - `gate.js`: email-gate logic, **loaded but short-circuited**. Do not edit without an ask.
-- `analytics.js`: PostHog loader, **pageviews only**. Loaded by all 18 public pages (`index`, 8 `case-study-*`, 8 `project-*`, `g-os`). Reports into the shared "Web Fleet" PostHog project with super-property `project: 'portfolio-website'`, which is how the fleet dashboard separates sites. Skips localhost and `file://`. The `phc_` token is a public client key, meant to ship in the page.
-- `vercel.json`: redirects only. `/case-study-founder-crm.html` (and the extensionless path) go to `case-study-siteline.html#origin` with a permanent 308. Published URLs are never allowed to 404.
+- `analytics.js`: PostHog loader, **pageviews only**. Loaded by all 19 public pages (`index`, `services`, 8 `case-study-*`, 8 `project-*`, `g-os`). Reports into the shared "Web Fleet" PostHog project with super-property `project: 'portfolio-website'`, which is how the fleet dashboard separates sites. Skips localhost and `file://`. The `phc_` token is a public client key, meant to ship in the page.
+- `vercel.json`: redirects and security headers (CSP is report-only). `/case-study-founder-crm.html` (and the extensionless path) go to `case-study-siteline.html#origin`, and the old `assets/` resume path goes to `/GauravGupta_Resume_2026.pdf`, all permanent 308. Published URLs are never allowed to 404.
 - `assets/trailers/<slug>.mp4` and `.jpg`: trailer clips and posters.
 - `app.js`: **dead file**, not referenced. `tabs.js`: empty stub. `favicon.svg`: GG monogram.
 - `case-study.css` was deleted in session 17. Every case and project page is self-contained.
-- `.vercelignore` keeps internal files out of the deployment, so they 404 on gauravg.dev: this file, `PORTFOLIO_PLAN.md`, `README.md`, `NEEDS-YOU.md`, `app.js`, `tabs.js`, `playwright-audit.js`, `.archive/`, `collab-runs/`, `_tmp/`. Add any new internal file there. Keep `prd-templates/`, because `g-os.html` fetches it.
+- `.vercelignore` keeps internal files out of the deployment, so they 404 on gauravg.dev: this file, `PORTFOLIO_PLAN.md`, `README.md`, `NEEDS-YOU.md`, `app.js`, `tabs.js`, `playwright-audit.js`, `.archive/`, `collab-runs/`, `_tmp/`, `styles.css`, `photo.jpg`, the old `assets/` resume, `AGENTS.md`, `GEMINI.md`. Add any new internal file there. Keep `prd-templates/`, because `g-os.html` fetches it.
 - `NEEDS-YOU.md`, `_tmp/` and `collab-runs/` are working files. Never commit `NEEDS-YOU.md`. `_tmp/` is gitignored.
 
 ## Case-study and project pages: per-product design skins
@@ -114,31 +116,29 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
 
 ## Deploy
 
-**Deploy target:** Vercel, project `argaurs-projects/portfolio-website`, ID `prj_rc841Ix97qlakTS5D6kmgLifE7mX`, org `team_3VVVuqz6VHXjBQCANdWIY7OF`. Runtime is **static** (`framework: null`, no build, no functions). `vercel.json` holds redirects only. Deploys automatically on push to `main`. Live URL `gauravg.dev`. The old `gauravg-portfolio.vercel.app` domain serves the same deployment.
+**Deploy target:** Vercel, project `argaurs-projects/portfolio-website`, ID `prj_rc841Ix97qlakTS5D6kmgLifE7mX`, org `team_3VVVuqz6VHXjBQCANdWIY7OF`. Runtime is **static** (`framework: null`, no build, no functions). `vercel.json` holds redirects and headers only. Deploys automatically on push to `main`. Live URL `gauravg.dev`. The old `gauravg-portfolio.vercel.app` domain serves the same deployment.
 
 ## Status
 
-- **State:** live on `main` at `6124d38` (2026-10-11). 7 panels, 15 projects, 8 case studies, 8 project pages. Session history lives in `memory/session-*.md`, not here.
-- **Last session, 2026-10-11:**
-  - Hero motion rebuilt as `hero-motion.js`. The old canvas looked static because of a reduced-motion skip.
-  - JindalX tile renamed to Talent Management Suite.
-  - Rethink CRM merged into Siteline with a redirect.
-  - Live-product trailers recorded.
-  - Email-gate flash fixed.
-  - Commits `8f5d465`, `85a8a7e`, `6124d38`.
-- **Previous, 2026-10-10:** freelance-first rework: two-doors hero, domain tile grid, Notice Explained timeline, at-a-glance blocks, contrast fixes, JindalX deep case (`844abe9`). The old site is on the local branch `archive/v3-pre-freelance-redesign`.
+- **State:** live on `main` (2026-10-15, career dates verified against employment documents). 7 panels, 15 projects, 8 case studies, 8 project pages, plus `services.html`. Session history lives in `memory/session-*.md`, not here.
+- **Last session, 2026-10-12:**
+  - Review backlog batch (`fc7f5f2`): hero pause control, nav-hint on both edges, six case pages fixed for a11y, sourcing and disclaimers, sitemap, 404, share image, redirects.
+  - Services page published (`c4bfb56`): two tracks, no prices, proof is `/#projects`.
+  - Resume softened, then swapped for the approved Oct 2026 version (`3e305dd`). The site is the single source of truth for resume claims.
+- **Previous, 2026-10-11:** hero motion as `hero-motion.js`, Rethink CRM merged into Siteline, live-product trailers (`6124d38`).
 - **Open (see `NEEDS-YOU.md`):**
   - Test accounts for the Siteline, Trivo and Vitae trailers.
   - A life-os demo mode, or keep its reel.
-  - Bugs in other repos: Blinkit check-in never ticks, GST AI prose is rejected, the RuleCard page shows PLACEHOLDER text.
+  - Bugs in other repos: Blinkit check-in never ticks, the RuleCard page shows PLACEHOLDER text.
 - **Also open:**
-  - Align the build count on LinkedIn and the resume with 15 projects.
-  - PM cert link (resume lists LinkedIn Learning, the site has Udemy).
+  - Confirm Vitae's "Rethink AI-First Buildathon, 3rd place" and Trivo's anonymized quote labels.
+  - Siteline says the bot runs on Railway. Update it when the bot moves.
   - Taccomacco "6 months" claim.
   - Graduate the "Now Building" chips (RAS Prep, learning-hub) as they ship.
   - Google Analytics cert has no verify link.
   - Sync `g-os.html` from a Claude Optimisation session.
-- **Last updated:** 2026-10-11
+- **Career dates (2026-10-15):** JindalX shows as Senior Product Manager, Jul 2022 to May 2025, one entry, no split. OneValley Sep 2020 to May 2022. Proof lives in `G:\My Drive\Career\Employment Records\README.md`. Change a date only after its document is there.
+- **Last updated:** 2026-10-15
 
 ## Model notes
 **This section expires. Review it at every model launch and every Claude Code version bump.**
