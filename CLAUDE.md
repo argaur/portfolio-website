@@ -137,7 +137,7 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
   - Graduate the "Now Building" chips (RAS Prep, learning-hub) as they ship.
   - Google Analytics cert has no verify link.
   - Sync `g-os.html` from a Claude Optimisation session.
-- **Career dates (2026-10-15):** JindalX shows as Senior Product Manager, Jul 2022 to May 2025, one entry, no split. OneValley Sep 2020 to May 2022. Proof lives in `G:\My Drive\Career\Employment Records\README.md`. Change a date only after its document is there.
+- **Career dates (2026-10-16, replaces 2026-10-15):** JindalX is one entry with its progression: Product Manager to Senior Product Manager, Digital Transformation, Jul 2022 to May 2025. Joined as PM Jul 2022, promoted Apr 2024, employee to Jan 2025, retained as a consultant Feb to May 2025. Never imply Senior PM since 2022. Rethink Product Consultant carries no delivery claim; personal builds stay under Independent. OneValley Sep 2020 to May 2022. Proof lives in `G:\My Drive\Career\Employment Records\README.md`. Change a date only after its document is there.
 - **Last updated:** 2026-10-15
 
 ## Model notes
