@@ -54,6 +54,7 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build s
 - `hero-motion.js`: the Home and Contact canvas (see above). Replaced `plan-to-product.js`, which is deleted.
 - `styles.css`: **dead file**. No page loads it since the v3 rebuild. It is in `.vercelignore`.
 - `services.html`: the Services page, two equal tracks (workflow automation, AI product sprint), **no prices**. Linked from the founders door on Home. Self-contained, Kinetic Precision tokens.
+- `builds.html` and `builds/<slug>/`: two-day demo builds (added 2026-10-17). Each build is a self-contained folder that loads `/analytics.js` and adds `posthog.register({ build: '<slug>' })`. The process and queue live in `Documents\Projects\builds`, not here. `builds.html` is **not linked anywhere until build 1 ships**, because an empty page would be a broken state.
 - `404.html`, `sitemap.xml`, `robots.txt`, `assets/og.jpg` (1200x630 share image, used by every page's `og:image`).
 - `trailer.js`: renders each page's `#showcase` (see Trailers).
 - `nav-hint.js`: fades the right edge of the case-page mobile nav strip while more links are off-screen. Loaded by all 16 case and project pages.
