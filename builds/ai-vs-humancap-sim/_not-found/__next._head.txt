@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[73690,["/builds/ai-vs-humancap-sim/_next/static/chunks/3nwnwfu83el4q.js"],"ViewportBoundary"]
+3:I[73690,["/builds/ai-vs-humancap-sim/_next/static/chunks/3nwnwfu83el4q.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[27328,["/builds/ai-vs-humancap-sim/_next/static/chunks/3nwnwfu83el4q.js"],"IconMark"]
+0:{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"AI vs Human Capital Simulation"}],["$","meta","1",{"name":"description","content":"Comparing the ROI of AI investment against human capital development"}],["$","link","2",{"rel":"icon","href":"/builds/ai-vs-humancap-sim/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L5","3",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"XW_15MxGWz13jFcSTPdan"}
