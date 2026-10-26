@@ -124,7 +124,8 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
 ## Status
 
 - **State:** live on `main` (2026-10-15, career dates verified against employment documents). 7 panels, 15 projects, 8 case studies, 8 project pages, plus `services.html`. Session history lives in `memory/session-*.md`, not here.
-- **Last session, 2026-10-12:**
+- **Last session, 2026-10-26:** `hackathons.html` live with proof links and session-measured hours, kept current by the Hackathons project (`99f85a8`, `2fd71dc`, `594db8a`). `/builds` 404 fixed with 308 redirects.
+- **Session 2026-10-12:**
   - Review backlog batch (`fc7f5f2`): hero pause control, nav-hint on both edges, six case pages fixed for a11y, sourcing and disclaimers, sitemap, 404, share image, redirects.
   - Services page published (`c4bfb56`): two tracks, no prices, proof is `/#projects`.
   - Resume softened, then swapped for the approved Oct 2026 version (`3e305dd`). The site is the single source of truth for resume claims.
@@ -141,7 +142,7 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
   - Google Analytics cert has no verify link.
   - Sync `g-os.html` from a Claude Optimisation session.
 - **Career dates (2026-10-16, replaces 2026-10-15):** JindalX is one entry with its progression: Product Manager to Senior Product Manager, Digital Transformation, Jul 2022 to May 2025. Joined as PM Jul 2022, promoted Apr 2024, employee to Jan 2025, retained as a consultant Feb to May 2025. Never imply Senior PM since 2022. Rethink Product Consultant carries no delivery claim; personal builds stay under Independent. OneValley Sep 2020 to May 2022. Proof lives in `G:\My Drive\Career\Employment Records\README.md`. Change a date only after its document is there.
-- **Last updated:** 2026-10-15
+- **Last updated:** 2026-10-26
 
 ## Model notes
 **This section expires. Review it at every model launch and every Claude Code version bump.**
