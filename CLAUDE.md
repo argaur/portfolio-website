@@ -135,7 +135,7 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
   - A life-os demo mode, or keep its reel.
   - Bugs in other repos: Blinkit check-in never ticks, the RuleCard page shows PLACEHOLDER text.
 - **Also open:**
-  - Confirm Vitae's "Rethink AI-First Buildathon, 3rd place" and Trivo's anonymized quote labels.
+  - Confirm Trivo's anonymized quote labels. (Vitae's 3rd place is confirmed by the certificate, 2026-10-26.)
   - Siteline says the bot runs on Railway. Update it when the bot moves.
   - Taccomacco "6 months" claim.
   - Graduate the "Now Building" chips (RAS Prep, learning-hub) as they ship.
