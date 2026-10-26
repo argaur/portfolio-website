@@ -85,6 +85,14 @@
     .log li{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);color:var(--muted);font-size:15px;}
     .log li .micro{color:var(--accent);padding-top:3px;}
     .hours{margin-top:12px;font-size:14px;color:var(--faint);}
+    .hrs-head{margin-top:24px;}
+    .hrs{list-style:none;border-top:1px solid var(--border);}
+    .hrs li{display:grid;grid-template-columns:72px 1fr 64px;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+    .hrs li .micro{color:var(--muted);}
+    .hrs li .mono{font-size:13px;text-align:right;color:var(--text);}
+    .hrs-bar{height:8px;background:var(--s3);}
+    .hrs-bar i{display:block;height:100%;background:var(--accent);}
+    @media(max-width:767px){.hrs li{grid-template-columns:56px 1fr 56px;gap:12px;}}
 
     /* Result */
     .result b{display:block;font-family:'Space Mono',monospace;font-size:48px;line-height:1;color:var(--accent);margin-bottom:8px;}
@@ -168,7 +176,15 @@
               <li><span class="micro">Oct 26</span><span>Design closed, product named, live skeleton shipped. Build slices 0 to 2 done.</span></li>
               <li><span class="micro">Oct 30</span><span>Both submissions due.</span></li>
             </ul>
-            <p class="hours">Hours by phase are posted here after submission.</p>
+            <!-- From Hackathons/voice-proof-desk-2026/hours-measured.json (scripts/session_hours.py). Bar width = share of the total. -->
+            <h3 class="micro hrs-head">Hours so far &middot; 7.5</h3>
+            <ul class="hrs">
+              <li><span class="micro">Problem</span><span class="hrs-bar"><i style="width:64%"></i></span><span class="mono">4.8 h</span></li>
+              <li><span class="micro">Design</span><span class="hrs-bar"><i style="width:20%"></i></span><span class="mono">1.5 h</span></li>
+              <li><span class="micro">Build</span><span class="hrs-bar"><i style="width:16%"></i></span><span class="mono">1.2 h</span></li>
+              <li><span class="micro">Submit</span><span class="hrs-bar"></span><span class="mono">to come</span></li>
+            </ul>
+            <p class="hours">Measured from my Claude Code session logs, as of Oct 26. Breaks over 10 minutes are not counted. Time spent dictating stories or reviewing on a phone is not included.</p>
           </div>
 
           <div class="block">
@@ -355,7 +371,7 @@
 
     <section class="next" aria-labelledby="hk-next">
       <h2 id="hk-next">Solo from here</h2>
-      <p class="prose">My first two events were team builds. Most events from October 2026 are solo, starting with In Your Words. Each one logs hours by phase: problem, build, polish and submit. It lists every model and service I tried, including the ones I dropped and why.</p>
+      <p class="prose">My first two events were team builds. Most events from October 2026 are solo, starting with In Your Words. Each one shows hours by phase, measured from my Claude Code session logs: problem, design, build and submit. It lists every model and service I tried, including the ones I dropped and why.</p>
       <p class="prose">When one build is entered in more than one event, it gets one entry. The clock and the stack are shared, and each event keeps its own track and result.</p>
     </section>
   </main>
