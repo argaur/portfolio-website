@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathons: Gaurav Gupta</title>
+  <meta name="description" content="Builds made against a clock. The time limit, the team, the result with its proof, and every model and service used.">
+  <!-- Hackathons index. Same tokens and tiles as builds.html. One <article class="hk"> per event, newest first.
+       To add an event: copy an article, set --days on .clock, one .day per day, mark .on for days worked.
+       Every result needs a proof link. Sources: Documents\Projects\Hackathons\INDEX.md and each event folder. -->
+  <link rel="canonical" href="https://gauravg.dev/hackathons.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hackathons: Gaurav Gupta">
+  <meta property="og:description" content="Builds made against a clock, with the result, the proof and the stack.">
+  <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e0e12; --s0:#0c0d11; --s1:#16161e; --s2:#1a1a22; --s3:#242432;
+      --border:#2a2a38; --text:#ece8e2; --muted:#9896a0; --faint:#56546e;
+      --accent:#c9a84c; --accent-dim:#8a6f2e; --radius:0px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;border-radius:var(--radius);}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;
+      background-image:linear-gradient(rgba(42,42,56,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(42,42,56,.3) 1px,transparent 1px);background-size:40px 40px;}
+    a{color:inherit;}
+    a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+    .mono{font-family:'Space Mono',monospace;}
+    .micro{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+
+    nav{position:sticky;top:0;z-index:10;background:rgba(14,14,18,.94);border-bottom:1px solid var(--border);}
+    .nav-in{max-width:1280px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;gap:24px;}
+    .nav-back,.nav-link{display:inline-flex;align-items:center;min-height:44px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted);}
+    .nav-link{margin-left:auto;}
+    .nav-back:hover,.nav-link:hover{color:var(--accent);}
+
+    main{max-width:1280px;margin:0 auto;padding:48px 32px 96px;}
+    .head{margin-bottom:40px;border-left:2px solid var(--accent);padding-left:24px;}
+    h1{font-family:'Space Mono',monospace;font-size:clamp(32px,5vw,48px);line-height:1.1;font-weight:700;}
+    .lede{color:var(--muted);max-width:44rem;margin-top:8px;}
+
+    /* Totals across all events */
+    .totals{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border);margin-bottom:48px;}
+    @media(min-width:768px){.totals{grid-template-columns:repeat(4,1fr);}}
+    .total{padding:20px 24px;background:var(--s0);border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .total b{display:block;font-family:'Space Mono',monospace;font-size:28px;line-height:1.2;color:var(--text);}
+    .total span{color:var(--muted);}
+
+    /* One event */
+    .hk{background:var(--s1);border:1px solid var(--border);margin-bottom:32px;}
+    .hk-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:20px 32px;border-bottom:1px solid var(--border);background:var(--s2);box-shadow:inset 0 2px 0 0 var(--accent);}
+    .badge{padding:2px 8px;border:1px solid var(--border);color:var(--muted);}
+    .badge--gold{color:var(--accent);border-color:rgba(201,168,76,.4);}
+    .badge--dash{border-style:dashed;color:var(--text);}
+    .hk--live .hk-top{box-shadow:none;}
+    .day.due{border-style:dashed;border-color:var(--accent-dim);}
+    .events{list-style:none;border-top:1px solid var(--border);}
+    .events li{display:flex;flex-direction:column;padding:12px 0;border-bottom:1px solid var(--border);color:var(--muted);font-size:15px;}
+    .events b{color:var(--text);font-weight:500;}
+    .hk-event{color:var(--muted);}
+    .hk-body{display:grid;grid-template-columns:1fr;}
+    @media(min-width:1024px){.hk-body{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);}}
+    .hk-main{padding:32px;}
+    .hk-side{padding:32px;border-top:1px solid var(--border);background:var(--s0);}
+    @media(min-width:1024px){.hk-side{border-top:0;border-left:1px solid var(--border);}}
+    .hk-title{font-family:'Space Mono',monospace;font-size:24px;line-height:1.25;font-weight:700;margin-bottom:8px;}
+    .hk-line{color:var(--muted);max-width:60ch;margin-bottom:32px;}
+    h3{color:var(--accent);margin-bottom:12px;}
+    .block{margin-bottom:32px;}
+    .block:last-child{margin-bottom:0;}
+    .prose{color:var(--muted);max-width:60ch;}
+    .prose + .prose{margin-top:8px;}
+
+    /* The clock: one cell per calendar day of the event window */
+    .clock{display:grid;grid-template-columns:repeat(var(--days),minmax(0,1fr));gap:4px;}
+    .day{height:40px;background:var(--s3);border:1px solid var(--border);position:relative;}
+    .day.on{background:rgba(201,168,76,.18);border-color:var(--accent-dim);}
+    .day.mark::after{content:"";position:absolute;left:50%;bottom:-9px;width:1px;height:6px;background:var(--accent);}
+    .clock-scale{display:flex;justify-content:space-between;margin-top:12px;color:var(--faint);}
+    .log{list-style:none;margin-top:16px;border-top:1px solid var(--border);}
+    .log li{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);color:var(--muted);font-size:15px;}
+    .log li .micro{color:var(--accent);padding-top:3px;}
+    .hours{margin-top:12px;font-size:14px;color:var(--faint);}
+
+    /* Result */
+    .result b{display:block;font-family:'Space Mono',monospace;font-size:48px;line-height:1;color:var(--accent);margin-bottom:8px;}
+    .result p{color:var(--muted);}
+    .proof{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);text-underline-offset:3px;}
+
+    /* Stack ledger */
+    .ledger{display:grid;gap:16px;}
+    .ledger-row .micro{color:var(--faint);display:block;margin-bottom:6px;}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;}
+    .chip{font-size:13px;line-height:1.4;padding:4px 8px;border:1px solid var(--border);color:var(--text);}
+    .chip small{display:block;font-size:12px;color:var(--muted);}
+    .chip--dropped{border-style:dashed;color:var(--muted);}
+    .chip--dropped s{text-decoration-color:var(--faint);}
+    .links{display:flex;flex-wrap:wrap;gap:0 24px;}
+    .links a{display:inline-flex;align-items:center;min-height:44px;color:var(--text);text-underline-offset:3px;}
+    .links a:hover{color:var(--accent);}
+
+    .next{border:1px dashed var(--border);padding:32px;background:var(--s0);}
+    .next h2{font-family:'Space Mono',monospace;font-size:18px;margin-bottom:8px;}
+
+    footer{max-width:1280px;margin:0 auto;padding:32px;border-top:1px solid var(--border);font-size:14px;color:var(--faint);}
+    @media(max-width:767px){
+      main{padding:32px 16px 64px;}
+      .nav-in{padding:0 16px;}
+      footer{padding:32px 16px;}
+      .hk-top{padding:16px 20px;}
+      .hk-main,.hk-side,.next{padding:24px 20px;}
+      .total{padding:16px;}
+      .total b{font-size:22px;}
+      .log li{grid-template-columns:56px 1fr;gap:12px;}
+      .clock{gap:3px;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-in">
+      <a class="nav-back" href="/#projects">&larr; Portfolio</a>
+      <a class="nav-link" href="builds.html">Builds</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="head">
+      <h1>Hackathons</h1>
+      <p class="lede">Builds made against a clock. Each entry shows the time limit, who built it, the result with its proof, and every model and service we used.</p>
+    </header>
+
+    <div class="totals" aria-label="Totals across all events">
+      <div class="total"><b>4</b><span class="micro">Events, 2 in progress</span></div>
+      <div class="total"><b>15</b><span class="micro">Build days, finished events</span></div>
+      <div class="total"><b>3rd</b><span class="micro">Best placing</span></div>
+      <div class="total"><b>13,694</b><span class="micro">Largest field</span></div>
+    </div>
+
+    <!-- In Your Words. One build, two events. Sources: Hackathons/voice-proof-desk-2026 CLAUDE.md, PROGRESS.md, DECISIONS_LOG.md; Hackathons/memory project.md.
+         Public data rule: nothing from Gaurav's real story bank or runs goes here. After results, swap the badge and fill hours by phase. -->
+    <article class="hk hk--live" aria-labelledby="hk-iyw">
+      <div class="hk-top micro">
+        <span class="badge badge--dash">In progress</span>
+        <span class="badge">Solo</span>
+        <span>Oct 2026</span>
+        <span class="hk-event">One build, two events &middot; Nebius x NVIDIA &middot; Wispr No Hands</span>
+      </div>
+      <div class="hk-body">
+        <div class="hk-main">
+          <h2 class="hk-title" id="hk-iyw">In Your Words</h2>
+          <p class="hk-line">Applications built only from what you actually said. A job seeker dictates career stories once. For each role, the tool researches the company, drafts the answers, and checks every sentence against the stories. Lines it cannot back are cut.</p>
+
+          <div class="block">
+            <h3 class="micro">The clock &middot; 9 days</h3>
+            <div class="clock" style="--days:9" role="img" aria-label="Nine days, October 22 to 30, 2026. Five worked so far, four to go">
+              <div class="day on mark"></div><div class="day on mark"></div><div class="day on mark"></div><div class="day on"></div><div class="day on mark"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day due mark"></div>
+            </div>
+            <div class="clock-scale micro"><span>Oct 22</span><span>Oct 30</span></div>
+            <ul class="log">
+              <li><span class="micro">Oct 22</span><span>Registered for both events. Picked this idea over Signal Desk after a review by three models.</span></li>
+              <li><span class="micro">Oct 23</span><span>A throwaway spike passed: a draft on a real posting, with every sentence judged.</span></li>
+              <li><span class="micro">Oct 24</span><span>PRD approved.</span></li>
+              <li><span class="micro">Oct 26</span><span>Design closed, product named, live skeleton shipped. Build slices 0 to 2 done.</span></li>
+              <li><span class="micro">Oct 30</span><span>Both submissions due.</span></li>
+            </ul>
+            <p class="hours">Hours by phase are posted here after submission.</p>
+          </div>
+
+          <div class="block">
+            <h3 class="micro">My part</h3>
+            <p class="prose">All of it. Solo build, from problem to submission. Wispr's rules ask for the work to be done by voice, so prompts and docs go through dictation.</p>
+          </div>
+
+          <div class="block">
+            <h3 class="micro">Stack ledger</h3>
+            <div class="ledger">
+              <div class="ledger-row"><span class="micro">Models in the product</span>
+                <div class="chips"><span class="chip">Nemotron 3 Ultra<small>Drafts the answers</small></span><span class="chip">Nemotron 3 Super<small>Judges every sentence</small></span><span class="chip">Nebius Token Factory<small>Runs both models</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Used to build</span>
+                <div class="chips"><span class="chip">Claude Code<small>Plans and code</small></span><span class="chip">Wispr Flow<small>Dictation</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Code and services</span>
+                <div class="chips"><span class="chip">Next.js 16</span><span class="chip">TypeScript</span><span class="chip">Tailwind 4</span><span class="chip">zod</span><span class="chip">Vitest<small>38 tests on the rules</small></span><span class="chip">Tavily<small>Company research</small></span><span class="chip">Vercel<small>Hosting</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Dropped</span>
+                <div class="chips"><span class="chip chip--dropped"><s>Signal Desk</s><small>A lead-finder idea, frozen on day 1</small></span><span class="chip chip--dropped"><s>Thinking mode for drafts</s><small>Used the whole token budget, turned off</small></span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hk-side">
+          <div class="block">
+            <h3 class="micro">Entered in</h3>
+            <ul class="events">
+              <li><b>Nebius x NVIDIA</b><span>Track: Best Apps and Agents</span><span>Due Oct 30 &middot; Result pending</span></li>
+              <li><b>Wispr No Hands</b><span>Track: Builders</span><span>Due Oct 30 &middot; Result pending</span></li>
+            </ul>
+          </div>
+          <div class="block">
+            <h3 class="micro">Resources</h3>
+            <p class="prose">A $25 cash cap across all events. It runs on free credits. A full package costs about 2 cents to run.</p>
+          </div>
+          <div class="block">
+            <h3 class="micro">See it</h3>
+            <div class="links">
+              <a href="https://inyourwords.vercel.app" target="_blank" rel="noopener">Live site &nearr;</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- Build What Moves India. Sources: project-gst-notice.html, Hackathons/INDEX.md, buildwhatmovesindia.com/top-250 (entry 064, checked 2026-10-26). -->
+    <article class="hk" aria-labelledby="hk-bwmi">
+      <div class="hk-top micro">
+        <span class="badge badge--gold">Top 250</span>
+        <span class="badge">Team of 2</span>
+        <span>Aug 2026</span>
+        <span class="hk-event">Build What Moves India &middot; Varun Mayya, backed by OpenAI</span>
+      </div>
+      <div class="hk-body">
+        <div class="hk-main">
+          <h2 class="hk-title" id="hk-bwmi">Notice, Explained</h2>
+          <p class="hk-line">A GST DRC-01C notice shows one number and no reason. This tool traces the gap row by row, explains it with a grounded OpenAI call, and drafts a review-only reply.</p>
+
+          <div class="block">
+            <h3 class="micro">The clock &middot; 5 days</h3>
+            <div class="clock" style="--days:5" role="img" aria-label="Five build days, August 24 to 28, 2026, all worked">
+              <div class="day on mark"></div><div class="day on mark"></div><div class="day on"></div><div class="day on mark"></div><div class="day on mark"></div>
+            </div>
+            <div class="clock-scale micro"><span>Aug 24</span><span>Aug 28</span></div>
+            <ul class="log">
+              <li><span class="micro">Aug 24</span><span>The brief narrowed to 10 government platforms. We researched all ten.</span></li>
+              <li><span class="micro">Aug 25</span><span>Picked the Cyber Crime portal and CPGRAMS.</span></li>
+              <li><span class="micro">Aug 27</span><span>Dropped that idea. Switched to the GST DRC-01C notice and locked the problem.</span></li>
+              <li><span class="micro">Aug 28</span><span>Approved the final flow, built it, deployed it and submitted.</span></li>
+              <li><span class="micro">Round 2</span><span>The Top 250 got a week of mentorship. We added a risk screen and a Hindi or English question box, and resubmitted.</span></li>
+            </ul>
+            <p class="hours">Hours were not logged. This was a team event, before I started tracking time.</p>
+          </div>
+
+          <div class="block">
+            <h3 class="micro">My part</h3>
+            <p class="prose">Built with Kriti Kandhari Kapoor, from my cohort. We shared every role, from research to build.</p>
+            <p class="prose">One rule shaped the build: code decides, the model explains. The math is plain code with tests. The model only explains rows the code has already checked.</p>
+          </div>
+
+          <div class="block">
+            <h3 class="micro">Stack ledger</h3>
+            <div class="ledger">
+              <div class="ledger-row"><span class="micro">Model in the product</span>
+                <div class="chips"><span class="chip">OpenAI API<small>Explains checked findings, strict output schema</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Used to build</span>
+                <div class="chips"><span class="chip">Codex<small>Wrote the code</small></span><span class="chip">Claude<small>Planned stages, reviewed</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Code and services</span>
+                <div class="chips"><span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Vitest<small>80 tests</small></span><span class="chip">Vercel<small>Hosting, server function</small></span><span class="chip">Loom<small>Demo video</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Dropped</span>
+                <div class="chips"><span class="chip chip--dropped"><s>Cyber Crime + CPGRAMS</s><small>Idea dropped on day 4 for a sharper problem</small></span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hk-side">
+          <div class="block result">
+            <h3 class="micro">Result</h3>
+            <b>#64</b>
+            <p>In the Top 250, from 13,694 applications. Cleared Round 1. Did not reach the Top 10.</p>
+            <a class="proof" href="https://buildwhatmovesindia.com/top-250" target="_blank" rel="noopener">Official Top 250 list, entry 064 &nearr;</a>
+            <a class="proof" href="https://www.youtube.com/watch?v=okJqVvkQTQ8" target="_blank" rel="noopener">Organiser's video, 13,694 applications &nearr;</a>
+          </div>
+          <div class="block">
+            <h3 class="micro">Limits</h3>
+            <p class="prose">Synthetic data only. Not GSTN. Not tax advice. No real taxpayer has used it.</p>
+          </div>
+          <div class="block">
+            <h3 class="micro">See it</h3>
+            <div class="links">
+              <a href="https://prototype-blue-three.vercel.app" target="_blank" rel="noopener">Live prototype &nearr;</a>
+              <a href="https://www.loom.com/share/047a1c3ea1a84011b4561fcd9caca18d" target="_blank" rel="noopener">Demo video &nearr;</a>
+              <a href="https://github.com/argaur/gst-itc-mismatch-explained" target="_blank" rel="noopener">Source &nearr;</a>
+              <a href="project-gst-notice.html">Full project page &rarr;</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- Rethink AI-First Buildathon. Sources: case-study-vitae.html, assets/certs/rethink-buildathon.pdf, Drive Rethink Systems/Retreat certificate. -->
+    <article class="hk" aria-labelledby="hk-rethink">
+      <div class="hk-top micro">
+        <span class="badge badge--gold">3rd place</span>
+        <span class="badge">Team of 6</span>
+        <span>Apr 2026</span>
+        <span class="hk-event">Rethink AI-First Buildathon &middot; Rethink Systems, Cohort 7</span>
+      </div>
+      <div class="hk-body">
+        <div class="hk-main">
+          <h2 class="hk-title" id="hk-rethink">Vitae</h2>
+          <p class="hk-line">A PWA that turns a prescription photo into a plain-language family health record. The core feature needs no signup.</p>
+
+          <div class="block">
+            <h3 class="micro">The clock &middot; 10 days</h3>
+            <div class="clock" style="--days:10" role="img" aria-label="Ten build days, April 6 to 15, 2026, all worked">
+              <div class="day on mark"></div><div class="day on"></div><div class="day on"></div><div class="day on"></div><div class="day on"></div><div class="day on"></div><div class="day on"></div><div class="day on"></div><div class="day on"></div><div class="day on mark"></div>
+            </div>
+            <div class="clock-scale micro"><span>Apr 6</span><span>Apr 15</span></div>
+            <ul class="log">
+              <li><span class="micro">Apr 6</span><span>Sprint opened. The brief: a live product with real users in 10 days, not a slide deck.</span></li>
+              <li><span class="micro">Apr 15</span><span>Live product and final presentation, 10 PM IST.</span></li>
+            </ul>
+            <p class="hours">Hours were not logged. This was a team event, before I started tracking time.</p>
+          </div>
+
+          <div class="block">
+            <h3 class="micro">My part</h3>
+            <p class="prose">Six people with shared ownership, from discovery and the PRD to design and build. It is a team result. I do not claim any one part as mine alone.</p>
+          </div>
+
+          <div class="block">
+            <h3 class="micro">Stack ledger</h3>
+            <div class="ledger">
+              <div class="ledger-row"><span class="micro">Models in the product</span>
+                <div class="chips"><span class="chip">Gemma 4 26B via OpenRouter<small>Reads the prescription image</small></span><span class="chip">Claude<small>Explains each medication</small></span><span class="chip">Free model pool<small>Fallback when a call is rate limited</small></span></div></div>
+              <div class="ledger-row"><span class="micro">Code and services</span>
+                <div class="chips"><span class="chip">Next.js 16</span><span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Tailwind v4</span><span class="chip">Supabase<small>Postgres, row-level security, auth, storage</small></span><span class="chip">Vercel<small>Hosting</small></span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hk-side">
+          <div class="block result">
+            <h3 class="micro">Result</h3>
+            <b>3rd</b>
+            <p>Third place, awarded to the team for problem selection and consistent execution in a 10-day sprint.</p>
+            <a class="proof" href="assets/certs/rethink-buildathon.pdf" target="_blank" rel="noopener">Certificate of achievement &nearr;</a>
+          </div>
+          <div class="block">
+            <h3 class="micro">Limits</h3>
+            <p class="prose">No usage figures and no OCR accuracy measurement yet. The success metrics on the case study are targets, not results.</p>
+          </div>
+          <div class="block">
+            <h3 class="micro">See it</h3>
+            <div class="links">
+              <a href="https://vitaehealth.vercel.app/" target="_blank" rel="noopener">Live product &nearr;</a>
+              <a href="https://github.com/buildingvitae/health-assistant/" target="_blank" rel="noopener">Source &nearr;</a>
+              <a href="case-study-vitae.html">Full case study &rarr;</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="next" aria-labelledby="hk-next">
+      <h2 id="hk-next">Solo from here</h2>
+      <p class="prose">My first two events were team builds. Most events from October 2026 are solo, starting with In Your Words. Each one logs hours by phase: problem, build, polish and submit. It lists every model and service I tried, including the ones I dropped and why.</p>
+      <p class="prose">When one build is entered in more than one event, it gets one entry. The clock and the stack are shared, and each event keeps its own track and result.</p>
+    </section>
+  </main>
+
+  <footer>Gaurav Gupta &middot; Jaipur</footer>
+  <script src="analytics.js" defer></script>
+</body>
+</html>

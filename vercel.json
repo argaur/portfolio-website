@@ -3,7 +3,11 @@
     { "source": "/case-study-founder-crm.html", "destination": "/case-study-siteline.html#origin", "permanent": true },
     { "source": "/case-study-founder-crm", "destination": "/case-study-siteline.html#origin", "permanent": true },
     { "source": "/assets/gaurav-gupta-resume-2026.pdf", "destination": "/GauravGupta_Resume_2026.pdf", "permanent": true },
-    { "source": "/photo.jpg", "destination": "/assets/og.jpg", "permanent": true }
+    { "source": "/photo.jpg", "destination": "/assets/og.jpg", "permanent": true },
+    { "source": "/builds", "destination": "/builds.html", "permanent": true },
+    { "source": "/builds/", "destination": "/builds.html", "permanent": true },
+    { "source": "/hackathons", "destination": "/hackathons.html", "permanent": true },
+    { "source": "/hackathons/", "destination": "/hackathons.html", "permanent": true }
   ],
   "headers": [
     {
