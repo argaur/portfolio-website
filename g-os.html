@@ -516,7 +516,7 @@
     <p class="os-lede">The systems that decide how a project gets built — what gets written before code, which framework locks in, and what Claude is allowed to do without asking. <strong>Setup</strong> is the inventory. <strong>Playbook</strong> is the same machinery seen from a real task, in firing order. <strong>Versions</strong> is how it got here, and where it is currently inconsistent.</p>
     <div class="os-meta">
       <span><span class="dot-live"></span> Live</span>
-      <span>v3.0 · updated 2026-10-25</span>
+      <span>v3.0 · updated 2026-10-27</span>
       <span>8 systems · 5 workflows</span>
     </div>
   </header>
@@ -861,6 +861,7 @@
           <li><code>dev-manager</code> An opus-model agent that takes an approved tagged plan and executes it autonomously: dispatches each step to its tagged model, defaults to worktree isolation for any parallel dispatch (not conditional on predicted file overlap), and independently re-verifies every worker's claimed result before trusting it. Escalates on exactly six triggers — the Non-Negotiables list, a new external dependency, auth/payments/secrets touched, the plan invalidated mid-flight, anomalous token burn on one step, or a containment breach — and handles everything else solo, reporting at checkpoints. It never calls Codex, because it cannot ask Gaurav mid-run; any leftover <code>codex/</code> tag runs on Sonnet.</li>
           <li><code>/dev-start</code> The explicit handoff gate. Verifies the plan is tagged and approved, then dispatches dev-manager. Plan approval alone never auto-starts execution — this is a deliberate second act.</li>
           <li><strong>Long-run harness, added 2026-10-25.</strong> dev-manager writes every checkpoint to <code>PROGRESS.md</code> on disk, because a checkpoint shown only in chat is lost when the session closes, and <code>/continues</code> reads it first the next day. A read-only <code>evidence-reviewer</code> agent checks claims and must return a table of claim, verdict, evidence and correction, so "done" with nothing behind it cannot pass. Plan tags now carry an effort level beside the model. <code>/dev-start</code> and <code>/slice</code> set a stop condition from the acceptance criteria with a turn cap, and <code>/dev-start</code> first checks that every connected service the plan needs answers.</li>
+          <li><code>design-director</code> and <code>/design-start</code> Added 2026-10-27. Designs kept landing on warm dark plus serif. A three-model council traced it to decision order, three skills each claiming to be the design authority, and no check against past projects. One agent now owns design, one leg at a time, sized Full or Lite. It cannot ask Gaurav anything, so the main session keeps every question and every decision. Every review shows dark and light side by side. Each new direction is checked against a look register of past projects and must differ from the last three on at least two axes, or carry a written reason. Editorial is banned as a direction until Gaurav lifts it. A test of 94 checks guards the agent, the command and the framework text.</li>
           <li><code>jev-decide.sh</code> Added 2026-10-25. One call path for Jev, a cheap typed decision model reached through a router. It answers one narrow question, such as whether a loop should spend a turn now, for about a thousandth of a cent. Every call is logged next to the answer the existing mechanism gave, so agreement is measured before anything relies on it. Jev picks which path a decision takes and never whether a gate fires. Any failure falls back to the current mechanism. 16 tests, including one that proves the key never reaches the log.</li>
           <li><strong>Removed: an autonomous overnight loop.</strong> <code>/ralph-loop</code> implemented the Ralph pattern (Geoffrey Huntley) — a fresh-context agent loop re-reading its prompt and spec files from disk each iteration with no conversation memory carried between them, committing on a passing test. Evaluated and <em>decided against</em>: its prompt never varies across iterations, and its completion signal cannot distinguish "finished" from "blocked." The decision was recorded — and then the command sat installed and resolvable for weeks anyway. Deleted 2026-08-04, once a usage check confirmed nothing had ever invoked it. <strong>A decision that does not reach the filesystem has not been made.</strong></li>
         </ul>
@@ -1280,7 +1281,7 @@
             <div class="step-id">06</div>
             <div class="step-body">
               <div class="step-name"><span class="plug manual">/phase-2-design</span></div>
-              <div class="step-desc">Hands off to the seven-stage Design Framework. Dark mode is verified by rendering it, not by finding it in the CSS.</div>
+              <div class="step-desc">Hands off to the seven-stage Design Framework. From Stage 0.5, <code>/design-start</code> runs the design-director one leg at a time. Dark and light are verified by rendering them side by side, not by finding them in the CSS.</div>
             </div>
           </div>
 
