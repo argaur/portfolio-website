@@ -126,7 +126,10 @@
       '.tl-head{font-size:clamp(22px,4.6cqw,58px);line-height:1.12;font-weight:700;max-width:22ch;margin:0;}' +
       '.tl-sub{font-size:clamp(14px,2cqw,22px);line-height:1.5;opacity:.82;max-width:48ch;margin:0;}' +
       '.tl-bar{display:flex;align-items:center;gap:10px;padding:10px 3cqw 12px;border-top:1px solid var(--tl-edge);}' +
-      '.tl-seg{flex:1;height:44px;background:none;border:0;padding:0;cursor:pointer;position:relative;}' +
+      '.tl-segs{flex:1;display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;min-width:0;}' +
+      '.tl-seg{flex:1 1 0;height:44px;background:none;border:0;padding:0;cursor:pointer;position:relative;}' +
+      /* On a phone the segments get their own row, each at least 44px wide, and wrap if they must. */
+      '@media (max-width:640px){.tl-bar{flex-wrap:wrap;}.tl-segs{order:3;flex-basis:100%;column-gap:0;}.tl-seg{flex:1 1 44px;min-width:44px;}.tl-seg::before{left:2px;right:2px;}.tl-count{margin-left:auto;}}' +
       '.tl-seg::before{content:"";position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1.5px;background:var(--tl-edge);}' +
       '.tl-seg[aria-current="true"]::before{background:var(--tl-accent);height:5px;margin-top:-2.5px;}' +
       '.tl-seg.done::before{background:var(--tl-accent);opacity:.55;}' +
@@ -161,7 +164,9 @@
     });
     var count = el('span', 'tl-count');
     bar.appendChild(prev); bar.appendChild(toggle); bar.appendChild(next);
-    segs.forEach(function (b) { bar.appendChild(b); });
+    var segWrap = el('div', 'tl-segs');
+    segs.forEach(function (b) { segWrap.appendChild(b); });
+    bar.appendChild(segWrap);
     bar.appendChild(count);
     frame.appendChild(stage); frame.appendChild(bar);
 
