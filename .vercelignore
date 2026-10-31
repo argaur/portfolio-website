@@ -11,6 +11,8 @@
 /_tmp
 /.gitignore
 /styles.css
+/tailwind.config.js
+/tailwind.input.css
 /photo.jpg
 /assets/gaurav-gupta-resume-2026.pdf
 /AGENTS.md
