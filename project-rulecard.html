@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RuleCard: Turn Written Rules into Tests | Gaurav Gupta</title>
+    <title>Rulecard: Turn Written Rules into Tests | Gaurav Gupta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-rulecard.html">
-    <meta property="og:title" content="RuleCard: Turn Written Rules into Tests | Gaurav Gupta">
-    <meta property="og:description" content="RuleCard turns an agent's written rules into tests that keep their rule numbers, and reports the rules with no test first.">
+    <meta property="og:title" content="Rulecard: Turn Written Rules into Tests | Gaurav Gupta">
+    <meta property="og:description" content="Rulecard turns an agent's written rules into tests that keep their rule numbers, and reports the rules with no test first.">
     <meta property="og:url" content="https://gauravg.dev/project-rulecard.html">
     <meta property="og:type" content="article">
     <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
@@ -17,7 +17,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://gauravg.dev/assets/og.jpg">
-    <meta name="description" content="RuleCard turns an agent's written rules into tests that keep their rule numbers, and reports the rules with no test first.">
+    <meta name="description" content="Rulecard turns an agent's written rules into tests that keep their rule numbers, and reports the rules with no test first.">
     <meta name="theme-color" content="#f4eee3">
 <style>
 /* Skin: the live Rulecard product (rulecard.gauravg.dev). Cream paper, ink, marigold
@@ -103,7 +103,7 @@ footer{padding:32px 16px;border-top:2px solid var(--line-strong);display:flex;fl
   <div class="hero">
     <span class="label label-strong">Project &middot; AI Evaluation &middot; In build</span>
     <h1>Your agent has rules.<br /><em>Which ones have no test?</em></h1>
-    <p class="hero-sub">RuleCard turns an agent's written rules into tests. Every test keeps its rule number. The report starts with the rules nobody checks.</p>
+    <p class="hero-sub">Rulecard turns an agent's written rules into tests. Every test keeps its rule number. The report starts with the rules nobody checks.</p>
     <div class="meta-row"><span class="meta-tag">Next.js 16</span><span class="meta-tag">TypeScript</span><span class="meta-tag">Claude API</span><span class="meta-tag">Postgres</span><span class="meta-tag">Vercel</span></div>
     <div class="hero-links"><a class="lnk" href="https://rulecard.gauravg.dev" target="_blank" rel="noopener">Live product &nearr;</a></div>
     
@@ -111,7 +111,7 @@ footer{padding:32px 16px;border-top:2px solid var(--line-strong);display:flex;fl
 </div>
 
 <!-- Trailer: give this section data-src="assets/trailers/rulecard.mp4" (plus data-poster) or data-embed="https://..." to show it. -->
-<div class="sec" id="showcase" style="display:none" data-slug="rulecard" data-title="RuleCard trailer" data-src="assets/trailers/rulecard.mp4" data-embed="" data-poster="assets/trailers/rulecard.jpg" data-captions="">
+<div class="sec" id="showcase" style="display:none" data-slug="rulecard" data-title="Rulecard trailer" data-src="assets/trailers/rulecard.mp4" data-embed="" data-poster="assets/trailers/rulecard.jpg" data-captions="">
   <div class="sec-inner">
     <div class="sec-head">
       <h2>See it in<br /><em>under a minute.</em></h2>
@@ -124,11 +124,11 @@ footer{padding:32px 16px;border-top:2px solid var(--line-strong);display:flex;fl
 
 <div class="sec" id="overview"><div class="sec-inner">
 <div class="sec-head"><h2>What it is</h2><span class="label">Overview</span></div>
-<div class="callout"><p>A spec compiler with a scorecard attached. You give it the rules an agent should follow. It writes a test suite from those rules. The scorecard reports <strong>spec coverage</strong> and <strong>spec conformance</strong>, not a pass rate.</p></div><div class="prose"><p>The code name is <code>agent-proving-ground</code>. RuleCard is the public name. It is hosted with sign-in and has no billing. The public page at <a href="https://rulecard.gauravg.dev" target="_blank" rel="noopener">rulecard.gauravg.dev</a> walks through one example run, with no sign-in.</p></div>
+<div class="callout"><p>A spec compiler with a scorecard attached. You give it the rules an agent should follow. It writes a test suite from those rules. The scorecard reports <strong>spec coverage</strong> and <strong>spec conformance</strong>, not a pass rate.</p></div><div class="prose"><p>The code name is <code>agent-proving-ground</code>. Rulecard is the public name. It is hosted with sign-in and has no billing. The public page at <a href="https://rulecard.gauravg.dev" target="_blank" rel="noopener">rulecard.gauravg.dev</a> walks through one example run, with no sign-in.</p></div>
 </div></div>
 <div class="sec" id="idea"><div class="sec-inner">
 <div class="sec-head"><h2>Tests from intent,<br /><em>not from behaviour.</em></h2><span class="label">01 &middot; The idea</span></div>
-<div class="prose"><p>Most agent tests are written after watching what the agent does. That checks the agent against itself. RuleCard writes tests from what the owner said the agent must do, so a gap in the rules shows up as a gap in the tests.</p><p>Every test carries the number of the rule it came from. A score with no rule number is treated as a bug. The first thing the report shows is the list of rules with no test.</p></div><div class="callout warn"><p><strong>One open risk.</strong> The method needs a written spec with numbered rules to exist already. Getting a clear spec out of a team is the real work, and I have not shown it can be done cheaply.</p></div>
+<div class="prose"><p>Most agent tests are written after watching what the agent does. That checks the agent against itself. Rulecard writes tests from what the owner said the agent must do, so a gap in the rules shows up as a gap in the tests.</p><p>Every test carries the number of the rule it came from. A score with no rule number is treated as a bug. The first thing the report shows is the list of rules with no test.</p></div><div class="callout warn"><p><strong>One open risk.</strong> The method needs a written spec with numbered rules to exist already. Getting a clear spec out of a team is the real work, and I have not shown it can be done cheaply.</p></div>
 </div></div>
 <div class="sec" id="run"><div class="sec-inner">
 <div class="sec-head"><h2>One recorded run,<br /><em>read with its caveats.</em></h2><span class="label">02 &middot; Example run</span></div>

@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-portfolio.html">
-    <meta name="description" content="Project: This portfolio website, built as a product, documented as a case study. Plain HTML, Tailwind via CDN, 7-panel SPA by Gaurav Gupta.">
+    <meta name="description" content="Project: This portfolio website, built as a product, documented as a case study. Plain HTML, one pre-built Tailwind stylesheet, 7-panel SPA by Gaurav Gupta.">
     <meta property="og:title" content="This Portfolio Website | Gaurav Gupta">
-    <meta property="og:description" content="Built as a product, documented as a case study. Plain HTML, Tailwind CDN, 7-panel SPA.">
+    <meta property="og:description" content="Built as a product, documented as a case study. Plain HTML, one pre-built Tailwind stylesheet, 7-panel SPA.">
     <meta property="og:url" content="https://gauravg.dev/project-portfolio.html">
     <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
     <meta property="og:image:width" content="1200">
@@ -484,13 +484,13 @@
     <h1>This portfolio website:<br /><em>built as a product.</em></h1>
     <p class="hero-sub">
       A single-page portfolio with its own design system, "Kinetic Precision." Zero npm
-      dependencies and no build step. It ships by opening a file in a browser.
+      dependencies and nothing builds on deploy. It ships by opening a file in a browser.
     </p>
     <div class="meta-row">
       <span class="meta-tag">HTML</span>
       <span class="meta-tag">CSS</span>
       <span class="meta-tag">Vanilla JavaScript</span>
-      <span class="meta-tag">Tailwind CDN</span>
+      <span class="meta-tag">Tailwind CSS</span>
     </div>
   </div>
 </div>
@@ -595,11 +595,11 @@
 
         <line x1="480" y1="162" x2="480" y2="236" stroke="#56546e" stroke-dasharray="4 3" stroke-width="1" marker-end="url(#pf-arr)"/>
         <rect x="400" y="238" width="160" height="44" fill="#16161e" stroke="#2a2a38" stroke-width="1"/>
-        <text x="480" y="256" text-anchor="middle" fill="#ece8e2" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">Tailwind CDN</text>
-        <text x="480" y="272" text-anchor="middle" fill="#9896a0" font-family="DM Sans, sans-serif" font-size="8">Runtime, no build step</text>
+        <text x="480" y="256" text-anchor="middle" fill="#ece8e2" font-family="DM Sans, sans-serif" font-size="11" font-weight="500">tailwind.css</text>
+        <text x="480" y="272" text-anchor="middle" fill="#9896a0" font-family="DM Sans, sans-serif" font-size="8">Pre-built, committed</text>
 
         <!-- Footer note -->
-        <text x="450" y="330" text-anchor="middle" fill="#c9a84c" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.9">Zero npm dependencies &middot; plain HTML + CSS + JS &middot; Tailwind via CDN &middot; auto-deployed via Vercel</text>
+        <text x="450" y="330" text-anchor="middle" fill="#c9a84c" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="0.06em" opacity="0.9">Zero npm dependencies &middot; plain HTML + CSS + JS &middot; Tailwind, pre-built &middot; auto-deployed via Vercel</text>
       </svg>
       </div>
     </div>
@@ -626,8 +626,8 @@
 
     <div class="callout">
       <p>This site is a demonstration in itself: a recruiter-facing portfolio built with
-      <strong>zero npm dependencies</strong>, styled with Tailwind loaded at runtime via CDN
-      (no build step), and deployed straight to Vercel on every push to <code>main</code>.</p>
+      <strong>zero npm dependencies</strong>, styled with one pre-built Tailwind file
+      (nothing builds on deploy), and deployed straight to Vercel on every push to <code>main</code>.</p>
     </div>
 
     <div class="stats">
@@ -644,8 +644,8 @@
         <span class="stat-lbl">index.html holds markup + inline JS</span>
       </div>
       <div class="stat">
-        <span class="stat-num">CDN</span>
-        <span class="stat-lbl">Tailwind, loaded at runtime</span>
+        <span class="stat-num">1 file</span>
+        <span class="stat-lbl">Tailwind, pre-built and committed</span>
       </div>
     </div>
   </div>
@@ -660,16 +660,16 @@
     </div>
 
     <div class="prose">
-      <p>The constraint was intentional: no React, no build step, no bundler. The site must
+      <p>The constraint was intentional: no React, no bundler, nothing that builds on deploy. The site must
       work by opening <code>index.html</code> in a browser. This was both a technical
-      demonstration (can you ship a polished product with nothing but platform primitives
-      and a CDN?) and a practical choice, no dependency rot, no build failures, instant
+      demonstration (can you ship a polished product with nothing but platform primitives?) and a practical choice, no dependency rot, no build failures, instant
       iteration.</p>
     </div>
 
     <div class="callout">
-      <p><strong>The result:</strong> 0 npm dependencies. Styling comes from Tailwind loaded
-      via CDN at runtime plus a hand-written CSS layer; the Supabase JS client that the
+      <p><strong>The result:</strong> 0 npm dependencies. Styling comes from one committed
+      Tailwind file plus a hand-written CSS layer. Tailwind began on a runtime CDN, which cost
+      seconds of first paint on a phone, so it now ships as one file made by one CLI run; the Supabase JS client that the
       retired email gate used is no longer loaded.</p>
     </div>
   </div>
@@ -824,7 +824,7 @@
       <div class="card">
         <h3>Inline styles</h3>
         <p>The Kinetic Precision tokens and components sit in one style block inside
-        index.html, with Tailwind loaded from a CDN at runtime alongside it.</p>
+        index.html, with the pre-built <code>tailwind.css</code> loaded after it.</p>
       </div>
       <div class="card">
         <h3>hero-motion.js</h3>
@@ -852,7 +852,7 @@
       </div>
       <div class="card">
         <h3>vercel.json, .vercelignore</h3>
-        <p>Redirects only, so a published URL never breaks. The ignore file keeps internal
+        <p>Redirects and security headers, so a published URL never breaks. The ignore file keeps internal
         notes and working files out of the deploy.</p>
       </div>
       <div class="card">
