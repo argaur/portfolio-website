@@ -619,7 +619,7 @@
         <line x1="710" y1="40" x2="710" y2="330" stroke="#EBEBE8" stroke-width="1" stroke-dasharray="4 4"/>
 
         <text x="80" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">TELEGRAM</text>
-        <text x="250" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">BOT / RAILWAY</text>
+        <text x="250" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">BOT / VERCEL</text>
         <text x="437" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">AI</text>
         <text x="622" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">NEON POSTGRES</text>
         <text x="805" y="55" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="700" fill="#6B6B67" letter-spacing="1.2">DASHBOARD</text>
@@ -632,7 +632,7 @@
 
         <rect x="175" y="118" width="150" height="44" fill="#FFFFFF" stroke="#DDDDD9" rx="6"/>
         <text x="250" y="138" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">FastAPI + PTB</text>
-        <text x="250" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Single asyncio process</text>
+        <text x="250" y="152" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#5C5C58">Webhook, serverless</text>
 
         <line x1="325" y1="140" x2="354" y2="140" stroke="#9A9A96" stroke-width="1.5" marker-end="url(#sla-arr)"/>
 
@@ -840,8 +840,8 @@
       <div>
         <h3>Nudges &amp; matching</h3>
         <div class="callout">
-          <p><strong>Stalled-deal nudges:</strong> the bot DMs the assigned rep when a lead
-          goes quiet past a threshold.</p>
+          <p><strong>Stalled-deal nudges:</strong> a nudge DMs the assigned rep about a lead
+          that has gone quiet. It is sent on request now. The automatic timer was retired.</p>
           <p><strong>Space matching:</strong> city and available seats are hard filters. The
           0-100 score is budget fit (45) + space type (30) + capacity right-sizing (25). A
           50-seat lead into a 60-seat space outscores the same lead into a 500-seat space.</p>
@@ -953,7 +953,7 @@
       <div class="table-scroll" tabindex="0" role="region" aria-label="No framework, no bundler, one provider (table)"><table>
         <thead><tr><th>Layer</th><th>Technology</th><th>Details</th></tr></thead>
         <tbody>
-          <tr><td>Bot backend</td><td>Python &middot; FastAPI &middot; python-telegram-bot</td><td>Single asyncio process, deploys to Railway. FastAPI lifespan wires bot polling + nudge JobQueue + <code>/api/*</code> together.</td></tr>
+          <tr><td>Bot backend</td><td>Python &middot; FastAPI &middot; python-telegram-bot</td><td>Runs on Vercel in webhook mode. Telegram posts each update to one FastAPI route, next to <code>/api/*</code>. Conversation state lives in Neon.</td></tr>
           <tr><td>Database</td><td>Neon Postgres &middot; asyncpg</td><td>Fully async. Every <code>db.*</code> call is awaited. Five tables: users, companies, leads, interactions, spaces.</td></tr>
           <tr><td>AI &middot; extraction &amp; vision</td><td>OpenAI <code>gpt-4o-mini</code></td><td>Text extraction, vision (screenshots), and reasoning. One provider, one key.</td></tr>
           <tr><td>AI &middot; transcription</td><td>OpenAI Whisper</td><td>Voice note transcription ahead of intent classification.</td></tr>
