@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF" id="theme-color">
+<title>Second Read: every side gets flagged</title>
+<meta name="description" content="One made-up news story, read clean first, then flagged in both directions by hand. Outlet labels miss what one article does.">
+<link rel="canonical" href="https://gauravg.dev/builds/second-read/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Second Read: every side gets flagged">
+<meta property="og:description" content="One made-up story, flagged in both directions by hand.">
+<meta property="og:url" content="https://gauravg.dev/builds/second-read/">
+<meta property="og:image" content="https://gauravg.dev/builds/second-read/share.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 22'%3E%3Crect x='13.25' y='1' width='1.5' height='20' fill='%23111'/%3E%3Cpath d='M13.25 2 1 7l12.25 5z' fill='%231E60E0'/%3E%3Cpath d='M14.75 2 27 7l-12.25 5z' fill='%23CC1F2B'/%3E%3C/svg%3E">
+<link rel="preload" href="/builds/second-read/fonts/krona-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/builds/second-read/fonts/atkinson-next.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/builds/second-read/style.css">
+<script>
+  // Theme comes from the URL or the toggle, never from the OS. Set before first paint.
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+  })();
+</script>
+</head>
+<body>
+<noscript><style>.tabs, .dock { display: none; }</style><p style="margin:0;padding:12px 24px">The flags need JavaScript. The story reads fine without them.</p></noscript>
+
+<div class="page">
+  <header class="top">
+    <a class="brand" href="/builds.html" aria-label="Second Read, all builds">
+      <svg viewBox="0 0 28 22" aria-hidden="true"><rect x="13.25" y="1" width="1.5" height="20" fill="var(--ink)"/><path d="M13.25 2 L1 7 L13.25 12 Z" fill="var(--left)"/><path d="M14.75 2 L27 7 L14.75 12 Z" fill="var(--right)"/></svg>
+      Second Read
+    </a>
+    <button class="theme" id="theme" type="button" aria-label="Switch to dark theme">Dark</button>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <h1>Every side<br>gets flagged.</h1>
+      <div class="tabs" role="tablist" aria-label="Sample views">
+        <button class="tab" role="tab" id="t-bias" data-to="bias" aria-controls="p-bias" aria-selected="true">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x=".75" y=".75" width="12.5" height="12.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="1" width="6" height="12" fill="currentColor"/></svg>Bias</button>
+        <button class="tab" role="tab" id="t-fact" data-to="fact" aria-controls="p-fact" aria-selected="false" tabindex="-1">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x=".75" y=".75" width="12.5" height="12.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1 1h4v4H1zM9 1h4v4H9zM5 5h4v4H5zM1 9h4v4H1zM9 9h4v4H9z" fill="currentColor"/></svg>Fact check</button>
+        <button class="tab" role="tab" id="t-journalist" data-to="journalist" aria-controls="p-journalist" aria-selected="false" tabindex="-1">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x=".75" y=".75" width="12.5" height="12.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="4.5" y="4.5" width="5" height="5" fill="currentColor"/></svg>Journalist</button>
+      </div>
+      <p class="broken" id="broken">News tools label the outlet, but readers meet one article at a time.</p>
+      <div class="dock"><button class="action" id="action" type="button">Read it again</button></div>
+      <p class="why">I killed a news bias product after two weeks because it had to flag every side. This is the small version of that lesson.
+        <small class="sign">Gaurav Gupta, <a href="https://gauravg.dev">gauravg.dev</a></small></p>
+    </section>
+
+    <section class="work">
+      <div id="p-bias" role="tabpanel" aria-labelledby="t-bias">
+        <figure class="cloth">
+          <div class="fields" role="group" aria-label="Outlet labels">
+            <div class="field l"><b>Left</b><span>Tarang Voice</span><span>Tarangpur Ledger</span></div>
+            <div class="field c"><b>Center</b><span>Tarangpur Courier</span><span>ran this story</span></div>
+            <div class="field r"><b>Right</b><span>Coast Sentinel</span><span>Harbour Standard</span></div>
+          </div>
+        </figure>
+
+        <article class="story" id="story">
+          <h2 class="panel-head">Tarangpur council scraps <span class="mark" data-id="wasteful" data-side="right" data-onload>wasteful</span> tram line, leaving workers <span class="mark" data-id="stranded" data-side="left" data-onload>stranded</span></h2>
+          <p class="by">Published by Tarangpur Courier, labelled Center. Made-up story, flags written by hand. Tap a flag to read why.</p>
+          <p class="body">The city council voted 7 to 5 on Tuesday to end the Line 2 tram after years of <span class="mark" data-id="runaway" data-side="right" data-pair="0">runaway</span> spending. Transit groups said the city had <span class="mark" data-id="abandoned" data-side="left" data-pair="0">abandoned</span> its poorest riders.</p>
+          <p class="body">Mayor Neha Vartak called the vote a win for <span class="mark" data-id="common sense" data-side="right" data-pair="1">common sense.</span> The council promised steady bus fares, a <span class="mark" data-id="hollow" data-side="left" data-pair="1">hollow</span> pledge after two years of delays.</p>
+          <p class="body">Work stops next month. Line 1 keeps running.</p>
+        </article>
+
+        <p class="point">The outlet gets one label. One article from it leans both ways.</p>
+      </div>
+
+      <div id="p-fact" role="tabpanel" aria-labelledby="t-fact" hidden>
+        <div class="work-head" id="claims-top">
+          <h2 class="panel-head">Claims from the tram story</h2>
+          <p class="by">From the story on the Bias tab. Made-up claims, verdicts written by hand.</p>
+          <p class="point lead">The verdict waits until you have read.</p>
+          <ol class="claims" id="claims">
+            <li class="claim">
+              <svg class="flag" viewBox="0 0 22 22" aria-hidden="true"><rect x=".75" y=".75" width="20.5" height="20.5" fill="var(--ground)" stroke="var(--ink)" stroke-width="1.5"/><path d="M1 5.4h20v5.6H1zM1 16.6h20V21H1z" fill="var(--ink)"/></svg>
+              <p class="quote">"The city council voted 7 to 5 on Tuesday."</p>
+              <div class="verdict"><b>Holds</b><p>The council minutes record the same count.</p></div>
+            </li>
+            <li class="claim">
+              <svg class="flag" viewBox="0 0 22 22" aria-hidden="true"><rect x=".75" y=".75" width="20.5" height="20.5" fill="var(--ground)" stroke="var(--ink)" stroke-width="1.5"/><path d="M1 1l20 20M21 1L1 21" stroke="var(--ink)" stroke-width="4" fill="none"/></svg>
+              <p class="quote">"years of runaway spending"</p>
+              <div class="verdict"><b>No proof</b><p>The story gives no spending figure and cites no record.</p></div>
+            </li>
+            <li class="claim">
+              <svg class="flag" viewBox="0 0 22 22" aria-hidden="true"><rect x=".75" y=".75" width="20.5" height="20.5" fill="var(--ground)" stroke="var(--ink)" stroke-width="1.5"/><path d="M21 1v20H1z" fill="var(--ink)"/></svg>
+              <p class="quote">"Line 1 keeps running."</p>
+              <div class="verdict"><b>Can't check yet</b><p>This is a plan, not a record.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div id="p-journalist" role="tabpanel" aria-labelledby="t-journalist" hidden>
+        <div class="work-head">
+          <h2 class="panel-head">Ira Solanki</h2>
+          <p class="by">Made-up reporter. Wrote the tram story.</p>
+          <dl class="log">
+            <div><dt>Now</dt><dd>Tarangpur Courier, labelled Center</dd></div>
+            <div><dt>Before</dt><dd>Harbour Standard, labelled Right</dd></div>
+            <div><dt>Covers</dt><dd>City council and transit</dd></div>
+            <div><dt>Corrections</dt><dd>Two printed. One date, one vote count.</dd></div>
+            <div><dt>Disclosed</dt><dd>Her brother works for the transit union.</dd></div>
+          </dl>
+          <p class="point">This page flags words, not people.</p>
+        </div>
+      </div>
+
+      <section class="after" aria-label="About this page">
+        <div class="bias-only">
+          <h3>How Ground News does it</h3>
+          <p>It rates the publication. Its rating page says: "This rating does not measure the bias of specific news articles."
+            <small><a href="https://ground.news/rating-system">ground.news/rating-system</a>, <span class="nb">as of 1 Nov 2026</span></small></p>
+        </div>
+        <h3 class="why-narrow">Why I built this</h3>
+        <p class="why-narrow">I killed a news bias product after two weeks because it had to flag every side. This is the small version of that lesson.
+          <small class="sign">Gaurav Gupta, <a href="https://gauravg.dev">gauravg.dev</a></small></p>
+        <h3>Made up</h3>
+        <p>All outlets, people and flags are made up and hand-written.</p>
+        <h3 class="sources-head">Sources</h3>
+        <ul class="sources">
+          <li>Ground News averages AllSides, Ad Fontes Media and Media Bias Fact Check, on a 7-point scale from Far Left to Far Right.
+            <small><a href="https://ground.news/rating-system">ground.news/rating-system</a>, <span class="nb">as of 1 Nov 2026</span></small></li>
+          <li>Debunking right after a headline cut misclassification a week later by 25.3%, labelling during reading by 8.6%. N = 2,683.
+            <small><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7865139/">Brashier, Pennycook, Berinsky, Rand, PNAS 2021</a>, <span class="nb">read 1 Nov 2026</span></small></li>
+        </ul>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div id="live" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></div>
+
+<script src="/analytics.js" defer></script>
+<script src="/builds/second-read/app.js" defer></script>
+</body>
+</html>
