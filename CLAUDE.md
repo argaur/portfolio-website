@@ -10,17 +10,19 @@ Public portfolio for Gaurav Gupta. It shows PM and AI strategy work to founders,
 
 ## Out of Scope (do not build unless explicitly asked)
 
-- Any npm package, bundler, or build step. The site ships by opening files in a browser.
+- Any npm package, bundler, or build step on deploy. The site ships by opening files in a browser. The one exception is the Tailwind CLI run below (Gaurav, 2026-10-31).
 - Blog or writing section
 - Contact form (social links are enough)
 - Analytics **beyond anonymous pageviews**. `analytics.js` (PostHog, pageviews only) is in scope since session 18. Custom events, `identify()`, autocapture, session replay and trailer play tracking are not.
 - RAG chatbot (separate project, not part of this repo)
 
 ## What this is
-A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build step. **Tailwind is loaded via CDN at runtime** (`cdn.tailwindcss.com`, config inline in `index.html`), so new markup may use Tailwind utilities alongside the custom tokens. "No build step, opens in a browser" still holds. "No framework runtime" does **not**.
+A personal portfolio website: plain HTML, CSS and vanilla JavaScript, nothing builds on deploy. **Tailwind ships as a committed, pre-built `tailwind.css`** (only `index.html` uses it), loaded after the inline `<style>` to keep the cascade order the Play CDN had. The Play CDN is gone: it cost about 3.5s of first paint on mobile (Stacksmith r1, approved 2026-10-31).
+
+**The one CLI run:** after using a Tailwind class that is not in `tailwind.css` yet, or changing `tailwind.config.js`, rebuild and commit the result. Use the standalone binary v3.4.17 from the tailwindlabs/tailwindcss GitHub release (`tailwindcss-windows-x64.exe`), kept outside the repo: `tailwindcss -c tailwind.config.js -i tailwind.input.css -o tailwind.css --minify`. No npm. Skip the run and a new class silently does nothing.
 
 ## Design: "Kinetic Precision" (v3, current)
-- Dark theme by default, with a light-mode toggle on desktop (`#theme-toggle`, 768px and up). Kept and fixed in session 19.
+- Dark theme by default, with a light-mode toggle at every width (`#theme-toggle`). The choice is remembered in `localStorage`.
 - Tokens: `--bg-base: #0e0e12`, surfaces `#0c0d11 / #16161e / #1a1a22 / #242432`, `--border: #2a2a38`, text `#ece8e2` / `#9896a0` / `#56546e`, accent gold `--accent: #c9a84c` (`--accent-dim #8a6f2e`), `--green-signal: #4caf74` (live and verified dots only).
 - Fonts: **Space Mono** (display, mono uppercase micro-labels) and **DM Sans** (body and UI).
 - `--radius: 0px`. **No `border-radius` anywhere** on the main site.
@@ -31,7 +33,7 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build s
 ## Navigation structure
 - **Panel-based SPA.** `body` has `overflow: hidden`. Each section is a fixed-height panel switched by nav clicks.
 - `activatePanel(panelId, updateHash)` is global. A delegated listener wires **every** `[data-panel="panel-X"]` element, so any in-page link with that attribute switches panels. Nav switchers are `<a href="#hash" data-panel>`. Hash routing works on load.
-- **Mobile nav:** hamburger (`.nav-hamburger`) opens a full-screen overlay (`#nav-overlay`). ESC or a panel link closes it.
+- **Mobile nav:** hamburger (`#hamburger-btn`) opens a full-screen overlay (`#mobile-nav`, `inert` while closed). ESC or a panel link closes it.
 - **7 panels:** Home, Experience (Work was merged into it), Projects, Skills, Philosophy, Credentials, Contact. Hashes: `#home #experience #projects #skills #philosophy #credentials #contact`.
 - `#panel-skills` and `#panel-philosophy` share the `.skill-block delay-N` class pattern. Always scope edits by `#panel-*`, never by class alone.
 
@@ -43,14 +45,15 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build s
 ## Projects panel
 - A domain tile grid (`#proj-grid`, `.proj-tile`) with filter chips and a summary computed into `#proj-summary`. **15 projects across 11 domains**, plus 2 career tiles (JindalX, architecture).
 - The first featured tile is kicker "JindalX", title "Talent Management Suite", linking to `case-study-jindalx-talent.html`.
-- Modal data lives in `V3_PROJECTS` in `index.html`, keyed `cs-1` to `cs-6` and `pp-0` to `pp-8`. `cs-0` (Rethink CRM) was removed on 2026-10-11.
+- Experience modal data lives in `V3_WORK` and certificate data in `V3_CERTS`, both in `index.html`.
 
 ## Tech constraints
-- Plain HTML, CSS and vanilla JavaScript. External runtime deps: **Tailwind CDN** and the **Supabase JS client**, both via CDN. No npm, no bundler, no build.
+- Plain HTML, CSS and vanilla JavaScript. No npm, no bundler, nothing builds on deploy. The only runtime CDNs are Google Fonts and PostHog.
 - The site must work by opening `index.html` in a browser.
 
 ## File structure
-- `index.html`: the 7-panel SPA, modal overlay and mobile nav overlay. Most JS is inline: panel switching, progressive reveal, experience accordion, project tiles and filters, unified item modal, `V3_PROJECTS`.
+- `index.html`: the 7-panel SPA, modal overlay and mobile nav overlay. Most JS is inline: panel switching, experience accordion, project tiles and filters, the detail modal, `V3_WORK`, `V3_CERTS`.
+- `tailwind.css`: built file, never hand-edit. `tailwind.config.js` and `tailwind.input.css` are its sources and are in `.vercelignore`.
 - `hero-motion.js`: the Home and Contact canvas (see above). Replaced `plan-to-product.js`, which is deleted.
 - `styles.css`: **dead file**. No page loads it since the v3 rebuild. It is in `.vercelignore`.
 - `services.html`: the Services page, two equal tracks (workflow automation, AI product sprint), **no prices**. Linked from the founders door on Home. Self-contained, Kinetic Precision tokens.
@@ -59,14 +62,14 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, no build s
 - `builds/ai-vs-humancap-sim/`: **generated, do not hand-edit.** A Next.js export copied in by `ai-vs-humancap-sim/scripts/publish-to-portfolio.sh`. Change the sim in its own repo, re-run that script, commit here.
 - `404.html`, `sitemap.xml`, `robots.txt`, `assets/og.jpg` (1200x630 share image, used by every page's `og:image`).
 - `trailer.js`: renders each page's `#showcase` (see Trailers).
-- `nav-hint.js`: fades the right edge of the case-page mobile nav strip while more links are off-screen. Loaded by all 16 case and project pages.
+- `nav-hint.js`: fades the edges of the case-page mobile nav strip while more links are off-screen, and holds the phone touch-target rules those pages share. Loaded by all 16 case and project pages.
 - `gate.js`: email-gate logic, **loaded but short-circuited**. Do not edit without an ask.
 - `analytics.js`: PostHog loader, **pageviews only**. Loaded by all 19 public pages (`index`, `services`, 8 `case-study-*`, 8 `project-*`, `g-os`). Reports into the shared "Web Fleet" PostHog project with super-property `project: 'portfolio-website'`, which is how the fleet dashboard separates sites. Skips localhost and `file://`. The `phc_` token is a public client key, meant to ship in the page.
 - `vercel.json`: redirects and security headers (CSP is report-only). `/case-study-founder-crm.html` (and the extensionless path) go to `case-study-siteline.html#origin`, and the old `assets/` resume path goes to `/GauravGupta_Resume_2026.pdf`, all permanent 308. Published URLs are never allowed to 404.
 - `assets/trailers/<slug>.mp4` and `.jpg`: trailer clips and posters.
 - `app.js`: **dead file**, not referenced. `tabs.js`: empty stub. `favicon.svg`: GG monogram.
 - `case-study.css` was deleted in session 17. Every case and project page is self-contained.
-- `.vercelignore` keeps internal files out of the deployment, so they 404 on gauravg.dev: this file, `PORTFOLIO_PLAN.md`, `README.md`, `NEEDS-YOU.md`, `app.js`, `tabs.js`, `playwright-audit.js`, `.archive/`, `collab-runs/`, `_tmp/`, `styles.css`, `photo.jpg`, the old `assets/` resume, `AGENTS.md`, `GEMINI.md`. Add any new internal file there. Keep `prd-templates/`, because `g-os.html` fetches it.
+- `.vercelignore` keeps internal files out of the deployment, so they 404 on gauravg.dev: this file, `PORTFOLIO_PLAN.md`, `README.md`, `NEEDS-YOU.md`, `app.js`, `tabs.js`, `playwright-audit.js`, `.archive/`, `collab-runs/`, `_tmp/`, `styles.css`, `tailwind.config.js`, `tailwind.input.css`, `photo.jpg`, the old `assets/` resume, `AGENTS.md`, `GEMINI.md`. Add any new internal file there. Keep `prd-templates/`, because `g-os.html` fetches it.
 - `NEEDS-YOU.md`, `_tmp/` and `collab-runs/` are working files. Never commit `NEEDS-YOU.md`. `_tmp/` is gitignored.
 
 ## Case-study and project pages: per-product design skins
@@ -89,14 +92,14 @@ Shared scaffold: fixed `nav` (`.nav-back`, `.nav-link` anchors, `.nav-index`), t
 
 Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, merged on 2026-10-11. Number 01 is no longer used. JindalX claims must trace to `G:\My Drive\Career\micro1-pm-po-ats-story.md`. Never name micro1 or its client.
 
-**8 project pages:** `project-pm-pathfinder.html` (dark indigo, Space Grotesk, soft corners), `project-ai-humancap-sim.html` (light warm, Source Serif, ochre/sage), `project-homelab.html` (dark, JetBrains Mono), `project-portfolio.html` (dark, Space Mono, 0px, gold), `project-gws-cli.html` (dark terminal, Roboto Mono, Google colors), `project-life-os.html` (dark, DM Sans, mint), `project-gst-notice.html` (light cream, Source Serif, navy), `project-rulecard.html` (light/dark auto, IBM Plex, navy; live at rulecard.gauravg.dev).
+**8 project pages:** `project-pm-pathfinder.html` (dark indigo, Space Grotesk, soft corners), `project-ai-humancap-sim.html` (light warm, Source Serif, ochre/sage), `project-homelab.html` (dark, JetBrains Mono), `project-portfolio.html` (dark, Space Mono, 0px, gold), `project-gws-cli.html` (dark terminal, Roboto Mono, Google colors), `project-life-os.html` (dark, DM Sans, mint), `project-gst-notice.html` (light cream, Source Serif, navy), `project-rulecard.html` (Rulecard skin: marigold and ink, Archivo, Instrument Serif; live at rulecard.gauravg.dev).
 
 `case-study-vitae.html` is the **golden template**. For a rebuild or a new page, copy its scaffold and enhancement code, then swap only `:root` and fonts.
 
 ## Trailers
 - `#showcase` on each page picks, in order: `data-src` (an mp4 in `assets/trailers/`), then `data-embed` (YouTube, Vimeo, Loom or Drive only), then an `<ol class="trailer-slides">` reel, then `?trailer=preview`. With none, the section stays hidden.
 - **Trailers film the real live product, never slides or mockups.** Slide reels are only for products with no public platform.
-- **Video (8):** Blinkit, Notice Explained, AI vs Human Capital, YouTube 2.0, this site, Vittam, PM Pathfinder, RuleCard.
+- **Video (8):** Blinkit, Notice Explained, AI vs Human Capital, YouTube 2.0, this site, Vittam, PM Pathfinder, Rulecard.
 - **Slide reels (5):** JindalX, Personal AI Assistant, life-os, Homelab, GWS CLI.
 - **None yet (3):** Siteline, Trivo and Vitae are unwired until test accounts exist. Landing-page-only footage was rejected.
 - Reels autoplay under reduced motion, with no transition. No play tracking.
@@ -133,10 +136,9 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
 - **Open (see `NEEDS-YOU.md`):**
   - Test accounts for the Siteline, Trivo and Vitae trailers.
   - A life-os demo mode, or keep its reel.
-  - Bugs in other repos: Blinkit check-in never ticks, the RuleCard page shows PLACEHOLDER text.
+  - Bugs in other repos: Blinkit check-in never ticks, the Rulecard page showed PLACEHOLDER text (fixed 2026-10-30).
 - **Also open:**
   - Confirm Trivo's anonymized quote labels. (Vitae's 3rd place is confirmed by the certificate, 2026-10-26.)
-  - Siteline says the bot runs on Railway. Update it when the bot moves.
   - Taccomacco "6 months" claim.
   - Graduate the "Now Building" chips (RAS Prep, learning-hub) as they ship.
   - Google Analytics cert has no verify link.
