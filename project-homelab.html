@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-homelab.html">
-    <meta name="description" content="Project: Personal Homelab, 10+ Docker services, Vault, Prometheus, Grafana running on a self-hosted Linux server. Built by Gaurav Gupta.">
+    <meta name="description" content="Project: Personal Homelab, with 10+ Docker services, Vault, Prometheus and Grafana running on a self-hosted Linux server. Built by Gaurav Gupta.">
     <meta property="og:title" content="Personal Homelab, Self-Hosted Infrastructure | Gaurav Gupta">
-    <meta property="og:description" content="10+ Docker services, HashiCorp Vault, Prometheus + Grafana, self-hosted on a Linux Mint server. Zero cloud costs, full control.">
+    <meta property="og:description" content="10+ Docker services, HashiCorp Vault, Prometheus and Grafana, self-hosted on a Linux Mint server, with zero cloud costs and full control.">
     <meta property="og:url" content="https://gauravg.dev/project-homelab.html">
     <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
     <meta property="og:image:width" content="1200">
@@ -506,8 +506,7 @@
     <span class="label label-strong">[ OK ] Personal Project &middot; Uptime since provisioning</span>
     <h1>Personal Homelab<br /><em>server, self-hosted.</em></h1>
     <p class="hero-sub">
-      10+ containerised services running on a dedicated Linux Mint server, monitoring,
-      automation, secrets management, DNS filtering, and more. Zero cloud costs, full control.
+      I run 10+ containerised services on a dedicated Linux Mint server, for monitoring, automation, secrets management, DNS filtering and more, with zero cloud costs and full control.
     </p>
     <div class="meta-row">
       <span class="meta-tag">Docker</span>
@@ -531,7 +530,7 @@
     <div class="trailer-frame"></div>
     <ol class="trailer-slides">
       <li data-kicker="What it is"><b>A self-hosted homelab server.</b><span>10+ containerised services on a dedicated Linux Mint laptop, running 24/7 as a local server.</span></li>
-      <li data-kicker="Why self-host"><b>Cloud rents you a service. Self-hosting owns it.</b><span>Cloud charges per service, per seat, per API call. The costs compound, and your data leaves your control.</span></li>
+      <li data-kicker="Why self-host"><b>Cloud charges per service. Self-hosting does not.</b><span>Cloud charges per service, per seat, per API call. The costs compound, and your data leaves your control.</span></li>
       <li data-kicker="The cost" data-stat="~$0/mo"><b>Versus $50+/mo for the SaaS equivalent.</b><span>Zero cloud costs, full control.</span></li>
       <li data-kicker="What runs on it"><b>Three layers of services.</b><span>Infrastructure: Portainer, Nginx Proxy Manager, Homepage, AdGuard Home, Tailscale, Vault. Observability: Prometheus, Grafana, Uptime Kuma. Automation: n8n, Ansible Semaphore.</span></li>
       <li data-kicker="Secrets" data-stat="0"><b>Plaintext secrets on disk.</b><span>HashiCorp Vault injects credentials at container startup. No .env files with real secrets committed anywhere.</span></li>
@@ -696,22 +695,19 @@
 <div class="sec" id="problem">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>Cloud rents you a service.<br /><em>Self-hosting owns it.</em></h2>
+      <h2>Cloud charges per service.<br /><em>Self-hosting does not.</em></h2>
       <span class="label">01 &middot; Why Self-Host</span>
     </div>
 
     <div class="prose">
-      <p>Cloud services charge per service, per seat, per API call. For a builder running
-      multiple personal tools, automation pipelines, monitoring dashboards, DNS filtering,
-      workflow engines, the costs compound fast. More importantly, cloud services mean
+      <p>Cloud services charge per service, per seat and per API call, so for a builder running multiple personal tools, automation pipelines, monitoring dashboards, DNS filtering and workflow engines, the costs compound fast. More importantly, cloud services mean
       vendor lock-in and data leaving your control.</p>
-      <p>The homelab solves this: a dedicated Linux Mint laptop running 24/7 as a local server,
+      <p>The homelab solves this with a dedicated Linux Mint laptop running 24/7 as a local server,
       managed as code, with every service containerised and reproducible from scratch.</p>
     </div>
 
     <div class="callout">
-      <p><code>$ git clone homelab && ansible-playbook site.yml</code>, the entire server
-      rebuilds from two commands. State lives in git, not in the OS.</p>
+      <p><code>$ git clone homelab && ansible-playbook site.yml</code> rebuilds the entire server from two commands, because state lives in git and not in the OS.</p>
     </div>
   </div>
 </div>
@@ -726,36 +722,34 @@
 
     <div class="prose">
       <p>Each service lives in its own <code>/stacks/</code> directory with a dedicated
-      <code>docker-compose.yml</code>. Services are grouped by function, infrastructure
-      layer, monitoring layer, automation layer. Nginx Proxy Manager handles routing; AdGuard
-      Home handles DNS at the network level; Tailscale gives remote access without opening ports.</p>
+      <code>docker-compose.yml</code>. Services are grouped by function into an infrastructure layer, a monitoring layer and an automation layer. Nginx Proxy Manager handles routing, AdGuard Home handles DNS at the network level, and Tailscale gives remote access without opening ports.</p>
     </div>
 
     <div class="cards">
       <div class="card">
-        <h3 class="h4">Infrastructure Layer</h3>
+        <h3 class="h4">Infrastructure layer</h3>
         <ul>
-          <li><strong>Portainer</strong>, Docker container management UI, visual overview of all running stacks</li>
-          <li><strong>Nginx Proxy Manager</strong>, reverse proxy with SSL termination for local services</li>
-          <li><strong>Homepage</strong>, unified dashboard (port 3333) showing all services at a glance</li>
-          <li><strong>AdGuard Home</strong>, network-wide DNS filtering, local DNS resolver</li>
-          <li><strong>Tailscale</strong>, VPN mesh for secure remote access from my other devices</li>
-          <li><strong>HashiCorp Vault</strong>, secrets management; all credentials injected at runtime, none stored in files</li>
+          <li><strong>Portainer</strong> is the Docker container management UI, with a visual overview of all running stacks</li>
+          <li><strong>Nginx Proxy Manager</strong> is a reverse proxy with SSL termination for local services</li>
+          <li><strong>Homepage</strong> is a unified dashboard (port 3333) that shows all services at a glance</li>
+          <li><strong>AdGuard Home</strong> does network-wide DNS filtering and is the local DNS resolver</li>
+          <li><strong>Tailscale</strong> is a VPN mesh for secure remote access from my other devices</li>
+          <li><strong>HashiCorp Vault</strong> handles secrets management, so all credentials are injected at runtime and none are stored in files</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="h4">Observability Layer</h3>
+        <h3 class="h4">Observability layer</h3>
         <ul>
-          <li><strong>Prometheus</strong>, metrics scraping from all services</li>
-          <li><strong>Grafana</strong>, dashboards for system health, service uptime, resource usage</li>
-          <li><strong>Uptime Kuma</strong>, service status monitoring with alerting</li>
+          <li><strong>Prometheus</strong> scrapes metrics from all services</li>
+          <li><strong>Grafana</strong> has dashboards for system health, service uptime and resource usage</li>
+          <li><strong>Uptime Kuma</strong> monitors service status, with alerting</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="h4">Automation Layer</h3>
+        <h3 class="h4">Automation layer</h3>
         <ul>
-          <li><strong>n8n</strong>, self-hosted workflow automation, integrations without API key exposure</li>
-          <li><strong>Ansible Semaphore</strong>, web UI for running Ansible playbooks; used for provisioning and updates</li>
+          <li><strong>n8n</strong> is self-hosted workflow automation, which runs integrations without API key exposure</li>
+          <li><strong>Ansible Semaphore</strong> is a web UI for running Ansible playbooks, used for provisioning and updates</li>
         </ul>
       </div>
     </div>
@@ -771,17 +765,11 @@
     </div>
 
     <div class="callout">
-      <p><strong>Why Docker over bare-metal installs?</strong> Each service is isolated,
-      versioned, and replaceable. Rolling back a broken upgrade means pulling the previous
-      image. Full server restore from scratch uses the same compose files, the state
-      lives in git, not in the OS.</p>
+      <p><strong>Why Docker over bare-metal installs?</strong> Each service is isolated, versioned and replaceable, so rolling back a broken upgrade means pulling the previous image. A full server restore from scratch uses the same compose files, because the state lives in git and not in the OS.</p>
     </div>
 
     <div class="callout">
-      <p><strong>Why HashiCorp Vault for a personal homelab?</strong> Because the habit of
-      zero plaintext secrets, everywhere, always, is worth building at home.
-      Credentials are injected at container startup via Vault agent. No <code>.env</code>
-      files with real secrets committed anywhere.</p>
+      <p><strong>Why HashiCorp Vault for a personal homelab?</strong> Because the habit of zero plaintext secrets, everywhere and always, is worth building at home. Credentials are injected at container startup via Vault agent, and no <code>.env</code> files with real secrets are committed anywhere.</p>
     </div>
 
     <div class="callout">

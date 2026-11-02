@@ -625,9 +625,9 @@
     </div>
 
     <div class="callout">
-      <p>This site is a demonstration in itself: a recruiter-facing portfolio built with
-      <strong>zero npm dependencies</strong>, styled with one pre-built Tailwind file
-      (nothing builds on deploy), and deployed straight to Vercel on every push to <code>main</code>.</p>
+      <p>This site is a recruiter-facing portfolio built with
+      <strong>zero npm dependencies</strong>. It is styled with one pre-built Tailwind file
+      (nothing builds on deploy) and deployed straight to Vercel on every push to <code>main</code>.</p>
     </div>
 
     <div class="stats">
@@ -660,16 +660,16 @@
     </div>
 
     <div class="prose">
-      <p>The constraint was intentional: no React, no bundler, nothing that builds on deploy. The site must
-      work by opening <code>index.html</code> in a browser. This was both a technical
-      demonstration (can you ship a polished product with nothing but platform primitives?) and a practical choice, no dependency rot, no build failures, instant
+      <p>The constraint was intentional: no React, no bundler and nothing that builds on deploy. The site must
+      work by opening <code>index.html</code> in a browser. This was a technical
+      demonstration of shipping a polished product with nothing but platform primitives. It was also a practical choice, because it means no dependency rot, no build failures and instant
       iteration.</p>
     </div>
 
     <div class="callout">
       <p><strong>The result:</strong> 0 npm dependencies. Styling comes from one committed
       Tailwind file plus a hand-written CSS layer. Tailwind began on a runtime CDN, which cost
-      seconds of first paint on a phone, so it now ships as one file made by one CLI run; the Supabase JS client that the
+      seconds of first paint on a phone, so it now ships as one file made by one CLI run. The Supabase JS client that the
       retired email gate used is no longer loaded.</p>
     </div>
   </div>
@@ -687,36 +687,36 @@
       <p>The current design system is called <strong>Kinetic Precision</strong>, a
       dark, technical palette built around Space Mono for display type and DM Sans for body
       copy. Gold is the single accent, used sparingly: active nav underlines, tab highlights,
-      links, and card icons. Every corner on the site is square, <code>border-radius</code>
-      is zero, everywhere, as an explicit architectural principle.</p>
+      links, and card icons. Every corner on the site is square. <code>border-radius</code>
+      is zero everywhere, which is an explicit architectural principle.</p>
     </div>
 
     <h3 class="h3-spaced">Design Tokens</h3>
     <div class="cards">
       <div class="card">
         <h4 style="color: #ece8e2; background: #0e0e12; padding: 8px; margin: -16px -16px 12px; border: 1px solid #2a2a38;">#0e0e12</h4>
-        <p><code>--bg</code>, Primary dark background across the entire site.</p>
+        <p><code>--bg</code>: primary dark background across the entire site.</p>
       </div>
       <div class="card">
         <h4 style="color: #0e0e12; background: #c9a84c; padding: 8px; margin: -16px -16px 12px;">#c9a84c</h4>
-        <p><code>--gold</code>, Sole accent. Active states, links, highlighted nodes.</p>
+        <p><code>--gold</code>: sole accent, for active states, links and highlighted nodes.</p>
       </div>
       <div class="card">
         <h4 style="color: #ece8e2; background: #4caf74; padding: 8px; margin: -16px -16px 12px;">#4caf74</h4>
-        <p><code>--green</code>, Reserved for "verified / live" status dots only.</p>
+        <p><code>--green</code>: reserved for "verified / live" status dots only.</p>
       </div>
     </div>
 
     <h3 class="h3-spaced">Typography</h3>
     <ul>
-      <li><strong>Space Mono</strong>, display headings, eyebrows, labels, stat numbers (technical, exact, monospace precision)</li>
-      <li><strong>DM Sans</strong>, body text, UI labels, navigation (clean, geometric, legible at small sizes)</li>
+      <li><strong>Space Mono</strong>: display headings, eyebrows, labels and stat numbers (technical, exact, monospace precision)</li>
+      <li><strong>DM Sans</strong>: body text, UI labels and navigation (clean, geometric, legible at small sizes)</li>
     </ul>
 
     <h3 class="h3-spaced">No Border-Radius</h3>
-    <p>Every element is square-cornered, cards, tables, tags, buttons, panels. This is
+    <p>Every element is square-cornered: cards, tables, tags, buttons and panels. This is
     an explicit architectural principle carried over from the site's earlier "Blueprint to
-    Bits" identity: softness comes from spacing and type weight, never corner radius.</p>
+    Bits" identity, so softness comes from spacing and type weight, never corner radius.</p>
   </div>
 </div>
 
@@ -737,13 +737,13 @@
 
     <h3 class="h3-spaced">7 Panels</h3>
     <ul>
-      <li><strong>Home</strong>, two doors (founders and teams, or hiring), a stats row and the Plan to Product canvas</li>
-      <li><strong>Experience</strong>, career rows in an accordion, including the enterprise work</li>
-      <li><strong>Projects</strong>, a tile grid by domain with filter chips, each tile opening a detail view</li>
-      <li><strong>Skills</strong>, how I build, from brief to shipped product</li>
-      <li><strong>Philosophy</strong>, the product principles I work by</li>
-      <li><strong>Credentials</strong>, education and certifications</li>
-      <li><strong>Contact</strong>, the same canvas story replayed, plus email and LinkedIn</li>
+      <li><strong>Home</strong>: two doors (founders and teams, or hiring), a stats row and the Plan to Product canvas</li>
+      <li><strong>Experience</strong>: career rows in an accordion, including the enterprise work</li>
+      <li><strong>Projects</strong>: a tile grid by domain with filter chips, where each tile opens a detail view</li>
+      <li><strong>Skills</strong>: how I build, from brief to shipped product</li>
+      <li><strong>Philosophy</strong>: the product principles I work by</li>
+      <li><strong>Credentials</strong>: education and certifications</li>
+      <li><strong>Contact</strong>: the same canvas story replayed, plus email and LinkedIn</li>
     </ul>
 
     <h3 class="h3-spaced">Hash Routing</h3>
@@ -755,8 +755,7 @@
     <h3 class="h3-spaced">Motion</h3>
     <p><code>hero-motion.js</code> draws Plan to Product on a canvas on Home and Contact. A
     sketch becomes a plan, the plan is built floor by floor, and it ends at SHIP and LIVE.
-    It pauses when off-screen or in a background tab. It has no reduced-motion skip: that
-    skip froze the hero twice, so the gentle motion always plays.</p>
+    It pauses when off-screen or in a background tab. It has no reduced-motion skip. That skip froze the hero twice, so the gentle motion always plays.</p>
 
     <h3 class="h3-spaced">Case Pages and Trailers</h3>
     <p>Each case study and project page is its own file and wears its own product's design
@@ -784,7 +783,7 @@
       Submitting an email inserted a row into a Supabase <code>subscribers</code> table. I
       turned it off in July 2026 because it was blocking visitors, and a portfolio that hides
       its work behind a form defeats its own purpose.</p>
-      <p>The lesson: a gate has to earn the friction it adds. This one did not.</p>
+      <p>I learned that a gate has to earn the friction it adds, and this one did not.</p>
     </div>
 
     <div class="stats">
@@ -847,8 +846,7 @@
       </div>
       <div class="card">
         <h3>case-study-*.html, project-*.html</h3>
-        <p>Every case study and project page is self-contained: its own inline styles and
-        fonts, wearing the design language of the product it describes.</p>
+        <p>Every case study and project page is self-contained, with its own inline styles and fonts and the design language of the product it describes.</p>
       </div>
       <div class="card">
         <h3>vercel.json, .vercelignore</h3>

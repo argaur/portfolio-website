@@ -507,9 +507,7 @@
     <span class="label label-strong">Enterprise &middot; JindalX &middot; Digital transformation team &middot; 5 to 6 months</span>
     <h1>Hiring, from Excel and paper<br /><em>to one system.</em></h1>
     <p class="hero-sub">
-      JindalX was a legacy BPO company. Hiring ran on Excel sheets, hand-made offer letters and
-      printed, signed papers. I wrote six linked specs and built each one, so a hire could move
-      from requisition to onboarding in a single system.
+      JindalX was a legacy BPO company where hiring ran on Excel sheets, hand-made offer letters and printed, signed papers. I wrote six linked specs and built each one, so a hire could move from requisition to onboarding in a single system.
     </p>
     <div class="meta-row">
       <span class="meta-tag">Enterprise HR</span>
@@ -558,13 +556,11 @@
       <span class="label">Overview</span>
     </div>
     <div class="callout">
-      <p>This was not one PRD. It was a chain of six linked specs. Each one fed the next, and I
-      wrote and built every link. The goal from day one was data accuracy: the new tool had to
-      match the accuracy of the old manual process, and then remove the chasing.</p>
+      <p>This was not one PRD but a chain of six linked specs, where each one fed the next and I wrote and built every link. The goal from day one was data accuracy, so the new tool had to match the accuracy of the old manual process and then remove the chasing.</p>
     </div>
     <div class="stats">
       <div class="stat"><span class="stat-num">~6</span><span class="stat-lbl">Linked specs, each with its own PRD</span></div>
-      <div class="stat"><span class="stat-num">5&ndash;6 mo</span><span class="stat-lbl">From first spec to the full chain</span></div>
+      <div class="stat"><span class="stat-num">5 to 6 mo</span><span class="stat-lbl">From first spec to the full chain</span></div>
       <div class="stat"><span class="stat-num">50%</span><span class="stat-lbl">Drop in hiring time, on the TA scorecard</span></div>
       <div class="stat"><span class="stat-num">5</span><span class="stat-lbl">Levels of review on the specs</span></div>
     </div>
@@ -578,12 +574,8 @@
       <span class="label">01 &middot; Problem</span>
     </div>
     <div class="prose">
-      <p>Hiring at JindalX was fully manual. Excel sheets tracked the process. Offer letters
-      were made by hand. Onboarding meant printed papers that people signed and returned.</p>
-      <p>Teams often started a requisition, sourcing or an interview round with half the
-      information. The talent acquisition (TA) team then chased hiring managers many times for
-      round feedback. The cost was not only time. It was wrong data in a process that ends in a
-      signed salary.</p>
+      <p>Hiring at JindalX was fully manual, which means Excel sheets tracked the process, offer letters were made by hand and onboarding meant printed papers that people signed and returned.</p>
+      <p>Teams often started a requisition, sourcing or an interview round with half the information, and the talent acquisition (TA) team then chased hiring managers many times for round feedback. The cost was not only time but wrong data, in a process that ends in a signed salary.</p>
     </div>
   </div>
 </div>
@@ -617,8 +609,7 @@
       <span class="label">03 &middot; Deep dive</span>
     </div>
     <div class="prose">
-      <p>I chose the offer letter for the deep dive. A wrong letter is a wrong salary in a signed
-      document. It had the most rules and the most edge cases of the six.</p>
+      <p>I chose the offer letter for the deep dive because a wrong letter is a wrong salary in a signed document, and it had the most rules and the most edge cases of the six.</p>
     </div>
     <div class="table-wrap"><div class="table-scroll" tabindex="0" role="region" aria-label="The offer letter. Where a wrong rule costs money (table)"><table class="rules">
       <thead><tr><th>Rule</th><th>What it did</th></tr></thead>
@@ -633,10 +624,8 @@
       <div class="flow-override"><strong>Manager-only override.</strong> For pay set by interview negotiation, such as C-suite and department heads.</div>
     </div>
     <div class="callout-box">
-      <p><strong>The governance choice.</strong> I built a controlled exception instead of forcing
-      a rule for every case. The precedence held in most cases. Minor client and city exceptions
-      existed, and the manager override covered the rest.</p>
-      <p><strong>Audit trail.</strong> Every action was tied to the user&rsquo;s login and stored
+      <p><strong>The governance choice.</strong> I built a controlled exception instead of forcing a rule for every case. The precedence held in most cases, minor client and city exceptions existed, and the manager override covered the rest.</p>
+      <p><strong>Audit trail.</strong> Every action was tied to the user's login and stored
       in a table. At month end, the department head could see who did what.</p>
     </div>
   </div>
@@ -649,12 +638,8 @@
       <span class="label">04 &middot; Testing and acceptance</span>
     </div>
     <div class="prose">
-      <p>I set the acceptance bar from our own history. We loaded real candidate details and real
-      requisition forms, then tested the whole tool end to end on that data, including the AI
-      step. The bar: the new tool must give the accuracy the old manual process gave.</p>
-      <p>I then broke that bar down into criteria for each component, using the same logic. The
-      scale was about 40 to 50 historical records for each database table, then a few full
-      processes run by hand from start to finish.</p>
+      <p>I set the acceptance bar from our own history, so the new tool must give the accuracy the old manual process gave. We loaded real candidate details and real requisition forms, then tested the whole tool end to end on that data, including the AI step.</p>
+      <p>I then broke that bar down into criteria for each component, using the same logic, and the scale was about 40 to 50 historical records for each database table, then a few full processes run by hand from start to finish.</p>
     </div>
     <div class="callout-box">
       <p><strong>What I do not have.</strong> I do not have exact accuracy figures from that
@@ -662,12 +647,8 @@
     </div>
     <h3 class="h3-spaced">What the AI did, exactly</h3>
     <div class="prose">
-      <p>One basic OpenAI call, only at screening. It pulled a skill list from the candidate&rsquo;s
-      document and matched it to the requisition&rsquo;s skill list. A formula turned the match
-      into a percent.</p>
-      <p>The pass benchmark was set per role. It was lower for agents, where communication
-      matters more than client knowledge, and higher for technical roles. The offer letters,
-      forms and routing were rules and workflow, not AI.</p>
+      <p>It was one basic OpenAI call, only at screening, which pulled a skill list from the candidate's document and matched it to the requisition's skill list, and a formula turned the match into a percent.</p>
+      <p>The pass benchmark was set per role, so it was lower for agents, where communication matters more than client knowledge, and higher for technical roles. The offer letters, forms and routing were rules and workflow, not AI.</p>
     </div>
   </div>
 </div>
@@ -695,11 +676,8 @@
       <span class="label">06 &middot; The hardest tradeoff</span>
     </div>
     <div class="prose">
-      <p>I made fields mandatory on every input form and defined a strict data structure. Before,
-      teams started with half the information. Now they had to gather it first.</p>
-      <p>That added work for the TA team, and they pushed back. It also caused friction at launch,
-      because users did not have full information ready when they tried to start a requisition.
-      I held the line, because accuracy was the goal from day one.</p>
+      <p>I made fields mandatory on every input form and defined a strict data structure, so teams that used to start with half the information now had to gather it first.</p>
+      <p>That added work for the TA team and they pushed back, and it also caused friction at launch, because users did not have full information ready when they tried to start a requisition. But I held the line, because accuracy was the goal from day one.</p>
     </div>
     <h3 class="h3-spaced">The adoption drive</h3>
     <div class="cards">
@@ -708,8 +686,7 @@
       <div class="card"><h4>Q&amp;A on demand</h4><p>Sessions whenever questions built up.</p></div>
     </div>
     <div class="callout">
-      <p><strong>The lesson.</strong> A rule that protects data quality moves work onto the user.
-      Plan the adoption, not just the rule.</p>
+      <p><strong>The lesson.</strong> A rule that protects data quality moves work onto the user, so I had to plan the adoption and not just the rule.</p>
     </div>
   </div>
 </div>
@@ -724,10 +701,8 @@
       <div class="stat"><span class="stat-num">50%</span><span class="stat-lbl">Drop in hiring time</span></div>
     </div>
     <div class="prose">
-      <p>The source is the TA team scorecard, where hiring time is a main KRA. The department
-      baseline existed before launch. I measured the new baseline after launch and adoption.</p>
-      <p>I will be exact rather than round up: other changes in that period may also have helped.
-      The scorecard is the evidence, and it is a before-and-after, not a controlled test.</p>
+      <p>The source is the TA team scorecard, where hiring time is a main KRA. The department baseline existed before launch, and I measured the new baseline after launch and adoption.</p>
+      <p>I will be exact rather than round up: other changes in that period may also have helped. The scorecard is the evidence, and it is a before-and-after, not a controlled test.</p>
       <p>Other gains were better data accuracy and fewer follow-ups. Before, TA chased hiring
       managers many times for round feedback. After, managers filed it through an automated form
       sent by email.</p>

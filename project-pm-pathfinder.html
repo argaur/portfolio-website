@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://gauravg.dev/project-pm-pathfinder.html">
-    <meta name="description" content="Case study: PM Pathfinder, a career navigation platform for India's stuck PMs. Diagnoses a PM archetype, builds a personalised roadmap, and answers questions through a RAG chatbot grounded in a self-deployed Supabase pgvector database.">
+    <meta name="description" content="Case study: PM Pathfinder, a career navigation platform for India's stuck PMs. It diagnoses a PM archetype, builds a personalised roadmap and answers questions through a RAG chatbot grounded in a self-deployed Supabase pgvector database.">
     <meta property="og:title" content="PM Pathfinder, Career Navigation for India's Stuck PMs | Gaurav Gupta">
-    <meta property="og:description" content="From 9 user interviews to a working prototype: an archetype diagnostic, a personalised roadmap, and a RAG chatbot grounded in a vector database I deployed and own end-to-end.">
+    <meta property="og:description" content="I went from 9 user interviews to a working prototype with an archetype diagnostic, a personalised roadmap and a RAG chatbot grounded in a vector database I deployed and own end to end.">
     <meta property="og:url" content="https://gauravg.dev/project-pm-pathfinder.html">
     <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
     <meta property="og:image:width" content="1200">
@@ -508,12 +508,9 @@
 <div class="hero-wrap">
   <div class="hero">
     <span class="label label-strong">Mastering AI Product Management, Cohort 7 (Rethink Systems) &middot; March 2026 &middot; Public demo &middot; Free tool</span>
-    <h1>PM Pathfinder: career navigation<br /><em>for India&rsquo;s stuck PMs.</em></h1>
+    <h1>PM Pathfinder: career navigation<br /><em>for India's stuck PMs.</em></h1>
     <p class="hero-sub">
-      From 9 user interviews to a working product. An AI-native platform that diagnoses a PM
-      archetype from a 10-question quiz, builds a personalised roadmap, and answers questions
-      through a RAG chatbot grounded in a vector database I deployed and own end-to-end, 
-      not a managed RAG API.
+      I went from 9 user interviews to a working product, an AI-native platform that diagnoses a PM archetype from a 10-question quiz, builds a personalised roadmap and answers questions through a RAG chatbot. The chatbot is grounded in a vector database I deployed and own end to end, not a managed RAG API.
     </p>
     <div class="meta-row">
       <span class="meta-tag">EdTech / Careers</span>
@@ -712,9 +709,8 @@
     <div class="docs-panel docs-panel--hidden" data-panel="prd" id="panel-prd" role="tabpanel" aria-labelledby="tab-prd">
       <div class="docs-note">
         <p>This case study is the product write-up. The original Product Requirements
-        Document, &ldquo;PM Career Navigation Platform for India,&rdquo; was submitted to
-        Mastering AI Product Management, Cohort 7 (Rethink Systems) in March 2026. It is the discovery foundation referenced
-        throughout: 9 interviews, five user segments, and a problem-prioritisation chain. The
+        Document, "PM Career Navigation Platform for India," was submitted to
+        Mastering AI Product Management, Cohort 7 (Rethink Systems) in March 2026. It is the discovery foundation referenced throughout, with 9 interviews, five user segments and a problem-prioritisation chain. The
         Solution and Architecture sections below describe what was actually built and shipped.</p>
         <p style="margin-top:20px"><a href="javascript:window.print()" class="lnk">Save as PDF &rarr;</a></p>
       </div>
@@ -731,10 +727,8 @@
     </div>
 
     <div class="callout">
-      <p>PM Pathfinder began as a PRD for Mastering AI Product Management, Cohort 7 (Rethink Systems) and became a real,
-      live product. It is live at
-      <a href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener" class="lnk">pm-pathfinder.gauravg.dev</a>:
-      quiz, archetype reveal, dashboard, roadmap, and a grounded RAG chatbot, all working.</p>
+      <p>PM Pathfinder began as a PRD for Mastering AI Product Management, Cohort 7 (Rethink Systems) and became a real product. It is live at
+      <a href="https://pm-pathfinder.gauravg.dev" target="_blank" rel="noopener" class="lnk">pm-pathfinder.gauravg.dev</a>, with the quiz, archetype reveal, dashboard, roadmap and a grounded RAG chatbot all working.</p>
     </div>
 
     <div class="stats">
@@ -757,10 +751,8 @@
     </div>
 
     <div class="prose">
-      <p>This case study reads in two registers. <strong>Discovery</strong> is drawn from the
-      submitted PRD, the research, segments, and problem chain that justified the bet.
-      <strong>Solution and Architecture</strong> describe what I actually shipped: an archetype
-      diagnostic, a personalised roadmap, and a retrieval-augmented chatbot grounded in a vector
+      <p>This case study has two parts. <strong>Discovery</strong> is drawn from the submitted PRD, which holds the research, segments and problem chain that justified the bet.
+      <strong>Solution and Architecture</strong> describe what I actually shipped, which is an archetype diagnostic, a personalised roadmap and a retrieval-augmented chatbot grounded in a vector
       database I built and own. Where the live product and the original PRD diverge, this document
       says so plainly.</p>
     </div>
@@ -771,28 +763,25 @@
 <div class="sec" id="problem">
   <div class="sec-inner">
     <div class="sec-head">
-      <h2>People don&rsquo;t stay stuck for lack of effort.<br /><em>They stay stuck because nobody tells them where they stand.</em></h2>
+      <h2>People don't stay stuck for lack of effort.<br /><em>They stay stuck because nobody tells them where they stand.</em></h2>
       <span class="label">01 &middot; Problem</span>
     </div>
 
     <div class="prose">
-      <p>The audience is working professionals in India with 3+ years of experience trying to break
-      into or advance in product management, engineers, consultants, narrow-domain PMs,
-      designers, career-adjacent operators. Fresh graduates are explicitly excluded; the
-      aspiration to become a PM forms only after real industry exposure.</p>
+      <p>The audience is working professionals in India with 3+ years of experience who are trying to break into or advance in product management, such as engineers, consultants, narrow-domain PMs, designers and career-adjacent operators. Fresh graduates are explicitly excluded, because the aspiration to become a PM forms only after real industry exposure.</p>
     </div>
 
     <div class="stats">
       <div class="stat">
         <span class="stat-num">200</span>
-        <span class="stat-lbl">Applications, ~2&ndash;3 replies (one interviewee)</span>
+        <span class="stat-lbl">Applications, ~2 to 3 replies (one interviewee)</span>
       </div>
       <div class="stat">
         <span class="stat-num">8/8</span>
-        <span class="stat-lbl">Consumed heavy PM content; none felt ready</span>
+        <span class="stat-lbl">Consumed heavy PM content, and none felt ready</span>
       </div>
       <div class="stat">
-        <span class="stat-num">&#8377;2.5&ndash;4L</span>
+        <span class="stat-num">&#8377;2.5 to 4L</span>
         <span class="stat-lbl">Bootcamp price vs. free YouTube, nothing between</span>
       </div>
       <div class="stat">
@@ -803,9 +792,8 @@
 
     <div class="callout">
       <p>The market runs from free (YouTube, WhatsApp groups, community Slacks) straight up to
-      <strong>&#8377;2.5&ndash;4 lakh bootcamps</strong>. Nobody sells a monthly subscription of
-      &#8377;2,000&ndash;5,000 that gives AI-powered practice, real feedback, and a believable
-      readiness score. <em>That gap is the entire opportunity.</em></p>
+      <strong>&#8377;2.5 to 4 lakh bootcamps</strong>. Nobody sells a monthly subscription of
+      &#8377;2,000 to 5,000 that gives AI-powered practice, real feedback and a believable readiness score. <em>That gap is the entire opportunity.</em></p>
     </div>
   </div>
 </div>
@@ -815,7 +803,7 @@
   <div class="sec-inner">
     <div class="sec-head">
       <h2>Five ways to be stuck.<br /><em>Five things that decided what to build.</em></h2>
-      <span class="label">02&ndash;03 &middot; Segments &amp; Findings</span>
+      <span class="label">02 to 03 &middot; Segments &amp; Findings</span>
     </div>
 
     <div class="prose">
@@ -828,11 +816,11 @@
       <table>
         <thead><tr><th>Segment</th><th>Who They Are</th><th>What We Saw</th></tr></thead>
         <tbody>
-          <tr><td>Trapped Engineer</td><td>2&ndash;4 yrs at IT firms, want PM, no one in their network knows it</td><td>150&ndash;200 applications, 2&ndash;3 replies. Rates himself 15/100 while holding a product title.</td></tr>
-          <tr><td>Niche-Locked PM</td><td>Working PMs, 1&ndash;7 yrs, experience too narrow to transfer</td><td>Has the title but cannot show the job outside one domain. Largest group by likely revenue.</td></tr>
-          <tr><td>Methodical Planner</td><td>Consultants/analysts, 5&ndash;8 yrs, highly analytical</td><td>2 years of active interest, zero applications. Knows every framework; cannot act without certainty.</td></tr>
-          <tr><td>Creative Crossover</td><td>Designers/marketers, 4&ndash;8 yrs, strong on users, weak on PM vocabulary</td><td>Made two study schedules, abandoned both. Applied to exactly one role, via a personal connection.</td></tr>
-          <tr><td>Perpetual Preparer</td><td>Adjacent to product 5&ndash;10+ yrs, knows the most, in the longest loops</td><td>10 years of self-study, still calls himself &ldquo;aspiring.&rdquo; Deeply skeptical anything new will work.</td></tr>
+          <tr><td>Trapped Engineer</td><td>2 to 4 yrs at IT firms, want PM, no one in their network knows it</td><td>150 to 200 applications, 2 to 3 replies. Rates himself 15/100 while holding a product title.</td></tr>
+          <tr><td>Niche-Locked PM</td><td>Working PMs, 1 to 7 yrs, experience too narrow to transfer</td><td>Has the title but cannot show the job outside one domain. Largest group by likely revenue.</td></tr>
+          <tr><td>Methodical Planner</td><td>Consultants/analysts, 5 to 8 yrs, highly analytical</td><td>2 years of active interest, zero applications. Knows every framework; cannot act without certainty.</td></tr>
+          <tr><td>Creative Crossover</td><td>Designers/marketers, 4 to 8 yrs, strong on users, weak on PM vocabulary</td><td>Made two study schedules, abandoned both. Applied to exactly one role, via a personal connection.</td></tr>
+          <tr><td>Perpetual Preparer</td><td>Adjacent to product 5 to 10+ yrs, knows the most, in the longest loops</td><td>10 years of self-study, still calls himself "aspiring." Deeply skeptical anything new will work.</td></tr>
         </tbody>
       </table>
       </div>
@@ -840,40 +828,32 @@
 
     <div class="callout callout--teal">
       <p><strong>Research insight:</strong> the more someone knows, the longer they tend to stay
-      stuck. Knowledge without a believable external signal of readiness produces preparation
-      loops, not applications. The product&rsquo;s first job is not to teach, it is to
-      measure.</p>
+      stuck. Knowledge without a believable external signal of readiness produces preparation loops and not applications, so the product's first job is to measure and not to teach.</p>
     </div>
 
     <h3 class="h3-spaced">Five findings that decided what to build</h3>
     <div class="cards">
       <div class="card">
         <h4>1 &middot; Progress, not motivation</h4>
-        <p>People are stuck because they cannot measure progress. Without a believable &ldquo;you
-        are ready,&rdquo; the safest move is to keep preparing. Rejections arrive as a verdict with
+        <p>People are stuck because they cannot measure progress, and without a believable "you are ready," the safest move is to keep preparing. Also, rejections arrive as a verdict with
         no explanation.</p>
       </div>
       <div class="card">
-        <h4>2 &middot; Network &gt; preparation</h4>
+        <h4>2 &middot; Network beats preparation</h4>
         <p>Everyone who moved into PM did it through a person, not an online application. Network
-        access is real, but it&rsquo;s a V2 problem. V1 fixes the root cause: practice and
-        feedback.</p>
+        access is real, but it's a V2 problem, so V1 fixes the root cause, which is practice and feedback.</p>
       </div>
       <div class="card">
         <h4>3 &middot; Same course for everyone is the bug</h4>
-        <p>A 4.5-year PM sitting through the same intro as a first-timer wastes both. The product
-        must figure out who you are within 10 minutes and feel built for you.</p>
+        <p>A 4.5-year PM sitting through the same intro as a first-timer wastes both, so the product must figure out who you are within 10 minutes and feel built for you.</p>
       </div>
       <div class="card">
-        <h4>4 &middot; Watching &ne; doing</h4>
-        <p>All eight consumed huge amounts of content; none could perform. What moved the needle
-        was practising with specific feedback. The centre must be a practice engine, not a
-        library.</p>
+        <h4>4 &middot; Watching is not doing</h4>
+        <p>All eight consumed huge amounts of content and none could perform. What made the difference was practising with specific feedback, so the centre must be a practice engine and not a library.</p>
       </div>
       <div class="card">
         <h4>5 &middot; Feedback arrives too late</h4>
-        <p>The only time anyone learns they aren&rsquo;t ready is when they fail a real interview,
-        the worst possible moment. Feedback has to be embedded into every practice
+        <p>The only time anyone learns they aren't ready is when they fail a real interview, which is the worst possible moment, so feedback has to be embedded into every practice
         session.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--periwinkle);">
@@ -893,9 +873,7 @@
     </div>
 
     <div class="prose">
-      <p>The live product delivers the first half of the bet end to end, identity and
-      personalisation, and lays the rails for the practice loop. A returning or new user
-      moves through a single, value-first flow.</p>
+      <p>The live product delivers the first half of the bet end to end, which is identity and personalisation, and lays the rails for the practice loop. A returning or new user moves through a single, value-first flow.</p>
     </div>
 
     <div class="table-wrap">
@@ -905,8 +883,8 @@
         <tbody>
           <tr><td>1</td><td>Onboarding + Diagnostic</td><td>3-step context (background, years, industry) then 10 scenario MCQs across 4 skill dimensions.</td><td>Figure out who you are in &lt;10 minutes</td></tr>
           <tr><td>2</td><td>Results teaser</td><td>Blurred 5-dimension scores shown <em>before</em> sign-up.</td><td>Value before commitment</td></tr>
-          <tr><td>3</td><td>Archetype Reveal</td><td>One of 6 archetypes, Builder, Architect, Storyteller, Advocate, Operator, Strategist.</td><td>A specific mirror, not a generic grade</td></tr>
-          <tr><td>4</td><td>Dashboard</td><td>Multi-radar, stat cards, a readiness ring scored 0&ndash;100 vs APM / PM / Senior PM benchmarks.</td><td>Make standing legible at a glance</td></tr>
+          <tr><td>3</td><td>Archetype Reveal</td><td>One of 6 archetypes: Builder, Architect, Storyteller, Advocate, Operator, Strategist.</td><td>A specific mirror, not a generic grade</td></tr>
+          <tr><td>4</td><td>Dashboard</td><td>Multi-radar, stat cards, a readiness ring scored 0 to 100 vs APM / PM / Senior PM benchmarks.</td><td>Make standing legible at a glance</td></tr>
           <tr><td>5</td><td>Roadmap + Topics</td><td>Gap-targeted learning path; 15 topic pages and per-dimension deep-dives.</td><td>The system picks what you work on</td></tr>
           <tr><td>6</td><td>Navigator Chat</td><td>A RAG chatbot answers PM questions from real frameworks, filtered to your archetype.</td><td>Grounded answers, not guesses</td></tr>
         </tbody>
@@ -916,10 +894,8 @@
 
     <div class="callout">
       <p><strong>Where this diverges from the PRD, honestly:</strong> the submitted PRD centred a
-      practice-problem engine and an AI feedback grader as the core loop. The shipped product
-      nails identity, personalisation, and grounded Q&amp;A first, and treats the graded
-      practice engine as the next build (see Roadmap). The discovery thesis is unchanged; the
-      sequencing reflects what was provable in a cohort timeline.</p>
+      practice-problem engine and an AI feedback grader as the core loop. The shipped product delivers identity, personalisation and grounded Q&amp;A first, and treats the graded
+      practice engine as the next build (see Roadmap). The discovery thesis is unchanged, and the sequencing reflects what was provable in a cohort timeline.</p>
     </div>
   </div>
 </div>
@@ -929,20 +905,18 @@
   <div class="sec-inner">
     <div class="sec-head">
       <h2>A retrieval pipeline<br /><em>I own end to end.</em></h2>
-      <span class="label">05&ndash;06 &middot; Architecture &amp; Data Model</span>
+      <span class="label">05 to 06 &middot; Architecture &amp; Data Model</span>
     </div>
 
     <div class="prose">
-      <p>The Navigator chatbot is a real retrieve-then-generate pipeline, not a wrapper. Source
-      content, archetype playbooks and a &ldquo;builder&rsquo;s bible&rdquo; of PM
-      frameworks, is chunked and embedded with Google&rsquo;s <code>gemini-embedding-001</code>
+      <p>The Navigator chatbot is a real retrieve-then-generate pipeline, not a wrapper. The source content, which is archetype playbooks and a "builder's bible" of PM frameworks, is chunked and embedded with Google's <code>gemini-embedding-001</code>
       into 3072-dimension vectors, then written to a <code>document_chunks</code> table in
       Supabase Postgres with the <code>pgvector</code> extension. An IVFFlat index
       (<code>lists=50</code>, cosine ops) keeps similarity search fast as the corpus grows.</p>
-      <p>At chat time the user&rsquo;s message is embedded with the same model and matched against
+      <p>At chat time the user's message is embedded with the same model and matched against
       <code>document_chunks</code> through a <code>match_chunks()</code> Postgres function, 
-      a plpgsql RPC that ranks by cosine distance and optionally filters to the user&rsquo;s
-      diagnosed archetype, always falling back to the shared &ldquo;builder&rsquo;s bible&rdquo; so
+      a plpgsql RPC that ranks by cosine distance and optionally filters to the user's
+      diagnosed archetype. It always falls back to the shared "builder's bible" so
       general questions never come back empty. The top 4 chunks are stitched into the system
       prompt before generation.</p>
     </div>
@@ -950,23 +924,21 @@
     <h3 class="h3-spaced">Why raw REST over the Gemini SDK</h3>
     <div class="cards">
       <div class="card">
-        <p><strong>SDK removed entirely</strong>, the Node Gemini SDK hit Vercel serverless
-        runtime incompatibilities; hand-rolled <code>fetch</code> calls to the REST endpoints
+        <p><strong>SDK removed entirely.</strong> The Node Gemini SDK hit Vercel serverless runtime incompatibilities, so hand-rolled <code>fetch</code> calls to the REST endpoints
         removed that dependency.</p>
       </div>
       <div class="card">
-        <p><strong>SSE parsed by hand</strong>, the chat route reads
+        <p><strong>SSE parsed by hand.</strong> The chat route reads
         <code>streamGenerateContent</code> as a raw byte stream, splits on <code>data:</code>
         lines, and re-streams plain text for a typing effect with no extra latency.</p>
       </div>
       <div class="card">
-        <p><strong>429 backoff built in</strong>, embedding and generation retry with
+        <p><strong>429 backoff built in.</strong> Embedding and generation retry with
         exponential backoff (1s/2s/4s) before failing, since the free Gemini tier rate-limits
         aggressively under burst.</p>
       </div>
       <div class="card">
-        <p><strong>Service-role only, server-side</strong>, <code>document_chunks</code>
-        has RLS with no public read; only the server-side client (service-role key, never shipped
+        <p><strong>Service-role only, server-side.</strong> <code>document_chunks</code> has RLS with no public read, so only the server-side client (service-role key, never shipped
         to the browser) can query it, and the route gates on an authenticated user before spending
         an embedding call.</p>
       </div>
@@ -975,8 +947,7 @@
     <h3 class="h3-spaced">Seven tables, one auth boundary</h3>
     <div class="prose">
       <p>Auth is Google OAuth via Supabase. An anonymous quiz session is migrated to the
-      authenticated user on sign-in through a single service-role route, the only place in
-      the app that bypasses RLS.</p>
+      authenticated user on sign-in through a single service-role route, which is the only place in the app that bypasses RLS.</p>
     </div>
     <div class="table-wrap">
       <div class="table-scroll" tabindex="0" role="region" aria-label="Database schema table">
@@ -1002,7 +973,7 @@
   <div class="sec-inner">
     <div class="sec-head">
       <h2>Free today.<br /><em>Pricing is a hypothesis.</em></h2>
-      <span class="label">07&ndash;08 &middot; Business Model &amp; Key Decisions</span>
+      <span class="label">07 to 08 &middot; Business Model &amp; Key Decisions</span>
     </div>
 
     <div class="prose">
@@ -1014,7 +985,7 @@
       <div>
         <h3>Free tier, as planned</h3>
         <ul>
-          <li>Career-type quiz + radar + skill translations</li>
+          <li>Career-type quiz, radar and skill translations</li>
           <li>2 AI-graded practice sessions</li>
           <li>Readiness snapshot after the trial</li>
         </ul>
@@ -1039,19 +1010,16 @@
       <div class="card">
         <h4>AI-only feedback in V1</h4>
         <p>Upraised charges &#8377;2.5L for human mentors. If a paid tier ever launched at
-        &#8377;2,999/mo, even one human review per week per user would erase the margin. The bet: AI feedback tuned to real PM
-        interview standards closes 70&ndash;80% of the gap at ~5% of the cost.</p>
+        &#8377;2,999/mo, even one human review per week per user would erase the margin. The bet is that AI feedback tuned to real PM interview standards closes 70 to 80% of the gap at ~5% of the cost.</p>
       </div>
       <div class="card">
         <h4>The system picks what you practise</h4>
-        <p>Letting people choose what to study is the exact trap they&rsquo;re in, all eight
-        tried it and failed. The system always routes you to your weakest scored area. Users lose
-        the feeling of control; they gain faster improvement.</p>
+        <p>Letting people choose what to study is the exact trap they're in, and all eight tried it and failed, so the system always routes you to your weakest scored area. Users lose the feeling of control, but they gain faster improvement.</p>
       </div>
       <div class="card">
         <h4>Free shows the gap, not a preview</h4>
-        <p>Not a watered-down sample of the course, a real diagnosis. &ldquo;You need 12
-        more sessions on metrics to be ready for mid-stage PM roles. Your plan is ready.&rdquo;</p>
+        <p>It is a real diagnosis, not a watered-down sample of the course. "You need 12
+        more sessions on metrics to be ready for mid-stage PM roles. Your plan is ready."</p>
       </div>
     </div>
   </div>
@@ -1062,7 +1030,7 @@
   <div class="sec-inner">
     <div class="sec-head">
       <h2>What ships next.<br /><em>And the full stack behind it.</em></h2>
-      <span class="label">09&ndash;10 &middot; Roadmap &amp; Tech</span>
+      <span class="label">09 to 10 &middot; Roadmap &amp; Tech</span>
     </div>
 
     <div class="cards">
@@ -1075,7 +1043,7 @@
       <div class="card" style="border-left: 3px solid var(--periwinkle);">
         <h3 class="h4" style="color: var(--periwinkle);">Next: the core loop</h3>
         <ul>
-          <li>Practice-problem engine (15&ndash;20 scenarios, picks weakest area)</li>
+          <li>Practice-problem engine (15 to 20 scenarios, picks weakest area)</li>
           <li>AI feedback grader: Framing, Rigor, Solution, Communication</li>
           <li>Live readiness score updating after every session</li>
         </ul>
@@ -1083,7 +1051,7 @@
       <div class="card" style="border-left: 3px solid var(--text-3);">
         <h3 class="h4" style="color: var(--text-2);">Later</h3>
         <ul>
-          <li>Resume upload + AI parsing into the diagnostic</li>
+          <li>Resume upload and AI parsing into the diagnostic</li>
           <li>Practice groups, matched peers, anonymous comparison</li>
           <li>Network access, the V2 problem the research flagged</li>
         </ul>

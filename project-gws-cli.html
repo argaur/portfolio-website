@@ -495,8 +495,7 @@
     <h1>Google Workspace,<br /><em>from the terminal.</em></h1>
     <p class="hero-sub">
       A Python command-line tool that reads Gmail, Calendar, Drive, Tasks and Contacts
-      without opening a browser. It is read-only today. The CLI core works. The
-      scheduled-automation layer around it never did, and is paused.
+      without opening a browser. It is read-only today. The CLI core works, but the scheduled-automation layer around it never did and is paused.
     </p>
     <div class="meta-row">
       <span class="meta-tag">python</span>
@@ -687,15 +686,12 @@
 
     <div class="prose">
       <p>GWS CLI (Google Workspace CLI) is a Python tool that puts five Google Workspace
-      APIs behind one command-line interface. The goal: handle the most common lookups
-      without switching to a browser, without navigating a UI, and without leaving the
-      terminal.</p>
+      APIs behind one command-line interface. The goal is to handle the most common lookups from the terminal, without switching to a browser or navigating a UI.</p>
     </div>
 
     <div class="callout-box">
       <p><span class="cmd">$ python cli.py gmail search "invoice from:accounts@vendor.com"</span></p>
-      <p>The interface is intentionally thin: small wrappers over the Google APIs with
-      clean output. No heavy abstraction. No config files beyond OAuth credentials.</p>
+      <p>The interface is intentionally thin, with small wrappers over the Google APIs and clean output. There is no heavy abstraction and there are no config files beyond OAuth credentials.</p>
     </div>
   </div>
 </div>
@@ -709,29 +705,27 @@
     </div>
 
     <div class="prose">
-      <p>Every scope the tool asks for is read-only. It reads and reports. It does not
-      write to any Google account.</p>
+      <p>Every scope the tool asks for is read-only, so it reads and reports but does not write to any Google account.</p>
     </div>
 
     <div class="cards">
       <div class="card" style="border-left: 3px solid var(--red);">
         <div class="card-icon" style="color:var(--red)">M</div>
         <h3 style="color:var(--red)">Gmail</h3>
-        <p>Search messages and read one in full. A digest command scans newsletters and
+        <p>It searches messages and reads one in full. A digest command scans newsletters and
         uses the Claude API to keep only what is relevant.</p>
         <p><span class="cmd">$ python cli.py gmail digest --days 2</span></p>
       </div>
       <div class="card" style="border-left: 3px solid var(--green);">
         <div class="card-icon" style="color:var(--green)">C</div>
         <h3 style="color:var(--green)">Google Calendar</h3>
-        <p>List today's events, look a few days ahead, and list calendars.</p>
+        <p>It lists today's events, looks a few days ahead and lists calendars.</p>
         <p><span class="cmd">$ python cli.py cal upcoming --days 7</span></p>
       </div>
       <div class="card" style="border-left: 3px solid var(--blue);">
         <div class="card-icon" style="color:var(--blue)">D</div>
         <h3 style="color:var(--blue)">Drive, Tasks, Contacts</h3>
-        <p>Search Drive by file name or list recent files. List open tasks. Look up a
-        contact by email through the People API.</p>
+        <p>It searches Drive by file name, lists recent files and open tasks, and looks up a contact by email through the People API.</p>
         <p><span class="cmd">$ python cli.py drive recent</span></p>
       </div>
     </div>
@@ -779,9 +773,7 @@
 
     <h3 class="h3-spaced">Why the automation layer is paused</h3>
     <div class="prose">
-      <p>The CLI commands work when run by hand. The scheduled-automation layer built around
-      them (unattended newsletter digests, idea mining into Obsidian) never
-      completed a single successful run and was dismantled. Reviving it means fixing the
+      <p>The CLI commands work when run by hand, but the scheduled-automation layer built around them (unattended newsletter digests, idea mining into Obsidian) never completed a single successful run and was dismantled. Reviving it means fixing the
       scheduling setup and re-authenticating before any of it runs unattended again.</p>
     </div>
 
