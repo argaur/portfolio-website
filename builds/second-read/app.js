@@ -2,12 +2,12 @@
   var root = document.documentElement;
   var q = new URLSearchParams(location.search);
   var NOTES = {
-    'wasteful': ['Right', 'Decides the line was not worth the cost. The story shows no cost.'],
-    'stranded': ['Left', 'Assumes riders have no other way to work. The story names none.'],
-    'runaway': ['Right', 'Says spending was out of control, but gives no figure.'],
-    'common sense': ['Right', 'Treats one side of a split vote as the obvious choice.'],
-    'abandoned': ['Left', 'Turns a budget vote into a broken duty.'],
-    'hollow': ['Left', 'The reporter judges the promise before it is tested.']
+    'handout': ['Right', 'Makes a school meal sound like charity.'],
+    'hungry': ['Left', 'Says the children are hungry. The story gives no count.'],
+    'burn': ['Right', 'Says the money is wasted before the plan starts.'],
+    'rescue': ['Left', 'Says the plan saves families. The story shows no proof.'],
+    'freeload': ['Right', 'Calls families cheats for taking what every child gets.'],
+    'heartless': ['Left', 'Judges why five people voted no. The story gives no reason.']
   };
   var GLYPHS = '<i class="rule" aria-hidden="true"></i><i class="staff" aria-hidden="true"></i><i class="pennant" aria-hidden="true"></i>';
   var story = document.getElementById('story');
