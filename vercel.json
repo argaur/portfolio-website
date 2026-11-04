@@ -9,9 +9,13 @@
     { "source": "/hackathons", "destination": "/hackathons.html", "permanent": true },
     { "source": "/hackathons/", "destination": "/hackathons.html", "permanent": true }
   ],
+  "rewrites": [
+    { "source": "/builds/wayfog", "destination": "https://wayfog.vercel.app/builds/wayfog" },
+    { "source": "/builds/wayfog/:path*", "destination": "https://wayfog.vercel.app/builds/wayfog/:path*" }
+  ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/((?!builds/wayfog).*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
