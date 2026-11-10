@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deadbolt: guard hooks for Claude Code, measured</title>
+<meta name="description" content="A private tool. Guard hooks that block risky Claude Code commands, and a canary that checks them at every session start. 724 blocks in 30 days, and most were false alarms.">
+<link rel="canonical" href="https://gauravg.dev/builds/deadbolt/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deadbolt: guard hooks for Claude Code, measured">
+<meta property="og:description" content="724 blocks in 30 days. 48 of 50 sampled were false alarms. A private tool, shown with its real numbers.">
+<meta property="og:url" content="https://gauravg.dev/builds/deadbolt/">
+<meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/builds/deadbolt/style.css">
+<script>
+  // Theme: URL param or saved toggle wins, else the OS setting. Set before first paint.
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    try { t = t || localStorage.getItem('deadbolt-theme'); } catch (e) {}
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+  })();
+</script>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <a class="back" href="/builds.html">&larr; All builds</a>
+    <button class="theme" id="theme" type="button">Theme</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker"><span class="chip">Private tool</span> Build 03 &middot; Nov 2026</p>
+      <h1>Deadbolt</h1>
+      <p class="lede">Guard hooks for Claude Code that block a short list of risky commands. A canary runs at every session start and warns me if a guard stops saying no.</p>
+      <p class="why">I built it for my own machine, after my guards failed silently more than once. The repo stays private. This page shows how it has done, with the weak numbers left in.</p>
+    </section>
+
+    <section class="stats" aria-label="Headline numbers">
+      <div class="stat"><span class="num">724</span><span class="lab">blocks, 12 Oct to 10 Nov 2026</span></div>
+      <div class="stat"><span class="num">48<small>/50</small></span><span class="lab">sampled blocks were false alarms</span></div>
+      <div class="stat"><span class="num">5</span><span class="lab">times the tool itself broke</span></div>
+      <div class="stat"><span class="num">455<small>/455</small></span><span class="lab">guard tests passed, 10 Nov 2026</span></div>
+    </section>
+
+    <section>
+      <h2>What it blocked</h2>
+      <p>The guards keep no log, so I counted blocks from my Claude Code session files. Those files go back about 30 days. The raw search found 1,623 matching lines. Retries and subagent copies repeat the same block, so I kept one entry per tool call. That left 724.</p>
+      <div class="bars" role="table" aria-label="Blocks by rule">
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">A file path comes from a variable</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:68.5%"></span></span><span class="bar-val" role="cell">496 &middot; 68.5%</span></div>
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">Would print a secret file</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:21.7%"></span></span><span class="bar-val" role="cell">157 &middot; 21.7%</span></div>
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">Skips the Codex consent prompt</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:2.5%"></span></span><span class="bar-val" role="cell">18 &middot; 2.5%</span></div>
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">Windows path breaks bash quoting</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:1.8%"></span></span><span class="bar-val" role="cell">13 &middot; 1.8%</span></div>
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">Search would print secret lines</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:1.5%"></span></span><span class="bar-val" role="cell">11 &middot; 1.5%</span></div>
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">Calls python3, which this machine lacks</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:1.2%"></span></span><span class="bar-val" role="cell">9 &middot; 1.2%</span></div>
+        <div class="bar-row" role="row"><span class="bar-name" role="rowheader">Force push, secret variable, other</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w:2.8%"></span></span><span class="bar-val" role="cell">20 &middot; 2.8%</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How many were real</h2>
+      <p>I drew 50 blocks at random, in proportion to each rule. Claude labelled each one as a real catch or a false alarm, with a one-line reason. I did not re-check the labels.</p>
+      <p>2 of the 50 were real. One search would have reached a <code>.env.local</code> file and printed secret lines. One command called <code>python3</code> and would have failed. The other 48 were false alarms. Most of them matched a word like <code>.env</code> inside a search pattern, or a harmless file path held in a variable.</p>
+      <p>The sample took only one block from each small rule. So it says nothing about force push or a delete of the home folder.</p>
+      <p class="note">On 10 Nov 2026, a separate code review flagged the variable-path rule too. I narrowed it in my live setup the same day, so it now judges the file name. Every count on this page comes from before that change.</p>
+    </section>
+
+    <section>
+      <h2>When it broke</h2>
+      <ol class="log">
+        <li><span class="d">2026-07-11</span><span>A guard called <code>python3</code>, which this machine does not have. It failed quietly and blocked nothing, for an unknown time.</span></li>
+        <li><span class="d">2026-07-26</span>The deploy guard blocked every deploy. If Python was missing, it would have let a deploy through.</li>
+        <li><span class="d">2026-07-28</span>The test that proved the deploy guard worked had been saved to a temp folder. It was gone.</li>
+        <li><span class="d">2026-09-14</span>Two hooks were rebuilt but never copied to the backup set. The canary flagged a mismatch at every session start until I found it.</li>
+        <li><span class="d">Undated</span>An older broken copy replaced a fixed guard. It failed 23 of its own 120 test cases, and nothing reported it. This is the reason the canary exists.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Why it stays private</h2>
+      <p>Before going public, I checked five public projects that guard Claude Code. They already cover the core job, and two of them are widely used. A public copy would add one more of the same thing.</p>
+      <ul class="prior">
+        <li><a href="https://github.com/Dicklesworthstone/destructive_command_guard">destructive_command_guard</a> <span>6,321 stars</span></li>
+        <li><a href="https://github.com/kenryu42/cc-safety-net">cc-safety-net</a> <span>1,983 stars</span></li>
+        <li><a href="https://github.com/yurukusa/cc-safe-setup">cc-safe-setup</a> <span>10 stars</span></li>
+        <li><a href="https://github.com/Soul-Brews-Studio/arra-safety-hooks">arra-safety-hooks</a> <span>5 stars</span></li>
+        <li><a href="https://github.com/noelfortman/claude-code-hooks-guardrail-integrity">claude-code-hooks-guardrail-integrity</a> <span>0 stars</span></li>
+      </ul>
+      <p>Three parts did not turn up in those five. The canary runs on its own at every session start. A script checks that each rule in my rule table still points at a file that holds it. And a plan has to pass set gates before work starts. Three of the five have a self-check command, but you run it by hand. I only searched these five repos on GitHub, so this does not show the parts are new anywhere else.</p>
+    </section>
+
+    <section class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li>Blocks: Claude Code session files on my laptop, 12 Oct to 10 Nov 2026, one entry per tool call.</li>
+        <li>False alarms: a 50-block sample drawn by rule, labelled by Claude on 10 Nov 2026, not re-checked by me.</li>
+        <li>Breaks: dated entries in my own mistakes log, plus the 23 of 120 failure noted in the Deadbolt README.</li>
+        <li>Tests: <code>tests/guards-test.sh</code> in the private Deadbolt repo, run 10 Nov 2026.</li>
+        <li>Public projects and star counts: checked on GitHub, 10 Nov 2026.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Gaurav Gupta &middot; Jaipur</footer>
+</div>
+<script src="/builds/deadbolt/app.js" defer></script>
+<script src="/analytics.js" defer></script>
+</body>
+</html>
