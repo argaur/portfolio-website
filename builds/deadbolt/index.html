@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deadbolt: guard hooks for Claude Code, measured</title>
-<meta name="description" content="A private tool. Guard hooks that block risky Claude Code commands, and a canary that checks them at every session start. 724 blocks in 30 days, and most were false alarms.">
+<meta name="description" content="An open-source tool. Guard hooks that block risky Claude Code commands, and a canary that checks them at every session start. 724 blocks in 30 days, and most were false alarms.">
 <link rel="canonical" href="https://gauravg.dev/builds/deadbolt/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Deadbolt: guard hooks for Claude Code, measured">
-<meta property="og:description" content="724 blocks in 30 days. 48 of 50 sampled were false alarms. A private tool, shown with its real numbers.">
+<meta property="og:description" content="724 blocks in 30 days. 48 of 50 sampled were false alarms. An open-source tool, shown with its real numbers.">
 <meta property="og:url" content="https://gauravg.dev/builds/deadbolt/">
 <meta property="og:image" content="https://gauravg.dev/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,10 +35,10 @@
 
   <main>
     <section class="hero">
-      <p class="kicker"><span class="chip">Private tool</span> Build 03 &middot; Nov 2026</p>
+      <p class="kicker"><span class="chip">Open source</span> Build 03 &middot; Nov 2026</p>
       <h1>Deadbolt</h1>
       <p class="lede">Guard hooks for Claude Code that block a short list of risky commands. A canary runs at every session start and warns me if a guard stops saying no.</p>
-      <p class="why">I built it for my own machine, after my guards failed silently more than once. The repo stays private. This page shows how it has done, with the weak numbers left in.</p>
+      <p class="why">I built it for my own machine, after my guards failed silently more than once. This page shows how it has done, with the weak numbers left in. The code has been public since 13 Nov 2026, under the MIT license: <a href="https://github.com/argaur/deadbolt">Deadbolt on GitHub</a>.</p>
     </section>
 
     <section class="stats" aria-label="Headline numbers">
@@ -82,8 +82,8 @@
     </section>
 
     <section>
-      <h2>Why it stays private</h2>
-      <p>Before going public, I checked five public projects that guard Claude Code. They already cover the core job, and two of them are widely used. A public copy would add one more of the same thing.</p>
+      <h2>Other projects that do this</h2>
+      <p>Before going public, I checked five public projects that guard Claude Code. They already cover the core job, and two of them are widely used.</p>
       <ul class="prior">
         <li><a href="https://github.com/Dicklesworthstone/destructive_command_guard">destructive_command_guard</a> <span>6,321 stars</span></li>
         <li><a href="https://github.com/kenryu42/cc-safety-net">cc-safety-net</a> <span>1,983 stars</span></li>
@@ -100,7 +100,7 @@
         <li>Blocks: Claude Code session files on my laptop, 12 Oct to 10 Nov 2026, one entry per tool call.</li>
         <li>False alarms: a 50-block sample drawn by rule, labelled by Claude on 10 Nov 2026, not re-checked by me.</li>
         <li>Breaks: dated entries in my own mistakes log, plus the 23 of 120 failure noted in the Deadbolt README.</li>
-        <li>Tests: <code>tests/guards-test.sh</code> in the private Deadbolt repo, run 10 Nov 2026.</li>
+        <li>Tests: <code>tests/guards-test.sh</code> in the <a href="https://github.com/argaur/deadbolt">Deadbolt repo</a>, run 10 Nov 2026.</li>
         <li>Public projects and star counts: checked on GitHub, 10 Nov 2026.</li>
       </ul>
     </section>
