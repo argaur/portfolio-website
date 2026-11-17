@@ -6,11 +6,11 @@ Public portfolio for Gaurav Gupta. It shows PM and AI strategy work to founders,
 
 **Success metric:** a visitor lands, moves through all 7 panels and every case-study and project page with no broken states, and each page reads as a polished, credible artifact.
 
-> The email gate exists in code (`gate.js`) but is **disabled site-wide** (session 15), because it was blocking visitors. The `#gate` overlay starts with `gate-hidden` so it never flashes on load (2026-10-11). Do not re-enable without an explicit ask.
+> The email gate is **deleted** (2026-11-17): `gate.js`, its markup and CSS are gone. Nothing on the site asks for an email before showing work. Visitors can opt in through the "Show interest" button instead (see below). Never bring a gate back without an explicit ask.
 
 ## Out of Scope (do not build unless explicitly asked)
 
-- Any npm package, bundler, or build step on deploy. The site ships by opening files in a browser. The one exception is the Tailwind CLI run below (Gaurav, 2026-10-31).
+- Any npm package, bundler, or build step on deploy. The site ships by opening files in a browser. Two exceptions: the Tailwind CLI run below (Gaurav, 2026-10-31), and `@neondatabase/serverless`, used only by the `api/interest.mjs` function (Gaurav, 2026-11-17). Pages never import npm code.
 - Blog or writing section
 - Contact form (social links are enough)
 - Analytics **beyond anonymous pageviews**. `analytics.js` (PostHog, pageviews only) is in scope since session 18. Custom events, `identify()`, autocapture, session replay and trailer play tracking are not.
@@ -48,7 +48,7 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, nothing bu
 - Experience modal data lives in `V3_WORK` and certificate data in `V3_CERTS`, both in `index.html`.
 
 ## Tech constraints
-- Plain HTML, CSS and vanilla JavaScript. No npm, no bundler, nothing builds on deploy. The only runtime CDNs are Google Fonts and PostHog.
+- Plain HTML, CSS and vanilla JavaScript in the pages. No bundler, nothing builds on deploy. The only runtime CDNs are Google Fonts and PostHog. The one server piece is `api/interest.mjs`.
 - The site must work by opening `index.html` in a browser.
 
 ## File structure
@@ -63,7 +63,8 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, nothing bu
 - `404.html`, `sitemap.xml`, `robots.txt`, `assets/og.jpg` (1200x630 share image, used by every page's `og:image`).
 - `trailer.js`: renders each page's `#showcase` (see Trailers).
 - `nav-hint.js`: fades the edges of the case-page mobile nav strip while more links are off-screen, and holds the phone touch-target rules those pages share. Loaded by all 16 case and project pages.
-- `gate.js`: email-gate logic, **loaded but short-circuited**. Do not edit without an ask.
+- `interest.js`: the "Show interest" corner button and form (native `<dialog>`). Loaded by `index.html` and `services.html` only. Never on case studies, project pages, builds or hackathons (Gaurav, 2026-11-17). POSTs to `/api/interest`.
+- `api/interest.mjs`: Vercel function that validates and inserts one row into Neon. Rules live in `api/_validate.mjs` (origin allow-list, field limits); test with `node --test api/_validate.test.mjs`. `package.json` exists only for its one dependency.
 - `analytics.js`: PostHog loader, **pageviews only**. Loaded by all 19 public pages (`index`, `services`, 8 `case-study-*`, 8 `project-*`, `g-os`). Reports into the shared "Web Fleet" PostHog project with super-property `project: 'portfolio-website'`, which is how the fleet dashboard separates sites. Skips localhost and `file://`. The `phc_` token is a public client key, meant to ship in the page.
 - `vercel.json`: redirects and security headers (CSP is report-only). `/case-study-founder-crm.html` (and the extensionless path) go to `case-study-siteline.html#origin`, and the old `assets/` resume path goes to `/GauravGupta_Resume_2026.pdf`, all permanent 308. Published URLs are never allowed to 404.
 - `assets/trailers/<slug>.mp4` and `.jpg`: trailer clips and posters.
@@ -105,8 +106,11 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
 - Reels autoplay under reduced motion, with no transition. No play tracking.
 - Record with Playwright behind a guard that blocks every POST, PUT, PATCH and DELETE. Never sign up, log in with real credentials or write data on a live product. life-os is never filmed against real data.
 
-## Supabase integration
-- Client loaded via CDN (`@supabase/supabase-js@2`). Project `nvwjekhguijinfuylytl.supabase.co`, table `subscribers(email text)`, anon key in `gate.js` (insert only, RLS on). Gate flow is disabled.
+## Show interest (replaced the email gate, 2026-11-17)
+- Storage: Neon database `portfolio-interest` (Vercel Marketplace, free plan, region iad1, Neon project `broad-cell-73902050`), connected to Production and Preview. The function reads `DATABASE_URL`.
+- Table `interest`: `id` identity, `created_at`, `email` (3 to 254 chars), `name` (max 100), `interest` (`freelance` | `role` | `following`), `note` (max 1000), `source` (page path and hash, max 200). Read submissions in the Neon console SQL editor: `select * from interest order by created_at desc;`
+- Bots that fill the hidden `website` field get a success reply and nothing is stored. There is no rate limit yet; add a Vercel Firewall rule on `/api/interest` if spam shows up.
+- The old Supabase gate project `nvwjekhguijinfuylytl` no longer exists (DNS gives non-existent domain, checked 2026-11-17).
 
 ## About me
 - Gaurav Gupta, Senior Product Manager and AI Strategist, Jaipur, India.

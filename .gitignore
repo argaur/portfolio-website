@@ -11,3 +11,4 @@ GEMINI.md
 
 # Personal files that live in the working tree but must never ship
 Gaurav Gupta _ LinkedIn.txt
+node_modules/
