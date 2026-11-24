@@ -71,7 +71,7 @@ A personal portfolio website: plain HTML, CSS and vanilla JavaScript, nothing bu
 - `app.js`: **dead file**, not referenced. `tabs.js`: empty stub. `favicon.svg`: GG monogram.
 - `case-study.css` was deleted in session 17. Every case and project page is self-contained.
 - `.vercelignore` keeps internal files out of the deployment, so they 404 on gauravg.dev: this file, `PORTFOLIO_PLAN.md`, `README.md`, `NEEDS-YOU.md`, `app.js`, `tabs.js`, `playwright-audit.js`, `.archive/`, `collab-runs/`, `_tmp/`, `styles.css`, `tailwind.config.js`, `tailwind.input.css`, `photo.jpg`, the old `assets/` resume, `AGENTS.md`, `GEMINI.md`. Add any new internal file there. Keep `prd-templates/`, because `g-os.html` fetches it.
-- `NEEDS-YOU.md`, `_tmp/` and `collab-runs/` are working files. Never commit `NEEDS-YOU.md`. `_tmp/` is gitignored.
+- `NEEDS-YOU.md`, `_tmp/` and `collab-runs/` are working files. `NEEDS-YOU.md` is committed (Gaurav, 2026-11-24) so Steward answers and [DONE] lines stay in sync; `.vercelignore` keeps it off the live site. `_tmp/` is gitignored.
 
 ## Case-study and project pages: per-product design skins
 Every page follows the **`case-study-siteline.html` pattern**: one continuous scroll page with a fixed top nav whose `.nav-link` anchors jump to sections (scrollspy-highlighted). Each page **wears its own product's design language** (self-contained `:root` tokens and fonts), single theme, no toggle.
