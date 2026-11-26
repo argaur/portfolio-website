@@ -10,9 +10,11 @@ The site work is pushed and live (`385104c`). This file is committed (2026-11-24
 - **Answer (Steward, 2026-11-10):** Merge the branch
 - [DONE 2026-11-24] Already done, no new work. `review/2026-10-31-batches-d-c` was merged into main as `6dfc2a2` (2026-11-02) and is on origin/main, so it is live. The GST trailer files were committed in `fc7f5f2`; nothing is uncommitted. Content items and DNS item 23 stay open under item 5 below.
 
-## 2. Test accounts for landing-only trailers
+## 2. ~~Test accounts for landing-only trailers~~ Answered 2026-11-26, via Steward
 - **What:** the Siteline, Trivo and Vitae trailers are unwired until there is in-app footage.
 - **Do:** share a test login for each, or a sample prescription for Vitae. Siteline uses Telegram sign-in.
+- **Answer (Steward, 2026-11-26):** Share all three test accounts
+- [WAITING 2026-11-26] Not started: no test account is in gopass or the capture profile yet. Asked Gaurav for the hand-over (sign-ins in the capture profile, Vitae sample file). Filming starts once they land.
 
 ## 3. ~~Blinkit check-in bug (other repo)~~ Answered 2026-11-10, via Steward
 - **What:** on blinkit-command-hub.vercel.app, the picker check-in list never ticks, so "Ready to Pick" stays disabled and the flow dead-ends. The 800ms tick timer looks like it resets on every re-render.
