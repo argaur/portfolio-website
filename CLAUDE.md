@@ -102,7 +102,7 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
 - **Trailers film the real live product, never slides or mockups.** Slide reels are only for products with no public platform.
 - **Video (8):** Blinkit, Notice Explained, AI vs Human Capital, YouTube 2.0, this site, Vittam, PM Pathfinder, Rulecard.
 - **Slide reels (5):** JindalX, Personal AI Assistant, life-os, Homelab, GWS CLI.
-- **None yet (3):** Siteline, Trivo and Vitae are unwired until test accounts exist. Landing-page-only footage was rejected.
+- **None (3):** Siteline, Trivo and Vitae trailers are dropped (Gaurav, 2026-11-27: too much work for a small outcome). Their `#showcase` sections stay hidden. Landing-page-only footage is still rejected.
 - Reels autoplay under reduced motion, with no transition. No play tracking.
 - Record with Playwright behind a guard that blocks every POST, PUT, PATCH and DELETE. Never sign up, log in with real credentials or write data on a live product. life-os is never filmed against real data.
 
@@ -138,7 +138,6 @@ Siteline's `#origin` section ("08, Where it started") holds Rethink CRM as v0, m
   - Resume softened, then swapped for the approved Oct 2026 version (`3e305dd`). The site is the single source of truth for resume claims.
 - **Previous, 2026-10-11:** hero motion as `hero-motion.js`, Rethink CRM merged into Siteline, live-product trailers (`6124d38`).
 - **Open (see `NEEDS-YOU.md`):**
-  - Test accounts for the Siteline, Trivo and Vitae trailers.
   - A life-os demo mode, or keep its reel.
   - Bugs in other repos: Blinkit check-in never ticks, the Rulecard page showed PLACEHOLDER text (fixed 2026-10-30).
 - **Also open:**
