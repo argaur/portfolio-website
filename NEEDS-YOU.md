@@ -16,6 +16,7 @@ The site work is pushed and live (`385104c`). This file is committed (2026-11-24
 - **Answer (Steward, 2026-11-26):** Share all three test accounts
 - [WAITING 2026-11-26] Not started: no test account is in gopass or the capture profile yet. Asked Gaurav for the hand-over (sign-ins in the capture profile, Vitae sample file). Filming starts once they land.
 - [WAITING 2026-11-27] Re-checked: still no `demo/<product>/login` entry in gopass and no Vitae sample in `_tmp/`. Say "accounts ready" to start filming.
+- [DONE 2026-11-27] Recorded, no work. Gaurav dropped it: too much work for a small outcome, very low priority. Siteline, Trivo and Vitae stay without trailers.
 
 ## 3. ~~Blinkit check-in bug (other repo)~~ Answered 2026-11-10, via Steward
 - **What:** on blinkit-command-hub.vercel.app, the picker check-in list never ticks, so "Ready to Pick" stays disabled and the flow dead-ends. The 800ms tick timer looks like it resets on every re-render.
